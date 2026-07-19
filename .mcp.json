@@ -6,6 +6,13 @@
                 "artisan",
                 "boost:mcp"
             ]
+        },
+        "sage": {
+            "type": "http",
+            "url": "https://sage.stands-macbook-pro.local/v1/mcp",
+            "headers": {
+                "Authorization": "Bearer ${SAGE_MCP_BEARER_TOKEN}"
+            }
         }
     }
 }

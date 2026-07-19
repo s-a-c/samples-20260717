@@ -29,3 +29,13 @@ yarn-error.log
 *.db
 .beads-credential-key
 .beads/proxieddb/
+
+# SAGE workspace identity (Ed25519 keys, bootstrap evidence, SDK venv)
+# Never commit; reprovision via scripts/bootstrap-sage.sh on a fresh clone.
+.local/sage/
+.local/sage-bootstrap-venv/
+
+# Project SAGE identity cache (hydrated from Infisical by .envrc).
+# Infisical is the source of truth; this is an untracked offline cache.
+.env.sage
+.envrc.local

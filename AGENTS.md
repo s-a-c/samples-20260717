@@ -1,3 +1,51 @@
+---
+trigger: always_on
+---
+
+# Samples Application Agent Instructions
+
+Project-level contract for AI agents working in **samples-20260717**. Global
+behavior, rule triggers, skill discovery, git policy, and the DOX hierarchy are
+defined in [`~/.config/agents/AGENTS.md`](../../.config/agents/AGENTS.md). This file
+adds repo scope and does not duplicate or weaken global rules.
+
+## Instruction Priority
+
+1. Explicit user, system, and orchestrator instructions win.
+2. The nearest applicable `AGENTS.md` wins for local work details.
+3. Global rules in [`~/.config/agents/AGENTS.md`](../../.config/agents/AGENTS.md) and
+   `~/.config/agents/rules/` apply when this file and its linked children do not
+   say otherwise.
+
+## Project Scope
+
+- Laravel 13 + PHP 8.5 application that presents **Chinook, Northwind, and
+  Sakila** as distinct sample products. Shared application capabilities connect
+  them without treating their unrelated business concepts as one domain.
+- Domain glossary: [`CONTEXT.md`](CONTEXT.md).
+- A `Sample Product` is one independently recognisable reference dataset and its
+  UX (Chinook, Northwind, or Sakila) — not a tenant or customer account.
+
+## Agent skills config
+
+- **Issue tracker:** bd (beads) — overrides the global GitHub Issues default for
+  this repo. Run `bd prime` for workflow context. See [`docs/agents/issue-tracker.md`](docs/agents/issue-tracker.md).
+- **Governed memory:** SAGE, namespace `project/samples-20260717`. direnv loads
+  `.env.sage` → `SAGE_MCP_BEARER_TOKEN` (project identity). Cite memories as
+  `sage://project/samples-20260717/...`. See [`docs/agents/sage.md`](docs/agents/sage.md).
+- **PKM:** Siyuan, notebook `samples-20260717` (id `20260719071714-xyhlut0`).
+  Direct HTTP via `$SAMPLES_SIYUAN_API_TOKEN`. **The Siyuan API token is global
+  (admin over the whole instance); touch ONLY the `samples-20260717` notebook —
+  never `Control Plane Golden Path` or any other.** See [`docs/agents/siyuan.md`](docs/agents/siyuan.md).
+
+## Identity switch
+
+direnv (`.envrc`) is the namespace switch: `cd` into this repo → SAGE identity
+becomes `project/samples-20260717`; `cd` out → home identity is restored. All
+seven agent hosts (OpenCode, Codex, Claude Code, Cursor, Zed, Junie, GitHub
+Copilot) read the same shared SAGE bearer under their expected env-var name.
+Infisical is the source of truth; `.env.sage` is a git-ignored offline cache.
+
 <laravel-boost-guidelines>
 === foundation rules ===
 
