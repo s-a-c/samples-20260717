@@ -28,8 +28,12 @@ adds repo scope and does not duplicate or weaken global rules.
 
 ## Agent skills config
 
-- **Issue tracker:** bd (beads) — overrides the global GitHub Issues default for
-  this repo. Run `bd prime` for workflow context. See [`docs/agents/issue-tracker.md`](docs/agents/issue-tracker.md).
+- **Issue tracker:** Hybrid — GitHub Issues is the source of truth for wayfinder
+  maps and decision tickets (native parent/child/blocking + the `wayfinder:*`
+  labels already in use by map #1); bd (beads) mirrors GitHub via JSONL sync and
+  owns execution-task tracking for AFK implementation slices; local markdown
+  (`docs/issues/*.md`) is the fallback when GitHub is unreachable. Run `bd prime`
+  for bd workflow context. See [`docs/agents/issue-tracker.md`](docs/agents/issue-tracker.md).
 - **Governed memory:** SAGE, namespace `project/samples-20260717`. direnv loads
   `.env.sage` → `SAGE_MCP_BEARER_TOKEN` (project identity). Cite memories as
   `sage://project/samples-20260717/...`. See [`docs/agents/sage.md`](docs/agents/sage.md).
