@@ -11,6 +11,7 @@ use App\Http\Responses\TwoFactorLoginResponse;
 use App\Http\Responses\VerifyEmailResponse;
 use App\Models\TeamInvitation;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
@@ -83,16 +84,18 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $username = $request->input(Fortify::username());
+            $throttleKey = Str::transliterate(Str::lower(is_string($username) ? $username : '').'|'.$request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
         });
 
         RateLimiter::for('passkeys', function (Request $request) {
             $credentialId = $request->input('credential.id');
+            $key = is_string($credentialId) && $credentialId !== '' ? $credentialId : $request->session()->getId();
 
             return Limit::perMinute(10)->by(
-                ($credentialId ?: $request->session()->getId()).'|'.$request->ip(),
+                $key.'|'.$request->ip(),
             );
         });
     }
@@ -114,12 +117,12 @@ class FortifyServiceProvider extends ServiceProvider
             ->with('team')
             ->where('code', $invitationCode)
             ->whereNull('accepted_at')
-            ->where(fn ($query) => $query
+            ->where(fn (Builder $query) => $query
                 ->whereNull('expires_at')
                 ->orWhere('expires_at', '>=', now()))
             ->first();
 
-        if (! $invitation) {
+        if ($invitation === null) {
             return null;
         }
 

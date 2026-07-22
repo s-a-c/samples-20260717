@@ -28,9 +28,12 @@ class TeamMemberTest extends TestCase
             ->call('updateMember', $member->id, TeamRole::Admin->value)
             ->assertHasNoErrors();
 
+        $teamMember = $team->members()->where('user_id', $member->id)->first();
+        assert($teamMember !== null);
+
         $this->assertEquals(
             TeamRole::Admin->value,
-            $team->members()->where('user_id', $member->id)->first()->pivot->role->value,
+            $teamMember->pivot->role->value,
         );
     }
 
@@ -68,7 +71,10 @@ class TeamMemberTest extends TestCase
             ->call('removeMember')
             ->assertHasNoErrors();
 
-        $this->assertFalse($member->fresh()->belongsToTeam($team));
+        $freshMember = $member->fresh();
+        assert($freshMember !== null);
+
+        $this->assertFalse($freshMember->belongsToTeam($team));
     }
 
     public function test_team_member_cannot_be_removed_by_non_owners(): void
@@ -95,6 +101,7 @@ class TeamMemberTest extends TestCase
         $owner = User::factory()->create();
         $member = User::factory()->create();
         $personalTeam = $member->personalTeam();
+        assert($personalTeam !== null);
         $team = Team::factory()->create();
 
         $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
@@ -109,6 +116,9 @@ class TeamMemberTest extends TestCase
             ->call('removeMember')
             ->assertHasNoErrors();
 
-        $this->assertEquals($personalTeam->id, $member->fresh()->current_team_id);
+        $freshMember = $member->fresh();
+        assert($freshMember !== null);
+
+        $this->assertEquals($personalTeam->id, $freshMember->current_team_id);
     }
 }

@@ -40,7 +40,7 @@ class Team extends Model
         parent::boot();
 
         static::creating(function (Team $team) {
-            if (empty($team->slug)) {
+            if ($team->getAttribute('slug') === null) {
                 $team->slug = static::generateUniqueTeamSlug($team->name);
             }
         });

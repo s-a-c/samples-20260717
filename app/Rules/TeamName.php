@@ -17,12 +17,15 @@ class TeamName implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $name = strtolower(trim($value));
+        $name = strtolower(trim(is_string($value) ? $value : ''));
 
         if (in_array($name, $this->reservedNames(), true)) {
             $fail(__('This team name is reserved and cannot be used.'));
         }
     }
+
+    /** @var array<int, string>|null */
+    private static ?array $reservedNamesCache = null;
 
     /**
      * Get a list of all reserved names.
@@ -31,7 +34,7 @@ class TeamName implements ValidationRule
      */
     protected function reservedNames(): array
     {
-        return once(fn () => collect($this->routesPrefixes())
+        return self::$reservedNamesCache ??= collect($this->routesPrefixes())
             ->merge([
                 '300',
                 '302',
@@ -365,7 +368,7 @@ class TeamName implements ValidationRule
             ->unique()
             ->sort()
             ->values()
-            ->toArray());
+            ->all();
     }
 
     /**
@@ -383,6 +386,6 @@ class TeamName implements ValidationRule
             ->unique()
             ->sort()
             ->values()
-            ->toArray();
+            ->all();
     }
 }

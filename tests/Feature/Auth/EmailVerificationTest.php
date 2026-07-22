@@ -26,6 +26,7 @@ class EmailVerificationTest extends TestCase
     {
         $user = User::factory()->unverified()->create();
         $team = $user->personalTeam();
+        assert($team !== null);
 
         Event::fake();
 
@@ -38,7 +39,9 @@ class EmailVerificationTest extends TestCase
         $response = $this->actingAs($user)->get($verificationUrl);
 
         Event::assertDispatched(Verified::class);
-        $this->assertTrue($user->fresh()->hasVerifiedEmail());
+        $freshUser = $user->fresh();
+        assert($freshUser !== null);
+        $this->assertTrue($freshUser->hasVerifiedEmail());
 
         $response->assertRedirect("/{$team->slug}/dashboard?verified=1");
     }
@@ -55,7 +58,10 @@ class EmailVerificationTest extends TestCase
 
         $this->actingAs($user)->get($verificationUrl);
 
-        $this->assertFalse($user->fresh()->hasVerifiedEmail());
+        $freshUser = $user->fresh();
+        assert($freshUser !== null);
+
+        $this->assertFalse($freshUser->hasVerifiedEmail());
     }
 
     public function test_already_verified_user_visiting_verification_link_is_redirected_without_firing_event_again(): void
@@ -64,6 +70,7 @@ class EmailVerificationTest extends TestCase
             'email_verified_at' => now(),
         ]);
         $team = $user->personalTeam();
+        assert($team !== null);
 
         Event::fake();
 
@@ -76,7 +83,10 @@ class EmailVerificationTest extends TestCase
         $this->actingAs($user)->get($verificationUrl)
             ->assertRedirect("/{$team->slug}/dashboard?verified=1");
 
-        $this->assertTrue($user->fresh()->hasVerifiedEmail());
+        $freshUser = $user->fresh();
+        assert($freshUser !== null);
+
+        $this->assertTrue($freshUser->hasVerifiedEmail());
         Event::assertNotDispatched(Verified::class);
     }
 }

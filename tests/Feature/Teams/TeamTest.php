@@ -177,13 +177,17 @@ class TeamTest extends TestCase
             'id' => $zuluTeam->id,
         ]);
 
-        $this->assertEquals($alphaTeam->id, $user->fresh()->current_team_id);
+        $freshUser = $user->fresh();
+        assert($freshUser !== null);
+
+        $this->assertEquals($alphaTeam->id, $freshUser->current_team_id);
     }
 
     public function test_deleting_current_team_falls_back_to_personal_team_when_alphabetically_first(): void
     {
         $user = User::factory()->create();
         $personalTeam = $user->personalTeam();
+        assert($personalTeam !== null);
         $team = Team::factory()->create(['name' => 'Zulu Team']);
         $team->members()->attach($user, ['role' => TeamRole::Owner->value]);
 
@@ -200,13 +204,17 @@ class TeamTest extends TestCase
             'id' => $team->id,
         ]);
 
-        $this->assertEquals($personalTeam->id, $user->fresh()->current_team_id);
+        $freshUser = $user->fresh();
+        assert($freshUser !== null);
+
+        $this->assertEquals($personalTeam->id, $freshUser->current_team_id);
     }
 
     public function test_deleting_non_current_team_leaves_current_team_unchanged(): void
     {
         $user = User::factory()->create();
         $personalTeam = $user->personalTeam();
+        assert($personalTeam !== null);
         $team = Team::factory()->create();
         $team->members()->attach($user, ['role' => TeamRole::Owner->value]);
 
@@ -223,7 +231,10 @@ class TeamTest extends TestCase
             'id' => $team->id,
         ]);
 
-        $this->assertEquals($personalTeam->id, $user->fresh()->current_team_id);
+        $freshUser = $user->fresh();
+        assert($freshUser !== null);
+
+        $this->assertEquals($personalTeam->id, $freshUser->current_team_id);
     }
 
     public function test_members_can_leave_non_personal_teams(): void
@@ -241,7 +252,10 @@ class TeamTest extends TestCase
             ->call('leaveTeam', $team->id)
             ->assertHasNoErrors();
 
-        $this->assertFalse($member->fresh()->belongsToTeam($team));
+        $freshMember = $member->fresh();
+        assert($freshMember !== null);
+
+        $this->assertFalse($freshMember->belongsToTeam($team));
     }
 
     public function test_leaving_current_team_switches_to_alphabetically_first_remaining_team(): void
@@ -267,14 +281,18 @@ class TeamTest extends TestCase
             ->call('leaveTeam', $zuluTeam->id)
             ->assertHasNoErrors();
 
-        $this->assertFalse($member->fresh()->belongsToTeam($zuluTeam));
-        $this->assertEquals($alphaTeam->id, $member->fresh()->current_team_id);
+        $freshMember = $member->fresh();
+        assert($freshMember !== null);
+
+        $this->assertFalse($freshMember->belongsToTeam($zuluTeam));
+        $this->assertEquals($alphaTeam->id, $freshMember->current_team_id);
     }
 
     public function test_personal_teams_cannot_be_left(): void
     {
         $user = User::factory()->create();
         $personalTeam = $user->personalTeam();
+        assert($personalTeam !== null);
 
         $this->actingAs($user);
 
@@ -282,7 +300,10 @@ class TeamTest extends TestCase
             ->call('leaveTeam', $personalTeam->id)
             ->assertForbidden();
 
-        $this->assertTrue($user->fresh()->belongsToTeam($personalTeam));
+        $freshUser = $user->fresh();
+        assert($freshUser !== null);
+
+        $this->assertTrue($freshUser->belongsToTeam($personalTeam));
     }
 
     public function test_team_owners_cannot_leave_their_team(): void
@@ -298,7 +319,10 @@ class TeamTest extends TestCase
             ->call('leaveTeam', $team->id)
             ->assertForbidden();
 
-        $this->assertTrue($owner->fresh()->belongsToTeam($team));
+        $freshOwner = $owner->fresh();
+        assert($freshOwner !== null);
+
+        $this->assertTrue($freshOwner->belongsToTeam($team));
     }
 
     public function test_users_cannot_leave_teams_they_dont_belong_to(): void
@@ -360,7 +384,12 @@ class TeamTest extends TestCase
             ->call('deleteTeam')
             ->assertHasNoErrors();
 
-        $this->assertEquals($member->personalTeam()->id, $member->fresh()->current_team_id);
+        $memberPersonalTeam = $member->personalTeam();
+        assert($memberPersonalTeam !== null);
+        $freshMember = $member->fresh();
+        assert($freshMember !== null);
+
+        $this->assertEquals($memberPersonalTeam->id, $freshMember->current_team_id);
     }
 
     public function test_personal_teams_cannot_be_deleted(): void
@@ -368,6 +397,7 @@ class TeamTest extends TestCase
         $user = User::factory()->create();
 
         $personalTeam = $user->personalTeam();
+        assert($personalTeam !== null);
 
         $this->actingAs($user);
 

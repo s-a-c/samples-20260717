@@ -21,11 +21,11 @@ trait RedirectsToCurrentTeam
     {
         $user = $request->user();
 
-        abort_if(! $user, 403);
+        abort_if($user === null, 403);
 
         $team = $user->currentTeam ?? $user->personalTeam();
 
-        abort_if(! $team, 403);
+        abort_if($team === null, 403);
 
         return $team;
     }

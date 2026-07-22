@@ -8,3 +8,12 @@ parameters:
         - tests/
 
     level: max
+
+    ignoreErrors:
+        -
+            identifier: staticMethod.dynamicCall
+            # framework-idiom: Eloquent query builder uses dynamic calls to static
+            # methods (where, exists, first, when, etc.) by design. This strict-rules
+            # identifier is structurally incompatible with Laravel's ORM and cannot
+            # be fixed in code. Permanent carve-out per bd .eac5a270.2 resolution;
+            # reviewed on framework or PHPStan major version bump.

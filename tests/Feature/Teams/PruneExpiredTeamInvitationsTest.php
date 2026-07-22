@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\TeamInvitation;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 class PruneExpiredTeamInvitationsTest extends TestCase
@@ -37,7 +38,7 @@ class PruneExpiredTeamInvitationsTest extends TestCase
             'invited_by' => $owner->id,
         ]);
 
-        $this->artisan('schedule:run')->assertSuccessful();
+        $this->assertEquals(0, Artisan::call('schedule:run'));
 
         $this->assertDatabaseMissing('team_invitations', [
             'id' => $expiredInvitation->id,

@@ -43,7 +43,7 @@ class UserFactory extends Factory
      */
     public function configure(): static
     {
-        return $this->afterCreating(function ($user) {
+        return $this->afterCreating(function (User $user) {
             $team = Team::factory()->personal()->create([
                 'name' => $user->name."'s Team",
             ]);

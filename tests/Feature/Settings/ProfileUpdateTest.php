@@ -64,9 +64,8 @@ class ProfileUpdateTest extends TestCase
             ->set('password', 'password')
             ->call('deleteUser');
 
-        $response
-            ->assertHasNoErrors()
-            ->assertRedirect('/');
+        $response->assertHasNoErrors();
+        $response->assertRedirect('/');
 
         $this->assertNull($user->fresh());
         $this->assertFalse(auth()->check());

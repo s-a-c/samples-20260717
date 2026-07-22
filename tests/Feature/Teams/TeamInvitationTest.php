@@ -106,8 +106,13 @@ class TeamInvitationTest extends TestCase
 
         $this->assertTrue(session('team-invitation-accepted'));
 
-        $this->assertNotNull($invitation->fresh()->accepted_at);
-        $this->assertTrue($invitedUser->fresh()->belongsToTeam($team));
+        $freshInvitation = $invitation->fresh();
+        assert($freshInvitation !== null);
+        $freshInvitedUser = $invitedUser->fresh();
+        assert($freshInvitedUser !== null);
+
+        $this->assertNotNull($freshInvitation->accepted_at);
+        $this->assertTrue($freshInvitedUser->belongsToTeam($team));
     }
 
     public function test_accepted_invitation_toast_is_shown_on_the_dashboard(): void
@@ -168,7 +173,10 @@ class TeamInvitationTest extends TestCase
 
         $response->assertHasErrors(['invitation']);
 
-        $this->assertFalse($uninvitedUser->fresh()->belongsToTeam($team));
+        $freshUninvitedUser = $uninvitedUser->fresh();
+        assert($freshUninvitedUser !== null);
+
+        $this->assertFalse($freshUninvitedUser->belongsToTeam($team));
     }
 
     public function test_expired_invitations_cannot_be_accepted(): void
@@ -193,6 +201,9 @@ class TeamInvitationTest extends TestCase
 
         $response->assertHasErrors(['invitation']);
 
-        $this->assertFalse($invitedUser->fresh()->belongsToTeam($team));
+        $freshInvitedUser = $invitedUser->fresh();
+        assert($freshInvitedUser !== null);
+
+        $this->assertFalse($freshInvitedUser->belongsToTeam($team));
     }
 }
