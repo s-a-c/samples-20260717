@@ -37,10 +37,14 @@ adds repo scope and does not duplicate or weaken global rules.
 - **Governed memory:** SAGE, namespace `project/samples-20260717`. direnv loads
   `.env.sage` → `SAGE_MCP_BEARER_TOKEN` (project identity). Cite memories as
   `sage://project/samples-20260717/...`. See [`docs/agents/sage.md`](docs/agents/sage.md).
-- **PKM:** Siyuan, notebook `samples-20260717` (id `20260719071714-xyhlut0`).
-  Direct HTTP via `$SAMPLES_SIYUAN_API_TOKEN`. **The Siyuan API token is global
-  (admin over the whole instance); touch ONLY the `samples-20260717` notebook —
-  never `Control Plane Golden Path` or any other.** See [`docs/agents/siyuan.md`](docs/agents/siyuan.md).
+- **PKM:** Siyuan, notebook `samples-20260717` (id `20260719071714-xyhlut0`)
+  on the multi-tenant `siyuan-workspaces` container. Direct HTTP via
+  `$SIYUAN_API_TOKEN` (inherited from HOME Infisical via direnv
+  `source_up`). **The token is shared across four notebooks in this
+  container (home, samples-20260717, pgaak, chinook-laravel) — touch ONLY
+  the `samples-20260717` notebook. The Control Plane / `the-hub--spoke`
+  notebook lives on a SEPARATE container and is unreachable from this
+  token.** See [`docs/agents/siyuan.md`](docs/agents/siyuan.md).
 
 ## Identity switch
 
@@ -67,6 +71,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - laravel/prompts (PROMPTS) - v0
 - livewire/flux (FLUXUI_FREE) - v2
 - livewire/livewire (LIVEWIRE) - v4
+- filament/filament (FILAMENT) - v5
 - larastan/larastan (LARASTAN) - v3
 - laravel/boost (BOOST) - v2
 - laravel/mcp (MCP) - v0
@@ -75,6 +80,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - laravel/sail (SAIL) - v1
 - pestphp/pest (PEST) - v4
 - phpunit/phpunit (PHPUNIT) - v12
+- rector/rector (RECTOR) - v2
 - tailwindcss (TAILWINDCSS) - v4
 
 ## Skills Activation

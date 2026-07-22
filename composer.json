@@ -1,37 +1,93 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
     "name": "laravel/livewire-starter-kit",
-    "type": "project",
     "description": "The official Laravel starter kit for Livewire.",
+    "license": "MIT",
+    "type": "project",
     "keywords": [
         "laravel",
         "framework"
     ],
-    "license": "MIT",
     "require": {
         "php": "^8.5",
-        "laravel/chisel": "^0.1.0",
-        "laravel/fortify": "^1.37.2",
-        "laravel/framework": "^13.17",
-        "laravel/tinker": "^3.0",
-        "livewire/blaze": "^1.0",
-        "livewire/flux": "^2.13.1",
-        "livewire/livewire": "^4.1"
+        "laravel/chisel": "^0.1.1",
+        "laravel/fortify": "^1.37.3",
+        "laravel/framework": "^13.21.1",
+        "laravel/tinker": "^3.0.2",
+        "livewire/blaze": "^1.0.12",
+        "livewire/flux": "^2.15.0",
+        "livewire/livewire": "^4.3.3"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.24",
-        "larastan/larastan": "^3.9",
-        "laravel/boost": "^2.2",
-        "laravel/pail": "^1.2.5",
-        "laravel/pao": "^1.0.6",
-        "laravel/pint": "^1.27",
-        "laravel/sail": "^1.53",
-        "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.9.3",
-        "pestphp/pest": "^4.7",
+        "barryvdh/laravel-ide-helper": "^3.7",
+        "carthage-software/mago": "^1.44",
+        "driftingly/rector-laravel": "^2.5",
+        "ergebnis/composer-normalize": "^2.52",
+        "ergebnis/rector-rules": "^1.18.3",
+        "fakerphp/faker": "^1.24.1",
+        "filament/blueprint": "^2.2.0",
+        "fruitcake/laravel-debugbar": "^4.4.0",
+        "jasonmccreary/laravel-test-assertions": "^2.9",
+        "joshcirre/instruckt-laravel": "^0.4.29",
+        "larastan/larastan": "^3.10",
+        "laravel/boost": "^2.4.13",
+        "laravel/pail": "^1.2.7",
+        "laravel/pao": "^1.1.2",
+        "laravel/pint": "^1.29.3",
+        "laravel/sail": "^1.64",
+        "laraveldaily/filacheck-pro": "^1.2.7",
+        "mockery/mockery": "^1.6.12",
+        "mrpunyapal/peststan": "^0.2.12",
+        "mrpunyapal/rector-pest": "^0.2.17",
+        "nunomaduro/collision": "^8.9.5",
+        "pestphp/pest": "^4.7.5",
+        "pestphp/pest-plugin-arch": "^4.0.2",
         "pestphp/pest-plugin-drift": "^4.1",
-        "pestphp/pest-plugin-laravel": "^4.1"
+        "pestphp/pest-plugin-faker": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.1",
+        "pestphp/pest-plugin-livewire": "^4.1",
+        "pestphp/pest-plugin-mutate": "^4.0.1",
+        "pestphp/pest-plugin-profanity": "^4.2.1",
+        "pestphp/pest-plugin-type-coverage": "^4.0.4",
+        "php-parallel-lint/php-console-color": "^1.0.1",
+        "php-parallel-lint/php-console-highlighter": "^1.0",
+        "php-parallel-lint/php-parallel-lint": "^1.4",
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan": "^2.2.5",
+        "phpstan/phpstan-deprecation-rules": "^2.0.4",
+        "phpstan/phpstan-phpunit": "^2.0.18",
+        "phpstan/phpstan-strict-rules": "^2.0.12",
+        "rector/rector": "^2.5.7",
+        "rector/swiss-knife": "^2.4.8",
+        "rector/type-perfect": "^2.1.4",
+        "roave/security-advisories": "dev-latest",
+        "spatie/laravel-ray": "^1.43.9",
+        "spatie/laravel-web-tinker": "^1.10.6",
+        "spatie/pest-plugin-snapshots": "^2.3.1"
     },
+    "repositories": [
+        {
+            "name": "filacheck",
+            "type": "composer",
+            "url": "https://satis.filamentexamples.com"
+        },
+        {
+            "name": "laravel-comments",
+            "type": "composer",
+            "url": "https://satis.spatie.be"
+        },
+        {
+            "name": "filament-blueprint",
+            "type": "composer",
+            "url": "https://packages.filamentphp.com/composer"
+        },
+        {
+            "name": "flux-pro",
+            "type": "composer",
+            "url": "https://composer.fluxui.dev"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "App\\": "app/",
@@ -44,15 +100,48 @@
             "Tests\\": "tests/"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [],
+            "installer": {
+                "post-create-project": []
+            }
+        }
+    },
     "scripts": {
-        "setup": [
-            "composer install",
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "@php artisan key:generate",
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan boost:update --ansi"
+        ],
+        "pre-package-uninstall": [
+            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --force",
-            "pnpm install --frozen-lockfile",
-            "pnpm run build"
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "ci:check": [
+            "Composer\\Config::disableProcessTimeout",
+            "@test"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
@@ -64,12 +153,14 @@
         "lint:check": [
             "pint --parallel --test"
         ],
-        "ci:check": [
-            "Composer\\Config::disableProcessTimeout",
-            "@test"
-        ],
-        "types:check": [
-            "phpstan analyse --memory-limit=512M"
+        "setup": [
+            "composer install",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --force",
+            "pnpm install --frozen-lockfile",
+            "pnpm run build"
         ],
         "test": [
             "@php artisan config:clear --ansi",
@@ -77,43 +168,16 @@
             "@types:check",
             "@php artisan test"
         ],
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+        "types:check": [
+            "phpstan analyse --memory-limit=512M"
         ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-            "@php artisan boost:update --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
-        ],
-        "pre-package-uninstall": [
-            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        "update:requirements": [
+            "composer update -oW",
+            "composer normalize",
+            "composer bump",
+            "pnpm dlx npm-check-updates -u",
+            "pnpm update"
         ]
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": [],
-            "installer": {
-                "post-create-project": []
-            }
-        }
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "php-http/discovery": true
-        }
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "$schema": "https://getcomposer.org/schema.json"
 }

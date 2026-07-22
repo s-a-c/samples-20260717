@@ -39,3 +39,4 @@ yarn-error.log
 # Infisical is the source of truth; this is an untracked offline cache.
 .env.sage
 .envrc.local
+.env.siyuan
