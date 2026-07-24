@@ -3,3 +3,4 @@ Task 2: complete (UUIDv7 primary keys and starter migrations refactored and veri
 Task 3: complete (source identity registry and reset confirmation migrations & services created and verified)
 Task 4: complete (ResetRun, ResetWindow service, and BelongsToProductDomain trait created and verified)
 Task 5: complete (source pin manifests and source:fetch command created and verified)
+Task 6: complete (product import pipeline, readers, and CLI commands created and verified)

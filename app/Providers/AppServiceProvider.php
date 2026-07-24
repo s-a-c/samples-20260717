@@ -29,6 +29,12 @@ class AppServiceProvider extends ServiceProvider
             return $user->hasRole('super_admin') ? true : null;
         });
 
+        $this->loadMigrationsFrom([
+            database_path('migrations/chinook'),
+            database_path('migrations/northwind'),
+            database_path('migrations/sakila'),
+        ]);
+
         $this->configureDefaults();
     }
 
