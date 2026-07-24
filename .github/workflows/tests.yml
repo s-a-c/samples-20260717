@@ -34,6 +34,11 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Download Composer dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: composer install --download-only --no-interaction --no-progress --no-plugins --no-scripts
+
       - name: Setup Application
         run: composer setup
 
