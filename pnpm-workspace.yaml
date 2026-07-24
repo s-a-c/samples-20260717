@@ -1,2 +1,4 @@
+minimumReleaseAgeExclude:
+  - concurrently@10.0.4
 overrides:
   shell-quote: 1.9.0
