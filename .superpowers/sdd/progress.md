@@ -8,3 +8,4 @@ Task 7: complete (Chinook schema migration and domain models created and verifie
 Task 8: complete (Northwind schema migration and domain models created and verified)
 Task 9: complete (Sakila schema migration and domain models created and verified)
 Task 10: complete (search projection tables, PL/pgSQL triggers, Tier1SourceObserver, and tests created and verified)
+Task 11: complete (laravel/ai SDK configuration and async EmbeddingJob for 1024d vector generation)
