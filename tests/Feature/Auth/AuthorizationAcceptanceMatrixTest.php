@@ -13,26 +13,34 @@ class AuthorizationAcceptanceMatrixTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * @return array<string, array{string}>
+     * @return array<string, array{string, array<string>, array<string>}>
      */
     public static function globalRoles(): array
     {
         return [
-            'system operator' => ['super_admin'],
-            'chinook curator' => ['chinook_curator'],
-            'northwind curator' => ['northwind_curator'],
-            'sakila curator' => ['sakila_curator'],
+            'system operator' => ['super_admin', ['/admin', '/chinook', '/northwind', '/sakila'], []],
+            'chinook curator' => ['chinook_curator', ['/chinook'], ['/admin', '/northwind', '/sakila']],
+            'northwind curator' => ['northwind_curator', ['/northwind'], ['/admin', '/chinook', '/sakila']],
+            'sakila curator' => ['sakila_curator', ['/sakila'], ['/admin', '/chinook', '/northwind']],
         ];
     }
 
+    /**
+     * @param  array<string>  $allowedPaths
+     * @param  array<string>  $forbiddenPaths
+     */
     #[DataProvider('globalRoles')]
-    public function test_each_baseline_role_can_enter_each_panel(string $role): void
+    public function test_each_baseline_role_panel_access_matrix(string $role, array $allowedPaths, array $forbiddenPaths): void
     {
         $user = User::factory()->create();
         $user->assignRole(Role::findOrCreate($role, 'web'));
 
-        foreach (['/admin', '/chinook', '/northwind', '/sakila'] as $path) {
+        foreach ($allowedPaths as $path) {
             $this->actingAs($user)->get($path)->assertSuccessful();
+        }
+
+        foreach ($forbiddenPaths as $path) {
+            $this->actingAs($user)->get($path)->assertForbidden();
         }
     }
 }

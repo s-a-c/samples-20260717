@@ -79,6 +79,16 @@ class User extends Authenticatable implements FilamentUser, PasskeyUser
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        if ($this->hasRole('super_admin')) {
+            return true;
+        }
+
+        $panelId = $panel->getId();
+
+        if (in_array($panelId, ['chinook', 'northwind', 'sakila'], true)) {
+            return $this->hasRole("{$panelId}_curator");
+        }
+
+        return false;
     }
 }
