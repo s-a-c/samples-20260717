@@ -11,3 +11,4 @@ Task 10: complete (search projection tables, PL/pgSQL triggers, Tier1SourceObser
 Task 11: complete (laravel/ai SDK configuration and async EmbeddingJob for 1024d vector generation)
 Task 11: complete (config/ai.php and EmbeddingJob created and verified)
 Task 12: complete (ReciprocalRankFusion, SearchDeepLinkRegistry, FederatedSearchService, and FederatedSearchTest created and verified)
+Task 12: complete (ReciprocalRankFusion, SearchDeepLinkRegistry, and FederatedSearchService created and verified)

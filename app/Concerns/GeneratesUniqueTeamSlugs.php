@@ -11,7 +11,7 @@ trait GeneratesUniqueTeamSlugs
     /**
      * Generate a unique slug for the team.
      */
-    protected static function generateUniqueTeamSlug(string $name, int|string|null $excludeId = null): string
+    public static function generateUniqueTeamSlug(string $name, int|string|null $excludeId = null): string
     {
         $defaultSlug = Str::slug($name);
 

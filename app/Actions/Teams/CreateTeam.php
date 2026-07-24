@@ -17,6 +17,7 @@ class CreateTeam
         return DB::transaction(function () use ($user, $name, $isPersonal) {
             $team = Team::create([
                 'name' => $name,
+                'slug' => Team::generateUniqueTeamSlug($name),
                 'is_personal' => $isPersonal,
             ]);
 

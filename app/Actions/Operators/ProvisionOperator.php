@@ -2,8 +2,7 @@
 
 namespace App\Actions\Operators;
 
-use App\Enums\TeamRole;
-use App\Models\Team;
+use App\Actions\Teams\CreateTeam;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Support\ActivityLogger;
@@ -26,29 +25,38 @@ class ProvisionOperator
                 $user->update(['name' => $name]);
             }
 
-            $team = $user->personalTeam() ?? Team::query()->create([
-                'name' => "{$name}'s Team",
-                'is_personal' => true,
-            ]);
+            $team = $user->personalTeam();
+            if ($team === null) {
+                $team = app(CreateTeam::class)->handle($user, "{$name}'s Team", true);
+            } elseif ($user->current_team_id === null) {
+                $user->switchTeam($team);
+            }
 
-            $team->memberships()->firstOrCreate(
-                ['user_id' => $user->id],
-                ['role' => TeamRole::Owner],
-            );
+            $role = Role::findOrCreate('super_admin', 'web');
+            if (! $user->hasRole($role)) {
+                $user->assignRole($role);
+            }
 
-            $user->switchTeam($team);
-            $user->syncRoles(Role::findOrCreate('super_admin', 'web'));
-
-            app(ActivityLogger::class)
-                ->causedBy($user)
-                ->performedOn($user)
-                ->event('operator_created')
-                ->withProperties(['email' => $email])
-                ->log('System Operator provisioned');
+            if (class_exists(ActivityLogger::class)) {
+                app(ActivityLogger::class)
+                    ->causedBy($user)
+                    ->performedOn($user)
+                    ->event('operator_created')
+                    ->withProperties(['email' => $email])
+                    ->log('System Operator provisioned');
+            }
 
             $user->refresh();
 
             return $user;
         });
+    }
+
+    /**
+     * Execute method signature for ProvisionOperator action.
+     */
+    public function execute(string $email, string $password, string $name = 'System Operator'): User
+    {
+        return $this->handle($name, $email, $password);
     }
 }
