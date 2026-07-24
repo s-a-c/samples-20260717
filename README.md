@@ -232,4 +232,4 @@ use Herd's Xdebug configuration or duplicate `herd-ext` loading.
 ## Contributing
 
 This project follows Laravel Boost guidelines and PHP 8.5 standards. All new
-code should include corresponding tests achieving 80%+ coverage.
+code should include corresponding tests achieving 80%+ coverage.Last updated: 2026-07-24 21:36:53 UTC
