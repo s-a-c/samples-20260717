@@ -108,6 +108,9 @@
             "phpstan/extension-installer": true
         },
         "optimize-autoloader": true,
+        "platform": {
+            "php": "8.5"
+        },
         "preferred-install": "dist",
         "sort-packages": true
     },

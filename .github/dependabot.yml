@@ -1,5 +1,53 @@
 version: 2
+registries:
+  filament-pro:
+    type: "composer-repository"
+    url: "https://packages.filamentphp.com/composer"
+    username: "${{secrets.DEPENDABOT_FILAMENT_PRO_USERNAME}}"
+    password: "${{secrets.DEPENDABOT_FILAMENT_PRO_PASSWORD}}"
+
+  filament-examples:
+    type: "composer-repository"
+    url: "https://satis.filamentexamples.com"
+    username: "${{secrets.DEPENDABOT_FILAMENT_EXAMPLES_USERNAME}}"
+    password: "${{secrets.DEPENDABOT_FILAMENT_EXAMPLES_PASSWORD}}"
+
+  flux-pro:
+    type: "composer-repository"
+    url: "https://composer.fluxui.dev"
+    username: "${{secrets.DEPENDABOT_FLUX_PRO_USERNAME}}"
+    password: "${{secrets.DEPENDABOT_FLUX_PRO_PASSWORD}}"
+
+  spatie:
+    type: "composer-repository"
+    url: "https://satis.spatie.be"
+    username: "${{secrets.DEPENDABOT_SPATIE_USERNAME}}"
+    password: "${{secrets.DEPENDABOT_SPATIE_PASSWORD}}"
+
 updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    registries:
+      - "filament-pro"
+      - "filament-examples"
+      - "flux-pro"
+      - "spatie"
+    groups:
+      composer:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      npm:
+        patterns:
+          - "*"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
