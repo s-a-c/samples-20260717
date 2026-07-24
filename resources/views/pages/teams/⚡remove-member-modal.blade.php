@@ -9,7 +9,7 @@ use Livewire\Component;
 new class extends Component {
     public Team $team;
 
-    public ?int $memberId = null;
+    public ?string $memberId = null;
 
     public string $memberName = '';
 
@@ -17,7 +17,7 @@ new class extends Component {
 
     public function mount(
         Team $team,
-        ?int $memberId = null,
+        ?string $memberId = null,
         ?string $memberName = null,
         ?string $modalName = null,
     ): void

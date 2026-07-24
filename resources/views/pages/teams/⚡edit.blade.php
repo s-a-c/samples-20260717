@@ -62,7 +62,7 @@ new class extends Component
         $this->redirectRoute('teams.edit', ['team' => $this->teamModel->fresh()->slug], navigate: true);
     }
 
-    public function updateMember(int $userId, string $role): void
+    public function updateMember(string $userId, string $role): void
     {
         Gate::authorize('updateMember', $this->teamModel);
 
@@ -202,7 +202,7 @@ new class extends Component
                                                 <flux:menu.item
                                                     as="button"
                                                     type="button"
-                                                    wire:click="updateMember({{ $member['id'] }}, '{{ $role['value'] }}')"
+                                                    wire:click="updateMember('{{ $member['id'] }}', '{{ $role['value'] }}')"
                                                     data-test="member-role-option"
                                                 >
                                                     {{ $role['label'] }}

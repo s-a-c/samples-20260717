@@ -32,7 +32,7 @@ new #[Title('Teams')] class extends Component {
         $this->redirectRoute('teams.edit', ['team' => $team->slug], navigate: true);
     }
 
-    public function leaveTeam(int $teamId): void
+    public function leaveTeam(string $teamId): void
     {
         $team = Team::findOrFail($teamId);
         $user = Auth::user();
@@ -128,7 +128,7 @@ new #[Title('Teams')] class extends Component {
 
                 @if (! $team->isPersonal && $team->role !== 'owner')
                     <flux:modal :name="'leave-team-'.$team->id" focusable class="max-w-lg">
-                        <form wire:submit="leaveTeam({{ $team->id }})" class="space-y-6">
+                        <form wire:submit="leaveTeam('{{ $team->id }}')" class="space-y-6">
                             <div>
                                 <flux:heading size="lg">{{ __('Leave team') }}</flux:heading>
                                 <flux:subheading>
