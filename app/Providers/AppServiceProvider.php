@@ -2,7 +2,17 @@
 
 namespace App\Providers;
 
+use App\Domain\Chinook\Models\Album;
+use App\Domain\Chinook\Models\Artist;
+use App\Domain\Chinook\Models\Customer;
+use App\Domain\Chinook\Models\Track;
+use App\Domain\Northwind\Models\Category;
+use App\Domain\Northwind\Models\Product;
+use App\Domain\Northwind\Models\Supplier;
+use App\Domain\Sakila\Models\Actor;
+use App\Domain\Sakila\Models\Film;
 use App\Models\User;
+use App\Observers\Tier1SourceObserver;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +45,29 @@ class AppServiceProvider extends ServiceProvider
             database_path('migrations/sakila'),
         ]);
 
+        $this->registerObservers();
+
         $this->configureDefaults();
+    }
+
+    /**
+     * Register model observers for search projection embedding jobs.
+     */
+    protected function registerObservers(): void
+    {
+        Artist::observe(Tier1SourceObserver::class);
+        Album::observe(Tier1SourceObserver::class);
+        Track::observe(Tier1SourceObserver::class);
+        Customer::observe(Tier1SourceObserver::class);
+
+        Product::observe(Tier1SourceObserver::class);
+        Category::observe(Tier1SourceObserver::class);
+        \App\Domain\Northwind\Models\Customer::observe(Tier1SourceObserver::class);
+        Supplier::observe(Tier1SourceObserver::class);
+
+        Film::observe(Tier1SourceObserver::class);
+        Actor::observe(Tier1SourceObserver::class);
+        \App\Domain\Sakila\Models\Category::observe(Tier1SourceObserver::class);
     }
 
     /**

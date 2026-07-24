@@ -6,3 +6,5 @@ Task 5: complete (source pin manifests and source:fetch command created and veri
 Task 6: complete (product import pipeline, readers, and CLI commands created and verified)
 Task 7: complete (Chinook schema migration and domain models created and verified)
 Task 8: complete (Northwind schema migration and domain models created and verified)
+Task 9: complete (Sakila schema migration and domain models created and verified)
+Task 10: complete (search projection tables, PL/pgSQL triggers, Tier1SourceObserver, and tests created and verified)
