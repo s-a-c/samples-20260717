@@ -2,3 +2,4 @@ Task 1: complete (pgsql:check and postgres extensions migration created and veri
 Task 2: complete (UUIDv7 primary keys and starter migrations refactored and verified)
 Task 3: complete (source identity registry and reset confirmation migrations & services created and verified)
 Task 4: complete (ResetRun, ResetWindow service, and BelongsToProductDomain trait created and verified)
+Task 5: complete (source pin manifests and source:fetch command created and verified)
