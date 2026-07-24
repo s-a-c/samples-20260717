@@ -2,11 +2,10 @@
 
 namespace App\Models\Chinook;
 
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
-class Chinook
+class Chinook extends Model
 {
     use HasRoles;
-
-    // Add any model-specific logic here
 }

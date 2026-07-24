@@ -46,7 +46,9 @@ class ProvisionOperator
                 ->withProperties(['email' => $email])
                 ->log('System Operator provisioned');
 
-            return $user->fresh();
+            $user->refresh();
+
+            return $user;
         });
     }
 }

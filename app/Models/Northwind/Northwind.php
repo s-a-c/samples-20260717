@@ -2,11 +2,10 @@
 
 namespace App\Models\Northwind;
 
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
-class Northwind
+class Northwind extends Model
 {
     use HasRoles;
-
-    // Add any model-specific logic here
 }
