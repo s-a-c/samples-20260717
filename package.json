@@ -1,7 +1,6 @@
 {
     "$schema": "https://www.schemastore.org/package.json",
     "private": true,
-    "packageManager": "pnpm@11.15.1",
     "type": "module",
     "scripts": {
         "build": "vite build",
@@ -19,5 +18,10 @@
         "@rollup/rollup-linux-x64-gnu": "4.62.2",
         "@tailwindcss/oxide-linux-x64-gnu": "^4.3.3",
         "lightningcss-linux-x64-gnu": "^1.33.0"
+    },
+    "packageManager": "pnpm@11.17.0",
+    "devDependencies": {
+        "laravel-echo": "^2.4.0",
+        "pusher-js": "^8.6.0"
     }
 }

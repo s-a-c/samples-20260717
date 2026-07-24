@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  shell-quote: 1.9.0
+
 importers:
 
   .:
@@ -26,6 +29,13 @@ importers:
       vite:
         specifier: ^8.1.5
         version: 8.1.5(jiti@2.7.0)
+    devDependencies:
+      laravel-echo:
+        specifier: ^2.4.0
+        version: 2.4.0(pusher-js@8.6.0)
+      pusher-js:
+        specifier: ^8.6.0
+        version: 8.6.0
     optionalDependencies:
       '@rollup/rollup-linux-x64-gnu':
         specifier: 4.62.2
@@ -357,6 +367,18 @@ packages:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
 
+  laravel-echo@2.4.0:
+    resolution: {integrity: sha512-8w0fAGSNt6THfbNyqdKc29bhfeNpJg13CGx2fcLgoX0/f0mTJm/AIkYTTakmcr9pc42ZB68cSoE00j4/xNaFGQ==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      pusher-js: '*'
+      socket.io-client: '*'
+    peerDependenciesMeta:
+      pusher-js:
+        optional: true
+      socket.io-client:
+        optional: true
+
   laravel-vite-plugin@3.1.3:
     resolution: {integrity: sha512-cI5Anw4QHY+UzvZczFaj+j8NhwT2FtyEN8aqS/hOdt6DpEFBsn6x3GENxALem3cc+TsGvd9MacneimEvShvKMA==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -535,9 +557,12 @@ packages:
     resolution: {integrity: sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==}
     engines: {node: '>=12'}
 
-  postcss@8.5.21:
-    resolution: {integrity: sha512-v4sDNP3fdNiWMfabO7OwOQdOX8TiQSztKyT1Wj0w+j7LDallJThJRBBBmzVGyYj0crMh7jlV4zepPkiNu9UwDQ==}
+  postcss@8.5.22:
+    resolution: {integrity: sha512-KBDEIpLrvpv16pp3K0Fw+UCoZfopFjjgeB+0tA/aaThfEE74kKDLrgg603YvOWJyg3+WYtyq3xYsQWsIyZlPqQ==}
     engines: {node: ^10 || ^12 || >=14}
+
+  pusher-js@8.6.0:
+    resolution: {integrity: sha512-wShJPfCS/kYkCBVzVW67wa9cnQIgHTszEK2XHNrFkOgGruuGw081aERAxfRjfdFU+WcIt8x6dvbwkTW4iZuQ8Q==}
 
   rolldown@1.1.5:
     resolution: {integrity: sha512-t9z29cJjXf/vxQ8dyhCSpt6H6aSwHTk8cT5I3iy6SMXuFpk5mB6PL6XfC8PCwrPTx93udwKUm9HRteAlTGBLiA==}
@@ -547,8 +572,8 @@ packages:
   rxjs@7.8.2:
     resolution: {integrity: sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==}
 
-  shell-quote@1.8.4:
-    resolution: {integrity: sha512-VsC6n6vz1ihYYyZZwX7YZSF5l5x36ca17OC+a69h94YqB7X6XLwf+5MOgynYir2SLFUbl8gIYvBo8K8RoNQ6bQ==}
+  shell-quote@1.9.0:
+    resolution: {integrity: sha512-Iov+JwFv/2HcTpcwNMKd8+IWNb8tboQJNQTkAY/LLVK7gGH9jy+LGkVqPxfekHl+yMmiqXszdGWXgkfml7hjqA==}
     engines: {node: '>= 0.4'}
 
   source-map-js@1.2.1:
@@ -584,6 +609,9 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+  tweetnacl@1.0.3:
+    resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==}
 
   vite-plugin-full-reload@1.2.0:
     resolution: {integrity: sha512-kz18NW79x0IHbxRSHm0jttP4zoO9P9gXh+n6UTwlNKnviTTEpOlum6oS9SmecrTtSr+muHEn5TUuC75UovQzcA==}
@@ -842,7 +870,7 @@ snapshots:
     dependencies:
       chalk: 5.6.2
       rxjs: 7.8.2
-      shell-quote: 1.8.4
+      shell-quote: 1.9.0
       supports-color: 10.2.2
       tree-kill: 1.2.2
       yargs: 18.0.0
@@ -872,6 +900,10 @@ snapshots:
   graceful-fs@4.2.11: {}
 
   jiti@2.7.0: {}
+
+  laravel-echo@2.4.0(pusher-js@8.6.0):
+    optionalDependencies:
+      pusher-js: 8.6.0
 
   laravel-vite-plugin@3.1.3(vite@8.1.5(jiti@2.7.0)):
     dependencies:
@@ -990,11 +1022,15 @@ snapshots:
 
   picomatch@4.0.5: {}
 
-  postcss@8.5.21:
+  postcss@8.5.22:
     dependencies:
       nanoid: 3.3.16
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  pusher-js@8.6.0:
+    dependencies:
+      tweetnacl: 1.0.3
 
   rolldown@1.1.5:
     dependencies:
@@ -1021,7 +1057,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  shell-quote@1.8.4: {}
+  shell-quote@1.9.0: {}
 
   source-map-js@1.2.1: {}
 
@@ -1050,6 +1086,8 @@ snapshots:
 
   tslib@2.8.1: {}
 
+  tweetnacl@1.0.3: {}
+
   vite-plugin-full-reload@1.2.0:
     dependencies:
       picocolors: 1.1.1
@@ -1059,7 +1097,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.5
-      postcss: 8.5.21
+      postcss: 8.5.22
       rolldown: 1.1.5
       tinyglobby: 0.2.17
     optionalDependencies:

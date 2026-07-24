@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Actions\Operators\ProvisionOperator;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,11 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $email = env('OPERATOR_EMAIL');
+        $password = env('OPERATOR_PASSWORD');
+        $name = env('OPERATOR_NAME', 'System Operator');
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (! is_string($email) || ! is_string($password) || $email === '' || $password === '') {
+            return;
+        }
+
+        app(ProvisionOperator::class)->handle($name, $email, $password);
     }
 }

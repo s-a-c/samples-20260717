@@ -68,7 +68,7 @@ A user-level authorization assignment for globally shared sample data or applica
 _Avoid_: team role, product licence
 
 **Sample Curator**:
-The Global Capability to edit or remove Source-Derived Entities in Sample Panels without running imports or Product Resets.
+The Global Capability to edit or remove Source-Derived Entities in Sample Panels without running imports or Product Resets. It is granted per Sample Product through the `{product}_curator` role; a user may hold it for one, some, or all products. System Operator (`super_admin`) implies the capability for every Sample Product.
 _Avoid_: team editor, system operator
 
 **System Operator**:
@@ -297,7 +297,7 @@ _Avoid_: scattered runbooks, issue-only operations manual
 
 
 **Global Role Administration**:
-The Admin Panel capability to assign roles that group Global Capabilities. It does not manage Team Ownership, team membership, or universal Product Entitlement.
+The Admin Panel capability to create and assign runtime-managed roles that group Global Capabilities, using the convention `super_admin` plus one `{product}_curator` role per Sample Product. The convention is documented, not code-locked. It does not manage Team Ownership, team membership, or universal Product Entitlement.
 _Avoid_: tenant administration, per-product licence management
 
 **Supplementary Activity**:
