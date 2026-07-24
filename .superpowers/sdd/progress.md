@@ -4,3 +4,4 @@ Task 3: complete (source identity registry and reset confirmation migrations & s
 Task 4: complete (ResetRun, ResetWindow service, and BelongsToProductDomain trait created and verified)
 Task 5: complete (source pin manifests and source:fetch command created and verified)
 Task 6: complete (product import pipeline, readers, and CLI commands created and verified)
+Task 7: complete (Chinook schema migration and domain models created and verified)

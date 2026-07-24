@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Domain\Northwind\Models;
+
+use App\Traits\BelongsToProductDomain;
+use Illuminate\Database\Eloquent\Attributes\Table;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+#[Table('northwind.regions')]
+class Region extends Model
+{
+    use BelongsToProductDomain, HasUuids;
+
+    protected $guarded = [];
+
+    public function getProductDomainName(): string
+    {
+        return 'northwind';
+    }
+
+    public function territories(): HasMany
+    {
+        return $this->hasMany(Territory::class, 'region_id');
+    }
+}
