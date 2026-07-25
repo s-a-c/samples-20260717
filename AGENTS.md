@@ -9,7 +9,59 @@ behavior, rule triggers, skill discovery, git policy, and the DOX hierarchy are
 defined in [`~/.config/agents/AGENTS.md`](../../.config/agents/AGENTS.md). This file
 adds repo scope and does not duplicate or weaken global rules.
 
-## Instruction Priority
+<details>
+  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
+    Expand for Table of Contents
+  </summary>
+
+- [1. Instruction Priority](#1-instruction-priority)
+- [2. Project Scope](#2-project-scope)
+- [3. Agent skills config](#3-agent-skills-config)
+- [4. Identity switch](#4-identity-switch)
+- [5. ADR Compliance Mandate](#5-adr-compliance-mandate)
+  - [5.1. Development Governance](#51-development-governance)
+  - [5.2. ADR Creation Triggers](#52-adr-creation-triggers)
+  - [5.3. Required Documentation](#53-required-documentation)
+  - [5.4. Implementation Process](#54-implementation-process)
+  - [5.5. Documentation Maintenance](#55-documentation-maintenance)
+- [6. Laravel Boost Guidelines](#6-laravel-boost-guidelines)
+  - [6.1. Foundational Context](#61-foundational-context)
+    - [6.1.1. Skills Activation](#611-skills-activation)
+    - [6.1.2. Conventions](#612-conventions)
+    - [6.1.3. Verification Scripts](#613-verification-scripts)
+    - [6.1.4. Application Structure \& Architecture](#614-application-structure--architecture)
+    - [6.1.5. Frontend Bundling](#615-frontend-bundling)
+    - [6.1.6. Documentation Files](#616-documentation-files)
+    - [6.1.7. Replies](#617-replies)
+  - [6.2. Laravel Boost](#62-laravel-boost)
+    - [6.2.1. Tools](#621-tools)
+    - [6.2.2. Searching Documentation (IMPORTANT)](#622-searching-documentation-important)
+      - [6.2.2.1. Search Syntax](#6221-search-syntax)
+    - [6.2.3. Artisan](#623-artisan)
+    - [6.2.4. Tinker](#624-tinker)
+  - [6.3. PHP](#63-php)
+  - [6.4. Deployment](#64-deployment)
+  - [6.5. Test Enforcement](#65-test-enforcement)
+  - [6.6. Do Things the Laravel Way](#66-do-things-the-laravel-way)
+    - [6.6.1. Model Creation](#661-model-creation)
+    - [6.6.2. APIs \& Eloquent Resources](#662-apis--eloquent-resources)
+    - [6.6.3. URL Generation](#663-url-generation)
+    - [6.6.4. Testing](#664-testing)
+    - [6.6.5. Vite Error](#665-vite-error)
+  - [6.7. Livewire](#67-livewire)
+  - [6.8. Laravel Pint Code Formatter](#68-laravel-pint-code-formatter)
+  - [6.9. Pest](#69-pest)
+- [7. Beads Issue Tracker](#7-beads-issue-tracker)
+  - [7.1. Quick Reference](#71-quick-reference)
+  - [7.2. Rules](#72-rules)
+  - [7.3. Agent Context Profiles](#73-agent-context-profiles)
+  - [7.4. Session Completion](#74-session-completion)
+
+</details>
+
+---
+
+## 1. Instruction Priority
 
 1. Explicit user, system, and orchestrator instructions win.
 2. The nearest applicable `AGENTS.md` wins for local work details.
@@ -17,7 +69,7 @@ adds repo scope and does not duplicate or weaken global rules.
    `~/.config/agents/rules/` apply when this file and its linked children do not
    say otherwise.
 
-## Project Scope
+## 2. Project Scope
 
 - Laravel 13 + PHP 8.5 application that presents **Chinook, Northwind, and
   Sakila** as distinct sample products. Shared application capabilities connect
@@ -26,7 +78,7 @@ adds repo scope and does not duplicate or weaken global rules.
 - A `Sample Product` is one independently recognisable reference dataset and its
   UX (Chinook, Northwind, or Sakila) — not a tenant or customer account.
 
-## Agent skills config
+## 3. Agent skills config
 
 - **Issue tracker:** Hybrid — GitHub Issues is the source of truth for wayfinder
   maps and decision tickets (native parent/child/blocking + the `wayfinder:*`
@@ -46,7 +98,7 @@ adds repo scope and does not duplicate or weaken global rules.
   notebook lives on a SEPARATE container and is unreachable from this
   token.** See [`docs/agents/siyuan.md`](docs/agents/siyuan.md).
 
-## Identity switch
+## 4. Identity switch
 
 direnv (`.envrc`) is the namespace switch: `cd` into this repo → SAGE identity
 becomes `project/samples-20260717`; `cd` out → home identity is restored. All
@@ -54,14 +106,50 @@ seven agent hosts (OpenCode, Codex, Claude Code, Cursor, Zed, Junie, GitHub
 Copilot) read the same shared SAGE bearer under their expected env-var name.
 Infisical is the source of truth; `.env.sage` is a git-ignored offline cache.
 
+## 5. ADR Compliance Mandate
+
+### 5.1. Development Governance
+- All development decisions must be documented in the architecture decision records (ADRs) system unless explicitly exempted by a documented exception
+- The ADR system is located at `docs/10-architecture/1003-adr/`
+- Each new feature, architectural change, or technical decision requires a new ADR entry following the established naming convention (0001-0017+)
+- Decisions to deviate from ADR requirements must themselves be documented as exceptions
+
+### 5.2. ADR Creation Triggers
+New ADRs are required for:
+- Addition of new sample products or domains
+- Major architectural changes beyond existing patterns
+- Technology selections not documented in current ADRs
+- Significant security, performance, or deployment architecture decisions
+- Removal or deprecation of existing functionality
+- Definition of new APIs or data models
+
+### 5.3. Required Documentation
+Every ADR must follow the documentation-formats and documentation-structure rules in `~/.agents/rules/`, including:
+- YAML front-matter with title, description, type, tags, and updated date
+- Numbered sections with hierarchical structure
+- Table of contents and navigation
+- References to existing documentation
+
+### 5.4. Implementation Process
+- Before any major development work, verify relevant ADRs exist at `docs/10-architecture/1003-adr/`
+- All code changes and implementation decisions must reference their enabling ADR
+- Wayfinder #15 compliance is the primary ADR enforcement mechanism for this project
+- Any ADR-labeled work must be tracked via the Beads issue tracker (Wayfinder #15 epic, work items T1-T17)
+
+### 5.5. Documentation Maintenance
+- ADR status should be tracked as "proposed", "accepted", "rejected", or "superseded"
+- Newer ADRs take precedence over older ones; old ADRs may be moved to archive when superseded
+- All ADR changes are tracked in the wayfinder:map tags
+- Review process follows Wayfinder workflow governance
+
 <laravel-boost-guidelines>
 === foundation rules ===
 
-# Laravel Boost Guidelines
+## 6. Laravel Boost Guidelines
 
 The Laravel Boost guidelines are specifically curated by Laravel maintainers for this application. These guidelines should be followed closely to ensure the best experience when building Laravel applications.
 
-## Foundational Context
+### 6.1. Foundational Context
 
 This application is a Laravel application and its main Laravel ecosystems package & versions are below. You are an expert with them all. Ensure you abide by these specific packages & versions.
 
@@ -91,42 +179,42 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - tailwindcss (TAILWINDCSS) - v4
 - laravel-echo (ECHO) - v2
 
-## Skills Activation
+#### 6.1.1. Skills Activation
 
 This project has domain-specific skills available in `**/skills/**`. You MUST activate the relevant skill whenever you work in that domain—don't wait until you're stuck.
 
-## Conventions
+#### 6.1.2. Conventions
 
 - You must follow all existing code conventions used in this application. When creating or editing a file, check sibling files for the correct structure, approach, and naming.
 - Use descriptive names for variables and methods. For example, `isRegisteredForDiscounts`, not `discount()`.
 - Check for existing components to reuse before writing a new one.
 
-## Verification Scripts
+#### 6.1.3. Verification Scripts
 
 - Do not create verification scripts or tinker when tests cover that functionality and prove they work. Unit and feature tests are more important.
 
-## Application Structure & Architecture
+#### 6.1.4. Application Structure & Architecture
 
 - Stick to existing directory structure; don't create new base folders without approval.
 - Do not change the application's dependencies without approval.
 
-## Frontend Bundling
+#### 6.1.5. Frontend Bundling
 
 - If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `pnpm run build`, `pnpm run dev`, or `composer run dev`. Ask them.
 
-## Documentation Files
+#### 6.1.6. Documentation Files
 
 - You must only create documentation files if explicitly requested by the user.
 
-## Replies
+#### 6.1.7. Replies
 
 - Be concise in your explanations - focus on what's important rather than explaining obvious details.
 
 === boost rules ===
 
-# Laravel Boost
+### 6.2. Laravel Boost
 
-## Tools
+#### 6.2.1. Tools
 
 - Laravel Boost is an MCP server with tools designed specifically for this application. Prefer Boost tools over manual alternatives like shell commands or file reads.
 - Use `database-query` to run read-only queries against the database instead of writing raw SQL in tinker.
@@ -134,27 +222,27 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 - Use `get-absolute-url` to resolve the correct scheme, domain, and port for project URLs. Always use this before sharing a URL with the user.
 - Use `browser-logs` to read browser logs, errors, and exceptions. Only recent logs are useful, ignore old entries.
 
-## Searching Documentation (IMPORTANT)
+#### 6.2.2. Searching Documentation (IMPORTANT)
 
 - Always use `search-docs` before making code changes. Do not skip this step. It returns version-specific docs based on installed packages automatically.
 - Pass a `packages` array to scope results when you know which packages are relevant.
 - Use multiple broad, topic-based queries: `['rate limiting', 'routing rate limiting', 'routing']`. Expect the most relevant results first.
 - Do not add package names to queries because package info is already shared. Use `test resource table`, not `filament 4 test resource table`.
 
-### Search Syntax
+##### 6.2.2.1. Search Syntax
 
 1. Use words for auto-stemmed AND logic: `rate limit` matches both "rate" AND "limit".
 2. Use `"quoted phrases"` for exact position matching: `"infinite scroll"` requires adjacent words in order.
 3. Combine words and phrases for mixed queries: `middleware "rate limit"`.
 4. Use multiple queries for OR logic: `queries=["authentication", "middleware"]`.
 
-## Artisan
+#### 6.2.3. Artisan
 
 - Run Artisan commands directly via the command line (e.g., `php artisan route:list`). Use `php artisan list` to discover available commands and `php artisan [command] --help` to check parameters.
 - Inspect routes with `php artisan route:list`. Filter with: `--method=GET`, `--name=users`, `--path=api`, `--except-vendor`, `--only-vendor`.
 - Read configuration values using dot notation: `php artisan config:show app.name`, `php artisan config:show database.default`. Or read config files directly from the `config/` directory.
 
-## Tinker
+#### 6.2.4. Tinker
 
 - Execute PHP in app context for debugging and testing code. Do not create models without user approval, prefer tests with factories instead. Prefer existing Artisan commands over custom tinker code.
 - Always use single quotes to prevent shell expansion: `php artisan tinker --execute 'Your::code();'`
@@ -162,7 +250,7 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 === php rules ===
 
-# PHP
+### 6.3. PHP
 
 - Always use curly braces for control structures, even for single-line bodies.
 - Use PHP 8 constructor property promotion: `public function __construct(public GitHub $github) { }`. Do not leave empty zero-parameter `__construct()` methods unless the constructor is private.
@@ -173,50 +261,50 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 === deployments rules ===
 
-# Deployment
+### 6.4. Deployment
 
 - Laravel can be deployed using [Laravel Cloud](https://cloud.laravel.com/), which is the fastest way to deploy and scale production Laravel applications.
 
 === tests rules ===
 
-# Test Enforcement
+### 6.5. Test Enforcement
 
 - Every change must be programmatically tested. Write a new test or update an existing test, then run the affected tests to make sure they pass.
 - Run the minimum number of tests needed to ensure code quality and speed. Use `php artisan test --compact` with a specific filename or filter.
 
 === laravel/core rules ===
 
-# Do Things the Laravel Way
+### 6.6. Do Things the Laravel Way
 
 - Use `php artisan make:` commands to create new files (i.e. migrations, controllers, models, etc.). You can list available Artisan commands using `php artisan list` and check their parameters with `php artisan [command] --help`.
 - If you're creating a generic PHP class, use `php artisan make:class`.
 - Pass `--no-interaction` to all Artisan commands to ensure they work without user input. You should also pass the correct `--options` to ensure correct behavior.
 
-### Model Creation
+#### 6.6.1. Model Creation
 
 - When creating new models, create useful factories and seeders for them too. Ask the user if they need any other things, using `php artisan make:model --help` to check the available options.
 
-## APIs & Eloquent Resources
+#### 6.6.2. APIs & Eloquent Resources
 
 - For APIs, default to using Eloquent API Resources and API versioning unless existing API routes do not, then you should follow existing application convention.
 
-## URL Generation
+#### 6.6.3. URL Generation
 
 - When generating links to other pages, prefer named routes and the `route()` function.
 
-## Testing
+#### 6.6.4. Testing
 
 - When creating models for tests, use the factories for the models. Check if the factory has custom states that can be used before manually setting up the model.
 - Faker: Use methods such as `$this->faker->word()` or `fake()->randomDigit()`. Follow existing conventions whether to use `$this->faker` or `fake()`.
 - When creating tests, make use of `php artisan make:test [options] {name}` to create a feature test, and pass `--unit` to create a unit test. Most tests should be feature tests.
 
-## Vite Error
+#### 6.6.5. Vite Error
 
 - If you receive an "Illuminate\Foundation\ViteException: Unable to locate file in Vite manifest" error, you can run `pnpm run build` or ask the user to run `pnpm run dev` or `composer run dev`.
 
 === livewire/core rules ===
 
-# Livewire
+### 6.7. Livewire
 
 - Livewire allow to build dynamic, reactive interfaces in PHP without writing JavaScript.
 - You can use Alpine.js for client-side interactions instead of JavaScript frameworks.
@@ -224,14 +312,14 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 === pint/core rules ===
 
-# Laravel Pint Code Formatter
+### 6.8. Laravel Pint Code Formatter
 
 - If you have modified any PHP files, you must run `vendor/bin/pint --dirty --format agent` before finalizing changes to ensure your code matches the project's expected style.
 - Do not run `vendor/bin/pint --test --format agent`, simply run `vendor/bin/pint --format agent` to fix any formatting issues.
 
 === pest/core rules ===
 
-## Pest
+### 6.9. Pest
 
 - This project uses Pest for testing. Create tests: `php artisan make:test --pest {name}`.
 - The `{name}` argument should not include the test suite directory. Use `php artisan make:test --pest SomeFeatureTest` instead of `php artisan make:test --pest Feature/SomeFeatureTest`.
@@ -241,11 +329,11 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 </laravel-boost-guidelines>
 
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:6cd5cc61 -->
-## Beads Issue Tracker
+## 7. Beads Issue Tracker
 
 This project uses **bd (beads)** for issue tracking. Run `bd prime` to see full workflow context and commands.
 
-### Quick Reference
+### 7.1. Quick Reference
 
 ```bash
 bd ready              # Find available work
@@ -254,7 +342,7 @@ bd update <id> --claim  # Claim work
 bd close <id>         # Complete work
 ```
 
-### Rules
+### 7.2. Rules
 
 - Use `bd` for ALL task tracking — do NOT use TodoWrite, TaskCreate, or markdown TODO lists
 - Run `bd prime` for detailed command reference and session close protocol
@@ -262,7 +350,7 @@ bd close <id>         # Complete work
 
 **Architecture in one line:** issues live in a local Dolt DB; sync uses `refs/dolt/data` on your git remote; `.beads/issues.jsonl` is a passive export. See https://github.com/gastownhall/beads/blob/main/docs/SYNC_CONCEPTS.md for details and anti-patterns.
 
-## Agent Context Profiles
+### 7.3. Agent Context Profiles
 
 The managed Beads block is task-tracking guidance, not permission to override repository, user, or orchestrator instructions.
 
@@ -270,7 +358,7 @@ The managed Beads block is task-tracking guidance, not permission to override re
 - **Minimal**: Keep tool instruction files as pointers to `bd prime`; use the same conservative git policy unless active instructions say otherwise.
 - **Team-maintainer**: Only when the repository explicitly opts in, agents may close beads, run quality gates, commit, and push as part of session close. A current "do not commit" or "do not push" instruction still wins.
 
-## Session Completion
+### 7.4. Session Completion
 
 This protocol applies when ending a Beads implementation workflow. It is subordinate to explicit user, repository, and orchestrator instructions.
 
@@ -294,27 +382,3 @@ This protocol applies when ending a Beads implementation workflow. It is subordi
 - Do not commit or push without clear authority from the active profile or the current user request.
 - If a required sync or push is blocked, stop and report the exact command and error.
 <!-- END BEADS INTEGRATION -->
-
-<!-- BEGIN BEADS CODEX SETUP: generated by bd setup codex -->
-## Beads Issue Tracker
-
-Use Beads (`bd`) for durable task tracking in repositories that include it. Use the `beads` skill at `.agents/skills/beads/SKILL.md` (project install) or `~/.agents/skills/beads/SKILL.md` (global install) for Beads workflow guidance, then use the `bd` CLI for issue operations.
-
-### Quick Reference
-
-```bash
-bd ready                # Find available work
-bd show <id>            # View issue details
-bd update <id> --claim  # Claim work
-bd close <id>           # Complete work
-bd prime                # Refresh Beads context
-```
-
-### Rules
-
-- Use `bd` for all task tracking; do not create markdown TODO lists.
-- Run `bd prime` when Beads context is missing or stale. Codex 0.129.0+ can load Beads context automatically through native hooks; use `/hooks` to inspect or toggle them.
-- Keep persistent project memory in Beads via `bd remember`; do not create ad hoc memory files.
-
-**Architecture in one line:** issues live in a local Dolt DB; sync uses `refs/dolt/data` on your git remote; `.beads/issues.jsonl` is a passive export. See https://github.com/gastownhall/beads/blob/main/docs/SYNC_CONCEPTS.md for details and anti-patterns.
-<!-- END BEADS CODEX SETUP -->
