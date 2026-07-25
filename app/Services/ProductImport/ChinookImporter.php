@@ -10,7 +10,7 @@ final class ChinookImporter
 {
     public function __construct(
         protected SourceIdentityRegistry $identityRegistry,
-        protected SqliteSourceReader $sqliteReader,
+        protected PostgresSourceReader $pgReader,
     ) {}
 
     /**
@@ -50,18 +50,11 @@ final class ChinookImporter
         $sourceFile = $this->getSourceFilePath();
 
         if ($sourceFile !== null && File::exists($sourceFile)) {
-            $tables = $this->sqliteReader->getTables($sourceFile);
-            foreach ($tables as $table) {
-                $rows = $this->sqliteReader->readTable($sourceFile, $table);
-                foreach ($rows as $row) {
-                    /** @var string|int|null $id */
-                    $id = $row['id'] ?? $row[array_key_first($row) ?? ''] ?? null;
-                    if ($id !== null) {
-                        $entity = "chinook.{$table}";
-                        $this->identityRegistry->getOrMint($entity, ['id' => (string) $id]);
-                    }
-                }
-            }
+            $excludePatterns = [
+                '/CREATE\s+DATABASE/i',
+                '/\\\\c/i',
+            ];
+            $this->pgReader->executeSqlDump($sourceFile, $stagingSchema, $excludePatterns);
         }
     }
 

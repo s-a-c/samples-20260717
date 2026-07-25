@@ -7,9 +7,9 @@
  */
 return [
     'product' => 'northwind',
-    'repository' => 'jpwhite3/northwind-SQLite3',
-    'commit_sha' => '4f56e7f',
-    'filename' => 'dist/northwind.db',
-    'digest' => 'a8f5c8f85f3cf3b85d39d911b3e8a4a15998dfd72023ee4b6fbb5909dd6f7797',
-    'format' => 'sqlite_binary',
+    'repository' => 'pthom/northwind_psql',
+    'commit_sha' => 'cd0ef28d66369fbe177778e604e4be0f153c9e5c',
+    'filename' => 'northwind.sql',
+    'digest' => '0ee30c01ba282f7194f38bf7f99cd6be0470b7ee5f67d0f7ca41fb058d735e0c',
+    'format' => 'postgresql_sql',
 ];

@@ -60,6 +60,18 @@ return [
             'report' => false,
         ],
 
+        'rustfs' => [
+            'driver' => 's3',
+            'key' => env('RUSTFS_ACCESS_KEY_ID', 'rustfs'),
+            'secret' => env('RUSTFS_SECRET_ACCESS_KEY', 'rustfs-secret'),
+            'region' => env('RUSTFS_REGION', 'us-east-1'),
+            'bucket' => env('RUSTFS_BUCKET', 'samples'),
+            'endpoint' => env('RUSTFS_ENDPOINT', 'http://127.0.0.1:9000'),
+            'use_path_style_endpoint' => true,
+            'throw' => false,
+            'report' => false,
+        ],
+
     ],
 
     /*

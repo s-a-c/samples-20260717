@@ -10,7 +10,7 @@ final class NorthwindImporter
 {
     public function __construct(
         protected SourceIdentityRegistry $identityRegistry,
-        protected SqlSourceReader $sqlReader,
+        protected PostgresSourceReader $pgReader,
     ) {}
 
     /**
@@ -50,14 +50,7 @@ final class NorthwindImporter
         $sourceFile = $this->getSourceFilePath();
 
         if ($sourceFile !== null && File::exists($sourceFile)) {
-            $statements = $this->sqlReader->getStatements($sourceFile);
-            foreach ($statements as $stmt) {
-                if (preg_match('/INSERT INTO ["\']?(\w+)["\']?/i', $stmt, $matches) === 1) {
-                    $table = $matches[1];
-                    $entity = "northwind.{$table}";
-                    $this->identityRegistry->getOrMint($entity, ['stmt' => md5($stmt)]);
-                }
-            }
+            $this->pgReader->executeSqlDump($sourceFile, $stagingSchema);
         }
     }
 

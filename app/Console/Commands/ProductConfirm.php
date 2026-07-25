@@ -15,7 +15,7 @@ class ProductConfirm extends Command
      *
      * @var string
      */
-    protected $signature = 'product:confirm {product : chinook|northwind|sakila}';
+    protected $signature = 'product:confirm {product : chinook|northwind|pagila}';
 
     /**
      * The console command description.

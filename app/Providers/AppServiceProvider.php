@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom([
             database_path('migrations/chinook'),
             database_path('migrations/northwind'),
-            database_path('migrations/sakila'),
+            database_path('migrations/pagila'),
         ]);
 
         $this->registerObservers();

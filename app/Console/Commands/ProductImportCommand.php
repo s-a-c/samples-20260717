@@ -13,7 +13,7 @@ class ProductImportCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'product:import {product : chinook|northwind|sakila} {--dry-run} {--force} {--confirm-token=}';
+    protected $signature = 'product:import {product : chinook|northwind|pagila} {--dry-run} {--force} {--confirm-token=}';
 
     /**
      * The console command description.

@@ -10,7 +10,7 @@ final class ProductImportPipeline
     public function __construct(
         protected ChinookImporter $chinookImporter,
         protected NorthwindImporter $northwindImporter,
-        protected SakilaImporter $sakilaImporter,
+        protected PagilaImporter $pagilaImporter,
     ) {}
 
     /**
@@ -22,7 +22,7 @@ final class ProductImportPipeline
     {
         $product = strtolower($product);
 
-        if (! in_array($product, ['chinook', 'northwind', 'sakila'], true)) {
+        if (! in_array($product, ['chinook', 'northwind', 'pagila'], true)) {
             return ['success' => false, 'error' => "Unknown product: {$product}"];
         }
 
@@ -41,7 +41,7 @@ final class ProductImportPipeline
         $importer = match ($product) {
             'chinook' => $this->chinookImporter,
             'northwind' => $this->northwindImporter,
-            'sakila' => $this->sakilaImporter,
+            'pagila' => $this->pagilaImporter,
         };
 
         $result = $importer->import(dryRun: false, run: $run);

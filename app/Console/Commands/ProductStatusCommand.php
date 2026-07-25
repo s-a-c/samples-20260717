@@ -12,7 +12,7 @@ class ProductStatusCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'product:status {product? : chinook|northwind|sakila}';
+    protected $signature = 'product:status {product? : chinook|northwind|pagila}';
 
     /**
      * The console command description.
