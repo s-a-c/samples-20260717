@@ -85,7 +85,7 @@ class User extends Authenticatable implements FilamentUser, PasskeyUser
 
         $panelId = $panel->getId();
 
-        if (in_array($panelId, ['chinook', 'northwind', 'sakila'], true)) {
+        if (in_array($panelId, ['chinook', 'northwind', 'pagila'], true)) {
             return $this->hasRole("{$panelId}_curator");
         }
 

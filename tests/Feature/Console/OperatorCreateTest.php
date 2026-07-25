@@ -77,7 +77,7 @@ class OperatorCreateTest extends TestCase
         $this->assertTrue(Role::where('name', 'super_admin')->exists());
         $this->assertTrue(Role::where('name', 'chinook_curator')->exists());
         $this->assertTrue(Role::where('name', 'northwind_curator')->exists());
-        $this->assertTrue(Role::where('name', 'sakila_curator')->exists());
+        $this->assertTrue(Role::where('name', 'pagila_curator')->exists());
 
         $user = User::query()->where('email', 'operator@samples.local')->first();
         $this->assertNotNull($user);

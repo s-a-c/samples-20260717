@@ -12,7 +12,7 @@
                                 <x-heroicon-o-musical-note class="{{ $iconClass }}" />
                             @elseif($product['key'] === 'northwind')
                                 <x-heroicon-o-truck class="{{ $iconClass }}" />
-                            @elseif($product['key'] === 'sakila')
+                            @elseif($product['key'] === 'pagila')
                                 <x-heroicon-o-film class="{{ $iconClass }}" />
                             @endif
                         </div>

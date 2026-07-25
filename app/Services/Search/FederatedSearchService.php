@@ -24,7 +24,7 @@ final class FederatedSearchService
             return [];
         }
 
-        $products = ['chinook', 'northwind', 'sakila'];
+        $products = ['chinook', 'northwind', 'pagila'];
 
         // Lexical Full-Text Search
         $lexicalUnions = [];

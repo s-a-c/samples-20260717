@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         Role::findOrCreate('super_admin', 'web');
         Role::findOrCreate('chinook_curator', 'web');
         Role::findOrCreate('northwind_curator', 'web');
-        Role::findOrCreate('sakila_curator', 'web');
+        Role::findOrCreate('pagila_curator', 'web');
 
         $emailEnv = getenv('OPERATOR_EMAIL');
         $passwordEnv = getenv('OPERATOR_PASSWORD');

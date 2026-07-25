@@ -30,7 +30,7 @@ return new class extends Migration
         DB::statement("
             ALTER TABLE source_identities
             ADD CONSTRAINT source_identities_entity_check
-            CHECK (entity ~ '^(chinook|northwind|sakila)\\.[a-z_][a-z0-9_]*$');
+            CHECK (entity ~ '^(chinook|northwind|pagila)\\.[a-z_][a-z0-9_]*$');
         ");
     }
 

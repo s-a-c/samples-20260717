@@ -12,14 +12,27 @@ test('all three pin manifests exist and return valid configuration arrays', func
     $manifest = require $manifestPath;
 
     expect($manifest)->toBeArray()
-        ->and($manifest)->toHaveKeys(['product', 'repository', 'commit_sha', 'filename', 'digest', 'format'])
+        ->and($manifest)->toHaveKey('product')
+        ->and($manifest)->toHaveKey('repository')
+        ->and($manifest)->toHaveKey('commit_sha')
+        ->and($manifest)->toHaveKey('format')
         ->and($manifest['product'])->toBe($product)
         ->and($manifest['repository'])->toBeString()->not->toBeEmpty()
         ->and($manifest['commit_sha'])->toBeString()->not->toBeEmpty()
-        ->and($manifest['filename'])->toBeString()->not->toBeEmpty()
-        ->and($manifest['digest'])->toBeString()->toHaveLength(64)
-        ->and($manifest['format'])->toBeIn(['sql_dump', 'sqlite_binary']);
-})->with(['chinook', 'northwind', 'sakila']);
+        ->and($manifest['format'])->toBeIn(['sql_dump', 'sqlite_binary', 'postgresql_sql', 'postgresql_multi']);
+
+    if ($manifest['format'] === 'postgresql_multi') {
+        expect($manifest)->toHaveKeys(['schema_filename', 'data_filename', 'schema_digest', 'data_digest'])
+            ->and($manifest['schema_filename'])->toBeString()->not->toBeEmpty()
+            ->and($manifest['data_filename'])->toBeString()->not->toBeEmpty()
+            ->and($manifest['schema_digest'])->toBeString()->toHaveLength(64)
+            ->and($manifest['data_digest'])->toBeString()->toHaveLength(64);
+    } else {
+        expect($manifest)->toHaveKeys(['filename', 'digest'])
+            ->and($manifest['filename'])->toBeString()->not->toBeEmpty()
+            ->and($manifest['digest'])->toBeString()->toHaveLength(64);
+    }
+})->with(['chinook', 'northwind', 'pagila']);
 
 test('source:fetch fails for invalid product', function () {
     $this->artisan('source:fetch', ['product' => 'invalid_product'])

@@ -21,7 +21,7 @@ class PanelAuthenticationTest extends TestCase
             'admin' => ['/admin'],
             'chinook' => ['/chinook'],
             'northwind' => ['/northwind'],
-            'sakila' => ['/sakila'],
+            'pagila' => ['/pagila'],
         ];
     }
 
@@ -36,7 +36,7 @@ class PanelAuthenticationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole(Role::findOrCreate('super_admin', 'web'));
 
-        foreach (['/admin', '/chinook', '/northwind', '/sakila'] as $path) {
+        foreach (['/admin', '/chinook', '/northwind', '/pagila'] as $path) {
             $this->actingAs($user)->get($path)->assertSuccessful();
         }
     }
@@ -48,7 +48,7 @@ class PanelAuthenticationTest extends TestCase
 
         $this->actingAs($user)->get('/chinook')->assertSuccessful();
 
-        foreach (['/admin', '/northwind', '/sakila'] as $path) {
+        foreach (['/admin', '/northwind', '/pagila'] as $path) {
             $this->actingAs($user)->get($path)->assertForbidden();
         }
     }
@@ -60,17 +60,17 @@ class PanelAuthenticationTest extends TestCase
 
         $this->actingAs($user)->get('/northwind')->assertSuccessful();
 
-        foreach (['/admin', '/chinook', '/sakila'] as $path) {
+        foreach (['/admin', '/chinook', '/pagila'] as $path) {
             $this->actingAs($user)->get($path)->assertForbidden();
         }
     }
 
-    public function test_sakila_curator_can_access_sakila_panel_and_is_forbidden_from_others(): void
+    public function test_pagila_curator_can_access_pagila_panel_and_is_forbidden_from_others(): void
     {
         $user = User::factory()->create();
-        $user->assignRole(Role::findOrCreate('sakila_curator', 'web'));
+        $user->assignRole(Role::findOrCreate('pagila_curator', 'web'));
 
-        $this->actingAs($user)->get('/sakila')->assertSuccessful();
+        $this->actingAs($user)->get('/pagila')->assertSuccessful();
 
         foreach (['/admin', '/chinook', '/northwind'] as $path) {
             $this->actingAs($user)->get($path)->assertForbidden();

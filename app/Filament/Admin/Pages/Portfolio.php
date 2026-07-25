@@ -20,7 +20,7 @@ class Portfolio extends Page
             'products' => [
                 $this->chinookProduct(),
                 $this->northwindProduct(),
-                $this->sakilaProduct(),
+                $this->pagilaProduct(),
             ],
         ];
     }
@@ -66,13 +66,13 @@ class Portfolio extends Page
     /**
      * @return array{key: string, name: string, description: string, url: string, icon: string, stats: array<int, array{label: string, value: string}>}
      */
-    private function sakilaProduct(): array
+    private function pagilaProduct(): array
     {
         return [
-            'key' => 'sakila',
-            'name' => 'Sakila',
+            'key' => 'pagila',
+            'name' => 'Pagila',
             'description' => 'DVD rental store sample dataset featuring films, actors, customers, and rentals — illustrating a rental business domain.',
-            'url' => '/sakila',
+            'url' => '/pagila',
             'icon' => 'heroicon-o-film',
             'stats' => [
                 ['label' => 'Tables', 'value' => '16'],

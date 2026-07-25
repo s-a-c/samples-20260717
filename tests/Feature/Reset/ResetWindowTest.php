@@ -83,7 +83,7 @@ test('reset evidence vo can be created with schema version 1 and serialized unse
 test('recovery service creates recovery run linked to failed run', function () {
     $failedRun = ResetRun::create([
         'id' => (string) Str::uuid7(),
-        'product' => 'sakila',
+        'product' => 'pagila',
         'kind' => 'reset',
         'status' => 'failed',
     ]);

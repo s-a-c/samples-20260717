@@ -38,19 +38,19 @@ arch('Chinook resources must extend Resource')
     ->ignoring('App\Filament\Chinook\Resources\PlaylistResource\Pages')
     ->ignoring('App\Filament\Chinook\Resources\TrackResource\Pages');
 
-arch('Sakila resources must extend Resource')
-    ->expect('App\Filament\Sakila\Resources')
+arch('Pagila resources must extend Resource')
+    ->expect('App\Filament\Pagila\Resources')
     ->toExtend('Filament\Resources\Resource')
-    ->ignoring('App\Filament\Sakila\Resources\ActorResource\Pages')
-    ->ignoring('App\Filament\Sakila\Resources\CategoryResource\Pages')
-    ->ignoring('App\Filament\Sakila\Resources\CustomerResource\Pages')
-    ->ignoring('App\Filament\Sakila\Resources\FilmResource\Pages')
-    ->ignoring('App\Filament\Sakila\Resources\InventoryResource\Pages')
-    ->ignoring('App\Filament\Sakila\Resources\LanguageResource\Pages')
-    ->ignoring('App\Filament\Sakila\Resources\PaymentResource\Pages')
-    ->ignoring('App\Filament\Sakila\Resources\RentalResource\Pages')
-    ->ignoring('App\Filament\Sakila\Resources\StaffResource\Pages')
-    ->ignoring('App\Filament\Sakila\Resources\StoreResource\Pages');
+    ->ignoring('App\Filament\Pagila\Resources\ActorResource\Pages')
+    ->ignoring('App\Filament\Pagila\Resources\CategoryResource\Pages')
+    ->ignoring('App\Filament\Pagila\Resources\CustomerResource\Pages')
+    ->ignoring('App\Filament\Pagila\Resources\FilmResource\Pages')
+    ->ignoring('App\Filament\Pagila\Resources\InventoryResource\Pages')
+    ->ignoring('App\Filament\Pagila\Resources\LanguageResource\Pages')
+    ->ignoring('App\Filament\Pagila\Resources\PaymentResource\Pages')
+    ->ignoring('App\Filament\Pagila\Resources\RentalResource\Pages')
+    ->ignoring('App\Filament\Pagila\Resources\StaffResource\Pages')
+    ->ignoring('App\Filament\Pagila\Resources\StoreResource\Pages');
 
 // ─── Panel Provider & Service Rules ───────────────────────────────────────────
 

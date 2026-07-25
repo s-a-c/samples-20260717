@@ -2,8 +2,8 @@
 
 use App\Domain\Chinook\Models\Artist;
 use App\Domain\Northwind\Models\Product;
-use App\Domain\Sakila\Models\Film;
-use App\Domain\Sakila\Models\Language;
+use App\Domain\Pagila\Models\Film;
+use App\Domain\Pagila\Models\Language;
 use App\Jobs\EmbeddingJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +47,7 @@ test('northwind product insertion automatically populates search projection tabl
     });
 });
 
-test('sakila film insertion automatically populates search projection table via trigger', function () {
+test('pagila film insertion automatically populates search projection table via trigger', function () {
     Queue::fake();
 
     $language = Language::create(['name' => 'English']);
@@ -58,7 +58,7 @@ test('sakila film insertion automatically populates search projection table via 
         'language_id' => $language->id,
     ]);
 
-    $projection = DB::selectOne('SELECT * FROM sakila.search_projections WHERE id = ?', [$film->id]);
+    $projection = DB::selectOne('SELECT * FROM pagila.search_projections WHERE id = ?', [$film->id]);
 
     expect($projection)->not->toBeNull();
     expect($projection->weight_d_text)->toBe('ACADEMY DINOSAUR');
@@ -68,7 +68,7 @@ test('sakila film insertion automatically populates search projection table via 
     expect($projection->document_tsv)->not->toBeNull();
 
     Queue::assertPushed(EmbeddingJob::class, function ($job) use ($film) {
-        return $job->product === 'sakila' && $job->entityId === $film->id;
+        return $job->product === 'pagila' && $job->entityId === $film->id;
     });
 });
 

@@ -8,7 +8,7 @@ class ProductPortfolioCard extends Widget
 {
     protected string $view = 'filament.admin.widgets.product-portfolio-card';
 
-    /** @var string|null Product key to display (chinook, northwind, sakila) */
+    /** @var string|null Product key to display (chinook, northwind, pagila) */
     public ?string $productKey = null;
 
     protected static ?int $sort = 1;
@@ -43,11 +43,11 @@ class ProductPortfolioCard extends Widget
                     ['label' => 'Orders', 'value' => '830+'],
                 ],
             ],
-            'sakila' => [
-                'key' => 'sakila',
-                'name' => 'Sakila',
+            'pagila' => [
+                'key' => 'pagila',
+                'name' => 'Pagila',
                 'description' => 'DVD rental store sample dataset featuring films, actors, customers, and rentals — illustrating a rental business domain.',
-                'url' => '/sakila',
+                'url' => '/pagila',
                 'icon' => 'heroicon-o-film',
                 'stats' => [
                     ['label' => 'Tables', 'value' => '16'],

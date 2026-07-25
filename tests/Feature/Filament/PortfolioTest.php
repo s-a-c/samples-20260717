@@ -35,7 +35,7 @@ class PortfolioTest extends TestCase
             ->assertSuccessful()
             ->assertSee('Chinook')
             ->assertSee('Northwind')
-            ->assertSee('Sakila');
+            ->assertSee('Pagila');
     }
 
     public function test_portfolio_page_displays_product_descriptions(): void
@@ -55,7 +55,7 @@ class PortfolioTest extends TestCase
             ->assertSuccessful()
             ->assertSee('/chinook')
             ->assertSee('/northwind')
-            ->assertSee('/sakila');
+            ->assertSee('/pagila');
     }
 
     public function test_portfolio_page_shows_product_stats(): void
@@ -77,7 +77,7 @@ class PortfolioTest extends TestCase
             ->assertSuccessful()
             ->assertSee('Go to Chinook Panel')
             ->assertSee('Go to Northwind Panel')
-            ->assertSee('Go to Sakila Panel');
+            ->assertSee('Go to Pagila Panel');
     }
 
     public function test_guest_is_redirected_to_login(): void

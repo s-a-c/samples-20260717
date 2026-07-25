@@ -9,8 +9,8 @@ use App\Domain\Chinook\Models\Track;
 use App\Domain\Northwind\Models\Category;
 use App\Domain\Northwind\Models\Product;
 use App\Domain\Northwind\Models\Supplier;
-use App\Domain\Sakila\Models\Actor;
-use App\Domain\Sakila\Models\Film;
+use App\Domain\Pagila\Models\Actor;
+use App\Domain\Pagila\Models\Film;
 use App\Models\User;
 use App\Observers\Tier1SourceObserver;
 use Carbon\CarbonImmutable;
@@ -67,7 +67,7 @@ class AppServiceProvider extends ServiceProvider
 
         Film::observe(Tier1SourceObserver::class);
         Actor::observe(Tier1SourceObserver::class);
-        \App\Domain\Sakila\Models\Category::observe(Tier1SourceObserver::class);
+        \App\Domain\Pagila\Models\Category::observe(Tier1SourceObserver::class);
     }
 
     /**

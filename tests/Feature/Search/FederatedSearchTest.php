@@ -2,8 +2,8 @@
 
 use App\Domain\Chinook\Models\Artist;
 use App\Domain\Northwind\Models\Product;
-use App\Domain\Sakila\Models\Film;
-use App\Domain\Sakila\Models\Language;
+use App\Domain\Pagila\Models\Film;
+use App\Domain\Pagila\Models\Language;
 use App\Services\Search\FederatedSearchService;
 use App\Services\Search\ReciprocalRankFusion;
 use App\Services\Search\SearchDeepLinkRegistry;
@@ -22,7 +22,7 @@ test('reciprocal rank fusion correctly combines lexical and semantic rank lists 
 
     $semantic = [
         ['id' => '2', 'product' => 'northwind', 'entity_type' => 'product', 'title' => 'Metal Pipe'],
-        ['id' => '3', 'product' => 'sakila', 'entity_type' => 'film', 'title' => 'Metal Academy'],
+        ['id' => '3', 'product' => 'pagila', 'entity_type' => 'film', 'title' => 'Metal Academy'],
     ];
 
     $results = $rrf->fuse($lexical, $semantic, 60);
@@ -49,7 +49,7 @@ test('search deep link registry resolves correct url paths', function () {
 
     expect($registry->getUrl('chinook', 'artist', 'uuid-123'))->toBe('/chinook/artists/uuid-123');
     expect($registry->getUrl('northwind', 'product', 'uuid-456'))->toBe('/northwind/products/uuid-456');
-    expect($registry->getUrl('sakila', 'film', 'uuid-789'))->toBe('/sakila/films/uuid-789');
+    expect($registry->getUrl('pagila', 'film', 'uuid-789'))->toBe('/pagila/films/uuid-789');
 });
 
 test('federated search executes 3-way union all across projection tables and returns rrf ranked results with deep links', function () {
@@ -71,7 +71,7 @@ test('federated search executes 3-way union all across projection tables and ret
     $productsFound = array_column($results, 'product');
     expect($productsFound)->toContain('chinook');
     expect($productsFound)->toContain('northwind');
-    expect($productsFound)->toContain('sakila');
+    expect($productsFound)->toContain('pagila');
 
     foreach ($results as $item) {
         expect($item)->toHaveKeys(['id', 'product', 'entity_type', 'title', 'score', 'url']);

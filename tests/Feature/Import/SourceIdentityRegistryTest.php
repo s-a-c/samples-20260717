@@ -72,7 +72,7 @@ test('reset confirmation verify returns false for expired or nonexistent tokens'
     expect($service->verify((string) Str::uuid7()))->toBeFalse();
 
     $operator = User::factory()->create();
-    $token = $service->mint($operator, 'sakila', 'hash', 'commit');
+    $token = $service->mint($operator, 'pagila', 'hash', 'commit');
 
     // Expire the token
     ResetConfirmation::where('token', $token)->update([

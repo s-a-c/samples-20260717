@@ -5,7 +5,7 @@ use Symfony\Component\Finder\Finder;
 test('product policy directories use product namespaces', function (): void {
     $paths = [];
 
-    foreach (['Chinook', 'Northwind', 'Sakila'] as $product) {
+    foreach (['Chinook', 'Northwind', 'Pagila'] as $product) {
         $directory = app_path("Policies/{$product}");
 
         if (! is_dir($directory)) {

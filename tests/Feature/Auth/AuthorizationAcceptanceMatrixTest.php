@@ -18,10 +18,10 @@ class AuthorizationAcceptanceMatrixTest extends TestCase
     public static function globalRoles(): array
     {
         return [
-            'system operator' => ['super_admin', ['/admin', '/chinook', '/northwind', '/sakila'], []],
-            'chinook curator' => ['chinook_curator', ['/chinook'], ['/admin', '/northwind', '/sakila']],
-            'northwind curator' => ['northwind_curator', ['/northwind'], ['/admin', '/chinook', '/sakila']],
-            'sakila curator' => ['sakila_curator', ['/sakila'], ['/admin', '/chinook', '/northwind']],
+            'system operator' => ['super_admin', ['/admin', '/chinook', '/northwind', '/pagila'], []],
+            'chinook curator' => ['chinook_curator', ['/chinook'], ['/admin', '/northwind', '/pagila']],
+            'northwind curator' => ['northwind_curator', ['/northwind'], ['/admin', '/chinook', '/pagila']],
+            'pagila curator' => ['pagila_curator', ['/pagila'], ['/admin', '/chinook', '/northwind']],
         ];
     }
 
