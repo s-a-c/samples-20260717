@@ -6,7 +6,7 @@ use App\Models\SourceIdentity;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
 
-class SourceIdentityRegistry
+final class SourceIdentityRegistry
 {
     /**
      * Get existing domain UUID or mint a new UUIDv7.

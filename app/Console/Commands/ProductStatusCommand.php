@@ -26,8 +26,7 @@ class ProductStatusCommand extends Command
      */
     public function handle(): int
     {
-        /** @var string|null $product */
-        $product = $this->argument('product') ? strtolower((string) $this->argument('product')) : null;
+        $product = $this->argument('product') !== null ? strtolower($this->argument('product')) : null;
 
         $query = ResetRun::query();
 

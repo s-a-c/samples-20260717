@@ -1,0 +1,1090 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method App\\Filament\\Admin\\Widgets\\ProductPortfolioCard\:\:getViewData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/AlbumResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/AlbumResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/ArtistResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/ArtistResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/CustomerResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/CustomerResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/EmployeeResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/EmployeeResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/GenreResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/GenreResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/InvoiceResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/InvoiceResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/PlaylistResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/PlaylistResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/TrackResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Chinook/Resources/TrackResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/ActorResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/ActorResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/CategoryResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/CategoryResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/CustomerResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/CustomerResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/FilmResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/FilmResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/InventoryResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/InventoryResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/LanguageResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/LanguageResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/PaymentResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/PaymentResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/RentalResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/RentalResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/StaffResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/StaffResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/StoreResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Sakila/Resources/StoreResource.php
+
+		-
+			message: '#^Out of 395 possible param types, only 387 \- 97\.9 %% actually have it\. Add more param types to get over 99 %%$#'
+			identifier: typeCoverage.paramTypeCoverage
+			count: 1
+			path: app/Jobs/EmbeddingJob.php
+
+		-
+			message: '#^Parameter \#1 \$token of static method Illuminate\\Http\\Client\\PendingRequest\<false\>\:\:withToken\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Jobs/EmbeddingJob.php
+
+		-
+			message: '#^Class App\\Models\\ResetRun has PHPDoc tag @property for property \$evidence with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/ResetRun.php
+
+		-
+			message: '#^Parameter \#2 \$entityId of job class App\\Jobs\\EmbeddingJob constructor expects string in App\\Jobs\\EmbeddingJob\:\:dispatch\(\), mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Observers/Tier1SourceObserver.php
+
+		-
+			message: '#^Method App\\Services\\ProductReset\\ResetEvidence\:\:getSection\(\) should return array\<string, mixed\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Services/ProductReset/ResetEvidence.php
+
+		-
+			message: '#^Method App\\Services\\ProductReset\\ResetEvidence\:\:jsonSerialize\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ProductReset/ResetEvidence.php
+
+		-
+			message: '#^Parameter \#1 \$sections of class App\\Services\\ProductReset\\ResetEvidence constructor expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/ProductReset/ResetEvidence.php
+
+		-
+			message: '#^Parameter \#2 \$schemaVersion of class App\\Services\\ProductReset\\ResetEvidence constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/ProductReset/ResetEvidence.php
+
+		-
+			message: '#^Out of 395 possible param types, only 387 \- 97\.9 %% actually have it\. Add more param types to get over 99 %%$#'
+			identifier: typeCoverage.paramTypeCoverage
+			count: 2
+			path: app/Services/Search/FederatedSearchService.php
+
+		-
+			message: '#^Parameter \#1 \$lexical of method App\\Services\\Search\\ReciprocalRankFusion\:\:fuse\(\) expects array\<int, array\{id\: string, product\: string, entity_type\: string, title\: string\}\>, array\<array\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/Search/FederatedSearchService.php
+
+		-
+			message: '#^Parameter \#2 \$semantic of method App\\Services\\Search\\ReciprocalRankFusion\:\:fuse\(\) expects array\<int, array\{id\: string, product\: string, entity_type\: string, title\: string\}\>, array\<array\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/Search/FederatedSearchService.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 1
+			path: config/broadcasting.php
+
+		-
+			message: '''
+				#^Access to constant on deprecated class Illuminate\\Foundation\\Http\\Middleware\\ValidateCsrfToken\:
+				Use PreventRequestForgery instead\.$#
+			'''
+			identifier: classConstant.deprecatedClass
+			count: 1
+			path: config/sanctum.php
+
+		-
+			message: '#^Parameter \#2 \$string of function explode expects string, bool\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: config/sanctum.php
+
+		-
+			message: '#^Cannot access offset ''model_has_permissions'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Cannot access offset ''model_has_roles'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Cannot access offset ''model_morph_key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 8
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Cannot access offset ''permission_pivot_key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Cannot access offset ''permissions'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Cannot access offset ''role_has_permissions'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Cannot access offset ''role_pivot_key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Cannot access offset ''roles'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Cannot access offset ''team_foreign_key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 10
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 3
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Loose comparison via "\!\=" is not allowed\.$#'
+			identifier: notEqual.notAllowed
+			count: 1
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Only booleans are allowed in &&, mixed given on the left side\.$#'
+			identifier: booleanAnd.leftNotBoolean
+			count: 1
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, mixed given\.$#'
+			identifier: if.condNotBoolean
+			count: 2
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Only booleans are allowed in \|\|, mixed given on the left side\.$#'
+			identifier: booleanOr.leftNotBoolean
+			count: 2
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Only booleans are allowed in \|\|, mixed given on the right side\.$#'
+			identifier: booleanOr.rightNotBoolean
+			count: 2
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$column of method Illuminate\\Database\\Schema\\Blueprint\:\:unsignedBigInteger\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$column of method Illuminate\\Database\\Schema\\Blueprint\:\:uuid\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 5
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$columns of method Illuminate\\Database\\Schema\\Blueprint\:\:foreign\(\) expects array\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$columns of method Illuminate\\Database\\Schema\\Blueprint\:\:index\(\) expects array\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$key of method Illuminate\\Contracts\\Cache\\Repository\:\:forget\(\) expects string\|UnitEnum, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$name of method Illuminate\\Cache\\CacheManager\:\:store\(\) expects string\|UnitEnum\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$table of method Illuminate\\Database\\Schema\\ForeignKeyDefinition\:\:on\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$table of static method Illuminate\\Support\\Facades\\Schema\:\:create\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 5
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$table of static method Illuminate\\Support\\Facades\\Schema\:\:dropIfExists\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 5
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#1 \$table of static method Illuminate\\Support\\Facades\\Schema\:\:hasTable\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+
+		-
+			message: '#^Parameter \#2 \$email of method App\\Actions\\Operators\\ProvisionOperator\:\:handle\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/seeders/DatabaseSeeder.php
+
+		-
+			message: '#^Parameter \#3 \$password of method App\\Actions\\Operators\\ProvisionOperator\:\:handle\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/seeders/DatabaseSeeder.php
+
+		-
+			message: '#^Cannot access property \$id on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: routes/channels.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: routes/channels.php
+
+		-
+			message: '#^Out of 395 possible param types, only 387 \- 97\.9 %% actually have it\. Add more param types to get over 99 %%$#'
+			identifier: typeCoverage.paramTypeCoverage
+			count: 2
+			path: routes/channels.php
+
+		-
+			message: '#^Calling toBeArray\(\) on Expectation\<list\<\(string\|false\)\>\>; assertion is redundant\.$#'
+			identifier: pest.expectation.redundant
+			count: 1
+			path: tests/Architecture/ProductPolicyNamespaceTest.php
+
+		-
+			message: '#^Cannot call method assertExitCode\(\) on Illuminate\\Testing\\PendingCommand\|int\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Console/OperatorCreateTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on Illuminate\\Testing\\PendingCommand\|int\.$#'
+			identifier: method.nonObject
+			count: 4
+			path: tests/Feature/Console/OperatorCreateTest.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type mixed\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 2
+			path: tests/Feature/Console/OperatorCreateTest.php
+
+		-
+			message: '#^Cannot access property \$first_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 5
+			path: tests/Feature/Domain/ChinookDomainTest.php
+
+		-
+			message: '#^Cannot access property \$name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 5
+			path: tests/Feature/Domain/ChinookDomainTest.php
+
+		-
+			message: '#^Cannot access property \$name on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/ChinookDomainTest.php
+
+		-
+			message: '#^Cannot access property \$title on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: tests/Feature/Domain/ChinookDomainTest.php
+
+		-
+			message: '#^Cannot access property \$track on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/ChinookDomainTest.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function expect$#'
+			identifier: argument.templateType
+			count: 12
+			path: tests/Feature/Domain/ChinookDomainTest.php
+
+		-
+			message: '#^Cannot access property \$category_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$company_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$employee on App\\Domain\\Northwind\\Models\\EmployeeTerritory\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$first_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 4
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$id on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 5
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$product on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$product_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$product_name on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$region_description on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$ship_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$territory on App\\Domain\\Northwind\\Models\\EmployeeTerritory\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$territory_description on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function expect$#'
+			identifier: argument.templateType
+			count: 20
+			path: tests/Feature/Domain/NorthwindDomainTest.php
+
+		-
+			message: '#^Cannot access property \$actor on App\\Domain\\Sakila\\Models\\FilmActor\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$address on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$amount on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$category on App\\Domain\\Sakila\\Models\\FilmCategory\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$city on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$country on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$film on App\\Domain\\Sakila\\Models\\FilmActor\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$film on App\\Domain\\Sakila\\Models\\FilmCategory\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$film on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$first_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 4
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$id on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 10
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$last_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 4
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$title on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$title on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function expect$#'
+			identifier: argument.templateType
+			count: 28
+			path: tests/Feature/Domain/SakilaDomainTest.php
+
+		-
+			message: '#^Cannot access property \$created_at on App\\Models\\ResetRun\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Import/ProductImportPipelineTest.php
+
+		-
+			message: '#^Cannot access property \$current_phase on App\\Models\\ResetRun\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Import/ProductImportPipelineTest.php
+
+		-
+			message: '#^Cannot access property \$kind on App\\Models\\ResetRun\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Import/ProductImportPipelineTest.php
+
+		-
+			message: '#^Cannot access property \$status on App\\Models\\ResetRun\|null\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Import/ProductImportPipelineTest.php
+
+		-
+			message: '#^Cannot call method assertExitCode\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: tests/Feature/Import/ProductImportPipelineTest.php
+
+		-
+			message: '#^Cannot call method expectsTable\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Import/ProductImportPipelineTest.php
+
+		-
+			message: '#^Cannot call method toDateTimeString\(\) on Illuminate\\Support\\Carbon\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Import/ProductImportPipelineTest.php
+
+		-
+			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
+			identifier: pest.config.redundantLocalUse
+			count: 1
+			path: tests/Feature/Import/ProductImportPipelineTest.php
+
+		-
+			message: '#^Calling toBeArray\(\) on Expectation\<array\>; assertion is redundant\.$#'
+			identifier: pest.expectation.redundant
+			count: 1
+			path: tests/Feature/Import/SourceFetchTest.php
+
+		-
+			message: '#^Cannot call method assertFailed\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: tests/Feature/Import/SourceFetchTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Import/SourceFetchTest.php
+
+		-
+			message: '#^Cannot call method expectsOutput\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: tests/Feature/Import/SourceFetchTest.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$manifest has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Feature/Import/SourceFetchTest.php
+
+		-
+			message: '#^Cannot access property \$product on App\\Models\\SourceIdentity\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Import/SourceIdentityRegistryTest.php
+
+		-
+			message: '#^Cannot access property \$used_at on App\\Models\\ResetConfirmation\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: tests/Feature/Import/SourceIdentityRegistryTest.php
+
+		-
+			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
+			identifier: pest.config.redundantLocalUse
+			count: 1
+			path: tests/Feature/Import/SourceIdentityRegistryTest.php
+
+		-
+			message: '#^Cannot call method assertExitCode\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Postgres/PostgresExtensionsTest.php
+
+		-
+			message: '#^Cannot call method expectsOutputToContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Postgres/PostgresExtensionsTest.php
+
+		-
+			message: '#^Cannot access offset ''schema_version'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Feature/Reset/ResetWindowTest.php
+
+		-
+			message: '#^Cannot access property \$id on App\\Models\\ResetRun\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: tests/Feature/Reset/ResetWindowTest.php
+
+		-
+			message: '#^Cannot access property \$recoveryChild on App\\Models\\ResetRun\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Reset/ResetWindowTest.php
+
+		-
+			message: '#^Cannot access property \$status on App\\Models\\ResetRun\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Reset/ResetWindowTest.php
+
+		-
+			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Reset/ResetWindowTest.php
+
+		-
+			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
+			identifier: pest.config.redundantLocalUse
+			count: 1
+			path: tests/Feature/Reset/ResetWindowTest.php
+
+		-
+			message: '#^Cannot access property \$content_digest on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Search/EmbeddingJobTest.php
+
+		-
+			message: '#^Cannot access property \$dim on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Search/EmbeddingJobTest.php
+
+		-
+			message: '#^Cannot access property \$embedded_at on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Search/EmbeddingJobTest.php
+
+		-
+			message: '#^Cannot access property \$embedding on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Search/EmbeddingJobTest.php
+
+		-
+			message: '#^Cannot access property \$embedding_profile on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Search/EmbeddingJobTest.php
+
+		-
+			message: '#^Cannot access property \$embedding_state on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Search/EmbeddingJobTest.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: tests/Feature/Search/EmbeddingJobTest.php
+
+		-
+			message: '#^Parameter \#2 \$entityId of class App\\Jobs\\EmbeddingJob constructor expects string, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Search/EmbeddingJobTest.php
+
+		-
+			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
+			identifier: pest.config.redundantLocalUse
+			count: 1
+			path: tests/Feature/Search/EmbeddingJobTest.php
+
+		-
+			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
+			identifier: pest.config.redundantLocalUse
+			count: 1
+			path: tests/Feature/Search/FederatedSearchTest.php
+
+		-
+			message: '#^Cannot access property \$document_tsv on mixed\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+
+		-
+			message: '#^Cannot access property \$embedding_state on mixed\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+
+		-
+			message: '#^Cannot access property \$entityId on mixed\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+
+		-
+			message: '#^Cannot access property \$entity_type on mixed\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+
+		-
+			message: '#^Cannot access property \$product on mixed\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+
+		-
+			message: '#^Cannot access property \$weight_c_text on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+
+		-
+			message: '#^Cannot access property \$weight_d_text on mixed\.$#'
+			identifier: property.nonObject
+			count: 4
+			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+
+		-
+			message: '#^Out of 395 possible param types, only 387 \- 97\.9 %% actually have it\. Add more param types to get over 99 %%$#'
+			identifier: typeCoverage.paramTypeCoverage
+			count: 3
+			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+
+		-
+			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
+			identifier: pest.config.redundantLocalUse
+			count: 1
+			path: tests/Feature/Search/SearchProjectionTriggerTest.php

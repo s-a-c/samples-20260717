@@ -5,7 +5,7 @@ namespace App\Services\ProductImport;
 use App\Models\ResetRun;
 use Illuminate\Support\Str;
 
-class ProductImportPipeline
+final class ProductImportPipeline
 {
     public function __construct(
         protected ChinookImporter $chinookImporter,

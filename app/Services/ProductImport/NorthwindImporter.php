@@ -6,7 +6,7 @@ use App\Models\ResetRun;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
-class NorthwindImporter
+final class NorthwindImporter
 {
     public function __construct(
         protected SourceIdentityRegistry $identityRegistry,
@@ -49,10 +49,10 @@ class NorthwindImporter
     {
         $sourceFile = $this->getSourceFilePath();
 
-        if ($sourceFile && File::exists($sourceFile)) {
+        if ($sourceFile !== null && File::exists($sourceFile)) {
             $statements = $this->sqlReader->getStatements($sourceFile);
             foreach ($statements as $stmt) {
-                if (preg_match('/INSERT INTO ["\']?(\w+)["\']?/i', $stmt, $matches)) {
+                if (preg_match('/INSERT INTO ["\']?(\w+)["\']?/i', $stmt, $matches) === 1) {
                     $table = $matches[1];
                     $entity = "northwind.{$table}";
                     $this->identityRegistry->getOrMint($entity, ['stmt' => md5($stmt)]);

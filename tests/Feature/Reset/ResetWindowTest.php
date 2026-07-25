@@ -1,5 +1,6 @@
 <?php
 
+use App\Contracts\HasProductDomain;
 use App\Exceptions\ProductResetWindowOpen;
 use App\Models\ResetRun;
 use App\Services\ProductReset\RecoveryService;
@@ -102,7 +103,7 @@ test('recovery service creates recovery run linked to failed run', function () {
 });
 
 test('belongs to product domain trait prevents model mutation when reset window is open', function () {
-    $testModel = new class extends Model
+    $testModel = new class extends Model implements HasProductDomain
     {
         use BelongsToProductDomain;
 

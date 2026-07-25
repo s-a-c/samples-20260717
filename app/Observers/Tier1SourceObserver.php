@@ -22,7 +22,7 @@ class Tier1SourceObserver
             : 'chinook';
 
         if (class_exists(EmbeddingJob::class)) {
-            EmbeddingJob::dispatch($product, (string) $model->getKey());
+            EmbeddingJob::dispatch($product, $model->getKey() ?? '');
         }
     }
 }

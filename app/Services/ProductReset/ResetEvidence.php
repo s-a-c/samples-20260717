@@ -4,7 +4,7 @@ namespace App\Services\ProductReset;
 
 use JsonSerializable;
 
-class ResetEvidence implements JsonSerializable
+final class ResetEvidence implements JsonSerializable
 {
     public const int SCHEMA_VERSION = 1;
 
@@ -104,7 +104,7 @@ class ResetEvidence implements JsonSerializable
         $version = $data['schema_version'] ?? self::SCHEMA_VERSION;
         $sections = $data['sections'] ?? [];
 
-        return new self($sections, (int) $version);
+        return new self($sections, $version);
     }
 
     public function jsonSerialize(): array

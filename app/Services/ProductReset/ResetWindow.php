@@ -5,7 +5,7 @@ namespace App\Services\ProductReset;
 use App\Exceptions\ProductResetWindowOpen;
 use App\Models\ResetRun;
 
-class ResetWindow
+final class ResetWindow
 {
     /** @var array<string, bool> */
     private array $memo = [];

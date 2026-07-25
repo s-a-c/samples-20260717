@@ -27,8 +27,7 @@ class SourceFetch extends Command
      */
     public function handle(): int
     {
-        /** @var string $product */
-        $product = strtolower((string) $this->argument('product'));
+        $product = strtolower($this->argument('product'));
         $manifestPath = database_path("sources/{$product}.php");
 
         if (! File::exists($manifestPath)) {

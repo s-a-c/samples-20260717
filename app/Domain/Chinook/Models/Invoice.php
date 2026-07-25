@@ -2,6 +2,7 @@
 
 namespace App\Domain\Chinook\Models;
 
+use App\Contracts\HasProductDomain;
 use App\Traits\BelongsToProductDomain;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Table('chinook.invoices')]
-class Invoice extends Model
+final class Invoice extends Model implements HasProductDomain
 {
     use BelongsToProductDomain, HasUuids;
 

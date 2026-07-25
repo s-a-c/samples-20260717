@@ -2,6 +2,7 @@
 
 namespace App\Domain\Sakila\Models;
 
+use App\Contracts\HasProductDomain;
 use App\Traits\BelongsToProductDomain;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Table('sakila.stores')]
-class Store extends Model
+final class Store extends Model implements HasProductDomain
 {
     use BelongsToProductDomain, HasUuids;
 

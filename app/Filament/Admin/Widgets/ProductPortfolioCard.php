@@ -64,7 +64,9 @@ class ProductPortfolioCard extends Widget
         $products = self::getProducts();
 
         return [
-            'product' => $products[$this->productKey] ?? null,
+            'product' => $this->productKey !== null && isset($products[$this->productKey])
+                ? $products[$this->productKey]
+                : null,
         ];
     }
 }

@@ -5,7 +5,7 @@ namespace App\Services\ProductImport;
 use PDO;
 use RuntimeException;
 
-class SqliteSourceReader
+final class SqliteSourceReader
 {
     /**
      * Get a PDO connection to the SQLite database file.
@@ -34,7 +34,7 @@ class SqliteSourceReader
         $stmt = $pdo->query("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
 
         /** @var array<int, string> $tables */
-        $tables = $stmt ? $stmt->fetchAll(PDO::FETCH_COLUMN) : [];
+        $tables = $stmt !== false ? $stmt->fetchAll(PDO::FETCH_COLUMN) : [];
 
         return $tables;
     }

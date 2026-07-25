@@ -6,7 +6,7 @@ use App\Models\ResetConfirmation;
 use App\Models\User;
 use Illuminate\Support\Str;
 
-class ResetConfirmationService
+final class ResetConfirmationService
 {
     /**
      * Mint a new single-use reset confirmation token for an operator.

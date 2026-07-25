@@ -5,7 +5,7 @@ namespace App\Services\ProductImport;
 use Illuminate\Support\Facades\File;
 use RuntimeException;
 
-class SqlSourceReader
+final class SqlSourceReader
 {
     /**
      * Read SQL file and return raw content.
@@ -28,7 +28,7 @@ class SqlSourceReader
     {
         $content = $this->getContent($filePath);
 
-        /** @var array<int, string>|false $statements */
+        /** @var list<string>|false $statements */
         $statements = preg_split('/;\s*[\r\n]+/', $content);
 
         if (! is_array($statements)) {

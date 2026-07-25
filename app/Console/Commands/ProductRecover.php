@@ -28,12 +28,12 @@ class ProductRecover extends Command
     public function handle(RecoveryService $recoveryService): int
     {
         /** @var string $runId */
-        $runId = (string) $this->argument('run_id');
+        $runId = $this->argument('run_id');
 
         /** @var ResetRun|null $run */
         $run = ResetRun::find($runId);
 
-        if (! $run) {
+        if ($run === null) {
             $this->error("Reset run '{$runId}' not found.");
 
             return self::FAILURE;

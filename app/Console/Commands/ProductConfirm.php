@@ -29,19 +29,18 @@ class ProductConfirm extends Command
      */
     public function handle(ResetConfirmationService $confirmationService): int
     {
-        /** @var string $product */
-        $product = strtolower((string) $this->argument('product'));
+        $product = strtolower($this->argument('product'));
 
         Role::findOrCreate('super_admin', 'web');
 
         /** @var User|null $operator */
         $operator = User::role('super_admin')->first();
 
-        if (! $operator) {
+        if ($operator === null) {
             $operator = User::first();
         }
 
-        if (! $operator) {
+        if ($operator === null) {
             /** @var User $operator */
             $operator = User::factory()->create([
                 'name' => 'Super Admin',

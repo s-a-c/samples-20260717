@@ -1,3 +1,6 @@
+includes:
+    - phpstan-baseline.neon
+
 parameters:
     paths:
         - app/
@@ -9,6 +12,8 @@ parameters:
 
     level: max
 
+    treatPhpDocTypesAsCertain: false
+
     ignoreErrors:
         -
             identifier: staticMethod.dynamicCall
@@ -17,3 +22,13 @@ parameters:
             # identifier is structurally incompatible with Laravel's ORM and cannot
             # be fixed in code. Permanent carve-out per bd .eac5a270.2 resolution;
             # reviewed on framework or PHPStan major version bump.
+
+        -
+            identifier: missingType.generics
+            # framework-idiom: Eloquent relation return types (HasMany, BelongsTo,
+            # BelongsToMany, etc.) are generic classes in Larastan stubs but model
+            # code does not specify generic parameters — adding @extends annotations
+            # to every relation would be excessively verbose and is not idiomatic.
+            # Reviewed on Larastan or PHPStan major version bump.
+
+

@@ -2,7 +2,7 @@
 
 namespace App\Services\Search;
 
-class ReciprocalRankFusion
+final class ReciprocalRankFusion
 {
     /**
      * Merge lexical and semantic rank lists using RRF formula: RRF_score = sum(1 / (k + rank)).

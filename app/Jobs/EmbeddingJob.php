@@ -31,7 +31,7 @@ class EmbeddingJob implements ShouldQueue
             WHERE id = ?
         ", [$this->entityId]);
 
-        if (! $projection) {
+        if ($projection === null) {
             return;
         }
 
@@ -40,14 +40,14 @@ class EmbeddingJob implements ShouldQueue
             $projection->weight_c_text,
             $projection->weight_b_text,
             $projection->weight_a_text,
-        ])));
+        ], fn ($v) => $v !== null && $v !== '')));
 
         $digest = hash('sha256', $text);
 
         $apiKey = config('ai.providers.openai.key');
         $vector = null;
 
-        if (! empty($apiKey)) {
+        if ($apiKey !== null && $apiKey !== '') {
             try {
                 $response = Http::withToken($apiKey)->post('https://api.openai.com/v1/embeddings', [
                     'input' => $text,
@@ -62,7 +62,7 @@ class EmbeddingJob implements ShouldQueue
             }
         }
 
-        if (empty($vector) || ! is_array($vector)) {
+        if ($vector === null || ! is_array($vector)) {
             $vector = array_fill(0, 1024, 0.01);
         }
 

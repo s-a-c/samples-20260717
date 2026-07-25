@@ -6,7 +6,7 @@ use App\Models\ResetRun;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 
-class RecoveryService
+final class RecoveryService
 {
     /**
      * Create a recovery run for a failed reset run.

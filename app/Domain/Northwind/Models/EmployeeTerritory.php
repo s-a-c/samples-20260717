@@ -2,6 +2,7 @@
 
 namespace App\Domain\Northwind\Models;
 
+use App\Contracts\HasProductDomain;
 use App\Traits\BelongsToProductDomain;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Table('northwind.employee_territories')]
-class EmployeeTerritory extends Model
+final class EmployeeTerritory extends Model implements HasProductDomain
 {
     use BelongsToProductDomain, HasUuids;
 

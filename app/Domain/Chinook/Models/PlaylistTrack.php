@@ -2,6 +2,7 @@
 
 namespace App\Domain\Chinook\Models;
 
+use App\Contracts\HasProductDomain;
 use App\Traits\BelongsToProductDomain;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 #[Table('chinook.playlist_track')]
-class PlaylistTrack extends Pivot
+final class PlaylistTrack extends Pivot implements HasProductDomain
 {
     use BelongsToProductDomain, HasUuids;
 

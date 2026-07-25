@@ -27,9 +27,8 @@ class ProductImportCommand extends Command
      */
     public function handle(ProductImportPipeline $pipeline, ResetConfirmationService $confirmationService): int
     {
-        /** @var string $product */
-        $product = strtolower((string) $this->argument('product'));
-        $dryRun = (bool) $this->option('dry-run');
+        $product = strtolower($this->argument('product'));
+        $dryRun = $this->option('dry-run');
         /** @var string|null $confirmToken */
         $confirmToken = $this->option('confirm-token');
 

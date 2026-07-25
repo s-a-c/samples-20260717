@@ -4,7 +4,7 @@ namespace App\Services\Search;
 
 use Illuminate\Support\Str;
 
-class SearchDeepLinkRegistry
+final class SearchDeepLinkRegistry
 {
     /**
      * Map (product, entityType, id) to Filament resource URL path.

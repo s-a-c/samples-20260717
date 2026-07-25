@@ -4,7 +4,7 @@ namespace App\Services\Search;
 
 use Illuminate\Support\Facades\DB;
 
-class FederatedSearchService
+final class FederatedSearchService
 {
     public function __construct(
         private ReciprocalRankFusion $rrf = new ReciprocalRankFusion,
@@ -47,7 +47,7 @@ class FederatedSearchService
 
         // Semantic Vector Search (if embedding is provided)
         $semantic = [];
-        if (! empty($embedding)) {
+        if ($embedding !== null) {
             $vecStr = '['.implode(',', $embedding).']';
             $semanticUnions = [];
             $semanticParams = [];
@@ -70,7 +70,7 @@ class FederatedSearchService
         $fused = $this->rrf->fuse($lexical, $semantic);
 
         foreach ($fused as &$item) {
-            $item['url'] = $this->registry->getUrl($item['product'], $item['entity_type'], (string) $item['id']);
+            $item['url'] = $this->registry->getUrl($item['product'], $item['entity_type'], $item['id']);
         }
 
         return $fused;

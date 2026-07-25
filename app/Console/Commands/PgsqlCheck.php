@@ -25,7 +25,7 @@ class PgsqlCheck extends Command
         }
 
         $ts = DB::select("SELECT cfgname FROM pg_ts_config WHERE cfgname = 'en_unaccent'");
-        if (empty($ts)) {
+        if ($ts === []) {
             $this->error('Missing text search config: en_unaccent');
 
             return 1;
