@@ -115,6 +115,17 @@ arch('Pagila resources must extend Resource')
     ->ignoring('App\Filament\Pagila\Resources\StaffResource\Pages')
     ->ignoring('App\Filament\Pagila\Resources\StoreResource\Pages');
 
+arch('Northwind resources must extend Resource')
+    ->expect('App\Filament\Northwind\Resources')
+    ->toExtend('Filament\Resources\Resource')
+    ->ignoring('App\Filament\Northwind\Resources\CategoryResource\Pages')
+    ->ignoring('App\Filament\Northwind\Resources\CustomerResource\Pages')
+    ->ignoring('App\Filament\Northwind\Resources\EmployeeResource\Pages')
+    ->ignoring('App\Filament\Northwind\Resources\OrderResource\Pages')
+    ->ignoring('App\Filament\Northwind\Resources\ProductResource\Pages')
+    ->ignoring('App\Filament\Northwind\Resources\ShipperResource\Pages')
+    ->ignoring('App\Filament\Northwind\Resources\SupplierResource\Pages');
+
 // ─── Panel Provider & Service Rules ───────────────────────────────────────────
 
 arch('Filament panel providers must be final')

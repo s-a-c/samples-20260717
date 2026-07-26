@@ -169,6 +169,132 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
+			path: app/Filament/Northwind/Resources/CategoryResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/CategoryResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/CustomerResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/CustomerResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/EmployeeResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/EmployeeResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/OrderResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/OrderResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/ProductResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/ProductResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/ShipperResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/ShipperResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/SupplierResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
+				Use `toolbarActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: app/Filament/Northwind/Resources/SupplierResource.php
+
+		-
+			message: '''
+				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
+				Use `recordActions\(\)` instead\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
 			path: app/Filament/Pagila/Resources/ActorResource.php
 
 		-
@@ -1112,6 +1238,30 @@ parameters:
 			identifier: method.nonObject
 			count: 9
 			path: tests/Feature/Filament/ChinookResourcesTest.php
+
+		-
+			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 7
+			path: tests/Feature/Filament/NorthwindResourcesTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 8
+			path: tests/Feature/Filament/NorthwindResourcesTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 8
+			path: tests/Feature/Filament/NorthwindResourcesTest.php
+
+		-
+			message: '#^Variable \$curator in PHPDoc tag @var does not exist\.$#'
+			identifier: varTag.variableNotFound
+			count: 1
+			path: tests/Feature/Filament/NorthwindResourcesTest.php
 
 		-
 			message: '#^Cannot call method assertForbidden\(\) on mixed\.$#'
