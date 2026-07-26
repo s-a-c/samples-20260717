@@ -206,6 +206,15 @@
         "types:check": [
             "phpstan analyse --memory-limit=512M"
         ],
+        "test:mago": "vendor/bin/mago guard",
+        "test:mago:guard": "vendor/bin/mago guard && php artisan test --testsuite=Architecture",
+        "rector": "vendor/bin/rector process --dry-run",
+        "rector:fix": "vendor/bin/rector process",
+        "test:all": [
+            "@test:mago",
+            "@test:arch",
+            "@test"
+        ],
         "update:requirements": [
             "composer update -oW",
             "composer normalize",
@@ -215,15 +224,6 @@
             "pnpm dlx sort-package-json",
             "pnpm dlx npm-check-updates -u",
             "pnpm update"
-        ],
-        "test:mago": "vendor/bin/mago",
-        "test:mago:guard": "vendor/bin/mago && php artisan test --testsuite=Architecture",
-        "rector": "vendor/bin/rector process --dry-run",
-        "rector:fix": "vendor/bin/rector process",
-        "test:all": [
-            "@test:mago",
-            "@test:arch",
-            "@test"
         ]
     },
     "$schema": "https://getcomposer.org/schema.json"
