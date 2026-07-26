@@ -174,7 +174,9 @@
             "@php artisan dev"
         ],
         "lint": [
-            "pint --parallel"
+            "pint --parallel",
+            "phpstan analyse --memory-limit=512M",
+            "@test:mago"
         ],
         "lint:check": [
             "pint --parallel --test"
@@ -194,6 +196,13 @@
             "@types:check",
             "@php artisan test"
         ],
+        "test:arch": "php artisan test --testsuite=Architecture",
+        "test:coverage": "php artisan test --coverage",
+        "test:feature": "php artisan test --testsuite=Feature",
+        "test:livewire": "php artisan test --filter=Livewire",
+        "test:pg": "php artisan test tests/Feature/Postgres",
+        "test:type-cov": "vendor/bin/pest --type-coverage --min=100 --compact",
+        "test:unit": "php artisan test --testsuite=Unit",
         "types:check": [
             "phpstan analyse --memory-limit=512M"
         ],
@@ -206,6 +215,15 @@
             "pnpm dlx sort-package-json",
             "pnpm dlx npm-check-updates -u",
             "pnpm update"
+        ],
+        "test:mago": "vendor/bin/mago",
+        "test:mago:guard": "vendor/bin/mago && php artisan test --testsuite=Architecture",
+        "rector": "vendor/bin/rector process --dry-run",
+        "rector:fix": "vendor/bin/rector process",
+        "test:all": [
+            "@test:mago",
+            "@test:arch",
+            "@test"
         ]
     },
     "$schema": "https://getcomposer.org/schema.json"
