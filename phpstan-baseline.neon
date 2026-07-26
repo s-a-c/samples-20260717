@@ -643,7 +643,7 @@ parameters:
 			path: routes/channels.php
 
 		-
-			message: '#^Out of 421 possible param types, only 416 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 423 possible param types, only 418 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 2
 			path: routes/channels.php
@@ -1429,7 +1429,7 @@ parameters:
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
 
 		-
-			message: '#^Out of 421 possible param types, only 416 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 423 possible param types, only 418 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 3
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
@@ -1481,6 +1481,12 @@ parameters:
 			identifier: method.nonObject
 			count: 2
 			path: tests/Feature/Settings/SecurityTest.php
+
+		-
+			message: '#^Calling toBeString\(\) on Expectation\<string\>; assertion is redundant\.$#'
+			identifier: pest.expectation.redundant
+			count: 2
+			path: tests/Feature/Teams/TeamArtefactTest.php
 
 		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Relations\\Pivot\:\:\$role\.$#'

@@ -77,4 +77,14 @@ final class Team extends Model
     {
         return $this->hasMany(TeamInvitation::class);
     }
+
+    /**
+     * Get all of the team-visible artefacts (saved searches, dashboards) for the team.
+     *
+     * @return HasMany<TeamArtefact, $this>
+     */
+    public function artefacts(): HasMany
+    {
+        return $this->hasMany(TeamArtefact::class);
+    }
 }
