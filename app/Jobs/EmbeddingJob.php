@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
+use Laravel\Ai\Embeddings;
 use Throwable;
 
 final class EmbeddingJob implements ShouldQueue
@@ -46,25 +46,20 @@ final class EmbeddingJob implements ShouldQueue
 
         $digest = hash('sha256', $text);
 
-        $apiKey = config('ai.providers.openai.key');
+        /** @var array<int, float>|null $vector */
         $vector = null;
 
-        if ($apiKey !== null && $apiKey !== '') {
-            try {
-                $response = Http::withToken($apiKey)->post('https://api.openai.com/v1/embeddings', [
-                    'input' => $text,
-                    'model' => 'text-embedding-3-small',
-                    'dimensions' => 1024,
-                ]);
-
-                /** @var array<int, float>|null $vector */
-                $vector = $response->json('data.0.embedding');
-            } catch (Throwable) {
-                // Fallback to mock vector when API is unreachable, unconfigured, or in test environment
-            }
+        try {
+            $vector = Embeddings::for([$text])
+                ->dimensions(1024)
+                ->generate()
+                ->first();
+        } catch (Throwable) {
+            // Fallback to a placeholder vector when the AI provider is
+            // unconfigured, unreachable, or running under a non-faked test.
         }
 
-        if ($vector === null || ! is_array($vector)) {
+        if ($vector === null || $vector === []) {
             $vector = array_fill(0, 1024, 0.01);
         }
 

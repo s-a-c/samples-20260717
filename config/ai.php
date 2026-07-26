@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'default' => env('AI_PROVIDER', 'openai'),
+
+    'default_for_embeddings' => env('AI_EMBEDDINGS_PROVIDER', 'openai'),
 
     'providers' => [
         'openai' => [

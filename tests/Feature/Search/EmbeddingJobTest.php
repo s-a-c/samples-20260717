@@ -6,16 +6,22 @@ use App\Jobs\EmbeddingJob;
 use App\Models\Chinook\Artist;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use Laravel\Ai\Embeddings;
 
 covers(EmbeddingJob::class);
 
 uses(RefreshDatabase::class);
 
 test('embedding job handles pending projection row and generates vector embedding', function () {
+    Embeddings::fake();
+
     $artist = Artist::create(['name' => 'Pink Floyd']);
 
     $job = new EmbeddingJob('chinook', $artist->id);
     $job->handle();
+
+    // The embedding was generated through the AI SDK, not the raw HTTP fallback.
+    Embeddings::assertGenerated(fn () => true);
 
     $projection = DB::selectOne('SELECT embedding, embedding_profile, content_digest, embedded_at, embedding_state FROM chinook.search_projections WHERE id = ?', [$artist->id]);
 

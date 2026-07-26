@@ -298,12 +298,6 @@ parameters:
 			path: app/Filament/Pagila/Resources/StoreResource.php
 
 		-
-			message: '#^Parameter \#1 \$token of static method Illuminate\\Http\\Client\\PendingRequest\<false\>\:\:withToken\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Jobs/EmbeddingJob.php
-
-		-
 			message: '#^Class App\\Models\\ResetRun has PHPDoc tag @property for property \$evidence with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
