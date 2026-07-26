@@ -42,7 +42,7 @@ If a write lands in the wrong notebook, undo it via the SiYuan UI.
 
 ## 5. When to use
 
-- Samples application design notes (Chinook / Northwind / Sakila sample
+- Samples application design notes (Chinook / Northwind / Pagila sample
   products, cross-product shared capabilities), research dumps,
   reference material that belongs in a PKM rather than git.
 - Long-form context that is too large or unstructured for a SAGE memory.

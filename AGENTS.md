@@ -72,11 +72,11 @@ adds repo scope and does not duplicate or weaken global rules.
 ## 2. Project Scope
 
 - Laravel 13 + PHP 8.5 application that presents **Chinook, Northwind, and
-  Sakila** as distinct sample products. Shared application capabilities connect
+  Pagila** as distinct sample products. Shared application capabilities connect
   them without treating their unrelated business concepts as one domain.
 - Domain glossary: [`CONTEXT.md`](CONTEXT.md).
 - A `Sample Product` is one independently recognisable reference dataset and its
-  UX (Chinook, Northwind, or Sakila) — not a tenant or customer account.
+  UX (Chinook, Northwind, or Pagila) — not a tenant or customer account.
 
 ## 3. Agent skills config
 

@@ -31,7 +31,7 @@
 
 ## 1. Prompt
 
-> [!NOTE] i'm looking for more sample databases, alternatives to chinook, northwind, sakila
+> [!NOTE] i'm looking for more sample databases, alternatives to chinook, northwind, pagila
 
 ## 2. Response
 
@@ -53,12 +53,12 @@ Here are good alternatives, grouped by what they’re useful for. Because appare
   Includes OLTP and data warehouse variants.
 
 - **Pagila**
-  PostgreSQL port of Sakila.
+  PostgreSQL port of Pagila.
   Useful if you want PostgreSQL-specific features rather than MySQL syntax.
 
 - **DVD Rental**
   Another PostgreSQL sample database, commonly used in PostgreSQL tutorials.
-  Similar domain to Sakila, but useful for practising PostgreSQL queries and views.
+  Similar domain to Pagila, but useful for practising PostgreSQL queries and views.
 
 ### 2.2. E-commerce and sales
 
@@ -219,7 +219,7 @@ Here’s the revised shortlist, including **Northwind** and **Chinook**, with Po
 | **WideWorldImporters**       | Modern business workflows, stock, purchasing, invoices      | [Microsoft SQL samples](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/wide-world-importers) |
 | **Classic Models**           | Customers, orders, products, employees, offices, payments   | [MySQL Classic Models](https://www.mysqltutorial.org/mysql-sample-database.aspx)                                            |
 | **Employees Database**       | Employees, departments, salaries, titles, stored procedures | [datacharmer/test_db](https://github.com/datacharmer/test_db)                                                               |
-| **Pagila-compatible Sakila** | PostgreSQL alternative to MySQL Sakila                      | [Pagila GitHub repository](https://github.com/devrimgunduz/pagila)                                                          |
+| **Pagila-compatible Pagila** | PostgreSQL alternative to MySQL Pagila                      | [Pagila GitHub repository](https://github.com/devrimgunduz/pagila)                                                          |
 | **Olist E-Commerce**         | Realistic e-commerce orders, payments, reviews, delivery    | [Kaggle: Brazilian E-Commerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)                                 |
 | **Synthea**                  | Synthetic healthcare records and clinical workflows         | [Synthea GitHub](https://github.com/synthetichealth/synthea)                                                                |
 | **Stack Exchange**           | Users, questions, answers, tags, votes, comments            | [Stack Exchange Data Explorer](https://data.stackexchange.com/)                                                             |

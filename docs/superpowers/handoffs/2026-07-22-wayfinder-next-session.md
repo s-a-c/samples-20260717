@@ -7,7 +7,7 @@ Continue wayfinder map #15 — Wayfinder — Samples Implementation.
 
 ## What this map is
 
-A plan-only wayfinder map whose destination is a production-ready Laravel 13 + PHP 8.5 application presenting Chinook, Northwind, and Sakila as three Sample Products, passing all eight Acceptance Stages from #11, the Two-Environment Operational Gate, Larastan at `level: max`, comprehensive Pest coverage, and the Implementation-Readiness Dossier. Per the map's own Notes: *"Plan-only mode — each ticket resolves ONE decision; execution is handed off once the way is clear. No ticket carries implementation into itself."*
+A plan-only wayfinder map whose destination is a production-ready Laravel 13 + PHP 8.5 application presenting Chinook, Northwind, and Pagila as three Sample Products, passing all eight Acceptance Stages from #11, the Two-Environment Operational Gate, Larastan at `level: max`, comprehensive Pest coverage, and the Implementation-Readiness Dossier. Per the map's own Notes: *"Plan-only mode — each ticket resolves ONE decision; execution is handed off once the way is clear. No ticket carries implementation into itself."*
 
 ## State at handover (2026-07-22)
 

@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Filament;
-
 use App\Filament\Pagila\Resources\ActorResource\Pages\ListActors;
 use App\Filament\Pagila\Resources\CategoryResource\Pages\ListCategories;
 use App\Filament\Pagila\Resources\CustomerResource\Pages\ListCustomers;
@@ -25,312 +23,286 @@ use App\Models\Pagila\Rental;
 use App\Models\Pagila\Staff;
 use App\Models\Pagila\Store;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use PHPUnit\Framework\Attributes\CoversClass;
 use Spatie\Permission\Models\Role;
-use Tests\TestCase;
 
-#[CoversClass(\App\Filament\Pagila\Resources\ActorResource::class)]
-final class PagilaResourcesTest extends TestCase
-{
-    use RefreshDatabase;
+covers(App\Filament\Pagila\Resources\ActorResource::class);
 
-    private User $pagilaCurator;
+beforeEach(function () {
+    $this->pagilaCurator = User::factory()->create();
+    $this->pagilaCurator->assignRole(Role::findOrCreate('pagila_curator', 'web'));
 
-    private User $northwindCurator;
+    $this->northwindCurator = User::factory()->create();
+    $this->northwindCurator->assignRole(Role::findOrCreate('northwind_curator', 'web'));
+});
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+test('pagila curator can access all pagila resource list pages', function () {
+    $endpoints = [
+        '/pagila/actors',
+        '/pagila/films',
+        '/pagila/categories',
+        '/pagila/customers',
+        '/pagila/staff',
+        '/pagila/stores',
+        '/pagila/rentals',
+        '/pagila/payments',
+        '/pagila/inventories',
+        '/pagila/languages',
+    ];
 
-        $this->pagilaCurator = User::factory()->create();
-        $this->pagilaCurator->assignRole(Role::findOrCreate('pagila_curator', 'web'));
-
-        $this->northwindCurator = User::factory()->create();
-        $this->northwindCurator->assignRole(Role::findOrCreate('northwind_curator', 'web'));
-    }
-
-    public function test_pagila_curator_can_access_all_pagila_resource_list_pages(): void
-    {
-        $endpoints = [
-            '/pagila/actors',
-            '/pagila/films',
-            '/pagila/categories',
-            '/pagila/customers',
-            '/pagila/staff',
-            '/pagila/stores',
-            '/pagila/rentals',
-            '/pagila/payments',
-            '/pagila/inventories',
-            '/pagila/languages',
-        ];
-
-        foreach ($endpoints as $endpoint) {
-            $this->actingAs($this->pagilaCurator)
-                ->get($endpoint)
-                ->assertSuccessful();
-        }
-    }
-
-    public function test_northwind_curator_is_forbidden_from_pagila_pages(): void
-    {
-        $endpoints = [
-            '/pagila/actors',
-            '/pagila/films',
-            '/pagila/categories',
-            '/pagila/customers',
-            '/pagila/staff',
-            '/pagila/stores',
-            '/pagila/rentals',
-            '/pagila/payments',
-            '/pagila/inventories',
-            '/pagila/languages',
-        ];
-
-        foreach ($endpoints as $endpoint) {
-            $this->actingAs($this->northwindCurator)
-                ->get($endpoint)
-                ->assertForbidden();
-        }
-    }
-
-    public function test_actor_resource_renders_columns_and_data(): void
-    {
-        $actor = Actor::create([
-            'first_name' => 'PENELOPE',
-            'last_name' => 'GUINESS',
-        ]);
-
+    foreach ($endpoints as $endpoint) {
         $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/actors')
-            ->assertSuccessful()
-            ->assertSee('PENELOPE')
-            ->assertSee('GUINESS');
-
-        Livewire::test(ListActors::class)
-            ->assertCanSeeTableRecords([$actor])
-            ->assertTableColumnExists('first_name')
-            ->assertTableColumnExists('last_name');
+            ->get($endpoint)
+            ->assertSuccessful();
     }
+});
 
-    public function test_film_resource_renders_columns_and_data(): void
-    {
-        $language = Language::create(['name' => 'English']);
-        $film = Film::create([
-            'title' => 'ACADEMY DINOSAUR',
-            'language_id' => $language->id,
-            'rental_duration' => 6,
-            'rental_rate' => 0.99,
-            'replacement_cost' => 20.99,
-            'rating' => 'PG',
-            'length' => 86,
-        ]);
+test('northwind curator is forbidden from pagila pages', function () {
+    $endpoints = [
+        '/pagila/actors',
+        '/pagila/films',
+        '/pagila/categories',
+        '/pagila/customers',
+        '/pagila/staff',
+        '/pagila/stores',
+        '/pagila/rentals',
+        '/pagila/payments',
+        '/pagila/inventories',
+        '/pagila/languages',
+    ];
 
-        $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/films')
-            ->assertSuccessful()
-            ->assertSee('ACADEMY DINOSAUR');
-
-        Livewire::test(ListFilms::class)
-            ->assertCanSeeTableRecords([$film])
-            ->assertTableColumnExists('title')
-            ->assertTableColumnExists('language.name')
-            ->assertTableColumnExists('release_year')
-            ->assertTableColumnExists('rating');
+    foreach ($endpoints as $endpoint) {
+        $this->actingAs($this->northwindCurator)
+            ->get($endpoint)
+            ->assertForbidden();
     }
+});
 
-    public function test_category_resource_renders_columns_and_data(): void
-    {
-        $category = Category::create(['name' => 'Action']);
+test('actor resource renders columns and data', function () {
+    $actor = Actor::create([
+        'first_name' => 'PENELOPE',
+        'last_name' => 'GUINESS',
+    ]);
 
-        $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/categories')
-            ->assertSuccessful()
-            ->assertSee('Action');
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/actors')
+        ->assertSuccessful()
+        ->assertSee('PENELOPE')
+        ->assertSee('GUINESS');
 
-        Livewire::test(ListCategories::class)
-            ->assertCanSeeTableRecords([$category])
-            ->assertTableColumnExists('name');
-    }
+    Livewire::test(ListActors::class)
+        ->assertCanSeeTableRecords([$actor])
+        ->assertTableColumnExists('first_name')
+        ->assertTableColumnExists('last_name');
+});
 
-    public function test_customer_resource_renders_columns_and_data(): void
-    {
-        $store = Store::create();
-        $customer = Customer::create([
-            'store_id' => $store->id,
-            'first_name' => 'MARY',
-            'last_name' => 'SMITH',
-            'email' => 'mary.smith@pagilacustomer.org',
-            'active' => true,
-        ]);
+test('film resource renders columns and data', function () {
+    $language = Language::create(['name' => 'English']);
+    $film = Film::create([
+        'title' => 'ACADEMY DINOSAUR',
+        'language_id' => $language->id,
+        'rental_duration' => 6,
+        'rental_rate' => 0.99,
+        'replacement_cost' => 20.99,
+        'rating' => 'PG',
+        'length' => 86,
+    ]);
 
-        $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/customers')
-            ->assertSuccessful()
-            ->assertSee('MARY')
-            ->assertSee('SMITH');
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/films')
+        ->assertSuccessful()
+        ->assertSee('ACADEMY DINOSAUR');
 
-        Livewire::test(ListCustomers::class)
-            ->assertCanSeeTableRecords([$customer])
-            ->assertTableColumnExists('first_name')
-            ->assertTableColumnExists('last_name')
-            ->assertTableColumnExists('email')
-            ->assertTableColumnExists('active');
-    }
+    Livewire::test(ListFilms::class)
+        ->assertCanSeeTableRecords([$film])
+        ->assertTableColumnExists('title')
+        ->assertTableColumnExists('language.name')
+        ->assertTableColumnExists('release_year')
+        ->assertTableColumnExists('rating');
+});
 
-    public function test_staff_resource_renders_columns_and_data(): void
-    {
-        $staff = Staff::create([
-            'first_name' => 'Mike',
-            'last_name' => 'Hillyer',
-            'email' => 'Mike.Hillyer@pagilastaff.com',
-            'active' => true,
-            'username' => 'Mike',
-        ]);
+test('category resource renders columns and data', function () {
+    $category = Category::create(['name' => 'Action']);
 
-        $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/staff')
-            ->assertSuccessful()
-            ->assertSee('Hillyer');
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/categories')
+        ->assertSuccessful()
+        ->assertSee('Action');
 
-        Livewire::test(ListStaff::class)
-            ->assertCanSeeTableRecords([$staff])
-            ->assertTableColumnExists('first_name')
-            ->assertTableColumnExists('last_name')
-            ->assertTableColumnExists('email')
-            ->assertTableColumnExists('username');
-    }
+    Livewire::test(ListCategories::class)
+        ->assertCanSeeTableRecords([$category])
+        ->assertTableColumnExists('name');
+});
 
-    public function test_store_resource_renders_columns_and_data(): void
-    {
-        $store = Store::create(['address' => '47 MyPagila Drive']);
+test('customer resource renders columns and data', function () {
+    $store = Store::create();
+    $customer = Customer::create([
+        'store_id' => $store->id,
+        'first_name' => 'MARY',
+        'last_name' => 'SMITH',
+        'email' => 'mary.smith@pagilacustomer.org',
+        'active' => true,
+    ]);
 
-        $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/stores')
-            ->assertSuccessful()
-            ->assertSee('47 MyPagila Drive');
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/customers')
+        ->assertSuccessful()
+        ->assertSee('MARY')
+        ->assertSee('SMITH');
 
-        Livewire::test(ListStores::class)
-            ->assertCanSeeTableRecords([$store])
-            ->assertTableColumnExists('id')
-            ->assertTableColumnExists('address');
-    }
+    Livewire::test(ListCustomers::class)
+        ->assertCanSeeTableRecords([$customer])
+        ->assertTableColumnExists('first_name')
+        ->assertTableColumnExists('last_name')
+        ->assertTableColumnExists('email')
+        ->assertTableColumnExists('active');
+});
 
-    public function test_rental_resource_renders_columns_and_data(): void
-    {
-        $store = Store::create();
-        $customer = Customer::create([
-            'store_id' => $store->id,
-            'first_name' => 'MARY',
-            'last_name' => 'SMITH',
-            'active' => true,
-        ]);
-        $staff = Staff::create([
-            'first_name' => 'Mike',
-            'last_name' => 'Hillyer',
-            'active' => true,
-        ]);
-        $film = Film::create([
-            'title' => 'ACADEMY DINOSAUR',
-            'language_id' => Language::create(['name' => 'English'])->id,
-            'rental_duration' => 6,
-            'rental_rate' => 0.99,
-            'replacement_cost' => 20.99,
-        ]);
-        $inventory = Inventory::create([
-            'film_id' => $film->id,
-            'store_id' => $store->id,
-        ]);
-        $rental = Rental::create([
-            'rental_date' => '2026-01-01 12:00:00',
-            'inventory_id' => $inventory->id,
-            'customer_id' => $customer->id,
-            'staff_id' => $staff->id,
-        ]);
+test('staff resource renders columns and data', function () {
+    $staff = Staff::create([
+        'first_name' => 'Mike',
+        'last_name' => 'Hillyer',
+        'email' => 'Mike.Hillyer@pagilastaff.com',
+        'active' => true,
+        'username' => 'Mike',
+    ]);
 
-        $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/rentals')
-            ->assertSuccessful()
-            ->assertSee('SMITH');
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/staff')
+        ->assertSuccessful()
+        ->assertSee('Hillyer');
 
-        Livewire::test(ListRentals::class)
-            ->assertCanSeeTableRecords([$rental])
-            ->assertTableColumnExists('rental_date')
-            ->assertTableColumnExists('customer.last_name')
-            ->assertTableColumnExists('staff.last_name');
-    }
+    Livewire::test(ListStaff::class)
+        ->assertCanSeeTableRecords([$staff])
+        ->assertTableColumnExists('first_name')
+        ->assertTableColumnExists('last_name')
+        ->assertTableColumnExists('email')
+        ->assertTableColumnExists('username');
+});
 
-    public function test_payment_resource_renders_columns_and_data(): void
-    {
-        $store = Store::create();
-        $customer = Customer::create([
-            'store_id' => $store->id,
-            'first_name' => 'MARY',
-            'last_name' => 'SMITH',
-            'active' => true,
-        ]);
-        $staff = Staff::create([
-            'first_name' => 'Mike',
-            'last_name' => 'Hillyer',
-            'active' => true,
-        ]);
-        $payment = Payment::create([
-            'customer_id' => $customer->id,
-            'staff_id' => $staff->id,
-            'amount' => 5.99,
-            'payment_date' => '2026-01-01 12:00:00',
-        ]);
+test('store resource renders columns and data', function () {
+    $store = Store::create(['address' => '47 MyPagila Drive']);
 
-        $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/payments')
-            ->assertSuccessful()
-            ->assertSee('Hillyer');
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/stores')
+        ->assertSuccessful()
+        ->assertSee('47 MyPagila Drive');
 
-        Livewire::test(ListPayments::class)
-            ->assertCanSeeTableRecords([$payment])
-            ->assertTableColumnExists('customer.last_name')
-            ->assertTableColumnExists('staff.last_name')
-            ->assertTableColumnExists('amount');
-    }
+    Livewire::test(ListStores::class)
+        ->assertCanSeeTableRecords([$store])
+        ->assertTableColumnExists('id')
+        ->assertTableColumnExists('address');
+});
 
-    public function test_inventory_resource_renders_columns_and_data(): void
-    {
-        $store = Store::create();
-        $film = Film::create([
-            'title' => 'ACADEMY DINOSAUR',
-            'language_id' => Language::create(['name' => 'English'])->id,
-            'rental_duration' => 6,
-            'rental_rate' => 0.99,
-            'replacement_cost' => 20.99,
-        ]);
-        $inventory = Inventory::create([
-            'film_id' => $film->id,
-            'store_id' => $store->id,
-        ]);
+test('rental resource renders columns and data', function () {
+    $store = Store::create();
+    $customer = Customer::create([
+        'store_id' => $store->id,
+        'first_name' => 'MARY',
+        'last_name' => 'SMITH',
+        'active' => true,
+    ]);
+    $staff = Staff::create([
+        'first_name' => 'Mike',
+        'last_name' => 'Hillyer',
+        'active' => true,
+    ]);
+    $film = Film::create([
+        'title' => 'ACADEMY DINOSAUR',
+        'language_id' => Language::create(['name' => 'English'])->id,
+        'rental_duration' => 6,
+        'rental_rate' => 0.99,
+        'replacement_cost' => 20.99,
+    ]);
+    $inventory = Inventory::create([
+        'film_id' => $film->id,
+        'store_id' => $store->id,
+    ]);
+    $rental = Rental::create([
+        'rental_date' => '2026-01-01 12:00:00',
+        'inventory_id' => $inventory->id,
+        'customer_id' => $customer->id,
+        'staff_id' => $staff->id,
+    ]);
 
-        $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/inventories')
-            ->assertSuccessful()
-            ->assertSee('ACADEMY DINOSAUR');
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/rentals')
+        ->assertSuccessful()
+        ->assertSee('SMITH');
 
-        Livewire::test(ListInventories::class)
-            ->assertCanSeeTableRecords([$inventory])
-            ->assertTableColumnExists('film.title')
-            ->assertTableColumnExists('store.id');
-    }
+    Livewire::test(ListRentals::class)
+        ->assertCanSeeTableRecords([$rental])
+        ->assertTableColumnExists('rental_date')
+        ->assertTableColumnExists('customer.last_name')
+        ->assertTableColumnExists('staff.last_name');
+});
 
-    public function test_language_resource_renders_columns_and_data(): void
-    {
-        $language = Language::create(['name' => 'English']);
+test('payment resource renders columns and data', function () {
+    $store = Store::create();
+    $customer = Customer::create([
+        'store_id' => $store->id,
+        'first_name' => 'MARY',
+        'last_name' => 'SMITH',
+        'active' => true,
+    ]);
+    $staff = Staff::create([
+        'first_name' => 'Mike',
+        'last_name' => 'Hillyer',
+        'active' => true,
+    ]);
+    $payment = Payment::create([
+        'customer_id' => $customer->id,
+        'staff_id' => $staff->id,
+        'amount' => 5.99,
+        'payment_date' => '2026-01-01 12:00:00',
+    ]);
 
-        $this->actingAs($this->pagilaCurator)
-            ->get('/pagila/languages')
-            ->assertSuccessful()
-            ->assertSee('English');
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/payments')
+        ->assertSuccessful()
+        ->assertSee('Hillyer');
 
-        Livewire::test(ListLanguages::class)
-            ->assertCanSeeTableRecords([$language])
-            ->assertTableColumnExists('name');
-    }
-}
+    Livewire::test(ListPayments::class)
+        ->assertCanSeeTableRecords([$payment])
+        ->assertTableColumnExists('customer.last_name')
+        ->assertTableColumnExists('staff.last_name')
+        ->assertTableColumnExists('amount');
+});
+
+test('inventory resource renders columns and data', function () {
+    $store = Store::create();
+    $film = Film::create([
+        'title' => 'ACADEMY DINOSAUR',
+        'language_id' => Language::create(['name' => 'English'])->id,
+        'rental_duration' => 6,
+        'rental_rate' => 0.99,
+        'replacement_cost' => 20.99,
+    ]);
+    $inventory = Inventory::create([
+        'film_id' => $film->id,
+        'store_id' => $store->id,
+    ]);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/inventories')
+        ->assertSuccessful()
+        ->assertSee('ACADEMY DINOSAUR');
+
+    Livewire::test(ListInventories::class)
+        ->assertCanSeeTableRecords([$inventory])
+        ->assertTableColumnExists('film.title')
+        ->assertTableColumnExists('store.id');
+});
+
+test('language resource renders columns and data', function () {
+    $language = Language::create(['name' => 'English']);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get('/pagila/languages')
+        ->assertSuccessful()
+        ->assertSee('English');
+
+    Livewire::test(ListLanguages::class)
+        ->assertCanSeeTableRecords([$language])
+        ->assertTableColumnExists('name');
+});

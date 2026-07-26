@@ -34,7 +34,7 @@ literal-named-argument = { enabled = false }
 halstead = { effort-threshold = 7000 }
 
 [analyzer]
-baseline = ".mago/baseline.json"
+baseline = ".mago/analyze-baseline.json"
 plugins = []
 find-unused-definitions = true
 find-unused-expressions = true
@@ -61,6 +61,7 @@ register-super-globals = true
 
 [guard]
 mode = "default"
+baseline = ".mago/guard-baseline.json"
 
 [guard.perimeter]
 layering = [
@@ -94,10 +95,11 @@ filament = ["Filament\\**", "BezhanSalleh\\**"]
 spatie = ["Spatie\\**"]
 symfony = ["Symfony\\**"]
 pest = ["Pest\\**"]
+phpunit = ["PHPUnit\\**"]
 
 [[guard.perimeter.rules]]
 namespace = "@global"
-permit = ["@self", "@layer:native", "@layer:laravel", "@layer:carbon", "@layer:livewire", "@layer:filament", "@layer:spatie", "@layer:symfony", "@layer:pest", "App\\**", "Database\\**", "Tests\\**"]
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:carbon", "@layer:livewire", "@layer:filament", "@layer:spatie", "@layer:symfony", "@layer:pest", "@layer:phpunit", "App\\**", "Database\\**", "Tests\\**"]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Contracts\\"

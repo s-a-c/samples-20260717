@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
-use App\Domain\Chinook\Models\Album;
-use App\Domain\Chinook\Models\Artist;
-use App\Domain\Chinook\Models\Customer;
-use App\Domain\Chinook\Models\Track;
-use App\Domain\Northwind\Models\Category;
-use App\Domain\Northwind\Models\Product;
-use App\Domain\Northwind\Models\Supplier;
-use App\Domain\Pagila\Models\Actor;
-use App\Domain\Pagila\Models\Film;
+use App\Models\Chinook\Album;
+use App\Models\Chinook\Artist;
+use App\Models\Chinook\Customer;
+use App\Models\Chinook\Track;
+use App\Models\Northwind\Category;
+use App\Models\Northwind\Product;
+use App\Models\Northwind\Supplier;
+use App\Models\Pagila\Actor;
+use App\Models\Pagila\Film;
 use App\Models\User;
 use App\Observers\Tier1SourceObserver;
 use Carbon\CarbonImmutable;
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
-class AppServiceProvider extends ServiceProvider
+final class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -62,12 +64,12 @@ class AppServiceProvider extends ServiceProvider
 
         Product::observe(Tier1SourceObserver::class);
         Category::observe(Tier1SourceObserver::class);
-        \App\Domain\Northwind\Models\Customer::observe(Tier1SourceObserver::class);
+        Customer::observe(Tier1SourceObserver::class);
         Supplier::observe(Tier1SourceObserver::class);
 
         Film::observe(Tier1SourceObserver::class);
         Actor::observe(Tier1SourceObserver::class);
-        \App\Domain\Pagila\Models\Category::observe(Tier1SourceObserver::class);
+        Category::observe(Tier1SourceObserver::class);
     }
 
     /**

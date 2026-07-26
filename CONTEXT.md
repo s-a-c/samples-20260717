@@ -1,6 +1,6 @@
 # Samples Application Context
 
-This application presents Chinook, Northwind, and Sakila as distinct sample products. Shared application capabilities connect them without treating their unrelated business concepts as one domain.
+This application presents Chinook, Northwind, and Pagila as distinct sample products. Shared application capabilities connect them without treating their unrelated business concepts as one domain.
 
 <details>
   <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
@@ -16,7 +16,7 @@ This application presents Chinook, Northwind, and Sakila as distinct sample prod
 ## 1. 🗣 Language
 
 **Sample Product**:
-One independently recognisable reference dataset and its user experience: Chinook, Northwind, or Sakila.
+One independently recognisable reference dataset and its user experience: Chinook, Northwind, or Pagila.
 _Avoid_: tenant, customer account
 
 **Product Domain**:

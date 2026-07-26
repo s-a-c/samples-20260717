@@ -6,7 +6,7 @@ repo root, plus this `docs/agents/` directory.
 ## 1. Before exploring, read
 
 - [`../../CONTEXT.md`](../../CONTEXT.md) — the domain glossary. Core terms:
-  - **Sample Product** — one reference dataset + UX (Chinook, Northwind, Sakila).
+  - **Sample Product** — one reference dataset + UX (Chinook, Northwind, Pagila).
     *Avoid*: tenant, customer account.
   - **Product Domain** — the bounded concepts of one Sample Product. *Avoid*:
     shared business domain, unified catalogue.
@@ -20,7 +20,7 @@ suggest creating it upfront.
 ## 2. Use the glossary vocabulary
 
 When writing docs, code, or commit messages, prefer the established terms from
-`CONTEXT.md`. The three sample products (Chinook, Northwind, Sakila) are
+`CONTEXT.md`. The three sample products (Chinook, Northwind, Pagila) are
 independent — do not collapse them into a shared business domain.
 
 ## 3. Resolution order

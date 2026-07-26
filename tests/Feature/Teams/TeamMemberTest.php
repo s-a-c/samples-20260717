@@ -1,124 +1,114 @@
 <?php
 
-namespace Tests\Feature\Teams;
+declare(strict_types=1);
 
 use App\Enums\TeamRole;
 use App\Models\Team;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use Tests\TestCase;
 
-class TeamMemberTest extends TestCase
-{
-    use RefreshDatabase;
+covers(Team::class);
 
-    public function test_team_member_role_can_be_updated_by_owner(): void
-    {
-        $owner = User::factory()->create();
-        $member = User::factory()->create();
-        $team = Team::factory()->create();
+test('team member role can be updated by owner', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create();
+    $team = Team::factory()->create();
 
-        $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
-        $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
 
-        $this->actingAs($owner);
+    $this->actingAs($owner);
 
-        Livewire::test('pages::teams.edit', ['team' => $team])
-            ->call('updateMember', $member->id, TeamRole::Admin->value)
-            ->assertHasNoErrors();
+    Livewire::test('pages::teams.edit', ['team' => $team])
+        ->call('updateMember', $member->id, TeamRole::Admin->value)
+        ->assertHasNoErrors();
 
-        $teamMember = $team->members()->where('user_id', $member->id)->first();
-        assert($teamMember !== null);
+    $teamMember = $team->members()->where('user_id', $member->id)->first();
+    assert($teamMember !== null);
 
-        $this->assertEquals(
-            TeamRole::Admin->value,
-            $teamMember->pivot->role->value,
-        );
-    }
+    $this->assertEquals(
+        TeamRole::Admin->value,
+        $teamMember->pivot->role->value,
+    );
+});
 
-    public function test_team_member_role_cannot_be_updated_by_non_owner(): void
-    {
-        $owner = User::factory()->create();
-        $admin = User::factory()->create();
-        $member = User::factory()->create();
-        $team = Team::factory()->create();
+test('team member role cannot be updated by non owner', function () {
+    $owner = User::factory()->create();
+    $admin = User::factory()->create();
+    $member = User::factory()->create();
+    $team = Team::factory()->create();
 
-        $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
-        $team->members()->attach($admin, ['role' => TeamRole::Admin->value]);
-        $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($admin, ['role' => TeamRole::Admin->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
 
-        $this->actingAs($admin);
+    $this->actingAs($admin);
 
-        Livewire::test('pages::teams.edit', ['team' => $team])
-            ->call('updateMember', $member->id, TeamRole::Admin->value)
-            ->assertForbidden();
-    }
+    Livewire::test('pages::teams.edit', ['team' => $team])
+        ->call('updateMember', $member->id, TeamRole::Admin->value)
+        ->assertForbidden();
+});
 
-    public function test_team_member_can_be_removed_by_owner(): void
-    {
-        $owner = User::factory()->create();
-        $member = User::factory()->create();
-        $team = Team::factory()->create();
+test('team member can be removed by owner', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create();
+    $team = Team::factory()->create();
 
-        $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
-        $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
 
-        $this->actingAs($owner);
+    $this->actingAs($owner);
 
-        Livewire::test('pages::teams.remove-member-modal', ['team' => $team])
-            ->set('memberId', $member->id)
-            ->call('removeMember')
-            ->assertHasNoErrors();
+    Livewire::test('pages::teams.remove-member-modal', ['team' => $team])
+        ->set('memberId', $member->id)
+        ->call('removeMember')
+        ->assertHasNoErrors();
 
-        $freshMember = $member->fresh();
-        assert($freshMember !== null);
+    $freshMember = $member->fresh();
+    assert($freshMember !== null);
 
-        $this->assertFalse($freshMember->belongsToTeam($team));
-    }
+    $this->assertFalse($freshMember->belongsToTeam($team));
+});
 
-    public function test_team_member_cannot_be_removed_by_non_owners(): void
-    {
-        $owner = User::factory()->create();
-        $admin = User::factory()->create();
-        $member = User::factory()->create();
-        $team = Team::factory()->create();
+test('team member cannot be removed by non owners', function () {
+    $owner = User::factory()->create();
+    $admin = User::factory()->create();
+    $member = User::factory()->create();
+    $team = Team::factory()->create();
 
-        $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
-        $team->members()->attach($admin, ['role' => TeamRole::Admin->value]);
-        $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($admin, ['role' => TeamRole::Admin->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
 
-        $this->actingAs($admin);
+    $this->actingAs($admin);
 
-        Livewire::test('pages::teams.remove-member-modal', ['team' => $team])
-            ->set('memberId', $member->id)
-            ->call('removeMember')
-            ->assertForbidden();
-    }
+    Livewire::test('pages::teams.remove-member-modal', ['team' => $team])
+        ->set('memberId', $member->id)
+        ->call('removeMember')
+        ->assertForbidden();
+});
 
-    public function test_removed_members_current_team_is_set_to_personal_team(): void
-    {
-        $owner = User::factory()->create();
-        $member = User::factory()->create();
-        $personalTeam = $member->personalTeam();
-        assert($personalTeam !== null);
-        $team = Team::factory()->create();
+test('removed members current team is set to personal team', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create();
+    $personalTeam = $member->personalTeam();
+    assert($personalTeam !== null);
+    $team = Team::factory()->create();
 
-        $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
-        $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
 
-        $member->update(['current_team_id' => $team->id]);
+    $member->update(['current_team_id' => $team->id]);
 
-        $this->actingAs($owner);
+    $this->actingAs($owner);
 
-        Livewire::test('pages::teams.remove-member-modal', ['team' => $team])
-            ->set('memberId', $member->id)
-            ->call('removeMember')
-            ->assertHasNoErrors();
+    Livewire::test('pages::teams.remove-member-modal', ['team' => $team])
+        ->set('memberId', $member->id)
+        ->call('removeMember')
+        ->assertHasNoErrors();
 
-        $freshMember = $member->fresh();
-        assert($freshMember !== null);
+    $freshMember = $member->fresh();
+    assert($freshMember !== null);
 
-        $this->assertEquals($personalTeam->id, $freshMember->current_team_id);
-    }
-}
+    $this->assertEquals($personalTeam->id, $freshMember->current_team_id);
+});

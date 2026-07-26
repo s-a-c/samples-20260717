@@ -20,18 +20,18 @@ export SAGE_URL="http://127.0.0.1:7243"
 mkdir -p "$ROOT/.local/sage/identities"
 
 # (Re)build the venv if missing or if the installed SDK version drifts from the pin.
-if [[ ! -x "$VENV/bin/python" ]] || ! "$VENV/bin/pip" show sage-agent-sdk 2>/dev/null \
-     | grep -q "^Version: ${SAGE_SDK_VERSION}\$"; then
-  python3 -m venv "$VENV"
-  "$VENV/bin/pip" install -q "sage-agent-sdk==${SAGE_SDK_VERSION}" httpx
+if [[ ! -x "$VENV/bin/python" ]] || ! "$VENV/bin/pip" show sage-agent-sdk 2>/dev/null |
+    grep -q "^Version: ${SAGE_SDK_VERSION}\$"; then
+    python3 -m venv "$VENV"
+    "$VENV/bin/pip" install -q "sage-agent-sdk==${SAGE_SDK_VERSION}" httpx
 fi
 
 exec "$VENV/bin/python" "$HOME/scripts/sage_workspace_bootstrap.py" \
-  --workspace-id samples-20260717 \
-  --workspace-type project \
-  --org samples-20260717 \
-  --org-description "samples-20260717 workspace agent namespace on central SAGE substrate" \
-  --domain project.samples-20260717 \
-  --memory "samples-20260717 workspace at /Users/s-a-c/Herd/samples-20260717 presents Chinook, Northwind, and Sakila as distinct sample products sharing application capabilities. SAGE owns governed recall; bd owns tasks." \
-  --root "$ROOT" \
-  "$@"
+    --workspace-id samples-20260717 \
+    --workspace-type project \
+    --org samples-20260717 \
+    --org-description "samples-20260717 workspace agent namespace on central SAGE substrate" \
+    --domain project.samples-20260717 \
+    --memory "samples-20260717 workspace at /Users/s-a-c/Herd/samples-20260717 presents Chinook, Northwind, and Pagila as distinct sample products sharing application capabilities. SAGE owns governed recall; bd owns tasks." \
+    --root "$ROOT" \
+    "$@"

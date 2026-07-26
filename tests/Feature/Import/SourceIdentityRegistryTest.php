@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\ResetConfirmation;
 use App\Models\SourceIdentity;
 use App\Models\User;
@@ -9,6 +11,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Uid\UuidV7;
+
+covers(SourceIdentityRegistry::class);
 
 uses(RefreshDatabase::class);
 

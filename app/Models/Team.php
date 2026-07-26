@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Concerns\GeneratesUniqueTeamSlugs;
-use App\Enums\TeamRole;
 use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Collection;
@@ -23,78 +24,14 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
- * @property-read Collection<int, TeamInvitation> $invitations
- * @property-read Collection<int, Membership> $memberships
  * @property-read Collection<int, User> $members
+ * @property-read Collection<int, TeamInvitation> $invitations
  */
 #[Fillable(['name', 'slug', 'is_personal'])]
-class Team extends Model
+final class Team extends Model
 {
     /** @use HasFactory<TeamFactory> */
     use GeneratesUniqueTeamSlugs, HasFactory, HasUuids, SoftDeletes;
-
-    /**
-     * Bootstrap the model and its traits.
-     */
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::creating(function (Team $team) {
-            if ($team->getAttribute('slug') === null) {
-                $team->slug = static::generateUniqueTeamSlug($team->name);
-            }
-        });
-
-        static::updating(function (Team $team) {
-            if ($team->isDirty('name')) {
-                $team->slug = static::generateUniqueTeamSlug($team->name, $team->id);
-            }
-        });
-    }
-
-    /**
-     * Get the team owner.
-     */
-    public function owner(): ?Model
-    {
-        return $this->members()
-            ->wherePivot('role', TeamRole::Owner->value)
-            ->first();
-    }
-
-    /**
-     * Get all members of this team.
-     *
-     * @return BelongsToMany<User, $this, Membership, 'pivot'>
-     */
-    public function members(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'team_members', 'team_id', 'user_id')
-            ->using(Membership::class)
-            ->withPivot(['role'])
-            ->withTimestamps();
-    }
-
-    /**
-     * Get all memberships for this team.
-     *
-     * @return HasMany<Membership, $this>
-     */
-    public function memberships(): HasMany
-    {
-        return $this->hasMany(Membership::class);
-    }
-
-    /**
-     * Get all invitations for this team.
-     *
-     * @return HasMany<TeamInvitation, $this>
-     */
-    public function invitations(): HasMany
-    {
-        return $this->hasMany(TeamInvitation::class);
-    }
 
     /**
      * Get the attributes that should be cast.
@@ -109,10 +46,35 @@ class Team extends Model
     }
 
     /**
-     * Get the route key for the model.
+     * Get all of the team's members.
+     *
+     * @return BelongsToMany<User, $this>
      */
-    public function getRouteKeyName(): string
+    public function members(): BelongsToMany
     {
-        return 'slug';
+        return $this->belongsToMany(User::class, 'team_members')
+            ->using(Membership::class)
+            ->withPivot(['role'])
+            ->withTimestamps();
+    }
+
+    /**
+     * Get all of the team's memberships.
+     *
+     * @return HasMany<Membership, $this>
+     */
+    public function memberships(): HasMany
+    {
+        return $this->hasMany(Membership::class, 'team_id');
+    }
+
+    /**
+     * Get all of the invitations for the team.
+     *
+     * @return HasMany<TeamInvitation, $this>
+     */
+    public function invitations(): HasMany
+    {
+        return $this->hasMany(TeamInvitation::class);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\Search;
 
 use Illuminate\Support\Facades\DB;
@@ -19,7 +21,7 @@ final class FederatedSearchService
      */
     public function search(string $query, ?array $embedding = null): array
     {
-        $trimmedQuery = trim($query);
+        $trimmedQuery = mb_trim($query);
         if ($trimmedQuery === '') {
             return [];
         }
@@ -43,7 +45,7 @@ final class FederatedSearchService
 
         $lexicalSql = implode(' UNION ALL ', $lexicalUnions).' ORDER BY rank DESC LIMIT 50';
         $lexicalRows = DB::select($lexicalSql, $lexicalParams);
-        $lexical = array_map(fn ($r) => (array) $r, $lexicalRows);
+        $lexical = array_map(fn (object $r) => (array) $r, $lexicalRows);
 
         // Semantic Vector Search (if embedding is provided)
         $semantic = [];
@@ -64,7 +66,7 @@ final class FederatedSearchService
 
             $semanticSql = implode(' UNION ALL ', $semanticUnions).' ORDER BY distance ASC LIMIT 50';
             $semanticRows = DB::select($semanticSql, $semanticParams);
-            $semantic = array_map(fn ($r) => (array) $r, $semanticRows);
+            $semantic = array_map(fn (object $r) => (array) $r, $semanticRows);
         }
 
         $fused = $this->rrf->fuse($lexical, $semantic);

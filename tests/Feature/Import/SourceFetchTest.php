@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+
+covers(App\Console\Commands\SourceFetch::class);
 
 test('all three pin manifests exist and return valid configuration arrays', function (string $product) {
     $manifestPath = database_path("sources/{$product}.php");

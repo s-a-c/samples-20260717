@@ -146,6 +146,8 @@
         "spatie/pest-plugin-snapshots": "^2.3.1"
     },
     "scripts": {
+        "analyze": "vendor/bin/mago analyze",
+        "analyze:fix": "vendor/bin/mago analyze --fix",
         "ci:check": [
             "Composer\\Config::disableProcessTimeout",
             "@test"
@@ -181,8 +183,6 @@
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
         ],
-        "analyze": "vendor/bin/mago analyze",
-        "analyze:fix": "vendor/bin/mago analyze --fix",
         "rector": "vendor/bin/rector process --dry-run",
         "rector:fix": "vendor/bin/rector process",
         "setup": [
@@ -215,7 +215,7 @@
         "test:type-cov": "vendor/bin/pest --type-coverage --min=100 --compact",
         "test:unit": "php artisan test --testsuite=Unit",
         "types:check": [
-            "phpstan analyse --memory-limit=512M"
+            "phpstan analyse --memory-limit=2G"
         ],
         "update:requirements": [
             "composer update -oW",

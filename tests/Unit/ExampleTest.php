@@ -1,16 +1,7 @@
 <?php
 
-namespace Tests\Unit;
+declare(strict_types=1);
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\TestCase;
-
-class ExampleTest extends TestCase
-{
-    use RefreshDatabase;
-
-    public function test_that_true_is_true(): void
-    {
-        $this->assertNotEmpty(sys_get_temp_dir());
-    }
-}
+test('that true is true', function () {
+    $this->assertNotEmpty(sys_get_temp_dir());
+});

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Contracts\HasProductDomain;
 use App\Exceptions\ProductResetWindowOpen;
 use App\Models\ResetRun;
@@ -10,6 +12,8 @@ use App\Traits\BelongsToProductDomain;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+
+covers(ResetWindow::class);
 
 uses(RefreshDatabase::class);
 

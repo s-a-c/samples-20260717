@@ -1,20 +1,24 @@
 <?php
 
-use App\Domain\Pagila\Models\Actor;
-use App\Domain\Pagila\Models\Category;
-use App\Domain\Pagila\Models\City;
-use App\Domain\Pagila\Models\Country;
-use App\Domain\Pagila\Models\Customer;
-use App\Domain\Pagila\Models\Film;
-use App\Domain\Pagila\Models\FilmActor;
-use App\Domain\Pagila\Models\FilmCategory;
-use App\Domain\Pagila\Models\FilmText;
-use App\Domain\Pagila\Models\Inventory;
-use App\Domain\Pagila\Models\Language;
-use App\Domain\Pagila\Models\Payment;
-use App\Domain\Pagila\Models\Rental;
-use App\Domain\Pagila\Models\Staff;
-use App\Domain\Pagila\Models\Store;
+declare(strict_types=1);
+
+use App\Models\Pagila\Actor;
+use App\Models\Pagila\Category;
+use App\Models\Pagila\City;
+use App\Models\Pagila\Country;
+use App\Models\Pagila\Customer;
+use App\Models\Pagila\Film;
+use App\Models\Pagila\FilmActor;
+use App\Models\Pagila\FilmCategory;
+use App\Models\Pagila\FilmText;
+use App\Models\Pagila\Inventory;
+use App\Models\Pagila\Language;
+use App\Models\Pagila\Payment;
+use App\Models\Pagila\Rental;
+use App\Models\Pagila\Staff;
+use App\Models\Pagila\Store;
+
+covers(Film::class);
 
 test('pagila film, actor, category, language and film_text models can be persisted and queried', function () {
     $language = Language::create(['name' => 'English']);

@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\ResetConfirmation;
 use App\Models\ResetRun;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
+
+covers(App\Console\Commands\ProductImportCommand::class);
 
 uses(RefreshDatabase::class);
 

@@ -1,16 +1,20 @@
 <?php
 
-use App\Domain\Northwind\Models\Category;
-use App\Domain\Northwind\Models\Customer;
-use App\Domain\Northwind\Models\Employee;
-use App\Domain\Northwind\Models\EmployeeTerritory;
-use App\Domain\Northwind\Models\Order;
-use App\Domain\Northwind\Models\OrderDetail;
-use App\Domain\Northwind\Models\Product;
-use App\Domain\Northwind\Models\Region;
-use App\Domain\Northwind\Models\Shipper;
-use App\Domain\Northwind\Models\Supplier;
-use App\Domain\Northwind\Models\Territory;
+declare(strict_types=1);
+
+use App\Models\Northwind\Category;
+use App\Models\Northwind\Customer;
+use App\Models\Northwind\Employee;
+use App\Models\Northwind\EmployeeTerritory;
+use App\Models\Northwind\Order;
+use App\Models\Northwind\OrderDetail;
+use App\Models\Northwind\Product;
+use App\Models\Northwind\Region;
+use App\Models\Northwind\Shipper;
+use App\Models\Northwind\Supplier;
+use App\Models\Northwind\Territory;
+
+covers(Product::class);
 
 test('northwind category and product models can be persisted and queried', function () {
     $category = Category::create([

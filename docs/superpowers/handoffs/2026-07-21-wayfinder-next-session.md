@@ -10,11 +10,11 @@
 
 **Postgres-pivot trio CLOSED** in three consecutive sessions (2026-07-20):
 
-| Ticket | Decision | SAGE fact |
-|---|---|---|
-| [#40](https://github.com/s-a-c/samples-20260717/issues/40) — Stack | Herd-managed PG 18.x + pgvector 0.8.x + unaccent 1.1 + pg_trgm 1.6 (Herd-bundled pin policy). HNSW defaults (`m=16`, `ef_construction=64`, `ef_search=40`) for 1,536-dim OpenAI `text-embedding-3-small`. tsvector `english` + `unaccent` via custom `en_unaccent` config. `ts_rank_cd` with ABCD field weights. | `34a6160e` |
-| [#41](https://github.com/s-a-c/samples-20260717/issues/41) — Schema | Three product schemas (`chinook`/`northwind`/`sakila`) + `public` for shared infrastructure. Drop product prefix from table names (partial supersession of #6). Single `pgsql` connection with `search_path=public`; schema-qualify every product reference. Per-product `search_projections` tables (drops atomically with `DROP SCHEMA CASCADE` during reset). Infrastructure + `en_unaccent` config in `public`. | `34e3bd40` |
-| [#42](https://github.com/s-a-c/samples-20260717/issues/42) — Extensions | Single early migration declares `vector` + `unaccent` + `pg_trgm` + `en_unaccent` config. `down()` no-op. CI: `pgvector/pgvector:pg18` Docker service. Verification: Pest test + `pgsql:check` command + docs. All 14 SQLite-specific CONTEXT.md terms dissolve. | `e50f71ea` |
+| Ticket                                                                  | Decision                                                                                                                                                                                                                                                                                                                                                                                                            | SAGE fact  |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| [#40](https://github.com/s-a-c/samples-20260717/issues/40) — Stack      | Herd-managed PG 18.x + pgvector 0.8.x + unaccent 1.1 + pg_trgm 1.6 (Herd-bundled pin policy). HNSW defaults (`m=16`, `ef_construction=64`, `ef_search=40`) for 1,536-dim OpenAI `text-embedding-3-small`. tsvector `english` + `unaccent` via custom `en_unaccent` config. `ts_rank_cd` with ABCD field weights.                                                                                                    | `34a6160e` |
+| [#41](https://github.com/s-a-c/samples-20260717/issues/41) — Schema     | Three product schemas (`chinook`/`northwind`/`pagila`) + `public` for shared infrastructure. Drop product prefix from table names (partial supersession of #6). Single `pgsql` connection with `search_path=public`; schema-qualify every product reference. Per-product `search_projections` tables (drops atomically with `DROP SCHEMA CASCADE` during reset). Infrastructure + `en_unaccent` config in `public`. | `34e3bd40` |
+| [#42](https://github.com/s-a-c/samples-20260717/issues/42) — Extensions | Single early migration declares `vector` + `unaccent` + `pg_trgm` + `en_unaccent` config. `down()` no-op. CI: `pgvector/pgvector:pg18` Docker service. Verification: Pest test + `pgsql:check` command + docs. All 14 SQLite-specific CONTEXT.md terms dissolve.                                                                                                                                                    | `e50f71ea` |
 
 **Operational finding (from #40):** Herd-managed Postgres on `:5437` had WAL corruption at grilling start. Re-initialized losslessly via `herd services:delete Herd_PostgreSQL --force && herd services:create postgresql --name=Herd_PostgreSQL --port=5437 --service-version=18`. New data dir: `~/Library/Application Support/Herd/config/services/87D2AEDE-3450-4FCA-B025-D9122E1214C8/`. If WAL corruption recurs, same pattern is the recovery.
 
@@ -176,31 +176,31 @@ EOF
 
 If #32 isn't the right next pick, all 22 other open tickets are unblocked and independent. Use `bd ready` to browse; `bd show <id>` for details. Notable options:
 
-| bd id | gh # | Title |
-|---|---|---|
-| `samples-20260717-7ie` | #32 | Search Projection column shape **(recommended)** |
-| `samples-20260717-j64` | #33 | Embedding Profile implementation |
-| `samples-20260717-s5a` | #34 | Hybrid Retrieval (RRF) + Federated Search |
-| `samples-20260717-3sm` | #24 | UUIDv7 implementation strategy |
-| `samples-20260717-zio` | #25 | Source Identity Registry survival-across-resets |
-| `samples-20260717-sld` | #26 | Spatie Permission/Shield/Fortify co-existence |
-| `samples-20260717-atr` | #16 | Filament 5 panel install order |
-| `samples-20260717-di9` | #17 | Test pyramid |
-| `samples-20260717-a9v` | #18 | Larastan target level |
-| `samples-20260717-2mv` | #27 | Re-verify upstream datasets |
-| `samples-20260717-oal` | #28 | Product Import pipeline |
-| `samples-20260717-5fb` | #29 | Product Reset semantics |
-| `samples-20260717-h3a` | #30 | Filament Resource generation |
-| `samples-20260717-dk6` | #31 | Search Document shape per entity |
-| `samples-20260717-f8e` | #35 | Portfolio Card architecture |
-| `samples-20260717-jo9` | #36 | Team Artefact schema |
-| `samples-20260717-5zr` | #37 | Implementation-Readiness Dossier format |
-| `samples-20260717-70l` | #38 | Documentation set |
-| `samples-20260717-lo6` | #39 | Git branch/PR/dep-pinning strategy |
-| `samples-20260717-27t` | #20 | Verify sqlite-vec v0.1.9 assets (may be dissolvable post-pivot) |
-| `samples-20260717-thd` | #23 | Verify Herd SQLite extension mechanics (may be dissolvable post-pivot) |
-| `samples-20260717-ejr` | #19 | Verify Filament 5 + Shield + Livewire co-installation |
-| `samples-20260717-q87` | #15 | Wayfinder map itself (parent — not for resolution) |
+| bd id                  | gh # | Title                                                                  |
+| ---------------------- | ---- | ---------------------------------------------------------------------- |
+| `samples-20260717-7ie` | #32  | Search Projection column shape **(recommended)**                       |
+| `samples-20260717-j64` | #33  | Embedding Profile implementation                                       |
+| `samples-20260717-s5a` | #34  | Hybrid Retrieval (RRF) + Federated Search                              |
+| `samples-20260717-3sm` | #24  | UUIDv7 implementation strategy                                         |
+| `samples-20260717-zio` | #25  | Source Identity Registry survival-across-resets                        |
+| `samples-20260717-sld` | #26  | Spatie Permission/Shield/Fortify co-existence                          |
+| `samples-20260717-atr` | #16  | Filament 5 panel install order                                         |
+| `samples-20260717-di9` | #17  | Test pyramid                                                           |
+| `samples-20260717-a9v` | #18  | Larastan target level                                                  |
+| `samples-20260717-2mv` | #27  | Re-verify upstream datasets                                            |
+| `samples-20260717-oal` | #28  | Product Import pipeline                                                |
+| `samples-20260717-5fb` | #29  | Product Reset semantics                                                |
+| `samples-20260717-h3a` | #30  | Filament Resource generation                                           |
+| `samples-20260717-dk6` | #31  | Search Document shape per entity                                       |
+| `samples-20260717-f8e` | #35  | Portfolio Card architecture                                            |
+| `samples-20260717-jo9` | #36  | Team Artefact schema                                                   |
+| `samples-20260717-5zr` | #37  | Implementation-Readiness Dossier format                                |
+| `samples-20260717-70l` | #38  | Documentation set                                                      |
+| `samples-20260717-lo6` | #39  | Git branch/PR/dep-pinning strategy                                     |
+| `samples-20260717-27t` | #20  | Verify sqlite-vec v0.1.9 assets (may be dissolvable post-pivot)        |
+| `samples-20260717-thd` | #23  | Verify Herd SQLite extension mechanics (may be dissolvable post-pivot) |
+| `samples-20260717-ejr` | #19  | Verify Filament 5 + Shield + Livewire co-installation                  |
+| `samples-20260717-q87` | #15  | Wayfinder map itself (parent — not for resolution)                     |
 
 **Note on #20 and #23:** These T2.1/T2.4 research tickets are what triggered the Postgres pivot. Their original deliverables (sqlite-vec asset verification, Herd SQLite extension mechanics) are now moot under Postgres. They may warrant closing as out-of-scope (like #21/#22 were) rather than execution — operator's call.
 

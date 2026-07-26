@@ -1,13 +1,17 @@
 <?php
 
-use App\Domain\Chinook\Models\Artist;
-use App\Domain\Northwind\Models\Product;
-use App\Domain\Pagila\Models\Film;
-use App\Domain\Pagila\Models\Language;
+declare(strict_types=1);
+
 use App\Jobs\EmbeddingJob;
+use App\Models\Chinook\Artist;
+use App\Models\Northwind\Product;
+use App\Models\Pagila\Film;
+use App\Models\Pagila\Language;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
+
+covers(Artist::class);
 
 uses(RefreshDatabase::class);
 

@@ -1,98 +1,80 @@
 <?php
 
-namespace Tests\Feature\Filament;
+declare(strict_types=1);
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Role;
-use Tests\TestCase;
 
-class PortfolioTest extends TestCase
-{
-    use RefreshDatabase;
+covers(App\Filament\Admin\Pages\Portfolio::class);
 
-    private User $superAdmin;
+beforeEach(function () {
+    $this->superAdmin = User::factory()->create();
+    $this->superAdmin->assignRole(Role::findOrCreate('super_admin', 'web'));
+});
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+test('super admin can access the portfolio page', function () {
+    $this->actingAs($this->superAdmin)
+        ->get('/admin/portfolio')
+        ->assertSuccessful();
+});
 
-        $this->superAdmin = User::factory()->create();
-        $this->superAdmin->assignRole(Role::findOrCreate('super_admin', 'web'));
-    }
+test('portfolio page renders cards for each product', function () {
+    $this->actingAs($this->superAdmin)
+        ->get('/admin/portfolio')
+        ->assertSuccessful()
+        ->assertSee('Chinook')
+        ->assertSee('Northwind')
+        ->assertSee('Pagila');
+});
 
-    public function test_super_admin_can_access_the_portfolio_page(): void
-    {
-        $this->actingAs($this->superAdmin)
-            ->get('/admin/portfolio')
-            ->assertSuccessful();
-    }
+test('portfolio page displays product descriptions', function () {
+    $this->actingAs($this->superAdmin)
+        ->get('/admin/portfolio')
+        ->assertSuccessful()
+        ->assertSee('Digital media store')
+        ->assertSee('order-management')
+        ->assertSee('DVD rental store');
+});
 
-    public function test_portfolio_page_renders_cards_for_each_product(): void
-    {
-        $this->actingAs($this->superAdmin)
-            ->get('/admin/portfolio')
-            ->assertSuccessful()
-            ->assertSee('Chinook')
-            ->assertSee('Northwind')
-            ->assertSee('Pagila');
-    }
+test('portfolio page displays navigation links to product panels', function () {
+    $this->actingAs($this->superAdmin)
+        ->get('/admin/portfolio')
+        ->assertSuccessful()
+        ->assertSee('/chinook')
+        ->assertSee('/northwind')
+        ->assertSee('/pagila');
+});
 
-    public function test_portfolio_page_displays_product_descriptions(): void
-    {
-        $this->actingAs($this->superAdmin)
-            ->get('/admin/portfolio')
-            ->assertSuccessful()
-            ->assertSee('Digital media store')
-            ->assertSee('order-management')
-            ->assertSee('DVD rental store');
-    }
+test('portfolio page shows product stats', function () {
+    $this->actingAs($this->superAdmin)
+        ->get('/admin/portfolio')
+        ->assertSuccessful()
+        ->assertSee('Tables')
+        ->assertSee('Artists')
+        ->assertSee('Products')
+        ->assertSee('Films')
+        ->assertSee('Actors');
+});
 
-    public function test_portfolio_page_displays_navigation_links_to_product_panels(): void
-    {
-        $this->actingAs($this->superAdmin)
-            ->get('/admin/portfolio')
-            ->assertSuccessful()
-            ->assertSee('/chinook')
-            ->assertSee('/northwind')
-            ->assertSee('/pagila');
-    }
+test('portfolio page displays open panel buttons', function () {
+    $this->actingAs($this->superAdmin)
+        ->get('/admin/portfolio')
+        ->assertSuccessful()
+        ->assertSee('Go to Chinook Panel')
+        ->assertSee('Go to Northwind Panel')
+        ->assertSee('Go to Pagila Panel');
+});
 
-    public function test_portfolio_page_shows_product_stats(): void
-    {
-        $this->actingAs($this->superAdmin)
-            ->get('/admin/portfolio')
-            ->assertSuccessful()
-            ->assertSee('Tables')
-            ->assertSee('Artists')
-            ->assertSee('Products')
-            ->assertSee('Films')
-            ->assertSee('Actors');
-    }
+test('guest is redirected to login', function () {
+    $this->get('/admin/portfolio')
+        ->assertRedirect(route('login'));
+});
 
-    public function test_portfolio_page_displays_open_panel_buttons(): void
-    {
-        $this->actingAs($this->superAdmin)
-            ->get('/admin/portfolio')
-            ->assertSuccessful()
-            ->assertSee('Go to Chinook Panel')
-            ->assertSee('Go to Northwind Panel')
-            ->assertSee('Go to Pagila Panel');
-    }
+test('non super admin cannot access portfolio page', function () {
+    $user = User::factory()->create();
+    $user->assignRole(Role::findOrCreate('chinook_curator', 'web'));
 
-    public function test_guest_is_redirected_to_login(): void
-    {
-        $this->get('/admin/portfolio')
-            ->assertRedirect(route('login'));
-    }
-
-    public function test_non_super_admin_cannot_access_portfolio_page(): void
-    {
-        $user = User::factory()->create();
-        $user->assignRole(Role::findOrCreate('chinook_curator', 'web'));
-
-        $this->actingAs($user)
-            ->get('/admin/portfolio')
-            ->assertForbidden();
-    }
-}
+    $this->actingAs($user)
+        ->get('/admin/portfolio')
+        ->assertForbidden();
+});

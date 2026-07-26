@@ -1,6 +1,18 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^Parameter \#1 \$manifest of method App\\Console\\Commands\\SourceFetch\:\:fetchMultiFile\(\) expects array\{product\: string, repository\: string, commit_sha\: string, schema_filename\: string, data_filename\: string, schema_digest\: string, data_digest\: string\}, array\{product\: string, repository\: string, commit_sha\: string, format\: ''postgresql_multi'', filename\?\: string, schema_filename\?\: string, data_filename\?\: string, digest\?\: string, \.\.\.\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/SourceFetch.php
+
+		-
+			message: '#^Parameter \#1 \$manifest of method App\\Console\\Commands\\SourceFetch\:\:fetchSingleFile\(\) expects array\{product\: string, repository\: string, commit_sha\: string, filename\: string, digest\: string\}, array\{product\: string, repository\: string, commit_sha\: string, format\: string, filename\?\: string, schema_filename\?\: string, data_filename\?\: string, digest\?\: string, \.\.\.\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/SourceFetch.php
+
+		-
 			message: '#^Method App\\Filament\\Admin\\Widgets\\ProductPortfolioCard\:\:getViewData\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -157,7 +169,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/ActorResource.php
+			path: app/Filament/Pagila/Resources/ActorResource.php
 
 		-
 			message: '''
@@ -166,7 +178,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/ActorResource.php
+			path: app/Filament/Pagila/Resources/ActorResource.php
 
 		-
 			message: '''
@@ -175,7 +187,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/CategoryResource.php
+			path: app/Filament/Pagila/Resources/CategoryResource.php
 
 		-
 			message: '''
@@ -184,7 +196,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/CategoryResource.php
+			path: app/Filament/Pagila/Resources/CategoryResource.php
 
 		-
 			message: '''
@@ -193,7 +205,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/CustomerResource.php
+			path: app/Filament/Pagila/Resources/CustomerResource.php
 
 		-
 			message: '''
@@ -202,7 +214,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/CustomerResource.php
+			path: app/Filament/Pagila/Resources/CustomerResource.php
 
 		-
 			message: '''
@@ -211,7 +223,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/FilmResource.php
+			path: app/Filament/Pagila/Resources/FilmResource.php
 
 		-
 			message: '''
@@ -220,7 +232,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/FilmResource.php
+			path: app/Filament/Pagila/Resources/FilmResource.php
 
 		-
 			message: '''
@@ -229,7 +241,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/InventoryResource.php
+			path: app/Filament/Pagila/Resources/InventoryResource.php
 
 		-
 			message: '''
@@ -238,7 +250,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/InventoryResource.php
+			path: app/Filament/Pagila/Resources/InventoryResource.php
 
 		-
 			message: '''
@@ -247,7 +259,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/LanguageResource.php
+			path: app/Filament/Pagila/Resources/LanguageResource.php
 
 		-
 			message: '''
@@ -256,7 +268,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/LanguageResource.php
+			path: app/Filament/Pagila/Resources/LanguageResource.php
 
 		-
 			message: '''
@@ -265,7 +277,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/PaymentResource.php
+			path: app/Filament/Pagila/Resources/PaymentResource.php
 
 		-
 			message: '''
@@ -274,7 +286,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/PaymentResource.php
+			path: app/Filament/Pagila/Resources/PaymentResource.php
 
 		-
 			message: '''
@@ -283,7 +295,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/RentalResource.php
+			path: app/Filament/Pagila/Resources/RentalResource.php
 
 		-
 			message: '''
@@ -292,7 +304,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/RentalResource.php
+			path: app/Filament/Pagila/Resources/RentalResource.php
 
 		-
 			message: '''
@@ -301,7 +313,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/StaffResource.php
+			path: app/Filament/Pagila/Resources/StaffResource.php
 
 		-
 			message: '''
@@ -310,7 +322,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/StaffResource.php
+			path: app/Filament/Pagila/Resources/StaffResource.php
 
 		-
 			message: '''
@@ -319,7 +331,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/StoreResource.php
+			path: app/Filament/Pagila/Resources/StoreResource.php
 
 		-
 			message: '''
@@ -328,13 +340,7 @@ parameters:
 			'''
 			identifier: method.deprecated
 			count: 1
-			path: app/Filament/Sakila/Resources/StoreResource.php
-
-		-
-			message: '#^Out of 395 possible param types, only 387 \- 97\.9 %% actually have it\. Add more param types to get over 99 %%$#'
-			identifier: typeCoverage.paramTypeCoverage
-			count: 1
-			path: app/Jobs/EmbeddingJob.php
+			path: app/Filament/Pagila/Resources/StoreResource.php
 
 		-
 			message: '#^Parameter \#1 \$token of static method Illuminate\\Http\\Client\\PendingRequest\<false\>\:\:withToken\(\) expects string, mixed given\.$#'
@@ -349,10 +355,88 @@ parameters:
 			path: app/Models/ResetRun.php
 
 		-
+			message: '#^Method App\\Models\\Team\:\:members\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<App\\Models\\User, \$this\(App\\Models\\Team\), Illuminate\\Database\\Eloquent\\Relations\\Pivot, ''pivot''\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<App\\Models\\User, \$this\(App\\Models\\Team\), App\\Models\\Membership, ''pivot''\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Team.php
+
+		-
 			message: '#^Parameter \#2 \$entityId of job class App\\Jobs\\EmbeddingJob constructor expects string in App\\Jobs\\EmbeddingJob\:\:dispatch\(\), mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Observers/Tier1SourceObserver.php
+
+		-
+			message: '#^Parameter \$chinook of method App\\Policies\\ChinookPolicy\:\:view\(\) has invalid type App\\Models\\Chinook\\Chinook\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Policies/ChinookPolicy.php
+
+		-
+			message: '#^Parameter \$northwind of method App\\Policies\\NorthwindPolicy\:\:view\(\) has invalid type App\\Models\\Northwind\\Northwind\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Policies/NorthwindPolicy.php
+
+		-
+			message: '#^Method App\\Services\\ProductImport\\PagilaImporter\:\:getManifest\(\) should return array\{product\: string, commit_sha\: string, schema_filename\: string, data_filename\: string\}\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Services/ProductImport/PagilaImporter.php
+
+		-
+			message: '#^Variable \$manifest in PHPDoc tag @var does not exist\.$#'
+			identifier: varTag.variableNotFound
+			count: 1
+			path: app/Services/ProductImport/PagilaImporter.php
+
+		-
+			message: '#^Argument of an invalid type list\<string\>\|false supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: app/Services/ProductImport/PostgresSourceReader.php
+
+		-
+			message: '#^Method App\\Services\\ProductImport\\PostgresSourceReader\:\:executeMultiFile\(\) has parameter \$filePaths with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ProductImport/PostgresSourceReader.php
+
+		-
+			message: '#^Method App\\Services\\ProductImport\\PostgresSourceReader\:\:executeSqlDump\(\) has parameter \$excludePatterns with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ProductImport/PostgresSourceReader.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: app/Services/ProductImport/PostgresSourceReader.php
+
+		-
+			message: '#^Parameter \#1 \$filePath of method App\\Services\\ProductImport\\PostgresSourceReader\:\:executeSqlDump\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/ProductImport/PostgresSourceReader.php
+
+		-
+			message: '#^Parameter \#1 \$pattern of function preg_match expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/ProductImport/PostgresSourceReader.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function preg_replace expects array\<float\|int\|string\>\|string, string\|null given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Services/ProductImport/PostgresSourceReader.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/ProductImport/PostgresSourceReader.php
 
 		-
 			message: '#^Method App\\Services\\ProductReset\\ResetEvidence\:\:getSection\(\) should return array\<string, mixed\> but returns mixed\.$#'
@@ -379,8 +463,8 @@ parameters:
 			path: app/Services/ProductReset/ResetEvidence.php
 
 		-
-			message: '#^Out of 395 possible param types, only 387 \- 97\.9 %% actually have it\. Add more param types to get over 99 %%$#'
-			identifier: typeCoverage.paramTypeCoverage
+			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(mixed\)\: mixed\)\|null, Closure\(object\)\: array given\.$#'
+			identifier: argument.type
 			count: 2
 			path: app/Services/Search/FederatedSearchService.php
 
@@ -592,10 +676,22 @@ parameters:
 			path: routes/channels.php
 
 		-
-			message: '#^Out of 395 possible param types, only 387 \- 97\.9 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 404 possible param types, only 399 \- 98\.7 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 2
 			path: routes/channels.php
+
+		-
+			message: '#^Access to an undefined property Pest\\Arch\\Contracts\\ArchExpectation\:\:\$not\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Architecture/ArchitectureTest.php
+
+		-
+			message: '#^Cannot call method toUse\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Architecture/ArchitectureTest.php
 
 		-
 			message: '#^Calling toBeArray\(\) on Expectation\<list\<\(string\|false\)\>\>; assertion is redundant\.$#'
@@ -604,22 +700,184 @@ parameters:
 			path: tests/Architecture/ProductPolicyNamespaceTest.php
 
 		-
-			message: '#^Cannot call method assertExitCode\(\) on Illuminate\\Testing\\PendingCommand\|int\.$#'
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
+			message: '#^Cannot call method assertSessionHasErrorsIn\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
+			message: '#^Cannot call method assertSessionHasNoErrors\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
+			message: '#^Cannot call method make\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
+			message: '#^Cannot call method post\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
+			message: '#^Parameter \#1 \$session of method Illuminate\\Http\\Request\:\:setLaravelSession\(\) expects Illuminate\\Contracts\\Session\\Session, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Auth/AuthenticationTest.php
+
+		-
+			message: '#^Cannot call method assertForbidden\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php
+
+		-
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/EmailVerificationTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Auth/EmailVerificationTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 4
+			path: tests/Feature/Auth/EmailVerificationTest.php
+
+		-
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/PasswordConfirmationTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/PasswordConfirmationTest.php
+
+		-
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Auth/PasswordResetTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/PasswordResetTest.php
+
+		-
+			message: '#^Cannot call method assertSessionHasNoErrors\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/PasswordResetTest.php
+
+		-
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/RegistrationTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/RegistrationTest.php
+
+		-
+			message: '#^Cannot call method assertSessionHasNoErrors\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Auth/RegistrationTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Auth/TwoFactorChallengeTest.php
+
+		-
+			message: '#^Cannot access property \$current_team_id on App\\Models\\User\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: tests/Feature/Console/OperatorCreateTest.php
+
+		-
+			message: '#^Cannot call method assertExitCode\(\) on mixed\.$#'
 			identifier: method.nonObject
 			count: 1
 			path: tests/Feature/Console/OperatorCreateTest.php
 
 		-
-			message: '#^Cannot call method assertSuccessful\(\) on Illuminate\\Testing\\PendingCommand\|int\.$#'
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
 			identifier: method.nonObject
 			count: 4
 			path: tests/Feature/Console/OperatorCreateTest.php
 
 		-
-			message: '#^Using nullsafe property access on non\-nullable type mixed\. Use \-\> instead\.$#'
-			identifier: nullsafe.neverNull
-			count: 2
+			message: '#^Cannot call method hasRole\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 3
 			path: tests/Feature/Console/OperatorCreateTest.php
+
+		-
+			message: '#^Cannot call method personalTeam\(\) on App\\Models\\User\|null\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: tests/Feature/Console/OperatorCreateTest.php
+
+		-
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/DashboardTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/DashboardTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/DashboardTest.php
 
 		-
 			message: '#^Cannot access property \$first_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
@@ -670,7 +928,7 @@ parameters:
 			path: tests/Feature/Domain/NorthwindDomainTest.php
 
 		-
-			message: '#^Cannot access property \$employee on App\\Domain\\Northwind\\Models\\EmployeeTerritory\|null\.$#'
+			message: '#^Cannot access property \$employee on App\\Models\\Northwind\\EmployeeTerritory\|null\.$#'
 			identifier: property.nonObject
 			count: 1
 			path: tests/Feature/Domain/NorthwindDomainTest.php
@@ -718,7 +976,7 @@ parameters:
 			path: tests/Feature/Domain/NorthwindDomainTest.php
 
 		-
-			message: '#^Cannot access property \$territory on App\\Domain\\Northwind\\Models\\EmployeeTerritory\|null\.$#'
+			message: '#^Cannot access property \$territory on App\\Models\\Northwind\\EmployeeTerritory\|null\.$#'
 			identifier: property.nonObject
 			count: 1
 			path: tests/Feature/Domain/NorthwindDomainTest.php
@@ -736,100 +994,202 @@ parameters:
 			path: tests/Feature/Domain/NorthwindDomainTest.php
 
 		-
-			message: '#^Cannot access property \$actor on App\\Domain\\Sakila\\Models\\FilmActor\|null\.$#'
+			message: '#^Cannot access property \$actor on App\\Models\\Pagila\\FilmActor\|null\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$address on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$amount on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
-			message: '#^Cannot access property \$category on App\\Domain\\Sakila\\Models\\FilmCategory\|null\.$#'
+			message: '#^Cannot access property \$category on App\\Models\\Pagila\\FilmCategory\|null\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$city on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$country on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
-			message: '#^Cannot access property \$film on App\\Domain\\Sakila\\Models\\FilmActor\|null\.$#'
+			message: '#^Cannot access property \$film on App\\Models\\Pagila\\FilmActor\|null\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
-			message: '#^Cannot access property \$film on App\\Domain\\Sakila\\Models\\FilmCategory\|null\.$#'
+			message: '#^Cannot access property \$film on App\\Models\\Pagila\\FilmCategory\|null\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$film on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$first_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 4
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$id on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 10
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$last_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 4
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 3
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$title on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
 			identifier: property.nonObject
 			count: 3
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Cannot access property \$title on mixed\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
 
 		-
 			message: '#^Unable to resolve the template type TValue in call to function expect$#'
 			identifier: argument.templateType
 			count: 28
-			path: tests/Feature/Domain/SakilaDomainTest.php
+			path: tests/Feature/Domain/PagilaDomainTest.php
+
+		-
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/ExampleTest.php
+
+		-
+			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 8
+			path: tests/Feature/Filament/ChinookResourcesTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 9
+			path: tests/Feature/Filament/ChinookResourcesTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 9
+			path: tests/Feature/Filament/ChinookResourcesTest.php
+
+		-
+			message: '#^Cannot call method assertForbidden\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Filament/PagilaResourcesTest.php
+
+		-
+			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 12
+			path: tests/Feature/Filament/PagilaResourcesTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 11
+			path: tests/Feature/Filament/PagilaResourcesTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 12
+			path: tests/Feature/Filament/PagilaResourcesTest.php
+
+		-
+			message: '#^Cannot call method assertForbidden\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: tests/Feature/Filament/PanelAuthenticationTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Filament/PanelAuthenticationTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 4
+			path: tests/Feature/Filament/PanelAuthenticationTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 7
+			path: tests/Feature/Filament/PanelAuthenticationTest.php
+
+		-
+			message: '#^Cannot call method assertForbidden\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Filament/PortfolioTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Filament/PortfolioTest.php
+
+		-
+			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 17
+			path: tests/Feature/Filament/PortfolioTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 6
+			path: tests/Feature/Filament/PortfolioTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 7
+			path: tests/Feature/Filament/PortfolioTest.php
 
 		-
 			message: '#^Cannot access property \$created_at on App\\Models\\ResetRun\|null\.$#'
@@ -1078,7 +1438,7 @@ parameters:
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
 
 		-
-			message: '#^Out of 395 possible param types, only 387 \- 97\.9 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 404 possible param types, only 399 \- 98\.7 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 3
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
@@ -1088,3 +1448,81 @@ parameters:
 			identifier: pest.config.redundantLocalUse
 			count: 1
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+
+		-
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Settings/ProfileUpdateTest.php
+
+		-
+			message: '#^Cannot call method assertDontSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: tests/Feature/Settings/SecurityTest.php
+
+		-
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Settings/SecurityTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Settings/SecurityTest.php
+
+		-
+			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 5
+			path: tests/Feature/Settings/SecurityTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: tests/Feature/Settings/SecurityTest.php
+
+		-
+			message: '#^Cannot call method withSession\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Settings/SecurityTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Relations\\Pivot\:\:\$role\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Teams/TeamMemberTest.php
+
+		-
+			message: '#^Cannot access property \$value on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: tests/Feature/Teams/TeamMemberTest.php
+
+		-
+			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Teams/TeamTest.php
+
+		-
+			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: tests/Feature/Teams/TeamTest.php
+
+		-
+			message: '#^Cannot call method get\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Feature/Teams/TeamTest.php
+
+		-
+			message: '#^Call to an undefined method Pest\\Expectation\<string\>\:\:toHaveTypeCoverage\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: tests/TypeCoverage.php

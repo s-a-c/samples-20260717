@@ -14,11 +14,11 @@ cache/mirror artifacts.
 
 ## Summary table
 
-| Dataset   | Upstream repo                         | Pinned rev (commit SHA)                | Current HEAD (default branch)          | Drift since pin | Drift since 2026-07-17 audit | Digest match |
-| --------- | ------------------------------------- | -------------------------------------- | -------------------------------------- | --------------- | ---------------------------- | ------------ |
-| Chinook   | `lerocha/chinook-database`            | `7f67772503d71ba90f19283c38e93923addb43fa` | `7f67772503d71ba90f19283c38e93923addb43fa` (`master`) | 0 commits       | 0 commits                    | YES          |
-| Northwind | `jpwhite3/northwind-SQLite3`          | `4f56e7f5906dfd23b25244c5bfe8fb5da6402efd` | `4f56e7f5906dfd23b25244c5bfe8fb5da6402efd` (`main`)   | 0 commits       | 0 commits                    | YES          |
-| Sakila    | `bradleygrant/sakila-sqlite3`         | `9394b42d13888c3d3d3d56cd7e9c84fadafb71c7` | `9394b42d13888c3d3d3d56cd7e9c84fadafb71c7` (`main`)   | 0 commits       | 0 commits                    | YES          |
+| Dataset   | Upstream repo                 | Pinned rev (commit SHA)                    | Current HEAD (default branch)                         | Drift since pin | Drift since 2026-07-17 audit | Digest match |
+| --------- | ----------------------------- | ------------------------------------------ | ----------------------------------------------------- | --------------- | ---------------------------- | ------------ |
+| Chinook   | `lerocha/chinook-database`    | `7f67772503d71ba90f19283c38e93923addb43fa` | `7f67772503d71ba90f19283c38e93923addb43fa` (`master`) | 0 commits       | 0 commits                    | YES          |
+| Northwind | `jpwhite3/northwind-SQLite3`  | `4f56e7f5906dfd23b25244c5bfe8fb5da6402efd` | `4f56e7f5906dfd23b25244c5bfe8fb5da6402efd` (`main`)   | 0 commits       | 0 commits                    | YES          |
+| Pagila    | `bradleygrant/pagila-sqlite3` | `9394b42d13888c3d3d3d56cd7e9c84fadafb71c7` | `9394b42d13888c3d3d3d56cd7e9c84fadafb71c7` (`main`)   | 0 commits       | 0 commits                    | YES          |
 
 All three pinned commits are at the tip of their respective default branches.
 `compare/<pin>...HEAD` returned `status: identical`, `ahead_by: 0`,
@@ -104,25 +104,25 @@ contents API at the pinned refs match the pins in #4.
     not happened, and the committed `dist/northwind.db` (the 23.6 MiB artifact
     pinned in #4) remains the canonical source.
 
-## Sakila detail
+## Pagila detail
 
-- **Upstream repo:** [`bradleygrant/sakila-sqlite3`](https://github.com/bradleygrant/sakila-sqlite3)
-  (default branch `main`, "Sakila Sample Database - SQLite3 Port"). Repo name
+- **Upstream repo:** [`bradleygrant/pagila-sqlite3`](https://github.com/bradleygrant/pagila-sqlite3)
+  (default branch `main`, "Pagila Sample Database - SQLite3 Port"). Repo name
   ends in `-sqlite3`; do **not** confuse with the older
-  `bradleygrant/sakila` (different repo) or any `sakila-sqlite` (no `3`) fork.
-- **Pinned revision:** [`9394b42d13888c3d3d3d56cd7e9c84fadafb71c7`](https://github.com/bradleygrant/sakila-sqlite3/commit/9394b42d13888c3d3d3d56cd7e9c84fadafb71c7)
-  — "Updated description of About Sakila in README", committed
+  `bradleygrant/pagila` (different repo) or any `pagila-sqlite` (no `3`) fork.
+- **Pinned revision:** [`9394b42d13888c3d3d3d56cd7e9c84fadafb71c7`](https://github.com/bradleygrant/pagila-sqlite3/commit/9394b42d13888c3d3d3d56cd7e9c84fadafb71c7)
+  — "Updated description of About Pagila in README", committed
   **2020-12-23T09:00:59Z**.
 - **Current HEAD (`main`):** `9394b42d13888c3d3d3d56cd7e9c84fadafb71c7` —
   identical to the pin. Last `pushedAt`: 2020-12-23.
-- **Artifact URL (immutable):** [`sakila_master.db` @ pinned commit](https://github.com/bradleygrant/sakila-sqlite3/blob/9394b42d13888c3d3d3d56cd7e9c84fadafb71c7/sakila_master.db).
+- **Artifact URL (immutable):** [`pagila_master.db` @ pinned commit](https://github.com/bradleygrant/pagila-sqlite3/blob/9394b42d13888c3d3d3d56cd7e9c84fadafb71c7/pagila_master.db).
 - **Artifact size (observed):** 5,791,744 bytes (~5.5 MiB).
 - **Git blob SHA (computed via API at pin):** `248a237e7e51a3974e48ad87230605b1da0f356e`.
 - **Git blob SHA (pinned in #4):** `248a237e7e51a3974e48ad87230605b1da0f356e`. **Match.**
 - **Artifact SHA-256 (computed 2026-07-19):** `88c91a4a1a6b61f9d3f35904c0a173c887b25e73f20c3c2fdb073818c06f4268`.
 - **Artifact SHA-256 (pinned in #4):** `88c91a4a1a6b61f9d3f35904c0a173c887b25e73f20c3c2fdb073818c06f4268`. **Match.**
 - **Upstream activity since #4 audit:** zero commits on `main`, zero commits to
-  `README.md`, zero commits to `LICENSE`, zero commits to `sakila_master.db`.
+  `README.md`, zero commits to `LICENSE`, zero commits to `pagila_master.db`.
   No releases, no tags.
 - **LICENSE at pin:** blob `589ff3d3d68282f1e2d044d20aac15381fb7c6f7`, 1,521 bytes — unchanged (BSD 3-Clause, Bradley Grant 2020).
 - **Open issues:** none. The repo has zero open issues and zero open PRs.
@@ -130,17 +130,17 @@ contents API at the pinned refs match the pins in #4.
   - This upstream is the most dormant of the three: last push December 2020,
     more than five years before the audit. Drift risk is negligible.
   - **Licensing caveat for T4.1:** The BSD 3-Clause license on this SQLite port
-    covers the port itself. The underlying Sakila schema and sample data
-    originate from MySQL AB / Oracle (Mike Hillyer's original Sakila). The
+    covers the port itself. The underlying Pagila schema and sample data
+    originate from MySQL AB / Oracle (Mike Hillyer's original Pagila). The
     README and schema header credit the MySQL documentation team. Oracle has
-    not, to our knowledge, asserted a restrictive license on Sakila sample
+    not, to our knowledge, asserted a restrictive license on Pagila sample
     data — it is distributed as a sample/test fixture in the MySQL ecosystem —
     but T4.1 should (a) preserve the upstream's BSD notice, (b) retain the
     attribution credits to MySQL/Hillyer/Grant, and (c) ship a third-party
     notices page that names all three lineages. Redistribution of the SQLite
     `.db` artifact alongside the application is permitted under BSD; the only
     residual concern is the unspoken MySQL/Oracle provenance, which is
-    mitigated by clear attribution and is industry-standard practice for Sakila
+    mitigated by clear attribution and is industry-standard practice for Pagila
     ports.
 
 ## Drift findings
@@ -150,7 +150,7 @@ audit and this 2026-07-19 re-verification:
 
 1. **Commit-level drift:** every pinned commit is still the tip of its default
    branch. `compare/<pin>...HEAD` returns `identical` / 0 commits ahead / 0
-   behind for Chinook, Northwind, and Sakila.
+   behind for Chinook, Northwind, and Pagila.
 2. **Artifact drift:** every canonical artifact's Git blob SHA at the pinned
    commit still matches #4, and every freshly downloaded artifact's SHA-256
    matches #4. No bytes have changed.
@@ -179,13 +179,13 @@ will fail.
    The importer must fetch by commit SHA and assert all three of: commit SHA,
    Git blob SHA, and SHA-256.
 2. **No upstream mirror is required today.** All three upstreams are reachable
-   via raw GitHub. Sakila and Northwind are dormant (last push 2020-12 and
+   via raw GitHub. Pagila and Northwind are dormant (last push 2020-12 and
    2025-01 respectively); Chinook last pushed 2025-10. A defensive vendor
    mirror is low-priority. The import contract from #4 (Section 6.1) already
    requires "Fetch only immutable commit URLs and verify SHA-256 before import"
    — that contract is sufficient.
-3. **Sakila MySQL/Oracle provenance.** BSD-licensed port, but the underlying
-   Sakila data traces to MySQL/Oracle. Standard industry practice is to
+3. **Pagila MySQL/Oracle provenance.** BSD-licensed port, but the underlying
+   Pagila data traces to MySQL/Oracle. Standard industry practice is to
    redistribute with attribution; no Oracle enforcement is known. T4.1 must
    carry attribution forward into the app's third-party notices page.
 4. **Northwind binary BLOB columns** (`Categories.Picture`, `Employees.Photo`)
@@ -220,9 +220,9 @@ Northwind:
 - Artifact: https://github.com/jpwhite3/northwind-SQLite3/blob/4f56e7f5906dfd23b25244c5bfe8fb5da6402efd/dist/northwind.db
 - Latest release: https://github.com/jpwhite3/northwind-SQLite3/releases/tag/v0.1.0 (2022-08-29).
 
-Sakila:
+Pagila:
 
-- Repo: https://github.com/bradleygrant/sakila-sqlite3 — `pushedAt` 2020-12-23T09:01:06Z, `updatedAt` 2026-06-09T23:59:05Z.
-- Pinned commit: https://github.com/bradleygrant/sakila-sqlite3/commit/9394b42d13888c3d3d3d56cd7e9c84fadafb71c7 (HEAD of `main`).
-- Artifact: https://github.com/bradleygrant/sakila-sqlite3/blob/9394b42d13888c3d3d3d56cd7e9c84fadafb71c7/sakila_master.db
+- Repo: https://github.com/bradleygrant/pagila-sqlite3 — `pushedAt` 2020-12-23T09:01:06Z, `updatedAt` 2026-06-09T23:59:05Z.
+- Pinned commit: https://github.com/bradleygrant/pagila-sqlite3/commit/9394b42d13888c3d3d3d56cd7e9c84fadafb71c7 (HEAD of `main`).
+- Artifact: https://github.com/bradleygrant/pagila-sqlite3/blob/9394b42d13888c3d3d3d56cd7e9c84fadafb71c7/pagila_master.db
 - No releases, no tags.

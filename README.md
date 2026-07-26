@@ -1,22 +1,44 @@
 # samples-20260717
 
-Laravel 13 reference application combining Chinook, Northwind, and Sakila sample products as distinct sample products.
+Laravel 13 reference application combining Chinook, Northwind, and Pagila sample products as distinct sample products.
 
-## Table of Contents
+<details>
+  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
+    Expand for Table of Contents
+  </summary>
 
-- [Overview](#overview)
-- [Product Structure](#product-structure)
-- [Authentication](#authentication)
-- [Authorization](#authorization)
-- [Operator Provisioning](#operator-provisioning)
-- [Testing](#testing)
-- [Verification Scripts](#verification-scripts)
+- [2. Overview](#2-overview)
+- [3. Product Structure](#3-product-structure)
+- [4. Authentication](#4-authentication)
+  - [4.1. Panel Configuration](#41-panel-configuration)
+- [5. Authorization](#5-authorization)
+  - [5.1. Role-Based Access Control](#51-role-based-access-control)
+  - [5.2. Policy Namespace Rules](#52-policy-namespace-rules)
+- [6. Operator Provisioning](#6-operator-provisioning)
+  - [6.1. Environment Variables](#61-environment-variables)
+  - [6.2. Command Usage](#62-command-usage)
+  - [6.3. Idempotency](#63-idempotency)
+- [7. Testing](#7-testing)
+  - [7.1. Test Structure](#71-test-structure)
+  - [7.2. Running Tests](#72-running-tests)
+  - [7.3. Test Environment](#73-test-environment)
+- [8. Verification Scripts](#8-verification-scripts)
+  - [8.1. PHPStan with Herd Xdebug](#81-phpstan-with-herd-xdebug)
+  - [8.2. PHPStan parallelism](#82-phpstan-parallelism)
+  - [8.3. Herd extension warning](#83-herd-extension-warning)
+  - [8.4. Environment boundary](#84-environment-boundary)
+- [9. Development Setup](#9-development-setup)
+- [10. Contributing](#10-contributing)
 
-## Overview
+</details>
 
-This application demonstrates best practices for multi-product Laravel applications using Filament 5, Spatie Permission, and Spatie Activitylog. Each product (Chinook, Northwind, Sakila) operates as an independent domain with its own authentication, authorization, and data structure.
+---
 
-## Product Structure
+## 2. Overview
+
+This application demonstrates best practices for multi-product Laravel applications using Filament 5, Spatie Permission, and Spatie Activitylog. Each product (Chinook, Northwind, Pagila) operates as an independent domain with its own authentication, authorization, and data structure.
+
+## 3. Product Structure
 
 Each product follows a consistent architecture:
 
@@ -30,12 +52,12 @@ app/
 │   │   └── Chinook.php
 │   ├── Northwind/
 │   │   └── Northwind.php
-│   └── Sakila/
-│       └── Sakila.php
+│   └── Pagila/
+│       └── Pagila.php
 ├── Policies/
 │   ├── ChinookPolicy.php
 │   ├── NorthwindPolicy.php
-│   └── SakilaPolicy.php
+│   └── PagilaPolicy.php
 ├── Console/
 │   └── Commands/
 │       └── OperatorCreate.php
@@ -44,16 +66,16 @@ app/
         └── ProvisionOperator.php
 ```
 
-## Authentication
+## 4. Authentication
 
 Authentication is handled via Laravel Fortify with Filament 5 panel integration:
 
 - **Admin Panel**: `/admin` - Full system administration
 - **Chinook Panel**: `/chinook` - Chinook product management
 - **Northwind Panel**: `/northwind` - Northwind product management
-- **Sakila Panel**: `/sakila` - Sakila product management
+- **Pagila Panel**: `/pagila` - Pagila product management
 
-### Panel Configuration
+### 4.1. Panel Configuration
 
 Each panel is configured in `app/Providers/Filament/` with:
 
@@ -61,38 +83,38 @@ Each panel is configured in `app/Providers/Filament/` with:
 - Product-specific roles and permissions
 - Redirect to Fortify login for unauthenticated users
 
-## Authorization
+## 5. Authorization
 
-### Role-Based Access Control
+### 5.1. Role-Based Access Control
 
-| Role | Admin | Chinook | Northwind | Sakila |
-|------|-------|---------|-----------|--------|
-| super_admin | ✓ | ✓ | ✓ | ✓ |
-| chinook_curator | ✓ | ✓ | ✗ | ✗ |
-| northwind_curator | ✓ | ✗ | ✓ | ✗ |
-| sakila_curator | ✓ | ✗ | ✗ | ✓ |
+| Role              | Admin | Chinook | Northwind | Pagila |
+| ----------------- | ----- | ------- | --------- | ------ |
+| super_admin       | ✓     | ✓       | ✓         | ✓      |
+| chinook_curator   | ✓     | ✓       | ✗         | ✗      |
+| northwind_curator | ✓     | ✗       | ✓         | ✗      |
+| pagila_curator    | ✓     | ✗       | ✗         | ✓      |
 
-### Policy Namespace Rules
+### 5.2. Policy Namespace Rules
 
 Policies use product-specific namespaces and are enforced via middleware:
 
 ```php
 Gate::policy(Chinook::class, ChinookPolicy::class);
 Gate::policy(Northwind::class, NorthwindPolicy::class);
-Gate::policy(Sakila::class, SakilaPolicy::class);
+Gate::policy(Pagila::class, PagilaPolicy::class);
 ```
 
-## Operator Provisioning
+## 6. Operator Provisioning
 
-### Environment Variables
+### 6.1. Environment Variables
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `OPERATOR_EMAIL` | Yes | System operator email address |
-| `OPERATOR_PASSWORD` | Yes | System operator password |
-| `OPERATOR_NAME` | No | System operator display name (default: "System Operator") |
+| Variable            | Required | Description                                               |
+| ------------------- | -------- | --------------------------------------------------------- |
+| `OPERATOR_EMAIL`    | Yes      | System operator email address                             |
+| `OPERATOR_PASSWORD` | Yes      | System operator password                                  |
+| `OPERATOR_NAME`     | No       | System operator display name (default: "System Operator") |
 
-### Command Usage
+### 6.2. Command Usage
 
 ```bash
 php artisan operator:create
@@ -104,16 +126,16 @@ This command:
 3. Creates a personal team
 4. Logs the provisioning activity
 
-### Idempotency
+### 6.3. Idempotency
 
 The command is idempotent - running it multiple times will:
 - Update the operator's name if changed
 - Preserve existing credentials
 - Log each invocation as an audit event
 
-## Testing
+## 7. Testing
 
-### Test Structure
+### 7.1. Test Structure
 
 ```
 tests/
@@ -129,7 +151,7 @@ tests/
 └── Unit/
 ```
 
-### Running Tests
+### 7.2. Running Tests
 
 ```bash
 # Run all tests
@@ -142,7 +164,7 @@ php artisan test tests/Feature/Console/OperatorCreateTest.php
 php artisan test --coverage
 ```
 
-### Test Environment
+### 7.3. Test Environment
 
 The `.env.testing` file configures test-specific values:
 
@@ -153,12 +175,12 @@ OPERATOR_PASSWORD=operator-password
 APP_ENV=testing
 ```
 
-## Verification Scripts
+## 8. Verification Scripts
 
 The Linux CI runner is the authoritative static-analysis environment. Herd's
 macOS PHP runtime needs the following local workaround when verifying PHPStan.
 
-### PHPStan with Herd Xdebug
+### 8.1. PHPStan with Herd Xdebug
 
 PHPStan 2.2.5 can exit with status 1 and no diagnostics when Xdebug is loaded.
 Herd's `99-xdebug.ini` loads Xdebug by default. Disable Xdebug for the command:
@@ -184,24 +206,24 @@ The command may report existing Larastan findings. Those findings remain
 actionable code issues; disabling Xdebug only prevents Herd's silent-exit
 failure.
 
-### PHPStan parallelism
+### 8.2. PHPStan parallelism
 
 PHPStan 2.2.5 no longer accepts `--threads`. It parallelizes automatically
 when the runtime supports `pcntl`, so do not add `--threads=1` to local or CI
 commands.
 
-### Herd extension warning
+### 8.3. Herd extension warning
 
 Herd may print `Module "herd" already loaded` because `herd-ext` is compiled
 into Herd's PHP binary and loaded again by its PHP configuration. This warning
 is cosmetic and does not change PHPStan's result.
 
-### Environment boundary
+### 8.4. Environment boundary
 
 These workarounds apply only to the local macOS Herd runner. Linux CI does not
 use Herd's Xdebug configuration or duplicate `herd-ext` loading.
 
-## Development Setup
+## 9. Development Setup
 
 1. Install dependencies:
    ```bash
@@ -229,7 +251,7 @@ use Herd's Xdebug configuration or duplicate `herd-ext` loading.
    php artisan serve
    ```
 
-## Contributing
+## 10. Contributing
 
 This project follows Laravel Boost guidelines and PHP 8.5 standards. All new
 code should include corresponding tests achieving 80%+ coverage.Last updated: 2026-07-24 21:36:53 UTC

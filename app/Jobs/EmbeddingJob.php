@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
@@ -11,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
-class EmbeddingJob implements ShouldQueue
+final class EmbeddingJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -35,12 +37,12 @@ class EmbeddingJob implements ShouldQueue
             return;
         }
 
-        $text = trim(implode(' ', array_filter([
+        $text = mb_trim(implode(' ', array_filter([
             $projection->weight_d_text,
             $projection->weight_c_text,
             $projection->weight_b_text,
             $projection->weight_a_text,
-        ], fn ($v) => $v !== null && $v !== '')));
+        ], fn (?string $v) => $v !== null && $v !== '')));
 
         $digest = hash('sha256', $text);
 

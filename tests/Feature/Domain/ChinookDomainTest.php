@@ -1,15 +1,19 @@
 <?php
 
-use App\Domain\Chinook\Models\Album;
-use App\Domain\Chinook\Models\Artist;
-use App\Domain\Chinook\Models\Customer;
-use App\Domain\Chinook\Models\Employee;
-use App\Domain\Chinook\Models\Genre;
-use App\Domain\Chinook\Models\Invoice;
-use App\Domain\Chinook\Models\InvoiceLine;
-use App\Domain\Chinook\Models\MediaType;
-use App\Domain\Chinook\Models\Playlist;
-use App\Domain\Chinook\Models\Track;
+declare(strict_types=1);
+
+use App\Models\Chinook\Album;
+use App\Models\Chinook\Artist;
+use App\Models\Chinook\Customer;
+use App\Models\Chinook\Employee;
+use App\Models\Chinook\Genre;
+use App\Models\Chinook\Invoice;
+use App\Models\Chinook\InvoiceLine;
+use App\Models\Chinook\MediaType;
+use App\Models\Chinook\Playlist;
+use App\Models\Chinook\Track;
+
+covers(Artist::class);
 
 test('chinook artist and album models can be persisted and queried', function () {
     $artist = Artist::create([

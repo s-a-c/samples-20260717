@@ -5,24 +5,87 @@ declare(strict_types=1);
 use App\Traits\BelongsToProductDomain;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\DB;
 
 // ─── Domain Model Rules ───────────────────────────────────────────────────────
 
 arch('Domain models must use BelongsToProductDomain trait')
-    ->expect('App\Domain\*\Models')
+    ->expect('App\Models\*')
     ->toUseTrait(BelongsToProductDomain::class);
 
 arch('Domain models must use HasUuids trait')
-    ->expect('App\Domain\*\Models')
+    ->expect('App\Models\*')
     ->toUseTrait(HasUuids::class);
 
 arch('Domain models must be final')
-    ->expect('App\Domain\*\Models')
+    ->expect('App\Models\*')
     ->toBeFinal();
 
 arch('Domain models must have #[Table] attribute')
-    ->expect('App\Domain\*\Models')
+    ->expect('App\Models\*')
     ->toHaveAttribute(Table::class);
+
+// ─── Product Namespace Rules ───────────────────────────────────────────────────
+
+arch('Chinook models must use correct namespace')
+    ->expect('App\Models\Chinook')
+    ->toUseTrait(BelongsToProductDomain::class);
+
+arch('Northwind models must use correct namespace')
+    ->expect('App\Models\Northwind')
+    ->toUseTrait(BelongsToProductDomain::class);
+
+arch('Pagila models must use correct namespace')
+    ->expect('App\Models\Pagila')
+    ->toUseTrait(BelongsToProductDomain::class);
+
+// ─── Reset Ownership Rules ────────────────────────────────────────────────────
+
+arch('ResetWindow must be sole reader of reset_runs')
+    ->expect('App\Services\ProductReset\ResetWindow')
+    ->not->toUse('App\Services\ProductReset\ResetConfirmationService')
+    ->not->toUse('App\Services\ProductReset\RecoveryService');
+
+arch('ResetConfirmationService must be exclusive writer to reset_confirmations')
+    ->expect('App\Services\ProductReset\ResetConfirmationService')
+    ->not->toUse('App\Services\ProductReset\ResetWindow');
+
+arch('RecoveryService must own transition logic')
+    ->expect('App\Services\ProductReset\RecoveryService')
+    ->toBeFinal();
+
+// ─── Import Isolation Rules ────────────────────────────────────────────────────
+
+arch('Chinook importer must not reference sibling product namespaces')
+    ->expect('App\Services\ProductImport\ChinookImporter')
+    ->not->toUse(['App\Models\Northwind', 'App\Models\Pagila', 'App\Filament\Northwind', 'App\Filament\Pagila']);
+
+arch('Northwind importer must not reference sibling product namespaces')
+    ->expect('App\Services\ProductImport\NorthwindImporter')
+    ->not->toUse(['App\Models\Chinook', 'App\Models\Pagila', 'App\Filament\Chinook', 'App\Filament\Pagila']);
+
+arch('Pagila importer must not reference sibling product namespaces')
+    ->expect('App\Services\ProductImport\PagilaImporter')
+    ->not->toUse(['App\Models\Chinook', 'App\Models\Northwind', 'App\Filament\Chinook', 'App\Filament\Northwind']);
+
+// ─── Presentation Isolation Rules ───────────────────────────────────────────────
+
+arch('Http layer must not use DB facade')
+    ->expect('App\Http\**')
+    ->not->toUse(DB::class);
+
+arch('Filament layer must not use DB facade')
+    ->expect('App\Filament\**')
+    ->not->toUse(DB::class);
+
+arch('Http layer must not use service locator')
+    ->expect('App\Http\**')
+    ->not->toUse(Application::class);
+
+arch('Filament layer must not use service locator')
+    ->expect('App\Filament\**')
+    ->not->toUse(Application::class);
 
 // ─── Filament Resource Rules ──────────────────────────────────────────────────
 

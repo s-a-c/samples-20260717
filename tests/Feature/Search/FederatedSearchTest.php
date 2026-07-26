@@ -1,14 +1,18 @@
 <?php
 
-use App\Domain\Chinook\Models\Artist;
-use App\Domain\Northwind\Models\Product;
-use App\Domain\Pagila\Models\Film;
-use App\Domain\Pagila\Models\Language;
+declare(strict_types=1);
+
+use App\Models\Chinook\Artist;
+use App\Models\Northwind\Product;
+use App\Models\Pagila\Film;
+use App\Models\Pagila\Language;
 use App\Services\Search\FederatedSearchService;
 use App\Services\Search\ReciprocalRankFusion;
 use App\Services\Search\SearchDeepLinkRegistry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+
+covers(FederatedSearchService::class);
 
 uses(RefreshDatabase::class);
 

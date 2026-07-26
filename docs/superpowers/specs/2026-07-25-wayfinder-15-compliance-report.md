@@ -1,7 +1,7 @@
 # Wayfinder #15 Compliance Report
 
 > **Map:** [Wayfinder — Samples Implementation](https://github.com/s-a-c/samples-20260717/issues/15)
-> **Destination:** Production-ready Laravel 13 + PHP 8.5 application with Chinook, Northwind, and Sakila as three sample products
+> **Destination:** Production-ready Laravel 13 + PHP 8.5 application with Chinook, Northwind, and Pagila as three sample products
 > **Date:** 2026-07-25
 > **Status:** Substantially implemented with 10 known gaps across testing infrastructure, quality tooling, and 3 feature domains
 
@@ -116,7 +116,7 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 | Shadow-schema staging (`_staging` schema)          | ✅ Done | Staging swap pattern in pipeline                                |
 | Per-product importer class                         | ✅ Done | ChinookImporter, NorthwindImporter, PagilaImporter              |
 | Per-format source reader                           | ✅ Done | SqliteSourceReader, SqlSourceReader, PostgresSourceReader       |
-| Topological sort + deferrable FK for Sakila circle | ✅ Done | Sakila `staff.store_id ↔ store.manager_staff_id`                |
+| Topological sort + deferrable FK for Pagila circle | ✅ Done | Pagila `staff.store_id ↔ store.manager_staff_id`                |
 | `product:import` artisan command                   | ✅ Done | `app/Console/Commands/ProductImportCommand.php`                 |
 | `public.reset_runs` table (5-state machine)        | ✅ Done | `status` + `current_phase` + CHECK constraints                  |
 | Recovery (recovery_of UUID)                        | ✅ Done | FK to parent `reset_runs`                                       |
@@ -223,7 +223,7 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 | Portfolio Dashboard page                          | ✅ Done    | `app/Filament/Admin/Pages/Portfolio.php`                   |
 | Blade views for widget and page                   | ✅ Done    | `resources/views/filament/admin/widgets/...` + `pages/...` |
 | 3-column layout, alphabetical sort                | ✅ Done    | `getColumns() → 3` in widget                               |
-| Widget registered 3× (Chinook, Northwind, Sakila) | ✅ Done    | In AdminPanelProvider                                      |
+| Widget registered 3× (Chinook, Northwind, Pagila) | ✅ Done    | In AdminPanelProvider                                      |
 | **`product_portfolio_snapshots` Postgres view**   | ❌ Missing | Migration not created — relies on live queries instead     |
 | Widget reusable with `product` prop               | ✅ Done    | Single class, instantiated per product                     |
 

@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` (recommended) or `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Implement the complete multi-product sample data platform for Chinook, Northwind, and Sakila on Laravel 13, Filament 5, and PostgreSQL 18 with pgvector, tsvector hybrid search, identity registry, reset engine, and team/role authorization.
+**Goal:** Implement the complete multi-product sample data platform for Chinook, Northwind, and Pagila on Laravel 13, Filament 5, and PostgreSQL 18 with pgvector, tsvector hybrid search, identity registry, reset engine, and team/role authorization.
 
-**Architecture:** Domain-driven multi-schema PostgreSQL design (`chinook`, `northwind`, `sakila`, `public`) with schema-qualified Eloquent models, shadow-schema staging product import/reset pipeline, pgvector+tsvector hybrid retrieval with Reciprocal Rank Fusion (RRF), and 4 isolated Filament 5 admin/product panels gated by Spatie Shield RBAC on Fortify auth.
+**Architecture:** Domain-driven multi-schema PostgreSQL design (`chinook`, `northwind`, `pagila`, `public`) with schema-qualified Eloquent models, shadow-schema staging product import/reset pipeline, pgvector+tsvector hybrid retrieval with Reciprocal Rank Fusion (RRF), and 4 isolated Filament 5 admin/product panels gated by Spatie Shield RBAC on Fortify auth.
 
 **Tech Stack:** PHP 8.5, Laravel 13.22, Filament 5.7, PostgreSQL 18 + pgvector + tsvector, `laravel/ai` 0.10, Spatie Permission / Filament Shield 4.3, Fortify 1.37, Livewire Flux Pro 2.15, Pest 4.7, Larastan 3.10 level max.
 
@@ -28,7 +28,7 @@
   - [3.4. Stage 4: Product Domain Models, Migrations \& Search Projections](#34-stage-4-product-domain-models-migrations--search-projections)
     - [3.4.1. Task 7: Chinook Domain Models \& Schema Migration](#341-task-7-chinook-domain-models--schema-migration)
     - [3.4.2. Task 8: Northwind Domain Models \& Schema Migration](#342-task-8-northwind-domain-models--schema-migration)
-    - [3.4.3. Task 9: Sakila Domain Models \& Schema Migration](#343-task-9-sakila-domain-models--schema-migration)
+    - [3.4.3. Task 9: Pagila Domain Models \& Schema Migration](#343-task-9-pagila-domain-models--schema-migration)
     - [3.4.4. Task 10: Search Projection Tables, PL/pgSQL Triggers \& Observers](#344-task-10-search-projection-tables-plpgsql-triggers--observers)
   - [3.5. Stage 5: Embedding Profiles, AI SDK Integration \& Hybrid Search (RRF)](#35-stage-5-embedding-profiles-ai-sdk-integration--hybrid-search-rrf)
     - [3.5.1. Task 11: `laravel/ai` SDK Integration \& Async `EmbeddingJob`](#351-task-11-laravelai-sdk-integration--async-embeddingjob)
@@ -39,7 +39,7 @@
   - [3.7. Stage 7: Filament Resources for Products \& Admin Control](#37-stage-7-filament-resources-for-products--admin-control)
     - [3.7.1. Task 15: Chinook Filament Resources](#371-task-15-chinook-filament-resources)
     - [3.7.2. Task 16: Northwind Filament Resources](#372-task-16-northwind-filament-resources)
-    - [3.7.3. Task 17: Sakila Filament Resources](#373-task-17-sakila-filament-resources)
+    - [3.7.3. Task 17: Pagila Filament Resources](#373-task-17-pagila-filament-resources)
     - [3.7.4. Task 18: Admin Filament Resources \& User Management](#374-task-18-admin-filament-resources--user-management)
   - [3.8. Stage 8: Portfolio Cards, Team Artefacts \& Federated Search UI](#38-stage-8-portfolio-cards-team-artefacts--federated-search-ui)
     - [3.8.1. Task 19: Portfolio View \& Product Portfolio Card Widget](#381-task-19-portfolio-view--product-portfolio-card-widget)
@@ -84,14 +84,14 @@ app/
 ├── Domain/
 │   ├── Chinook/Models/ (Artist, Album, Track, Genre, MediaType, Playlist, Customer, Employee, Invoice, InvoiceLine, PlaylistTrack)
 │   ├── Northwind/Models/ (Category, Customer, Employee, EmployeeTerritory, Order, OrderDetail, Product, Region, Shipper, Supplier, Territory)
-│   └── Sakila/Models/ (Actor, Category, City, Country, Customer, Film, FilmActor, FilmCategory, FilmText, Inventory, Language, Payment, Rental, Staff, Store)
+│   └── Pagila/Models/ (Actor, Category, City, Country, Customer, Film, FilmActor, FilmCategory, FilmText, Inventory, Language, Payment, Rental, Staff, Store)
 ├── Exceptions/
 │   └── ProductResetWindowOpen.php
 ├── Filament/
 │   ├── Admin/ (Resources: UserResource, RoleResource; Pages: AdminDashboard)
 │   ├── Chinook/ (Resources: ArtistResource, AlbumResource, TrackResource, PlaylistResource, CustomerResource, EmployeeResource, InvoiceResource, GenreResource)
 │   ├── Northwind/ (Resources: ProductResource, CategoryResource, SupplierResource, CustomerResource, EmployeeResource, OrderResource, ShipperResource)
-│   ├── Sakila/ (Resources: FilmResource, ActorResource, CategoryResource, LanguageResource, CustomerResource, StaffResource, RentalResource, PaymentResource, StoreResource)
+│   ├── Pagila/ (Resources: FilmResource, ActorResource, CategoryResource, LanguageResource, CustomerResource, StaffResource, RentalResource, PaymentResource, StoreResource)
 │   ├── Pages/FederatedSearchPage.php
 │   └── Widgets/ProductPortfolioCard.php
 ├── Jobs/
@@ -107,13 +107,13 @@ app/
 │   ├── TeamInvitation.php
 │   └── User.php
 ├── Providers/
-│   └── Filament/ (AdminPanelProvider, ChinookPanelProvider, NorthwindPanelProvider, SakilaPanelProvider)
+│   └── Filament/ (AdminPanelProvider, ChinookPanelProvider, NorthwindPanelProvider, PagilaPanelProvider)
 ├── Services/
 │   ├── ProductImport/
 │   │   ├── ChinookImporter.php
 │   │   ├── NorthwindImporter.php
 │   │   ├── ProductImportPipeline.php
-│   │   ├── SakilaImporter.php
+│   │   ├── PagilaImporter.php
 │   │   ├── SourceIdentityRegistry.php
 │   │   ├── SqliteSourceReader.php
 │   │   └── SqlSourceReader.php
@@ -138,11 +138,11 @@ database/
 │   ├── 2026_07_24_204000_create_product_portfolio_snapshots_view.php
 │   ├── chinook/ (2026_07_24_210000_create_chinook_schema_and_tables.php, 2026_07_24_210001_create_chinook_search_projections.php)
 │   ├── northwind/ (2026_07_24_211000_create_northwind_schema_and_tables.php, 2026_07_24_211001_create_northwind_search_projections.php)
-│   └── sakila/ (2026_07_24_212000_create_sakila_schema_and_tables.php, 2026_07_24_212001_create_sakila_search_projections.php)
+│   └── pagila/ (2026_07_24_212000_create_pagila_schema_and_tables.php, 2026_07_24_212001_create_pagila_search_projections.php)
 └── sources/
     ├── chinook.php
     ├── northwind.php
-    └── sakila.php
+    └── pagila.php
 docs/
 ├── 10-architecture/1015-adrs/
 └── 15-delivery/1515-implementation-readiness-dossier/
@@ -430,7 +430,7 @@ return new class extends Migration {
         DB::statement("
             ALTER TABLE public.source_identities
             ADD CONSTRAINT source_identities_entity_check
-            CHECK (entity ~ '^(chinook|northwind|sakila)\\.[a-z_][a-z0-9_]*$');
+            CHECK (entity ~ '^(chinook|northwind|pagila)\\.[a-z_][a-z0-9_]*$');
         ");
     }
 
@@ -704,7 +704,7 @@ git commit -m "feat: implement ResetRun, ResetWindow service, and BelongsToProdu
 **Files:**
 - Create: `database/sources/chinook.php`
 - Create: `database/sources/northwind.php`
-- Create: `database/sources/sakila.php`
+- Create: `database/sources/pagila.php`
 - Create: `app/Console/Commands/SourceFetch.php`
 - Test: `tests/Feature/Import/SourceFetchTest.php`
 
@@ -767,14 +767,14 @@ return [
 ```
 
 ```php
-// database/sources/sakila.php
+// database/sources/pagila.php
 <?php
 
 return [
-    'product' => 'sakila',
-    'repository' => 'bradleygrant/sakila-sqlite3',
+    'product' => 'pagila',
+    'repository' => 'bradleygrant/pagila-sqlite3',
     'commit_sha' => '9394b42',
-    'filename' => 'sakila_master.db',
+    'filename' => 'pagila_master.db',
     'digest' => '7b396788e7a04918e957aa0df13b2c1fbdfa47ed3b9347edfa27c62ee27f42c1',
     'format' => 'sqlite_binary',
 ];
@@ -792,7 +792,7 @@ use Illuminate\Support\Facades\Http;
 
 class SourceFetch extends Command
 {
-    protected $signature = 'source:fetch {product : chinook|northwind|sakila}';
+    protected $signature = 'source:fetch {product : chinook|northwind|pagila}';
     protected $description = 'Fetch and verify upstream dataset source files';
 
     public function handle(): int
@@ -864,7 +864,7 @@ git commit -m "feat: add dataset pin manifests and source:fetch command"
 - Create: `app/Services/ProductImport/ProductImportPipeline.php`
 - Create: `app/Services/ProductImport/ChinookImporter.php`
 - Create: `app/Services/ProductImport/NorthwindImporter.php`
-- Create: `app/Services/ProductImport/SakilaImporter.php`
+- Create: `app/Services/ProductImport/PagilaImporter.php`
 - Create: `app/Console/Commands/ProductImportCommand.php`
 - Create: `app/Console/Commands/ProductConfirm.php`
 - Create: `app/Console/Commands/ProductRecover.php`
@@ -908,7 +908,7 @@ use Illuminate\Console\Command;
 
 class ProductImportCommand extends Command
 {
-    protected $signature = 'product:import {product : chinook|northwind|sakila} {--dry-run} {--force} {--confirm-token=}';
+    protected $signature = 'product:import {product : chinook|northwind|pagila} {--dry-run} {--force} {--confirm-token=}';
     protected $description = 'Import or reset product dataset into PostgreSQL domain schema';
 
     public function handle(ProductImportPipeline $pipeline): int
@@ -1232,41 +1232,41 @@ git commit -m "feat: implement Northwind schema migration and domain models"
 
 ---
 
-#### 3.4.3. Task 9: Sakila Domain Models & Schema Migration
+#### 3.4.3. Task 9: Pagila Domain Models & Schema Migration
 
 **Files:**
-- Create: `database/migrations/sakila/2026_07_24_212000_create_sakila_schema_and_tables.php`
-- Create: `app/Domain/Sakila/Models/Actor.php`
-- Create: `app/Domain/Sakila/Models/Category.php`
-- Create: `app/Domain/Sakila/Models/City.php`
-- Create: `app/Domain/Sakila/Models/Country.php`
-- Create: `app/Domain/Sakila/Models/Customer.php`
-- Create: `app/Domain/Sakila/Models/Film.php`
-- Create: `app/Domain/Sakila/Models/FilmActor.php`
-- Create: `app/Domain/Sakila/Models/FilmCategory.php`
-- Create: `app/Domain/Sakila/Models/FilmText.php`
-- Create: `app/Domain/Sakila/Models/Inventory.php`
-- Create: `app/Domain/Sakila/Models/Language.php`
-- Create: `app/Domain/Sakila/Models/Payment.php`
-- Create: `app/Domain/Sakila/Models/Rental.php`
-- Create: `app/Domain/Sakila/Models/Staff.php`
-- Create: `app/Domain/Sakila/Models/Store.php`
-- Test: `tests/Feature/Domain/SakilaDomainTest.php`
+- Create: `database/migrations/pagila/2026_07_24_212000_create_pagila_schema_and_tables.php`
+- Create: `app/Domain/Pagila/Models/Actor.php`
+- Create: `app/Domain/Pagila/Models/Category.php`
+- Create: `app/Domain/Pagila/Models/City.php`
+- Create: `app/Domain/Pagila/Models/Country.php`
+- Create: `app/Domain/Pagila/Models/Customer.php`
+- Create: `app/Domain/Pagila/Models/Film.php`
+- Create: `app/Domain/Pagila/Models/FilmActor.php`
+- Create: `app/Domain/Pagila/Models/FilmCategory.php`
+- Create: `app/Domain/Pagila/Models/FilmText.php`
+- Create: `app/Domain/Pagila/Models/Inventory.php`
+- Create: `app/Domain/Pagila/Models/Language.php`
+- Create: `app/Domain/Pagila/Models/Payment.php`
+- Create: `app/Domain/Pagila/Models/Rental.php`
+- Create: `app/Domain/Pagila/Models/Staff.php`
+- Create: `app/Domain/Pagila/Models/Store.php`
+- Test: `tests/Feature/Domain/PagilaDomainTest.php`
 
 **Interfaces:**
-- Consumes: PostgreSQL `sakila` schema DDL (including deferrable FK for `staff.store_id` ↔ `store.manager_staff_id`).
-- Produces: Schema-qualified Eloquent models in `App\Domain\Sakila\Models\*`.
+- Consumes: PostgreSQL `pagila` schema DDL (including deferrable FK for `staff.store_id` ↔ `store.manager_staff_id`).
+- Produces: Schema-qualified Eloquent models in `App\Domain\Pagila\Models\*`.
 
 - [ ] **Step 1: Write failing test**
 
 ```php
-// tests/Feature/Domain/SakilaDomainTest.php
+// tests/Feature/Domain/PagilaDomainTest.php
 <?php
 
-use App\Domain\Sakila\Models\Film;
-use App\Domain\Sakila\Models\Language;
+use App\Domain\Pagila\Models\Film;
+use App\Domain\Pagila\Models\Language;
 
-test('sakila film and language models can be persisted and queried', function () {
+test('pagila film and language models can be persisted and queried', function () {
     $language = Language::create(['name' => 'English']);
 
     $film = Film::create([
@@ -1283,23 +1283,23 @@ test('sakila film and language models can be persisted and queried', function ()
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `php artisan test --filter=SakilaDomainTest`
+Run: `php artisan test --filter=PagilaDomainTest`
 Expected: FAIL with missing classes.
 
 - [ ] **Step 3: Write migration and models**
 
-Create migration `2026_07_24_212000_create_sakila_schema_and_tables.php` creating `sakila` schema and tables (`actors`, `categories`, `cities`, `countries`, `customers`, `films`, `film_actors`, `film_categories`, `film_texts`, `inventories`, `languages`, `payments`, `rentals`, `staff`, `stores`). Create corresponding Eloquent models in `App\Domain\Sakila\Models\*`.
+Create migration `2026_07_24_212000_create_pagila_schema_and_tables.php` creating `pagila` schema and tables (`actors`, `categories`, `cities`, `countries`, `customers`, `films`, `film_actors`, `film_categories`, `film_texts`, `inventories`, `languages`, `payments`, `rentals`, `staff`, `stores`). Create corresponding Eloquent models in `App\Domain\Pagila\Models\*`.
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `php artisan test --filter=SakilaDomainTest`
+Run: `php artisan test --filter=PagilaDomainTest`
 Expected: PASS
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add database/migrations/sakila/ app/Domain/Sakila/ tests/Feature/Domain/SakilaDomainTest.php
-git commit -m "feat: implement Sakila schema migration and domain models"
+git add database/migrations/pagila/ app/Domain/Pagila/ tests/Feature/Domain/PagilaDomainTest.php
+git commit -m "feat: implement Pagila schema migration and domain models"
 ```
 
 ---
@@ -1309,7 +1309,7 @@ git commit -m "feat: implement Sakila schema migration and domain models"
 **Files:**
 - Create: `database/migrations/chinook/2026_07_24_210001_create_chinook_search_projections.php`
 - Create: `database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php`
-- Create: `database/migrations/sakila/2026_07_24_212001_create_sakila_search_projections.php`
+- Create: `database/migrations/pagila/2026_07_24_212001_create_pagila_search_projections.php`
 - Create: `app/Observers/Tier1SourceObserver.php`
 - Test: `tests/Feature/Search/SearchProjectionTriggerTest.php`
 
@@ -1424,7 +1424,7 @@ return new class extends Migration {
 };
 ```
 
-Apply equivalent projection table and trigger migrations for `northwind` and `sakila`.
+Apply equivalent projection table and trigger migrations for `northwind` and `pagila`.
 
 - [ ] **Step 4: Run test to verify it passes**
 
@@ -1607,7 +1607,7 @@ git commit -m "feat: implement laravel/ai SDK configuration and async EmbeddingJ
 
 **Interfaces:**
 - Consumes: Query string and optional product scope.
-- Produces: Unified, RRF-ranked search results across `chinook`, `northwind`, and `sakila` projection tables with deep-link resolution.
+- Produces: Unified, RRF-ranked search results across `chinook`, `northwind`, and `pagila` projection tables with deep-link resolution.
 
 - [ ] **Step 1: Write failing test**
 
@@ -1704,7 +1704,7 @@ class FederatedSearchService
      */
     public function search(string $query): array
     {
-        $products = ['chinook', 'northwind', 'sakila'];
+        $products = ['chinook', 'northwind', 'pagila'];
         $unions = [];
 
         foreach ($products as $p) {
@@ -1889,13 +1889,13 @@ git commit -m "feat: implement operator onboarding CLI command and provisioning 
 - Modify: `app/Providers/Filament/AdminPanelProvider.php`
 - Modify: `app/Providers/Filament/ChinookPanelProvider.php`
 - Modify: `app/Providers/Filament/NorthwindPanelProvider.php`
-- Modify: `app/Providers/Filament/SakilaPanelProvider.php`
+- Modify: `app/Providers/Filament/PagilaPanelProvider.php`
 - Modify: `app/Models/User.php`
 - Test: `tests/Feature/Filament/PanelAuthenticationTest.php`
 
 **Interfaces:**
 - Consumes: User panel access permissions.
-- Produces: 4 isolated Filament panels (`/admin`, `/chinook`, `/northwind`, `/sakila`) with `canAccessPanel()` gating.
+- Produces: 4 isolated Filament panels (`/admin`, `/chinook`, `/northwind`, `/pagila`) with `canAccessPanel()` gating.
 
 - [ ] **Step 1: Write failing test**
 
@@ -1914,7 +1914,7 @@ test('super_admin can access all four panels', function () {
     $this->actingAs($user)->get('/admin')->assertStatus(200);
     $this->actingAs($user)->get('/chinook')->assertStatus(200);
     $this->actingAs($user)->get('/northwind')->assertStatus(200);
-    $this->actingAs($user)->get('/sakila')->assertStatus(200);
+    $this->actingAs($user)->get('/pagila')->assertStatus(200);
 });
 
 test('unauthenticated users redirect to fortify login on panel access', function () {
@@ -1936,7 +1936,7 @@ public function canAccessPanel(Panel $panel): bool
 {
     return match ($panel->getId()) {
         'admin' => $this->hasRole('super_admin'),
-        'chinook', 'northwind', 'sakila' => $this->hasRole("{$panel->getId()}_curator") || $this->hasRole('super_admin'),
+        'chinook', 'northwind', 'pagila' => $this->hasRole("{$panel->getId()}_curator") || $this->hasRole('super_admin'),
         default => false,
     };
 }
@@ -1945,8 +1945,8 @@ public function canAccessPanel(Panel $panel): bool
 In `AdminPanelProvider.php`:
 Add `FilamentShieldPlugin::make()` to plugins array. Remove default shared discovery. Scope explicitly to `App\Filament\Admin`.
 
-In `ChinookPanelProvider.php`, `NorthwindPanelProvider.php`, `SakilaPanelProvider.php`:
-Remove default shared discovery. Set explicit discovery roots `App\Filament\Chinook`, `App\Filament\Northwind`, `App\Filament\Sakila`.
+In `ChinookPanelProvider.php`, `NorthwindPanelProvider.php`, `PagilaPanelProvider.php`:
+Remove default shared discovery. Set explicit discovery roots `App\Filament\Chinook`, `App\Filament\Northwind`, `App\Filament\Pagila`.
 
 - [ ] **Step 4: Run test to verify it passes**
 
@@ -2091,43 +2091,43 @@ git commit -m "feat: implement Northwind Filament resources (Product, Category, 
 
 ---
 
-#### 3.7.3. Task 17: Sakila Filament Resources
+#### 3.7.3. Task 17: Pagila Filament Resources
 
 **Files:**
-- Create: `app/Filament/Sakila/Resources/FilmResource.php`
-- Create: `app/Filament/Sakila/Resources/ActorResource.php`
-- Create: `app/Filament/Sakila/Resources/CategoryResource.php`
-- Create: `app/Filament/Sakila/Resources/LanguageResource.php`
-- Create: `app/Filament/Sakila/Resources/CustomerResource.php`
-- Create: `app/Filament/Sakila/Resources/StaffResource.php`
-- Create: `app/Filament/Sakila/Resources/RentalResource.php`
-- Create: `app/Filament/Sakila/Resources/PaymentResource.php`
-- Create: `app/Filament/Sakila/Resources/StoreResource.php`
-- Test: `tests/Feature/Filament/SakilaResourcesTest.php`
+- Create: `app/Filament/Pagila/Resources/FilmResource.php`
+- Create: `app/Filament/Pagila/Resources/ActorResource.php`
+- Create: `app/Filament/Pagila/Resources/CategoryResource.php`
+- Create: `app/Filament/Pagila/Resources/LanguageResource.php`
+- Create: `app/Filament/Pagila/Resources/CustomerResource.php`
+- Create: `app/Filament/Pagila/Resources/StaffResource.php`
+- Create: `app/Filament/Pagila/Resources/RentalResource.php`
+- Create: `app/Filament/Pagila/Resources/PaymentResource.php`
+- Create: `app/Filament/Pagila/Resources/StoreResource.php`
+- Test: `tests/Feature/Filament/PagilaResourcesTest.php`
 
 **Interfaces:**
-- Consumes: Sakila domain models.
-- Produces: Filament 5 admin resources for Sakila domain management under `/sakila`.
+- Consumes: Pagila domain models.
+- Produces: Filament 5 admin resources for Pagila domain management under `/pagila`.
 
 - [ ] **Step 1: Write failing test**
 
 ```php
-// tests/Feature/Filament/SakilaResourcesTest.php
+// tests/Feature/Filament/PagilaResourcesTest.php
 <?php
 
-use App\Domain\Sakila\Models\Film;
+use App\Domain\Pagila\Models\Film;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 
-test('curator can view sakila film resource list page', function () {
-    Role::firstOrCreate(['name' => 'sakila_curator', 'guard_name' => 'web']);
+test('curator can view pagila film resource list page', function () {
+    Role::firstOrCreate(['name' => 'pagila_curator', 'guard_name' => 'web']);
     $user = User::factory()->create();
-    $user->assignRole('sakila_curator');
+    $user->assignRole('pagila_curator');
 
     Film::create(['title' => 'ACADEMY DINOSAUR', 'release_year' => 2006]);
 
     $this->actingAs($user)
-        ->get('/sakila/films')
+        ->get('/pagila/films')
         ->assertStatus(200)
         ->assertSee('ACADEMY DINOSAUR');
 });
@@ -2135,23 +2135,23 @@ test('curator can view sakila film resource list page', function () {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `php artisan test --filter=SakilaResourcesTest`
+Run: `php artisan test --filter=PagilaResourcesTest`
 Expected: FAIL with 404 or missing resource.
 
 - [ ] **Step 3: Write implementation**
 
-Create `FilmResource.php`, `ActorResource.php`, `CategoryResource.php`, `LanguageResource.php`, `CustomerResource.php`, `StaffResource.php`, `RentalResource.php`, `PaymentResource.php`, `StoreResource.php` in `app/Filament/Sakila/Resources/`.
+Create `FilmResource.php`, `ActorResource.php`, `CategoryResource.php`, `LanguageResource.php`, `CustomerResource.php`, `StaffResource.php`, `RentalResource.php`, `PaymentResource.php`, `StoreResource.php` in `app/Filament/Pagila/Resources/`.
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `php artisan test --filter=SakilaResourcesTest`
+Run: `php artisan test --filter=PagilaResourcesTest`
 Expected: PASS
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add app/Filament/Sakila/Resources/ tests/Feature/Filament/SakilaResourcesTest.php
-git commit -m "feat: implement Sakila Filament resources (Film, Actor, Category, Language, Customer, Staff, Rental, Payment, Store)"
+git add app/Filament/Pagila/Resources/ tests/Feature/Filament/PagilaResourcesTest.php
+git commit -m "feat: implement Pagila Filament resources (Film, Actor, Category, Language, Customer, Staff, Rental, Payment, Store)"
 ```
 
 ---
@@ -2221,7 +2221,7 @@ git commit -m "feat: implement Admin Filament UserResource and RoleResource for 
 - Test: `tests/Feature/Widgets/ProductPortfolioCardTest.php`
 
 **Interfaces:**
-- Consumes: Aggregated database metrics from `chinook`, `northwind`, and `sakila`.
+- Consumes: Aggregated database metrics from `chinook`, `northwind`, and `pagila`.
 - Produces: Postgres snapshot view `public.product_portfolio_snapshots` and 3-column portfolio summary widget on `/admin`.
 
 - [ ] **Step 1: Write failing test**
@@ -2249,7 +2249,7 @@ test('admin dashboard renders portfolio card widget in 3 columns', function () {
         ->assertStatus(200)
         ->assertSee('Chinook')
         ->assertSee('Northwind')
-        ->assertSee('Sakila');
+        ->assertSee('Pagila');
 });
 ```
 
@@ -2284,10 +2284,10 @@ return new class extends Migration {
                    (SELECT COUNT(*) FROM northwind.suppliers) AS entity_count_3,
                    NOW() AS snapshot_at
             UNION ALL
-            SELECT 'sakila' AS product,
-                   (SELECT COUNT(*) FROM sakila.films) AS entity_count_1,
-                   (SELECT COUNT(*) FROM sakila.actors) AS entity_count_2,
-                   (SELECT COUNT(*) FROM sakila.categories) AS entity_count_3,
+            SELECT 'pagila' AS product,
+                   (SELECT COUNT(*) FROM pagila.films) AS entity_count_1,
+                   (SELECT COUNT(*) FROM pagila.actors) AS entity_count_2,
+                   (SELECT COUNT(*) FROM pagila.categories) AS entity_count_3,
                    NOW() AS snapshot_at;
         ");
     }
@@ -2452,7 +2452,7 @@ use Pest\Arch\Expectations;
 arch('product domain namespaces do not cross-import')
     ->expect('App\Domain\Chinook')
     ->not->toUse('App\Domain\Northwind')
-    ->not->toUse('App\Domain\Sakila');
+    ->not->toUse('App\Domain\Pagila');
 
 arch('all domain models use HasUuids and #[Table] attribute')
     ->expect('App\Domain\Chinook\Models')

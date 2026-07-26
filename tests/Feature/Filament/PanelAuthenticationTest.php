@@ -1,79 +1,61 @@
 <?php
 
-namespace Tests\Feature\Filament;
+declare(strict_types=1);
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\Attributes\DataProvider;
 use Spatie\Permission\Models\Role;
-use Tests\TestCase;
 
-class PanelAuthenticationTest extends TestCase
-{
-    use RefreshDatabase;
+covers(User::class);
 
-    /**
-     * @return array<string, array{string}>
-     */
-    public static function panelPaths(): array
-    {
-        return [
-            'admin' => ['/admin'],
-            'chinook' => ['/chinook'],
-            'northwind' => ['/northwind'],
-            'pagila' => ['/pagila'],
-        ];
+dataset('panel_paths', fn () => [
+    'admin' => ['/admin'],
+    'chinook' => ['/chinook'],
+    'northwind' => ['/northwind'],
+    'pagila' => ['/pagila'],
+]);
+
+test('guests are redirected to fortify login', function (string $path) {
+    $this->get($path)->assertRedirect(route('login'));
+})->with('panel_paths');
+
+test('super admin can access all panels', function () {
+    $user = User::factory()->create();
+    $user->assignRole(Role::findOrCreate('super_admin', 'web'));
+
+    foreach (['/admin', '/chinook', '/northwind', '/pagila'] as $path) {
+        $this->actingAs($user)->get($path)->assertSuccessful();
     }
+});
 
-    #[DataProvider('panelPaths')]
-    public function test_guests_are_redirected_to_fortify_login(string $path): void
-    {
-        $this->get($path)->assertRedirect(route('login'));
+test('chinook curator can access chinook panel and is forbidden from others', function () {
+    $user = User::factory()->create();
+    $user->assignRole(Role::findOrCreate('chinook_curator', 'web'));
+
+    $this->actingAs($user)->get('/chinook')->assertSuccessful();
+
+    foreach (['/admin', '/northwind', '/pagila'] as $path) {
+        $this->actingAs($user)->get($path)->assertForbidden();
     }
+});
 
-    public function test_super_admin_can_access_all_panels(): void
-    {
-        $user = User::factory()->create();
-        $user->assignRole(Role::findOrCreate('super_admin', 'web'));
+test('northwind curator can access northwind panel and is forbidden from others', function () {
+    $user = User::factory()->create();
+    $user->assignRole(Role::findOrCreate('northwind_curator', 'web'));
 
-        foreach (['/admin', '/chinook', '/northwind', '/pagila'] as $path) {
-            $this->actingAs($user)->get($path)->assertSuccessful();
-        }
+    $this->actingAs($user)->get('/northwind')->assertSuccessful();
+
+    foreach (['/admin', '/chinook', '/pagila'] as $path) {
+        $this->actingAs($user)->get($path)->assertForbidden();
     }
+});
 
-    public function test_chinook_curator_can_access_chinook_panel_and_is_forbidden_from_others(): void
-    {
-        $user = User::factory()->create();
-        $user->assignRole(Role::findOrCreate('chinook_curator', 'web'));
+test('pagila curator can access pagila panel and is forbidden from others', function () {
+    $user = User::factory()->create();
+    $user->assignRole(Role::findOrCreate('pagila_curator', 'web'));
 
-        $this->actingAs($user)->get('/chinook')->assertSuccessful();
+    $this->actingAs($user)->get('/pagila')->assertSuccessful();
 
-        foreach (['/admin', '/northwind', '/pagila'] as $path) {
-            $this->actingAs($user)->get($path)->assertForbidden();
-        }
+    foreach (['/admin', '/chinook', '/northwind'] as $path) {
+        $this->actingAs($user)->get($path)->assertForbidden();
     }
-
-    public function test_northwind_curator_can_access_northwind_panel_and_is_forbidden_from_others(): void
-    {
-        $user = User::factory()->create();
-        $user->assignRole(Role::findOrCreate('northwind_curator', 'web'));
-
-        $this->actingAs($user)->get('/northwind')->assertSuccessful();
-
-        foreach (['/admin', '/chinook', '/pagila'] as $path) {
-            $this->actingAs($user)->get($path)->assertForbidden();
-        }
-    }
-
-    public function test_pagila_curator_can_access_pagila_panel_and_is_forbidden_from_others(): void
-    {
-        $user = User::factory()->create();
-        $user->assignRole(Role::findOrCreate('pagila_curator', 'web'));
-
-        $this->actingAs($user)->get('/pagila')->assertSuccessful();
-
-        foreach (['/admin', '/chinook', '/northwind'] as $path) {
-            $this->actingAs($user)->get($path)->assertForbidden();
-        }
-    }
-}
+});

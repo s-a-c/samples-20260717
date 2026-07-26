@@ -2,7 +2,7 @@
 
 **Status:** Accepted
 **Date:** 2026-07-25
-**Context:** Each of the three sample products (Chinook, Northwind, Sakila) is populated from a source baseline — an upstream reference dataset. Two key operations must be supported: (a) first-time import that populates the product domain's schema, (b) Product Reset that restores a product domain to its source baseline, discarding local changes while preserving Domain Identities. Resets must have near-zero downtime — a bounded Reset Window during which only the affected product domain is unavailable. Resets must be atomic: if the reset fails partway through, the product domain must be recoverable to either its previous state or a known good state. Traditional approaches (migrate:fresh + seeder, TRUNCATE + INSERT in transactions) either lock tables for prolonged periods or cannot be rolled back safely for schemas with complex foreign key graphs.
+**Context:** Each of the three sample products (Chinook, Northwind, Pagila) is populated from a source baseline — an upstream reference dataset. Two key operations must be supported: (a) first-time import that populates the product domain's schema, (b) Product Reset that restores a product domain to its source baseline, discarding local changes while preserving Domain Identities. Resets must have near-zero downtime — a bounded Reset Window during which only the affected product domain is unavailable. Resets must be atomic: if the reset fails partway through, the product domain must be recoverable to either its previous state or a known good state. Traditional approaches (migrate:fresh + seeder, TRUNCATE + INSERT in transactions) either lock tables for prolonged periods or cannot be rolled back safely for schemas with complex foreign key graphs.
 
 **Decision:** Build the import pipeline using a shadow-schema pattern: build the new dataset in a shadow schema, verify it, then atomically swap it into place.
 
@@ -19,7 +19,7 @@
 - **Positive:** Full isolation — a failed import never touches the live schema; no table locks during data loading.
 - **Positive:** Atomic roll-forward — the swap is a single DDL transaction; failure leaves no partial state.
 - **Positive:** Recovery path — the previous live schema can be preserved as a fallback or the shadow can be retried.
-- **Positive:** Resets are independent per product domain — resetting Chinook does not affect Northwind or Sakila.
+- **Positive:** Resets are independent per product domain — resetting Chinook does not affect Northwind or Pagila.
 - **Tradeoff:** Requires double storage during the reset window — both live and shadow schemas exist simultaneously.
 - **Tradeoff:** Schema must be defined independently of the data import (migrations are separate from seeding).
 - **Tradeoff:** Foreign key relationships from shared infrastructure to product-domain tables (e.g., search documents) must be handled carefully across schema swaps.
