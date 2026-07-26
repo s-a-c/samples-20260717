@@ -24,8 +24,6 @@
         "pulse-development",
         "fluxui-development",
         "livewire-development",
-        "pest-testing",
-        "tailwindcss-development",
-        "echo-development"
+        "pest-testing"
     ]
 }
