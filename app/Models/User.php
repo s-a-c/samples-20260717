@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Concerns\HasTeams;
+use App\Enums\SamplesProduct;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -41,7 +44,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 #[Fillable(['name', 'email', 'password', 'current_team_id'])]
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
-class User extends Authenticatable implements FilamentUser, PasskeyUser
+final class User extends Authenticatable implements FilamentUser, PasskeyUser
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, HasRoles, HasTeams, HasUuids, Notifiable, PasskeyAuthenticatable, TwoFactorAuthenticatable {
@@ -85,8 +88,10 @@ class User extends Authenticatable implements FilamentUser, PasskeyUser
 
         $panelId = $panel->getId();
 
-        if (in_array($panelId, ['chinook', 'northwind', 'pagila'], true)) {
-            return $this->hasRole("{$panelId}_curator");
+        $product = SamplesProduct::fromPanelId($panelId);
+
+        if ($product !== null) {
+            return $this->hasRole($product->curatorRole());
         }
 
         return false;

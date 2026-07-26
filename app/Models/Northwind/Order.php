@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Northwind;
 
 use App\Contracts\HasProductDomain;
+use App\Enums\SamplesProduct;
 use App\Traits\BelongsToProductDomain;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -35,9 +36,9 @@ final class Order extends Model implements HasProductDomain
         ];
     }
 
-    public function getProductDomainName(): string
+    public function getProductDomain(): SamplesProduct
     {
-        return 'northwind';
+        return SamplesProduct::Northwind;
     }
 
     public function customer(): BelongsTo

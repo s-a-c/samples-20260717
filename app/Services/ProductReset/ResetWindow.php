@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\ProductReset;
 
+use App\Enums\SamplesProduct;
 use App\Exceptions\ProductResetWindowOpen;
 use App\Models\ResetRun;
 
@@ -10,23 +13,25 @@ final class ResetWindow
     /** @var array<string, bool> */
     private array $memo = [];
 
-    public function isOpen(string $product): bool
+    public function isOpen(SamplesProduct $product): bool
     {
-        if (isset($this->memo[$product])) {
-            return $this->memo[$product];
+        $key = $product->value;
+
+        if (isset($this->memo[$key])) {
+            return $this->memo[$key];
         }
 
-        $open = ResetRun::where('product', $product)
+        $open = ResetRun::where('product', $key)
             ->whereIn('status', ['pending', 'running', 'recovering'])
             ->exists();
 
-        return $this->memo[$product] = $open;
+        return $this->memo[$key] = $open;
     }
 
-    public function assertWritable(string $product): void
+    public function assertWritable(SamplesProduct $product): void
     {
         if ($this->isOpen($product)) {
-            throw new ProductResetWindowOpen("Reset window is currently open for product: {$product}");
+            throw new ProductResetWindowOpen("Reset window is currently open for product: {$product->value}");
         }
     }
 

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\SamplesProduct;
 use App\Models\Pagila\Actor;
 use App\Models\Pagila\Category;
 use App\Models\Pagila\City;
@@ -54,7 +55,7 @@ test('pagila film, actor, category, language and film_text models can be persist
     ]);
 
     expect($film->id)->not->toBeNull();
-    expect($film->getProductDomainName())->toBe('pagila');
+    expect($film->getProductDomain())->toBe(SamplesProduct::Pagila);
     expect($film->language->name)->toBe('English');
     expect($film->originalLanguage->name)->toBe('Italian');
     expect($film->actors->first()->last_name)->toBe('GUINESS');

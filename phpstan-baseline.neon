@@ -13,8 +13,62 @@ parameters:
 			path: app/Console/Commands/SourceFetch.php
 
 		-
+			message: '#^Method App\\Enums\\SamplesProduct\:\:getColor\(\) never returns array\<string\> so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Enums/SamplesProduct.php
+
+		-
+			message: '#^Method App\\Enums\\SamplesProduct\:\:getColor\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Enums/SamplesProduct.php
+
+		-
+			message: '#^Method App\\Enums\\SamplesProduct\:\:getIcon\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Enums/SamplesProduct.php
+
+		-
+			message: '#^Method App\\Enums\\SamplesProduct\:\:getIcon\(\) never returns string so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Enums/SamplesProduct.php
+
+		-
+			message: '#^Method App\\Enums\\SamplesProduct\:\:getLabel\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: app/Enums/SamplesProduct.php
+
+		-
+			message: '#^Method App\\Filament\\Admin\\Pages\\Portfolio\:\:getViewData\(\) should return array\{products\: array\<int, array\{key\: string, name\: string, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\<int, array\{label\: string, value\: string\}\>\}\>\} but returns array\{products\: array\{array\{key\: ''chinook'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''12''\}, array\{label\: ''Artists'', value\: ''275\+''\}, array\{label\: ''Tracks'', value\: ''3,500\+''\}\}\}, array\{key\: ''northwind'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''13''\}, array\{label\: ''Products'', value\: ''75\+''\}, array\{label\: ''Orders'', value\: ''830\+''\}\}\}, array\{key\: ''pagila'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''16''\}, array\{label\: ''Films'', value\: ''1,000''\}, array\{label\: ''Actors'', value\: ''200\+''\}\}\}\}\}\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Filament/Admin/Pages/Portfolio.php
+
+		-
+			message: '#^Out of 4 possible constant types, only 2 \- 50\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
+			identifier: typeCoverage.constantTypeCoverage
+			count: 1
+			path: app/Filament/Admin/Pages/Portfolio.php
+
+		-
+			message: '#^Method App\\Filament\\Admin\\Widgets\\ProductPortfolioCard\:\:getProducts\(\) should return array\<string, array\{key\: string, name\: string, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\<int, array\{label\: string, value\: string\}\>\}\> but returns array\{chinook\: array\{key\: ''chinook'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''12''\}, array\{label\: ''Artists'', value\: ''275\+''\}, array\{label\: ''Tracks'', value\: ''3,500\+''\}\}\}, northwind\: array\{key\: ''northwind'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''13''\}, array\{label\: ''Products'', value\: ''75\+''\}, array\{label\: ''Orders'', value\: ''830\+''\}\}\}, pagila\: array\{key\: ''pagila'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''16''\}, array\{label\: ''Films'', value\: ''1,000''\}, array\{label\: ''Actors'', value\: ''200\+''\}\}\}\}\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
+
+		-
 			message: '#^Method App\\Filament\\Admin\\Widgets\\ProductPortfolioCard\:\:getViewData\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
+			count: 1
+			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
+
+		-
+			message: '#^Out of 4 possible constant types, only 2 \- 50\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
+			identifier: typeCoverage.constantTypeCoverage
 			count: 1
 			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
 
@@ -260,6 +314,18 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: app/Models/Team.php
+
+		-
+			message: '#^Cannot access property \$value on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Observers/Tier1SourceObserver.php
+
+		-
+			message: '#^Parameter \#1 \$product of job class App\\Jobs\\EmbeddingJob constructor expects string in App\\Jobs\\EmbeddingJob\:\:dispatch\(\), mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Observers/Tier1SourceObserver.php
 
 		-
 			message: '#^Parameter \#2 \$entityId of job class App\\Jobs\\EmbeddingJob constructor expects string in App\\Jobs\\EmbeddingJob\:\:dispatch\(\), mixed given\.$#'
@@ -577,7 +643,7 @@ parameters:
 			path: routes/channels.php
 
 		-
-			message: '#^Out of 404 possible param types, only 399 \- 98\.7 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 421 possible param types, only 416 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 2
 			path: routes/channels.php
@@ -1363,7 +1429,7 @@ parameters:
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
 
 		-
-			message: '#^Out of 404 possible param types, only 399 \- 98\.7 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 421 possible param types, only 416 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 3
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
@@ -1451,3 +1517,9 @@ parameters:
 			identifier: method.notFound
 			count: 1
 			path: tests/TypeCoverage.php
+
+		-
+			message: '#^Calling toBeInstanceOf\(\) on Expectation\<App\\Enums\\SamplesProduct\:\:Chinook\>; assertion is redundant\.$#'
+			identifier: pest.expectation.redundant
+			count: 1
+			path: tests/Unit/SamplesProductTest.php

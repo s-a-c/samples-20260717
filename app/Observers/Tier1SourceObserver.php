@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Observers;
 
+use App\Enums\SamplesProduct;
 use App\Jobs\EmbeddingJob;
 use Illuminate\Database\Eloquent\Model;
 
-class Tier1SourceObserver
+final class Tier1SourceObserver
 {
     /**
      * Handle the Model "saved" event.
@@ -16,13 +19,12 @@ class Tier1SourceObserver
             return;
         }
 
-        /** @var string $product */
-        $product = method_exists($model, 'getProductDomainName')
-            ? $model->getProductDomainName()
-            : 'chinook';
+        $product = method_exists($model, 'getProductDomain')
+            ? $model->getProductDomain()
+            : SamplesProduct::Chinook;
 
         if (class_exists(EmbeddingJob::class)) {
-            EmbeddingJob::dispatch($product, $model->getKey() ?? '');
+            EmbeddingJob::dispatch($product->value, $model->getKey() ?? '');
         }
     }
 }

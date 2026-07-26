@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Chinook;
 
 use App\Contracts\HasProductDomain;
+use App\Enums\SamplesProduct;
 use App\Traits\BelongsToProductDomain;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -18,9 +19,9 @@ final class Playlist extends Model implements HasProductDomain
 
     protected $guarded = [];
 
-    public function getProductDomainName(): string
+    public function getProductDomain(): SamplesProduct
     {
-        return 'chinook';
+        return SamplesProduct::Chinook;
     }
 
     public function tracks(): BelongsToMany

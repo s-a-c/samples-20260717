@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use App\Enums\SamplesProduct;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -11,7 +12,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -26,10 +26,10 @@ final class PagilaPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('pagila')
-            ->path('pagila')
+            ->id(SamplesProduct::Pagila->panelId())
+            ->path(SamplesProduct::Pagila->panelPath())
             ->colors([
-                'primary' => Color::Rose,
+                'primary' => SamplesProduct::Pagila->filamentColor(),
             ])
             ->viteTheme('resources/css/filament/pagila/theme.css')
             ->discoverResources(in: app_path('Filament/Pagila/Resources'), for: 'App\Filament\Pagila\Resources')

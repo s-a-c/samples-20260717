@@ -1,6 +1,6 @@
 # Samples Application Context
 
-This application presents Chinook, Northwind, and Pagila as distinct sample products. Shared application capabilities connect them without treating their unrelated business concepts as one domain.
+This application presents Chinook, Northwind, and Pagila as distinct sample products, with additional products added over time. Shared application capabilities connect them without treating their unrelated business concepts as one domain.
 
 <details>
   <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
@@ -16,7 +16,7 @@ This application presents Chinook, Northwind, and Pagila as distinct sample prod
 ## 1. 🗣 Language
 
 **Sample Product**:
-One independently recognisable reference dataset and its user experience: Chinook, Northwind, or Pagila.
+One independently recognisable reference dataset and its user experience — currently Chinook, Northwind, or Pagila, with the set governed by the `SamplesProduct` enum and extended over time.
 _Avoid_: tenant, customer account
 
 **Product Domain**:
@@ -187,7 +187,6 @@ _Avoid_: global attachment, opaque field
 A recomputable classification of a Blob Asset's content, kept distinct from whatever type label its upstream source supplied.
 _Avoid_: trusted source MIME type, permanent inference
 
-
 **SQLite Extension Manifest**:
 A reviewed record that identifies an approved native SQLite extension release, its supported platform assets, and their digests.
 _Avoid_: latest binary, unpinned plugin
@@ -200,7 +199,6 @@ _Avoid_: arbitrary dylib, live download
 The host operating system and CPU architectures eligible to use approved native SQLite extensions. Its initial members are macOS arm64 and Linux x86_64.
 _Avoid_: runs anywhere, best-effort architecture
 
-
 **Extension Connection Gate**:
 The mandatory admission check for an eligible SQLite connection. A connection passes only when its approved native extension is available and its declared capability is demonstrably present.
 _Avoid_: lazy loader, best-effort fallback
@@ -208,7 +206,6 @@ _Avoid_: lazy loader, best-effort fallback
 **Vector Capability Probe**:
 The stable, non-mutating proof that an SQLite connection has the vector capability required by the active Embedding Profile.
 _Avoid_: file-exists check, assumed compatibility
-
 
 **Native Extension Fault**:
 A detected breach of the Extension Connection Gate that makes the required vector capability unavailable. It makes the application database unavailable until corrected.
@@ -218,7 +215,6 @@ _Avoid_: degraded search, warning-only fault
 The database-independent inspection that identifies a Native Extension Fault without relying on an application database connection.
 _Avoid_: public debug page, request-time troubleshooting
 
-
 **Extension Fault Response**:
 The intentionally minimal HTTP response to a Native Extension Fault. It communicates unavailability and a Diagnostic Correlation without disclosing host or binary details.
 _Avoid_: debug payload, transparent loader error
@@ -226,7 +222,6 @@ _Avoid_: debug payload, transparent loader error
 **Diagnostic Correlation**:
 The stable identifier that links an Extension Fault Response to its private diagnostic record.
 _Avoid_: stack trace, public environment detail
-
 
 **Extension Health Report**:
 The read-only private account of whether an Extension Connection Gate can admit an eligible SQLite connection and, if not, why.
@@ -236,21 +231,17 @@ _Avoid_: channel-specific diagnosis, repair log
 The Artisan command that renders an Extension Health Report for operators and automation without mutating the cache or application database.
 _Avoid_: repair command, debug endpoint
 
-
 **Extension Sync Command**:
 The explicit Artisan command that brings the local SQLite Extension Cache into conformity with the SQLite Extension Manifest for the current Extension Support Matrix entry.
 _Avoid_: Composer hook, request-time installer
-
 
 **Extension Cache Root**:
 The application-private storage location at `storage/app/sqlite-extensions/` that holds disposable, verified SQLite Extension Cache assets.
 _Avoid_: vendor directory, host-global cache
 
-
 **Native Extension Verification Matrix**:
 The layered evidence required to accept a supported platform's native SQLite extension capability across manifest trust, Laravel connections, Herd CLI/HTTP, Pest, and CI.
 _Avoid_: mock-only proof, manual-only check
-
 
 **Acceptance Gate**:
 A non-negotiable condition that must be satisfied before an implementation is ready to accept. Every Acceptance Gate has named evidence.
@@ -260,41 +251,33 @@ _Avoid_: advisory checklist, best-effort test
 The repeatable result that demonstrates one Acceptance Gate has passed in its required environment.
 _Avoid_: assumed coverage, informal confidence
 
-
 **Acceptance Stage**:
 One risk-ordered delivery increment whose required Acceptance Gates must pass before the next increment begins.
 _Avoid_: big-bang phase, informal milestone
-
 
 **Baseline Evidence Fixture**:
 The reviewed, manifest-backed expectation for one Source Baseline's artifact, transformed schema, identities, counts, and declared normalization outcomes.
 _Avoid_: full database copy, sampled confidence check
 
-
 **Reset Isolation Proof**:
 The repeatable evidence that a Product Reset succeeds or fails without altering other Product Domains, the Core Application, or Team Artefacts.
 _Avoid_: happy-path reset, transaction-only claim
-
 
 **Authorization Acceptance Matrix**:
 The reviewed role, action, and panel proof that exercises every authorization boundary through both its policy and user-facing action. It never treats Team Artefact scope as a filter on shared sample data.
 _Avoid_: policy-only coverage, assumed panel denial
 
-
 **Golden Search Corpus**:
 The reviewed, versioned set of product-labelled search queries and expected ownership, relevance, filter, and route outcomes. It uses exact assertions for deterministic lexical retrieval and top-k relevance assertions for semantic or hybrid retrieval.
 _Avoid_: unrepeatable demos, exact semantic ordering
-
 
 **Two-Environment Operational Gate**:
 The acceptance requirement that every change pass the reproducible Linux CI verification path and that each release candidate also retain evidence from the supported Herd macOS arm64 CLI and HTTP verification path.
 _Avoid_: CI-only proof, informal local check
 
-
 **Implementation-Readiness Dossier**:
 The version-controlled operational record that maps each approved decision to its acceptance gates, automated checks, operator commands, evidence location, and recovery procedure. Generated evidence remains in CI or release artifacts rather than the repository.
 _Avoid_: scattered runbooks, issue-only operations manual
-
 
 **Global Role Administration**:
 The Admin Panel capability to create and assign runtime-managed roles that group Global Capabilities, using the convention `super_admin` plus one `{product}_curator` role per Sample Product. The convention is documented, not code-locked. It does not manage Team Ownership, team membership, or universal Product Entitlement.

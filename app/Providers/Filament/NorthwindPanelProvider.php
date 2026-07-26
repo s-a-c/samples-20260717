@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use App\Enums\SamplesProduct;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -11,7 +12,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -26,10 +26,10 @@ final class NorthwindPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('northwind')
-            ->path('northwind')
+            ->id(SamplesProduct::Northwind->panelId())
+            ->path(SamplesProduct::Northwind->panelPath())
             ->colors([
-                'primary' => Color::Sky,
+                'primary' => SamplesProduct::Northwind->filamentColor(),
             ])
             ->viteTheme('resources/css/filament/northwind/theme.css')
             ->discoverResources(in: app_path('Filament/Northwind/Resources'), for: 'App\Filament\Northwind\Resources')

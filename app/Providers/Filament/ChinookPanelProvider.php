@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use App\Enums\SamplesProduct;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -11,7 +12,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -26,10 +26,10 @@ final class ChinookPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('chinook')
-            ->path('chinook')
+            ->id(SamplesProduct::Chinook->panelId())
+            ->path(SamplesProduct::Chinook->panelPath())
             ->colors([
-                'primary' => Color::Violet,
+                'primary' => SamplesProduct::Chinook->filamentColor(),
             ])
             ->viteTheme('resources/css/filament/chinook/theme.css')
             ->discoverResources(in: app_path('Filament/Chinook/Resources'), for: 'App\Filament\Chinook\Resources')

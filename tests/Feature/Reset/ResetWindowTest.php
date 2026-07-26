@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Contracts\HasProductDomain;
+use App\Enums\SamplesProduct;
 use App\Exceptions\ProductResetWindowOpen;
 use App\Models\ResetRun;
 use App\Services\ProductReset\RecoveryService;
@@ -26,10 +27,10 @@ test('reset window blocks writes when reset run is active', function () {
     ]);
 
     $window = new ResetWindow;
-    expect($window->isOpen('chinook'))->toBeTrue();
+    expect($window->isOpen(SamplesProduct::Chinook))->toBeTrue();
 
     $this->expectException(ProductResetWindowOpen::class);
-    $window->assertWritable('chinook');
+    $window->assertWritable(SamplesProduct::Chinook);
 });
 
 test('reset window is open for pending running and recovering statuses', function (string $status) {
@@ -41,7 +42,7 @@ test('reset window is open for pending running and recovering statuses', functio
     ]);
 
     $window = new ResetWindow;
-    expect($window->isOpen('chinook'))->toBeTrue();
+    expect($window->isOpen(SamplesProduct::Chinook))->toBeTrue();
 })->with(['pending', 'running', 'recovering']);
 
 test('reset window is closed when reset run is succeeded or failed', function (string $status) {
@@ -53,9 +54,9 @@ test('reset window is closed when reset run is succeeded or failed', function (s
     ]);
 
     $window = new ResetWindow;
-    expect($window->isOpen('chinook'))->toBeFalse();
+    expect($window->isOpen(SamplesProduct::Chinook))->toBeFalse();
 
-    $window->assertWritable('chinook');
+    $window->assertWritable(SamplesProduct::Chinook);
 })->with(['succeeded', 'failed']);
 
 test('reset evidence vo can be created with schema version 1 and serialized unserialized', function () {
@@ -115,9 +116,9 @@ test('belongs to product domain trait prevents model mutation when reset window 
 
         protected $guarded = [];
 
-        public function getProductDomainName(): string
+        public function getProductDomain(): SamplesProduct
         {
-            return 'northwind';
+            return SamplesProduct::Northwind;
         }
     };
 
