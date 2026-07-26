@@ -1,0 +1,274 @@
+#:schema https://mago.carthage.software/1.45.0/schema.json
+# Welcome to Mago!
+# For full documentation, see https://mago.carthage.software/1.45.0/en/tools/overview/
+version = "1"
+php-version = "8.5.0"
+
+[source]
+workspace = "."
+paths = ["app/", "database/factories/", "database/seeders/", "tests/"]
+includes = ["vendor"]
+excludes = []
+
+[source.glob]
+literal-separator = true
+
+[formatter]
+preset = "pint"
+preserve-breaking-member-access-chain = true
+preserve-breaking-member-access-chain-first-method-on-same-line = true
+preserve-breaking-argument-list = true
+preserve-breaking-array-like = true
+preserve-breaking-parameter-list = true
+preserve-breaking-attribute-list = true
+preserve-breaking-conditional-expression = true
+preserve-breaking-condition-expression = true
+preserve-redundant-logical-binary-expression-parentheses = true
+
+[linter]
+integrations = ["laravel", "pest"]
+
+[linter.rules]
+ambiguous-function-call = { enabled = false }
+literal-named-argument = { enabled = false }
+halstead = { effort-threshold = 7000 }
+
+[analyzer]
+baseline = ".mago/baseline.json"
+plugins = []
+find-unused-definitions = true
+find-unused-expressions = true
+analyze-dead-code = true
+memoize-properties = true
+check-throws = true
+unchecked-exceptions = ["Error", "LogicException"]
+unchecked-exception-classes = []
+check-missing-override = true
+find-unused-parameters = true
+strict-list-index-checks = true
+strict-array-index-existence = true
+allow-array-truthy-operand = false
+no-boolean-literal-comparison = false
+check-missing-type-hints = true
+check-closure-missing-type-hints = true
+check-arrow-function-missing-type-hints = true
+check-property-initialization = true
+enforce-class-finality = true
+find-overly-wide-return-types = true
+register-super-globals = true
+
+# ─── Guard ────────────────────────────────────────────────────────────────────
+
+[guard]
+mode = "default"
+
+[guard.perimeter]
+layering = [
+    "App\\Contracts",
+    "App\\Enums",
+    "App\\Traits",
+    "App\\Models",
+    "App\\Data",
+    "App\\Rules",
+    "App\\Exceptions",
+    "App\\Services",
+    "App\\Actions",
+    "App\\Observers",
+    "App\\Policies",
+    "App\\Jobs",
+    "App\\Notifications",
+    "App\\Concerns",
+    "App\\Console",
+    "App\\Livewire",
+    "App\\Http",
+    "App\\Filament",
+    "App\\Providers",
+]
+
+[guard.perimeter.layers]
+native = ["@native"]
+laravel = ["Illuminate\\**", "Laravel\\**"]
+carbon = ["Carbon\\**"]
+livewire = ["Livewire\\**"]
+filament = ["Filament\\**", "BezhanSalleh\\**"]
+spatie = ["Spatie\\**"]
+symfony = ["Symfony\\**"]
+pest = ["Pest\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "@global"
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:carbon", "@layer:livewire", "@layer:filament", "@layer:spatie", "@layer:symfony", "@layer:pest", "App\\**", "Database\\**", "Tests\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Contracts\\"
+permit = ["@self", "@layer:native", "@layer:laravel"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Enums\\"
+permit = ["@self", "@layer:native", "@layer:laravel"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Traits\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Contracts\\**", "App\\Services\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Models\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:filament", "@layer:spatie", "App\\Contracts\\**", "App\\Traits\\**", "App\\Enums\\**", "App\\Concerns\\**", "Database\\Factories\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Data\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Models\\**", "App\\Enums\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Rules\\"
+permit = ["@self", "@layer:native", "@layer:laravel"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Exceptions\\"
+permit = ["@self", "@layer:native", "@layer:laravel"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Services\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Contracts\\**", "App\\Traits\\**", "App\\Models\\**", "App\\Enums\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Actions\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:filament", "@layer:spatie", "App\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Observers\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Models\\**", "App\\Services\\**", "App\\Jobs\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Policies\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Models\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Jobs\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Models\\**", "App\\Services\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Notifications\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Models\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Concerns\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Models\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Console\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:spatie", "App\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Livewire\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:livewire", "@layer:filament", "@layer:spatie", "App\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Http\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:filament", "@layer:spatie", "@layer:symfony", "App\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Filament\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:filament", "@layer:spatie", "App\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Providers\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:carbon", "@layer:filament", "@layer:spatie", "App\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "Database\\Factories\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Models\\**", "App\\Enums\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "Database\\Seeders\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:spatie", "App\\**"]
+
+[[guard.perimeter.rules]]
+namespace = "Tests\\"
+permit = ["@all"]
+
+# ─── Import isolation: importers must not cross-reference sibling products ─────
+
+[[guard.perimeter.restrictions]]
+dependency = "App\\Models\\Northwind\\**"
+deny-from = ["App\\Services\\ProductImport\\ChinookImporter", "App\\Services\\ProductImport\\PagilaImporter"]
+
+[[guard.perimeter.restrictions]]
+dependency = "App\\Models\\Pagila\\**"
+deny-from = ["App\\Services\\ProductImport\\ChinookImporter", "App\\Services\\ProductImport\\NorthwindImporter"]
+
+[[guard.perimeter.restrictions]]
+dependency = "App\\Models\\Chinook\\**"
+deny-from = ["App\\Services\\ProductImport\\NorthwindImporter", "App\\Services\\ProductImport\\PagilaImporter"]
+
+[[guard.perimeter.restrictions]]
+dependency = "App\\Filament\\Northwind\\**"
+deny-from = ["App\\Services\\ProductImport\\ChinookImporter", "App\\Services\\ProductImport\\PagilaImporter"]
+
+[[guard.perimeter.restrictions]]
+dependency = "App\\Filament\\Pagila\\**"
+deny-from = ["App\\Services\\ProductImport\\ChinookImporter", "App\\Services\\ProductImport\\NorthwindImporter"]
+
+[[guard.perimeter.restrictions]]
+dependency = "App\\Filament\\Chinook\\**"
+deny-from = ["App\\Services\\ProductImport\\NorthwindImporter", "App\\Services\\ProductImport\\PagilaImporter"]
+
+# ─── No dd/dump in application code ──────────────────────────────────────────
+
+[[guard.perimeter.restrictions]]
+dependency = "dd"
+deny-from = ["App\\**"]
+
+[[guard.perimeter.restrictions]]
+dependency = "dump"
+deny-from = ["App\\**"]
+
+[[guard.perimeter.restrictions]]
+dependency = "var_dump"
+deny-from = ["App\\**"]
+
+[[guard.perimeter.restrictions]]
+dependency = "print_r"
+deny-from = ["App\\**"]
+
+[[guard.perimeter.restrictions]]
+dependency = "env"
+deny-from = ["App\\**"]
+
+# ─── Structural rules ────────────────────────────────────────────────────────
+
+[[guard.structural.rules]]
+on = "App\\Models\\Chinook\\**"
+target = "class"
+must-be-final = true
+must-use-trait = "App\\Traits\\BelongsToProductDomain"
+must-use-attribute = "Illuminate\\Database\\Eloquent\\Attributes\\Table"
+reason = "Chinook domain models must be final, use BelongsToProductDomain trait, and carry #[Table] attribute."
+
+[[guard.structural.rules]]
+on = "App\\Models\\Northwind\\**"
+target = "class"
+must-be-final = true
+must-use-trait = "App\\Traits\\BelongsToProductDomain"
+must-use-attribute = "Illuminate\\Database\\Eloquent\\Attributes\\Table"
+reason = "Northwind domain models must be final, use BelongsToProductDomain trait, and carry #[Table] attribute."
+
+[[guard.structural.rules]]
+on = "App\\Models\\Pagila\\**"
+target = "class"
+must-be-final = true
+must-use-trait = "App\\Traits\\BelongsToProductDomain"
+must-use-attribute = "Illuminate\\Database\\Eloquent\\Attributes\\Table"
+reason = "Pagila domain models must be final, use BelongsToProductDomain trait, and carry #[Table] attribute."
+
+[[guard.structural.rules]]
+on = "App\\Services\\**"
+target = "class"
+must-be-final = true
+reason = "Services must be final."
+
+[[guard.structural.rules]]
+on = "App\\Providers\\Filament\\**"
+target = "class"
+must-be-final = true
+reason = "Filament panel providers must be final."

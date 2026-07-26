@@ -22,7 +22,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-/graphify-out
 
 # Beads / Dolt files (added by bd init)
 .dolt/
@@ -40,3 +39,5 @@ yarn-error.log
 .env.sage
 .envrc.local
 .env.siyuan
+
+.mago/
