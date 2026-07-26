@@ -2,3 +2,16 @@ minimumReleaseAgeExclude:
   - concurrently@10.0.4
 overrides:
   shell-quote: 1.9.0
+  vite: "catalog:"
+  vitest: "catalog:"
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@latest
+  vitest: 4.1.9
+  vite-plus: latest
+peerDependencyRules:
+  allowAny:
+    - vite
+    - vitest
+  allowedVersions:
+    vite: "*"
+    vitest: "*"

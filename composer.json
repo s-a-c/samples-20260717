@@ -1,76 +1,19 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true,
-            "pestphp/pest-plugin": true,
-            "php-http/discovery": true,
-            "phpstan/extension-installer": true
-        },
-        "optimize-autoloader": true,
-        "platform": {
-            "php": "8.5"
-        },
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
+    "name": "laravel/livewire-starter-kit",
     "description": "The official Laravel starter kit for Livewire.",
-    "extra": {
-        "laravel": {
-            "dont-discover": [],
-            "installer": {
-                "post-create-project": []
-            }
-        }
-    },
+    "license": "MIT",
+    "type": "project",
     "keywords": [
         "laravel",
         "framework"
     ],
-    "license": "MIT",
-    "minimum-stability": "stable",
-    "name": "laravel/livewire-starter-kit",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "name": "flux-pro",
-            "type": "composer",
-            "url": "https://composer.fluxui.dev"
-        },
-        {
-            "name": "filacheck",
-            "type": "composer",
-            "url": "https://satis.filamentexamples.com"
-        },
-        {
-            "name": "laravel-comments",
-            "type": "composer",
-            "url": "https://satis.spatie.be"
-        },
-        {
-            "name": "filament-blueprint",
-            "type": "composer",
-            "url": "https://packages.filamentphp.com/composer"
-        }
-    ],
     "require": {
+        "php": "^8.5",
         "asmit/resized-column": "^3.0.2",
         "awcodes/filament-badgeable-column": "^4.2",
-        "awcodes/filament-curator": "^5.1.2",
+        "awcodes/filament-curator": "^5.1.4",
         "bezhansalleh/filament-panel-switch": "^3.1",
-        "bezhansalleh/filament-shield": "^4.3",
+        "bezhansalleh/filament-shield": "^4.3.1",
         "filament/spatie-laravel-tags-plugin": "^5.7.3",
         "lara-zeus/activity-timeline": "^5.0.3",
         "laravel-chronicle/core": "^1.13",
@@ -89,7 +32,6 @@
         "livewire/flux-pro": "^2.15",
         "livewire/livewire": "^4.3.3",
         "nunomaduro/essentials": "^1.2",
-        "php": "^8.5",
         "relaticle/flowforge": "^4.0.14",
         "shuvroroy/filament-spatie-laravel-backup": "^3.4",
         "shuvroroy/filament-spatie-laravel-health": "^3.3.1",
@@ -145,9 +87,91 @@
         "spatie/laravel-web-tinker": "^1.10.6",
         "spatie/pest-plugin-snapshots": "^2.3.1"
     },
+    "repositories": [
+        {
+            "name": "flux-pro",
+            "type": "composer",
+            "url": "https://composer.fluxui.dev"
+        },
+        {
+            "name": "filacheck",
+            "type": "composer",
+            "url": "https://satis.filamentexamples.com"
+        },
+        {
+            "name": "laravel-comments",
+            "type": "composer",
+            "url": "https://satis.spatie.be"
+        },
+        {
+            "name": "filament-blueprint",
+            "type": "composer",
+            "url": "https://packages.filamentphp.com/composer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true
+        },
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.5"
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [],
+            "installer": {
+                "post-create-project": []
+            }
+        }
+    },
     "scripts": {
-        "analyze": "vendor/bin/mago analyze",
-        "analyze:fix": "vendor/bin/mago analyze --fix",
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan boost:update --ansi"
+        ],
+        "pre-package-uninstall": [
+            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "analyze": [
+            "@lint:check",
+            "@types:check",
+            "@filacheck",
+            "@mago:analyze",
+            "@types-check"
+        ],
         "ci:check": [
             "Composer\\Config::disableProcessTimeout",
             "@test"
@@ -156,33 +180,19 @@
             "Composer\\Config::disableProcessTimeout",
             "@php artisan dev"
         ],
+        "filacheck": "vendor/bin/filacheck --detailed --dry-run",
+        "filacheck:fix": "vendor/bin/filacheck --detailed --fix --backup",
         "lint": [
             "pint --parallel",
-            "phpstan analyse --memory-limit=512M",
+            "vendor/bin/phpstan analyse --memory-limit=512M",
             "@test:mago"
         ],
         "lint:check": [
-            "pint --parallel --test"
+            "vendor/bin/pint --parallel --test"
         ],
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-            "@php artisan boost:update --ansi"
-        ],
-        "pre-package-uninstall": [
-            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
-        ],
+        "mago:analyze": "vendor/bin/mago analyze",
+        "mago:analyze:fix": "vendor/bin/mago analyze --fix",
+        "mago:guard": "vendor/bin/mago guard",
         "rector": "vendor/bin/rector process --dry-run",
         "rector:fix": "vendor/bin/rector process",
         "setup": [
@@ -200,22 +210,18 @@
             "@types:check",
             "@php artisan test"
         ],
-        "test:all": [
-            "@test:mago",
-            "@test:arch",
-            "@test"
+        "test:arch": [
+            "@mago:guard",
+            "php artisan test --testsuite=Architecture"
         ],
-        "test:arch": "php artisan test --testsuite=Architecture",
-        "test:coverage": "php artisan test --coverage",
+        "test:coverage": "php artisan test --coverage --min=80 --coverage-html=storage/coverage",
         "test:feature": "php artisan test --testsuite=Feature",
         "test:livewire": "php artisan test --filter=Livewire",
-        "test:mago": "vendor/bin/mago guard",
-        "test:mago:guard": "vendor/bin/mago guard && php artisan test --testsuite=Architecture",
         "test:pg": "php artisan test tests/Feature/Postgres",
-        "test:type-cov": "vendor/bin/pest --type-coverage --min=100 --compact",
+        "test:type-cov": "vendor/bin/pest --type-coverage --min=100 --compact --coverage-html=storage/coverage",
         "test:unit": "php artisan test --testsuite=Unit",
         "types:check": [
-            "phpstan analyse --memory-limit=2G"
+            "vendor/bin/phpstan analyse --memory-limit=2G"
         ],
         "update:requirements": [
             "composer update -oW",
@@ -228,5 +234,5 @@
             "pnpm update"
         ]
     },
-    "type": "project"
+    "$schema": "https://getcomposer.org/schema.json"
 }

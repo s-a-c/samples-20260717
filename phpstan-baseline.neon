@@ -29,26 +29,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/AlbumResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/ArtistResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -65,26 +47,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/CustomerResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/EmployeeResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -101,26 +65,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/GenreResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/InvoiceResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -137,26 +83,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/PlaylistResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/TrackResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -173,26 +101,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/CategoryResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/CustomerResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -209,26 +119,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/EmployeeResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/OrderResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -245,26 +137,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/ProductResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/ShipperResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -281,26 +155,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/SupplierResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/ActorResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -317,26 +173,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/CategoryResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/CustomerResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -353,26 +191,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/FilmResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/InventoryResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -389,26 +209,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/LanguageResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/PaymentResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1
@@ -425,15 +227,6 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/RentalResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
 			'''
@@ -443,26 +236,8 @@ parameters:
 
 		-
 			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/StaffResource.php
-
-		-
-			message: '''
 				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
 				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/StoreResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method bulkActions\(\) of class Filament\\Tables\\Table\:
-				Use `toolbarActions\(\)` instead\.$#
 			'''
 			identifier: method.deprecated
 			count: 1

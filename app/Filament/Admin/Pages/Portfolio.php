@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Admin\Pages;
 
 use BackedEnum;
 use Filament\Pages\Page;
+use Filament\Support\Icons\Heroicon;
 
-class Portfolio extends Page
+final class Portfolio extends Page
 {
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-squares-2x2';
 
@@ -13,7 +16,7 @@ class Portfolio extends Page
 
     protected static ?string $slug = 'portfolio';
 
-    /** @return array{products: array<int, array{key: string, name: string, description: string, url: string, icon: string, stats: array<int, array{label: string, value: string}>}>} */
+    /** @return array{products: array<int, array{key: string, name: string, description: string, url: string, icon: Heroicon, stats: array<int, array{label: string, value: string}>}>} */
     protected function getViewData(): array
     {
         return [
@@ -26,7 +29,7 @@ class Portfolio extends Page
     }
 
     /**
-     * @return array{key: string, name: string, description: string, url: string, icon: string, stats: array<int, array{label: string, value: string}>}
+     * @return array{key: string, name: string, description: string, url: string, icon: Heroicon, stats: array<int, array{label: string, value: string}>}
      */
     private function chinookProduct(): array
     {
@@ -35,7 +38,7 @@ class Portfolio extends Page
             'name' => 'Chinook',
             'description' => 'Digital media store sample dataset featuring artists, albums, tracks, and customers — showcasing a music sales platform.',
             'url' => '/chinook',
-            'icon' => 'heroicon-o-musical-note',
+            'icon' => Heroicon::OutlinedMusicalNote,
             'stats' => [
                 ['label' => 'Tables', 'value' => '12'],
                 ['label' => 'Artists', 'value' => '275+'],
@@ -45,7 +48,7 @@ class Portfolio extends Page
     }
 
     /**
-     * @return array{key: string, name: string, description: string, url: string, icon: string, stats: array<int, array{label: string, value: string}>}
+     * @return array{key: string, name: string, description: string, url: string, icon: Heroicon, stats: array<int, array{label: string, value: string}>}
      */
     private function northwindProduct(): array
     {
@@ -54,7 +57,7 @@ class Portfolio extends Page
             'name' => 'Northwind',
             'description' => 'Classic order-management sample dataset with products, suppliers, customers, and orders — demonstrating a trading enterprise.',
             'url' => '/northwind',
-            'icon' => 'heroicon-o-truck',
+            'icon' => Heroicon::OutlinedTruck,
             'stats' => [
                 ['label' => 'Tables', 'value' => '13'],
                 ['label' => 'Products', 'value' => '75+'],
@@ -64,7 +67,7 @@ class Portfolio extends Page
     }
 
     /**
-     * @return array{key: string, name: string, description: string, url: string, icon: string, stats: array<int, array{label: string, value: string}>}
+     * @return array{key: string, name: string, description: string, url: string, icon: Heroicon, stats: array<int, array{label: string, value: string}>}
      */
     private function pagilaProduct(): array
     {
@@ -73,7 +76,7 @@ class Portfolio extends Page
             'name' => 'Pagila',
             'description' => 'DVD rental store sample dataset featuring films, actors, customers, and rentals — illustrating a rental business domain.',
             'url' => '/pagila',
-            'icon' => 'heroicon-o-film',
+            'icon' => Heroicon::OutlinedFilm,
             'stats' => [
                 ['label' => 'Tables', 'value' => '16'],
                 ['label' => 'Films', 'value' => '1,000'],

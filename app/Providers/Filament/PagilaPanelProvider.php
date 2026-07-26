@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers\Filament;
 
 use Filament\Http\Middleware\Authenticate;
@@ -27,8 +29,9 @@ final class PagilaPanelProvider extends PanelProvider
             ->id('pagila')
             ->path('pagila')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Rose,
             ])
+            ->viteTheme('resources/css/filament/pagila/theme.css')
             ->discoverResources(in: app_path('Filament/Pagila/Resources'), for: 'App\Filament\Pagila\Resources')
             ->discoverPages(in: app_path('Filament/Pagila/Pages'), for: 'App\Filament\Pagila\Pages')
             ->pages([

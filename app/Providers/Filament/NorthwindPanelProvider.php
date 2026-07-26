@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers\Filament;
 
 use Filament\Http\Middleware\Authenticate;
@@ -27,8 +29,9 @@ final class NorthwindPanelProvider extends PanelProvider
             ->id('northwind')
             ->path('northwind')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Sky,
             ])
+            ->viteTheme('resources/css/filament/northwind/theme.css')
             ->discoverResources(in: app_path('Filament/Northwind/Resources'), for: 'App\Filament\Northwind\Resources')
             ->discoverPages(in: app_path('Filament/Northwind/Pages'), for: 'App\Filament\Northwind\Pages')
             ->pages([

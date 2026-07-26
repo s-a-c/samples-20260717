@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import '../../vendor/livewire/flux/dist/flux.css';
+@import "tailwindcss";
+@import "../../vendor/livewire/flux/dist/flux.css";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -9,7 +9,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
     --color-zinc-50: #fafafa;
     --color-zinc-100: #f5f5f5;
@@ -37,7 +39,6 @@
 }
 
 @layer base {
-
     *,
     ::after,
     ::before,
@@ -52,7 +53,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -64,3 +65,71 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+/*
+|--------------------------------------------------------------------------
+| Filament panel primary color palettes
+|--------------------------------------------------------------------------
+| Each Filament panel renders with a distinct primary color. The values
+| below are the canonical source of truth; the matching `Color::X` enum is
+| set via `->colors()` in each panel provider so Filament generates the
+| `--color-primary-*` runtime variables.
+|
+|   admin    -> Amber   (global / default hub)
+|   chinook  -> Violet  (music)
+|   northwind -> Sky    (commerce)
+|   pagila   -> Rose    (film)
+|
+| Custom Blade views may reference these directly, e.g.
+|   style="color: var(--chinook-500)"
+*/
+
+:root {
+    --admin-50: #fffbeb;
+    --admin-100: #fef3c7;
+    --admin-200: #fde68a;
+    --admin-300: #fcd34d;
+    --admin-400: #fbbf24;
+    --admin-500: #f59e0b;
+    --admin-600: #d97706;
+    --admin-700: #b45309;
+    --admin-800: #92400e;
+    --admin-900: #78350f;
+    --admin-950: #451a03;
+
+    --chinook-50: #f5f3ff;
+    --chinook-100: #ede9fe;
+    --chinook-200: #ddd6fe;
+    --chinook-300: #c4b5fd;
+    --chinook-400: #a78bfa;
+    --chinook-500: #8b5cf6;
+    --chinook-600: #7c3aed;
+    --chinook-700: #6d28d9;
+    --chinook-800: #5b21b6;
+    --chinook-900: #4c1d95;
+    --chinook-950: #2e1065;
+
+    --northwind-50: #f0f9ff;
+    --northwind-100: #e0f2fe;
+    --northwind-200: #bae6fd;
+    --northwind-300: #7dd3fc;
+    --northwind-400: #38bdf8;
+    --northwind-500: #0ea5e9;
+    --northwind-600: #0284c7;
+    --northwind-700: #0369a1;
+    --northwind-800: #075985;
+    --northwind-900: #0c4a6e;
+    --northwind-950: #082f49;
+
+    --pagila-50: #fff1f2;
+    --pagila-100: #ffe4e6;
+    --pagila-200: #fecdd3;
+    --pagila-300: #fda4af;
+    --pagila-400: #fb7185;
+    --pagila-500: #f43f5e;
+    --pagila-600: #e11d48;
+    --pagila-700: #be123c;
+    --pagila-800: #9f1239;
+    --pagila-900: #881337;
+    --pagila-950: #4c0519;
+}

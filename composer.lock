@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "947e545ce5848f0629f9ebc50e19536b",
+    "content-hash": "6ab8b258864998da1425b48b303e17a6",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -203,16 +203,16 @@
         },
         {
             "name": "awcodes/filament-curator",
-            "version": "v5.1.2",
+            "version": "v5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/awcodes/filament-curator.git",
-                "reference": "2a79bf031099d2d75351377eae15322fb590ab43"
+                "reference": "ad467c36cf454211674031d6a3840d7c38ba0293"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/awcodes/filament-curator/zipball/2a79bf031099d2d75351377eae15322fb590ab43",
-                "reference": "2a79bf031099d2d75351377eae15322fb590ab43",
+                "url": "https://api.github.com/repos/awcodes/filament-curator/zipball/ad467c36cf454211674031d6a3840d7c38ba0293",
+                "reference": "ad467c36cf454211674031d6a3840d7c38ba0293",
                 "shasum": ""
             },
             "require": {
@@ -283,7 +283,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-06T15:41:53+00:00"
+            "time": "2026-07-25T16:21:34+00:00"
         },
         {
             "name": "aws/aws-crt-php",
@@ -569,16 +569,16 @@
         },
         {
             "name": "bezhansalleh/filament-plugin-essentials",
-            "version": "1.2.1",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bezhanSalleh/filament-plugin-essentials.git",
-                "reference": "de3a8a07edcf1bc9fe829480ae09aa00265e7f03"
+                "reference": "3ccec939e6e3fb51ce08cacf73c3cc3d3f59640c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bezhanSalleh/filament-plugin-essentials/zipball/de3a8a07edcf1bc9fe829480ae09aa00265e7f03",
-                "reference": "de3a8a07edcf1bc9fe829480ae09aa00265e7f03",
+                "url": "https://api.github.com/repos/bezhanSalleh/filament-plugin-essentials/zipball/3ccec939e6e3fb51ce08cacf73c3cc3d3f59640c",
+                "reference": "3ccec939e6e3fb51ce08cacf73c3cc3d3f59640c",
                 "shasum": ""
             },
             "require": {
@@ -635,7 +635,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bezhanSalleh/filament-plugin-essentials/issues",
-                "source": "https://github.com/bezhanSalleh/filament-plugin-essentials/tree/1.2.1"
+                "source": "https://github.com/bezhanSalleh/filament-plugin-essentials/tree/1.3.0"
             },
             "funding": [
                 {
@@ -643,20 +643,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-22T08:15:32+00:00"
+            "time": "2026-07-25T02:30:23+00:00"
         },
         {
             "name": "bezhansalleh/filament-shield",
-            "version": "4.3.0",
+            "version": "4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bezhanSalleh/filament-shield.git",
-                "reference": "4d6af4465a58e4ae9fb7346a482161c24ae0d4fa"
+                "reference": "1ff51f53985275f5bd37e9277cf810d391e7c3ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bezhanSalleh/filament-shield/zipball/4d6af4465a58e4ae9fb7346a482161c24ae0d4fa",
-                "reference": "4d6af4465a58e4ae9fb7346a482161c24ae0d4fa",
+                "url": "https://api.github.com/repos/bezhanSalleh/filament-shield/zipball/1ff51f53985275f5bd37e9277cf810d391e7c3ca",
+                "reference": "1ff51f53985275f5bd37e9277cf810d391e7c3ca",
                 "shasum": ""
             },
             "require": {
@@ -730,7 +730,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bezhanSalleh/filament-shield/issues",
-                "source": "https://github.com/bezhanSalleh/filament-shield/tree/4.3.0"
+                "source": "https://github.com/bezhanSalleh/filament-shield/tree/4.3.1"
             },
             "funding": [
                 {
@@ -738,7 +738,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-23T03:07:56+00:00"
+            "time": "2026-07-25T03:31:26+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -19369,12 +19369,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "cfd18923fba8aa5324d151b69ea4196710f2932a"
+                "reference": "e7d396822cefa7207fd352f61f68660811e108a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/cfd18923fba8aa5324d151b69ea4196710f2932a",
-                "reference": "cfd18923fba8aa5324d151b69ea4196710f2932a",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/e7d396822cefa7207fd352f61f68660811e108a4",
+                "reference": "e7d396822cefa7207fd352f61f68660811e108a4",
                 "shasum": ""
             },
             "conflict": {
@@ -20004,7 +20004,7 @@
                 "personnummer/personnummer": "<3.0.2",
                 "ph7software/ph7builder": "<=17.9.1",
                 "phanan/koel": "<=9.7",
-                "pheditor/pheditor": "<2.0.6",
+                "pheditor/pheditor": "<2.0.8",
                 "phenx/php-svg-lib": "<0.5.2",
                 "php-censor/php-censor": "<2.0.13|>=2.1,<2.1.5",
                 "php-mod/curl": "<2.3.2",
@@ -20047,7 +20047,7 @@
                 "pocketmine/pocketmine-mp": "<5.42.1",
                 "pocketmine/raklib": ">=0.14,<0.14.6|>=0.15,<0.15.1",
                 "pontedilana/php-weasyprint": "<=2.5.1",
-                "poweradmin/poweradmin": "<4.2.4|>=4.3,<4.3.3",
+                "poweradmin/poweradmin": "<4.2.5|>=4.3,<4.3.4",
                 "pressbooks/pressbooks": "<5.18",
                 "prestashop/autoupgrade": ">=4,<4.10.1",
                 "prestashop/blockreassurance": "<=5.1.3",
@@ -20483,7 +20483,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-23T15:56:28+00:00"
+            "time": "2026-07-24T23:00:42+00:00"
         },
         {
             "name": "sebastian/cli-parser",

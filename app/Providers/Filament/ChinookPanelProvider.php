@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers\Filament;
 
 use Filament\Http\Middleware\Authenticate;
@@ -27,8 +29,9 @@ final class ChinookPanelProvider extends PanelProvider
             ->id('chinook')
             ->path('chinook')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Violet,
             ])
+            ->viteTheme('resources/css/filament/chinook/theme.css')
             ->discoverResources(in: app_path('Filament/Chinook/Resources'), for: 'App\Filament\Chinook\Resources')
             ->discoverPages(in: app_path('Filament/Chinook/Pages'), for: 'App\Filament\Chinook\Pages')
             ->pages([
