@@ -49,7 +49,7 @@ parameters:
 			path: app/Filament/Admin/Pages/Portfolio.php
 
 		-
-			message: '#^Out of 4 possible constant types, only 2 \- 50\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
+			message: '#^Out of 5 possible constant types, only 3 \- 60\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
 			identifier: typeCoverage.constantTypeCoverage
 			count: 1
 			path: app/Filament/Admin/Pages/Portfolio.php
@@ -67,7 +67,7 @@ parameters:
 			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
 
 		-
-			message: '#^Out of 4 possible constant types, only 2 \- 50\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
+			message: '#^Out of 5 possible constant types, only 3 \- 60\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
 			identifier: typeCoverage.constantTypeCoverage
 			count: 1
 			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
@@ -637,7 +637,7 @@ parameters:
 			path: routes/channels.php
 
 		-
-			message: '#^Out of 423 possible param types, only 418 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 428 possible param types, only 423 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 2
 			path: routes/channels.php
@@ -791,6 +791,18 @@ parameters:
 			identifier: method.nonObject
 			count: 2
 			path: tests/Feature/Auth/TwoFactorChallengeTest.php
+
+		-
+			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 7
+			path: tests/Feature/Console/DossierGenerateTest.php
+
+		-
+			message: '#^Cannot call method expectsOutputToContain\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: tests/Feature/Console/DossierGenerateTest.php
 
 		-
 			message: '#^Cannot access property \$current_team_id on App\\Models\\User\|null\.$#'
@@ -1423,7 +1435,7 @@ parameters:
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
 
 		-
-			message: '#^Out of 423 possible param types, only 418 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 428 possible param types, only 423 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 3
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
