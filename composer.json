@@ -49,6 +49,7 @@
         "fakerphp/faker": "^1.24.1",
         "filament/blueprint": "^2.2.0",
         "fruitcake/laravel-debugbar": "^4.4.0",
+        "infection/infection": "^0.34",
         "jasonmccreary/laravel-test-assertions": "^2.9",
         "joshcirre/instruckt-laravel": "^0.4.29",
         "larastan/larastan": "^3.10",
@@ -128,7 +129,8 @@
             "ergebnis/composer-normalize": true,
             "pestphp/pest-plugin": true,
             "php-http/discovery": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "infection/extension-installer": true
         },
         "optimize-autoloader": true,
         "platform": {
@@ -217,6 +219,7 @@
         "test:coverage": "php artisan test --coverage --min=80 --coverage-html=storage/coverage",
         "test:feature": "php artisan test --testsuite=Feature",
         "test:livewire": "php artisan test --filter=Livewire",
+        "test:mutation": "PATH=\"$(pwd)/vendor/bin:$PATH\" vendor/bin/infection --threads=max",
         "test:pg": "php artisan test tests/Feature/Postgres",
         "test:type-cov": "vendor/bin/pest --type-coverage --min=100 --compact --coverage-html=storage/coverage",
         "test:unit": "php artisan test --testsuite=Unit",

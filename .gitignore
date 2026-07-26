@@ -6,6 +6,8 @@
 /public/storage
 /storage/*.key
 /storage/pail
+/storage/coverage
+/storage/mutation
 /vendor
 .env
 .env.backup

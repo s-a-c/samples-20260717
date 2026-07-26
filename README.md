@@ -261,6 +261,7 @@ run the bundled sets; the individual tools are available for targeted use.
 | Mago (architecture/layers)          | `composer mago:analyze` &nbsp;·&nbsp; `vendor/bin/mago analyze`                     | `composer mago:analyze:fix` &nbsp;·&nbsp; `composer test:arch` runs the guard |
 | Rector (refactors)                  | `composer rector` (dry-run) &nbsp;·&nbsp; `vendor/bin/rector process --dry-run`     | `composer rector:fix`                                                         |
 | FilaCheck (Filament best practices) | `composer filacheck` (dry-run)                                                      | `composer filacheck:fix` (writes a `--backup`)                                |
+| Infection (mutation testing)        | `composer test:mutation` &nbsp;·&nbsp; `vendor/bin/infection --threads=max`         | (mutators apply on the next run)                                              |
 
 Bundled chains:
 
@@ -268,8 +269,11 @@ Bundled chains:
 - `composer analyze` — lint:check → filacheck → mago:analyze → types:check
 - `composer ci:check` — `@test` (the full verification pipeline used by CI)
 
-> **Infection (mutation testing)** is not yet configured for this project;
-> setup is tracked separately. Once added, its command will appear here.
+Infection is configured via `infection.json.dist` (source `app/`, default mutators,
+min MSI 50 / min covered MSI 60, PHPUnit adapter that runs the Pest suite). It requires
+a fully-green baseline suite; until the remaining pre-existing failures are resolved it
+will report _"Project tests must be in a passing state before running Infection."_ Scope a
+run to changed code by passing a path: `composer test:mutation -- app/Enums/SamplesProduct.php`.
 
 ## 9. Development Setup
 

@@ -1,0 +1,22 @@
+{
+    "$schema": "https://raw.githubusercontent.com/infection/infection/0.34.0/resources/schema.json",
+    "source": {
+        "directories": [
+            "app"
+        ],
+        "excludes": [
+            "Providers",
+            "Exceptions"
+        ]
+    },
+    "logs": {
+        "text": "storage/mutation/infection.log",
+        "html": "storage/mutation/infection.html",
+        "summary": "storage/mutation/infection-summary.log"
+    },
+    "testFramework": "phpunit",
+    "bootstrap": "vendor/autoload.php",
+    "timeout": 10,
+    "minMsi": 50,
+    "minCoveredMsi": 60
+}
