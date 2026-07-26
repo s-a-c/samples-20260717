@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources;
 
-use App\Domain\Chinook\Models\Customer;
 use App\Filament\Chinook\Resources\CustomerResource\Pages;
+use App\Models\Chinook\Customer;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
@@ -11,11 +14,11 @@ use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class CustomerResource extends Resource
+final class CustomerResource extends Resource
 {
     protected static ?string $model = Customer::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Schema $schema): Schema
     {

@@ -1,9 +1,13 @@
 <?php
 
-use App\Domain\Chinook\Models\Artist;
+declare(strict_types=1);
+
 use App\Jobs\EmbeddingJob;
+use App\Models\Chinook\Artist;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+
+covers(EmbeddingJob::class);
 
 uses(RefreshDatabase::class);
 

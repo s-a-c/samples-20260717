@@ -1,23 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pagila\Resources;
 
-use App\Domain\Pagila\Models\Language;
 use App\Filament\Pagila\Resources\LanguageResource\Pages;
+use App\Models\Pagila\Language;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use UnitEnum;
 
-class LanguageResource extends Resource
+final class LanguageResource extends Resource
 {
     protected static ?string $model = Language::class;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Pagila';
+    protected static string|UnitEnum|null $navigationGroup = 'Pagila';
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-language';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-language';
 
     public static function form(Schema $schema): Schema
     {

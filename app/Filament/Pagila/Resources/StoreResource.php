@@ -1,23 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pagila\Resources;
 
-use App\Domain\Pagila\Models\Store;
 use App\Filament\Pagila\Resources\StoreResource\Pages;
+use App\Models\Pagila\Store;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use UnitEnum;
 
-class StoreResource extends Resource
+final class StoreResource extends Resource
 {
     protected static ?string $model = Store::class;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Pagila';
+    protected static string|UnitEnum|null $navigationGroup = 'Pagila';
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-building-storefront';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-storefront';
 
     public static function form(Schema $schema): Schema
     {

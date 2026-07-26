@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources;
 
-use App\Domain\Chinook\Models\Playlist;
 use App\Filament\Chinook\Resources\PlaylistResource\Pages;
+use App\Models\Chinook\Playlist;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
@@ -11,11 +14,11 @@ use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class PlaylistResource extends Resource
+final class PlaylistResource extends Resource
 {
     protected static ?string $model = Playlist::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-queue-list';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-queue-list';
 
     public static function form(Schema $schema): Schema
     {

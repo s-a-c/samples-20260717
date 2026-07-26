@@ -1,23 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pagila\Resources;
 
-use App\Domain\Pagila\Models\Payment;
 use App\Filament\Pagila\Resources\PaymentResource\Pages;
+use App\Models\Pagila\Payment;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use UnitEnum;
 
-class PaymentResource extends Resource
+final class PaymentResource extends Resource
 {
     protected static ?string $model = Payment::class;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Pagila';
+    protected static string|UnitEnum|null $navigationGroup = 'Pagila';
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-credit-card';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-credit-card';
 
     public static function form(Schema $schema): Schema
     {

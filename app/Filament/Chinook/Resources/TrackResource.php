@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources;
 
-use App\Domain\Chinook\Models\Track;
 use App\Filament\Chinook\Resources\TrackResource\Pages;
+use App\Models\Chinook\Track;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
@@ -11,11 +14,11 @@ use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class TrackResource extends Resource
+final class TrackResource extends Resource
 {
     protected static ?string $model = Track::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-musical-note';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-musical-note';
 
     public static function form(Schema $schema): Schema
     {

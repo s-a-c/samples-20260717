@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Models\Pagila;
+
+use App\Contracts\HasProductDomain;
+use App\Traits\BelongsToProductDomain;
+use Illuminate\Database\Eloquent\Attributes\Table;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+#[Table('pagila.languages')]
+final class Language extends Model implements HasProductDomain
+{
+    use BelongsToProductDomain, HasUuids;
+
+    protected $guarded = [];
+
+    public function getProductDomainName(): string
+    {
+        return 'pagila';
+    }
+
+    public function films(): HasMany
+    {
+        return $this->hasMany(Film::class, 'language_id');
+    }
+}

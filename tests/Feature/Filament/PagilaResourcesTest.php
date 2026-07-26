@@ -1,17 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Filament;
 
-use App\Domain\Pagila\Models\Actor;
-use App\Domain\Pagila\Models\Category;
-use App\Domain\Pagila\Models\Customer;
-use App\Domain\Pagila\Models\Film;
-use App\Domain\Pagila\Models\Inventory;
-use App\Domain\Pagila\Models\Language;
-use App\Domain\Pagila\Models\Payment;
-use App\Domain\Pagila\Models\Rental;
-use App\Domain\Pagila\Models\Staff;
-use App\Domain\Pagila\Models\Store;
 use App\Filament\Pagila\Resources\ActorResource\Pages\ListActors;
 use App\Filament\Pagila\Resources\CategoryResource\Pages\ListCategories;
 use App\Filament\Pagila\Resources\CustomerResource\Pages\ListCustomers;
@@ -22,13 +14,25 @@ use App\Filament\Pagila\Resources\PaymentResource\Pages\ListPayments;
 use App\Filament\Pagila\Resources\RentalResource\Pages\ListRentals;
 use App\Filament\Pagila\Resources\StaffResource\Pages\ListStaff;
 use App\Filament\Pagila\Resources\StoreResource\Pages\ListStores;
+use App\Models\Pagila\Actor;
+use App\Models\Pagila\Category;
+use App\Models\Pagila\Customer;
+use App\Models\Pagila\Film;
+use App\Models\Pagila\Inventory;
+use App\Models\Pagila\Language;
+use App\Models\Pagila\Payment;
+use App\Models\Pagila\Rental;
+use App\Models\Pagila\Staff;
+use App\Models\Pagila\Store;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
-class PagilaResourcesTest extends TestCase
+#[CoversClass(\App\Filament\Pagila\Resources\ActorResource::class)]
+final class PagilaResourcesTest extends TestCase
 {
     use RefreshDatabase;
 
