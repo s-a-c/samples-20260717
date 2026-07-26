@@ -187,62 +187,6 @@ _Avoid_: global attachment, opaque field
 A recomputable classification of a Blob Asset's content, kept distinct from whatever type label its upstream source supplied.
 _Avoid_: trusted source MIME type, permanent inference
 
-**SQLite Extension Manifest**:
-A reviewed record that identifies an approved native SQLite extension release, its supported platform assets, and their digests.
-_Avoid_: latest binary, unpinned plugin
-
-**SQLite Extension Cache**:
-A locally verified copy of an approved SQLite Extension Manifest asset, available for trusted connection bootstrap without a request-time download.
-_Avoid_: arbitrary dylib, live download
-
-**Extension Support Matrix**:
-The host operating system and CPU architectures eligible to use approved native SQLite extensions. Its initial members are macOS arm64 and Linux x86_64.
-_Avoid_: runs anywhere, best-effort architecture
-
-**Extension Connection Gate**:
-The mandatory admission check for an eligible SQLite connection. A connection passes only when its approved native extension is available and its declared capability is demonstrably present.
-_Avoid_: lazy loader, best-effort fallback
-
-**Vector Capability Probe**:
-The stable, non-mutating proof that an SQLite connection has the vector capability required by the active Embedding Profile.
-_Avoid_: file-exists check, assumed compatibility
-
-**Native Extension Fault**:
-A detected breach of the Extension Connection Gate that makes the required vector capability unavailable. It makes the application database unavailable until corrected.
-_Avoid_: degraded search, warning-only fault
-
-**Offline Extension Diagnostics**:
-The database-independent inspection that identifies a Native Extension Fault without relying on an application database connection.
-_Avoid_: public debug page, request-time troubleshooting
-
-**Extension Fault Response**:
-The intentionally minimal HTTP response to a Native Extension Fault. It communicates unavailability and a Diagnostic Correlation without disclosing host or binary details.
-_Avoid_: debug payload, transparent loader error
-
-**Diagnostic Correlation**:
-The stable identifier that links an Extension Fault Response to its private diagnostic record.
-_Avoid_: stack trace, public environment detail
-
-**Extension Health Report**:
-The read-only private account of whether an Extension Connection Gate can admit an eligible SQLite connection and, if not, why.
-_Avoid_: channel-specific diagnosis, repair log
-
-**Extension Diagnostics Command**:
-The Artisan command that renders an Extension Health Report for operators and automation without mutating the cache or application database.
-_Avoid_: repair command, debug endpoint
-
-**Extension Sync Command**:
-The explicit Artisan command that brings the local SQLite Extension Cache into conformity with the SQLite Extension Manifest for the current Extension Support Matrix entry.
-_Avoid_: Composer hook, request-time installer
-
-**Extension Cache Root**:
-The application-private storage location at `storage/app/sqlite-extensions/` that holds disposable, verified SQLite Extension Cache assets.
-_Avoid_: vendor directory, host-global cache
-
-**Native Extension Verification Matrix**:
-The layered evidence required to accept a supported platform's native SQLite extension capability across manifest trust, Laravel connections, Herd CLI/HTTP, Pest, and CI.
-_Avoid_: mock-only proof, manual-only check
-
 **Acceptance Gate**:
 A non-negotiable condition that must be satisfied before an implementation is ready to accept. Every Acceptance Gate has named evidence.
 _Avoid_: advisory checklist, best-effort test

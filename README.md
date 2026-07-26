@@ -10,23 +10,23 @@ Laravel 13 reference application combining Chinook, Northwind, and Pagila sample
 - [2. Overview](#2-overview)
 - [3. Product Structure](#3-product-structure)
 - [4. Authentication](#4-authentication)
-  - [4.1. Panel Configuration](#41-panel-configuration)
+    - [4.1. Panel Configuration](#41-panel-configuration)
 - [5. Authorization](#5-authorization)
-  - [5.1. Role-Based Access Control](#51-role-based-access-control)
-  - [5.2. Policy Namespace Rules](#52-policy-namespace-rules)
+    - [5.1. Role-Based Access Control](#51-role-based-access-control)
+    - [5.2. Policy Namespace Rules](#52-policy-namespace-rules)
 - [6. Operator Provisioning](#6-operator-provisioning)
-  - [6.1. Environment Variables](#61-environment-variables)
-  - [6.2. Command Usage](#62-command-usage)
-  - [6.3. Idempotency](#63-idempotency)
+    - [6.1. Environment Variables](#61-environment-variables)
+    - [6.2. Command Usage](#62-command-usage)
+    - [6.3. Idempotency](#63-idempotency)
 - [7. Testing](#7-testing)
-  - [7.1. Test Structure](#71-test-structure)
-  - [7.2. Running Tests](#72-running-tests)
-  - [7.3. Test Environment](#73-test-environment)
+    - [7.1. Test Structure](#71-test-structure)
+    - [7.2. Running Tests](#72-running-tests)
+    - [7.3. Test Environment](#73-test-environment)
 - [8. Verification Scripts](#8-verification-scripts)
-  - [8.1. PHPStan with Herd Xdebug](#81-phpstan-with-herd-xdebug)
-  - [8.2. PHPStan parallelism](#82-phpstan-parallelism)
-  - [8.3. Herd extension warning](#83-herd-extension-warning)
-  - [8.4. Environment boundary](#84-environment-boundary)
+    - [8.1. PHPStan with Herd Xdebug](#81-phpstan-with-herd-xdebug)
+    - [8.2. PHPStan parallelism](#82-phpstan-parallelism)
+    - [8.3. Herd extension warning](#83-herd-extension-warning)
+    - [8.4. Environment boundary](#84-environment-boundary)
 - [9. Development Setup](#9-development-setup)
 - [10. Contributing](#10-contributing)
 
@@ -121,6 +121,7 @@ php artisan operator:create
 ```
 
 This command:
+
 1. Creates or updates the system operator account
 2. Assigns the `super_admin` role
 3. Creates a personal team
@@ -129,6 +130,7 @@ This command:
 ### 6.3. Idempotency
 
 The command is idempotent - running it multiple times will:
+
 - Update the operator's name if changed
 - Preserve existing credentials
 - Log each invocation as an audit event
@@ -223,33 +225,83 @@ is cosmetic and does not change PHPStan's result.
 These workarounds apply only to the local macOS Herd runner. Linux CI does not
 use Herd's Xdebug configuration or duplicate `herd-ext` loading.
 
+### 8.5. Test scripts
+
+Dedicated composer scripts run targeted slices of the Pest suite. Prefer these
+over raw `php artisan test` for consistent environment setup.
+
+| Script                   | Runs                                                                           |
+| ------------------------ | ------------------------------------------------------------------------------ |
+| `composer test`          | Full pipeline: config clear, lint check, type check, then the whole Pest suite |
+| `composer test:unit`     | `tests/Unit` suite only                                                        |
+| `composer test:feature`  | `tests/Feature` suite only                                                     |
+| `composer test:arch`     | Architecture guard (mago guard) + the Architecture test suite                  |
+| `composer test:coverage` | Full suite with `--coverage --min=80`, HTML report in `storage/coverage/`      |
+| `composer test:type-cov` | Pest `--type-coverage --min=100` (param/return/property type coverage)         |
+| `composer test:pg`       | Postgres-specific feature tests under `tests/Feature/Postgres`                 |
+| `composer test:livewire` | Livewire component tests (filter match)                                        |
+
+For ad-hoc runs, invoke Pest directly:
+
+```bash
+php artisan test --compact                          # whole suite, compact output
+php artisan test --compact --filter=SamplesProduct  # single test or pattern
+php artisan test tests/Feature/Filament/PanelAuthenticationTest.php
+```
+
+### 8.6. Quality tools
+
+The project chains several analysers. `composer lint` and `composer analyze`
+run the bundled sets; the individual tools are available for targeted use.
+
+| Tool                                | Check (no mutation)                                                                 | Fix / apply                                                                   |
+| ----------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Laravel Pint (style)                | `composer lint:check` &nbsp;·&nbsp; `vendor/bin/pint --test`                        | `vendor/bin/pint` &nbsp;·&nbsp; `vendor/bin/pint --dirty`                     |
+| PHPStan (static analysis)           | `composer types:check` &nbsp;·&nbsp; `vendor/bin/phpstan analyse --memory-limit=2G` | (none — fix the code)                                                         |
+| Mago (architecture/layers)          | `composer mago:analyze` &nbsp;·&nbsp; `vendor/bin/mago analyze`                     | `composer mago:analyze:fix` &nbsp;·&nbsp; `composer test:arch` runs the guard |
+| Rector (refactors)                  | `composer rector` (dry-run) &nbsp;·&nbsp; `vendor/bin/rector process --dry-run`     | `composer rector:fix`                                                         |
+| FilaCheck (Filament best practices) | `composer filacheck` (dry-run)                                                      | `composer filacheck:fix` (writes a `--backup`)                                |
+
+Bundled chains:
+
+- `composer lint` — Pint (format) → PHPStan → mago guard
+- `composer analyze` — lint:check → filacheck → mago:analyze → types:check
+- `composer ci:check` — `@test` (the full verification pipeline used by CI)
+
+> **Infection (mutation testing)** is not yet configured for this project;
+> setup is tracked separately. Once added, its command will appear here.
+
 ## 9. Development Setup
 
 1. Install dependencies:
-   ```bash
-   composer install
-   ```
+
+    ```bash
+    composer install
+    ```
 
 2. Configure environment:
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
+
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
 3. Run migrations and seeders:
-   ```bash
-   php artisan migrate --seed
-   ```
+
+    ```bash
+    php artisan migrate --seed
+    ```
 
 4. Create system operator:
-   ```bash
-   php artisan operator:create
-   ```
+
+    ```bash
+    php artisan operator:create
+    ```
 
 5. Start development server:
-   ```bash
-   php artisan serve
-   ```
+    ```bash
+    php artisan serve
+    ```
 
 ## 10. Contributing
 
