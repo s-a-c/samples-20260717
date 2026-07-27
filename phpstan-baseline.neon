@@ -631,7 +631,7 @@ parameters:
 			path: routes/channels.php
 
 		-
-			message: '#^Out of 428 possible param types, only 423 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 432 possible param types, only 427 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 2
 			path: routes/channels.php
@@ -1429,7 +1429,7 @@ parameters:
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
 
 		-
-			message: '#^Out of 428 possible param types, only 423 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
+			message: '#^Out of 432 possible param types, only 427 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 3
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
