@@ -7,35 +7,10 @@ namespace App\Filament\Admin\Widgets;
 use App\Enums\SamplesProduct;
 use Filament\Support\Icons\Heroicon;
 use Filament\Widgets\Widget;
+use Illuminate\Support\Facades\DB;
 
 final class ProductPortfolioCard extends Widget
 {
-    /**
-     * Volatile presentation figures per Sample Product, keyed by panel id.
-     *
-     * Product identity lives on {@see SamplesProduct}; only these counts are
-     * kept here as presentation data.
-     *
-     * @var array<string, array<int, array{label: string, value: string}>>
-     */
-    private const STATS = [
-        'chinook' => [
-            ['label' => 'Tables', 'value' => '12'],
-            ['label' => 'Artists', 'value' => '275+'],
-            ['label' => 'Tracks', 'value' => '3,500+'],
-        ],
-        'northwind' => [
-            ['label' => 'Tables', 'value' => '13'],
-            ['label' => 'Products', 'value' => '75+'],
-            ['label' => 'Orders', 'value' => '830+'],
-        ],
-        'pagila' => [
-            ['label' => 'Tables', 'value' => '16'],
-            ['label' => 'Films', 'value' => '1,000'],
-            ['label' => 'Actors', 'value' => '200+'],
-        ],
-    ];
-
     /** @var string|null Sample Product panel id to display (chinook, northwind, pagila). */
     public ?string $productKey = null;
 
@@ -48,16 +23,17 @@ final class ProductPortfolioCard extends Widget
      */
     public static function getProducts(): array
     {
+        $stats = self::snapshotStats();
         $products = [];
 
         foreach (SamplesProduct::cases() as $product) {
             $products[$product->value] = [
                 'key' => $product->value,
-                'name' => $product->getLabel(),
+                'name' => $product->getLabel() ?? $product->value,
                 'description' => $product->description(),
                 'url' => $product->url(),
                 'icon' => $product->icon(),
-                'stats' => self::STATS[$product->value],
+                'stats' => $stats[$product->value] ?? [],
             ];
         }
 
@@ -74,5 +50,39 @@ final class ProductPortfolioCard extends Widget
                 ? $products[$this->productKey]
                 : null,
         ];
+    }
+
+    /**
+     * Live per-product stats read from the product_portfolio_snapshots view.
+     *
+     * Each stat is validated to its {label, value} shape so callers get a
+     * typed array even though the view's JSONB column decodes to mixed.
+     *
+     * @return array<string, array<int, array{label: string, value: string}>>
+     */
+    private static function snapshotStats(): array
+    {
+        /** @var array<string, array<int, array{label: string, value: string}>> $byProduct */
+        $byProduct = [];
+
+        foreach (DB::table('product_portfolio_snapshots')->get() as $row) {
+            $raw = $row->stats;
+            $decoded = is_string($raw) ? json_decode($raw, true) : (array) $raw;
+
+            $stats = [];
+
+            if (is_array($decoded)) {
+                foreach ($decoded as $item) {
+                    if (is_array($item) && isset($item['label'], $item['value'])
+                        && is_string($item['label']) && is_string($item['value'])) {
+                        $stats[] = ['label' => $item['label'], 'value' => $item['value']];
+                    }
+                }
+            }
+
+            $byProduct[(string) $row->product] = $stats;
+        }
+
+        return $byProduct;
     }
 }
