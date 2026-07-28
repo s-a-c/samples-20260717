@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Services\ProductImport\ProductImportPipeline;
 use App\Services\ProductReset\ResetConfirmationService;
 use Illuminate\Console\Command;
 
-class ProductImportCommand extends Command
+final class ProductImportCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -27,7 +29,7 @@ class ProductImportCommand extends Command
      */
     public function handle(ProductImportPipeline $pipeline, ResetConfirmationService $confirmationService): int
     {
-        $product = strtolower($this->argument('product'));
+        $product = mb_strtolower($this->argument('product'));
         $dryRun = $this->option('dry-run');
         /** @var string|null $confirmToken */
         $confirmToken = $this->option('confirm-token');

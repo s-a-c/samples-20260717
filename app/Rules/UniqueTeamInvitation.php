@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Rules;
 
 use App\Models\Team;
@@ -9,9 +11,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Translation\PotentiallyTranslatedString;
 
-class UniqueTeamInvitation implements ValidationRule
+final class UniqueTeamInvitation implements ValidationRule
 {
-    public function __construct(protected Team $team)
+    public function __construct(private Team $team)
     {
         //
     }
@@ -23,7 +25,7 @@ class UniqueTeamInvitation implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $email = strtolower(is_string($value) ? $value : '');
+        $email = mb_strtolower(is_string($value) ? $value : '');
 
         $isMember = $this->team->members()
             ->whereRaw('LOWER(email) = ?', [$email])

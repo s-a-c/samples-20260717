@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\ProductImport;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use RuntimeException;
+use Throwable;
 
 final class PostgresSourceReader
 {
@@ -33,7 +36,7 @@ final class PostgresSourceReader
         $statements = preg_split('/;\s*[\r\n]+/', $content);
 
         foreach ($statements as $stmt) {
-            $stmt = trim($stmt);
+            $stmt = mb_trim($stmt);
             if ($stmt === '' || str_starts_with($stmt, '--')) {
                 continue;
             }
@@ -49,7 +52,7 @@ final class PostgresSourceReader
             if (! $skip) {
                 try {
                     DB::statement($stmt);
-                } catch (\Throwable $e) {
+                } catch (Throwable $e) {
                     // Log but continue - some statements may fail due to dependencies
                     report($e);
                 }

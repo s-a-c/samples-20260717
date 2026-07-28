@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pagila\Resources\RentalResource\Pages;
 
 use App\Filament\Pagila\Resources\RentalResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListRentals extends ListRecords
+final class ListRentals extends ListRecords
 {
     protected static string $resource = RentalResource::class;
 

@@ -74,4 +74,16 @@ parameters:
             # aspirational metric: same rationale as typeCoverage.paramTypeCoverage for
             # constant types. Wayfinder #15 G1.
 
+        -
+            message: '#^Method App\\Livewire\\Actions\\Logout::__invoke\(\) never returns Livewire\\Features\\SupportRedirects\\Redirector so it can be removed from the return type\.$#'
+            identifier: return.unusedType
+            path: app/Livewire/Actions/Logout.php
+            # framework-idiom (verified false positive): within a Livewire request
+            # Livewire dynamically rebinds the `redirect()` helper to return its own
+            # Redirector, so the union `Redirector|RedirectResponse` return type is
+            # correct at runtime. phpstan cannot see the dynamic binding; following its
+            # advice (drop Redirector) breaks the delete-account redirect flow
+            # (tests/Feature/Settings/ProfileUpdateTest). Re-evaluate on Livewire major
+            # version bump. Wayfinder #15 G2.
+
 

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\ResetRun;
 use App\Services\ProductReset\RecoveryService;
 use Illuminate\Console\Command;
 
-class ProductRecover extends Command
+final class ProductRecover extends Command
 {
     /**
      * The name and signature of the console command.

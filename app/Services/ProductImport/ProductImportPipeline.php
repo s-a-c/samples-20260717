@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\ProductImport;
 
 use App\Models\ResetRun;
@@ -8,9 +10,9 @@ use Illuminate\Support\Str;
 final class ProductImportPipeline
 {
     public function __construct(
-        protected ChinookImporter $chinookImporter,
-        protected NorthwindImporter $northwindImporter,
-        protected PagilaImporter $pagilaImporter,
+        private ChinookImporter $chinookImporter,
+        private NorthwindImporter $northwindImporter,
+        private PagilaImporter $pagilaImporter,
     ) {}
 
     /**
@@ -20,7 +22,7 @@ final class ProductImportPipeline
      */
     public function run(string $product, bool $dryRun = false): array
     {
-        $product = strtolower($product);
+        $product = mb_strtolower($product);
 
         if (! in_array($product, ['chinook', 'northwind', 'pagila'], true)) {
             return ['success' => false, 'error' => "Unknown product: {$product}"];

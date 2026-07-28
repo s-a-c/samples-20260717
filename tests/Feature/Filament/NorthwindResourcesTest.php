@@ -23,7 +23,7 @@ use Spatie\Permission\Models\Role;
 covers(App\Filament\Northwind\Resources\CategoryResource::class);
 
 beforeEach(function () {
-    /** @var \App\Models\User $curator */
+    /** @var User $curator */
     $this->curator = User::factory()->create();
     $this->curator->assignRole(Role::findOrCreate('northwind_curator', 'web'));
 });

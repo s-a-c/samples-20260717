@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources\EmployeeResource\Pages;
 
 use App\Filament\Chinook\Resources\EmployeeResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListEmployees extends ListRecords
+final class ListEmployees extends ListRecords
 {
     protected static string $resource = EmployeeResource::class;
 

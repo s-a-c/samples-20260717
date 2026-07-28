@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\User;
@@ -8,7 +10,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Spatie\Permission\Models\Role;
 
-class ProductConfirm extends Command
+final class ProductConfirm extends Command
 {
     /**
      * The name and signature of the console command.
@@ -29,7 +31,7 @@ class ProductConfirm extends Command
      */
     public function handle(ResetConfirmationService $confirmationService): int
     {
-        $product = strtolower($this->argument('product'));
+        $product = mb_strtolower($this->argument('product'));
 
         Role::findOrCreate('super_admin', 'web');
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -17,7 +19,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  */
 #[Fillable(['id', 'entity', 'source_key', 'domain_id'])]
-class SourceIdentity extends Model
+final class SourceIdentity extends Model
 {
     use HasUuids;
 

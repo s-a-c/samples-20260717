@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources\GenreResource\Pages;
 
 use App\Filament\Chinook\Resources\GenreResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditGenre extends EditRecord
+final class EditGenre extends EditRecord
 {
     protected static string $resource = GenreResource::class;
 

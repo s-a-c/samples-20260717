@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Throwable;
 
-class ProductResetWindowOpen extends Exception
+final class ProductResetWindowOpen extends Exception
 {
     public function __construct(
         string $message = 'Product reset window is currently open.',
         int $code = 423,
-        ?\Throwable $previous = null
+        ?Throwable $previous = null
     ) {
         parent::__construct($message, $code, $previous);
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\ProductReset;
 
 use JsonSerializable;
@@ -42,6 +44,19 @@ final class ResetEvidence implements JsonSerializable
     public static function create(array $sections = []): self
     {
         return new self($sections);
+    }
+
+    /**
+     * Create VO from array structure.
+     *
+     * @param  array<string, mixed>  $data
+     */
+    public static function fromArray(array $data): self
+    {
+        $version = $data['schema_version'] ?? self::SCHEMA_VERSION;
+        $sections = $data['sections'] ?? [];
+
+        return new self($sections, $version);
     }
 
     public function getSchemaVersion(): int
@@ -92,19 +107,6 @@ final class ResetEvidence implements JsonSerializable
             'schema_version' => $this->schemaVersion,
             'sections' => $this->sections,
         ];
-    }
-
-    /**
-     * Create VO from array structure.
-     *
-     * @param  array<string, mixed>  $data
-     */
-    public static function fromArray(array $data): self
-    {
-        $version = $data['schema_version'] ?? self::SCHEMA_VERSION;
-        $sections = $data['sections'] ?? [];
-
-        return new self($sections, $version);
     }
 
     public function jsonSerialize(): array

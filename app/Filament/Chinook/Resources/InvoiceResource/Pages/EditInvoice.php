@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources\InvoiceResource\Pages;
 
 use App\Filament\Chinook\Resources\InvoiceResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditInvoice extends EditRecord
+final class EditInvoice extends EditRecord
 {
     protected static string $resource = InvoiceResource::class;
 

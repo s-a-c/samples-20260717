@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -21,7 +23,7 @@ use Illuminate\Support\Carbon;
  * @property-read ResetRun|null $recoveryOf
  * @property-read ResetRun|null $recoveryChild
  */
-class ResetRun extends Model
+final class ResetRun extends Model
 {
     use HasUuids;
 
@@ -38,26 +40,6 @@ class ResetRun extends Model
     ];
 
     /**
-     * Get the parent reset run that this run is recovering.
-     *
-     * @return BelongsTo<ResetRun, $this>
-     */
-    public function recoveryOf(): BelongsTo
-    {
-        return $this->belongsTo(ResetRun::class, 'recovery_of');
-    }
-
-    /**
-     * Get the child recovery run for this reset run.
-     *
-     * @return HasOne<ResetRun, $this>
-     */
-    public function recoveryChild(): HasOne
-    {
-        return $this->hasOne(ResetRun::class, 'recovery_of');
-    }
-
-    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -67,5 +49,25 @@ class ResetRun extends Model
         return [
             'evidence' => 'array',
         ];
+    }
+
+    /**
+     * Get the parent reset run that this run is recovering.
+     *
+     * @return BelongsTo<ResetRun, $this>
+     */
+    public function recoveryOf(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'recovery_of');
+    }
+
+    /**
+     * Get the child recovery run for this reset run.
+     *
+     * @return HasOne<ResetRun, $this>
+     */
+    public function recoveryChild(): HasOne
+    {
+        return $this->hasOne(self::class, 'recovery_of');
     }
 }

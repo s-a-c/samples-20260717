@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Operators;
 
 use App\Actions\Teams\CreateTeam;
@@ -8,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Support\ActivityLogger;
 use Spatie\Permission\Models\Role;
 
-class ProvisionOperator
+final class ProvisionOperator
 {
     /**
      * Provision the application operator and record the onboarding activity.

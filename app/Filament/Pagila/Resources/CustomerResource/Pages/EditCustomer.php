@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pagila\Resources\CustomerResource\Pages;
 
 use App\Filament\Pagila\Resources\CustomerResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditCustomer extends EditRecord
+final class EditCustomer extends EditRecord
 {
     protected static string $resource = CustomerResource::class;
 

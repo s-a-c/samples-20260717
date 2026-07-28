@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources\PlaylistResource\Pages;
 
 use App\Filament\Chinook\Resources\PlaylistResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListPlaylists extends ListRecords
+final class ListPlaylists extends ListRecords
 {
     protected static string $resource = PlaylistResource::class;
 

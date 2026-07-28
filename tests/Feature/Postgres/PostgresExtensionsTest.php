@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\DB;
 
 test('postgres extensions vector unaccent and pg_trgm are installed', function () {
