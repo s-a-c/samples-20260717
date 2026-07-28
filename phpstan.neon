@@ -61,4 +61,17 @@ parameters:
             # each resource to recordActions(); this carve-out is removed once the last
             # one is fixed. Scoped to app/Filament/*.
 
+        -
+            identifier: typeCoverage.paramTypeCoverage
+            # aspirational metric: phpstan strict-rules reports the global % of params
+            # carrying a type hint (threshold 99%). The project is below that threshold
+            # across many files. Baselining this per-file is inherently fragile — every
+            # typed-param added/removed anywhere shifts ALL counts. Tracked as a project
+            # quality metric (ratchet toward 99%), not per-ticket debt. Wayfinder #15 G1.
+
+        -
+            identifier: typeCoverage.constantTypeCoverage
+            # aspirational metric: same rationale as typeCoverage.paramTypeCoverage for
+            # constant types. Wayfinder #15 G1.
+
 

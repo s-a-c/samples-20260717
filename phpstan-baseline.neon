@@ -57,13 +57,6 @@ parameters:
 			# bd:wf15-g1-ratchet — return.type (wayfinder #15 G1; fix in Phase B)
 
 		-
-			message: '#^Out of 4 possible constant types, only 3 \- 75\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
-			identifier: typeCoverage.constantTypeCoverage
-			count: 1
-			path: app/Filament/Admin/Pages/Portfolio.php
-			# bd:wf15-g1-ratchet — typeCoverage.constantTypeCoverage (wayfinder #15 G1; fix in Phase B)
-
-		-
 			message: '#^Method App\\Filament\\Admin\\Widgets\\ProductPortfolioCard\:\:getViewData\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -466,13 +459,6 @@ parameters:
 			# bd:wf15-g1-ratchet — cast.int (wayfinder #15 G1; fix in Phase B)
 
 		-
-			message: '#^Out of 432 possible param types, only 427 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
-			identifier: typeCoverage.paramTypeCoverage
-			count: 2
-			path: routes/channels.php
-			# bd:wf15-g1-ratchet — typeCoverage.paramTypeCoverage (wayfinder #15 G1; fix in Phase B)
-
-		-
 			message: '#^Access to an undefined property Pest\\Arch\\Contracts\\ArchExpectation\:\:\$not\.$#'
 			identifier: property.notFound
 			count: 1
@@ -604,13 +590,6 @@ parameters:
 			count: 1
 			path: tests/Feature/Search/FederatedSearchTest.php
 			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Out of 432 possible param types, only 427 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
-			identifier: typeCoverage.paramTypeCoverage
-			count: 3
-			path: tests/Feature/Search/SearchProjectionTriggerTest.php
-			# bd:wf15-g1-ratchet — typeCoverage.paramTypeCoverage (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'

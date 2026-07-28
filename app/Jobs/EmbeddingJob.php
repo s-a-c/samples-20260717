@@ -11,6 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 use Laravel\Ai\Embeddings;
+use RuntimeException;
 use Throwable;
 
 final class EmbeddingJob implements ShouldQueue
@@ -18,6 +19,13 @@ final class EmbeddingJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public int $tries = 3;
+
+    /**
+     * Exponential backoff (seconds) per the #33 failure contract: 10s, 30s, 90s.
+     *
+     * @var list<int>
+     */
+    public array $backoff = [10, 30, 90];
 
     public function __construct(
         public string $product,
@@ -46,21 +54,17 @@ final class EmbeddingJob implements ShouldQueue
 
         $digest = hash('sha256', $text);
 
-        /** @var array<int, float>|null $vector */
-        $vector = null;
+        // Exceptions propagate so the queue retries per $tries/$backoff. After the
+        // final attempt the queue calls failed() (below), which marks the row
+        // 'failed'. No synthetic/zero vector is ever written (#33 failure contract).
+        /** @var array<int, float> $vector */
+        $vector = Embeddings::for([$text])
+            ->dimensions(1024)
+            ->generate()
+            ->first();
 
-        try {
-            $vector = Embeddings::for([$text])
-                ->dimensions(1024)
-                ->generate()
-                ->first();
-        } catch (Throwable) {
-            // Fallback to a placeholder vector when the AI provider is
-            // unconfigured, unreachable, or running under a non-faked test.
-        }
-
-        if ($vector === null || $vector === []) {
-            $vector = array_fill(0, 1024, 0.01);
+        if ($vector === [] || $vector === null) {
+            throw new RuntimeException('Embedding provider returned an empty vector.');
         }
 
         $vectorString = '['.implode(',', $vector).']';
@@ -75,5 +79,19 @@ final class EmbeddingJob implements ShouldQueue
                 updated_at = NOW()
             WHERE id = ?
         ", [$vectorString, $digest, $this->entityId]);
+    }
+
+    /**
+     * Invoked by the queue once all retries are exhausted (#33): mark the
+     * projection row as failed. Embedding stays NULL — no fake vector.
+     */
+    public function failed(Throwable $exception): void
+    {
+        DB::statement(
+            "UPDATE {$this->product}.search_projections
+                SET embedding_state = 'failed', updated_at = NOW()
+              WHERE id = ?",
+            [$this->entityId],
+        );
     }
 }
