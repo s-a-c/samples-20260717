@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Filament\Admin\Widgets;
 
 use App\Enums\SamplesProduct;
+use App\Services\Portfolio\PortfolioSnapshotStats;
 use Filament\Support\Icons\Heroicon;
 use Filament\Widgets\Widget;
-use Illuminate\Support\Facades\DB;
 
 final class ProductPortfolioCard extends Widget
 {
@@ -53,36 +53,14 @@ final class ProductPortfolioCard extends Widget
     }
 
     /**
-     * Live per-product stats read from the product_portfolio_snapshots view.
-     *
-     * Each stat is validated to its {label, value} shape so callers get a
-     * typed array even though the view's JSONB column decodes to mixed.
+     * Live per-product stats read from the product_portfolio_snapshots view,
+     * via the {@see PortfolioSnapshotStats} service (keeps DB access out of
+     * the Filament presentation layer — ADR 100326).
      *
      * @return array<string, array<int, array{label: string, value: string}>>
      */
     private static function snapshotStats(): array
     {
-        /** @var array<string, array<int, array{label: string, value: string}>> $byProduct */
-        $byProduct = [];
-
-        foreach (DB::table('product_portfolio_snapshots')->get() as $row) {
-            $raw = $row->stats;
-            $decoded = is_string($raw) ? json_decode($raw, true) : (array) $raw;
-
-            $stats = [];
-
-            if (is_array($decoded)) {
-                foreach ($decoded as $item) {
-                    if (is_array($item) && isset($item['label'], $item['value'])
-                        && is_string($item['label']) && is_string($item['value'])) {
-                        $stats[] = ['label' => $item['label'], 'value' => $item['value']];
-                    }
-                }
-            }
-
-            $byProduct[(string) $row->product] = $stats;
-        }
-
-        return $byProduct;
+        return PortfolioSnapshotStats::byProduct();
     }
 }

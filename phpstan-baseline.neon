@@ -5,441 +5,252 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: app/Console/Commands/SourceFetch.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$manifest of method App\\Console\\Commands\\SourceFetch\:\:fetchSingleFile\(\) expects array\{product\: string, repository\: string, commit_sha\: string, filename\: string, digest\: string\}, array\{product\: string, repository\: string, commit_sha\: string, format\: string, filename\?\: string, schema_filename\?\: string, data_filename\?\: string, digest\?\: string, \.\.\.\} given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Console/Commands/SourceFetch.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Enums\\SamplesProduct\:\:getColor\(\) never returns array\<string\> so it can be removed from the return type\.$#'
 			identifier: return.unusedType
 			count: 1
 			path: app/Enums/SamplesProduct.php
+			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Enums\\SamplesProduct\:\:getColor\(\) never returns null so it can be removed from the return type\.$#'
 			identifier: return.unusedType
 			count: 1
 			path: app/Enums/SamplesProduct.php
+			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Enums\\SamplesProduct\:\:getIcon\(\) never returns null so it can be removed from the return type\.$#'
 			identifier: return.unusedType
 			count: 1
 			path: app/Enums/SamplesProduct.php
+			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Enums\\SamplesProduct\:\:getIcon\(\) never returns string so it can be removed from the return type\.$#'
 			identifier: return.unusedType
 			count: 1
 			path: app/Enums/SamplesProduct.php
+			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Enums\\SamplesProduct\:\:getLabel\(\) never returns null so it can be removed from the return type\.$#'
 			identifier: return.unusedType
 			count: 1
 			path: app/Enums/SamplesProduct.php
+			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Filament\\Admin\\Pages\\Portfolio\:\:getViewData\(\) should return array\{products\: array\<int, array\{key\: string, name\: string, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\<int, array\{label\: string, value\: string\}\>\}\>\} but returns array\{products\: array\{array\{key\: ''chinook'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''12''\}, array\{label\: ''Artists'', value\: ''275\+''\}, array\{label\: ''Tracks'', value\: ''3,500\+''\}\}\}, array\{key\: ''northwind'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''13''\}, array\{label\: ''Products'', value\: ''75\+''\}, array\{label\: ''Orders'', value\: ''830\+''\}\}\}, array\{key\: ''pagila'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''16''\}, array\{label\: ''Films'', value\: ''1,000''\}, array\{label\: ''Actors'', value\: ''200\+''\}\}\}\}\}\.$#'
 			identifier: return.type
 			count: 1
 			path: app/Filament/Admin/Pages/Portfolio.php
+			# bd:wf15-g1-ratchet — return.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Out of 4 possible constant types, only 3 \- 75\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
 			identifier: typeCoverage.constantTypeCoverage
 			count: 1
 			path: app/Filament/Admin/Pages/Portfolio.php
+			# bd:wf15-g1-ratchet — typeCoverage.constantTypeCoverage (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
 			count: 1
 			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
+			# bd:wf15-g1-ratchet — cast.string (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Filament\\Admin\\Widgets\\ProductPortfolioCard\:\:getViewData\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/AlbumResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/ArtistResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/CustomerResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/EmployeeResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/GenreResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/InvoiceResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/PlaylistResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Chinook/Resources/TrackResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/CategoryResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/CustomerResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/EmployeeResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/OrderResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/ProductResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/ShipperResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Northwind/Resources/SupplierResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/ActorResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/CategoryResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/CustomerResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/FilmResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/InventoryResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/LanguageResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/PaymentResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/RentalResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/StaffResource.php
-
-		-
-			message: '''
-				#^Call to deprecated method actions\(\) of class Filament\\Tables\\Table\:
-				Use `recordActions\(\)` instead\.$#
-			'''
-			identifier: method.deprecated
-			count: 1
-			path: app/Filament/Pagila/Resources/StoreResource.php
+			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Class App\\Models\\ResetRun has PHPDoc tag @property for property \$evidence with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: app/Models/ResetRun.php
+			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Models\\Team\:\:members\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<App\\Models\\User, \$this\(App\\Models\\Team\), Illuminate\\Database\\Eloquent\\Relations\\Pivot, ''pivot''\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<App\\Models\\User, \$this\(App\\Models\\Team\), App\\Models\\Membership, ''pivot''\>\.$#'
 			identifier: return.type
 			count: 1
 			path: app/Models/Team.php
+			# bd:wf15-g1-ratchet — return.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access property \$value on mixed\.$#'
 			identifier: property.nonObject
 			count: 1
 			path: app/Observers/Tier1SourceObserver.php
+			# bd:wf15-g1-ratchet — property.nonObject (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$product of job class App\\Jobs\\EmbeddingJob constructor expects string in App\\Jobs\\EmbeddingJob\:\:dispatch\(\), mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Observers/Tier1SourceObserver.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#2 \$entityId of job class App\\Jobs\\EmbeddingJob constructor expects string in App\\Jobs\\EmbeddingJob\:\:dispatch\(\), mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Observers/Tier1SourceObserver.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \$chinook of method App\\Policies\\ChinookPolicy\:\:view\(\) has invalid type App\\Models\\Chinook\\Chinook\.$#'
 			identifier: class.notFound
 			count: 1
 			path: app/Policies/ChinookPolicy.php
+			# bd:wf15-g1-ratchet — class.notFound (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \$northwind of method App\\Policies\\NorthwindPolicy\:\:view\(\) has invalid type App\\Models\\Northwind\\Northwind\.$#'
 			identifier: class.notFound
 			count: 1
 			path: app/Policies/NorthwindPolicy.php
+			# bd:wf15-g1-ratchet — class.notFound (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Services\\ProductImport\\PagilaImporter\:\:getManifest\(\) should return array\{product\: string, commit_sha\: string, schema_filename\: string, data_filename\: string\}\|null but returns mixed\.$#'
 			identifier: return.type
 			count: 1
 			path: app/Services/ProductImport/PagilaImporter.php
+			# bd:wf15-g1-ratchet — return.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Variable \$manifest in PHPDoc tag @var does not exist\.$#'
 			identifier: varTag.variableNotFound
 			count: 1
 			path: app/Services/ProductImport/PagilaImporter.php
+			# bd:wf15-g1-ratchet — varTag.variableNotFound (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Argument of an invalid type list\<string\>\|false supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
 			count: 1
 			path: app/Services/ProductImport/PostgresSourceReader.php
+			# bd:wf15-g1-ratchet — foreach.nonIterable (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Services\\ProductImport\\PostgresSourceReader\:\:executeMultiFile\(\) has parameter \$filePaths with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: app/Services/ProductImport/PostgresSourceReader.php
+			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Services\\ProductImport\\PostgresSourceReader\:\:executeSqlDump\(\) has parameter \$excludePatterns with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: app/Services/ProductImport/PostgresSourceReader.php
+			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
 			identifier: if.condNotBoolean
 			count: 1
 			path: app/Services/ProductImport/PostgresSourceReader.php
+			# bd:wf15-g1-ratchet — if.condNotBoolean (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$filePath of method App\\Services\\ProductImport\\PostgresSourceReader\:\:executeSqlDump\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Services/ProductImport/PostgresSourceReader.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$pattern of function preg_match expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Services/ProductImport/PostgresSourceReader.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#3 \$subject of function preg_replace expects array\<float\|int\|string\>\|string, string\|null given\.$#'
 			identifier: argument.type
 			count: 3
 			path: app/Services/ProductImport/PostgresSourceReader.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, string\|null given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Services/ProductImport/PostgresSourceReader.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Services\\ProductReset\\ResetEvidence\:\:getSection\(\) should return array\<string, mixed\> but returns mixed\.$#'
 			identifier: return.type
 			count: 1
 			path: app/Services/ProductReset/ResetEvidence.php
+			# bd:wf15-g1-ratchet — return.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Services\\ProductReset\\ResetEvidence\:\:jsonSerialize\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: app/Services/ProductReset/ResetEvidence.php
+			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$sections of class App\\Services\\ProductReset\\ResetEvidence constructor expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Services/ProductReset/ResetEvidence.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#2 \$schemaVersion of class App\\Services\\ProductReset\\ResetEvidence constructor expects int, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Services/ProductReset/ResetEvidence.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(mixed\)\: mixed\)\|null, Closure\(object\)\: array given\.$#'
 			identifier: argument.type
 			count: 2
 			path: app/Services/Search/FederatedSearchService.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$lexical of method App\\Services\\Search\\ReciprocalRankFusion\:\:fuse\(\) expects array\<int, array\{id\: string, product\: string, entity_type\: string, title\: string\}\>, array\<array\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Services/Search/FederatedSearchService.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#2 \$semantic of method App\\Services\\Search\\ReciprocalRankFusion\:\:fuse\(\) expects array\<int, array\{id\: string, product\: string, entity_type\: string, title\: string\}\>, array\<array\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Services/Search/FederatedSearchService.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
 			identifier: ternary.shortNotAllowed
 			count: 1
 			path: config/broadcasting.php
+			# bd:wf15-g1-ratchet — ternary.shortNotAllowed (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '''
@@ -449,1083 +260,396 @@ parameters:
 			identifier: classConstant.deprecatedClass
 			count: 1
 			path: config/sanctum.php
+			# bd:wf15-g1-ratchet — classConstant.deprecatedClass (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#2 \$string of function explode expects string, bool\|string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: config/sanctum.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''model_has_permissions'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''model_has_roles'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''model_morph_key'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 8
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''permission_pivot_key'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''permissions'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 5
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''role_has_permissions'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''role_pivot_key'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''roles'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 4
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''team_foreign_key'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 10
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
 			identifier: empty.notAllowed
 			count: 3
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — empty.notAllowed (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Loose comparison via "\!\=" is not allowed\.$#'
 			identifier: notEqual.notAllowed
 			count: 1
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — notEqual.notAllowed (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Only booleans are allowed in &&, mixed given on the left side\.$#'
 			identifier: booleanAnd.leftNotBoolean
 			count: 1
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — booleanAnd.leftNotBoolean (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Only booleans are allowed in an if condition, mixed given\.$#'
 			identifier: if.condNotBoolean
 			count: 2
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — if.condNotBoolean (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Only booleans are allowed in \|\|, mixed given on the left side\.$#'
 			identifier: booleanOr.leftNotBoolean
 			count: 2
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — booleanOr.leftNotBoolean (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Only booleans are allowed in \|\|, mixed given on the right side\.$#'
 			identifier: booleanOr.rightNotBoolean
 			count: 2
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — booleanOr.rightNotBoolean (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$column of method Illuminate\\Database\\Schema\\Blueprint\:\:unsignedBigInteger\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 4
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$column of method Illuminate\\Database\\Schema\\Blueprint\:\:uuid\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 5
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$columns of method Illuminate\\Database\\Schema\\Blueprint\:\:foreign\(\) expects array\|string, mixed given\.$#'
 			identifier: argument.type
 			count: 4
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$columns of method Illuminate\\Database\\Schema\\Blueprint\:\:index\(\) expects array\|string, mixed given\.$#'
 			identifier: argument.type
 			count: 3
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$key of method Illuminate\\Contracts\\Cache\\Repository\:\:forget\(\) expects string\|UnitEnum, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$name of method Illuminate\\Cache\\CacheManager\:\:store\(\) expects string\|UnitEnum\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$table of method Illuminate\\Database\\Schema\\ForeignKeyDefinition\:\:on\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 4
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$table of static method Illuminate\\Support\\Facades\\Schema\:\:create\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 5
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$table of static method Illuminate\\Support\\Facades\\Schema\:\:dropIfExists\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 5
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$table of static method Illuminate\\Support\\Facades\\Schema\:\:hasTable\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: database/migrations/2026_07_24_202201_create_permission_tables.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#2 \$email of method App\\Actions\\Operators\\ProvisionOperator\:\:handle\(\) expects string, string\|null given\.$#'
 			identifier: argument.type
 			count: 1
 			path: database/seeders/DatabaseSeeder.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#3 \$password of method App\\Actions\\Operators\\ProvisionOperator\:\:handle\(\) expects string, string\|null given\.$#'
 			identifier: argument.type
 			count: 1
 			path: database/seeders/DatabaseSeeder.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access property \$id on mixed\.$#'
 			identifier: property.nonObject
 			count: 1
 			path: routes/channels.php
+			# bd:wf15-g1-ratchet — property.nonObject (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
 			count: 2
 			path: routes/channels.php
+			# bd:wf15-g1-ratchet — cast.int (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Out of 432 possible param types, only 427 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 2
 			path: routes/channels.php
+			# bd:wf15-g1-ratchet — typeCoverage.paramTypeCoverage (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Access to an undefined property Pest\\Arch\\Contracts\\ArchExpectation\:\:\$not\.$#'
 			identifier: property.notFound
 			count: 1
 			path: tests/Architecture/ArchitectureTest.php
+			# bd:wf15-g1-ratchet — property.notFound (wayfinder #15 G1; fix in Phase B)
 
 		-
-			message: '#^Cannot call method toUse\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Architecture/ArchitectureTest.php
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 2
+			path: tests/Architecture/PhpStanBaselineCitationTest.php
+			# bd:wf15-g1-ratchet — ternary.shortNotAllowed (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Calling toBeArray\(\) on Expectation\<list\<\(string\|false\)\>\>; assertion is redundant\.$#'
 			identifier: pest.expectation.redundant
 			count: 1
 			path: tests/Architecture/ProductPolicyNamespaceTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/AuthenticationTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 3
-			path: tests/Feature/Auth/AuthenticationTest.php
-
-		-
-			message: '#^Cannot call method assertSessionHasErrorsIn\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/AuthenticationTest.php
-
-		-
-			message: '#^Cannot call method assertSessionHasNoErrors\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/AuthenticationTest.php
-
-		-
-			message: '#^Cannot call method make\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/AuthenticationTest.php
-
-		-
-			message: '#^Cannot call method post\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/AuthenticationTest.php
+			# bd:wf15-g1-ratchet — pest.expectation.redundant (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$session of method Illuminate\\Http\\Request\:\:setLaravelSession\(\) expects Illuminate\\Contracts\\Session\\Session, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: tests/Feature/Auth/AuthenticationTest.php
-
-		-
-			message: '#^Cannot call method assertForbidden\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php
-
-		-
-			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/EmailVerificationTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/Auth/EmailVerificationTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 4
-			path: tests/Feature/Auth/EmailVerificationTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/PasswordConfirmationTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/PasswordConfirmationTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/Auth/PasswordResetTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/PasswordResetTest.php
-
-		-
-			message: '#^Cannot call method assertSessionHasNoErrors\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/PasswordResetTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/RegistrationTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/RegistrationTest.php
-
-		-
-			message: '#^Cannot call method assertSessionHasNoErrors\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Auth/RegistrationTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/Auth/TwoFactorChallengeTest.php
-
-		-
-			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 7
-			path: tests/Feature/Console/DossierGenerateTest.php
-
-		-
-			message: '#^Cannot call method expectsOutputToContain\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 3
-			path: tests/Feature/Console/DossierGenerateTest.php
-
-		-
-			message: '#^Cannot access property \$current_team_id on App\\Models\\User\|null\.$#'
-			identifier: property.nonObject
-			count: 2
-			path: tests/Feature/Console/OperatorCreateTest.php
-
-		-
-			message: '#^Cannot call method assertExitCode\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Console/OperatorCreateTest.php
-
-		-
-			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 4
-			path: tests/Feature/Console/OperatorCreateTest.php
-
-		-
-			message: '#^Cannot call method hasRole\(\) on App\\Models\\User\|null\.$#'
-			identifier: method.nonObject
-			count: 3
-			path: tests/Feature/Console/OperatorCreateTest.php
-
-		-
-			message: '#^Cannot call method personalTeam\(\) on App\\Models\\User\|null\.$#'
-			identifier: method.nonObject
-			count: 5
-			path: tests/Feature/Console/OperatorCreateTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/DashboardTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/DashboardTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/DashboardTest.php
-
-		-
-			message: '#^Cannot access property \$first_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 5
-			path: tests/Feature/Domain/ChinookDomainTest.php
-
-		-
-			message: '#^Cannot access property \$name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 5
-			path: tests/Feature/Domain/ChinookDomainTest.php
-
-		-
-			message: '#^Cannot access property \$name on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/ChinookDomainTest.php
-
-		-
-			message: '#^Cannot access property \$title on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 2
-			path: tests/Feature/Domain/ChinookDomainTest.php
-
-		-
-			message: '#^Cannot access property \$track on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/ChinookDomainTest.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Unable to resolve the template type TValue in call to function expect$#'
 			identifier: argument.templateType
 			count: 12
 			path: tests/Feature/Domain/ChinookDomainTest.php
-
-		-
-			message: '#^Cannot access property \$category_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$company_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$employee on App\\Models\\Northwind\\EmployeeTerritory\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$first_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 4
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$id on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 5
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$product on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$product_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$product_name on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$region_description on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$ship_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$territory on App\\Models\\Northwind\\EmployeeTerritory\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$territory_description on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 2
-			path: tests/Feature/Domain/NorthwindDomainTest.php
+			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Unable to resolve the template type TValue in call to function expect$#'
 			identifier: argument.templateType
 			count: 20
 			path: tests/Feature/Domain/NorthwindDomainTest.php
-
-		-
-			message: '#^Cannot access property \$actor on App\\Models\\Pagila\\FilmActor\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$address on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$amount on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$category on App\\Models\\Pagila\\FilmCategory\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$city on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$country on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$film on App\\Models\\Pagila\\FilmActor\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$film on App\\Models\\Pagila\\FilmCategory\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$film on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$first_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 4
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$id on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 10
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$last_name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 4
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$name on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$title on Illuminate\\Database\\Eloquent\\Model\|null\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot access property \$title on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Domain/PagilaDomainTest.php
+			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Unable to resolve the template type TValue in call to function expect$#'
 			identifier: argument.templateType
 			count: 28
 			path: tests/Feature/Domain/PagilaDomainTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/ExampleTest.php
-
-		-
-			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 8
-			path: tests/Feature/Filament/ChinookResourcesTest.php
-
-		-
-			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 9
-			path: tests/Feature/Filament/ChinookResourcesTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 9
-			path: tests/Feature/Filament/ChinookResourcesTest.php
-
-		-
-			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 7
-			path: tests/Feature/Filament/NorthwindResourcesTest.php
-
-		-
-			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 8
-			path: tests/Feature/Filament/NorthwindResourcesTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 8
-			path: tests/Feature/Filament/NorthwindResourcesTest.php
+			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Variable \$curator in PHPDoc tag @var does not exist\.$#'
 			identifier: varTag.variableNotFound
 			count: 1
 			path: tests/Feature/Filament/NorthwindResourcesTest.php
-
-		-
-			message: '#^Cannot call method assertForbidden\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Filament/PagilaResourcesTest.php
-
-		-
-			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 12
-			path: tests/Feature/Filament/PagilaResourcesTest.php
-
-		-
-			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 11
-			path: tests/Feature/Filament/PagilaResourcesTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 12
-			path: tests/Feature/Filament/PagilaResourcesTest.php
-
-		-
-			message: '#^Cannot call method assertForbidden\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 3
-			path: tests/Feature/Filament/PanelAuthenticationTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Filament/PanelAuthenticationTest.php
-
-		-
-			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 4
-			path: tests/Feature/Filament/PanelAuthenticationTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 7
-			path: tests/Feature/Filament/PanelAuthenticationTest.php
-
-		-
-			message: '#^Cannot call method assertForbidden\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Filament/PortfolioTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Filament/PortfolioTest.php
-
-		-
-			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 17
-			path: tests/Feature/Filament/PortfolioTest.php
-
-		-
-			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 6
-			path: tests/Feature/Filament/PortfolioTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 7
-			path: tests/Feature/Filament/PortfolioTest.php
-
-		-
-			message: '#^Cannot access property \$created_at on App\\Models\\ResetRun\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Import/ProductImportPipelineTest.php
-
-		-
-			message: '#^Cannot access property \$current_phase on App\\Models\\ResetRun\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Import/ProductImportPipelineTest.php
-
-		-
-			message: '#^Cannot access property \$kind on App\\Models\\ResetRun\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Import/ProductImportPipelineTest.php
-
-		-
-			message: '#^Cannot access property \$status on App\\Models\\ResetRun\|null\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Import/ProductImportPipelineTest.php
-
-		-
-			message: '#^Cannot call method assertExitCode\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 5
-			path: tests/Feature/Import/ProductImportPipelineTest.php
-
-		-
-			message: '#^Cannot call method expectsTable\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Import/ProductImportPipelineTest.php
-
-		-
-			message: '#^Cannot call method toDateTimeString\(\) on Illuminate\\Support\\Carbon\|null\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Import/ProductImportPipelineTest.php
+			# bd:wf15-g1-ratchet — varTag.variableNotFound (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
 			identifier: pest.config.redundantLocalUse
 			count: 1
 			path: tests/Feature/Import/ProductImportPipelineTest.php
+			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Calling toBeArray\(\) on Expectation\<array\>; assertion is redundant\.$#'
 			identifier: pest.expectation.redundant
 			count: 1
 			path: tests/Feature/Import/SourceFetchTest.php
-
-		-
-			message: '#^Cannot call method assertFailed\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 3
-			path: tests/Feature/Import/SourceFetchTest.php
-
-		-
-			message: '#^Cannot call method assertSuccessful\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/Import/SourceFetchTest.php
-
-		-
-			message: '#^Cannot call method expectsOutput\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 5
-			path: tests/Feature/Import/SourceFetchTest.php
+			# bd:wf15-g1-ratchet — pest.expectation.redundant (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^PHPDoc tag @var for variable \$manifest has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Feature/Import/SourceFetchTest.php
-
-		-
-			message: '#^Cannot access property \$product on App\\Models\\SourceIdentity\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Import/SourceIdentityRegistryTest.php
-
-		-
-			message: '#^Cannot access property \$used_at on App\\Models\\ResetConfirmation\|null\.$#'
-			identifier: property.nonObject
-			count: 2
-			path: tests/Feature/Import/SourceIdentityRegistryTest.php
+			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
 			identifier: pest.config.redundantLocalUse
 			count: 1
 			path: tests/Feature/Import/SourceIdentityRegistryTest.php
-
-		-
-			message: '#^Cannot call method assertExitCode\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Postgres/PostgresExtensionsTest.php
-
-		-
-			message: '#^Cannot call method expectsOutputToContain\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Postgres/PostgresExtensionsTest.php
+			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot access offset ''schema_version'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: tests/Feature/Reset/ResetWindowTest.php
-
-		-
-			message: '#^Cannot access property \$id on App\\Models\\ResetRun\|null\.$#'
-			identifier: property.nonObject
-			count: 2
-			path: tests/Feature/Reset/ResetWindowTest.php
-
-		-
-			message: '#^Cannot access property \$recoveryChild on App\\Models\\ResetRun\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Reset/ResetWindowTest.php
-
-		-
-			message: '#^Cannot access property \$status on App\\Models\\ResetRun\|null\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Reset/ResetWindowTest.php
+			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|false given\.$#'
 			identifier: argument.type
 			count: 1
 			path: tests/Feature/Reset/ResetWindowTest.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
 			identifier: pest.config.redundantLocalUse
 			count: 1
 			path: tests/Feature/Reset/ResetWindowTest.php
-
-		-
-			message: '#^Cannot access property \$content_digest on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Search/EmbeddingJobTest.php
-
-		-
-			message: '#^Cannot access property \$dim on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Search/EmbeddingJobTest.php
-
-		-
-			message: '#^Cannot access property \$embedded_at on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Search/EmbeddingJobTest.php
-
-		-
-			message: '#^Cannot access property \$embedding on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Search/EmbeddingJobTest.php
-
-		-
-			message: '#^Cannot access property \$embedding_profile on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Search/EmbeddingJobTest.php
-
-		-
-			message: '#^Cannot access property \$embedding_state on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Search/EmbeddingJobTest.php
+			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Cannot cast mixed to int\.$#'
 			identifier: cast.int
 			count: 1
 			path: tests/Feature/Search/EmbeddingJobTest.php
+			# bd:wf15-g1-ratchet — cast.int (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Parameter \#2 \$entityId of class App\\Jobs\\EmbeddingJob constructor expects string, int given\.$#'
 			identifier: argument.type
 			count: 1
 			path: tests/Feature/Search/EmbeddingJobTest.php
+			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
 			identifier: pest.config.redundantLocalUse
 			count: 1
 			path: tests/Feature/Search/EmbeddingJobTest.php
+			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
 			identifier: pest.config.redundantLocalUse
 			count: 1
 			path: tests/Feature/Search/FederatedSearchTest.php
-
-		-
-			message: '#^Cannot access property \$document_tsv on mixed\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Search/SearchProjectionTriggerTest.php
-
-		-
-			message: '#^Cannot access property \$embedding_state on mixed\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Search/SearchProjectionTriggerTest.php
-
-		-
-			message: '#^Cannot access property \$entityId on mixed\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Search/SearchProjectionTriggerTest.php
-
-		-
-			message: '#^Cannot access property \$entity_type on mixed\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Search/SearchProjectionTriggerTest.php
-
-		-
-			message: '#^Cannot access property \$product on mixed\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: tests/Feature/Search/SearchProjectionTriggerTest.php
-
-		-
-			message: '#^Cannot access property \$weight_c_text on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Search/SearchProjectionTriggerTest.php
-
-		-
-			message: '#^Cannot access property \$weight_d_text on mixed\.$#'
-			identifier: property.nonObject
-			count: 4
-			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Out of 432 possible param types, only 427 \- 98\.8 %% actually have it\. Add more param types to get over 99 %%$#'
 			identifier: typeCoverage.paramTypeCoverage
 			count: 3
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
+			# bd:wf15-g1-ratchet — typeCoverage.paramTypeCoverage (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
 			identifier: pest.config.redundantLocalUse
 			count: 1
 			path: tests/Feature/Search/SearchProjectionTriggerTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Settings/ProfileUpdateTest.php
-
-		-
-			message: '#^Cannot call method assertDontSee\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 3
-			path: tests/Feature/Settings/SecurityTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/Settings/SecurityTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Settings/SecurityTest.php
-
-		-
-			message: '#^Cannot call method assertSee\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 5
-			path: tests/Feature/Settings/SecurityTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 3
-			path: tests/Feature/Settings/SecurityTest.php
-
-		-
-			message: '#^Cannot call method withSession\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/Settings/SecurityTest.php
+			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Calling toBeString\(\) on Expectation\<string\>; assertion is redundant\.$#'
 			identifier: pest.expectation.redundant
 			count: 2
 			path: tests/Feature/Teams/TeamArtefactTest.php
+			# bd:wf15-g1-ratchet — pest.expectation.redundant (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Relations\\Pivot\:\:\$role\.$#'
 			identifier: property.notFound
 			count: 1
 			path: tests/Feature/Teams/TeamMemberTest.php
-
-		-
-			message: '#^Cannot access property \$value on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: tests/Feature/Teams/TeamMemberTest.php
-
-		-
-			message: '#^Cannot call method assertOk\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/Teams/TeamTest.php
-
-		-
-			message: '#^Cannot call method assertRedirect\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: tests/Feature/Teams/TeamTest.php
-
-		-
-			message: '#^Cannot call method get\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 2
-			path: tests/Feature/Teams/TeamTest.php
+			# bd:wf15-g1-ratchet — property.notFound (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Call to an undefined method Pest\\Expectation\<string\>\:\:toHaveTypeCoverage\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: tests/TypeCoverage.php
+			# bd:wf15-g1-ratchet — method.notFound (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Calling toBeInstanceOf\(\) on Expectation\<App\\Enums\\SamplesProduct\:\:Chinook\>; assertion is redundant\.$#'
 			identifier: pest.expectation.redundant
 			count: 1
 			path: tests/Unit/SamplesProductTest.php
+			# bd:wf15-g1-ratchet — pest.expectation.redundant (wayfinder #15 G1; fix in Phase B)

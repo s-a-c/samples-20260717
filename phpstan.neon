@@ -31,4 +31,34 @@ parameters:
             # to every relation would be excessively verbose and is not idiomatic.
             # Reviewed on Larastan or PHPStan major version bump.
 
+        -
+            identifier: method.nonObject
+            paths:
+                - tests/*
+            # framework-idiom: PHPStan strict-rules fires when a method is called on a
+            # `mixed` receiver. Pest feature tests routinely operate on mixed values
+            # (factory output, $response->json, Eloquent relations loaded via Refresh-
+            # Database, Filament Livewire form state). Typing every receiver in test
+            # code is not idiomatic and adds no signal. Scoped to tests/* so app-code
+            # mixed receivers stay strict. Wayfinder #15 G1; revisit on Pest/Larastan
+            # major version bump.
+
+        -
+            identifier: property.nonObject
+            paths:
+                - tests/*
+            # framework-idiom: same rationale as method.nonObject above — property
+            # access on mixed in Pest test code. Scoped to tests/*. Wayfinder #15 G1.
+
+        -
+            identifier: method.deprecated
+            paths:
+                - app/Filament/*
+            # framework-idiom: Filament v5 deprecation wave — Tables\Table::actions()
+            # is deprecated in favour of recordActions() across the generated Pagila
+            # resources. These are framework-driven deprecations during the v5 adoption
+            # window, not application bugs. Phase B (wayfinder #15 G1 ratchet) migrates
+            # each resource to recordActions(); this carve-out is removed once the last
+            # one is fixed. Scoped to app/Filament/*.
+
 
