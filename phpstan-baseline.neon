@@ -64,13 +64,6 @@ parameters:
 			# bd:wf15-g1-ratchet — typeCoverage.constantTypeCoverage (wayfinder #15 G1; fix in Phase B)
 
 		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
-			count: 1
-			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
-			# bd:wf15-g1-ratchet — cast.string (wayfinder #15 G1; fix in Phase B)
-
-		-
 			message: '#^Method App\\Filament\\Admin\\Widgets\\ProductPortfolioCard\:\:getViewData\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1

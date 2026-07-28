@@ -30,8 +30,9 @@ final class PortfolioSnapshotStats
         $byProduct = [];
 
         foreach (DB::table('product_portfolio_snapshots')->get() as $row) {
+            $product = $row->product;
             $raw = $row->stats;
-            $decoded = is_string($raw) ? json_decode($raw, true) : (array) $raw;
+            $decoded = is_string($raw) ? json_decode($raw, true) : null;
 
             $stats = [];
 
@@ -44,7 +45,9 @@ final class PortfolioSnapshotStats
                 }
             }
 
-            $byProduct[(string) $row->product] = $stats;
+            if (is_string($product)) {
+                $byProduct[$product] = $stats;
+            }
         }
 
         return $byProduct;
