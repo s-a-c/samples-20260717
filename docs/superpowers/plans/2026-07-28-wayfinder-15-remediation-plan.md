@@ -220,13 +220,14 @@ Rewrite the `tests` job's tail to:
       vendor/bin/pint --test --parallel
       composer types:check
       composer mago:guard
-      vendor/bin/pest --coverage --min=80
+      vendor/bin/pest --coverage --min=25
       composer test:arch
 ```
 
 Key corrections vs. current workflow:
 
-- **Uses Pest** (`vendor/bin/pest --coverage --min=80`) instead of the current `vendor/bin/phpunit --coverage-text --coverage-min=80`. Pest owns `--coverage --min=80` natively; the old `--coverage-min` was not a valid PHPUnit/Pest option and was silently ignored/erroring.
+- **Uses Pest** (`vendor/bin/pest --coverage --min=<floor>`) instead of the current `vendor/bin/phpunit --coverage-text --coverage-min=80`. Pest owns `--coverage --min` natively; the old `--coverage-min` was not a valid PHPUnit/Pest option and was silently ignored/erroring.
+- **Coverage floor is `--min=25`, not 80.** Measured project coverage is **27.8 %** (2026-07-28); `--min=80` would block every PR until substantial coverage work lands. `--min=25` enforces "coverage must not regress below a meaningful floor" today; ratchet toward the #17 PR-gate target of 80 % as coverage work lands (tracked follow-up). `phpunit.xml` needs no `<coverage min>` element — the Pest flag is the enforcement.
 - Adds Pint `--test`, PHPStan (`composer types:check`), Mago guard (`composer mago:guard`), and the Architecture suite (`composer test:arch`) — none of which ran before.
 - Keeps the `pgvector/pgvector:pg18` service container (already correct).
 - Uses `coverage: pcov` in `setup-php` (drop `xdebug` — pcov is faster and is the #17-specified driver); also removes the step that appended `<coverage>` XML to `phpunit.xml` at run time (no longer needed):
