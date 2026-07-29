@@ -214,7 +214,7 @@
         ],
         "test:arch": [
             "@mago:guard",
-            "php artisan test --testsuite=Architecture"
+            "vendor/bin/pest --testsuite=Architecture"
         ],
         "test:coverage": "php artisan test --coverage --min=80 --coverage-html=storage/coverage",
         "test:feature": "php artisan test --testsuite=Feature",
