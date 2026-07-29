@@ -5,11 +5,12 @@ declare(strict_types=1);
 use App\Models\ResetConfirmation;
 use App\Models\ResetRun;
 use App\Models\User;
+use App\Services\ProductImport\ProductImportPipeline;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 
-covers(App\Console\Commands\ProductImportCommand::class);
+covers(App\Console\Commands\ProductImportCommand::class, ProductImportPipeline::class);
 
 uses(RefreshDatabase::class);
 
@@ -94,4 +95,26 @@ test('product recover command initiates a recovery child run for a failed run', 
     expect($recoveryRun->kind)->toBe('recover');
     expect($recoveryRun->status)->toBe('running');
     expect($failedRun->fresh()->status)->toBe('recovering');
+});
+
+test('import pipeline rejects unknown product name gracefully without creating a run', function () {
+    $initialRunCount = ResetRun::count();
+
+    $pipeline = app(ProductImportPipeline::class);
+
+    $result = $pipeline->run('unknown_product');
+
+    expect($result)->toBe(['success' => false, 'error' => 'Unknown product: unknown_product']);
+    expect(ResetRun::count())->toBe($initialRunCount);
+});
+
+test('import pipeline dry-run short-circuits before creating a reset run', function () {
+    $initialRunCount = ResetRun::count();
+
+    $pipeline = app(ProductImportPipeline::class);
+
+    $result = $pipeline->run('chinook', dryRun: true);
+
+    expect($result)->toBe(['success' => true]);
+    expect(ResetRun::count())->toBe($initialRunCount);
 });

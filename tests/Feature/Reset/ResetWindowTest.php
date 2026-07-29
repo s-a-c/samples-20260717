@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 
-covers(ResetWindow::class);
+covers(ResetWindow::class, RecoveryService::class);
 
 uses(RefreshDatabase::class);
 
@@ -130,4 +130,41 @@ test('belongs to product domain trait prevents model mutation when reset window 
     ]);
 
     expect(fn () => $testModel->save())->toThrow(ProductResetWindowOpen::class);
+});
+
+test('reset window memoizes isOpen result and clearMemo forces a fresh query', function () {
+    $window = new ResetWindow;
+
+    // No active run: window reads closed and memoizes the false result.
+    expect($window->isOpen(SamplesProduct::Chinook))->toBeFalse();
+
+    // A run becomes active after the value was cached.
+    ResetRun::create([
+        'id' => (string) Str::uuid7(),
+        'product' => 'chinook',
+        'kind' => 'reset',
+        'status' => 'running',
+    ]);
+
+    // Cached value is still served without re-querying the database.
+    expect($window->isOpen(SamplesProduct::Chinook))->toBeFalse();
+
+    // Clearing the memo forces a fresh query that now observes the open run.
+    $window->clearMemo();
+    expect($window->isOpen(SamplesProduct::Chinook))->toBeTrue();
+});
+
+test('recovery service refuses to create a recovery run for a non-failed run', function () {
+    $runningRun = ResetRun::create([
+        'id' => (string) Str::uuid7(),
+        'product' => 'chinook',
+        'kind' => 'reset',
+        'status' => 'running',
+    ]);
+
+    $recoveryService = new RecoveryService;
+
+    expect($recoveryService->canRecover($runningRun))->toBeFalse();
+    expect(fn () => $recoveryService->createRecoveryRun($runningRun))
+        ->toThrow(InvalidArgumentException::class);
 });
