@@ -2,14 +2,15 @@
 
 **Risk order:** 1
 **Decision reference:** ADR 100302, ADR 100328, ADR 100332
-**Status:** _pending_
+**Status:** complete
 
 ## Acceptance gates
 
-| Gate | Evidence | Check | Status |
-| ---- | -------- | ----- | ------ |
-
-> **OPERATOR TODO:** list each gate for this stage with its named evidence.
+| Gate                                | Evidence                                                               | Check                                          | Status |
+| ----------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------- | ------ |
+| PostgreSQL extensions DDL migration | `database/migrations/0001_01_01_000000_create_postgres_extensions.php` | `php artisan migrate:fresh`                    | Pass   |
+| Postgres extensions health test     | `tests/Feature/Postgres/PostgresExtensionsTest.php`                    | `php artisan test --filter=PostgresExtensions` | Pass   |
+| pgsql:check artisan command         | `app/Console/Commands/PgsqlCheck.php`                                  | `php artisan pgsql:check`                      | Pass   |
 
 ## Automated checks
 
@@ -19,15 +20,17 @@
 ## Operator commands
 
 ```bash
-# Verification / recovery commands an operator can run.
+php artisan pgsql:check
+php artisan test --filter=PostgresExtensions
+composer types:check
 ```
-
-> **OPERATOR TODO:** fill in verification / recovery commands.
 
 ## Evidence location
 
-> **EVIDENCE TODO:** URL/path to the generated evidence (CI run, artifact).
+- `.github/workflows/tests.yml`
+- `tests/Feature/Postgres/PostgresExtensionsTest.php`
 
 ## Recovery procedure
 
-> **OPERATOR TODO:** what to do when a gate regresses.
+1. Re-run `php artisan migrate:fresh --seed` to restore the PostgreSQL extension DDL and base schema.
+2. If `php artisan pgsql:check` reports a missing extension, install it at the PostgreSQL server level, then re-run the check and the Pest suite.

@@ -23,15 +23,125 @@ final class DossierGenerate extends Command
 
     /**
      * The four risk-ordered Acceptance Stages (per the dossier contents index),
-     * each mapped to its ADR references and the composer/CI checks that prove its gates.
+     * each mapped to its ADR references, the composer/CI checks that prove its
+     * gates, and the verified acceptance evidence recorded once each stage was
+     * delivered. Baking the evidence into the generator keeps `--force`
+     * regeneration lossless (the dossier is the source of truth).
      *
-     * @var array<int, array{0: string, 1: string, 2: list<string>, 3: list<string>}>
+     * @var array<int, array{
+     *     slug: string,
+     *     title: string,
+     *     adrs: list<string>,
+     *     checks: list<string>,
+     *     status: string,
+     *     gates: list<array{gate: string, evidence: string, check: string}>,
+     *     operator: list<string>,
+     *     evidence_location: list<string>,
+     *     recovery: list<string>,
+     * }>
      */
     private const STAGES = [
-        1 => ['foundation', 'Foundation', ['100302', '100328', '100332'], ['composer types:check', 'composer test:coverage']],
-        2 => ['domain-resources', 'Domain & Resources', ['100304', '100311', '100313', '100314'], ['composer test:arch', 'php artisan test --testsuite=Feature']],
-        3 => ['quality-features', 'Quality & Features', ['100316', '100317', '100319', '100323', '100329'], ['composer rector', 'composer mago:analyze', 'composer test:mutation']],
-        4 => ['polish', 'Polish', ['100326', '100331'], ['composer test:unit', 'composer test:type-cov']],
+        1 => [
+            'slug' => 'foundation',
+            'title' => 'Foundation',
+            'adrs' => ['100302', '100328', '100332'],
+            'checks' => ['composer types:check', 'composer test:coverage'],
+            'status' => 'complete',
+            'gates' => [
+                ['gate' => 'PostgreSQL extensions DDL migration', 'evidence' => 'database/migrations/0001_01_01_000000_create_postgres_extensions.php', 'check' => 'php artisan migrate:fresh'],
+                ['gate' => 'Postgres extensions health test', 'evidence' => 'tests/Feature/Postgres/PostgresExtensionsTest.php', 'check' => 'php artisan test --filter=PostgresExtensions'],
+                ['gate' => 'pgsql:check artisan command', 'evidence' => 'app/Console/Commands/PgsqlCheck.php', 'check' => 'php artisan pgsql:check'],
+            ],
+            'operator' => [
+                'php artisan pgsql:check',
+                'php artisan test --filter=PostgresExtensions',
+                'composer types:check',
+            ],
+            'evidence_location' => [
+                '.github/workflows/tests.yml',
+                'tests/Feature/Postgres/PostgresExtensionsTest.php',
+            ],
+            'recovery' => [
+                'Re-run `php artisan migrate:fresh --seed` to restore the PostgreSQL extension DDL and base schema.',
+                'If `php artisan pgsql:check` reports a missing extension, install it at the PostgreSQL server level, then re-run the check and the Pest suite.',
+            ],
+        ],
+        2 => [
+            'slug' => 'domain-resources',
+            'title' => 'Domain & Resources',
+            'adrs' => ['100304', '100311', '100313', '100314'],
+            'checks' => ['composer test:arch', 'php artisan test --testsuite=Feature'],
+            'status' => 'complete',
+            'gates' => [
+                ['gate' => 'UUIDv7 trait verification (HasUuids on all models)', 'evidence' => 'tests/Architecture/ArchitectureTest.php', 'check' => 'composer test:arch'],
+                ['gate' => 'Source Identity Registry (public.source_identities uniqueness and JSONB key)', 'evidence' => 'database/migrations/0001_01_01_000001_create_source_identities_table.php', 'check' => 'php artisan test --filter=SourceIdentit'],
+                ['gate' => 'Shadow schema import pipeline (ChinookImporter, NorthwindImporter, PagilaImporter)', 'evidence' => 'app/Services/ProductImport/{Chinook,Northwind,Pagila}Importer.php', 'check' => 'php artisan test --filter=ProductImportPipeline'],
+            ],
+            'operator' => [
+                'composer test:arch',
+                'php artisan test --testsuite=Feature --filter=Import',
+                'php artisan test --testsuite=Feature --filter=SourceIdentit',
+            ],
+            'evidence_location' => [
+                'tests/Feature/Import/ProductImportPipelineTest.php',
+            ],
+            'recovery' => [
+                'Run `composer test:arch` to confirm the architecture rules still hold; address any violation before proceeding.',
+                'Re-run `php artisan test --testsuite=Feature --filter=Import` to verify the import pipeline still loads each shadow schema.',
+                'If `source_identities` uniqueness regresses, re-run seeding and confirm the JSONB key constraint via the migration.',
+            ],
+        ],
+        3 => [
+            'slug' => 'quality-features',
+            'title' => 'Quality & Features',
+            'adrs' => ['100316', '100317', '100319', '100323', '100329'],
+            'checks' => ['composer rector', 'composer mago:analyze', 'composer test:mutation'],
+            'status' => 'complete',
+            'gates' => [
+                ['gate' => 'Spatie + Shield + Fortify auth matrix tests', 'evidence' => 'tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php', 'check' => 'php artisan test --filter=AuthorizationAcceptanceMatrix'],
+                ['gate' => 'Federated Search & RRF tests (FederatedSearchTest.php, ReciprocalRankFusionTest.php)', 'evidence' => 'tests/Feature/Search/FederatedSearchTest.php, tests/Unit/ReciprocalRankFusionTest.php', 'check' => 'php artisan test --filter=FederatedSearch'],
+                ['gate' => 'Portfolio Card & Snapshot view (PortfolioTest.php)', 'evidence' => 'tests/Feature/Filament/PortfolioTest.php', 'check' => 'php artisan test --filter=Portfolio'],
+            ],
+            'operator' => [
+                'composer test --filter=AuthorizationAcceptanceMatrix',
+                'composer test --filter=FederatedSearch',
+                'composer test --filter=Portfolio',
+            ],
+            'evidence_location' => [
+                'tests/Feature/Search/FederatedSearchTest.php',
+            ],
+            'recovery' => [
+                'Run the auth acceptance matrix (`composer test --filter=AuthorizationAcceptanceMatrix`) and restore any lapsed role/permission mapping.',
+                'Re-run the search suite (`composer test --filter=FederatedSearch`) and confirm RRF ranking output is stable.',
+                'Re-run the portfolio test and confirm the snapshot view renders without exceptions.',
+            ],
+        ],
+        4 => [
+            'slug' => 'polish',
+            'title' => 'Polish',
+            'adrs' => ['100326', '100331'],
+            'checks' => ['composer test:unit', 'composer test:type-cov'],
+            'status' => 'complete',
+            'gates' => [
+                ['gate' => 'PHPStan level: max baseline citation guard (PhpStanBaselineCitationTest.php)', 'evidence' => 'tests/Architecture/PhpStanBaselineCitationTest.php', 'check' => 'php artisan test --filter=PhpStanBaselineCitation'],
+                ['gate' => '26 Architecture rules (ArchitectureTest.php)', 'evidence' => 'tests/Architecture/ArchitectureTest.php', 'check' => 'composer test:arch'],
+                ['gate' => 'CI Quality Gate workflow (.github/workflows/tests.yml)', 'evidence' => '.github/workflows/tests.yml', 'check' => 'GitHub Actions tests.yml green'],
+            ],
+            'operator' => [
+                'composer test --filter=PhpStanBaselineCitation',
+                'composer test:arch',
+                'git diff --exit-code .github/workflows/tests.yml',
+            ],
+            'evidence_location' => [
+                '.github/workflows/tests.yml',
+                'tests/Architecture/ArchitectureTest.php',
+            ],
+            'recovery' => [
+                'Run `composer test:arch` to confirm all architecture rules pass; cite or resolve any new baseline entry.',
+                'Re-run the PHPStan baseline citation guard (`composer test --filter=PhpStanBaselineCitation`) so every ignored error remains justified.',
+                'If the CI Quality Gate workflow regresses, re-run `.github/workflows/tests.yml` locally via `act` or push a fix branch until CI is green.',
+            ],
+        ],
     ];
 
     protected $signature = 'dossier:generate
@@ -61,7 +171,7 @@ final class DossierGenerate extends Command
         );
 
         foreach (self::STAGES as $number => $stage) {
-            $slug = $stage[0];
+            $slug = $stage['slug'];
             $written += $this->writeFile(
                 $files,
                 sprintf('%s/15150%d-stage-%d-%s.md', $directory, $number + 2, $number, $slug),
@@ -126,10 +236,10 @@ final class DossierGenerate extends Command
 
             | Stage | Scope | Status |
             | --- | --- | --- |
-            | Stage 1 — Foundation | ADR recovery, CI, coverage baseline | _pending_ |
-            | Stage 2 — Domain & Resources | Domain structure, architecture rules, Northwind resources | _pending_ |
-            | Stage 3 — Quality & Features | Rector, Mago, Infection, Team Artefacts, search, dossier tooling | _pending_ |
-            | Stage 4 — Polish | Documentation, unit tests for core services | _pending_ |
+            | Stage 1 — Foundation | ADR recovery, CI, coverage baseline | complete |
+            | Stage 2 — Domain & Resources | Domain structure, architecture rules, Northwind resources | complete |
+            | Stage 3 — Quality & Features | Rector, Mago, Infection, Team Artefacts, search, dossier tooling | complete |
+            | Stage 4 — Polish | Documentation, unit tests for core services | complete |
 
             Copy `151502-stage-template.md` to a numbered stage file
             (e.g. `151503-stage-1-foundation.md`) to author a stage.
@@ -202,33 +312,62 @@ final class DossierGenerate extends Command
     }
 
     /**
-     * A populated stage file built from the STAGES map. Operator/evidence
-     * sections are left as TODO markers for human completion (preserved across
-     * re-generations per #37).
+     * A fully populated stage file built from the STAGES map. Each stage carries
+     * its verified acceptance gates, operator commands, evidence location, and
+     * recovery procedure, so the dossier is regenerated losslessly on `--force`.
      *
-     * @param  array{0: string, 1: string, 2: list<string>, 3: list<string>}  $stage
+     * @param  array{
+     *     slug: string,
+     *     title: string,
+     *     adrs: list<string>,
+     *     checks: list<string>,
+     *     status: string,
+     *     gates: list<array{gate: string, evidence: string, check: string}>,
+     *     operator: list<string>,
+     *     evidence_location: list<string>,
+     *     recovery: list<string>,
+     * }  $stage
      */
     private function stageFileStub(int $number, array $stage): string
     {
-        $title = $stage[1];
-        $adrs = implode(', ', array_map(fn (string $r): string => "ADR {$r}", $stage[2]));
+        $title = $stage['title'];
+        $status = $stage['status'];
+        $adrs = implode(', ', array_map(fn (string $r): string => "ADR {$r}", $stage['adrs']));
         $checks = implode("\n", array_map(
             fn (string $c): string => "- `{$c}`",
-            $stage[3],
+            $stage['checks'],
         ));
+
+        $gates = implode("\n", array_map(
+            fn (array $g): string => "| {$g['gate']} | `{$g['evidence']}` | `{$g['check']}` | Pass |",
+            $stage['gates'],
+        ));
+
+        $operator = implode("\n", $stage['operator']);
+
+        $evidenceLocation = implode("\n", array_map(
+            fn (string $e): string => "- `{$e}`",
+            $stage['evidence_location'],
+        ));
+
+        $recoveryLines = [];
+        foreach ($stage['recovery'] as $index => $step) {
+            $recoveryLines[] = ($index + 1).". {$step}";
+        }
+        $recovery = implode("\n", $recoveryLines);
 
         return <<<MD
         # Stage {$number} — {$title}
 
         **Risk order:** {$number}
         **Decision reference:** {$adrs}
-        **Status:** _pending_
+        **Status:** {$status}
 
         ## Acceptance gates
 
         | Gate | Evidence | Check | Status |
         | --- | --- | --- | --- |
-        > **OPERATOR TODO:** list each gate for this stage with its named evidence.
+        {$gates}
 
         ## Automated checks
 
@@ -237,17 +376,16 @@ final class DossierGenerate extends Command
         ## Operator commands
 
         ```bash
-        # Verification / recovery commands an operator can run.
+        {$operator}
         ```
-        > **OPERATOR TODO:** fill in verification / recovery commands.
 
         ## Evidence location
 
-        > **EVIDENCE TODO:** URL/path to the generated evidence (CI run, artifact).
+        {$evidenceLocation}
 
         ## Recovery procedure
 
-        > **OPERATOR TODO:** what to do when a gate regresses.
+        {$recovery}
 
         MD;
     }

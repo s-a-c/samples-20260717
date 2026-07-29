@@ -13,12 +13,12 @@ dossier only indexes where to find it and what each stage requires.
 An Acceptance Stage is one risk-ordered delivery increment whose
 required Acceptance Gates must pass before the next increment begins.
 
-| Stage                        | Scope                                                            | Status    |
-| ---------------------------- | ---------------------------------------------------------------- | --------- |
-| Stage 1 — Foundation         | ADR recovery, CI, coverage baseline                              | _pending_ |
-| Stage 2 — Domain & Resources | Domain structure, architecture rules, Northwind resources        | _pending_ |
-| Stage 3 — Quality & Features | Rector, Mago, Infection, Team Artefacts, search, dossier tooling | _pending_ |
-| Stage 4 — Polish             | Documentation, unit tests for core services                      | _pending_ |
+| Stage                        | Scope                                                            | Status   |
+| ---------------------------- | ---------------------------------------------------------------- | -------- |
+| Stage 1 — Foundation         | ADR recovery, CI, coverage baseline                              | complete |
+| Stage 2 — Domain & Resources | Domain structure, architecture rules, Northwind resources        | complete |
+| Stage 3 — Quality & Features | Rector, Mago, Infection, Team Artefacts, search, dossier tooling | complete |
+| Stage 4 — Polish             | Documentation, unit tests for core services                      | complete |
 
 Copy `151502-stage-template.md` to a numbered stage file
 (e.g. `151503-stage-1-foundation.md`) to author a stage.

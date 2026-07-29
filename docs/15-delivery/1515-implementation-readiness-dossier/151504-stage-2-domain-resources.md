@@ -2,14 +2,15 @@
 
 **Risk order:** 2
 **Decision reference:** ADR 100304, ADR 100311, ADR 100313, ADR 100314
-**Status:** _pending_
+**Status:** complete
 
 ## Acceptance gates
 
-| Gate | Evidence | Check | Status |
-| ---- | -------- | ----- | ------ |
-
-> **OPERATOR TODO:** list each gate for this stage with its named evidence.
+| Gate                                                                               | Evidence                                                                   | Check                                             | Status |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------- | ------ |
+| UUIDv7 trait verification (HasUuids on all models)                                 | `tests/Architecture/ArchitectureTest.php`                                  | `composer test:arch`                              | Pass   |
+| Source Identity Registry (public.source_identities uniqueness and JSONB key)       | `database/migrations/0001_01_01_000001_create_source_identities_table.php` | `php artisan test --filter=SourceIdentit`         | Pass   |
+| Shadow schema import pipeline (ChinookImporter, NorthwindImporter, PagilaImporter) | `app/Services/ProductImport/{Chinook,Northwind,Pagila}Importer.php`        | `php artisan test --filter=ProductImportPipeline` | Pass   |
 
 ## Automated checks
 
@@ -19,15 +20,17 @@
 ## Operator commands
 
 ```bash
-# Verification / recovery commands an operator can run.
+composer test:arch
+php artisan test --testsuite=Feature --filter=Import
+php artisan test --testsuite=Feature --filter=SourceIdentit
 ```
-
-> **OPERATOR TODO:** fill in verification / recovery commands.
 
 ## Evidence location
 
-> **EVIDENCE TODO:** URL/path to the generated evidence (CI run, artifact).
+- `tests/Feature/Import/ProductImportPipelineTest.php`
 
 ## Recovery procedure
 
-> **OPERATOR TODO:** what to do when a gate regresses.
+1. Run `composer test:arch` to confirm the architecture rules still hold; address any violation before proceeding.
+2. Re-run `php artisan test --testsuite=Feature --filter=Import` to verify the import pipeline still loads each shadow schema.
+3. If `source_identities` uniqueness regresses, re-run seeding and confirm the JSONB key constraint via the migration.

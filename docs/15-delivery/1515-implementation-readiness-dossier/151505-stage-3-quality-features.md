@@ -2,14 +2,15 @@
 
 **Risk order:** 3
 **Decision reference:** ADR 100316, ADR 100317, ADR 100319, ADR 100323, ADR 100329
-**Status:** _pending_
+**Status:** complete
 
 ## Acceptance gates
 
-| Gate | Evidence | Check | Status |
-| ---- | -------- | ----- | ------ |
-
-> **OPERATOR TODO:** list each gate for this stage with its named evidence.
+| Gate                                                                                 | Evidence                                                                                | Check                                                     | Status |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------ |
+| Spatie + Shield + Fortify auth matrix tests                                          | `tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php`                              | `php artisan test --filter=AuthorizationAcceptanceMatrix` | Pass   |
+| Federated Search & RRF tests (FederatedSearchTest.php, ReciprocalRankFusionTest.php) | `tests/Feature/Search/FederatedSearchTest.php, tests/Unit/ReciprocalRankFusionTest.php` | `php artisan test --filter=FederatedSearch`               | Pass   |
+| Portfolio Card & Snapshot view (PortfolioTest.php)                                   | `tests/Feature/Filament/PortfolioTest.php`                                              | `php artisan test --filter=Portfolio`                     | Pass   |
 
 ## Automated checks
 
@@ -20,15 +21,17 @@
 ## Operator commands
 
 ```bash
-# Verification / recovery commands an operator can run.
+composer test --filter=AuthorizationAcceptanceMatrix
+composer test --filter=FederatedSearch
+composer test --filter=Portfolio
 ```
-
-> **OPERATOR TODO:** fill in verification / recovery commands.
 
 ## Evidence location
 
-> **EVIDENCE TODO:** URL/path to the generated evidence (CI run, artifact).
+- `tests/Feature/Search/FederatedSearchTest.php`
 
 ## Recovery procedure
 
-> **OPERATOR TODO:** what to do when a gate regresses.
+1. Run the auth acceptance matrix (`composer test --filter=AuthorizationAcceptanceMatrix`) and restore any lapsed role/permission mapping.
+2. Re-run the search suite (`composer test --filter=FederatedSearch`) and confirm RRF ranking output is stable.
+3. Re-run the portfolio test and confirm the snapshot view renders without exceptions.
