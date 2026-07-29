@@ -20,8 +20,6 @@ use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
 
-covers(App\Filament\Northwind\Resources\CategoryResource::class);
-
 beforeEach(function () {
     /** @var User $curator */
     $this->curator = User::factory()->create();
@@ -187,4 +185,95 @@ test('supplier resource renders columns and data', function () {
         ->assertTableColumnExists('contact_name')
         ->assertTableColumnExists('city')
         ->assertTableColumnExists('country');
+});
+
+test('category edit page renders form', function () {
+    $category = Category::create(['category_name' => 'Beverages']);
+
+    $this->actingAs($this->curator)
+        ->get("/northwind/categories/{$category->id}/edit")
+        ->assertSuccessful();
+});
+
+test('customer edit page renders form', function () {
+    $customer = Customer::create([
+        'company_name' => 'Alfreds Futterkiste',
+        'contact_name' => 'Maria Anders',
+        'city' => 'Berlin',
+        'country' => 'Germany',
+    ]);
+
+    $this->actingAs($this->curator)
+        ->get("/northwind/customers/{$customer->id}/edit")
+        ->assertSuccessful();
+});
+
+test('employee edit page renders form', function () {
+    $employee = Employee::create([
+        'first_name' => 'Nancy',
+        'last_name' => 'Davolio',
+        'title' => 'Sales Representative',
+        'city' => 'Seattle',
+        'country' => 'USA',
+    ]);
+
+    $this->actingAs($this->curator)
+        ->get("/northwind/employees/{$employee->id}/edit")
+        ->assertSuccessful();
+});
+
+test('order edit page renders form', function () {
+    $customer = Customer::create(['company_name' => 'Alfreds Futterkiste']);
+    $employee = Employee::create(['first_name' => 'Nancy', 'last_name' => 'Davolio']);
+    $order = Order::create([
+        'customer_id' => $customer->id,
+        'employee_id' => $employee->id,
+        'order_date' => '2026-01-01 00:00:00',
+        'freight' => 32.38,
+        'ship_country' => 'Germany',
+    ]);
+
+    $this->actingAs($this->curator)
+        ->get("/northwind/orders/{$order->id}/edit")
+        ->assertSuccessful();
+});
+
+test('product edit page renders form', function () {
+    $supplier = Supplier::create(['company_name' => 'Exotic Liquids']);
+    $category = Category::create(['category_name' => 'Beverages']);
+    $product = Product::create([
+        'product_name' => 'Chai',
+        'supplier_id' => $supplier->id,
+        'category_id' => $category->id,
+        'unit_price' => 18.00,
+        'units_in_stock' => 39,
+        'units_on_order' => 0,
+        'reorder_level' => 10,
+        'discontinued' => false,
+    ]);
+
+    $this->actingAs($this->curator)
+        ->get("/northwind/products/{$product->id}/edit")
+        ->assertSuccessful();
+});
+
+test('shipper edit page renders form', function () {
+    $shipper = Shipper::create(['company_name' => 'Speedy Express']);
+
+    $this->actingAs($this->curator)
+        ->get("/northwind/shippers/{$shipper->id}/edit")
+        ->assertSuccessful();
+});
+
+test('supplier edit page renders form', function () {
+    $supplier = Supplier::create([
+        'company_name' => 'Exotic Liquids',
+        'contact_name' => 'Charlotte Cooper',
+        'city' => 'London',
+        'country' => 'UK',
+    ]);
+
+    $this->actingAs($this->curator)
+        ->get("/northwind/suppliers/{$supplier->id}/edit")
+        ->assertSuccessful();
 });

@@ -23,8 +23,6 @@ use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
 
-covers(App\Filament\Chinook\Resources\AlbumResource::class);
-
 beforeEach(function () {
     $this->curator = User::factory()->create();
     $this->curator->assignRole(Role::findOrCreate('chinook_curator', 'web'));
@@ -207,4 +205,107 @@ test('genre resource renders columns and data', function () {
     Livewire::test(ListGenres::class)
         ->assertCanSeeTableRecords([$genre])
         ->assertTableColumnExists('name');
+});
+
+test('artist edit page renders form', function () {
+    $artist = Artist::create(['name' => 'Queen']);
+
+    $this->actingAs($this->curator)
+        ->get("/chinook/artists/{$artist->id}/edit")
+        ->assertSuccessful();
+});
+
+test('album edit page renders form', function () {
+    $artist = Artist::create(['name' => 'Queen']);
+    $album = Album::create(['title' => 'A Night at the Opera', 'artist_id' => $artist->id]);
+
+    $this->actingAs($this->curator)
+        ->get("/chinook/albums/{$album->id}/edit")
+        ->assertSuccessful();
+});
+
+test('track edit page renders form', function () {
+    $artist = Artist::create(['name' => 'Queen']);
+    $album = Album::create(['title' => 'A Night at the Opera', 'artist_id' => $artist->id]);
+    $genre = Genre::create(['name' => 'Rock']);
+    $mediaType = MediaType::create(['name' => 'MPEG audio file']);
+    $track = Track::create([
+        'name' => 'Bohemian Rhapsody',
+        'album_id' => $album->id,
+        'media_type_id' => $mediaType->id,
+        'genre_id' => $genre->id,
+        'milliseconds' => 354000,
+        'unit_price' => 0.99,
+    ]);
+
+    $this->actingAs($this->curator)
+        ->get("/chinook/tracks/{$track->id}/edit")
+        ->assertSuccessful();
+});
+
+test('playlist edit page renders form', function () {
+    $playlist = Playlist::create(['name' => 'Classic Rock Hits']);
+
+    $this->actingAs($this->curator)
+        ->get("/chinook/playlists/{$playlist->id}/edit")
+        ->assertSuccessful();
+});
+
+test('employee edit page renders form', function () {
+    $employee = Employee::create([
+        'first_name' => 'Andrew',
+        'last_name' => 'Adams',
+        'title' => 'General Manager',
+        'email' => 'andrew@chinook.test',
+    ]);
+
+    $this->actingAs($this->curator)
+        ->get("/chinook/employees/{$employee->id}/edit")
+        ->assertSuccessful();
+});
+
+test('customer edit page renders form', function () {
+    $employee = Employee::create([
+        'first_name' => 'Jane',
+        'last_name' => 'Peacock',
+        'email' => 'jane@chinook.test',
+    ]);
+
+    $customer = Customer::create([
+        'first_name' => 'Luís',
+        'last_name' => 'Gonçalves',
+        'email' => 'luisg@brazil.test',
+        'support_rep_id' => $employee->id,
+    ]);
+
+    $this->actingAs($this->curator)
+        ->get("/chinook/customers/{$customer->id}/edit")
+        ->assertSuccessful();
+});
+
+test('invoice edit page renders form', function () {
+    $customer = Customer::create([
+        'first_name' => 'Luís',
+        'last_name' => 'Gonçalves',
+        'email' => 'luisg@brazil.test',
+    ]);
+
+    $invoice = Invoice::create([
+        'customer_id' => $customer->id,
+        'invoice_date' => '2026-01-01 00:00:00',
+        'total' => 18.81,
+        'billing_country' => 'Brazil',
+    ]);
+
+    $this->actingAs($this->curator)
+        ->get("/chinook/invoices/{$invoice->id}/edit")
+        ->assertSuccessful();
+});
+
+test('genre edit page renders form', function () {
+    $genre = Genre::create(['name' => 'Heavy Metal']);
+
+    $this->actingAs($this->curator)
+        ->get("/chinook/genres/{$genre->id}/edit")
+        ->assertSuccessful();
 });

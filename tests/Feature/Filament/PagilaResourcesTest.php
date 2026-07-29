@@ -26,8 +26,6 @@ use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
 
-covers(App\Filament\Pagila\Resources\ActorResource::class);
-
 beforeEach(function () {
     $this->pagilaCurator = User::factory()->create();
     $this->pagilaCurator->assignRole(Role::findOrCreate('pagila_curator', 'web'));
@@ -305,4 +303,165 @@ test('language resource renders columns and data', function () {
     Livewire::test(ListLanguages::class)
         ->assertCanSeeTableRecords([$language])
         ->assertTableColumnExists('name');
+});
+
+test('actor edit page renders form', function () {
+    $actor = Actor::create([
+        'first_name' => 'PENELOPE',
+        'last_name' => 'GUINESS',
+    ]);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/actors/{$actor->id}/edit")
+        ->assertSuccessful();
+});
+
+test('film edit page renders form', function () {
+    $language = Language::create(['name' => 'English']);
+    $film = Film::create([
+        'title' => 'ACADEMY DINOSAUR',
+        'language_id' => $language->id,
+        'rental_duration' => 6,
+        'rental_rate' => 0.99,
+        'replacement_cost' => 20.99,
+        'rating' => 'PG',
+        'length' => 86,
+    ]);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/films/{$film->id}/edit")
+        ->assertSuccessful();
+});
+
+test('category edit page renders form', function () {
+    $category = Category::create(['name' => 'Action']);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/categories/{$category->id}/edit")
+        ->assertSuccessful();
+});
+
+test('customer edit page renders form', function () {
+    $store = Store::create();
+    $customer = Customer::create([
+        'store_id' => $store->id,
+        'first_name' => 'MARY',
+        'last_name' => 'SMITH',
+        'email' => 'mary.smith@pagilacustomer.org',
+        'active' => true,
+    ]);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/customers/{$customer->id}/edit")
+        ->assertSuccessful();
+});
+
+test('staff edit page renders form', function () {
+    $staff = Staff::create([
+        'first_name' => 'Mike',
+        'last_name' => 'Hillyer',
+        'email' => 'Mike.Hillyer@pagilastaff.com',
+        'active' => true,
+        'username' => 'Mike',
+    ]);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/staff/{$staff->id}/edit")
+        ->assertSuccessful();
+});
+
+test('store edit page renders form', function () {
+    $store = Store::create(['address' => '47 MyPagila Drive']);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/stores/{$store->id}/edit")
+        ->assertSuccessful();
+});
+
+test('rental edit page renders form', function () {
+    $store = Store::create();
+    $customer = Customer::create([
+        'store_id' => $store->id,
+        'first_name' => 'MARY',
+        'last_name' => 'SMITH',
+        'active' => true,
+    ]);
+    $staff = Staff::create([
+        'first_name' => 'Mike',
+        'last_name' => 'Hillyer',
+        'active' => true,
+    ]);
+    $film = Film::create([
+        'title' => 'ACADEMY DINOSAUR',
+        'language_id' => Language::create(['name' => 'English'])->id,
+        'rental_duration' => 6,
+        'rental_rate' => 0.99,
+        'replacement_cost' => 20.99,
+    ]);
+    $inventory = Inventory::create([
+        'film_id' => $film->id,
+        'store_id' => $store->id,
+    ]);
+    $rental = Rental::create([
+        'rental_date' => '2026-01-01 12:00:00',
+        'inventory_id' => $inventory->id,
+        'customer_id' => $customer->id,
+        'staff_id' => $staff->id,
+    ]);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/rentals/{$rental->id}/edit")
+        ->assertSuccessful();
+});
+
+test('payment edit page renders form', function () {
+    $store = Store::create();
+    $customer = Customer::create([
+        'store_id' => $store->id,
+        'first_name' => 'MARY',
+        'last_name' => 'SMITH',
+        'active' => true,
+    ]);
+    $staff = Staff::create([
+        'first_name' => 'Mike',
+        'last_name' => 'Hillyer',
+        'active' => true,
+    ]);
+    $payment = Payment::create([
+        'customer_id' => $customer->id,
+        'staff_id' => $staff->id,
+        'amount' => 5.99,
+        'payment_date' => '2026-01-01 12:00:00',
+    ]);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/payments/{$payment->id}/edit")
+        ->assertSuccessful();
+});
+
+test('inventory edit page renders form', function () {
+    $store = Store::create();
+    $film = Film::create([
+        'title' => 'ACADEMY DINOSAUR',
+        'language_id' => Language::create(['name' => 'English'])->id,
+        'rental_duration' => 6,
+        'rental_rate' => 0.99,
+        'replacement_cost' => 20.99,
+    ]);
+    $inventory = Inventory::create([
+        'film_id' => $film->id,
+        'store_id' => $store->id,
+    ]);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/inventories/{$inventory->id}/edit")
+        ->assertSuccessful();
+});
+
+test('language edit page renders form', function () {
+    $language = Language::create(['name' => 'English']);
+
+    $this->actingAs($this->pagilaCurator)
+        ->get("/pagila/languages/{$language->id}/edit")
+        ->assertSuccessful();
 });
