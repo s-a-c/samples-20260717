@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Responses;
 
 use App\Http\Responses\Concerns\RedirectsToCurrentTeam;
@@ -8,7 +10,7 @@ use Laravel\Fortify\Contracts\VerifyEmailResponse as VerifyEmailResponseContract
 use Laravel\Fortify\Fortify;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerifyEmailResponse implements VerifyEmailResponseContract
+final class VerifyEmailResponse implements VerifyEmailResponseContract
 {
     use RedirectsToCurrentTeam;
 

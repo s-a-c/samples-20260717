@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Actions\Operators\ProvisionOperator;
@@ -9,7 +11,7 @@ use Illuminate\Console\Command;
 
 #[Signature('operator:create {--email=} {--password=} {--name=}')]
 #[Description('Create or update the System Operator account')]
-class OperatorCreate extends Command
+final class OperatorCreate extends Command
 {
     /**
      * Execute the console command.

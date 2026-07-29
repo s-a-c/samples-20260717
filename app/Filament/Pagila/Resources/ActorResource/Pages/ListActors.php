@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pagila\Resources\ActorResource\Pages;
 
 use App\Filament\Pagila\Resources\ActorResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListActors extends ListRecords
+final class ListActors extends ListRecords
 {
     protected static string $resource = ActorResource::class;
 

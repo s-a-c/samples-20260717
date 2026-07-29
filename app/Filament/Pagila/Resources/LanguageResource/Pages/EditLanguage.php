@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pagila\Resources\LanguageResource\Pages;
 
 use App\Filament\Pagila\Resources\LanguageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditLanguage extends EditRecord
+final class EditLanguage extends EditRecord
 {
     protected static string $resource = LanguageResource::class;
 

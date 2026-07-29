@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -22,19 +24,9 @@ use Illuminate\Support\Carbon;
  * @property-read User $operator
  */
 #[Fillable(['id', 'operator_id', 'product', 'source_sha256', 'source_commit', 'token', 'expires_at', 'used_at'])]
-class ResetConfirmation extends Model
+final class ResetConfirmation extends Model
 {
     use HasUuids;
-
-    /**
-     * Get the operator user.
-     *
-     * @return BelongsTo<User, $this>
-     */
-    public function operator(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'operator_id');
-    }
 
     /**
      * Get the attributes that should be cast.
@@ -47,5 +39,15 @@ class ResetConfirmation extends Model
             'expires_at' => 'datetime',
             'used_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Get the operator user.
+     *
+     * @return BelongsTo<User, $this>
+     */
+    public function operator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'operator_id');
     }
 }

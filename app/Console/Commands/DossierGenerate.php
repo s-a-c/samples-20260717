@@ -21,6 +21,19 @@ final class DossierGenerate extends Command
 {
     private const string DOSSIER_DIR = 'docs/15-delivery/1515-implementation-readiness-dossier';
 
+    /**
+     * The four risk-ordered Acceptance Stages (per the dossier contents index),
+     * each mapped to its ADR references and the composer/CI checks that prove its gates.
+     *
+     * @var array<int, array{0: string, 1: string, 2: list<string>, 3: list<string>}>
+     */
+    private const STAGES = [
+        1 => ['foundation', 'Foundation', ['100302', '100328', '100332'], ['composer types:check', 'composer test:coverage']],
+        2 => ['domain-resources', 'Domain & Resources', ['100304', '100311', '100313', '100314'], ['composer test:arch', 'php artisan test --testsuite=Feature']],
+        3 => ['quality-features', 'Quality & Features', ['100316', '100317', '100319', '100323', '100329'], ['composer rector', 'composer mago:analyze', 'composer test:mutation']],
+        4 => ['polish', 'Polish', ['100326', '100331'], ['composer test:unit', 'composer test:type-cov']],
+    ];
+
     protected $signature = 'dossier:generate
                             {--force : Overwrite existing dossier files}';
 
@@ -46,6 +59,16 @@ final class DossierGenerate extends Command
             $this->stageTemplateStub(),
             $force,
         );
+
+        foreach (self::STAGES as $number => $stage) {
+            $slug = $stage[0];
+            $written += $this->writeFile(
+                $files,
+                sprintf('%s/15150%d-stage-%d-%s.md', $directory, $number + 2, $number, $slug),
+                $this->stageFileStub($number, $stage),
+                $force,
+            );
+        }
 
         if ($written === 0) {
             $this->components->info('All dossier files already exist. Use --force to overwrite.');
@@ -176,5 +199,56 @@ final class DossierGenerate extends Command
             1. _what to do when a gate regresses_
 
             MD;
+    }
+
+    /**
+     * A populated stage file built from the STAGES map. Operator/evidence
+     * sections are left as TODO markers for human completion (preserved across
+     * re-generations per #37).
+     *
+     * @param  array{0: string, 1: string, 2: list<string>, 3: list<string>}  $stage
+     */
+    private function stageFileStub(int $number, array $stage): string
+    {
+        $title = $stage[1];
+        $adrs = implode(', ', array_map(fn (string $r): string => "ADR {$r}", $stage[2]));
+        $checks = implode("\n", array_map(
+            fn (string $c): string => "- `{$c}`",
+            $stage[3],
+        ));
+
+        return <<<MD
+        # Stage {$number} — {$title}
+
+        **Risk order:** {$number}
+        **Decision reference:** {$adrs}
+        **Status:** _pending_
+
+        ## Acceptance gates
+
+        | Gate | Evidence | Check | Status |
+        | --- | --- | --- | --- |
+        > **OPERATOR TODO:** list each gate for this stage with its named evidence.
+
+        ## Automated checks
+
+        {$checks}
+
+        ## Operator commands
+
+        ```bash
+        # Verification / recovery commands an operator can run.
+        ```
+        > **OPERATOR TODO:** fill in verification / recovery commands.
+
+        ## Evidence location
+
+        > **EVIDENCE TODO:** URL/path to the generated evidence (CI run, artifact).
+
+        ## Recovery procedure
+
+        > **OPERATOR TODO:** what to do when a gate regresses.
+
+        MD;
     }
 }

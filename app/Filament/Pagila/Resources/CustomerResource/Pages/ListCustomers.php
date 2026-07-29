@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pagila\Resources\CustomerResource\Pages;
 
 use App\Filament\Pagila\Resources\CustomerResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListCustomers extends ListRecords
+final class ListCustomers extends ListRecords
 {
     protected static string $resource = CustomerResource::class;
 

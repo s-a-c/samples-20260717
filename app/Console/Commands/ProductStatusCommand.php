@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\ResetRun;
 use Illuminate\Console\Command;
 
-class ProductStatusCommand extends Command
+final class ProductStatusCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -26,7 +28,7 @@ class ProductStatusCommand extends Command
      */
     public function handle(): int
     {
-        $product = $this->argument('product') !== null ? strtolower($this->argument('product')) : null;
+        $product = $this->argument('product') !== null ? mb_strtolower($this->argument('product')) : null;
 
         $query = ResetRun::query();
 

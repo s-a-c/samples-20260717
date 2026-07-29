@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources\EmployeeResource\Pages;
 
 use App\Filament\Chinook\Resources\EmployeeResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditEmployee extends EditRecord
+final class EditEmployee extends EditRecord
 {
     protected static string $resource = EmployeeResource::class;
 

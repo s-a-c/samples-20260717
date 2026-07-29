@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources\CustomerResource\Pages;
 
 use App\Filament\Chinook\Resources\CustomerResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListCustomers extends ListRecords
+final class ListCustomers extends ListRecords
 {
     protected static string $resource = CustomerResource::class;
 

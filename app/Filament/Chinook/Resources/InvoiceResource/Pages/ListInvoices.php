@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Chinook\Resources\InvoiceResource\Pages;
 
 use App\Filament\Chinook\Resources\InvoiceResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListInvoices extends ListRecords
+final class ListInvoices extends ListRecords
 {
     protected static string $resource = InvoiceResource::class;
 

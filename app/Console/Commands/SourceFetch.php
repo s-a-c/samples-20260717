@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 
-class SourceFetch extends Command
+final class SourceFetch extends Command
 {
     /**
      * The name and signature of the console command.
@@ -27,7 +29,7 @@ class SourceFetch extends Command
      */
     public function handle(): int
     {
-        $product = strtolower($this->argument('product'));
+        $product = mb_strtolower($this->argument('product'));
         $manifestPath = database_path("sources/{$product}.php");
 
         if (! File::exists($manifestPath)) {

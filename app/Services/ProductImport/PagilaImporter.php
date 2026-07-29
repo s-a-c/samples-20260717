@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\ProductImport;
 
 use App\Models\ResetRun;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Throwable;
 
 final class PagilaImporter
 {
     public function __construct(
-        protected SourceIdentityRegistry $identityRegistry,
-        protected PostgresSourceReader $pgReader,
+        private PostgresSourceReader $pgReader,
     ) {}
 
     /**
@@ -37,7 +39,7 @@ final class PagilaImporter
             });
 
             return ['success' => true];
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return ['success' => false, 'error' => $e->getMessage()];
         }
     }
@@ -45,7 +47,7 @@ final class PagilaImporter
     /**
      * Process source files into staging schema.
      */
-    protected function processSourceRows(string $stagingSchema): void
+    private function processSourceRows(string $stagingSchema): void
     {
         $manifest = $this->getManifest();
 
@@ -70,7 +72,7 @@ final class PagilaImporter
     /**
      * @return array{product: string, commit_sha: string, schema_filename: string, data_filename: string}|null
      */
-    protected function getManifest(): ?array
+    private function getManifest(): ?array
     {
         $manifestPath = database_path('sources/pagila.php');
 
@@ -82,7 +84,7 @@ final class PagilaImporter
         return require $manifestPath;
     }
 
-    protected function getSourceFilePath(string $filename): ?string
+    private function getSourceFilePath(string $filename): ?string
     {
         $manifest = $this->getManifest();
 

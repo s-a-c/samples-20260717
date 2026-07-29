@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services\ProductImport;
 
 use App\Models\ResetRun;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Throwable;
 
 final class NorthwindImporter
 {
     public function __construct(
-        protected SourceIdentityRegistry $identityRegistry,
-        protected PostgresSourceReader $pgReader,
+        private PostgresSourceReader $pgReader,
     ) {}
 
     /**
@@ -37,7 +39,7 @@ final class NorthwindImporter
             });
 
             return ['success' => true];
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return ['success' => false, 'error' => $e->getMessage()];
         }
     }
@@ -45,7 +47,7 @@ final class NorthwindImporter
     /**
      * Process source rows into staging schema.
      */
-    protected function processSourceRows(string $stagingSchema): void
+    private function processSourceRows(string $stagingSchema): void
     {
         $sourceFile = $this->getSourceFilePath();
 
@@ -54,7 +56,7 @@ final class NorthwindImporter
         }
     }
 
-    protected function getSourceFilePath(): ?string
+    private function getSourceFilePath(): ?string
     {
         $manifestPath = database_path('sources/northwind.php');
 

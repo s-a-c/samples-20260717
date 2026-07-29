@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pagila\Resources\StaffResource\Pages;
 
 use App\Filament\Pagila\Resources\StaffResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditStaff extends EditRecord
+final class EditStaff extends EditRecord
 {
     protected static string $resource = StaffResource::class;
 

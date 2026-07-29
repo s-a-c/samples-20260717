@@ -99,15 +99,29 @@ phpunit = ["PHPUnit\\**"]
 
 [[guard.perimeter.rules]]
 namespace = "@global"
-permit = ["@self", "@layer:native", "@layer:laravel", "@layer:carbon", "@layer:livewire", "@layer:filament", "@layer:spatie", "@layer:symfony", "@layer:pest", "@layer:phpunit", "App\\**", "Database\\**", "Tests\\**"]
+permit = [
+    "@self",
+    "@layer:native",
+    "@layer:laravel",
+    "@layer:carbon",
+    "@layer:livewire",
+    "@layer:filament",
+    "@layer:spatie",
+    "@layer:symfony",
+    "@layer:pest",
+    "@layer:phpunit",
+    "App\\**",
+    "Database\\**",
+    "Tests\\**",
+]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Contracts\\"
-permit = ["@self", "@layer:native", "@layer:laravel"]
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Enums\\**"]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Enums\\"
-permit = ["@self", "@layer:native", "@layer:laravel"]
+permit = ["@self", "@layer:native", "@layer:laravel", "@layer:filament"]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Traits\\"
@@ -115,7 +129,18 @@ permit = ["@self", "@layer:native", "@layer:laravel", "App\\Contracts\\**", "App
 
 [[guard.perimeter.rules]]
 namespace = "App\\Models\\"
-permit = ["@self", "@layer:native", "@layer:laravel", "@layer:filament", "@layer:spatie", "App\\Contracts\\**", "App\\Traits\\**", "App\\Enums\\**", "App\\Concerns\\**", "Database\\Factories\\**"]
+permit = [
+    "@self",
+    "@layer:native",
+    "@layer:laravel",
+    "@layer:filament",
+    "@layer:spatie",
+    "App\\Contracts\\**",
+    "App\\Traits\\**",
+    "App\\Enums\\**",
+    "App\\Concerns\\**",
+    "Database\\Factories\\**",
+]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Data\\"
@@ -131,7 +156,15 @@ permit = ["@self", "@layer:native", "@layer:laravel"]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Services\\"
-permit = ["@self", "@layer:native", "@layer:laravel", "App\\Contracts\\**", "App\\Traits\\**", "App\\Models\\**", "App\\Enums\\**"]
+permit = [
+    "@self",
+    "@layer:native",
+    "@layer:laravel",
+    "App\\Contracts\\**",
+    "App\\Traits\\**",
+    "App\\Models\\**",
+    "App\\Enums\\**",
+]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Actions\\"
@@ -139,7 +172,14 @@ permit = ["@self", "@layer:native", "@layer:laravel", "@layer:filament", "@layer
 
 [[guard.perimeter.rules]]
 namespace = "App\\Observers\\"
-permit = ["@self", "@layer:native", "@layer:laravel", "App\\Models\\**", "App\\Services\\**", "App\\Jobs\\**"]
+permit = [
+    "@self",
+    "@layer:native",
+    "@layer:laravel",
+    "App\\Models\\**",
+    "App\\Services\\**",
+    "App\\Jobs\\**",
+]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Policies\\"
@@ -163,11 +203,27 @@ permit = ["@self", "@layer:native", "@layer:laravel", "@layer:spatie", "App\\**"
 
 [[guard.perimeter.rules]]
 namespace = "App\\Livewire\\"
-permit = ["@self", "@layer:native", "@layer:laravel", "@layer:livewire", "@layer:filament", "@layer:spatie", "App\\**"]
+permit = [
+    "@self",
+    "@layer:native",
+    "@layer:laravel",
+    "@layer:livewire",
+    "@layer:filament",
+    "@layer:spatie",
+    "App\\**",
+]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Http\\"
-permit = ["@self", "@layer:native", "@layer:laravel", "@layer:filament", "@layer:spatie", "@layer:symfony", "App\\**"]
+permit = [
+    "@self",
+    "@layer:native",
+    "@layer:laravel",
+    "@layer:filament",
+    "@layer:spatie",
+    "@layer:symfony",
+    "App\\**",
+]
 
 [[guard.perimeter.rules]]
 namespace = "App\\Filament\\"
@@ -175,7 +231,15 @@ permit = ["@self", "@layer:native", "@layer:laravel", "@layer:filament", "@layer
 
 [[guard.perimeter.rules]]
 namespace = "App\\Providers\\"
-permit = ["@self", "@layer:native", "@layer:laravel", "@layer:carbon", "@layer:filament", "@layer:spatie", "App\\**"]
+permit = [
+    "@self",
+    "@layer:native",
+    "@layer:laravel",
+    "@layer:carbon",
+    "@layer:filament",
+    "@layer:spatie",
+    "App\\**",
+]
 
 [[guard.perimeter.rules]]
 namespace = "Database\\Factories\\"
@@ -193,27 +257,45 @@ permit = ["@all"]
 
 [[guard.perimeter.restrictions]]
 dependency = "App\\Models\\Northwind\\**"
-deny-from = ["App\\Services\\ProductImport\\ChinookImporter", "App\\Services\\ProductImport\\PagilaImporter"]
+deny-from = [
+    "App\\Services\\ProductImport\\ChinookImporter",
+    "App\\Services\\ProductImport\\PagilaImporter",
+]
 
 [[guard.perimeter.restrictions]]
 dependency = "App\\Models\\Pagila\\**"
-deny-from = ["App\\Services\\ProductImport\\ChinookImporter", "App\\Services\\ProductImport\\NorthwindImporter"]
+deny-from = [
+    "App\\Services\\ProductImport\\ChinookImporter",
+    "App\\Services\\ProductImport\\NorthwindImporter",
+]
 
 [[guard.perimeter.restrictions]]
 dependency = "App\\Models\\Chinook\\**"
-deny-from = ["App\\Services\\ProductImport\\NorthwindImporter", "App\\Services\\ProductImport\\PagilaImporter"]
+deny-from = [
+    "App\\Services\\ProductImport\\NorthwindImporter",
+    "App\\Services\\ProductImport\\PagilaImporter",
+]
 
 [[guard.perimeter.restrictions]]
 dependency = "App\\Filament\\Northwind\\**"
-deny-from = ["App\\Services\\ProductImport\\ChinookImporter", "App\\Services\\ProductImport\\PagilaImporter"]
+deny-from = [
+    "App\\Services\\ProductImport\\ChinookImporter",
+    "App\\Services\\ProductImport\\PagilaImporter",
+]
 
 [[guard.perimeter.restrictions]]
 dependency = "App\\Filament\\Pagila\\**"
-deny-from = ["App\\Services\\ProductImport\\ChinookImporter", "App\\Services\\ProductImport\\NorthwindImporter"]
+deny-from = [
+    "App\\Services\\ProductImport\\ChinookImporter",
+    "App\\Services\\ProductImport\\NorthwindImporter",
+]
 
 [[guard.perimeter.restrictions]]
 dependency = "App\\Filament\\Chinook\\**"
-deny-from = ["App\\Services\\ProductImport\\NorthwindImporter", "App\\Services\\ProductImport\\PagilaImporter"]
+deny-from = [
+    "App\\Services\\ProductImport\\NorthwindImporter",
+    "App\\Services\\ProductImport\\PagilaImporter",
+]
 
 # ─── No dd/dump in application code ──────────────────────────────────────────
 
