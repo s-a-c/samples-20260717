@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Data\TeamPermissions;
 use App\Enums\SamplesProduct;
 use App\Exceptions\ProductResetWindowOpen;
+use App\Http\Responses\TwoFactorLoginResponse;
 use App\Jobs\EmbeddingJob;
 use App\Models\Chinook\Artist as ChinookArtist;
 use App\Models\Team;
@@ -15,6 +16,7 @@ use App\Observers\Tier1SourceObserver;
 use App\Rules\TeamName;
 use App\Rules\UniqueTeamInvitation;
 use App\Services\Portfolio\PortfolioSnapshotStats;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Validator;
@@ -27,6 +29,7 @@ covers(
     UniqueTeamInvitation::class,
     TeamPermissions::class,
     TeamInvitationNotification::class,
+    TwoFactorLoginResponse::class,
 );
 
 // ---------------------------------------------------------------------------
@@ -249,4 +252,41 @@ test('team invitation notification array representation includes invitation data
         ->and($array)->toHaveKey('team_id', $invitation->team_id)
         ->and($array)->toHaveKey('team_name')
         ->and($array)->toHaveKey('role', $invitation->role->value);
+});
+
+// ---------------------------------------------------------------------------
+// TwoFactorLoginResponse
+// ---------------------------------------------------------------------------
+
+test('two factor login response returns json when request wants json', function () {
+    $user = User::factory()->create();
+    $team = Team::factory()->create(['is_personal' => true]);
+    $user->current_team_id = $team->id;
+    $user->save();
+
+    $request = Request::create('/', 'GET');
+    $request->headers->set('Accept', 'application/json');
+    $request->setUserResolver(fn () => $user);
+
+    $response = new TwoFactorLoginResponse;
+    $result = $response->toResponse($request);
+
+    expect($result)->toBeInstanceOf(JsonResponse::class)
+        ->and($result->getStatusCode())->toBe(200)
+        ->and(json_decode((string) $result->getContent(), true))->toBe(['two_factor' => false]);
+});
+
+test('two factor login response returns redirect for non-json requests', function () {
+    $user = User::factory()->create();
+    $team = Team::factory()->create(['is_personal' => true]);
+    $user->current_team_id = $team->id;
+    $user->save();
+
+    $request = Request::create('/', 'GET');
+    $request->setUserResolver(fn () => $user);
+
+    $response = new TwoFactorLoginResponse;
+    $result = $response->toResponse($request);
+
+    expect($result->getStatusCode())->toBe(302);
 });

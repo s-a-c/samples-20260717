@@ -109,3 +109,90 @@ test('source:fetch validates digest, fetches file to private storage, and skips 
         }
     }
 });
+
+test('source:fetch multi-file fetches schema and data files for postgresql_multi format', function () {
+    $schemaContent = 'CREATE TABLE foo (id int);';
+    $dataContent = 'INSERT INTO foo VALUES (1);';
+    $schemaDigest = hash('sha256', $schemaContent);
+    $dataDigest = hash('sha256', $dataContent);
+
+    $testManifestPath = database_path('sources/test_multi.php');
+    File::put($testManifestPath, "<?php return [
+        'product' => 'test_multi',
+        'repository' => 'test/multirepo',
+        'commit_sha' => 'def5678',
+        'schema_filename' => 'schema.sql',
+        'data_filename' => 'data.sql',
+        'schema_digest' => '{$schemaDigest}',
+        'data_digest' => '{$dataDigest}',
+        'format' => 'postgresql_multi',
+    ];");
+
+    $schemaFile = storage_path('app/private/sources/test_multi/def5678/schema.sql');
+    $dataFile = storage_path('app/private/sources/test_multi/def5678/data.sql');
+
+    try {
+        Http::fake([
+            'https://raw.githubusercontent.com/test/multirepo/def5678/schema.sql' => Http::response($schemaContent, 200),
+            'https://raw.githubusercontent.com/test/multirepo/def5678/data.sql' => Http::response($dataContent, 200),
+        ]);
+
+        $this->artisan('source:fetch', ['product' => 'test_multi'])
+            ->assertSuccessful()
+            ->expectsOutput("Dataset file 'schema.sql' fetched and digest verified successfully.")
+            ->expectsOutput("Dataset file 'data.sql' fetched and digest verified successfully.");
+
+        expect(File::exists($schemaFile))->toBeTrue()
+            ->and(File::exists($dataFile))->toBeTrue()
+            ->and(File::get($schemaFile))->toBe($schemaContent)
+            ->and(File::get($dataFile))->toBe($dataContent);
+
+        // Second run skips both files
+        $this->artisan('source:fetch', ['product' => 'test_multi'])
+            ->assertSuccessful()
+            ->expectsOutput("Dataset file 'schema.sql' already fetched and verified.")
+            ->expectsOutput("Dataset file 'data.sql' already fetched and verified.");
+    } finally {
+        if (File::exists($testManifestPath)) {
+            File::delete($testManifestPath);
+        }
+        if (File::isDirectory(storage_path('app/private/sources/test_multi'))) {
+            File::deleteDirectory(storage_path('app/private/sources/test_multi'));
+        }
+    }
+});
+
+test('source:fetch multi-file fails on digest mismatch', function () {
+    $schemaContent = 'valid schema';
+    $schemaDigest = hash('sha256', $schemaContent);
+    $badDataDigest = str_repeat('0', 64);
+
+    $testManifestPath = database_path('sources/test_multi_bad.php');
+    File::put($testManifestPath, "<?php return [
+        'product' => 'test_multi_bad',
+        'repository' => 'test/multirepo',
+        'commit_sha' => 'ghi9012',
+        'schema_filename' => 'schema.sql',
+        'data_filename' => 'data.sql',
+        'schema_digest' => '{$schemaDigest}',
+        'data_digest' => '{$badDataDigest}',
+        'format' => 'postgresql_multi',
+    ];");
+
+    try {
+        Http::fake([
+            'https://raw.githubusercontent.com/test/multirepo/ghi9012/schema.sql' => Http::response($schemaContent, 200),
+            'https://raw.githubusercontent.com/test/multirepo/ghi9012/data.sql' => Http::response('unexpected', 200),
+        ]);
+
+        $this->artisan('source:fetch', ['product' => 'test_multi_bad'])
+            ->assertFailed();
+    } finally {
+        if (File::exists($testManifestPath)) {
+            File::delete($testManifestPath);
+        }
+        if (File::isDirectory(storage_path('app/private/sources/test_multi_bad'))) {
+            File::deleteDirectory(storage_path('app/private/sources/test_multi_bad'));
+        }
+    }
+});

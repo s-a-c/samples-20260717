@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Uid\UuidV7;
 
-covers(SourceIdentityRegistry::class);
+covers(SourceIdentityRegistry::class, ResetConfirmationService::class);
 
 uses(RefreshDatabase::class);
 

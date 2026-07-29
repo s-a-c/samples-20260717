@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 
-covers(App\Console\Commands\OperatorCreate::class);
+covers(App\Console\Commands\OperatorCreate::class, App\Actions\Operators\ProvisionOperator::class);
 
 function withOperatorEnvironment(): void
 {

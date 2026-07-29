@@ -168,3 +168,39 @@ test('recovery service refuses to create a recovery run for a non-failed run', f
     expect(fn () => $recoveryService->createRecoveryRun($runningRun))
         ->toThrow(InvalidArgumentException::class);
 });
+
+test('recovery service getRecoveryRunFor returns the child recovery run or null', function () {
+    $recoveryService = new RecoveryService;
+
+    $failedRun = ResetRun::create([
+        'id' => (string) Str::uuid7(),
+        'product' => 'northwind',
+        'kind' => 'import',
+        'status' => 'failed',
+    ]);
+
+    expect($recoveryService->getRecoveryRunFor($failedRun))->toBeNull();
+
+    $child = $recoveryService->createRecoveryRun($failedRun);
+
+    $found = $recoveryService->getRecoveryRunFor($failedRun);
+    expect($found)->not->toBeNull()
+        ->and($found->id)->toBe($child->id);
+});
+
+test('recovery service createRecoveryRun merges extra attributes', function () {
+    $failedRun = ResetRun::create([
+        'id' => (string) Str::uuid7(),
+        'product' => 'chinook',
+        'kind' => 'reset',
+        'status' => 'failed',
+    ]);
+
+    $recoveryService = new RecoveryService;
+    $child = $recoveryService->createRecoveryRun($failedRun, [
+        'current_phase' => 'custom_phase',
+    ]);
+
+    expect($child->current_phase)->toBe('custom_phase')
+        ->and($child->product)->toBe('chinook');
+});

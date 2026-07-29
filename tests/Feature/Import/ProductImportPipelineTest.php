@@ -10,7 +10,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 
-covers(App\Console\Commands\ProductImportCommand::class, ProductImportPipeline::class);
+covers(
+    App\Console\Commands\ProductImportCommand::class,
+    App\Console\Commands\ProductAbort::class,
+    App\Console\Commands\ProductConfirm::class,
+    App\Console\Commands\ProductRecover::class,
+    App\Console\Commands\ProductStatusCommand::class,
+    ProductImportPipeline::class,
+);
 
 uses(RefreshDatabase::class);
 
@@ -117,4 +124,140 @@ test('import pipeline dry-run short-circuits before creating a reset run', funct
 
     expect($result)->toBe(['success' => true]);
     expect(ResetRun::count())->toBe($initialRunCount);
+});
+
+test('import pipeline full run creates a reset run marks it succeeded and returns run_id', function () {
+    $pipeline = app(ProductImportPipeline::class);
+
+    $result = $pipeline->run('chinook', dryRun: false);
+
+    expect($result['success'])->toBeTrue()
+        ->and($result)->toHaveKey('run_id');
+
+    $runId = $result['run_id'] ?? '';
+    expect($runId)->not->toBeEmpty();
+
+    $run = ResetRun::find($runId);
+    expect($run)->not->toBeNull()
+        ->and($run->status)->toBe('succeeded')
+        ->and($run->current_phase)->toBe('complete')
+        ->and($run->product)->toBe('chinook')
+        ->and($run->kind)->toBe('import');
+});
+
+test('import pipeline full run for northwind succeeds', function () {
+    $pipeline = app(ProductImportPipeline::class);
+
+    $result = $pipeline->run('northwind');
+
+    expect($result['success'])->toBeTrue()
+        ->and($result)->toHaveKey('run_id');
+});
+
+test('import pipeline full run for pagila succeeds', function () {
+    $pipeline = app(ProductImportPipeline::class);
+
+    $result = $pipeline->run('pagila');
+
+    expect($result['success'])->toBeTrue()
+        ->and($result)->toHaveKey('run_id');
+});
+
+test('product abort command fails for non-existent run id', function () {
+    $missingId = (string) Str::uuid7();
+
+    $this->artisan('product:abort', ['run_id' => $missingId])
+        ->assertFailed()
+        ->expectsOutput("Reset run '{$missingId}' not found.");
+});
+
+test('product abort command fails for a run that is not active', function (string $status) {
+    $run = ResetRun::create([
+        'id' => (string) Str::uuid7(),
+        'product' => 'chinook',
+        'kind' => 'import',
+        'status' => $status,
+    ]);
+
+    $this->artisan("product:abort {$run->id}")
+        ->assertFailed()
+        ->expectsOutput("Reset run '{$run->id}' is not active (current status: {$status}).");
+
+    expect($run->fresh()->status)->toBe($status);
+})->with(['succeeded', 'failed']);
+
+test('product status command shows no runs message when table is empty', function () {
+    $this->artisan('product:status')
+        ->assertSuccessful()
+        ->expectsOutput('No reset runs found.');
+});
+
+test('product status command lists all runs when no product filter given', function () {
+    $runA = ResetRun::create([
+        'id' => (string) Str::uuid7(),
+        'product' => 'chinook',
+        'kind' => 'import',
+        'status' => 'succeeded',
+        'current_phase' => 'complete',
+    ]);
+
+    $runB = ResetRun::create([
+        'id' => (string) Str::uuid7(),
+        'product' => 'pagila',
+        'kind' => 'reset',
+        'status' => 'failed',
+    ]);
+
+    $this->artisan('product:status')->assertSuccessful();
+
+    expect(ResetRun::count())->toBeGreaterThanOrEqual(2);
+});
+
+test('product recover command fails for non-existent run', function () {
+    $missingId = (string) Str::uuid7();
+
+    $this->artisan('product:recover', ['run_id' => $missingId])
+        ->assertFailed()
+        ->expectsOutput("Reset run '{$missingId}' not found.");
+});
+
+test('product recover command fails for a run that is not failed', function () {
+    $run = ResetRun::create([
+        'id' => (string) Str::uuid7(),
+        'product' => 'chinook',
+        'kind' => 'import',
+        'status' => 'running',
+    ]);
+
+    $this->artisan("product:recover {$run->id}")
+        ->assertFailed()
+        ->expectsOutput("Reset run '{$run->id}' cannot be recovered (current status: running).");
+});
+
+test('product import command rejects an invalid confirm token', function () {
+    $missingToken = (string) Str::uuid7();
+
+    $this->artisan("product:import chinook --dry-run --confirm-token={$missingToken}")
+        ->assertFailed()
+        ->expectsOutput('Invalid or expired confirmation token.');
+});
+
+test('product import command accepts a valid confirm token and proceeds in dry-run', function () {
+    $operator = User::factory()->create();
+    $confirmationService = app(App\Services\ProductReset\ResetConfirmationService::class);
+    $token = $confirmationService->mint($operator, 'chinook', 'sha', 'commit');
+
+    $this->artisan("product:import chinook --dry-run --confirm-token={$token}")
+        ->assertSuccessful();
+});
+
+test('product confirm command creates a super admin when none exists', function () {
+    expect(User::count())->toBe(0);
+
+    $this->artisan('product:confirm northwind')
+        ->assertSuccessful();
+
+    $admin = User::where('email', 'superadmin@example.com')->first();
+    expect($admin)->not->toBeNull()
+        ->and($admin->hasRole('super_admin'))->toBeTrue();
 });

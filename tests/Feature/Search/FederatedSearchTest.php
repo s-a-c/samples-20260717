@@ -12,7 +12,7 @@ use App\Services\Search\SearchDeepLinkRegistry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 
-covers(FederatedSearchService::class);
+covers(FederatedSearchService::class, SearchDeepLinkRegistry::class);
 
 uses(RefreshDatabase::class);
 
@@ -80,5 +80,34 @@ test('federated search executes 3-way union all across projection tables and ret
     foreach ($results as $item) {
         expect($item)->toHaveKeys(['id', 'product', 'entity_type', 'title', 'score', 'url']);
         expect($item['url'])->toBe("/{$item['product']}/".Str::plural($item['entity_type'])."/{$item['id']}");
+    }
+});
+
+test('federated search returns empty array for blank query', function () {
+    $service = new FederatedSearchService;
+
+    expect($service->search(''))->toBe([]);
+    expect($service->search('   '))->toBe([]);
+});
+
+test('federated search supports semantic vector search when embedding is provided', function () {
+    $artist = Artist::create(['name' => 'Pink Floyd']);
+
+    $language = Language::create(['name' => 'English2']);
+    $film = Film::create([
+        'title' => 'Pink Floyd Live',
+        'description' => 'A concert film',
+        'language_id' => $language->id,
+    ]);
+
+    $service = new FederatedSearchService;
+    $embedding = array_fill(0, 1024, 0.0);
+    $results = $service->search('Pink Floyd', $embedding);
+
+    expect($results)->not->toBeEmpty();
+
+    foreach ($results as $item) {
+        expect($item)->toHaveKey('url');
+        expect($item['url'])->toStartWith('/');
     }
 });
