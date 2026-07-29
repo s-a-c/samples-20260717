@@ -99,20 +99,6 @@ parameters:
 			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
-			message: '#^Parameter \$chinook of method App\\Policies\\ChinookPolicy\:\:view\(\) has invalid type App\\Models\\Chinook\\Chinook\.$#'
-			identifier: class.notFound
-			count: 1
-			path: app/Policies/ChinookPolicy.php
-			# bd:wf15-g1-ratchet — class.notFound (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Parameter \$northwind of method App\\Policies\\NorthwindPolicy\:\:view\(\) has invalid type App\\Models\\Northwind\\Northwind\.$#'
-			identifier: class.notFound
-			count: 1
-			path: app/Policies/NorthwindPolicy.php
-			# bd:wf15-g1-ratchet — class.notFound (wayfinder #15 G1; fix in Phase B)
-
-		-
 			message: '#^Method App\\Services\\ProductImport\\PagilaImporter\:\:getManifest\(\) should return array\{product\: string, commit_sha\: string, schema_filename\: string, data_filename\: string\}\|null but returns mixed\.$#'
 			identifier: return.type
 			count: 1
@@ -491,6 +477,48 @@ parameters:
 			identifier: argument.templateType
 			count: 28
 			path: tests/Feature/Domain/PagilaDomainTest.php
+			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function expect$#'
+			identifier: argument.templateType
+			count: 12
+			path: tests/Feature/Domain/ChinookModelsTest.php
+			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
+
+		-
+			message: '#^Unable to resolve the template type TAndValue in call to method Pest\\Expectation\<mixed\>\:\:and\(\)$#'
+			identifier: argument.templateType
+			count: 9
+			path: tests/Feature/Domain/ChinookModelsTest.php
+			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function expect$#'
+			identifier: argument.templateType
+			count: 8
+			path: tests/Feature/Domain/NorthwindModelsTest.php
+			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
+
+		-
+			message: '#^Unable to resolve the template type TAndValue in call to method Pest\\Expectation\<mixed\>\:\:and\(\)$#'
+			identifier: argument.templateType
+			count: 12
+			path: tests/Feature/Domain/NorthwindModelsTest.php
+			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
+
+		-
+			message: '#^Unable to resolve the template type TAndValue in call to method Pest\\Expectation\<mixed\>\:\:and\(\)$#'
+			identifier: argument.templateType
+			count: 16
+			path: tests/Feature/Domain/PagilaModelsTest.php
+			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
+
+		-
+			message: '#^Unable to resolve the template type TValue in call to function expect$#'
+			identifier: argument.templateType
+			count: 14
+			path: tests/Feature/Domain/PagilaModelsTest.php
 			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
 
 		-
