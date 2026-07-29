@@ -2,13 +2,29 @@
 
 declare(strict_types=1);
 
+use App\Filament\Chinook\Resources\AlbumResource;
+use App\Filament\Chinook\Resources\AlbumResource\Pages\EditAlbum;
 use App\Filament\Chinook\Resources\AlbumResource\Pages\ListAlbums;
+use App\Filament\Chinook\Resources\ArtistResource;
+use App\Filament\Chinook\Resources\ArtistResource\Pages\EditArtist;
 use App\Filament\Chinook\Resources\ArtistResource\Pages\ListArtists;
+use App\Filament\Chinook\Resources\CustomerResource;
+use App\Filament\Chinook\Resources\CustomerResource\Pages\EditCustomer;
 use App\Filament\Chinook\Resources\CustomerResource\Pages\ListCustomers;
+use App\Filament\Chinook\Resources\EmployeeResource;
+use App\Filament\Chinook\Resources\EmployeeResource\Pages\EditEmployee;
 use App\Filament\Chinook\Resources\EmployeeResource\Pages\ListEmployees;
+use App\Filament\Chinook\Resources\GenreResource;
+use App\Filament\Chinook\Resources\GenreResource\Pages\EditGenre;
 use App\Filament\Chinook\Resources\GenreResource\Pages\ListGenres;
+use App\Filament\Chinook\Resources\InvoiceResource;
+use App\Filament\Chinook\Resources\InvoiceResource\Pages\EditInvoice;
 use App\Filament\Chinook\Resources\InvoiceResource\Pages\ListInvoices;
+use App\Filament\Chinook\Resources\PlaylistResource;
+use App\Filament\Chinook\Resources\PlaylistResource\Pages\EditPlaylist;
 use App\Filament\Chinook\Resources\PlaylistResource\Pages\ListPlaylists;
+use App\Filament\Chinook\Resources\TrackResource;
+use App\Filament\Chinook\Resources\TrackResource\Pages\EditTrack;
 use App\Filament\Chinook\Resources\TrackResource\Pages\ListTracks;
 use App\Models\Chinook\Album;
 use App\Models\Chinook\Artist;
@@ -22,6 +38,33 @@ use App\Models\Chinook\Track;
 use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
+
+covers(
+    AlbumResource::class,
+    ListAlbums::class,
+    EditAlbum::class,
+    ArtistResource::class,
+    ListArtists::class,
+    EditArtist::class,
+    CustomerResource::class,
+    ListCustomers::class,
+    EditCustomer::class,
+    EmployeeResource::class,
+    ListEmployees::class,
+    EditEmployee::class,
+    GenreResource::class,
+    ListGenres::class,
+    EditGenre::class,
+    InvoiceResource::class,
+    ListInvoices::class,
+    EditInvoice::class,
+    PlaylistResource::class,
+    ListPlaylists::class,
+    EditPlaylist::class,
+    TrackResource::class,
+    ListTracks::class,
+    EditTrack::class,
+);
 
 beforeEach(function () {
     $this->curator = User::factory()->create();

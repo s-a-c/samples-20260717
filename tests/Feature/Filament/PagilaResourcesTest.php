@@ -2,15 +2,35 @@
 
 declare(strict_types=1);
 
+use App\Filament\Pagila\Resources\ActorResource;
+use App\Filament\Pagila\Resources\ActorResource\Pages\EditActor;
 use App\Filament\Pagila\Resources\ActorResource\Pages\ListActors;
+use App\Filament\Pagila\Resources\CategoryResource;
+use App\Filament\Pagila\Resources\CategoryResource\Pages\EditCategory;
 use App\Filament\Pagila\Resources\CategoryResource\Pages\ListCategories;
+use App\Filament\Pagila\Resources\CustomerResource;
+use App\Filament\Pagila\Resources\CustomerResource\Pages\EditCustomer;
 use App\Filament\Pagila\Resources\CustomerResource\Pages\ListCustomers;
+use App\Filament\Pagila\Resources\FilmResource;
+use App\Filament\Pagila\Resources\FilmResource\Pages\EditFilm;
 use App\Filament\Pagila\Resources\FilmResource\Pages\ListFilms;
+use App\Filament\Pagila\Resources\InventoryResource;
+use App\Filament\Pagila\Resources\InventoryResource\Pages\EditInventory;
 use App\Filament\Pagila\Resources\InventoryResource\Pages\ListInventories;
+use App\Filament\Pagila\Resources\LanguageResource;
+use App\Filament\Pagila\Resources\LanguageResource\Pages\EditLanguage;
 use App\Filament\Pagila\Resources\LanguageResource\Pages\ListLanguages;
+use App\Filament\Pagila\Resources\PaymentResource;
+use App\Filament\Pagila\Resources\PaymentResource\Pages\EditPayment;
 use App\Filament\Pagila\Resources\PaymentResource\Pages\ListPayments;
+use App\Filament\Pagila\Resources\RentalResource;
+use App\Filament\Pagila\Resources\RentalResource\Pages\EditRental;
 use App\Filament\Pagila\Resources\RentalResource\Pages\ListRentals;
+use App\Filament\Pagila\Resources\StaffResource;
+use App\Filament\Pagila\Resources\StaffResource\Pages\EditStaff;
 use App\Filament\Pagila\Resources\StaffResource\Pages\ListStaff;
+use App\Filament\Pagila\Resources\StoreResource;
+use App\Filament\Pagila\Resources\StoreResource\Pages\EditStore;
 use App\Filament\Pagila\Resources\StoreResource\Pages\ListStores;
 use App\Models\Pagila\Actor;
 use App\Models\Pagila\Category;
@@ -25,6 +45,39 @@ use App\Models\Pagila\Store;
 use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
+
+covers(
+    ActorResource::class,
+    ListActors::class,
+    EditActor::class,
+    CategoryResource::class,
+    ListCategories::class,
+    EditCategory::class,
+    CustomerResource::class,
+    ListCustomers::class,
+    EditCustomer::class,
+    FilmResource::class,
+    ListFilms::class,
+    EditFilm::class,
+    InventoryResource::class,
+    ListInventories::class,
+    EditInventory::class,
+    LanguageResource::class,
+    ListLanguages::class,
+    EditLanguage::class,
+    PaymentResource::class,
+    ListPayments::class,
+    EditPayment::class,
+    RentalResource::class,
+    ListRentals::class,
+    EditRental::class,
+    StaffResource::class,
+    ListStaff::class,
+    EditStaff::class,
+    StoreResource::class,
+    ListStores::class,
+    EditStore::class,
+);
 
 beforeEach(function () {
     $this->pagilaCurator = User::factory()->create();

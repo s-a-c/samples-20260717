@@ -2,12 +2,26 @@
 
 declare(strict_types=1);
 
+use App\Filament\Northwind\Resources\CategoryResource;
+use App\Filament\Northwind\Resources\CategoryResource\Pages\EditCategory;
 use App\Filament\Northwind\Resources\CategoryResource\Pages\ListCategories;
+use App\Filament\Northwind\Resources\CustomerResource;
+use App\Filament\Northwind\Resources\CustomerResource\Pages\EditCustomer;
 use App\Filament\Northwind\Resources\CustomerResource\Pages\ListCustomers;
+use App\Filament\Northwind\Resources\EmployeeResource;
+use App\Filament\Northwind\Resources\EmployeeResource\Pages\EditEmployee;
 use App\Filament\Northwind\Resources\EmployeeResource\Pages\ListEmployees;
+use App\Filament\Northwind\Resources\OrderResource;
+use App\Filament\Northwind\Resources\OrderResource\Pages\EditOrder;
 use App\Filament\Northwind\Resources\OrderResource\Pages\ListOrders;
+use App\Filament\Northwind\Resources\ProductResource;
+use App\Filament\Northwind\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Northwind\Resources\ProductResource\Pages\ListProducts;
+use App\Filament\Northwind\Resources\ShipperResource;
+use App\Filament\Northwind\Resources\ShipperResource\Pages\EditShipper;
 use App\Filament\Northwind\Resources\ShipperResource\Pages\ListShippers;
+use App\Filament\Northwind\Resources\SupplierResource;
+use App\Filament\Northwind\Resources\SupplierResource\Pages\EditSupplier;
 use App\Filament\Northwind\Resources\SupplierResource\Pages\ListSuppliers;
 use App\Models\Northwind\Category;
 use App\Models\Northwind\Customer;
@@ -19,6 +33,30 @@ use App\Models\Northwind\Supplier;
 use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
+
+covers(
+    CategoryResource::class,
+    ListCategories::class,
+    EditCategory::class,
+    CustomerResource::class,
+    ListCustomers::class,
+    EditCustomer::class,
+    EmployeeResource::class,
+    ListEmployees::class,
+    EditEmployee::class,
+    OrderResource::class,
+    ListOrders::class,
+    EditOrder::class,
+    ProductResource::class,
+    ListProducts::class,
+    EditProduct::class,
+    ShipperResource::class,
+    ListShippers::class,
+    EditShipper::class,
+    SupplierResource::class,
+    ListSuppliers::class,
+    EditSupplier::class,
+);
 
 beforeEach(function () {
     /** @var User $curator */
