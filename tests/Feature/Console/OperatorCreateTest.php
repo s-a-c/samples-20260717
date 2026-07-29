@@ -46,7 +46,7 @@ test('operator create provisions user via options', function () {
     $this->assertNotNull($user);
     $this->assertTrue($user->hasRole('super_admin'));
     $this->assertNotNull($user->personalTeam());
-    $this->assertSame($user->personalTeam()?->id, $user->current_team_id);
+    $this->assertSame($user->personalTeam()->id, $user->current_team_id);
 });
 
 test('operator create uses environment variables when options omitted', function () {
@@ -58,7 +58,7 @@ test('operator create uses environment variables when options omitted', function
     $this->assertNotNull($user);
     $this->assertTrue($user->hasRole('super_admin'));
     $this->assertNotNull($user->personalTeam());
-    $this->assertSame($user->personalTeam()?->id, $user->current_team_id);
+    $this->assertSame($user->personalTeam()->id, $user->current_team_id);
 
     withoutOperatorEnvironment();
 });

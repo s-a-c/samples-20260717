@@ -473,13 +473,6 @@ parameters:
 			# bd:wf15-g1-ratchet — pest.expectation.redundant (wayfinder #15 G1; fix in Phase B)
 
 		-
-			message: '#^Parameter \#1 \$session of method Illuminate\\Http\\Request\:\:setLaravelSession\(\) expects Illuminate\\Contracts\\Session\\Session, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/Feature/Auth/AuthenticationTest.php
-			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
-
-		-
 			message: '#^Unable to resolve the template type TValue in call to function expect$#'
 			identifier: argument.templateType
 			count: 12
