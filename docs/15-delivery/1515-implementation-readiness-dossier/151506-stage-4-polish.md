@@ -9,7 +9,7 @@
 | Gate                                                                         | Evidence                                             | Check                                               | Status |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------- | --------------------------------------------------- | ------ |
 | PHPStan level: max baseline citation guard (PhpStanBaselineCitationTest.php) | `tests/Architecture/PhpStanBaselineCitationTest.php` | `php artisan test --filter=PhpStanBaselineCitation` | Pass   |
-| 26 Architecture rules (ArchitectureTest.php)                                 | `tests/Architecture/ArchitectureTest.php`            | `composer test:arch`                                | Pass   |
+| 24 Architecture rules (ArchitectureTest.php)                                 | `tests/Architecture/ArchitectureTest.php`            | `composer test:arch`                                | Pass   |
 | CI Quality Gate workflow (.github/workflows/tests.yml)                       | `.github/workflows/tests.yml`                        | `GitHub Actions tests.yml green`                    | Pass   |
 
 ## Automated checks

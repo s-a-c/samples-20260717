@@ -124,7 +124,7 @@ final class DossierGenerate extends Command
             'status' => 'complete',
             'gates' => [
                 ['gate' => 'PHPStan level: max baseline citation guard (PhpStanBaselineCitationTest.php)', 'evidence' => 'tests/Architecture/PhpStanBaselineCitationTest.php', 'check' => 'php artisan test --filter=PhpStanBaselineCitation'],
-                ['gate' => '26 Architecture rules (ArchitectureTest.php)', 'evidence' => 'tests/Architecture/ArchitectureTest.php', 'check' => 'composer test:arch'],
+                ['gate' => '24 Architecture rules (ArchitectureTest.php)', 'evidence' => 'tests/Architecture/ArchitectureTest.php', 'check' => 'composer test:arch'],
                 ['gate' => 'CI Quality Gate workflow (.github/workflows/tests.yml)', 'evidence' => '.github/workflows/tests.yml', 'check' => 'GitHub Actions tests.yml green'],
             ],
             'operator' => [
