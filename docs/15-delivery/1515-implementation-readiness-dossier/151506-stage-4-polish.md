@@ -1,11 +1,3 @@
----
-title: "Stage 4 — Polish"
-description: "| Gate | Evidence | Check | Status |"
-type: delivery
-tags: \[delivery, implementation-readiness-dossier, stage, "4"]
-updated: 2026-07-30
----
-
 # Stage 4 — Polish
 
 **Risk order:** 4

@@ -1,11 +1,3 @@
----
-title: "Stage 3 — Quality & Features"
-description: "| Gate | Evidence | Check | Status |"
-type: delivery
-tags: \[delivery, implementation-readiness-dossier, stage, "3"]
-updated: 2026-07-30
----
-
 # Stage 3 — Quality & Features
 
 **Risk order:** 3
