@@ -1,3 +1,11 @@
+---
+title: "Issue Tracker"
+description: "This repo uses a **hybrid** tracker: GitHub Issues is the source of truth for"
+type: guide
+tags: \[guide, agents, issue, tracker]
+updated: 2026-07-30
+---
+
 # Issue Tracker
 
 This repo uses a **hybrid** tracker: GitHub Issues is the source of truth for

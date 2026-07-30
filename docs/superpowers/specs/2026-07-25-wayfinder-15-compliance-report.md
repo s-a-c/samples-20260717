@@ -1,3 +1,11 @@
+---
+title: "Wayfinder #15 Compliance Report"
+description: "> **Map:** [Wayfinder — Samples Implementation](https://github.com/s-a-c/samples-20260717/issues/15)"
+type: report
+tags: \[report, specs, wayfinder, "15"]
+updated: 2026-07-30
+---
+
 # Wayfinder #15 Compliance Report
 
 > **Map:** [Wayfinder — Samples Implementation](https://github.com/s-a-c/samples-20260717/issues/15)
@@ -12,27 +20,27 @@
 
 - [1. Executive Summary](#1-executive-summary)
 - [2. Decision Cluster Compliance Detail](#2-decision-cluster-compliance-detail)
-  - [2.1. ✅ 2.1 PostgreSQL Pivot (#40, #41, #42)](#21--21-postgresql-pivot-40-41-42)
-  - [2.2. ✅ 2.2 UUIDv7 Strategy (#24)](#22--22-uuidv7-strategy-24)
-  - [2.3. ✅ 2.3 Source Identity Registry (#25)](#23--23-source-identity-registry-25)
-  - [2.4. ✅ 2.4 Product Import Pipeline (#28)](#24--24-product-import-pipeline-28)
-  - [2.5. ✅ 2.5 Product Reset Semantics (#29)](#25--25-product-reset-semantics-29)
-  - [2.6. ⚠️ 2.6 Filament Panels + Resources (#16, #30)](#26-️-26-filament-panels--resources-16-30)
-  - [2.7. ⚠️ 2.7 Spatie + Shield + Fortify Coexistence (#26)](#27-️-27-spatie--shield--fortify-coexistence-26)
-  - [2.8. ✅ 2.8 Search Domain (#31, #32, #33, #34)](#28--28-search-domain-31-32-33-34)
-  - [2.9. ⚠️ 2.9 Portfolio Card (#35)](#29-️-29-portfolio-card-35)
-  - [2.10. ❌ 2.10 Team Artefacts (#36)](#210--210-team-artefacts-36)
-  - [2.11. ❌ 2.11 Implementation-Readiness Dossier (#37)](#211--211-implementation-readiness-dossier-37)
-  - [2.12. ❌ 2.12 Architectural Decision Records (ADRs) — CRITICAL GAP](#212--212-architectural-decision-records-adrs--critical-gap)
+    - [2.1. ✅ 2.1 PostgreSQL Pivot (#40, #41, #42)](#21--21-postgresql-pivot-40-41-42)
+    - [2.2. ✅ 2.2 UUIDv7 Strategy (#24)](#22--22-uuidv7-strategy-24)
+    - [2.3. ✅ 2.3 Source Identity Registry (#25)](#23--23-source-identity-registry-25)
+    - [2.4. ✅ 2.4 Product Import Pipeline (#28)](#24--24-product-import-pipeline-28)
+    - [2.5. ✅ 2.5 Product Reset Semantics (#29)](#25--25-product-reset-semantics-29)
+    - [2.6. ⚠️ 2.6 Filament Panels + Resources (#16, #30)](#26-️-26-filament-panels--resources-16-30)
+    - [2.7. ⚠️ 2.7 Spatie + Shield + Fortify Coexistence (#26)](#27-️-27-spatie--shield--fortify-coexistence-26)
+    - [2.8. ✅ 2.8 Search Domain (#31, #32, #33, #34)](#28--28-search-domain-31-32-33-34)
+    - [2.9. ⚠️ 2.9 Portfolio Card (#35)](#29-️-29-portfolio-card-35)
+    - [2.10. ❌ 2.10 Team Artefacts (#36)](#210--210-team-artefacts-36)
+    - [2.11. ❌ 2.11 Implementation-Readiness Dossier (#37)](#211--211-implementation-readiness-dossier-37)
+    - [2.12. ❌ 2.12 Architectural Decision Records (ADRs) — CRITICAL GAP](#212--212-architectural-decision-records-adrs--critical-gap)
 - [3. Cross-Cutting Infrastructure Gaps](#3-cross-cutting-infrastructure-gaps)
-  - [3.1. ⚠️ 3.1 Test Pyramid (#17) — CRITICAL GAPS](#31-️-31-test-pyramid-17--critical-gaps)
-  - [3.2. ⚠️ 3.2 Larastan / PHPStan (#18)](#32-️-32-larastan--phpstan-18)
-  - [3.3. ❌ 3.3 Rector — UNCONFIGURED](#33--33-rector--unconfigured)
-  - [3.4. ❌ 3.4 Mago — UNCONFIGURED](#34--34-mago--unconfigured)
-  - [3.5. ⚠️ 3.5 CI Pipeline (#11, #39)](#35-️-35-ci-pipeline-11-39)
-  - [3.6. ❌ 3.6 CONTEXT.md SQLite Terminology Cleanup](#36--36-contextmd-sqlite-terminology-cleanup)
-  - [3.7. ❌ 3.7 Domain Structure — Product Files Outside `app/Domain/`](#37--37-domain-structure--product-files-outside-appdomain)
-  - [3.8. ❌ 3.8 ADR Documentation — Recovery Required](#38--38-adr-documentation--recovery-required)
+    - [3.1. ⚠️ 3.1 Test Pyramid (#17) — CRITICAL GAPS](#31-️-31-test-pyramid-17--critical-gaps)
+    - [3.2. ⚠️ 3.2 Larastan / PHPStan (#18)](#32-️-32-larastan--phpstan-18)
+    - [3.3. ❌ 3.3 Rector — UNCONFIGURED](#33--33-rector--unconfigured)
+    - [3.4. ❌ 3.4 Mago — UNCONFIGURED](#34--34-mago--unconfigured)
+    - [3.5. ⚠️ 3.5 CI Pipeline (#11, #39)](#35-️-35-ci-pipeline-11-39)
+    - [3.6. ❌ 3.6 CONTEXT.md SQLite Terminology Cleanup](#36--36-contextmd-sqlite-terminology-cleanup)
+    - [3.7. ❌ 3.7 Domain Structure — Product Files Outside `app/Domain/`](#37--37-domain-structure--product-files-outside-appdomain)
+    - [3.8. ❌ 3.8 ADR Documentation — Recovery Required](#38--38-adr-documentation--recovery-required)
 - [4. Gap Summary (Prioritised)](#4-gap-summary-prioritised)
 - [5. Row Counts](#5-row-counts)
 
@@ -46,8 +54,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 **Compliance by tier:**
 
-| Tier                        | Description                 | Count                                   |
-| --------------------------- | --------------------------- | --------------------------------------- |
+| Tier                         | Description                 | Count                                   |
+| ---------------------------- | --------------------------- | --------------------------------------- |
 | ✅ Fully Compliant           | Implemented per spec        | 8 decision clusters                     |
 | ⚠️ Partially Compliant       | Implemented with gaps       | 5 decision clusters                     |
 | ❌ Missing / Not Implemented | Not yet built or configured | 3 feature domains + 3 quality-tool gaps |
@@ -58,8 +66,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.1. ✅ 2.1 PostgreSQL Pivot (#40, #41, #42)
 
-| Requirement                                        | Status     | Evidence                                                        |
-| -------------------------------------------------- | ---------- | --------------------------------------------------------------- |
+| Requirement                                        | Status      | Evidence                                                        |
+| -------------------------------------------------- | ----------- | --------------------------------------------------------------- |
 | `CREATE EXTENSION vector`                          | ✅ Done     | `0001_01_01_000000_create_postgres_extensions.php`              |
 | `CREATE EXTENSION unaccent`                        | ✅ Done     | Same migration                                                  |
 | `CREATE EXTENSION pg_trgm`                         | ✅ Done     | Same migration                                                  |
@@ -79,8 +87,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.2. ✅ 2.2 UUIDv7 Strategy (#24)
 
-| Requirement                           | Status | Evidence                                                      |
-| ------------------------------------- | ------ | ------------------------------------------------------------- |
+| Requirement                           | Status  | Evidence                                                      |
+| ------------------------------------- | ------- | ------------------------------------------------------------- |
 | Native `HasUuids` trait (no package)  | ✅ Done | All domain + shared models use `HasUuids`                     |
 | Postgres native `uuid` column type    | ✅ Done | `$table->uuid('id')` in all app-owned tables                  |
 | UUIDv7 PK on every app-owned table    | ✅ Done | Users, teams, domains, reset tables all UUID                  |
@@ -93,8 +101,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.3. ✅ 2.3 Source Identity Registry (#25)
 
-| Requirement                                          | Status | Evidence                                                         |
-| ---------------------------------------------------- | ------ | ---------------------------------------------------------------- |
+| Requirement                                          | Status  | Evidence                                                         |
+| ---------------------------------------------------- | ------- | ---------------------------------------------------------------- |
 | Single shared `public.source_identities` table       | ✅ Done | Migration `0001_01_01_000001_create_source_identities_table.php` |
 | JSONB `source_key` for atomic + composite keys       | ✅ Done | `jsonb source_key not null`                                      |
 | `entity` discriminator = schema-qualified table name | ✅ Done | Stored as `chinook.artists` etc.                                 |
@@ -110,8 +118,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.4. ✅ 2.4 Product Import Pipeline (#28)
 
-| Requirement                                        | Status | Evidence                                                        |
-| -------------------------------------------------- | ------ | --------------------------------------------------------------- |
+| Requirement                                        | Status  | Evidence                                                        |
+| -------------------------------------------------- | ------- | --------------------------------------------------------------- |
 | Unified pipeline (first-import = reset)            | ✅ Done | `ProductImportPipeline`                                         |
 | Shadow-schema staging (`_staging` schema)          | ✅ Done | Staging swap pattern in pipeline                                |
 | Per-product importer class                         | ✅ Done | ChinookImporter, NorthwindImporter, PagilaImporter              |
@@ -131,8 +139,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.5. ✅ 2.5 Product Reset Semantics (#29)
 
-| Requirement                                             | Status | Evidence                                                 |
-| ------------------------------------------------------- | ------ | -------------------------------------------------------- |
+| Requirement                                             | Status  | Evidence                                                 |
+| ------------------------------------------------------- | ------- | -------------------------------------------------------- |
 | `App\Services\ProductReset\ResetWindow`                 | ✅ Done | `app/Services/ProductReset/ResetWindow.php`              |
 | App-layer window check (no DB-level REVOKE)             | ✅ Done | Uses `EXISTS (SELECT 1 FROM reset_runs WHERE ...)`       |
 | Defense-in-depth: Eloquent trait + Filament policy      | ✅ Done | `BelongsToProductDomain` trait with `assertWritable()`   |
@@ -152,8 +160,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.6. ⚠️ 2.6 Filament Panels + Resources (#16, #30)
 
-| Requirement                                              | Status    | Evidence                                                  |
-| -------------------------------------------------------- | --------- | --------------------------------------------------------- |
+| Requirement                                              | Status     | Evidence                                                  |
+| -------------------------------------------------------- | ---------- | --------------------------------------------------------- |
 | 4 PanelProviders installed                               | ✅ Done    | Admin, Chinook, Northwind, Pagila                         |
 | No Filament tenancy used                                 | ✅ Done    | No `->tenant()` calls                                     |
 | Fortify owns auth, Filament login disabled on all panels | ✅ Done    | All panels omit `->login()`                               |
@@ -174,8 +182,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.7. ⚠️ 2.7 Spatie + Shield + Fortify Coexistence (#26)
 
-| Requirement                                                   | Status    | Evidence                                           |
-| ------------------------------------------------------------- | --------- | -------------------------------------------------- |
+| Requirement                                                   | Status     | Evidence                                           |
+| ------------------------------------------------------------- | ---------- | -------------------------------------------------- |
 | Spatie is sole RBAC engine                                    | ✅ Done    | Spatie roles/permissions installed                 |
 | Starter's TeamRole/TeamPermission reframed as membership data | ✅ Done    | Team enums kept, not turned into RBAC              |
 | Spatie teams mode OFF                                         | ✅ Done    | No teams config in `config/permission.php`         |
@@ -193,8 +201,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.8. ✅ 2.8 Search Domain (#31, #32, #33, #34)
 
-| Requirement                                                | Status     | Evidence                                                   |
-| ---------------------------------------------------------- | ---------- | ---------------------------------------------------------- |
+| Requirement                                                | Status      | Evidence                                                   |
+| ---------------------------------------------------------- | ----------- | ---------------------------------------------------------- |
 | Tier 1 / Tier 2 / Tier 3 entity assignments                | ✅ Done     | Implemented in search projection triggers                  |
 | Weight-class text columns (A/B/C/D)                        | ✅ Done     | All `search_projections` tables have weight_*_text columns |
 | `document_tsv tsvector GENERATED ALWAYS AS ... STORED`     | ✅ Done     | In all search projection migrations                        |
@@ -217,8 +225,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.9. ⚠️ 2.9 Portfolio Card (#35)
 
-| Requirement                                       | Status    | Evidence                                                   |
-| ------------------------------------------------- | --------- | ---------------------------------------------------------- |
+| Requirement                                       | Status     | Evidence                                                   |
+| ------------------------------------------------- | ---------- | ---------------------------------------------------------- |
 | Filament Widget (`ProductPortfolioCard`)          | ✅ Done    | `app/Filament/Admin/Widgets/ProductPortfolioCard.php`      |
 | Portfolio Dashboard page                          | ✅ Done    | `app/Filament/Admin/Pages/Portfolio.php`                   |
 | Blade views for widget and page                   | ✅ Done    | `resources/views/filament/admin/widgets/...` + `pages/...` |
@@ -233,8 +241,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.10. ❌ 2.10 Team Artefacts (#36)
 
-| Requirement                                  | Status    | Evidence             |
-| -------------------------------------------- | --------- | -------------------- |
+| Requirement                                  | Status     | Evidence             |
+| -------------------------------------------- | ---------- | -------------------- |
 | `team_artefacts` migration                   | ❌ Missing | No migration created |
 | `TeamArtefact` Eloquent model                | ❌ Missing | Not created          |
 | Saved Search configuration (query bookmarks) | ❌ Missing | Not implemented      |
@@ -247,8 +255,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.11. ❌ 2.11 Implementation-Readiness Dossier (#37)
 
-| Requirement                                               | Status    | Evidence                              |
-| --------------------------------------------------------- | --------- | ------------------------------------- |
+| Requirement                                               | Status     | Evidence                              |
+| --------------------------------------------------------- | ---------- | ------------------------------------- |
 | `dossier:generate` artisan command                        | ❌ Missing | Not created                           |
 | `docs/15-delivery/1515-implementation-readiness-dossier/` | ❌ Missing | Directory exists but completely empty |
 | Stage files (151502–151517)                               | ❌ Missing | Not generated                         |
@@ -261,8 +269,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 2.12. ❌ 2.12 Architectural Decision Records (ADRs) — CRITICAL GAP
 
-| Requirement                                                         | Status                  | Evidence                                                                                 |
-| ------------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------- |
+| Requirement                                                         | Status                   | Evidence                                                                                 |
+| ------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------- |
 | ADRs for all resolved decisions                                     | ❌ **12 of ~17 missing** | Only 5 ADRs exist (Multi-Product, UUIDv7, Hybrid Search, Shadow Import, Panel Isolation) |
 | ADRs at `docs/10-architecture/1015-adrs/`                           | ❌ Wrong path            | Currently at `docs/adr/` not the spec'd path                                             |
 | **Missing ADR 0006: Source Identity Registry (#25)**                | ❌ Missing               | Decision resolved in wayfinder, no ADR written                                           |
@@ -288,8 +296,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 3.1. ⚠️ 3.1 Test Pyramid (#17) — CRITICAL GAPS
 
-| Requirement                                                                                                                         | Status           | Evidence                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------- |
+| Requirement                                                                                                                         | Status            | Evidence                                                          |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ----------------------------------------------------------------- |
 | **Architecture tests**                                                                                                              | ⚠️ Partial        | 10 `arch()` rules exist; spec calls for **15+** rules             |
 | Missing rule: ResetWindow is sole reset_runs reader                                                                                 | ❌ Missing        | Not tested                                                        |
 | Missing rule: ResetConfirmation ownership                                                                                           | ❌ Missing        | Not tested                                                        |
@@ -313,8 +321,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 3.2. ⚠️ 3.2 Larastan / PHPStan (#18)
 
-| Requirement                                         | Status     | Evidence                                                  |
-| --------------------------------------------------- | ---------- | --------------------------------------------------------- |
+| Requirement                                         | Status      | Evidence                                                  |
+| --------------------------------------------------- | ----------- | --------------------------------------------------------- |
 | `level: max`                                        | ✅ Done     | `phpstan.neon` level: max                                 |
 | No baseline or shrinking carve-outs                 | ❌ Violated | `phpstan-baseline.neon` exists with ~150 baselined errors |
 | Framework-idiom carve-outs documented               | ✅ Done     | `staticMethod.dynamicCall` + `missingType.generics`       |
@@ -329,8 +337,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 3.3. ❌ 3.3 Rector — UNCONFIGURED
 
-| Requirement                           | Status    | Evidence                   |
-| ------------------------------------- | --------- | -------------------------- |
+| Requirement                           | Status     | Evidence                   |
+| ------------------------------------- | ---------- | -------------------------- |
 | `rector/rector` installed             | ✅ Done    | `^2.5.7` in composer.json  |
 | `driftingly/rector-laravel` installed | ✅ Done    | `^2.5` in composer.json    |
 | `mrpunyapal/rector-pest` installed    | ✅ Done    | `^0.2.17` in composer.json |
@@ -345,8 +353,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 3.4. ❌ 3.4 Mago — UNCONFIGURED
 
-| Requirement                        | Status    | Evidence                                   |
-| ---------------------------------- | --------- | ------------------------------------------ |
+| Requirement                        | Status     | Evidence                                   |
+| ---------------------------------- | ---------- | ------------------------------------------ |
 | `carthage-software/mago` installed | ✅ Done    | `^1.45` in composer.json                   |
 | Mago configuration file            | ❌ Missing | No `.mago*` or `mago.*` config files found |
 | Mago composer script               | ❌ Missing | Not defined                                |
@@ -358,8 +366,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 3.5. ⚠️ 3.5 CI Pipeline (#11, #39)
 
-| Requirement                                | Status         | Evidence                                              |
-| ------------------------------------------ | -------------- | ----------------------------------------------------- |
+| Requirement                                | Status          | Evidence                                              |
+| ------------------------------------------ | --------------- | ----------------------------------------------------- |
 | Linux x86_64 CI on every PR                | ✅ Done         | GitHub Actions workflow `.github/workflows/tests.yml` |
 | Composer `ci:check` script                 | ✅ Done         | = lint + types + test                                 |
 | `pgvector/pgvector:pg18` service container | ❌ Missing      | Not configured in workflow                            |
@@ -375,8 +383,8 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 ### 3.6. ❌ 3.6 CONTEXT.md SQLite Terminology Cleanup
 
-| Term                             | Status          |
-| -------------------------------- | --------------- |
+| Term                             | Status           |
+| -------------------------------- | ---------------- |
 | sqlite-vec references            | ❌ Still present |
 | FTS5 references                  | ❌ Still present |
 | vec0 virtual table references    | ❌ Still present |
@@ -392,14 +400,14 @@ Wayfinder #15 resolved all 40+ decisions spanning the full architecture. The cod
 
 The wayfinder #1/#15 architecture defines each product domain as a self-contained unit. Currently, product-specific code is **split across two directory trees**, violating the `app/Domain/{Product}/` convention:
 
-| File                               | Current Location                             | Correct Location                                    | Status           |
-| ---------------------------------- | -------------------------------------------- | --------------------------------------------------- | ---------------- |
+| File                               | Current Location                             | Correct Location                                    | Status            |
+| ---------------------------------- | -------------------------------------------- | --------------------------------------------------- | ----------------- |
 | Chinook model stub (Spatie stub)   | `app/Models/Chinook/Chinook.php`             | `app/Domain/Chinook/Models/Chinook.php`             | ❌ Wrong location |
 | Northwind model stub (Spatie stub) | `app/Models/Northwind/Northwind.php`         | `app/Domain/Northwind/Models/Northwind.php`         | ❌ Wrong location |
-| Pagila model stub                  | ❌ Missing entirely                           | `app/Domain/Pagila/Models/Pagila.php`               | ❌ Missing        |
+| Pagila model stub                  | ❌ Missing entirely                          | `app/Domain/Pagila/Models/Pagila.php`               | ❌ Missing        |
 | Chinook policy                     | `app/Policies/Chinook/ChinookPolicy.php`     | `app/Domain/Chinook/Policies/ChinookPolicy.php`     | ❌ Wrong location |
 | Northwind policy                   | `app/Policies/Northwind/NorthwindPolicy.php` | `app/Domain/Northwind/Policies/NorthwindPolicy.php` | ❌ Wrong location |
-| Pagila policy                      | ❌ Missing entirely                           | `app/Domain/Pagila/Policies/PagilaPolicy.php`       | ❌ Missing        |
+| Pagila policy                      | ❌ Missing entirely                          | `app/Domain/Pagila/Policies/PagilaPolicy.php`       | ❌ Missing        |
 
 Additionally, Shield's `config/filament-shield.php` policies path is set to `app_path('Policies')` — this must be updated when policies move to `app/Domain/{Product}/Policies/`.
 

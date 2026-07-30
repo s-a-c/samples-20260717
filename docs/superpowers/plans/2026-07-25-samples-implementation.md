@@ -1,3 +1,11 @@
+---
+title: "Samples Application Implementation Plan"
+description: "> **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` (recommended) or `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking."
+type: plan
+tags: \[plan, plans, implementation]
+updated: 2026-07-30
+---
+
 # Samples Application Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` (recommended) or `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
@@ -16,37 +24,37 @@
 - [1. Global Constraints](#1-global-constraints)
 - [2. File Structure Map](#2-file-structure-map)
 - [3. Detailed Task Breakdown](#3-detailed-task-breakdown)
-  - [3.1. Stage 1: Foundational Database Infrastructure \& Shared Registries](#31-stage-1-foundational-database-infrastructure--shared-registries)
-    - [3.1.1. Task 1: Postgres Extensions Migration \& Health Command (`pgsql:check`)](#311-task-1-postgres-extensions-migration--health-command-pgsqlcheck)
-    - [3.1.2. Task 2: UUIDv7 Trait \& Starter Migrations Refactoring](#312-task-2-uuidv7-trait--starter-migrations-refactoring)
-    - [3.1.3. Task 3: Shared Public Infrastructure Tables (Source Identity Registry \& Reset Confirmations)](#313-task-3-shared-public-infrastructure-tables-source-identity-registry--reset-confirmations)
-  - [3.2. Stage 2: Product Reset Engine \& Execution Infrastructure](#32-stage-2-product-reset-engine--execution-infrastructure)
-    - [3.2.1. Task 4: Reset Runs Migration, App-Layer Reset Window \& Recovery Services](#321-task-4-reset-runs-migration-app-layer-reset-window--recovery-services)
-  - [3.3. Stage 3: Upstream Dataset Pin Manifests, Fetch Command \& Importer Pipelines](#33-stage-3-upstream-dataset-pin-manifests-fetch-command--importer-pipelines)
-    - [3.3.1. Task 5: Source Pin Manifests \& `source:fetch` Command](#331-task-5-source-pin-manifests--sourcefetch-command)
-    - [3.3.2. Task 6: Product Import Pipeline Readers, Importers \& CLI Suite](#332-task-6-product-import-pipeline-readers-importers--cli-suite)
-  - [3.4. Stage 4: Product Domain Models, Migrations \& Search Projections](#34-stage-4-product-domain-models-migrations--search-projections)
-    - [3.4.1. Task 7: Chinook Domain Models \& Schema Migration](#341-task-7-chinook-domain-models--schema-migration)
-    - [3.4.2. Task 8: Northwind Domain Models \& Schema Migration](#342-task-8-northwind-domain-models--schema-migration)
-    - [3.4.3. Task 9: Pagila Domain Models \& Schema Migration](#343-task-9-pagila-domain-models--schema-migration)
-    - [3.4.4. Task 10: Search Projection Tables, PL/pgSQL Triggers \& Observers](#344-task-10-search-projection-tables-plpgsql-triggers--observers)
-  - [3.5. Stage 5: Embedding Profiles, AI SDK Integration \& Hybrid Search (RRF)](#35-stage-5-embedding-profiles-ai-sdk-integration--hybrid-search-rrf)
-    - [3.5.1. Task 11: `laravel/ai` SDK Integration \& Async `EmbeddingJob`](#351-task-11-laravelai-sdk-integration--async-embeddingjob)
-    - [3.5.2. Task 12: Reciprocal Rank Fusion \& Federated Search Service](#352-task-12-reciprocal-rank-fusion--federated-search-service)
-  - [3.6. Stage 6: Auth Co-existence, Operator Onboarding \& Filament Panels](#36-stage-6-auth-co-existence-operator-onboarding--filament-panels)
-    - [3.6.1. Task 13: Operator Onboarding Command \& DatabaseSeeder](#361-task-13-operator-onboarding-command--databaseseeder)
-    - [3.6.2. Task 14: Filament Panel Providers \& Shield Permission Setup](#362-task-14-filament-panel-providers--shield-permission-setup)
-  - [3.7. Stage 7: Filament Resources for Products \& Admin Control](#37-stage-7-filament-resources-for-products--admin-control)
-    - [3.7.1. Task 15: Chinook Filament Resources](#371-task-15-chinook-filament-resources)
-    - [3.7.2. Task 16: Northwind Filament Resources](#372-task-16-northwind-filament-resources)
-    - [3.7.3. Task 17: Pagila Filament Resources](#373-task-17-pagila-filament-resources)
-    - [3.7.4. Task 18: Admin Filament Resources \& User Management](#374-task-18-admin-filament-resources--user-management)
-  - [3.8. Stage 8: Portfolio Cards, Team Artefacts \& Federated Search UI](#38-stage-8-portfolio-cards-team-artefacts--federated-search-ui)
-    - [3.8.1. Task 19: Portfolio View \& Product Portfolio Card Widget](#381-task-19-portfolio-view--product-portfolio-card-widget)
-    - [3.8.2. Task 20: Team Artefacts Schema \& Federated Search Livewire Page](#382-task-20-team-artefacts-schema--federated-search-livewire-page)
-  - [3.9. Stage 9: Quality Gates, Pest Architecture Rules, Dossier \& ADRs](#39-stage-9-quality-gates-pest-architecture-rules-dossier--adrs)
-    - [3.9.1. Task 21: Comprehensive Test Pyramid, Pest Architecture Rules \& Larastan Max Fix](#391-task-21-comprehensive-test-pyramid-pest-architecture-rules--larastan-max-fix)
-    - [3.9.2. Task 22: Dossier Generation \& ADR Documentation Engine](#392-task-22-dossier-generation--adr-documentation-engine)
+    - [3.1. Stage 1: Foundational Database Infrastructure \& Shared Registries](#31-stage-1-foundational-database-infrastructure--shared-registries)
+        - [3.1.1. Task 1: Postgres Extensions Migration \& Health Command (`pgsql:check`)](#311-task-1-postgres-extensions-migration--health-command-pgsqlcheck)
+        - [3.1.2. Task 2: UUIDv7 Trait \& Starter Migrations Refactoring](#312-task-2-uuidv7-trait--starter-migrations-refactoring)
+        - [3.1.3. Task 3: Shared Public Infrastructure Tables (Source Identity Registry \& Reset Confirmations)](#313-task-3-shared-public-infrastructure-tables-source-identity-registry--reset-confirmations)
+    - [3.2. Stage 2: Product Reset Engine \& Execution Infrastructure](#32-stage-2-product-reset-engine--execution-infrastructure)
+        - [3.2.1. Task 4: Reset Runs Migration, App-Layer Reset Window \& Recovery Services](#321-task-4-reset-runs-migration-app-layer-reset-window--recovery-services)
+    - [3.3. Stage 3: Upstream Dataset Pin Manifests, Fetch Command \& Importer Pipelines](#33-stage-3-upstream-dataset-pin-manifests-fetch-command--importer-pipelines)
+        - [3.3.1. Task 5: Source Pin Manifests \& `source:fetch` Command](#331-task-5-source-pin-manifests--sourcefetch-command)
+        - [3.3.2. Task 6: Product Import Pipeline Readers, Importers \& CLI Suite](#332-task-6-product-import-pipeline-readers-importers--cli-suite)
+    - [3.4. Stage 4: Product Domain Models, Migrations \& Search Projections](#34-stage-4-product-domain-models-migrations--search-projections)
+        - [3.4.1. Task 7: Chinook Domain Models \& Schema Migration](#341-task-7-chinook-domain-models--schema-migration)
+        - [3.4.2. Task 8: Northwind Domain Models \& Schema Migration](#342-task-8-northwind-domain-models--schema-migration)
+        - [3.4.3. Task 9: Pagila Domain Models \& Schema Migration](#343-task-9-pagila-domain-models--schema-migration)
+        - [3.4.4. Task 10: Search Projection Tables, PL/pgSQL Triggers \& Observers](#344-task-10-search-projection-tables-plpgsql-triggers--observers)
+    - [3.5. Stage 5: Embedding Profiles, AI SDK Integration \& Hybrid Search (RRF)](#35-stage-5-embedding-profiles-ai-sdk-integration--hybrid-search-rrf)
+        - [3.5.1. Task 11: `laravel/ai` SDK Integration \& Async `EmbeddingJob`](#351-task-11-laravelai-sdk-integration--async-embeddingjob)
+        - [3.5.2. Task 12: Reciprocal Rank Fusion \& Federated Search Service](#352-task-12-reciprocal-rank-fusion--federated-search-service)
+    - [3.6. Stage 6: Auth Co-existence, Operator Onboarding \& Filament Panels](#36-stage-6-auth-co-existence-operator-onboarding--filament-panels)
+        - [3.6.1. Task 13: Operator Onboarding Command \& DatabaseSeeder](#361-task-13-operator-onboarding-command--databaseseeder)
+        - [3.6.2. Task 14: Filament Panel Providers \& Shield Permission Setup](#362-task-14-filament-panel-providers--shield-permission-setup)
+    - [3.7. Stage 7: Filament Resources for Products \& Admin Control](#37-stage-7-filament-resources-for-products--admin-control)
+        - [3.7.1. Task 15: Chinook Filament Resources](#371-task-15-chinook-filament-resources)
+        - [3.7.2. Task 16: Northwind Filament Resources](#372-task-16-northwind-filament-resources)
+        - [3.7.3. Task 17: Pagila Filament Resources](#373-task-17-pagila-filament-resources)
+        - [3.7.4. Task 18: Admin Filament Resources \& User Management](#374-task-18-admin-filament-resources--user-management)
+    - [3.8. Stage 8: Portfolio Cards, Team Artefacts \& Federated Search UI](#38-stage-8-portfolio-cards-team-artefacts--federated-search-ui)
+        - [3.8.1. Task 19: Portfolio View \& Product Portfolio Card Widget](#381-task-19-portfolio-view--product-portfolio-card-widget)
+        - [3.8.2. Task 20: Team Artefacts Schema \& Federated Search Livewire Page](#382-task-20-team-artefacts-schema--federated-search-livewire-page)
+    - [3.9. Stage 9: Quality Gates, Pest Architecture Rules, Dossier \& ADRs](#39-stage-9-quality-gates-pest-architecture-rules-dossier--adrs)
+        - [3.9.1. Task 21: Comprehensive Test Pyramid, Pest Architecture Rules \& Larastan Max Fix](#391-task-21-comprehensive-test-pyramid-pest-architecture-rules--larastan-max-fix)
+        - [3.9.2. Task 22: Dossier Generation \& ADR Documentation Engine](#392-task-22-dossier-generation--adr-documentation-engine)
 - [4. Execution Handoff](#4-execution-handoff)
 
 </details>
@@ -157,11 +165,13 @@ docs/
 #### 3.1.1. Task 1: Postgres Extensions Migration & Health Command (`pgsql:check`)
 
 **Files:**
+
 - Create: `database/migrations/0001_01_01_000000_create_postgres_extensions.php`
 - Create: `app/Console/Commands/PgsqlCheck.php`
 - Test: `tests/Feature/Postgres/PostgresExtensionsTest.php`
 
 **Interfaces:**
+
 - Consumes: PostgreSQL 18 DDL (`CREATE EXTENSION IF NOT EXISTS`, `CREATE TEXT SEARCH CONFIGURATION`)
 - Produces: Installed `vector`, `unaccent`, `pg_trgm` extensions, `en_unaccent` text search config, and CLI health probe.
 
@@ -288,6 +298,7 @@ git commit -m "feat: add postgres extensions migration and pgsql:check health co
 #### 3.1.2. Task 2: UUIDv7 Trait & Starter Migrations Refactoring
 
 **Files:**
+
 - Modify: `database/migrations/0001_01_01_000000_create_users_table.php`
 - Modify: `database/migrations/2026_01_27_000001_create_teams_table.php`
 - Modify: `database/migrations/2026_01_27_000002_add_current_team_id_to_users_table.php`
@@ -298,6 +309,7 @@ git commit -m "feat: add postgres extensions migration and pgsql:check health co
 - Test: `tests/Feature/Auth/UserUuidv7Test.php`
 
 **Interfaces:**
+
 - Consumes: Eloquent `HasUuids` trait.
 - Produces: UUIDv7 primary keys for all application-owned tables (`users`, `teams`, `team_members`, `team_invitations`).
 
@@ -361,6 +373,7 @@ git commit -m "refactor: update starter migrations and models to use UUIDv7 prim
 #### 3.1.3. Task 3: Shared Public Infrastructure Tables (Source Identity Registry & Reset Confirmations)
 
 **Files:**
+
 - Create: `database/migrations/0001_01_01_000001_create_source_identities_table.php`
 - Create: `database/migrations/0001_01_01_000003_create_reset_confirmations_table.php`
 - Create: `app/Models/SourceIdentity.php`
@@ -370,6 +383,7 @@ git commit -m "refactor: update starter migrations and models to use UUIDv7 prim
 - Test: `tests/Feature/Import/SourceIdentityRegistryTest.php`
 
 **Interfaces:**
+
 - Consumes: Entity string (`chinook.artists`), JSONB source key (`{"id":"5"}`).
 - Produces: Immutable UUIDv7 `domain_id` mapping surviving resets, and signed single-use confirmation tokens for operator resets.
 
@@ -535,6 +549,7 @@ git commit -m "feat: add source identity registry and reset confirmation migrati
 #### 3.2.1. Task 4: Reset Runs Migration, App-Layer Reset Window & Recovery Services
 
 **Files:**
+
 - Create: `database/migrations/0001_01_01_000002_create_reset_runs_table.php`
 - Create: `app/Models/ResetRun.php`
 - Create: `app/Services/ProductReset/ResetEvidence.php`
@@ -545,6 +560,7 @@ git commit -m "feat: add source identity registry and reset confirmation migrati
 - Test: `tests/Feature/Reset/ResetWindowTest.php`
 
 **Interfaces:**
+
 - Consumes: Reset status predicates from `public.reset_runs`.
 - Produces: `assertWritable()` checks that raise `ProductResetWindowOpen` (HTTP 423) when write operations occur during active resets.
 
@@ -702,6 +718,7 @@ git commit -m "feat: implement ResetRun, ResetWindow service, and BelongsToProdu
 #### 3.3.1. Task 5: Source Pin Manifests & `source:fetch` Command
 
 **Files:**
+
 - Create: `database/sources/chinook.php`
 - Create: `database/sources/northwind.php`
 - Create: `database/sources/pagila.php`
@@ -709,6 +726,7 @@ git commit -m "feat: implement ResetRun, ResetWindow service, and BelongsToProdu
 - Test: `tests/Feature/Import/SourceFetchTest.php`
 
 **Interfaces:**
+
 - Consumes: Upstream Git commit SHAs and verified source digests.
 - Produces: Verified dataset files stored at `storage/app/private/sources/<product>/<commit_sha>/<filename>`.
 
@@ -859,6 +877,7 @@ git commit -m "feat: add dataset pin manifests and source:fetch command"
 #### 3.3.2. Task 6: Product Import Pipeline Readers, Importers & CLI Suite
 
 **Files:**
+
 - Create: `app/Services/ProductImport/SqliteSourceReader.php`
 - Create: `app/Services/ProductImport/SqlSourceReader.php`
 - Create: `app/Services/ProductImport/ProductImportPipeline.php`
@@ -873,6 +892,7 @@ git commit -m "feat: add dataset pin manifests and source:fetch command"
 - Test: `tests/Feature/Import/ProductImportPipelineTest.php`
 
 **Interfaces:**
+
 - Consumes: Target product name and dataset source files.
 - Produces: Atomic shadow-schema staging load (`<product>_staging`), baseline invariant checks, and atomic publish swap (`DROP SCHEMA <product> CASCADE; ALTER SCHEMA <product>_staging RENAME TO <product>;`).
 
@@ -999,6 +1019,7 @@ git commit -m "feat: implement product import pipeline and CLI command suite"
 #### 3.4.1. Task 7: Chinook Domain Models & Schema Migration
 
 **Files:**
+
 - Create: `database/migrations/chinook/2026_07_24_210000_create_chinook_schema_and_tables.php`
 - Create: `app/Domain/Chinook/Models/Artist.php`
 - Create: `app/Domain/Chinook/Models/Album.php`
@@ -1014,6 +1035,7 @@ git commit -m "feat: implement product import pipeline and CLI command suite"
 - Test: `tests/Feature/Domain/ChinookDomainTest.php`
 
 **Interfaces:**
+
 - Consumes: PostgreSQL `chinook` schema DDL.
 - Produces: Schema-qualified Eloquent models in `App\Domain\Chinook\Models\*` using UUIDv7 keys and `BelongsToProductDomain`.
 
@@ -1164,6 +1186,7 @@ git commit -m "feat: implement Chinook schema migration and domain models"
 #### 3.4.2. Task 8: Northwind Domain Models & Schema Migration
 
 **Files:**
+
 - Create: `database/migrations/northwind/2026_07_24_211000_create_northwind_schema_and_tables.php`
 - Create: `app/Domain/Northwind/Models/Category.php`
 - Create: `app/Domain/Northwind/Models/Customer.php`
@@ -1179,6 +1202,7 @@ git commit -m "feat: implement Chinook schema migration and domain models"
 - Test: `tests/Feature/Domain/NorthwindDomainTest.php`
 
 **Interfaces:**
+
 - Consumes: PostgreSQL `northwind` schema DDL.
 - Produces: Schema-qualified Eloquent models in `App\Domain\Northwind\Models\*`.
 
@@ -1235,6 +1259,7 @@ git commit -m "feat: implement Northwind schema migration and domain models"
 #### 3.4.3. Task 9: Pagila Domain Models & Schema Migration
 
 **Files:**
+
 - Create: `database/migrations/pagila/2026_07_24_212000_create_pagila_schema_and_tables.php`
 - Create: `app/Domain/Pagila/Models/Actor.php`
 - Create: `app/Domain/Pagila/Models/Category.php`
@@ -1254,6 +1279,7 @@ git commit -m "feat: implement Northwind schema migration and domain models"
 - Test: `tests/Feature/Domain/PagilaDomainTest.php`
 
 **Interfaces:**
+
 - Consumes: PostgreSQL `pagila` schema DDL (including deferrable FK for `staff.store_id` ↔ `store.manager_staff_id`).
 - Produces: Schema-qualified Eloquent models in `App\Domain\Pagila\Models\*`.
 
@@ -1307,6 +1333,7 @@ git commit -m "feat: implement Pagila schema migration and domain models"
 #### 3.4.4. Task 10: Search Projection Tables, PL/pgSQL Triggers & Observers
 
 **Files:**
+
 - Create: `database/migrations/chinook/2026_07_24_210001_create_chinook_search_projections.php`
 - Create: `database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php`
 - Create: `database/migrations/pagila/2026_07_24_212001_create_pagila_search_projections.php`
@@ -1314,6 +1341,7 @@ git commit -m "feat: implement Pagila schema migration and domain models"
 - Test: `tests/Feature/Search/SearchProjectionTriggerTest.php`
 
 **Interfaces:**
+
 - Consumes: Domain model CRUD operations.
 - Produces: Transactionally current `document_tsv` text vectors in `<product>.search_projections`, and dispatches `EmbeddingJob` for tier-1 writes.
 
@@ -1445,11 +1473,13 @@ git commit -m "feat: implement search projection tables and PL/pgSQL triggers fo
 #### 3.5.1. Task 11: `laravel/ai` SDK Integration & Async `EmbeddingJob`
 
 **Files:**
+
 - Create/Modify: `config/ai.php`
 - Create: `app/Jobs/EmbeddingJob.php`
 - Test: `tests/Feature/Search/EmbeddingJobTest.php`
 
 **Interfaces:**
+
 - Consumes: Pending `search_projections` rows without vector embeddings.
 - Produces: 1024d vector embeddings generated via `laravel/ai` SDK stored in `search_projections.embedding` with `embedding_state = 'complete'`.
 
@@ -1600,12 +1630,14 @@ git commit -m "feat: implement laravel/ai SDK configuration and async EmbeddingJ
 #### 3.5.2. Task 12: Reciprocal Rank Fusion & Federated Search Service
 
 **Files:**
+
 - Create: `app/Services/Search/ReciprocalRankFusion.php`
 - Create: `app/Services/Search/SearchDeepLinkRegistry.php`
 - Create: `app/Services/Search/FederatedSearchService.php`
 - Test: `tests/Feature/Search/FederatedSearchTest.php`
 
 **Interfaces:**
+
 - Consumes: Query string and optional product scope.
 - Produces: Unified, RRF-ranked search results across `chinook`, `northwind`, and `pagila` projection tables with deep-link resolution.
 
@@ -1767,12 +1799,14 @@ git commit -m "feat: implement ReciprocalRankFusion, SearchDeepLinkRegistry, and
 #### 3.6.1. Task 13: Operator Onboarding Command & DatabaseSeeder
 
 **Files:**
+
 - Create: `app/Console/Commands/OperatorCreate.php`
 - Modify: `app/Actions/Operators/ProvisionOperator.php`
 - Modify: `database/seeders/DatabaseSeeder.php`
 - Test: `tests/Feature/Console/OperatorCreateTest.php`
 
 **Interfaces:**
+
 - Consumes: Environment variables (`OPERATOR_EMAIL`, `OPERATOR_PASSWORD`, `OPERATOR_NAME`).
 - Produces: System Operator `User` with `super_admin` role, personal team, and audit trail record.
 
@@ -1886,6 +1920,7 @@ git commit -m "feat: implement operator onboarding CLI command and provisioning 
 #### 3.6.2. Task 14: Filament Panel Providers & Shield Permission Setup
 
 **Files:**
+
 - Modify: `app/Providers/Filament/AdminPanelProvider.php`
 - Modify: `app/Providers/Filament/ChinookPanelProvider.php`
 - Modify: `app/Providers/Filament/NorthwindPanelProvider.php`
@@ -1894,6 +1929,7 @@ git commit -m "feat: implement operator onboarding CLI command and provisioning 
 - Test: `tests/Feature/Filament/PanelAuthenticationTest.php`
 
 **Interfaces:**
+
 - Consumes: User panel access permissions.
 - Produces: 4 isolated Filament panels (`/admin`, `/chinook`, `/northwind`, `/pagila`) with `canAccessPanel()` gating.
 
@@ -1931,6 +1967,7 @@ Expected: FAIL with status or redirect mismatch.
 - [ ] **Step 3: Write implementation**
 
 Update `canAccessPanel` in `app/Models/User.php`:
+
 ```php
 public function canAccessPanel(Panel $panel): bool
 {
@@ -1967,6 +2004,7 @@ git commit -m "feat: configure 4 isolated Filament panels with Shield RBAC and F
 #### 3.7.1. Task 15: Chinook Filament Resources
 
 **Files:**
+
 - Create: `app/Filament/Chinook/Resources/ArtistResource.php`
 - Create: `app/Filament/Chinook/Resources/AlbumResource.php`
 - Create: `app/Filament/Chinook/Resources/TrackResource.php`
@@ -1978,6 +2016,7 @@ git commit -m "feat: configure 4 isolated Filament panels with Shield RBAC and F
 - Test: `tests/Feature/Filament/ChinookResourcesTest.php`
 
 **Interfaces:**
+
 - Consumes: Chinook domain models.
 - Produces: Filament 5 admin resources for Chinook domain management under `/chinook`.
 
@@ -2031,6 +2070,7 @@ git commit -m "feat: implement Chinook Filament resources (Artist, Album, Track,
 #### 3.7.2. Task 16: Northwind Filament Resources
 
 **Files:**
+
 - Create: `app/Filament/Northwind/Resources/ProductResource.php`
 - Create: `app/Filament/Northwind/Resources/CategoryResource.php`
 - Create: `app/Filament/Northwind/Resources/SupplierResource.php`
@@ -2041,6 +2081,7 @@ git commit -m "feat: implement Chinook Filament resources (Artist, Album, Track,
 - Test: `tests/Feature/Filament/NorthwindResourcesTest.php`
 
 **Interfaces:**
+
 - Consumes: Northwind domain models.
 - Produces: Filament 5 admin resources for Northwind domain management under `/northwind`.
 
@@ -2094,6 +2135,7 @@ git commit -m "feat: implement Northwind Filament resources (Product, Category, 
 #### 3.7.3. Task 17: Pagila Filament Resources
 
 **Files:**
+
 - Create: `app/Filament/Pagila/Resources/FilmResource.php`
 - Create: `app/Filament/Pagila/Resources/ActorResource.php`
 - Create: `app/Filament/Pagila/Resources/CategoryResource.php`
@@ -2106,6 +2148,7 @@ git commit -m "feat: implement Northwind Filament resources (Product, Category, 
 - Test: `tests/Feature/Filament/PagilaResourcesTest.php`
 
 **Interfaces:**
+
 - Consumes: Pagila domain models.
 - Produces: Filament 5 admin resources for Pagila domain management under `/pagila`.
 
@@ -2159,11 +2202,13 @@ git commit -m "feat: implement Pagila Filament resources (Film, Actor, Category,
 #### 3.7.4. Task 18: Admin Filament Resources & User Management
 
 **Files:**
+
 - Create: `app/Filament/Admin/Resources/UserResource.php`
 - Create: `app/Filament/Admin/Resources/RoleResource.php`
 - Test: `tests/Feature/Filament/AdminResourcesTest.php`
 
 **Interfaces:**
+
 - Consumes: System User and Spatie Role models.
 - Produces: Global user and role administration UI under `/admin`.
 
@@ -2214,6 +2259,7 @@ git commit -m "feat: implement Admin Filament UserResource and RoleResource for 
 #### 3.8.1. Task 19: Portfolio View & Product Portfolio Card Widget
 
 **Files:**
+
 - Create: `database/migrations/2026_07_24_204000_create_product_portfolio_snapshots_view.php`
 - Create: `app/Models/ProductPortfolioSnapshot.php`
 - Create: `app/Filament/Widgets/ProductPortfolioCard.php`
@@ -2221,6 +2267,7 @@ git commit -m "feat: implement Admin Filament UserResource and RoleResource for 
 - Test: `tests/Feature/Widgets/ProductPortfolioCardTest.php`
 
 **Interfaces:**
+
 - Consumes: Aggregated database metrics from `chinook`, `northwind`, and `pagila`.
 - Produces: Postgres snapshot view `public.product_portfolio_snapshots` and 3-column portfolio summary widget on `/admin`.
 
@@ -2343,6 +2390,7 @@ git commit -m "feat: implement product portfolio snapshots Postgres view and 3-c
 #### 3.8.2. Task 20: Team Artefacts Schema & Federated Search Livewire Page
 
 **Files:**
+
 - Create: `database/migrations/2026_07_24_203000_create_team_artefacts_table.php`
 - Create: `app/Models/TeamArtefact.php`
 - Create: `app/Filament/Pages/FederatedSearchPage.php`
@@ -2350,6 +2398,7 @@ git commit -m "feat: implement product portfolio snapshots Postgres view and 3-c
 - Test: `tests/Feature/Search/FederatedSearchPageTest.php`
 
 **Interfaces:**
+
 - Consumes: Polymorphic team artefacts (`saved_search`, `team_dashboard`).
 - Produces: Federated search Livewire interface with RRF query execution and team search bookmarking.
 
@@ -2433,11 +2482,13 @@ git commit -m "feat: implement team artefacts schema and federated search Livewi
 #### 3.9.1. Task 21: Comprehensive Test Pyramid, Pest Architecture Rules & Larastan Max Fix
 
 **Files:**
+
 - Create: `tests/Architecture/AppArchitectureTest.php`
 - Modify: `phpstan.neon`
 - Test: Run full suite `composer test`
 
 **Interfaces:**
+
 - Consumes: Entire codebase.
 - Produces: Enforced 15 Pest Architecture rules, strict domain isolation, and 0 Larastan max violations (with cited `# framework-idiom:` carve-out for Eloquent query builder dynamic calls).
 
@@ -2510,6 +2561,7 @@ git commit -m "test: add 15 strict Pest architecture rules and lock Larastan lev
 #### 3.9.2. Task 22: Dossier Generation & ADR Documentation Engine
 
 **Files:**
+
 - Create: `app/Console/Commands/DossierGenerate.php`
 - Create: `app/Console/Commands/AdrGenerate.php`
 - Create output directory: `docs/15-delivery/1515-implementation-readiness-dossier/`
@@ -2517,6 +2569,7 @@ git commit -m "test: add 15 strict Pest architecture rules and lock Larastan lev
 - Test: `tests/Feature/Console/DocumentationCommandsTest.php`
 
 **Interfaces:**
+
 - Consumes: Wayfinder Map #15 child issue metadata and ADR decisions.
 - Produces: Markdown Dossier stage files (`151501-contents.md` through `151517-...`) and 35 Architecture Decision Records under `docs/10-architecture/1015-adrs/`.
 

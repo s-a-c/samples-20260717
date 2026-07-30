@@ -1,3 +1,11 @@
+---
+title: "Stage 1 — Foundation"
+description: "| Gate | Evidence | Check | Status |"
+type: delivery
+tags: \[delivery, implementation-readiness-dossier, stage, "1"]
+updated: 2026-07-30
+---
+
 # Stage 1 — Foundation
 
 **Risk order:** 1

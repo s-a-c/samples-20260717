@@ -1,3 +1,11 @@
+---
+title: "SiYuan Integration (samples-20260717)"
+description: "Integration contract for the samples-20260717 Siyuan notebook and API access."
+type: guide
+tags: \[guide, agents, siyuan, integration]
+updated: 2026-07-30
+---
+
 # SiYuan Integration (samples-20260717)
 
 ## 1. Notebook

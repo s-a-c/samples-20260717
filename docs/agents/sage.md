@@ -1,3 +1,11 @@
+---
+title: "SAGE Integration"
+description: "Integration contract for governed SAGE project memory in samples-20260717."
+type: guide
+tags: \[guide, agents, sage, integration]
+updated: 2026-07-30
+---
+
 # SAGE Integration
 
 ## 1. Namespace

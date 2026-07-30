@@ -1,0 +1,73 @@
+---
+title: Domain Ontology
+config:
+  theme: redux-dark-color
+  themeVariables:
+    background: "#1e1e2e"
+    primaryColor: "#89b4fa"
+    primaryTextColor: "#1e1e2e"
+    primaryBorderColor: "#74c7ec"
+    lineColor: "#74c7ec"
+    secondaryColor: "#cba6f7"
+    secondaryTextColor: "#1e1e2e"
+    secondaryBorderColor: "#b4befe"
+    tertiaryColor: "#94e2d5"
+    tertiaryTextColor: "#1e1e2e"
+    tertiaryBorderColor: "#89dceb"
+    mainBkg: "#89b4fa"
+    secondBkg: "#cba6f7"
+    tertiaryBkg: "#94e2d5"
+    textColor: "#cdd6f4"
+    nodeBorder: "#74c7ec"
+    clusterBkg: "#313244"
+    clusterBorder: "#b4befe"
+    edgeLabelBackground: "#1e1e2e"
+    titleColor: "#cdd6f4"
+    fontSize: 16px
+  themeCSS: |
+    .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
+    .edgePath .path { stroke-width: 2px !important; }
+    .label { font-weight: bold !important; }
+    .edgeLabel { background-color: #1e1e2e !important; }
+---
+classDiagram
+    class SampleProduct {
+        <<Enumeration>>
+        CHINOOK
+        NORTHWIND
+        PAGILA
+    }
+
+    class DomainModel {
+        <<Interface>>
+        +UUIDv7 id
+        +string source_identity
+        +BelongsToProduct()
+    }
+
+    class MediaProduct {
+        +Album[] albums
+        +Track[] tracks
+    }
+
+    class SupplyChainProduct {
+        +Order[] orders
+        +Product[] items
+    }
+
+    class RentalProduct {
+        +Film[] films
+        +Rental[] rentals
+    }
+
+    DomainModel <|-- MediaProduct : Chinook
+    DomainModel <|-- SupplyChainProduct : Northwind
+    DomainModel <|-- RentalProduct : Pagila
+
+    class SearchProjection {
+        +string document_tsv
+        +vector embedding
+        +float rank
+    }
+
+    DomainModel *-- SearchProjection : projects to

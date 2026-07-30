@@ -1,3 +1,11 @@
+---
+title: "Triage Labels"
+description: "This repo uses the canonical five-role vocabulary (no local override). The table"
+type: guide
+tags: \[guide, agents, triage, labels]
+updated: 2026-07-30
+---
+
 # Triage Labels
 
 This repo uses the canonical five-role vocabulary (no local override). The table

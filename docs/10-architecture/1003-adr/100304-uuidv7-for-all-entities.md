@@ -1,3 +1,11 @@
+---
+title: "ADR 0002: UUIDv7 for All Entities"
+description: "Decision to use UUIDv7 identifiers for shared and product-domain entities."
+type: adr
+tags: \[adr, "0002", uuidv7]
+updated: 2026-07-30
+---
+
 # ADR 0002: UUIDv7 for All Entities
 
 **Status:** Accepted
@@ -9,20 +17,21 @@
 - UUIDv7 encodes a Unix-millisecond timestamp in the first 48 bits, followed by random bits, making them time-sortable and unique.
 - Implemented via Laravel's `HasUuids` trait with a `newUniqueId()` override that generates UUIDv7 using Symfony's `UuidV7` generator.
 
-  ```php
-  use Symfony\Component\Uid\UuidV7;
+    ```php
+    use Symfony\Component\Uid\UuidV7;
 
-  protected function newUniqueId(): string
-  {
-      return (string) new UuidV7();
-  }
-  ```
+    protected function newUniqueId(): string
+    {
+        return (string) new UuidV7();
+    }
+    ```
 
 - Database columns use the `uuid` type for efficient binary storage (16 bytes vs 37 bytes for string representation).
 - All models use `HasUuids` — both product-domain models and shared infrastructure models (users, teams, search documents, etc.).
 - Foreign key relationships use the `uuid` type consistently.
 
 **Consequences:**
+
 - **Positive:** Globally unique — no collision risk across domains or during offline ID generation.
 - **Positive:** Time-sortable — natural ordering matches insertion order; good B-tree performance.
 - **Positive:** Offline generation — import pipelines can generate stable Domain Identities before rows reach the database.
@@ -32,5 +41,6 @@
 - **Tradeoff:** Slightly more verbose in raw SQL queries and debugging (cannot type a short int).
 
 **Related:**
+
 - [ADR 0004: Shadow-Schema Import Pipeline](0004-shadow-schema-import-pipeline.md) — offline ID generation critical for shadow-schema reset
 - [CONTEXT.md](../../CONTEXT.md) — Domain Identity definition

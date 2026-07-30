@@ -1,3 +1,11 @@
+---
+title: "ADR 0020: Filament Resource Generation"
+description: "Accepted — restated from [Wayfinder #30](https://github.com/s-a-c/samples-20260717/issues/30) (map [#15](https://github.com/s-a-c/samples-20260717/issues/15)). Realised namespace updated to the project's Laravel-native convention (see Consequences)."
+type: adr
+tags: \[adr, "0020", filament]
+updated: 2026-07-30
+---
+
 # ADR 0020: Filament Resource Generation
 
 ## Status

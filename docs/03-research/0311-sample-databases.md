@@ -1,3 +1,11 @@
+---
+title: "Sample Databases"
+description: "Research comparison of candidate sample databases and the selected Chinook, Northwind, and Pagila sources."
+type: guide
+tags: \[guide, documentation, sample, databases]
+updated: 2026-07-30
+---
+
 # Sample Databases
 
 <details>
@@ -7,23 +15,23 @@
 
 - [1. Prompt](#1-prompt)
 - [2. Response](#2-response)
-  - [2.1. General-purpose relational databases](#21-general-purpose-relational-databases)
-  - [2.2. E-commerce and sales](#22-e-commerce-and-sales)
-  - [2.3. Finance and business](#23-finance-and-business)
-  - [2.4. Healthcare](#24-healthcare)
-  - [2.5. Transport and public data](#25-transport-and-public-data)
-  - [2.6. Social and media](#26-social-and-media)
-  - [2.7. Smaller teaching datasets](#27-smaller-teaching-datasets)
-  - [2.8. Good sources and repositories](#28-good-sources-and-repositories)
-  - [2.9. My shortlist](#29-my-shortlist)
+    - [2.1. General-purpose relational databases](#21-general-purpose-relational-databases)
+    - [2.2. E-commerce and sales](#22-e-commerce-and-sales)
+    - [2.3. Finance and business](#23-finance-and-business)
+    - [2.4. Healthcare](#24-healthcare)
+    - [2.5. Transport and public data](#25-transport-and-public-data)
+    - [2.6. Social and media](#26-social-and-media)
+    - [2.7. Smaller teaching datasets](#27-smaller-teaching-datasets)
+    - [2.8. Good sources and repositories](#28-good-sources-and-repositories)
+    - [2.9. My shortlist](#29-my-shortlist)
 - [3. Prompt](#3-prompt)
 - [4. Response](#4-response)
-  - [4.1. Direct PostgreSQL-focused repositories](#41-direct-postgresql-focused-repositories)
-  - [4.2. Quick import examples](#42-quick-import-examples)
-    - [4.2.1. Northwind](#421-northwind)
-    - [4.2.2. Chinook](#422-chinook)
-    - [4.2.3. Pagila](#423-pagila)
-  - [4.3. Recommended teaching set](#43-recommended-teaching-set)
+    - [4.1. Direct PostgreSQL-focused repositories](#41-direct-postgresql-focused-repositories)
+    - [4.2. Quick import examples](#42-quick-import-examples)
+        - [4.2.1. Northwind](#421-northwind)
+        - [4.2.2. Chinook](#422-chinook)
+        - [4.2.3. Pagila](#423-pagila)
+    - [4.3. Recommended teaching set](#43-recommended-teaching-set)
 
 </details>
 

@@ -1,0 +1,76 @@
+---
+title: Data Model
+config:
+  theme: redux-dark-color
+  themeVariables:
+    background: "#1e1e2e"
+    primaryColor: "#89b4fa"
+    primaryTextColor: "#1e1e2e"
+    primaryBorderColor: "#74c7ec"
+    lineColor: "#74c7ec"
+    secondaryColor: "#cba6f7"
+    secondaryTextColor: "#1e1e2e"
+    secondaryBorderColor: "#b4befe"
+    tertiaryColor: "#94e2d5"
+    tertiaryTextColor: "#1e1e2e"
+    tertiaryBorderColor: "#89dceb"
+    mainBkg: "#89b4fa"
+    secondBkg: "#cba6f7"
+    tertiaryBkg: "#94e2d5"
+    textColor: "#cdd6f4"
+    nodeBorder: "#74c7ec"
+    clusterBkg: "#313244"
+    clusterBorder: "#b4befe"
+    edgeLabelBackground: "#1e1e2e"
+    titleColor: "#cdd6f4"
+    fontSize: 16px
+    erEdgeLabelBackground: "#1e1e2e"
+    relationColor: "#74c7ec"
+    relationLabelBackground: "#1e1e2e"
+    relationLabelColor: "#cdd6f4"
+  themeCSS: |
+    .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
+    .edgePath .path { stroke-width: 2px !important; }
+    .label { font-weight: bold !important; }
+    .edgeLabel { background-color: #1e1e2e !important; }
+  er:
+    layoutDirection: TB
+    defaultRenderer: elk
+    minEntityWidth: 90
+    nodeSpacing: 10
+    rankSpacing: 120
+---
+%%{init: {"themeCSS": ".edgeLabel .label, .edgeLabel p { color: #cdd6f4 !important; }"}}%%
+erDiagram
+    direction TB
+
+    %% public_schema
+    USER
+    TEAM
+    MEMBERSHIP
+    TEAM_ARTEFACT
+    SOURCE_IDENTITY
+    RESET_RUN
+    RESET_CONFIRMATION
+
+    USER ||--o{ TEAM : belongs_to
+    TEAM ||--o{ MEMBERSHIP : has
+    USER ||--o{ MEMBERSHIP : has
+    TEAM ||--o{ TEAM_ARTEFACT : owns
+
+    SOURCE_IDENTITY }o--|| PRODUCT : identifies
+    RESET_RUN }o--|| PRODUCT : tracks
+    RESET_CONFIRMATION }o--|| RESET_RUN : validates
+
+    %% chinook_schema
+    ARTIST
+
+    %% northwind_schema
+    PRODUCT_NW
+
+    %% pagila_schema
+    FILM
+
+    SOURCE_IDENTITY ||--o| ARTIST : "references (polymorphic)"
+    SOURCE_IDENTITY ||--o| PRODUCT_NW : "references (polymorphic)"
+    SOURCE_IDENTITY ||--o| FILM : "references (polymorphic)"

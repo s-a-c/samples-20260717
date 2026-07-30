@@ -22,6 +22,7 @@ covers(
     EmployeeTerritory::class,
     Order::class,
     OrderDetail::class,
+    Product::class,
     Region::class,
     Shipper::class,
     Supplier::class,
@@ -149,4 +150,33 @@ test('northwind customer, shipper, order and order detail relations resolve', fu
         ->and($order->products->first()->product_name)->toBe('Chocolade');
     expect($orderDetail->order->id)->toBe($order->id);
     expect($orderDetail->product->product_name)->toBe('Chocolade');
+});
+
+test('northwind product order details and orders relations resolve', function () {
+    $category = Category::create(['category_name' => 'Beverages']);
+    $supplier = Supplier::create(['company_name' => 'Exotic Liquids']);
+    $product = Product::create([
+        'product_name' => 'Chai Tea',
+        'category_id' => $category->id,
+        'supplier_id' => $supplier->id,
+        'unit_price' => 18.00,
+    ]);
+
+    $customer = Customer::create(['company_name' => 'Test Co']);
+    $order = Order::create([
+        'customer_id' => $customer->id,
+        'order_date' => now(),
+        'freight' => 5.00,
+    ]);
+
+    OrderDetail::create([
+        'order_id' => $order->id,
+        'product_id' => $product->id,
+        'unit_price' => 18.00,
+        'quantity' => 3,
+        'discount' => 0.00,
+    ]);
+
+    expect($product->orderDetails->first()->order_id)->toBe($order->id)
+        ->and($product->orders->first()->id)->toBe($order->id);
 });

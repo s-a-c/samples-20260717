@@ -1,3 +1,11 @@
+---
+title: "Wayfinder handoff — next session"
+description: "| Ticket                                                                  | Decision                                                                                                                                                                                                                                                                                                                                                                                                            | SAGE fact  |"
+type: handoff
+tags: \[handoff, handoffs, wayfinder, next]
+updated: 2026-07-30
+---
+
 # Wayfinder handoff — next session
 
 **Date:** 2026-07-21
@@ -62,12 +70,14 @@ gh issue view 6  --repo s-a-c/samples-20260717 --comments       # schema shape (
 gh issue view 7  --repo s-a-c/samples-20260717 --comments       # import + reset semantics
 ```
 
-Read `CONTEXT.md` at repo root — focus on *Search Document*, *Search Surface*, *Search Tier*, *Search Projection*, *Embedding Profile*, *Hybrid Retrieval*.
+Read `CONTEXT.md` at repo root — focus on _Search Document_, _Search Surface_, _Search Tier_, _Search Projection_, _Embedding Profile_, _Hybrid Retrieval_.
 
 SAGE recall:
+
 ```
 sage_recall query="Postgres search projection tsvector HNSW map 15"
 ```
+
 Should surface facts `34a6160e` (#40), `34e3bd40` (#41), `e50f71ea` (#42).
 
 ---

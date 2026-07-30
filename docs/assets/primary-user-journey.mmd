@@ -1,0 +1,51 @@
+---
+title: Primary User Journey
+config:
+  theme: redux-dark-color
+  themeVariables:
+    background: "#1e1e2e"
+    primaryColor: "#89b4fa"
+    primaryTextColor: "#1e1e2e"
+    primaryBorderColor: "#74c7ec"
+    lineColor: "#74c7ec"
+    secondaryColor: "#cba6f7"
+    secondaryTextColor: "#1e1e2e"
+    secondaryBorderColor: "#b4befe"
+    tertiaryColor: "#94e2d5"
+    tertiaryTextColor: "#1e1e2e"
+    tertiaryBorderColor: "#89dceb"
+    mainBkg: "#89b4fa"
+    secondBkg: "#cba6f7"
+    tertiaryBkg: "#94e2d5"
+    textColor: "#cdd6f4"
+    nodeBorder: "#74c7ec"
+    clusterBkg: "#313244"
+    clusterBorder: "#b4befe"
+    edgeLabelBackground: "#1e1e2e"
+    titleColor: "#cdd6f4"
+    fontSize: 16px
+  themeCSS: |
+    .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
+    .edgePath .path { stroke-width: 2px !important; }
+    .label { font-weight: bold !important; }
+    .edgeLabel { background-color: #1e1e2e !important; }
+---
+journey
+    title Primary User Journey: Data Curation & Search
+    section Authentication
+      Visit Site: 5: User
+      Login (Fortify): 4: User, App
+    section Exploration
+      View Dashboard: 5: User, App
+      Navigate to Chinook Panel: 4: User, Filament
+      List Artists: 5: User, Filament
+    section Search
+      Enter Search Query: 5: User
+      View Federated Results: 4: User, SearchService
+      Click Deep Link: 5: User, App
+    section Management (Curator)
+      Edit Album: 4: Curator, Filament
+      Trigger Embedding Update: 3: App, AI Provider
+    section Admin (Operator)
+      View Portfolio Snapshots: 5: Operator, AdminPanel
+      Confirm Product Reset: 4: Operator, ResetService

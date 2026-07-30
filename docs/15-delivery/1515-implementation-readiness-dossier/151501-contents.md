@@ -1,3 +1,11 @@
+---
+title: "Implementation-Readiness Dossier — Contents"
+description: "This is the version-controlled operational record that maps each"
+type: contents
+tags: \[contents, implementation-readiness-dossier, implementation, readiness]
+updated: 2026-07-30
+---
+
 # Implementation-Readiness Dossier — Contents
 
 This is the version-controlled operational record that maps each

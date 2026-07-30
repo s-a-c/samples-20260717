@@ -1,3 +1,11 @@
+---
+title: "Upstream Sample Datasets Re-verification (T4.0 / #27)"
+description: "Re-verification date: **2026-07-19**."
+type: guide
+tags: \[guide, t40-datasets-reverify, upstream, sample]
+updated: 2026-07-30
+---
+
 # Upstream Sample Datasets Re-verification (T4.0 / #27)
 
 Re-verification date: **2026-07-19**.
@@ -55,22 +63,22 @@ contents API at the pinned refs match the pins in #4.
   examples", #50 "add chinook script for bigquery", #48 "Any chance to sponsor
   this repo?". None propose schema changes to the SQLite variant.
 - **Notes:**
-  - The `v1.4.5` tag points at commit `4a944a942426e1f3263fe539155fb7ef92b04b4a`,
-    which is **older** than the pinned HEAD. The 23 commits between `v1.4.5`
-    and the pin are infrastructure-only (DB2 docker init, VS Code configs,
-    `.gitattributes` introduction, library upgrades, README touch-ups); none
-    alter the dataset content. **However**, `git compare v1.4.5...<pin>` reports
-    `Chinook_Sqlite.sql` as modified `15902+/15902-` — a wholesale line rewrite
-    caused by the `.gitattributes`-driven CRLF→LF normalization introduced in
-    that range. The dataset rows and DDL are unchanged; only the line endings
-    differ. **Implication for T4.1:** the importer must fetch `Chinook_Sqlite.sql`
-    by **commit SHA**, never by tag. Resolving by `@v1.4.5` would return a file
-    with a different SHA-256 (CRLF variant) and the digest assertion would fail.
-    The pin triple in #4 is correct and self-consistent; do not relax it to a tag.
-  - `Chinook_Sqlite.sqlite` (the binary prebuilt) also exists at the pinned
-    commit with zero `additions/deletions` between tag and HEAD — it was not
-    regenerated when the SQL script was re-line-ended. This reinforces that the
-    line-ending pass was cosmetic and the data is unchanged.
+    - The `v1.4.5` tag points at commit `4a944a942426e1f3263fe539155fb7ef92b04b4a`,
+      which is **older** than the pinned HEAD. The 23 commits between `v1.4.5`
+      and the pin are infrastructure-only (DB2 docker init, VS Code configs,
+      `.gitattributes` introduction, library upgrades, README touch-ups); none
+      alter the dataset content. **However**, `git compare v1.4.5...<pin>` reports
+      `Chinook_Sqlite.sql` as modified `15902+/15902-` — a wholesale line rewrite
+      caused by the `.gitattributes`-driven CRLF→LF normalization introduced in
+      that range. The dataset rows and DDL are unchanged; only the line endings
+      differ. **Implication for T4.1:** the importer must fetch `Chinook_Sqlite.sql`
+      by **commit SHA**, never by tag. Resolving by `@v1.4.5` would return a file
+      with a different SHA-256 (CRLF variant) and the digest assertion would fail.
+      The pin triple in #4 is correct and self-consistent; do not relax it to a tag.
+    - `Chinook_Sqlite.sqlite` (the binary prebuilt) also exists at the pinned
+      commit with zero `additions/deletions` between tag and HEAD — it was not
+      regenerated when the SQL script was re-line-ended. This reinforces that the
+      line-ending pass was cosmetic and the data is unchanged.
 
 ## Northwind detail
 
@@ -98,11 +106,11 @@ contents API at the pinned refs match the pins in #4.
   codes", #10 "Providing a copy of the larger dataset in form of a release".
   None propose schema/data changes to the committed `dist/northwind.db`.
 - **Notes:**
-  - The repo is functionally dormant: last push was January 2025, last release
-    was 2022. The pinned HEAD is the latest meaningful state.
-  - Issue #10 asks for the larger dataset to be shipped as a release; that has
-    not happened, and the committed `dist/northwind.db` (the 23.6 MiB artifact
-    pinned in #4) remains the canonical source.
+    - The repo is functionally dormant: last push was January 2025, last release
+      was 2022. The pinned HEAD is the latest meaningful state.
+    - Issue #10 asks for the larger dataset to be shipped as a release; that has
+      not happened, and the committed `dist/northwind.db` (the 23.6 MiB artifact
+      pinned in #4) remains the canonical source.
 
 ## Pagila detail
 
@@ -127,21 +135,21 @@ contents API at the pinned refs match the pins in #4.
 - **LICENSE at pin:** blob `589ff3d3d68282f1e2d044d20aac15381fb7c6f7`, 1,521 bytes — unchanged (BSD 3-Clause, Bradley Grant 2020).
 - **Open issues:** none. The repo has zero open issues and zero open PRs.
 - **Notes:**
-  - This upstream is the most dormant of the three: last push December 2020,
-    more than five years before the audit. Drift risk is negligible.
-  - **Licensing caveat for T4.1:** The BSD 3-Clause license on this SQLite port
-    covers the port itself. The underlying Pagila schema and sample data
-    originate from MySQL AB / Oracle (Mike Hillyer's original Pagila). The
-    README and schema header credit the MySQL documentation team. Oracle has
-    not, to our knowledge, asserted a restrictive license on Pagila sample
-    data — it is distributed as a sample/test fixture in the MySQL ecosystem —
-    but T4.1 should (a) preserve the upstream's BSD notice, (b) retain the
-    attribution credits to MySQL/Hillyer/Grant, and (c) ship a third-party
-    notices page that names all three lineages. Redistribution of the SQLite
-    `.db` artifact alongside the application is permitted under BSD; the only
-    residual concern is the unspoken MySQL/Oracle provenance, which is
-    mitigated by clear attribution and is industry-standard practice for Pagila
-    ports.
+    - This upstream is the most dormant of the three: last push December 2020,
+      more than five years before the audit. Drift risk is negligible.
+    - **Licensing caveat for T4.1:** The BSD 3-Clause license on this SQLite port
+      covers the port itself. The underlying Pagila schema and sample data
+      originate from MySQL AB / Oracle (Mike Hillyer's original Pagila). The
+      README and schema header credit the MySQL documentation team. Oracle has
+      not, to our knowledge, asserted a restrictive license on Pagila sample
+      data — it is distributed as a sample/test fixture in the MySQL ecosystem —
+      but T4.1 should (a) preserve the upstream's BSD notice, (b) retain the
+      attribution credits to MySQL/Hillyer/Grant, and (c) ship a third-party
+      notices page that names all three lineages. Redistribution of the SQLite
+      `.db` artifact alongside the application is permitted under BSD; the only
+      residual concern is the unspoken MySQL/Oracle provenance, which is
+      mitigated by clear attribution and is industry-standard practice for Pagila
+      ports.
 
 ## Drift findings
 

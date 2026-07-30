@@ -1,3 +1,11 @@
+---
+title: "ADR 0021: Single Postgres Test Suite"
+description: "Accepted — amends the dual-suite clause of [ADR 0013 (Test Pyramid)](./100326-test-pyramid.md) / [Wayfinder #17](https://github.com/s-a-c/samples-20260717/issues/17)."
+type: adr
+tags: \[adr, "0021", single]
+updated: 2026-07-30
+---
+
 # ADR 0021: Single Postgres Test Suite
 
 ## Status

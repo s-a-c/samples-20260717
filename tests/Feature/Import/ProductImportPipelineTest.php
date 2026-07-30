@@ -5,9 +5,13 @@ declare(strict_types=1);
 use App\Models\ResetConfirmation;
 use App\Models\ResetRun;
 use App\Models\User;
+use App\Services\ProductImport\ChinookImporter;
+use App\Services\ProductImport\NorthwindImporter;
+use App\Services\ProductImport\PagilaImporter;
 use App\Services\ProductImport\ProductImportPipeline;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+use Mockery;
 use Spatie\Permission\Models\Role;
 
 covers(
@@ -260,4 +264,33 @@ test('product confirm command creates a super admin when none exists', function 
     $admin = User::where('email', 'superadmin@example.com')->first();
     expect($admin)->not->toBeNull()
         ->and($admin->hasRole('super_admin'))->toBeTrue();
+});
+
+test('import pipeline marks the run failed when the importer returns an error', function () {
+    $chinook = Mockery::mock(app(ChinookImporter::class));
+    $chinook->shouldReceive('import')
+        ->andReturn(['success' => false, 'error' => 'import exploded']);
+
+    $pipeline = new ProductImportPipeline(
+        $chinook,
+        app(NorthwindImporter::class),
+        app(PagilaImporter::class),
+    );
+
+    $result = $pipeline->run('chinook');
+
+    expect($result['success'])->toBeFalse()
+        ->and($result['error'])->toBe('import exploded');
+
+    $run = ResetRun::where('product', 'chinook')->first();
+    assert($run !== null);
+    expect($run->status)->toBe('failed')
+        ->and($run->current_phase)->toBe('failed')
+        ->and($run->evidence['error'])->toBe('import exploded');
+});
+
+test('product import command reports failure for an unknown product', function () {
+    $this->artisan('product:import', ['product' => 'invalid_product'])
+        ->assertFailed()
+        ->expectsOutput('Import failed: Unknown product: invalid_product');
 });

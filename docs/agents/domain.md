@@ -1,3 +1,11 @@
+---
+title: "Domain Docs"
+description: "This repo is **single-context**: one [`../../CONTEXT.md`](../../CONTEXT.md) at the"
+type: guide
+tags: \[guide, agents, domain, docs]
+updated: 2026-07-30
+---
+
 # Domain Docs
 
 This repo is **single-context**: one [`../../CONTEXT.md`](../../CONTEXT.md) at the
@@ -6,12 +14,12 @@ repo root, plus this `docs/agents/` directory.
 ## 1. Before exploring, read
 
 - [`../../CONTEXT.md`](../../CONTEXT.md) — the domain glossary. Core terms:
-  - **Sample Product** — one reference dataset + UX (Chinook, Northwind, Pagila).
-    *Avoid*: tenant, customer account.
-  - **Product Domain** — the bounded concepts of one Sample Product. *Avoid*:
-    shared business domain, unified catalogue.
-  - **Product Import** / **Product Reset** — the materialisation + validation
-    pipeline per product.
+    - **Sample Product** — one reference dataset + UX (Chinook, Northwind, Pagila).
+      _Avoid_: tenant, customer account.
+    - **Product Domain** — the bounded concepts of one Sample Product. _Avoid_:
+      shared business domain, unified catalogue.
+    - **Product Import** / **Product Reset** — the materialisation + validation
+      pipeline per product.
 - [`../../AGENTS.md`](../../AGENTS.md) — project scope + agent skills config.
 
 If a referenced file does not exist, proceed silently. Do not flag absence or

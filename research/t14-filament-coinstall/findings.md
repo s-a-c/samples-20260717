@@ -1,3 +1,11 @@
+---
+title: "Filament 5 + Livewire Teams Starter Co-installation (T1.4 / #19)"
+description: "Research date: 2026-07-19"
+type: guide
+tags: \[guide, t14-filament-coinstall, filament, "5"]
+updated: 2026-07-30
+---
+
 # Filament 5 + Livewire Teams Starter Co-installation (T1.4 / #19)
 
 Research date: 2026-07-19
@@ -13,22 +21,23 @@ Consumer: T1.1 (Filament install order decision)
 - **Current major:** Filament **v5.x** (stable).
 - **v5.0.0 release date:** **2026-01-16** (released by Dan Harrin; see GitHub release `filamentphp/filament@v5.0.0`, commit `bd02fca`). Subsequent patch releases up through at least v5.3.x are referenced in community trackers (e.g. laraveldaily "Filament v5.3.0 adds deferred tab badge loading…", retrieved 2026-07-19).
 - **Runtime requirements (Filament v5):**
-  - PHP **8.2+** (repo: PHP ^8.5 ✅)
-  - Laravel **v11.28+** (repo: laravel/framework ^13.17 ✅)
-  - Livewire **v4.0+** (repo: livewire/livewire ^4.1 ✅ — Filament v5 was specifically the release that moved from Livewire 3 to Livewire 4 stable; see PR #18965 "chore(deps): update Livewire to stable v4.0 release")
-  - Tailwind **v4.0+** (repo uses Flux ^2.13 which already requires Tailwind v4 ✅)
+    - PHP **8.2+** (repo: PHP ^8.5 ✅)
+    - Laravel **v11.28+** (repo: laravel/framework ^13.17 ✅)
+    - Livewire **v4.0+** (repo: livewire/livewire ^4.1 ✅ — Filament v5 was specifically the release that moved from Livewire 3 to Livewire 4 stable; see PR #18965 "chore(deps): update Livewire to stable v4.0 release")
+    - Tailwind **v4.0+** (repo uses Flux ^2.13 which already requires Tailwind v4 ✅)
 - **Install command (Laravel 13 + PHP 8.5):**
 
-  ```bash
-  composer require filament/filament:"^5.0"
-  php artisan filament:install --panels
-  ```
+    ```bash
+    composer require filament/filament:"^5.0"
+    php artisan filament:install --panels
+    ```
 
-  (No need for the v4→v5 upgrade script — that is only for projects already running Filament v4. This is a greenfield install.)
+    (No need for the v4→v5 upgrade script — that is only for projects already running Filament v4. This is a greenfield install.)
 
 - **Result:** the installer creates `app/Providers/Filament/AdminPanelProvider.php` (default panel id `admin`, default path `/admin`) and must be auto-registered in `bootstrap/providers.php` (Filament's installer registers it but the repo uses the Laravel 11+ `bootstrap/providers.php` flat list — verify after install per Filament docs warning).
 
 **Sources:**
+
 - https://filamentphp.com/docs/5.x/introduction/installation (accessed 2026-07-19)
 - https://filamentphp.com/docs/5.x/upgrade-guide (accessed 2026-07-19)
 - https://github.com/filamentphp/filament/releases/tag/v5.0.0 (accessed 2026-07-19)
@@ -71,11 +80,13 @@ php artisan make:filament-user
 ```
 
 **Rationale notes:**
+
 - Step 1–2: split into two commands per Filament v5 upgrade-guide pattern so composer can resolve Livewire ^4.1 + Filament's own Livewire constraint simultaneously.
 - Step 3 creates the panel layout under `resources/views/filament/` (or similar) — it does NOT modify the Flux resources/views/layouts/guest.blade.php or app.blade.php used by the starter.
 - Step 7: Vite is already wired (vite.config.js exists). Filament's CSS imports go through `@filamentStyles` / `@filamentScripts` in the panel layout, NOT in the Flux app layout.
 
 **Do NOT run** (these are for v4→v5 migrations only):
+
 - `composer require filament/upgrade:"^5.0" --dev`
 - `vendor/bin/filament-v5`
 
@@ -120,6 +131,7 @@ class ChinookPanelProvider extends PanelProvider
 ```
 
 **Isolation mechanism (verified against Filament v5 docs):**
+
 - Each panel has its own URL `path()`. Default `/admin` is unused by the starter (`routes/web.php` only has `/` and `/{current_team}/...`).
 - Each panel discovers Resources/Pages/Widgets from its own namespace path, so Chinook resources never collide with Pagila resources.
 - Access control is per-panel via `FilamentUser::canAccessPanel(Panel $panel)` on the User model — different gating rule per `panel->getId()`.
@@ -128,6 +140,7 @@ class ChinookPanelProvider extends PanelProvider
 **Tenancy note:** Filament v5 has native `->tenant(Team::class)` support with `tenantMiddleware()` and `tenantRoutePrefix()`. The starter's `App\Models\Team` could in principle be used as a Filament tenant model. **However**, decision #5 treats the three product panels as product-scoped, not team-scoped — the Admin panel is global. Whether product panels are also team-tenant-scoped is a T1.1 question, not a research question.
 
 **Sources:**
+
 - https://filamentphp.com/docs/5.x/panel-configuration (accessed 2026-07-19)
 - https://filamentphp.com/docs/5.x/users/tenancy (accessed 2026-07-19)
 
@@ -174,6 +187,7 @@ class ChinookPanelProvider extends PanelProvider
 **One real risk:** if the implementer DOES call `->login()` on a panel by mistake, two `/login` routes may register and behavior becomes non-deterministic. **T1.1 must explicitly forbid `->login()` / `->registration()` on the Admin panel** (and on product panels unless a deliberate decision is made).
 
 **Sources:**
+
 - https://filamentphp.com/docs/5.x/users (accessed 2026-07-19)
 - https://filamentphp.com/docs/5.x/users/overview (accessed 2026-07-19)
 - `app/Providers/FortifyServiceProvider.php:42-99`
@@ -219,25 +233,25 @@ Per decision #13, Shield must NOT generate permissions for the 3 product panels.
 
 1. **Register the `FilamentShieldPlugin` ONLY in `AdminPanelProvider`**, NOT in Chinook/Northwind/Pagila panel providers:
 
-   ```php
-   // AdminPanelProvider.php
-   ->plugins([
-       \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
-   ])
-   ```
+    ```php
+    // AdminPanelProvider.php
+    ->plugins([
+        \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+    ])
+    ```
 
 2. **Always pass `--panel=admin`** to `shield:generate`, `shield:super-admin`, `shield:seeder`. The `--panel` flag scopes entity discovery and permission generation to that panel only.
 3. **Exclude TeamResource** (if one ever exists) in `config/filament-shield.php`:
 
-   ```php
-   'resources' => [
-       'exclude' => [
-           \App\Filament\Admin\Resources\TeamResource::class,
-       ],
-   ],
-   ```
+    ```php
+    'resources' => [
+        'exclude' => [
+            \App\Filament\Admin\Resources\TeamResource::class,
+        ],
+    ],
+    ```
 
-   This preserves the starter's `TeamPolicy` as the sole authority over team authorization.
+    This preserves the starter's `TeamPolicy` as the sole authority over team authorization.
 
 4. **Spatie team-tenancy OFF.** Set `config('permission.teams')` to `false` (the default) — Shield's permissions should be global (role-based), not team-scoped. The starter already has its own team-role system (`App\Enums\TeamRole`); conflating it with Spatie's team_id scoping would create two parallel role systems on the same `team_id` field.
 
@@ -248,6 +262,7 @@ Per decision #13, Shield must NOT generate permissions for the 3 product panels.
 - If Shield's policy generation accidentally produces a `TeamPolicy` (because the model has a Filament Resource), set `'resources.exclude'` per step 3 above. The Shield config has `'policies.merge' => true` by default — meaning its generator will MERGE methods with an existing policy rather than overwrite, which is the safe behavior.
 
 **Sources:**
+
 - https://github.com/bezansalleh/filament-shield/blob/main/README.md (accessed 2026-07-19) — Compatibility matrix, Installation, Resources.exclude, Policies.merge, Commands
 - Context7 `/bezhansalleh/filament-shield` — install, configure, generate, scope
 
@@ -255,7 +270,7 @@ Per decision #13, Shield must NOT generate permissions for the 3 product panels.
 
 ## Open risks for T1.1
 
-1. **Login redirect after Fortify auth.** The starter's `LoginResponse` / `TwoFactorLoginResponse` redirect to `/{team.slug}/dashboard`, not `/admin`. `redirect()->intended()` *should* preserve the original `/admin` URL through the login flow, but this needs a manual test in T1.1. If it does not work, modify `LoginResponse` to inspect a `super_admin` role and bounce to `/admin`.
+1. **Login redirect after Fortify auth.** The starter's `LoginResponse` / `TwoFactorLoginResponse` redirect to `/{team.slug}/dashboard`, not `/admin`. `redirect()->intended()` _should_ preserve the original `/admin` URL through the login flow, but this needs a manual test in T1.1. If it does not work, modify `LoginResponse` to inspect a `super_admin` role and bounce to `/admin`.
 
 2. **Auth middleware ordering.** `bootstrap/app.php` currently appends `SetTeamUrlDefaults` to the `web` middleware group. Filament's panel routes inherit the `web` group middleware. `SetTeamUrlDefaults` calls `URL::defaults(['current_team' => ..., 'team' => ...])` only if `$request->user()?->currentTeam` is non-null. This is safe but worth verifying that no Filament route accidentally takes a `{team}` parameter and inherits the default.
 

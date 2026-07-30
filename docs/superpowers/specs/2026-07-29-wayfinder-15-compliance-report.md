@@ -1,3 +1,11 @@
+---
+title: "Wayfinder #15 Compliance Report (Review #3)"
+description: "> **Map:** [Wayfinder — Samples Implementation](https://github.com/s-a-c/samples-20260717/issues/15)"
+type: report
+tags: \[report, specs, wayfinder, "15"]
+updated: 2026-07-30
+---
+
 # Wayfinder #15 Compliance Report (Review #3)
 
 > **Map:** [Wayfinder — Samples Implementation](https://github.com/s-a-c/samples-20260717/issues/15)

@@ -1,3 +1,11 @@
+---
+title: "Samples Application Context"
+description: "This application presents Chinook, Northwind, and Pagila as distinct sample products, with additional products added over time. Shared application capabilities connect them without treating their unrelated business concepts as one domain."
+type: context
+tags: \[context, documentation]
+updated: 2026-07-30
+---
+
 # Samples Application Context
 
 This application presents Chinook, Northwind, and Pagila as distinct sample products, with additional products added over time. Shared application capabilities connect them without treating their unrelated business concepts as one domain.

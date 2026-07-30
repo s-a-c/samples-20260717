@@ -1,0 +1,63 @@
+---
+title: Semantic Layer
+config:
+  theme: redux-dark-color
+  themeVariables:
+    background: "#1e1e2e"
+    primaryColor: "#89b4fa"
+    primaryTextColor: "#1e1e2e"
+    primaryBorderColor: "#74c7ec"
+    lineColor: "#74c7ec"
+    secondaryColor: "#cba6f7"
+    secondaryTextColor: "#1e1e2e"
+    secondaryBorderColor: "#b4befe"
+    tertiaryColor: "#94e2d5"
+    tertiaryTextColor: "#1e1e2e"
+    tertiaryBorderColor: "#89dceb"
+    mainBkg: "#89b4fa"
+    secondBkg: "#cba6f7"
+    tertiaryBkg: "#94e2d5"
+    textColor: "#cdd6f4"
+    nodeBorder: "#74c7ec"
+    clusterBkg: "#313244"
+    clusterBorder: "#b4befe"
+    edgeLabelBackground: "#1e1e2e"
+    titleColor: "#cdd6f4"
+    fontSize: 16px
+  themeCSS: |
+    .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
+    .edgePath .path { stroke-width: 2px !important; }
+    .label { font-weight: bold !important; }
+    .edgeLabel { background-color: #1e1e2e !important; }
+---
+flowchart TD
+    subgraph Physical["Physical Layer (PostgreSQL)"]
+        direction TB
+        db_c["chinook.*"]
+        db_n["northwind.*"]
+        db_p["pagila.*"]
+    end
+
+    subgraph Semantic["Semantic Layer (Eloquent Models)"]
+        direction TB
+        M["Canonical Model (UUIDv7)"]
+        S["Source Identity (Registry)"]
+        P["Product Boundary (Schemas)"]
+    end
+
+    subgraph Consumption["Consumption Layer (Filament/Search)"]
+        F["Filament Resources"]
+        V["Federated Search (RRF)"]
+        A["Admin Portfolio Snapshots"]
+    end
+
+    Physical --> Semantic
+    Semantic --> Consumption
+
+    subgraph Metrics["Metrics & KPIs"]
+        Count["Record Counts"]
+        Snap["Temporal Snapshots"]
+        RRF["Search Relevance Score"]
+    end
+
+    Semantic -.-> Metrics

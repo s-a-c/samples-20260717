@@ -1,3 +1,11 @@
+---
+title: "ADR 0018: Acceptance & Operational Gates"
+description: "Accepted — restated from [Wayfinder #11](https://github.com/s-a-c/samples-20260717/issues/11) (map [#15](https://github.com/s-a-c/samples-20260717/issues/15))."
+type: adr
+tags: \[adr, "0018", acceptance]
+updated: 2026-07-30
+---
+
 # ADR 0018: Acceptance & Operational Gates
 
 ## Status

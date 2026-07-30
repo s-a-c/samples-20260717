@@ -194,3 +194,53 @@ test('expired invitations cannot be accepted', function () {
 
     $this->assertFalse($freshInvitedUser->belongsToTeam($team));
 });
+
+test('team invitation inviter relationship resolves', function () {
+    $owner = User::factory()->create();
+    $team = Team::factory()->create();
+
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+
+    $invitation = TeamInvitation::factory()->create([
+        'team_id' => $team->id,
+        'invited_by' => $owner->id,
+    ]);
+
+    expect($invitation->inviter)->toBeInstanceOf(User::class)
+        ->and($invitation->inviter->id)->toBe($owner->id);
+});
+
+test('team invitation pending and expired state methods', function () {
+    $owner = User::factory()->create();
+    $team = Team::factory()->create();
+
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+
+    $pending = TeamInvitation::factory()->create([
+        'team_id' => $team->id,
+        'invited_by' => $owner->id,
+        'expires_at' => now()->addDays(7),
+    ]);
+
+    $expired = TeamInvitation::factory()->expired()->create([
+        'team_id' => $team->id,
+        'invited_by' => $owner->id,
+    ]);
+
+    $accepted = TeamInvitation::factory()->accepted()->create([
+        'team_id' => $team->id,
+        'invited_by' => $owner->id,
+    ]);
+
+    expect($pending->isPending())->toBeTrue()
+        ->and($pending->isExpired())->toBeFalse()
+        ->and($expired->isPending())->toBeFalse()
+        ->and($expired->isExpired())->toBeTrue()
+        ->and($accepted->isAccepted())->toBeTrue();
+});
+
+test('team invitation uses code as the route key name', function () {
+    $invitation = new TeamInvitation;
+
+    expect($invitation->getRouteKeyName())->toBe('code');
+});

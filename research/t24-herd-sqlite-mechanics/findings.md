@@ -1,3 +1,11 @@
+---
+title: "Herd SQLite Extension Loading Mechanics (T2.4 / #23)"
+description: "> Resolves [ticket #23](https://github.com/s-a-c/samples-20260717/issues/23)"
+type: guide
+tags: \[guide, t24-herd-sqlite-mechanics, herd, sqlite]
+updated: 2026-07-30
+---
+
 # Herd SQLite Extension Loading Mechanics (T2.4 / #23)
 
 > Resolves [ticket #23](https://github.com/s-a-c/samples-20260717/issues/23)
@@ -30,18 +38,18 @@ Phar location (from `herd --version` verbose help): `/Users/s-a-c/Library/Applic
 
 ## Bundled PHP and SQLite versions
 
-| Component                         | Version                              | Source of truth |
-|-----------------------------------|--------------------------------------|-----------------|
-| Laravel Herd                      | 1.29.0                               | `herd --version` |
-| PHP                               | 8.5.8 (NTS clang 15.0.0)             | `php --version` |
-| PHP build date                    | 2026-07-06                           | `php --version` |
-| PHP build provider                | Laravel Herd                         | `php -i` Configure Command: `'PHP_BUILD_PROVIDER=Laravel Herd'` |
-| SQLite3 PHP extension version     | 8.5.8                                | `phpversion('sqlite3')` |
-| PDO_sqlite PHP extension version  | 8.5.8                                | `phpversion('pdo_sqlite')` |
-| Bundled SQLite library            | **3.45.2**                           | `SQLite3::version()['versionString']` |
-| SQLite compile flags              | `SQLITE_OMIT_LOAD_EXTENSION` **not** set on sqlite3 ext;pdo_sqlite load-attr omitted | See empirical tests below |
-| Configure line (relevant flags)   | `--with-sqlite3=<buildroot>` `--with-pdo-sqlite=<buildroot>` (both static) | `php -i` |
-| Zend module API no.               | 20250925                             | `extension_dir` in `php -i` |
+| Component                        | Version                                                                              | Source of truth                                                 |
+| -------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
+| Laravel Herd                     | 1.29.0                                                                               | `herd --version`                                                |
+| PHP                              | 8.5.8 (NTS clang 15.0.0)                                                             | `php --version`                                                 |
+| PHP build date                   | 2026-07-06                                                                           | `php --version`                                                 |
+| PHP build provider               | Laravel Herd                                                                         | `php -i` Configure Command: `'PHP_BUILD_PROVIDER=Laravel Herd'` |
+| SQLite3 PHP extension version    | 8.5.8                                                                                | `phpversion('sqlite3')`                                         |
+| PDO_sqlite PHP extension version | 8.5.8                                                                                | `phpversion('pdo_sqlite')`                                      |
+| Bundled SQLite library           | **3.45.2**                                                                           | `SQLite3::version()['versionString']`                           |
+| SQLite compile flags             | `SQLITE_OMIT_LOAD_EXTENSION` **not** set on sqlite3 ext;pdo_sqlite load-attr omitted | See empirical tests below                                       |
+| Configure line (relevant flags)  | `--with-sqlite3=<buildroot>` `--with-pdo-sqlite=<buildroot>` (both static)           | `php -i`                                                        |
+| Zend module API no.              | 20250925                                                                             | `extension_dir` in `php -i`                                     |
 
 Verbatim `php -i` excerpt (build options):
 
@@ -144,7 +152,7 @@ Open via `herd ini [phpVersion]` (opens in IDE).
 
 ## Load mechanism options
 
-### Option 1 — `PDO::SQLITE_ATTR_LOAD_EXTENSION`  ❌ NOT AVAILABLE
+### Option 1 — `PDO::SQLITE_ATTR_LOAD_EXTENSION` ❌ NOT AVAILABLE
 
 Empirical test:
 
@@ -167,7 +175,7 @@ SQLITE_ATTR_EXTENDED_RESULT_CODES
 
 **Implication:** Laravel's default `database.connections.sqlite` driver (which uses PDO) **cannot** load sqlite-vec at runtime under stock Herd. Confirmed independently by [benbjurstrom.com](https://benbjurstrom.com/sqlite-vec-php): "many PHP distributions have `loadExtension()` disabled for security reasons."
 
-### Option 2 — `SQLite3::loadExtension($filename)`  ✅ AVAILABLE, with caveat
+### Option 2 — `SQLite3::loadExtension($filename)` ✅ AVAILABLE, with caveat
 
 The method exists on the class:
 
@@ -206,7 +214,7 @@ SQLite errCode: 0
 SQLite errMsg:  not an error
 ```
 
-The error changed from *"SQLite Extensions are disabled"* (PHP-level guard) to *"Unable to load extension at '…/vec0.dylib'"* (filesystem-level failure because the file does not exist). **This proves the PHP-level guard is bypassed the moment `sqlite3.extension_dir` is configured** — the call now reaches SQLite's `sqlite3_load_extension()` C API, which would succeed if the dylib were present.
+The error changed from _"SQLite Extensions are disabled"_ (PHP-level guard) to _"Unable to load extension at '…/vec0.dylib'"_ (filesystem-level failure because the file does not exist). **This proves the PHP-level guard is bypassed the moment `sqlite3.extension_dir` is configured** — the call now reaches SQLite's `sqlite3_load_extension()` C API, which would succeed if the dylib were present.
 
 [PHP manual, `SQLite3::loadExtension`](https://www.php.net/manual/en/sqlite3.loadextension.php):
 
@@ -214,7 +222,7 @@ The error changed from *"SQLite Extensions are disabled"* (PHP-level guard) to *
 
 So the filename argument to `loadExtension()` is **relative to `sqlite3.extension_dir`** (not a free-form absolute path). This is a deliberate PHP-side hardening: it scopes loadable extensions to a single admin-controlled directory.
 
-### Option 3 — Static compile into PHP binary  ⚠️ Out of scope
+### Option 3 — Static compile into PHP binary ⚠️ Out of scope
 
 [benbjurstrom.com/sqlite-vec-php](https://benbjurstrom.com/sqlite-vec-php) documents how to compile sqlite-vec directly into a custom PHP binary via [static-php-cli](https://static-php.dev/en/guide/). This requires:
 
@@ -224,7 +232,7 @@ So the filename argument to `loadExtension()` is **relative to `sqlite3.extensio
 
 This option is **out of scope** for T2.2 because it bypasses Herd's managed runtime — the T2.2 question is whether **stock Herd** can prove the "Herd CLI/HTTP" capability.
 
-### Option 4 — `FFI` to call `sqlite3_load_extension()` directly  ❓ Unverified
+### Option 4 — `FFI` to call `sqlite3_load_extension()` directly ❓ Unverified
 
 Herd's PHP is built with `--with-ffi` enabled (confirmed by `php -m | grep FFI`). In principle one could `FFI::cdef()` the SQLite C API and call `sqlite3_load_extension()` on an open DB handle. **Not verified** by this research — flagged as a theoretical fallback only. It would also bypass `sqlite3.extension_dir` scoping, which is a security downgrade.
 
@@ -234,9 +242,9 @@ Herd's PHP is built with `--with-ffi` enabled (confirmed by `php -m | grep FFI`)
 
 From the [official PHP sqlite3 configuration docs](https://www.php.net/manual/en/sqlite3.configuration.php) (fetched 2026-07-19):
 
-> | Name                   | Default | Changeable       |
-> |------------------------|---------|------------------|
-> | `sqlite3.extension_dir`| `""`    | **`INI_SYSTEM`** |
+> | Name                    | Default | Changeable       |
+> | ----------------------- | ------- | ---------------- |
+> | `sqlite3.extension_dir` | `""`    | **`INI_SYSTEM`** |
 
 `INI_SYSTEM` (value 4) means the directive can **only** be set in `php.ini` (or via the webserver master config, which under Herd means the PHP-FPM pool config). It **cannot** be:
 
@@ -255,15 +263,15 @@ The only scopes available are:
 ## Site-isolation behaviour (Herd Pro)
 
 - `herd isolate <phpVersion> [--site=SITE]` binds a site to a specific PHP version. From `herd isolate --help` and [Herd docs](https://herd.laravel.com/docs/macos/technology/php-versions):
-  > "the `herd isolate` command allows you to specify the PHP version for a site in the current working directory"
+    > "the `herd isolate` command allows you to specify the PHP version for a site in the current working directory"
 - Isolation switches the PHP version, which switches the **ini scan dir** (e.g., `config/php/84/` vs `config/php/85/`). It does **not** switch within a version.
 - `.user.ini` files **are** enabled (`user_ini.filename=.user.ini`, `user_ini.cache_ttl=300` confirmed via `php -i`). They enable per-site ini overrides for `INI_PERDIR`/`INI_USER` directives only — **NOT for `sqlite3.extension_dir`** (which is `INI_SYSTEM`).
 - The PHP-FPM pool config has commented-out `php_admin_value[...]` lines per pool; uncommenting allows per-pool overrides:
-  ```
-  ;php_admin_value[memory_limit] = 512M
-  ;php_admin_value[upload_max_filesize] = 128M
-  ```
-  This is a viable mechanism for splitting `sqlite3.extension_dir` between the regular pool and the debug pool, but **not** between two sites served by the same pool.
+    ```
+    ;php_admin_value[memory_limit] = 512M
+    ;php_admin_value[upload_max_filesize] = 128M
+    ```
+    This is a viable mechanism for splitting `sqlite3.extension_dir` between the regular pool and the debug pool, but **not** between two sites served by the same pool.
 
 **Conclusion**: site isolation is **per-PHP-version, not per-site-within-version**, for `sqlite3.extension_dir`. To give two sites on the same PHP version different extension sets, you would need to (a) isolate them to different PHP versions and configure each version's php.ini separately, or (b) use Option 1 (PDO load — not available on Herd), or (c) use Option 4 (FFI hack).
 
@@ -346,10 +354,10 @@ In concrete terms:
 - For non-hardened PHP-FPM, `dlopen()` on unsigned or ad-hoc signed dylibs succeeds at user-level privilege.
 - The pre-built sqlite-vec macOS arm64 release ships as `vec0.dylib` (see [github.com/asg017/sqlite-vec/releases](https://github.com/asg017/sqlite-vec/releases)).
 - Browsers add the `com.apple.quarantine` extended attribute to downloaded files. While `dlopen` will usually still succeed for non-quarantined-process hosts, it is safest to strip it:
-  ```bash
-  xattr -d com.apple.quarantine /path/to/vec0.dylib
-  ```
-  (Use `xattr -dr` if the file is in a directory with the attribute inherited.)
+    ```bash
+    xattr -d com.apple.quarantine /path/to/vec0.dylib
+    ```
+    (Use `xattr -dr` if the file is in a directory with the attribute inherited.)
 - Gatekeeper does **not** block `dlopen` of unsigned dylibs for non-notarized, non-quarantined files in user-space; it only enforces on the main executable of a launchd-spawned process.
 - Herd's PHP-FPM runs as `user = s-a-c` (your account), so sqlite-vec inherits your user's dlopen privileges. **No sudo required to install sqlite-vec**, only to restart Herd services (and only because `herd restart` talks to the privileged `de.beyondco.herd.helper` daemon).
 - If you later wanted to load sqlite-vec under a hardened-runtime PHP (e.g., a Mac App Store distribution), you would need to ad-hoc-sign the dylib and add it to PHP's library-validation entitlements list. **Not required for stock Herd.**

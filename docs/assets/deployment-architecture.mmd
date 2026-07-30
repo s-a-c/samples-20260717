@@ -1,0 +1,64 @@
+---
+title: Deployment Architecture
+config:
+  theme: redux-dark-color
+  themeVariables:
+    background: "#1e1e2e"
+    primaryColor: "#89b4fa"
+    primaryTextColor: "#1e1e2e"
+    primaryBorderColor: "#74c7ec"
+    lineColor: "#74c7ec"
+    secondaryColor: "#cba6f7"
+    secondaryTextColor: "#1e1e2e"
+    secondaryBorderColor: "#b4befe"
+    tertiaryColor: "#94e2d5"
+    tertiaryTextColor: "#1e1e2e"
+    tertiaryBorderColor: "#89dceb"
+    mainBkg: "#89b4fa"
+    secondBkg: "#cba6f7"
+    tertiaryBkg: "#94e2d5"
+    textColor: "#cdd6f4"
+    nodeBorder: "#74c7ec"
+    clusterBkg: "#313244"
+    clusterBorder: "#b4befe"
+    edgeLabelBackground: "#1e1e2e"
+    titleColor: "#cdd6f4"
+    fontSize: 16px
+  themeCSS: |
+    .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
+    .edgePath .path { stroke-width: 2px !important; }
+    .label { font-weight: bold !important; }
+    .edgeLabel { background-color: #1e1e2e !important; }
+---
+flowchart TD
+    subgraph Client["Client Tier"]
+        Browser["User Browser<br/>(Chrome/Firefox/Safari)"]
+    end
+
+    subgraph AppServer["Application Tier (Laravel 13)"]
+        Web["Web Server<br/>(Nginx/Apache)"]
+        PHP["PHP 8.5 Runtime<br/>(FPM)"]
+        Queue["Queue Worker<br/>(Embedding Jobs)"]
+    end
+
+    subgraph DataTier["Data Tier (PostgreSQL 18)"]
+        DB[(PostgreSQL DB)]
+        subgraph Schemas["Schemas"]
+            Pub[public]
+            Chi[chinook]
+            Nor[northwind]
+            Pag[pagila]
+        end
+        DB --- Schemas
+    end
+
+    subgraph External["External Services"]
+        AI["AI Provider<br/>(Gemini/OpenAI)"]
+    end
+
+    Browser -->|HTTPS| Web
+    Web --> PHP
+    PHP -->|SQL| DB
+    PHP -->|Jobs| Queue
+    Queue -->|SQL| DB
+    Queue -->|API| AI

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\TeamRole;
 use App\Models\Team;
+use App\Models\TeamArtefact;
 use App\Models\User;
 use Livewire\Livewire;
 
@@ -408,4 +409,14 @@ test('guests cannot access teams', function () {
     $response = $this->get(route('teams.index'));
 
     $response->assertRedirect(route('login'));
+});
+
+test('team has many artefacts', function () {
+    $user = User::factory()->create();
+    $team = $user->personalTeam();
+    assert($team !== null);
+
+    $artefact = TeamArtefact::factory()->for($team)->create();
+
+    expect($team->fresh()->artefacts->pluck('id'))->toContain($artefact->id);
 });

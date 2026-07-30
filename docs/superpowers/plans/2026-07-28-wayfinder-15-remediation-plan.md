@@ -1,3 +1,11 @@
+---
+title: "Wayfinder #15 Re-audit Remediation Plan"
+description: "> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking."
+type: plan
+tags: \[plan, plans, wayfinder, "15"]
+updated: 2026-07-30
+---
+
 # Wayfinder #15 Re-audit Remediation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

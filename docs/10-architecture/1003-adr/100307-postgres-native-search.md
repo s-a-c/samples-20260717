@@ -1,3 +1,11 @@
+---
+title: "ADR 0003: Postgres-Native Search (Hybrid)"
+description: "Documentation for ADR 0003: Postgres-Native Search (Hybrid)."
+type: adr
+tags: \[adr, "0003", postgres]
+updated: 2026-07-30
+---
+
 # ADR 0003: Postgres-Native Search (Hybrid)
 
 **Status:** Accepted
@@ -14,6 +22,7 @@
 - **Federated Search** in the Admin Panel preserves product labels and routes each result to its owning Sample Panel.
 
 **Consequences:**
+
 - **Positive:** Zero external search service dependencies — no synchronization, no extra operational cost, no network latency.
 - **Positive:** Transactional consistency for lexical search — no stale index lag.
 - **Positive:** Single PostgreSQL connection handles search alongside application queries — simpler deployment topology.
@@ -23,5 +32,6 @@
 - **Tradeoff:** 1024-dimensional vectors with HNSW indexing require the `pgvector` extension — not available on all PostgreSQL hosting platforms without enabling the extension.
 
 **Related:**
+
 - [ADR 0001: Multi-Product Architecture](0001-multi-product-architecture.md) — product-scoped search
 - [CONTEXT.md](../../CONTEXT.md) — Search Document, Search Surface, Search Tier, Embedding Profile, Hybrid Retrieval, Federated Search, Search Projection

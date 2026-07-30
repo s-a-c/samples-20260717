@@ -1,3 +1,11 @@
+---
+title: "Wayfinder #15 Gap Remediation Plan - Next Steps"
+description: "> **For agentic workers:** REQUIRED SUB-SKILL: Use subagent-driven-development (recommended) or executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking."
+type: plan
+tags: \[plan, plans, wayfinder, "15"]
+updated: 2026-07-30
+---
+
 # Wayfinder #15 Gap Remediation Plan - Next Steps
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use subagent-driven-development (recommended) or executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

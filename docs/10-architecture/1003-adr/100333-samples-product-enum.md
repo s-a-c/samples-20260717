@@ -1,10 +1,9 @@
 ---
-title: SamplesProduct Enum
-description: Centralise Sample Product identity in a string-backed, Filament-enhanced enum
-type: architecture
-tags: [architecture, design, documentation]
-updated: 2026-07-26
-category: documentation
+title: "ADR 0033: SamplesProduct Enum"
+description: "Centralized Sample Product identity in a string-backed, Filament-enhanced enum"
+type: adr
+tags: \[adr, architecture, product-identity]
+updated: 2026-07-30
 ---
 
 # ADR 0033: SamplesProduct Enum

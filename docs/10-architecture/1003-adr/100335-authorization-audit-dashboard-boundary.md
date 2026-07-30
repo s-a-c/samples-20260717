@@ -1,3 +1,11 @@
+---
+title: "ADR 0019: Authorization, Audit & Dashboard Boundary"
+description: "Accepted — restated from [Wayfinder #13](https://github.com/s-a-c/samples-20260717/issues/13) (map [#15](https://github.com/s-a-c/samples-20260717/issues/15)). Refined by ADR 0008 (Spatie + Shield + Fortify Coexistence)."
+type: adr
+tags: \[adr, 0019, authorization]
+updated: 2026-07-30
+---
+
 # ADR 0019: Authorization, Audit & Dashboard Boundary
 
 ## Status

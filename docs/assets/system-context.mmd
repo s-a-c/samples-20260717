@@ -1,0 +1,59 @@
+---
+title: System Context
+config:
+  theme: redux-dark-color
+  themeVariables:
+    background: "#1e1e2e"
+    primaryColor: "#89b4fa"
+    primaryTextColor: "#1e1e2e"
+    primaryBorderColor: "#74c7ec"
+    lineColor: "#74c7ec"
+    secondaryColor: "#cba6f7"
+    secondaryTextColor: "#1e1e2e"
+    secondaryBorderColor: "#b4befe"
+    tertiaryColor: "#94e2d5"
+    tertiaryTextColor: "#1e1e2e"
+    tertiaryBorderColor: "#89dceb"
+    mainBkg: "#89b4fa"
+    secondBkg: "#cba6f7"
+    tertiaryBkg: "#94e2d5"
+    textColor: "#cdd6f4"
+    nodeBorder: "#74c7ec"
+    clusterBkg: "#313244"
+    clusterBorder: "#b4befe"
+    edgeLabelBackground: "#1e1e2e"
+    titleColor: "#cdd6f4"
+    fontSize: 16px
+  themeCSS: |
+    .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
+    .edgePath .path { stroke-width: 2px !important; }
+    .label { font-weight: bold !important; }
+    .edgeLabel { background-color: #1e1e2e !important; }
+---
+C4Context
+    title System Context diagram for Samples Application
+
+    Person(operator, "Operator", "Administrator managing the application and products.")
+    Person(curator, "Curator", "Product-specific data manager.")
+
+    System(app, "Samples Application", "Laravel 13 application providing Chinook, Northwind, and Pagila panels.")
+
+    System_Ext(postgres, "PostgreSQL 18", "Primary data store with schemas for each product.")
+    System_Ext(provider, "AI Provider", "Gemini/OpenAI for generating embeddings.")
+
+    Rel(operator, app, "Administers system, views portfolio", "HTTPS")
+    Rel(curator, app, "Manages product-specific data", "HTTPS")
+
+    Rel(app, postgres, "Reads/Writes data", "SQL/TCP")
+    Rel(app, provider, "Requests embeddings", "HTTPS/API")
+
+    UpdateElementStyle(operator, $bgColor="#89b4fa", $fontColor="#1e1e2e", $borderColor="#74c7ec")
+    UpdateElementStyle(curator, $bgColor="#cba6f7", $fontColor="#1e1e2e", $borderColor="#b4befe")
+    UpdateElementStyle(app, $bgColor="#94e2d5", $fontColor="#1e1e2e", $borderColor="#89dceb")
+    UpdateElementStyle(postgres, $bgColor="#74c7ec", $fontColor="#1e1e2e", $borderColor="#89b4fa")
+    UpdateElementStyle(provider, $bgColor="#fab387", $fontColor="#1e1e2e", $borderColor="#f9e2af")
+    UpdateRelStyle(operator, app, $textColor="#cdd6f4", $lineColor="#74c7ec")
+    UpdateRelStyle(curator, app, $textColor="#cdd6f4", $lineColor="#74c7ec")
+    UpdateRelStyle(app, postgres, $textColor="#cdd6f4", $lineColor="#74c7ec", $offsetX="-80", $offsetY="-10")
+    UpdateRelStyle(app, provider, $textColor="#cdd6f4", $lineColor="#74c7ec", $offsetX="80", $offsetY="10")
+    UpdateLayoutConfig($c4ShapeInRow="1", $c4BoundaryInRow="1")

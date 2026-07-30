@@ -1,3 +1,11 @@
+---
+title: "Siyuan Integration — Research Findings (`samples-20260717`)"
+description: "> First-of-kind Siyuan integration on this machine. Verified live against the"
+type: research
+tags: \[research, documentation, siyuan, integration]
+updated: 2026-07-30
+---
+
 # Siyuan Integration — Research Findings (`samples-20260717`)
 
 > First-of-kind Siyuan integration on this machine. Verified live against the
@@ -14,21 +22,21 @@
 
 - [1. TL;DR](#1-tldr)
 - [2. Notebook creation](#2-notebook-creation)
-  - [2.1. Endpoint (authoritative, from `kernel/api/router.go` + `notebook.go`)](#21-endpoint-authoritative-from-kernelapiroutergo--notebookgo)
-  - [2.2. ⚠️ Idempotency is the caller's responsibility](#22-️-idempotency-is-the-callers-responsibility)
-  - [2.3. Live result (this research session)](#23-live-result-this-research-session)
+    - [2.1. Endpoint (authoritative, from `kernel/api/router.go` + `notebook.go`)](#21-endpoint-authoritative-from-kernelapiroutergo--notebookgo)
+    - [2.2. ⚠️ Idempotency is the caller's responsibility](#22-️-idempotency-is-the-callers-responsibility)
+    - [2.3. Live result (this research session)](#23-live-result-this-research-session)
 - [3. Token model — global, not per-notebook](#3-token-model--global-not-per-notebook)
-  - [3.1. What the source says](#31-what-the-source-says)
-  - [3.2. Verified live](#32-verified-live)
-  - [3.3. Isolation verdict](#33-isolation-verdict)
-  - [3.4. Practical implications](#34-practical-implications)
+    - [3.1. What the source says](#31-what-the-source-says)
+    - [3.2. Verified live](#32-verified-live)
+    - [3.3. Isolation verdict](#33-isolation-verdict)
+    - [3.4. Practical implications](#34-practical-implications)
 - [4. Agent access path](#4-agent-access-path)
-  - [4.1. Recommendation: **direct HTTP JSON calls**](#41-recommendation-direct-http-json-calls)
-  - [4.2. MCP server landscape (for reference, not adoption today)](#42-mcp-server-landscape-for-reference-not-adoption-today)
+    - [4.1. Recommendation: **direct HTTP JSON calls**](#41-recommendation-direct-http-json-calls)
+    - [4.2. MCP server landscape (for reference, not adoption today)](#42-mcp-server-landscape-for-reference-not-adoption-today)
 - [5. Auth — exact header for programmatic access](#5-auth--exact-header-for-programmatic-access)
-  - [5.1. Setting / rotating the API token](#51-setting--rotating-the-api-token)
+    - [5.1. Setting / rotating the API token](#51-setting--rotating-the-api-token)
 - [6. Credential storage — Infisical secrets under `SAMPLES_SIYUAN_*`](#6-credential-storage--infisical-secrets-under-samples_siyuan_)
-  - [6.1. Pattern (mirrors chinook)](#61-pattern-mirrors-chinook)
+    - [6.1. Pattern (mirrors chinook)](#61-pattern-mirrors-chinook)
 - [7. Open questions / risks (need a human decision)](#7-open-questions--risks-need-a-human-decision)
 - [8. References](#8-references)
 
@@ -63,9 +71,9 @@ Authorization: Token <api-token>
 - **Gates:** `model.CheckAuth` → `model.CheckAdminRole` → `model.CheckReadonly`. The API token satisfies all three (it grants `RoleAdministrator`).
 - **Body:** a single required field, `name` (string). No other fields.
 - **Response shape:**
-  ```json
-  {"code":0,"msg":"","data":{"notebook":{"id":"20260719071714-xyhlut0","name":"samples-20260717","closed":false,…}}}
-  ```
+    ```json
+    {"code":0,"msg":"","data":{"notebook":{"id":"20260719071714-xyhlut0","name":"samples-20260717","closed":false,…}}}
+    ```
 - **The notebook `id`** is a 14-digit UTC-timestamp + 6-char random suffix (`YYYYMMDDHHMMSS-aaaaaa`). It is **not** the name and must be captured from the response.
 
 ### 2.2. ⚠️ Idempotency is the caller's responsibility
@@ -205,14 +213,20 @@ official; the upstream project tracks MCP support in
 
 ```json
 {
-  "mcpServers": {
-    "siyuan": {
-      "command": "npx",
-      "args": ["-y", "@porkll/siyuan-mcp", "stdio",
-               "--token", "${SAMPLES_SIYUAN_API_TOKEN}",
-               "--baseUrl", "${SAMPLES_SIYUAN_API_URL}"]
+    "mcpServers": {
+        "siyuan": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@porkll/siyuan-mcp",
+                "stdio",
+                "--token",
+                "${SAMPLES_SIYUAN_API_TOKEN}",
+                "--baseUrl",
+                "${SAMPLES_SIYUAN_API_URL}"
+            ]
+        }
     }
-  }
 }
 ```
 
@@ -229,6 +243,7 @@ direct-HTTP integration, not precede it.
 | `accessAuthCode` (48 chars, `--accessAuthCode` flag) | Browser cookie `/siyuan-session` | Browser UI session                  | Humans logging into the web UI; **never** used by agents    |
 
 The API token is also accepted via:
+
 - Lowercase prefix: `Authorization: token <token>`
 - Bearer prefix: `Authorization: Bearer <token>`
 - Query string: `?token=<token>` (avoid — leaks into logs)
@@ -283,17 +298,17 @@ Infisical `samples-20260717` project, `dev` env. The values below are
 
 1. **Token-isolation gap is fundamental.** Siyuan cannot scope a token to
    one notebook. Options for the creating-ticket to choose:
-   - **(a) Accept it.** Single instance, single token, rely on agent
-     discipline + notebook-ID convention. Lowest operational cost. The
-     `samples-20260717` agent can technically read/write the
-     `Control Plane Golden Path` notebook — it just won't.
-   - **(b) Second container per project.** Genuine isolation; heavy on
-     backups, ports, Caddy routes. Probably overkill for an R&D sample repo.
-   - **(c) Encrypted notebooks** for sensitive content. Adds a per-notebook
-     password; still no token scoping. Doesn't solve the agent-trust
-     question.
-   **Recommendation: (a)** for this first-of-kind, revisit if a second
-   project needs Siyuan.
+    - **(a) Accept it.** Single instance, single token, rely on agent
+      discipline + notebook-ID convention. Lowest operational cost. The
+      `samples-20260717` agent can technically read/write the
+      `Control Plane Golden Path` notebook — it just won't.
+    - **(b) Second container per project.** Genuine isolation; heavy on
+      backups, ports, Caddy routes. Probably overkill for an R&D sample repo.
+    - **(c) Encrypted notebooks** for sensitive content. Adds a per-notebook
+      password; still no token scoping. Doesn't solve the agent-trust
+      question.
+      **Recommendation: (a)** for this first-of-kind, revisit if a second
+      project needs Siyuan.
 
 2. **MCP server adoption.** Defer until the direct-HTTP bootstrap works.
    When revisiting, `@porkll/siyuan-mcp` is the leading candidate but its
@@ -301,8 +316,8 @@ Infisical `samples-20260717` project, `dev` env. The values below are
    security read of the source is a precondition for adoption.
 
 3. **Write governance.** The infra guide (`201516-siyuan-guide.html`)
-   states: *"writes require human approval and flow through the Control
-   Plane Anti-Corruption Layer — never directly from a Spoke."* The
+   states: _"writes require human approval and flow through the Control
+   Plane Anti-Corruption Layer — never directly from a Spoke."_ The
    `samples-20260717` repo is **not** a registered Spoke, so this constraint
    doesn't bind — but decide explicitly whether the project agent gets write
    access to its notebook, or read-only + a human-in-the-loop for writes.

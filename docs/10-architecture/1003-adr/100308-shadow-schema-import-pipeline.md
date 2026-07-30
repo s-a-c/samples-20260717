@@ -1,3 +1,11 @@
+---
+title: "ADR 0004: Shadow-Schema Import Pipeline"
+description: "Documentation for ADR 0004: Shadow-Schema Import Pipeline."
+type: adr
+tags: \[adr, "0004", shadow]
+updated: 2026-07-30
+---
+
 # ADR 0004: Shadow-Schema Import Pipeline
 
 **Status:** Accepted
@@ -15,6 +23,7 @@
 - **Pin Manifest** records the exact upstream revision and artifact used for each import.
 
 **Consequences:**
+
 - **Positive:** Near-zero downtime reset — the swap is a metadata-only DDL operation that completes in milliseconds.
 - **Positive:** Full isolation — a failed import never touches the live schema; no table locks during data loading.
 - **Positive:** Atomic roll-forward — the swap is a single DDL transaction; failure leaves no partial state.
@@ -26,6 +35,7 @@
 - **Tradeoff:** PostgreSQL DDL within a transaction has some limitations (e.g., `DROP SCHEMA ... CASCADE` works transactionally, but concurrent DML on affected objects is blocked).
 
 **Related:**
+
 - [ADR 0001: Multi-Product Architecture](0001-multi-product-architecture.md) — per-product schema isolation
 - [ADR 0002: UUIDv7 for All Entities](0002-uuidv7-for-all-entities.md) — stable Domain Identities across resets
 - [CONTEXT.md](../../CONTEXT.md) — Product Import, Product Reset, Reset Window, Source Baseline, Source Identity Registry, Pin Manifest

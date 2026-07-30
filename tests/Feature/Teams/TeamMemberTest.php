@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 use App\Enums\TeamRole;
+use App\Models\Membership;
 use App\Models\Team;
 use App\Models\User;
 use Livewire\Livewire;
 
-covers(Team::class);
+covers(Membership::class, Team::class);
 
 test('team member role can be updated by owner', function () {
     $owner = User::factory()->create();
@@ -111,4 +112,22 @@ test('removed members current team is set to personal team', function () {
     assert($freshMember !== null);
 
     $this->assertEquals($personalTeam->id, $freshMember->current_team_id);
+});
+
+test('membership belongs to team and user', function () {
+    $owner = User::factory()->create();
+    $team = Team::factory()->create();
+
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+
+    $membership = Membership::where('team_id', $team->id)
+        ->where('user_id', $owner->id)
+        ->first();
+
+    expect($membership)->not->toBeNull()
+        ->and($membership->team)->toBeInstanceOf(Team::class)
+        ->and($membership->team->id)->toBe($team->id)
+        ->and($membership->user)->toBeInstanceOf(User::class)
+        ->and($membership->user->id)->toBe($owner->id)
+        ->and($membership->role)->toBe(TeamRole::Owner);
 });

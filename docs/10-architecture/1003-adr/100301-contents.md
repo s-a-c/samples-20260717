@@ -1,15 +1,17 @@
 ---
-title: 1003-adr Contents
-description: Structural contents page for the 1003-adr documentation tree
+title: "1003-adr Documentation Tree"
+description: "Structural contents page for the 1003-adr documentation tree"
 type: contents
-tags: [contents, navigation, index]
-updated: 2026-07-25
+tags: \[contents, navigation, index]
+updated: 2026-07-30
 ---
+
 # 1003-adr Documentation Tree
 
 This is the structural contents page for the 1003-adr documentation tree. It lists every direct child with relative links and identifies reading order when it matters.
 
 ## Direct Children
+
 - [0001-multi-product-architecture.md](#0001-multi-product-architecture)
 - [0002-uuidv7-for-all-entities.md](#0002-uuidv7-for-all-entities)
 - [0003-postgres-native-search.md](#0003-postgres-native-search)

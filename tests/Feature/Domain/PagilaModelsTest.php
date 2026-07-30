@@ -25,6 +25,7 @@ covers(
     City::class,
     Country::class,
     Customer::class,
+    Film::class,
     FilmActor::class,
     FilmCategory::class,
     FilmText::class,
@@ -59,6 +60,33 @@ test('pagila country and city relations resolve', function () {
 
     expect($country->cities->first()->city)->toBe('Lethbridge')
         ->and($city->country->country)->toBe('United States');
+});
+
+test('pagila film has many relations resolve', function () {
+    $language = Language::create(['name' => 'English']);
+    $film = Film::create(['title' => 'EAGLE PEAK', 'language_id' => $language->id]);
+    $actor = Actor::create(['first_name' => 'KARL', 'last_name' => 'BERRY']);
+    $category = Category::create(['name' => 'Comedy']);
+
+    $film->actors()->attach($actor->id);
+    $film->categories()->attach($category->id);
+
+    FilmText::create([
+        'film_id' => $film->id,
+        'title' => 'EAGLE PEAK',
+        'description' => 'A high-altitude thriller.',
+    ]);
+
+    $store = Store::create(['address' => '99 Film Lane']);
+    Inventory::create([
+        'film_id' => $film->id,
+        'store_id' => $store->id,
+    ]);
+
+    expect($film->filmActors->first()->actor_id)->toBe($actor->id)
+        ->and($film->filmCategories->first()->category_id)->toBe($category->id)
+        ->and($film->filmTexts->first()->title)->toBe('EAGLE PEAK')
+        ->and($film->inventories->first()->store_id)->toBe($store->id);
 });
 
 test('pagila language and film relations resolve', function () {

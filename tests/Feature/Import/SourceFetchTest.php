@@ -196,3 +196,36 @@ test('source:fetch multi-file fails on digest mismatch', function () {
         }
     }
 });
+
+test('source:fetch multi-file fails when schema download returns an error', function () {
+    $schemaDigest = hash('sha256', 'schema');
+
+    $testManifestPath = database_path('sources/test_multi_dl.php');
+    File::put($testManifestPath, "<?php return [
+        'product' => 'test_multi_dl',
+        'repository' => 'test/multirepo',
+        'commit_sha' => 'jkl3456',
+        'schema_filename' => 'schema.sql',
+        'data_filename' => 'data.sql',
+        'schema_digest' => '{$schemaDigest}',
+        'data_digest' => '".str_repeat('1', 64)."',
+        'format' => 'postgresql_multi',
+    ];");
+
+    try {
+        Http::fake([
+            'https://raw.githubusercontent.com/test/multirepo/jkl3456/schema.sql' => Http::response('', 500),
+        ]);
+
+        $this->artisan('source:fetch', ['product' => 'test_multi_dl'])
+            ->assertFailed()
+            ->expectsOutput('Failed to download file from https://raw.githubusercontent.com/test/multirepo/jkl3456/schema.sql');
+    } finally {
+        if (File::exists($testManifestPath)) {
+            File::delete($testManifestPath);
+        }
+        if (File::isDirectory(storage_path('app/private/sources/test_multi_dl'))) {
+            File::deleteDirectory(storage_path('app/private/sources/test_multi_dl'));
+        }
+    }
+});

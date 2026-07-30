@@ -1,3 +1,11 @@
+---
+title: "Contributing"
+description: "Contribution workflow, pull request expectations, dependency policy, verification, and task tracking."
+type: contributing
+tags: \[contributing, documentation]
+updated: 2026-07-30
+---
+
 # Contributing
 
 <details>

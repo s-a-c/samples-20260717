@@ -1,3 +1,11 @@
+---
+title: "sqlite-vec v0.1.9 Assets and Digests (T2.1 / #20)"
+description: "> Research artifact for wayfinder ticket"
+type: guide
+tags: \[guide, t21-sqlitevec-assets, sqlite, vec]
+updated: 2026-07-30
+---
+
 # sqlite-vec v0.1.9 Assets and Digests (T2.1 / #20)
 
 > Research artifact for wayfinder ticket
@@ -8,23 +16,23 @@
 > Capability Probe).
 >
 > All upstream data retrieved 2026-07-19 via `gh release view/download
-> --repo asg017/sqlite-vec`. All local digests computed on
+--repo asg017/sqlite-vec`. All local digests computed on
 > `darwin arm64` via `shasum -a 256` (BSD).
 
 ## Release URL + tag verified
 
-| Field | Value |
-|---|---|
-| Release URL | https://github.com/asg017/sqlite-vec/releases/tag/v0.1.9 |
-| Tag | `v0.1.9` |
-| Title | "v0.1.9 Bug fix for DELETE operations" |
-| Published | 2026-03-31T08:00:23Z |
-| Author | `asg017` (Alex Garcia) |
-| Draft / prerelease / immutable | `false` / `false` / `false` |
-| Release notes | "Fixes #274, which discovered that `DELETE` operations on `vec0` tables with metadata text columns that are long (>12chars) would erroneously report a `SQLITE_DONE` error." |
+| Field                          | Value                                                                                                                                                                        |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Release URL                    | https://github.com/asg017/sqlite-vec/releases/tag/v0.1.9                                                                                                                     |
+| Tag                            | `v0.1.9`                                                                                                                                                                     |
+| Title                          | "v0.1.9 Bug fix for DELETE operations"                                                                                                                                       |
+| Published                      | 2026-03-31T08:00:23Z                                                                                                                                                         |
+| Author                         | `asg017` (Alex Garcia)                                                                                                                                                       |
+| Draft / prerelease / immutable | `false` / `false` / `false`                                                                                                                                                  |
+| Release notes                  | "Fixes #274, which discovered that `DELETE` operations on `vec0` tables with metadata text columns that are long (>12chars) would erroneously report a `SQLITE_DONE` error." |
 
 Verified via `gh release view v0.1.9 --repo asg017/sqlite-vec --json ...`
-(HTTP 200, JSON body reproduced verbatim below in *Sources*).
+(HTTP 200, JSON body reproduced verbatim below in _Sources_).
 
 ## All release assets
 
@@ -32,29 +40,29 @@ Verified via `gh release view v0.1.9 --repo asg017/sqlite-vec --json ...`
 (loadable shared libraries). The `static-*` rows are for static linking into
 host applications and are out of scope for this project.
 
-| # | Filename | Category | Platform | Arch | Size (bytes) |
-|---:|---|---|---|---|---:|
-| 1 | `checksums.txt` | manifest | — | — | 2 286 |
-| 2 | `install.sh` | installer | — | — | 7 793 |
-| 3 | `spm.json` | manifest (SwiftPM) | — | — | 5 365 |
-| 4 | `sqlite-dist-manifest.json` | manifest | — | — | 14 255 |
-| 5 | `sqlite-vec-0.1.9-amalgamation.tar.gz` | source | — | — | 53 872 |
-| 6 | `sqlite-vec-0.1.9-amalgamation.zip` | source | — | — | 54 035 |
-| 7 | `sqlite-vec-0.1.9-cli-cosmopolitan.tar.gz` | CLI (cosmopolitan) | — | — | 2 131 274 |
-| 8 | `sqlite-vec-0.1.9-loadable-android-aarch64.tar.gz` | loadable | android | aarch64 | 60 162 |
-| 9 | `sqlite-vec-0.1.9-loadable-android-armv7a.tar.gz` | loadable | android | armv7a | 56 622 |
-| 10 | `sqlite-vec-0.1.9-loadable-android-i686.tar.gz` | loadable | android | i686 | 57 427 |
-| 11 | `sqlite-vec-0.1.9-loadable-android-x86_64.tar.gz` | loadable | android | x86_64 | 56 954 |
-| 12 | `sqlite-vec-0.1.9-loadable-ios-aarch64.tar.gz` | loadable | ios | aarch64 | 45 352 |
-| 13 | `sqlite-vec-0.1.9-loadable-iossimulator-aarch64.tar.gz` | loadable | ios-sim | aarch64 | 47 788 |
-| 14 | `sqlite-vec-0.1.9-loadable-iossimulator-x86_64.tar.gz` | loadable | ios-sim | x86_64 | 49 255 |
-| 15 | `sqlite-vec-0.1.9-loadable-linux-aarch64.tar.gz` | loadable | linux | aarch64 | 61 046 |
-| **16** | **`sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz`** | **loadable** | **linux** | **x86_64 (TARGET)** | **61 507** |
-| **17** | **`sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz`** | **loadable** | **macos** | **aarch64 (TARGET)** | **50 836** |
-| 18 | `sqlite-vec-0.1.9-loadable-macos-x86_64.tar.gz` | loadable | macos | x86_64 | 51 404 |
-| 19 | `sqlite-vec-0.1.9-loadable-windows-x86_64.tar.gz` | loadable | windows | x86_64 | 143 162 |
-| 20–26 | `sqlite-vec-0.1.9-static-{ios,iossimulator,linux,macos}-{aarch64,x86_64}.tar.gz` | static-link | various | various | 56–173 KB |
-| 27 | `sqlpkg.json` | manifest (sqlpkg) | — | — | 417 |
+|      # | Filename                                                                         | Category           | Platform  | Arch                 | Size (bytes) |
+| -----: | -------------------------------------------------------------------------------- | ------------------ | --------- | -------------------- | -----------: |
+|      1 | `checksums.txt`                                                                  | manifest           | —         | —                    |        2 286 |
+|      2 | `install.sh`                                                                     | installer          | —         | —                    |        7 793 |
+|      3 | `spm.json`                                                                       | manifest (SwiftPM) | —         | —                    |        5 365 |
+|      4 | `sqlite-dist-manifest.json`                                                      | manifest           | —         | —                    |       14 255 |
+|      5 | `sqlite-vec-0.1.9-amalgamation.tar.gz`                                           | source             | —         | —                    |       53 872 |
+|      6 | `sqlite-vec-0.1.9-amalgamation.zip`                                              | source             | —         | —                    |       54 035 |
+|      7 | `sqlite-vec-0.1.9-cli-cosmopolitan.tar.gz`                                       | CLI (cosmopolitan) | —         | —                    |    2 131 274 |
+|      8 | `sqlite-vec-0.1.9-loadable-android-aarch64.tar.gz`                               | loadable           | android   | aarch64              |       60 162 |
+|      9 | `sqlite-vec-0.1.9-loadable-android-armv7a.tar.gz`                                | loadable           | android   | armv7a               |       56 622 |
+|     10 | `sqlite-vec-0.1.9-loadable-android-i686.tar.gz`                                  | loadable           | android   | i686                 |       57 427 |
+|     11 | `sqlite-vec-0.1.9-loadable-android-x86_64.tar.gz`                                | loadable           | android   | x86_64               |       56 954 |
+|     12 | `sqlite-vec-0.1.9-loadable-ios-aarch64.tar.gz`                                   | loadable           | ios       | aarch64              |       45 352 |
+|     13 | `sqlite-vec-0.1.9-loadable-iossimulator-aarch64.tar.gz`                          | loadable           | ios-sim   | aarch64              |       47 788 |
+|     14 | `sqlite-vec-0.1.9-loadable-iossimulator-x86_64.tar.gz`                           | loadable           | ios-sim   | x86_64               |       49 255 |
+|     15 | `sqlite-vec-0.1.9-loadable-linux-aarch64.tar.gz`                                 | loadable           | linux     | aarch64              |       61 046 |
+| **16** | **`sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz`**                              | **loadable**       | **linux** | **x86_64 (TARGET)**  |   **61 507** |
+| **17** | **`sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz`**                             | **loadable**       | **macos** | **aarch64 (TARGET)** |   **50 836** |
+|     18 | `sqlite-vec-0.1.9-loadable-macos-x86_64.tar.gz`                                  | loadable           | macos     | x86_64               |       51 404 |
+|     19 | `sqlite-vec-0.1.9-loadable-windows-x86_64.tar.gz`                                | loadable           | windows   | x86_64               |      143 162 |
+|  20–26 | `sqlite-vec-0.1.9-static-{ios,iossimulator,linux,macos}-{aarch64,x86_64}.tar.gz` | static-link        | various   | various              |    56–173 KB |
+|     27 | `sqlpkg.json`                                                                    | manifest (sqlpkg)  | —         | —                    |          417 |
 
 > **Naming-pattern note.** The mission brief hypothesised the glob patterns
 > `*macos*arm64*` and `*linux*amd64*`. The actual upstream naming uses
@@ -75,10 +83,10 @@ Digests were verified three independent ways and all three agree:
 2. Local `shasum -a 256` on the asset bytes downloaded today.
 3. Upstream `checksums.txt` shipped inside the release.
 
-| Filename | Platform | Size | SHA-256 | API | Local | checksums.txt |
-|---|---|---:|---|:---:|:---:|:---:|
-| `sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz` | macOS / arm64 | 50 836 | `8282126333399ddfe98bbbcc7a1936e7252625aac49df056a98be602e46bfd29` | ✓ | ✓ | ✓ |
-| `sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz` | Linux / x86_64 | 61 507 | `b959baa1d8dc88861b1edb337b8587178cdcb12d60b4998f9d10b6a82052d5d7` | ✓ | ✓ | ✓ |
+| Filename                                         | Platform       |   Size | SHA-256                                                            | API | Local | checksums.txt |
+| ------------------------------------------------ | -------------- | -----: | ------------------------------------------------------------------ | :-: | :---: | :-----------: |
+| `sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz` | macOS / arm64  | 50 836 | `8282126333399ddfe98bbbcc7a1936e7252625aac49df056a98be602e46bfd29` |  ✓  |   ✓   |       ✓       |
+| `sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz`  | Linux / x86_64 | 61 507 | `b959baa1d8dc88861b1edb337b8587178cdcb12d60b4998f9d10b6a82052d5d7` |  ✓  |   ✓   |       ✓       |
 
 Download URLs (canonical, immutable):
 
@@ -90,10 +98,10 @@ Download URLs (canonical, immutable):
 
 Each tarball contains exactly **one** file, named `vec0.<suffix>`:
 
-| Asset | Contains | File type | Architectures |
-|---|---|---|---|
-| `sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz` | `vec0.dylib` | Mach-O 64-bit dynamically linked shared library | **arm64** (single slice, not fat) |
-| `sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz` | `vec0.so` | ELF 64-bit LSB shared object, dynamically linked, BuildID `b315c9cbea9122b81919f822249919da465d4816`, **not stripped** | x86-64 |
+| Asset                                            | Contains     | File type                                                                                                              | Architectures                     |
+| ------------------------------------------------ | ------------ | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| `sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz` | `vec0.dylib` | Mach-O 64-bit dynamically linked shared library                                                                        | **arm64** (single slice, not fat) |
+| `sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz`  | `vec0.so`    | ELF 64-bit LSB shared object, dynamically linked, BuildID `b315c9cbea9122b81919f822249919da465d4816`, **not stripped** | x86-64                            |
 
 ### Code-signing status (macOS)
 
@@ -111,7 +119,7 @@ TeamIdentifier=not set
 Gatekeeper-approved). This is fine for `load_extension()` (SQLite's loader uses
 `dlopen()` which bypasses Gatekeeper), but it WILL be rejected by any host
 process that has **Hardened Runtime + Library Validation** enabled. See
-*Open risks*.
+_Open risks_.
 
 ### Linux glibc requirement
 
@@ -155,13 +163,13 @@ binary), and `pragma_module_list()` reports modules `vec0` and `vec_each`.
 
 ### What `LOAD EXTENSION` actually registers
 
-| Symbol exposed | Type |
-|---|---|
-| `vec0` | virtual table module (`CREATE VIRTUAL TABLE … USING vec0(…)`) |
-| `vec_version()` | SQL scalar function returning `v0.1.9` |
-| `vec_distance_ls(euclidean / cosine / …)` family | SQL scalar functions |
-| `vec_to_json`, `vec_f32`, `vec_int8`, `vec_bit`, `vec_extract`, `vec_quantize`, … | SQL scalar functions |
-| `vec_each` | table-valued function (e.g. `SELECT * FROM vec_each(X'…')`) |
+| Symbol exposed                                                                    | Type                                                          |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `vec0`                                                                            | virtual table module (`CREATE VIRTUAL TABLE … USING vec0(…)`) |
+| `vec_version()`                                                                   | SQL scalar function returning `v0.1.9`                        |
+| `vec_distance_ls(euclidean / cosine / …)` family                                  | SQL scalar functions                                          |
+| `vec_to_json`, `vec_f32`, `vec_int8`, `vec_bit`, `vec_extract`, `vec_quantize`, … | SQL scalar functions                                          |
+| `vec_each`                                                                        | table-valued function (e.g. `SELECT * FROM vec_each(X'…')`)   |
 
 T2.3 (Vector Capability Probe) should test at minimum `SELECT vec_version()`
 and `CREATE VIRTUAL TABLE probe USING vec0(embedding float[4])` to confirm
@@ -184,7 +192,7 @@ $ok = $db->loadExtension('/abs/path/to/vec0.dylib');
 $version = $db->querySingle('SELECT vec_version();');  // → "v0.1.9"
 ```
 
-**Caveats on Herd PHP 8.5:** see *Open risks*. The Herd-distributed PHP build
+**Caveats on Herd PHP 8.5:** see _Open risks_. The Herd-distributed PHP build
 has `load_extension` compiled out, so this call returns `false` silently.
 
 ### PDO_SQLITE driver
@@ -281,15 +289,15 @@ The Connection Gate cannot simply `PDO::load_extension()` and proceed. T2.2
 needs to choose one of these load strategies (or punt the decision to a
 follow-up ticket):
 
-| Strategy | Notes |
-|---|---|
-| (a) Custom Herd PHP build with `SQLITE_OMIT_LOAD_EXTENSION` undefined | Herd Pro supports custom PHP builds via `herd use-php`. Out of scope here — flags a new decision ticket. |
-| (b) libSQL PHP extension (`libsql/libsql-php`) | libSQL is an SQLite fork with built-in vector support; bypasses the load-extension problem entirely but is a different decision than #3. |
-| (c) Sidecar CLI subprocess (Homebrew `sqlite3` + `.load`) | Works today on macOS arm64 if Homebrew sqlite3 is present. Adds IPC overhead. |
+| Strategy                                                                  | Notes                                                                                                                                                                                  |
+| ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| (a) Custom Herd PHP build with `SQLITE_OMIT_LOAD_EXTENSION` undefined     | Herd Pro supports custom PHP builds via `herd use-php`. Out of scope here — flags a new decision ticket.                                                                               |
+| (b) libSQL PHP extension (`libsql/libsql-php`)                            | libSQL is an SQLite fork with built-in vector support; bypasses the load-extension problem entirely but is a different decision than #3.                                               |
+| (c) Sidecar CLI subprocess (Homebrew `sqlite3` + `.load`)                 | Works today on macOS arm64 if Homebrew sqlite3 is present. Adds IPC overhead.                                                                                                          |
 | (d) PHP FFI binding to a vendored libsqlite3 + `sqlite3_load_extension()` | The Herd build has `--with-ffi`. Loads the system libsqlite3 (or a vendored one) via FFI and calls the C API directly, bypassing the PHP SQLite3 wrapper. Most flexible but most code. |
 
-**Recommendation for T2.2:** open a new decision ticket *"Choose sqlite-vec
-load strategy for Herd PHP 8.5"* and resolve it before T2.2 implementation.
+**Recommendation for T2.2:** open a new decision ticket _"Choose sqlite-vec
+load strategy for Herd PHP 8.5"_ and resolve it before T2.2 implementation.
 T2.1 findings above are independent of that decision — whatever load path is
 chosen, the same tarballs, digests, and entry point apply.
 
@@ -317,7 +325,7 @@ Do not write code that synthesises names from `php_uname('m')` directly —
 
 ### R4 — The "static" assets are not for us
 
-The `sqlite-vec-0.1.9-static-*.tar.gz` assets are for *statically linking*
+The `sqlite-vec-0.1.9-static-*.tar.gz` assets are for _statically linking_
 sqlite-vec into a host C/Rust/Go binary. They are not loadable extensions
 and **must not** be cached in `storage/app/sqlite-extensions/` under any
 circumstance — they will fail to load with `not an error` / `not authorized`
@@ -341,103 +349,103 @@ All URLs accessed 2026-07-19.
    `name: "v0.1.9 Bug fix for DELETE operations"`. Asset list excerpt
    (target platforms only):
 
-   ```json
-   {
-     "name": "sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz",
-     "size": 50836,
-     "contentType": "application/x-gtar",
-     "digest": "sha256:8282126333399ddfe98bbbcc7a1936e7252625aac49df056a98be602e46bfd29",
-     "downloadUrl": "https://github.com/asg017/sqlite-vec/releases/download/v0.1.9/sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz",
-     "downloadCount": 7753
-   },
-   {
-     "name": "sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz",
-     "size": 61507,
-     "contentType": "application/x-gtar",
-     "digest": "sha256:b959baa1d8dc88861b1edb337b8587178cdcb12d60b4998f9d10b6a82052d5d7",
-     "downloadUrl": "https://github.com/asg017/sqlite-vec/releases/download/v0.1.9/sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz",
-     "downloadCount": 21349
-   }
-   ```
+    ```json
+    {
+      "name": "sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz",
+      "size": 50836,
+      "contentType": "application/x-gtar",
+      "digest": "sha256:8282126333399ddfe98bbbcc7a1936e7252625aac49df056a98be602e46bfd29",
+      "downloadUrl": "https://github.com/asg017/sqlite-vec/releases/download/v0.1.9/sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz",
+      "downloadCount": 7753
+    },
+    {
+      "name": "sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz",
+      "size": 61507,
+      "contentType": "application/x-gtar",
+      "digest": "sha256:b959baa1d8dc88861b1edb337b8587178cdcb12d60b4998f9d10b6a82052d5d7",
+      "downloadUrl": "https://github.com/asg017/sqlite-vec/releases/download/v0.1.9/sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz",
+      "downloadCount": 21349
+    }
+    ```
 
 2. **Upstream `checksums.txt` (verbatim, target rows):**
 
-   ```
-   sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz b959baa1d8dc88861b1edb337b8587178cdcb12d60b4998f9d10b6a82052d5d7
-   sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz 8282126333399ddfe98bbbcc7a1936e7252625aac49df056a98be602e46bfd29
-   ```
+    ```
+    sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz b959baa1d8dc88861b1edb337b8587178cdcb12d60b4998f9d10b6a82052d5d7
+    sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz 8282126333399ddfe98bbbcc7a1936e7252625aac49df056a98be602e46bfd29
+    ```
 
 3. **Local `shasum -a 256`** (BSD shasum on darwin arm64, 2026-07-19):
 
-   ```
-   8282126333399ddfe98bbbcc7a1936e7252625aac49df056a98be602e46bfd29  sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz
-   b959baa1d8dc88861b1edb337b8587178cdcb12d60b4998f9d10b6a82052d5d7  sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz
-   ```
+    ```
+    8282126333399ddfe98bbbcc7a1936e7252625aac49df056a98be602e46bfd29  sqlite-vec-0.1.9-loadable-macos-aarch64.tar.gz
+    b959baa1d8dc88861b1edb337b8587178cdcb12d60b4998f9d10b6a82052d5d7  sqlite-vec-0.1.9-loadable-linux-x86_64.tar.gz
+    ```
 
 4. **Tarball contents** (verbatim `tar -tzf`):
 
-   ```
-   # macOS aarch64 tarball:
-   vec0.dylib
+    ```
+    # macOS aarch64 tarball:
+    vec0.dylib
 
-   # Linux x86_64 tarball:
-   vec0.so
-   ```
+    # Linux x86_64 tarball:
+    vec0.so
+    ```
 
 5. **Binary inspection** (verbatim `file`):
 
-   ```
-   vec0.dylib: Mach-O 64-bit dynamically linked shared library arm64
-   vec0.so:    ELF 64-bit LSB shared object, x86-64, version 1 (SYSV),
-               dynamically linked, BuildID[sha1]=b315c9cbea9122b81919f822249919da465d4816, not stripped
-   ```
+    ```
+    vec0.dylib: Mach-O 64-bit dynamically linked shared library arm64
+    vec0.so:    ELF 64-bit LSB shared object, x86-64, version 1 (SYSV),
+                dynamically linked, BuildID[sha1]=b315c9cbea9122b81919f822249919da465d4816, not stripped
+    ```
 
 6. **Exported symbols** (verbatim `nm -gU` / `nm -D`):
 
-   ```
-   macOS vec0.dylib:
-     _sqlite3_vec_init
-     _sqlite3_vec_numpy_init
-     _sqlite3_vec_static_blobs_init
+    ```
+    macOS vec0.dylib:
+      _sqlite3_vec_init
+      _sqlite3_vec_numpy_init
+      _sqlite3_vec_static_blobs_init
 
-   Linux vec0.so:
-     T sqlite3_vec_init
-     T sqlite3_vec_numpy_init
-     T sqlite3_vec_static_blobs_init
-   ```
+    Linux vec0.so:
+      T sqlite3_vec_init
+      T sqlite3_vec_numpy_init
+      T sqlite3_vec_static_blobs_init
+    ```
 
 7. **Codesign probe** (verbatim `codesign -dv`):
 
-   ```
-   Identifier=vec0.dylib
-   Format=Mach-O thin (arm64)
-   CodeDirectory v=20400 size=1379 flags=0x20002(adhoc,linker-signed) hashes=40+0
-   Signature=adhoc
-   TeamIdentifier=not set
-   ```
+    ```
+    Identifier=vec0.dylib
+    Format=Mach-O thin (arm64)
+    CodeDirectory v=20400 size=1379 flags=0x20002(adhoc,linker-signed) hashes=40+0
+    Signature=adhoc
+    TeamIdentifier=not set
+    ```
 
 8. **Functional load test** (Homebrew sqlite3 3.53.3, 2026-07-19):
 
-   ```
-   $ /opt/homebrew/opt/sqlite/bin/sqlite3 ':memory:' \
-       '.load /…/vec0.dylib' \
-       'CREATE VIRTUAL TABLE v USING vec0(embedding float[4]);' \
-       'INSERT INTO v(rowid, embedding) VALUES (1, x''0000803f0000003f000000bf0000803f'');' \
-       'SELECT ''rows='' || count(*) FROM v;' \
-       'SELECT ''knn_distance='' || distance || '' rowid='' || rowid FROM v WHERE embedding MATCH x''0000803f0000003f000000bf0000803f'' ORDER BY distance LIMIT 1;' \
-       'SELECT ''modules='' || group_concat(name, '', '') FROM pragma_module_list() WHERE name LIKE ''vec%'';'
-   rows=2
-   knn_distance=0.0 rowid=1
-   modules=vec_each,vec0
-   ```
+    ```
+    $ /opt/homebrew/opt/sqlite/bin/sqlite3 ':memory:' \
+        '.load /…/vec0.dylib' \
+        'CREATE VIRTUAL TABLE v USING vec0(embedding float[4]);' \
+        'INSERT INTO v(rowid, embedding) VALUES (1, x''0000803f0000003f000000bf0000803f'');' \
+        'SELECT ''rows='' || count(*) FROM v;' \
+        'SELECT ''knn_distance='' || distance || '' rowid='' || rowid FROM v WHERE embedding MATCH x''0000803f0000003f000000bf0000803f'' ORDER BY distance LIMIT 1;' \
+        'SELECT ''modules='' || group_concat(name, '', '') FROM pragma_module_list() WHERE name LIKE ''vec%'';'
+    rows=2
+    knn_distance=0.0 rowid=1
+    modules=vec_each,vec0
+    ```
 
 9. **Herd PHP 8.5 build flags** (verbatim `php -i | grep 'Configure Command'`):
 
-   ```
-   './configure' … '--enable-pdo' '--with-sqlite3=/Users/runner/work/herd-php-builds/herd-php-builds/buildroot' '--with-pdo-sqlite' … 'PHP_BUILD_PROVIDER=Laravel Herd' 'PHP_BUILD_COMPILER=clang 15.0.0'
-   ```
+    ```
+    './configure' … '--enable-pdo' '--with-sqlite3=/Users/runner/work/herd-php-builds/herd-php-builds/buildroot' '--with-pdo-sqlite' … 'PHP_BUILD_PROVIDER=Laravel Herd' 'PHP_BUILD_COMPILER=clang 15.0.0'
+    ```
 
-   No `--enable-sqlite3-load-extension` (PHP's sqlite3 ext has no such flag;
-   load-extension is opt-out via `SQLITE_OMIT_LOAD_EXTENSION` on the bundled
-   SQLite). `php --re sqlite3` confirms no `sqlite3.enable_load_extension`
-   ini entry exists, which is the signature of a compile-time omit.
+    No `--enable-sqlite3-load-extension` (PHP's sqlite3 ext has no such flag;
+    load-extension is opt-out via `SQLITE_OMIT_LOAD_EXTENSION` on the bundled
+    SQLite). `php --re sqlite3` confirms no `sqlite3.enable_load_extension`
+    ini entry exists, which is the signature of a compile-time omit.

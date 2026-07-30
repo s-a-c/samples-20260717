@@ -1,3 +1,11 @@
+---
+title: "Wayfinder #15 Gap Remediation Plan"
+description: "> **For agentic workers:** REQUIRED SUB-SKILL: Use subagent-driven-development (recommended) or executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking."
+type: plan
+tags: \[plan, plans, wayfinder, "15"]
+updated: 2026-07-30
+---
+
 # Wayfinder #15 Gap Remediation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use subagent-driven-development (recommended) or executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
@@ -14,23 +22,23 @@
   </summary>
 
 - [1. Global Constraints](#1-global-constraints)
-  - [1.1. Task 1: Recover ADR Documentation (P0 — HIGHEST PRIORITY)](#11-task-1-recover-adr-documentation-p0--highest-priority)
-  - [1.2. Task 2: Refactor Domain Structure — Move Product Stubs + Policies into `app/Domain/` (P1)](#12-task-2-refactor-domain-structure--move-product-stubs--policies-into-appdomain-p1)
-  - [1.3. Task 3: CI — Add pgvector Service Container and Coverage Support](#13-task-3-ci--add-pgvector-service-container-and-coverage-support)
-  - [1.4. Task 4: Add Dedicated Composer Test Scripts](#14-task-4-add-dedicated-composer-test-scripts)
-  - [1.5. Task 5: Add Missing Architecture (arch) Rules](#15-task-5-add-missing-architecture-arch-rules)
-  - [1.6. Task 6: Configure Rector](#16-task-6-configure-rector)
-  - [1.7. Task 7: Configure Mago](#17-task-7-configure-mago)
-  - [1.8. Task 8: Create Northwind Filament Resources](#18-task-8-create-northwind-filament-resources)
-  - [1.9. Task 9: Create `product_portfolio_snapshots` View Migration](#19-task-9-create-product_portfolio_snapshots-view-migration)
-  - [1.10. Task 10: Create Implementation-Readiness Dossier Command](#110-task-10-create-implementation-readiness-dossier-command)
-  - [1.11. Task 11: Migrate EmbeddingJob from Raw HTTP to `laravel/ai` SDK](#111-task-11-migrate-embeddingjob-from-raw-http-to-laravelai-sdk)
-  - [1.12. Task 12: Create Team Artefacts Migration and Model](#112-task-12-create-team-artefacts-migration-and-model)
-  - [1.13. Task 13: Update CONTEXT.md — Remove SQLite Terminology](#113-task-13-update-contextmd--remove-sqlite-terminology)
-  - [1.14. Task 14: Configure Mutation Testing (Infection)](#114-task-14-configure-mutation-testing-infection)
-  - [1.15. Task 15: Document macOS Herd PHPStan Quirk in README](#115-task-15-document-macos-herd-phpstan-quirk-in-readme)
-  - [1.16. Task 16: Add Unit Tests for Core Services](#116-task-16-add-unit-tests-for-core-services)
-  - [1.17. Task 17: Reset `phpstan-baseline.neon` with Cited Shrinkable Entries](#117-task-17-reset-phpstan-baselineneon-with-cited-shrinkable-entries)
+    - [1.1. Task 1: Recover ADR Documentation (P0 — HIGHEST PRIORITY)](#11-task-1-recover-adr-documentation-p0--highest-priority)
+    - [1.2. Task 2: Refactor Domain Structure — Move Product Stubs + Policies into `app/Domain/` (P1)](#12-task-2-refactor-domain-structure--move-product-stubs--policies-into-appdomain-p1)
+    - [1.3. Task 3: CI — Add pgvector Service Container and Coverage Support](#13-task-3-ci--add-pgvector-service-container-and-coverage-support)
+    - [1.4. Task 4: Add Dedicated Composer Test Scripts](#14-task-4-add-dedicated-composer-test-scripts)
+    - [1.5. Task 5: Add Missing Architecture (arch) Rules](#15-task-5-add-missing-architecture-arch-rules)
+    - [1.6. Task 6: Configure Rector](#16-task-6-configure-rector)
+    - [1.7. Task 7: Configure Mago](#17-task-7-configure-mago)
+    - [1.8. Task 8: Create Northwind Filament Resources](#18-task-8-create-northwind-filament-resources)
+    - [1.9. Task 9: Create `product_portfolio_snapshots` View Migration](#19-task-9-create-product_portfolio_snapshots-view-migration)
+    - [1.10. Task 10: Create Implementation-Readiness Dossier Command](#110-task-10-create-implementation-readiness-dossier-command)
+    - [1.11. Task 11: Migrate EmbeddingJob from Raw HTTP to `laravel/ai` SDK](#111-task-11-migrate-embeddingjob-from-raw-http-to-laravelai-sdk)
+    - [1.12. Task 12: Create Team Artefacts Migration and Model](#112-task-12-create-team-artefacts-migration-and-model)
+    - [1.13. Task 13: Update CONTEXT.md — Remove SQLite Terminology](#113-task-13-update-contextmd--remove-sqlite-terminology)
+    - [1.14. Task 14: Configure Mutation Testing (Infection)](#114-task-14-configure-mutation-testing-infection)
+    - [1.15. Task 15: Document macOS Herd PHPStan Quirk in README](#115-task-15-document-macos-herd-phpstan-quirk-in-readme)
+    - [1.16. Task 16: Add Unit Tests for Core Services](#116-task-16-add-unit-tests-for-core-services)
+    - [1.17. Task 17: Reset `phpstan-baseline.neon` with Cited Shrinkable Entries](#117-task-17-reset-phpstan-baselineneon-with-cited-shrinkable-entries)
 - [2. Task Dependency Graph](#2-task-dependency-graph)
 - [3. Execution Options](#3-execution-options)
 
@@ -55,6 +63,7 @@
 ### 1.1. Task 1: Recover ADR Documentation (P0 — HIGHEST PRIORITY)
 
 **Files:**
+
 - Create: `docs/10-architecture/1015-adrs/` (directory)
 - Create: `docs/10-architecture/1015-adrs/README.md` (index)
 - Create: 12 new ADR files (0006–0017)
@@ -64,6 +73,7 @@
 **Description:** Wayfinder #15 resolved >40 architectural decisions. Only 5 of ~17 required ADRs exist, all at the wrong path (`docs/adr/` instead of `docs/10-architecture/1015-adrs/`). The 12 missing ADRs must be recovered/restated from the wayfinder issue comments and the implementation codebase. Each ADR follows the existing format: Context → Decision → Consequences → Related.
 
 **Existing ADRs to move (path only — no content changes):**
+
 - `docs/adr/0001-multi-product-architecture.md`
 - `docs/adr/0002-uuidv7-for-all-entities.md`
 - `docs/adr/0003-postgres-native-search.md`
@@ -202,6 +212,7 @@ git commit -m "docs: recover 12 missing ADRs from wayfinder #15 decisions; move 
 ### 1.2. Task 2: Refactor Domain Structure — Move Product Stubs + Policies into `app/Domain/` (P1)
 
 **Files:**
+
 - Move: `app/Models/Chinook/Chinook.php` → `app/Domain/Chinook/Models/Chinook.php`
 - Move: `app/Models/Northwind/Northwind.php` → `app/Domain/Northwind/Models/Northwind.php`
 - Move: `app/Policies/Chinook/ChinookPolicy.php` → `app/Domain/Chinook/Policies/ChinookPolicy.php`
@@ -473,6 +484,7 @@ git commit -m "refactor: move product stubs and policies into app/Domain/; add m
 > Same as original Task 1 — unchanged. See the prior plan draft for full details.
 
 **Files:**
+
 - Modify: `.github/workflows/tests.yml`
 - Modify: `phpunit.xml`
 
@@ -506,6 +518,7 @@ git commit -m "ci: add pgvector service, enable coverage, enforce 80% min covera
 > Same as original Task 2.
 
 **Files:**
+
 - Modify: `composer.json`
 
 **Description:** Wayfinder #17 specifies dedicated test scripts.
@@ -525,6 +538,7 @@ git commit -m "ci: add pgvector service, enable coverage, enforce 80% min covera
 > Updated from original Task 3 — now also enforces `app/Domain/` convention.
 
 **Files:**
+
 - Modify: `tests/Architecture/ArchitectureTest.php`
 
 **Description:** Wayfinder #17 specifies 17+ arch rules. Currently 10 exist. Add the 7 missing rules.
@@ -541,15 +555,15 @@ This asserts that Spatie HasRoles is only used by domain-namespaced models, not 
 
 - [ ] **Step 2: Add Reset service ownership rules** (4 rules from #29)
 
-  - Only `ResetWindow` may query `reset_runs` for write-blocking state
-  - Only `ResetConfirmationService` may write to `reset_confirmations`
-  - Only `RecoveryService` may transition `recovering → running/succeeded`
-  - Product importers must not reference sibling product namespaces
+    - Only `ResetWindow` may query `reset_runs` for write-blocking state
+    - Only `ResetConfirmationService` may write to `reset_confirmations`
+    - Only `RecoveryService` may transition `recovering → running/succeeded`
+    - Product importers must not reference sibling product namespaces
 
 - [ ] **Step 3: Add presentation-layer isolation rules** (3 rules from #17)
 
-  - No `DB::` facade from `App\Http` or `App\Filament`
-  - No `app()`/`resolve()` from `App\Http` or `App\Filament`
+    - No `DB::` facade from `App\Http` or `App\Filament`
+    - No `app()`/`resolve()` from `App\Http` or `App\Filament`
 
 - [ ] **Step 4: Run arch tests**
 
@@ -566,6 +580,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 4 — unchanged.
 
 **Files:**
+
 - Create: `rector.php`
 - Modify: `composer.json`
 
@@ -584,6 +599,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 5 — unchanged.
 
 **Files:**
+
 - Create: `mago.json`
 - Modify: `composer.json`
 
@@ -602,6 +618,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 7 — but also verify PanelProvider correctly discovers them.
 
 **Files:**
+
 - Create: `app/Filament/Northwind/Resources/` (7+ resources via `make:filament-resource`)
 - Modify: `tests/Architecture/ArchitectureTest.php` (add Northwind resource arch rule)
 
@@ -622,6 +639,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 8 — unchanged.
 
 **Files:**
+
 - Create: `database/migrations/2026_07_24_204000_create_product_portfolio_snapshots_view.php`
 - Modify: `app/Filament/Admin/Widgets/ProductPortfolioCard.php`
 
@@ -640,6 +658,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 9 — unchanged.
 
 **Files:**
+
 - Create: `app/Console/Commands/DossierGenerate.php`
 - Create: `docs/15-delivery/1515-implementation-readiness-dossier/151501-contents.md`
 
@@ -658,6 +677,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 10 — unchanged.
 
 **Files:**
+
 - Modify: `app/Jobs/EmbeddingJob.php`
 
 - [ ] **Step 1: Replace `Http::withToken(...)->post(...)` with `AI::embeddings()->generate($text)`**
@@ -675,6 +695,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 11 — unchanged.
 
 **Files:**
+
 - Create: `database/migrations/2026_07_24_203000_create_team_artefacts_table.php`
 - Create: `app/Models/TeamArtefact.php`
 
@@ -693,6 +714,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 12 — unchanged.
 
 **Files:**
+
 - Modify: `CONTEXT.md`
 
 - [ ] **Step 1: Identify all SQLite-specific terms** (`grep -n -i 'sqlite\|fts5\|vec0\|sqlite-vec' CONTEXT.md`)
@@ -710,6 +732,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 13 — unchanged.
 
 **Files:**
+
 - Create: `infection.json.dist`
 - Modify: `composer.json`
 
@@ -728,6 +751,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 14 — unchanged.
 
 **Files:**
+
 - Modify: `README.md`
 
 - [ ] **Step 1: Add "Verification Scripts" section** documenting the macOS Herd `--threads=1` PHPStan quirk, all new test scripts, and quality tool commands (rector, mago, infection)
@@ -741,6 +765,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 15 — unchanged.
 
 **Files:**
+
 - Create: `tests/Unit/ReciprocalRankFusionTest.php`
 - Create: `tests/Unit/ResetEvidenceTest.php`
 
@@ -759,6 +784,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 > Same as original Task 16 — unchanged.
 
 **Files:**
+
 - Modify: `phpstan-baseline.neon`
 
 - [ ] **Step 1: Categorise baseline entries** by source (Spatie, Filament deprecated, domain type issues)
@@ -797,6 +823,7 @@ Expected: ALL pass (if a rule fails, refine with `->ignoring()` for legitimate u
 ```
 
 **Critical ordering:**
+
 1. **Task 1 first** — ADRs are the highest priority gap; all other decisions should reference them
 2. **Task 2 second** — Domain refactoring changes file paths that arch rules (Task 5) and tests must match
 3. **Tasks 3–17** — All independent of each other once Tasks 1–2 are done

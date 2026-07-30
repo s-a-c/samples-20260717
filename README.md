@@ -1,3 +1,11 @@
+---
+title: "samples-20260717"
+description: "Laravel 13 reference application combining Chinook, Northwind, and Pagila sample products as distinct sample products."
+type: readme
+tags: \[readme, documentation, "20260717"]
+updated: 2026-07-30
+---
+
 # samples-20260717
 
 Laravel 13 reference application combining Chinook, Northwind, and Pagila sample products as distinct sample products.

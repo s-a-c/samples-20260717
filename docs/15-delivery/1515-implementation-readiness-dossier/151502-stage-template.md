@@ -1,3 +1,11 @@
+---
+title: "Stage N — {Title}"
+description: "> Copy this file to `151503-stage-N-{slug}.md` and fill it in."
+type: delivery
+tags: \[delivery, implementation-readiness-dossier, stage, n]
+updated: 2026-07-30
+---
+
 # Stage N — {Title}
 
 > Copy this file to `151503-stage-N-{slug}.md` and fill it in.
