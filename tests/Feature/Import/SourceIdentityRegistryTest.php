@@ -7,8 +7,10 @@ use App\Models\SourceIdentity;
 use App\Models\User;
 use App\Services\ProductImport\SourceIdentityRegistry;
 use App\Services\ProductReset\ResetConfirmationService;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+use PDOException;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Uid\UuidV7;
 
@@ -84,4 +86,68 @@ test('reset confirmation verify returns false for expired or nonexistent tokens'
     ]);
 
     expect($service->verify($token))->toBeFalse();
+});
+
+test('source identity registry returns existing record when concurrently inserted', function () {
+    $expectedDomainId = (string) Str::uuid7();
+    SourceIdentity::create([
+        'entity' => 'chinook.race',
+        'source_key' => ['id' => '99'],
+        'domain_id' => $expectedDomainId,
+    ]);
+
+    $registry = new SourceIdentityRegistry;
+    $domainId = $registry->getOrMint('chinook.race', ['id' => '99']);
+
+    expect($domainId)->toBe($expectedDomainId);
+});
+
+test('source identity registry rethrows when create fails for a non race reason', function () {
+    SourceIdentity::creating(function (SourceIdentity $model) {
+        if ($model->entity === 'chinook.nonrace') {
+            throw new QueryException(
+                'insert into source_identities',
+                '',
+                [],
+                new PDOException('SQLSTATE[23502]: Not null violation'),
+            );
+        }
+    });
+
+    $registry = new SourceIdentityRegistry;
+
+    $registry->getOrMint('chinook.nonrace', ['id' => '1']);
+})->throws(QueryException::class);
+
+test('source identity registry recovers when race condition insert throws and record already exists', function () {
+    $expectedDomainId = (string) Str::uuid7();
+
+    SourceIdentity::creating(function (SourceIdentity $model) use ($expectedDomainId) {
+        if ($model->entity === 'chinook.rerace') {
+            SourceIdentity::insert([
+                'id' => (string) Str::uuid7(),
+                'entity' => 'chinook.rerace',
+                'source_key' => json_encode(['id' => '200']),
+                'domain_id' => $expectedDomainId,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            throw new QueryException(
+                'insert into source_identities',
+                '',
+                [],
+                new PDOException('SQLSTATE[23505]: Unique violation'),
+            );
+        }
+    });
+
+    try {
+        $registry = new SourceIdentityRegistry;
+        $domainId = $registry->getOrMint('chinook.rerace', ['id' => '200']);
+
+        expect($domainId)->toBe($expectedDomainId);
+    } finally {
+        SourceIdentity::flushEventListeners();
+    }
 });

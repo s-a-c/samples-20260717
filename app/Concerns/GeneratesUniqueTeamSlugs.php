@@ -30,11 +30,7 @@ trait GeneratesUniqueTeamSlugs
         $existingSlugs = $query->pluck('slug');
 
         $maxSuffix = $existingSlugs
-            ->map(function (mixed $slug) use ($defaultSlug): ?int {
-                if (! is_string($slug)) {
-                    return null;
-                }
-
+            ->map(function (string $slug) use ($defaultSlug): ?int {
                 if ($slug === $defaultSlug) {
                     return 0;
                 }

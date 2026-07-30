@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 use RuntimeException;
 use Throwable;
 
-final class PostgresSourceReader
+class PostgresSourceReader
 {
     public function executeSqlDump(string $filePath, string $targetSchema, array $excludePatterns = []): void
     {

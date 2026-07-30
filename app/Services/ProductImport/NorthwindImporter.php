@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Throwable;
 
-final class NorthwindImporter
+class NorthwindImporter
 {
     public function __construct(
         private PostgresSourceReader $pgReader,

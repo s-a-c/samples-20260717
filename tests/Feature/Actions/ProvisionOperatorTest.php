@@ -77,3 +77,16 @@ test('provision operator logs activity on creation', function () {
 
     expect(Spatie\Activitylog\Models\Activity::where('event', 'operator_created')->count())->toBe(1);
 });
+
+test('provision operator switches to existing team when current_team_id is null', function () {
+    $user = User::factory()->create();
+    $action = app(ProvisionOperator::class);
+    $action->handle(name: 'Original', email: $user->email, password: 'pw');
+
+    $user->refresh();
+    $user->update(['current_team_id' => null]);
+
+    $result = $action->handle(name: 'Switch', email: $user->email, password: 'pw');
+
+    expect($result->current_team_id)->not->toBeNull();
+});

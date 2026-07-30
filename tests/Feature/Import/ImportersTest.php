@@ -9,6 +9,7 @@ use App\Services\ProductImport\PostgresSourceReader;
 use App\Services\ProductImport\SqliteSourceReader;
 use App\Services\ProductImport\SqlSourceReader;
 use Illuminate\Support\Facades\File;
+use Mockery;
 use PDO;
 use RuntimeException;
 
@@ -71,6 +72,195 @@ test('pagila importer full import completes successfully when no source file is 
     $result = $importer->import(dryRun: false);
 
     expect($result)->toBe(['success' => true]);
+});
+
+// ---------------------------------------------------------------------------
+// Importers — source file present, failure, and missing-manifest paths
+// ---------------------------------------------------------------------------
+
+function sourceFilePath(string $product, string $filename): string
+{
+    $manifest = require database_path("sources/{$product}.php");
+
+    return storage_path("app/private/sources/{$manifest['product']}/{$manifest['commit_sha']}/{$filename}");
+}
+
+test('chinook importer processes source rows when the cached source file exists', function () {
+    $pgReader = Mockery::mock(new PostgresSourceReader);
+    $pgReader->shouldReceive('executeSqlDump')
+        ->withArgs(fn (string $file, string $schema, ?array $patterns = null) => true)
+        ->once();
+
+    $importer = new ChinookImporter($pgReader);
+
+    $manifest = require database_path('sources/chinook.php');
+    $path = sourceFilePath('chinook', $manifest['filename']);
+    File::ensureDirectoryExists(dirname($path));
+    File::put($path, "SELECT 1;\n");
+
+    try {
+        $result = $importer->import(dryRun: false);
+
+        expect($result)->toBe(['success' => true]);
+    } finally {
+        File::delete($path);
+    }
+});
+
+test('chinook importer returns failure when executeSqlDump throws', function () {
+    $pgReader = Mockery::mock(new PostgresSourceReader);
+    $pgReader->shouldReceive('executeSqlDump')
+        ->andThrow(new RuntimeException('pg_dump failed'));
+
+    $manifest = require database_path('sources/chinook.php');
+    $path = sourceFilePath('chinook', $manifest['filename']);
+    File::ensureDirectoryExists(dirname($path));
+    File::put($path, "SELECT 1;\n");
+
+    try {
+        $importer = new ChinookImporter($pgReader);
+
+        $result = $importer->import(dryRun: false);
+
+        expect($result['success'])->toBeFalse()
+            ->and($result['error'])->toBe('pg_dump failed');
+    } finally {
+        File::delete($path);
+    }
+});
+
+test('chinook importer handles a missing manifest gracefully', function () {
+    File::shouldReceive('exists')
+        ->andReturnUsing(fn (string $path): bool => $path !== database_path('sources/chinook.php'));
+
+    $importer = app(ChinookImporter::class);
+
+    $result = $importer->import(dryRun: false);
+
+    expect($result)->toBe(['success' => true]);
+});
+
+test('northwind importer processes source rows when the cached source file exists', function () {
+    $pgReader = Mockery::mock(new PostgresSourceReader);
+    $pgReader->shouldReceive('executeSqlDump')->once();
+
+    $manifest = require database_path('sources/northwind.php');
+    $path = sourceFilePath('northwind', $manifest['filename']);
+    File::ensureDirectoryExists(dirname($path));
+    File::put($path, "SELECT 1;\n");
+
+    try {
+        $importer = new NorthwindImporter($pgReader);
+
+        $result = $importer->import(dryRun: false);
+
+        expect($result)->toBe(['success' => true]);
+    } finally {
+        File::delete($path);
+    }
+});
+
+test('northwind importer returns failure when executeSqlDump throws', function () {
+    $pgReader = Mockery::mock(new PostgresSourceReader);
+    $pgReader->shouldReceive('executeSqlDump')
+        ->andThrow(new RuntimeException('boom'));
+
+    $manifest = require database_path('sources/northwind.php');
+    $path = sourceFilePath('northwind', $manifest['filename']);
+    File::ensureDirectoryExists(dirname($path));
+    File::put($path, "SELECT 1;\n");
+
+    try {
+        $importer = new NorthwindImporter($pgReader);
+
+        $result = $importer->import(dryRun: false);
+
+        expect($result['success'])->toBeFalse()
+            ->and($result['error'])->toBe('boom');
+    } finally {
+        File::delete($path);
+    }
+});
+
+test('northwind importer handles a missing manifest gracefully', function () {
+    File::shouldReceive('exists')
+        ->andReturnUsing(fn (string $path): bool => $path !== database_path('sources/northwind.php'));
+
+    $importer = app(NorthwindImporter::class);
+
+    $result = $importer->import(dryRun: false);
+
+    expect($result)->toBe(['success' => true]);
+});
+
+test('pagila importer processes source rows when schema and data files exist', function () {
+    $pgReader = Mockery::mock(new PostgresSourceReader);
+    $pgReader->shouldReceive('executeSqlDump')->twice();
+
+    $manifest = require database_path('sources/pagila.php');
+    $schemaPath = sourceFilePath('pagila', $manifest['schema_filename']);
+    $dataPath = sourceFilePath('pagila', $manifest['data_filename']);
+    File::ensureDirectoryExists(dirname($schemaPath));
+    File::put($schemaPath, "SELECT 1;\n");
+    File::put($dataPath, "SELECT 2;\n");
+
+    try {
+        $importer = new PagilaImporter($pgReader);
+
+        $result = $importer->import(dryRun: false);
+
+        expect($result)->toBe(['success' => true]);
+    } finally {
+        File::delete($schemaPath);
+        File::delete($dataPath);
+    }
+});
+
+test('pagila importer returns failure when executeSqlDump throws', function () {
+    $pgReader = Mockery::mock(new PostgresSourceReader);
+    $pgReader->shouldReceive('executeSqlDump')
+        ->andThrow(new RuntimeException('pagila boom'));
+
+    $manifest = require database_path('sources/pagila.php');
+    $schemaPath = sourceFilePath('pagila', $manifest['schema_filename']);
+    File::ensureDirectoryExists(dirname($schemaPath));
+    File::put($schemaPath, "SELECT 1;\n");
+
+    try {
+        $importer = new PagilaImporter($pgReader);
+
+        $result = $importer->import(dryRun: false);
+
+        expect($result['success'])->toBeFalse();
+    } finally {
+        File::delete($schemaPath);
+    }
+});
+
+test('pagila importer handles a missing manifest gracefully', function () {
+    File::shouldReceive('exists')
+        ->andReturnUsing(fn (string $path): bool => $path !== database_path('sources/pagila.php'));
+
+    $importer = app(PagilaImporter::class);
+
+    $result = $importer->import(dryRun: false);
+
+    expect($result)->toBe(['success' => true]);
+});
+
+test('pagila importer getSourceFilePath returns null when manifest is missing', function () {
+    $pgReader = new PostgresSourceReader;
+    $importer = new PagilaImporter($pgReader);
+
+    File::shouldReceive('exists')
+        ->andReturnFalse();
+
+    $method = new ReflectionMethod($importer, 'getSourceFilePath');
+    $method->setAccessible(true);
+
+    $result = $method->invoke($importer, 'schema.sql');
+
+    expect($result)->toBeNull();
 });
 
 // ---------------------------------------------------------------------------

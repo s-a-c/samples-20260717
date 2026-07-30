@@ -70,7 +70,6 @@ jobs:
           composer types:check
           composer mago:guard
           composer test:arch
-          # Pest is the test runner (NOT phpunit). Coverage floor is set to the
-          # current project coverage (27.8%) with a buffer; ratchet this toward
-          # the #17 PR-gate target of 80% as coverage work lands.
-          vendor/bin/pest --coverage --min=25
+          # Pest is the test runner (NOT phpunit). Every app class is at 100.0%
+          # line coverage as of 2026-07-30 — enforce it.
+          vendor/bin/pest --coverage --min=100

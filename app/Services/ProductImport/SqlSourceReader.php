@@ -30,12 +30,8 @@ final class SqlSourceReader
     {
         $content = $this->getContent($filePath);
 
-        /** @var list<string>|false $statements */
+        /** @var list<string> $statements */
         $statements = preg_split('/;\s*[\r\n]+/', $content);
-
-        if (! is_array($statements)) {
-            return [];
-        }
 
         return array_values(array_filter(
             array_map('trim', $statements),

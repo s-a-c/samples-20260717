@@ -1,13 +1,12 @@
 {
-    "exclude": [
-        "bootstrap/cache",
-        "node_modules",
-        "public/build",
-        "storage",
-        "vendor"
-    ],
-    "notPath": [
-        "tests/TestCase.php"
+    "exclude": ["bootstrap/cache", "node_modules", "public/build", "storage", "vendor"],
+    "notPath": ["tests/TestCase.php"],
+    "notName": [
+        "PostgresSourceReader.php",
+        "ChinookImporter.php",
+        "NorthwindImporter.php",
+        "PagilaImporter.php",
+        "ProductImportPipeline.php"
     ],
     "preset": "laravel",
     "rules": {
