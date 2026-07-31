@@ -2,18 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Providers\AppServiceProvider;
-use App\Providers\Filament\AdminPanelProvider;
-use App\Providers\Filament\ChinookPanelProvider;
-use App\Providers\Filament\NorthwindPanelProvider;
-use App\Providers\Filament\PagilaPanelProvider;
-use App\Providers\FortifyServiceProvider;
-
 return [
-    AppServiceProvider::class,
-    AdminPanelProvider::class,
-    ChinookPanelProvider::class,
-    NorthwindPanelProvider::class,
-    PagilaPanelProvider::class,
-    FortifyServiceProvider::class,
+    App\Providers\AppServiceProvider::class,
+    App\Providers\Filament\AdminPanelProvider::class,
+    App\Providers\Filament\ChinookPanelProvider::class,
+    App\Providers\Filament\NorthwindPanelProvider::class,
+    App\Providers\Filament\PagilaPanelProvider::class,
+    App\Providers\FortifyServiceProvider::class,
+    App\Providers\HorizonServiceProvider::class,
 ];
