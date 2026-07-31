@@ -8,6 +8,7 @@ use App\Actions\Teams\CreateTeam;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Support\ActivityLogger;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 final class ProvisionOperator
@@ -35,6 +36,10 @@ final class ProvisionOperator
             }
 
             $role = Role::findOrCreate('super_admin', 'web');
+            $importPermission = Permission::findOrCreate('product::import', 'web');
+            if (! $role->hasPermissionTo($importPermission)) {
+                $role->givePermissionTo($importPermission);
+            }
             if (! $user->hasRole($role)) {
                 $user->assignRole($role);
             }

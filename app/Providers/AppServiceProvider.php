@@ -41,6 +41,8 @@ final class AppServiceProvider extends ServiceProvider
             return $user->hasRole('super_admin') ? true : null;
         });
 
+        Gate::define('product::import', fn (User $user) => $user->hasPermissionTo('product::import'));
+
         $this->loadMigrationsFrom([
             database_path('migrations/chinook'),
             database_path('migrations/northwind'),
