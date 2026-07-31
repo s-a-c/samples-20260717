@@ -2,3 +2,17 @@
 
 @source '../../../../app/Filament/Admin/**/*';
 @source '../../../../resources/views/filament/admin/**/*';
+
+@keyframes pulse-green {
+    0%,
+    100% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: rgba(34, 197, 94, 0.2);
+    }
+}
+
+.animate-pulse-green {
+    animation: pulse-green 1.5s ease-in-out 2;
+}
