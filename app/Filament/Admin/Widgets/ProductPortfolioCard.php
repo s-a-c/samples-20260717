@@ -122,6 +122,13 @@ final class ProductPortfolioCard extends Widget implements HasActions, HasSchema
         $this->loadImportStatus();
         $this->loadStats();
         $this->lastRefreshedAt = now()->toIso8601String();
+
+        if ($previousStatus === 'running' && $this->importStatus === 'succeeded') {
+            Notification::make()
+                ->title('Import completed for '.($this->productKey ?? ''))
+                ->success()
+                ->send();
+        }
     }
 
     public function importDataAction(): Action

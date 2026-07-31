@@ -6,7 +6,7 @@
     @endphp
     @if($product)
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
-             wire:poll.60s="refreshStatus">
+             wire:poll.{{ $importStatus === 'running' ? '5s' : '60s' }}="refreshStatus">
             <div class="p-6">
                 <div class="flex items-center gap-4 mb-4">
                     <div class="p-3 rounded-lg bg-primary-50 dark:bg-primary-900/20">
