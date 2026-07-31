@@ -74,6 +74,12 @@
                         Go to {{ $product['name'] }} Panel
                     </a>
 
+                    @php($importDataAction = $this->importDataAction)
+
+                    @if (! $importDataAction->isHidden())
+                        {{ $importDataAction }}
+                    @endif
+
                     <button
                         type="button"
                         wire:click="refreshStats"
@@ -97,4 +103,6 @@
             <p class="text-gray-500 dark:text-gray-400">No product selected.</p>
         </div>
     @endif
+
+    <x-filament-actions::modals />
 </x-filament-widgets::widget>

@@ -10,13 +10,22 @@ use App\Jobs\ProductImportJob;
 use App\Models\ResetRun;
 use App\Services\Portfolio\PortfolioSnapshotStats;
 use App\Services\ProductReset\ResetWindow;
+use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Support\Icons\Heroicon;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Gate;
 
-final class ProductPortfolioCard extends Widget
+final class ProductPortfolioCard extends Widget implements HasActions, HasSchemas
 {
+    use InteractsWithActions;
+    use InteractsWithSchemas;
+
     public ?string $productKey = null;
 
     public array $stats = [];
@@ -115,35 +124,48 @@ final class ProductPortfolioCard extends Widget
         $this->lastRefreshedAt = now()->toIso8601String();
     }
 
-    public function importData(): void
+    public function importDataAction(): Action
     {
-        if ($this->productKey === null) {
-            return;
-        }
+        return Action::make('importData')
+            ->label('Import Data')
+            ->icon('heroicon-m-arrow-up-tray')
+            ->color('gray')
+            ->visible(fn (): bool => Gate::allows('product::import'))
+            ->requiresConfirmation()
+            ->modalHeading('Import '.($this->productKey ?? '').' Data')
+            ->modalDescription('This will replace all live '.($this->productKey ?? '').' data with the source baseline.')
+            ->modalContent(view('filament.admin.widgets.import-confirmation-detail', [
+                'product' => $this->productKey,
+            ]))
+            ->action(function () {
+                if ($this->productKey === null) {
+                    return;
+                }
 
-        $product = SamplesProduct::tryFrom($this->productKey);
-        if ($product === null) {
-            return;
-        }
+                $product = SamplesProduct::tryFrom($this->productKey);
+                if ($product === null) {
+                    return;
+                }
 
-        try {
-            app(ResetWindow::class)->assertWritable($product);
-        } catch (ProductResetWindowOpen $e) {
-            Notification::make()
-                ->title('Import blocked')
-                ->body($e->getMessage())
-                ->danger()
-                ->send();
+                try {
+                    app(ResetWindow::class)->assertWritable($product);
+                } catch (ProductResetWindowOpen $e) {
+                    Notification::make()
+                        ->title('Import blocked')
+                        ->body($e->getMessage())
+                        ->danger()
+                        ->send();
 
-            return;
-        }
+                    return;
+                }
 
-        ProductImportJob::dispatch($this->productKey);
+                ProductImportJob::dispatch($this->productKey);
 
-        Notification::make()
-            ->title('Import started for '.$this->productKey)
-            ->success()
-            ->send();
+                Notification::make()
+                    ->title('Import started for '.$this->productKey)
+                    ->success()
+                    ->send();
+            });
     }
 
     /** @return array{product: array|null} */
