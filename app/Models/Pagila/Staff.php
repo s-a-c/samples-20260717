@@ -33,6 +33,11 @@ final class Staff extends Model implements HasProductDomain
         return SamplesProduct::Pagila;
     }
 
+    public function address(): BelongsTo
+    {
+        return $this->belongsTo(Address::class, 'address_id');
+    }
+
     public function store(): BelongsTo
     {
         return $this->belongsTo(Store::class, 'store_id');

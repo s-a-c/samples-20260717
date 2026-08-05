@@ -13,42 +13,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Table('pagila.customers')]
-final class Customer extends Model implements HasProductDomain
+#[Table('pagila.addresses')]
+final class Address extends Model implements HasProductDomain
 {
     use BelongsToProductDomain, HasUuids;
 
     protected $guarded = [];
-
-    protected function casts(): array
-    {
-        return [
-            'active' => 'boolean',
-        ];
-    }
 
     public function getProductDomain(): SamplesProduct
     {
         return SamplesProduct::Pagila;
     }
 
-    public function address(): BelongsTo
+    public function city(): BelongsTo
     {
-        return $this->belongsTo(Address::class, 'address_id');
+        return $this->belongsTo(City::class, 'city_id');
     }
 
-    public function store(): BelongsTo
+    public function staff(): HasMany
     {
-        return $this->belongsTo(Store::class, 'store_id');
+        return $this->hasMany(Staff::class, 'address_id');
     }
 
-    public function rentals(): HasMany
+    public function customers(): HasMany
     {
-        return $this->hasMany(Rental::class, 'customer_id');
+        return $this->hasMany(Customer::class, 'address_id');
     }
 
-    public function payments(): HasMany
+    public function stores(): HasMany
     {
-        return $this->hasMany(Payment::class, 'customer_id');
+        return $this->hasMany(Store::class, 'address_id');
     }
 }

@@ -25,6 +25,11 @@ final class Store extends Model implements HasProductDomain
         return SamplesProduct::Pagila;
     }
 
+    public function address(): BelongsTo
+    {
+        return $this->belongsTo(Address::class, 'address_id');
+    }
+
     public function manager(): BelongsTo
     {
         return $this->belongsTo(Staff::class, 'manager_staff_id');
