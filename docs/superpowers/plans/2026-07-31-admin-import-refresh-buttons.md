@@ -60,7 +60,7 @@
 - Consumes: `ProductImportPipeline::run(string $product, bool $dryRun = false): array`
 - Produces: `App\Jobs\ProductImportJob` with constructor `__construct(public string $product)` and `handle(): void`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```php
 <?php
@@ -125,12 +125,12 @@ test('job does not require SerializesModels', function () {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `php artisan test --compact --filter="job"`
 Expected: Tests fail with class not found errors
 
-- [ ] **Step 3: Write the job implementation**
+- [x] **Step 3: Write the job implementation**
 
 ```php
 <?php
@@ -161,7 +161,7 @@ final class ProductImportJob implements ShouldQueue
 }
 ```
 
-- [ ] **Step 4: Add queue retry_after to .env**
+- [x] **Step 4: Add queue retry_after to .env**
 
 Append to `.env` after `QUEUE_CONNECTION=database`:
 
@@ -175,12 +175,12 @@ Also add to `.env.example` at the same position:
 DB_QUEUE_RETRY_AFTER=600
 ```
 
-- [ ] **Step 5: Run tests to verify they pass**
+- [x] **Step 5: Run tests to verify they pass**
 
 Run: `php artisan test --compact --filter="job"` (should catch the test in `ProductImportJobTest.php`)
 Expected: 4 passed, 0 failed
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add app/Jobs/ProductImportJob.php tests/Feature/Import/ProductImportJobTest.php .env .env.example
@@ -200,7 +200,7 @@ git commit -m "feat: add ProductImportJob and increase queue retry_after to 600s
 - Consumes: `Spatie\Permission\Models\Permission`
 - Produces: Permission `product::import` created and assigned to `super_admin` role
 
-- [ ] **Step 1: Add permission creation to ProvisionOperator**
+- [x] **Step 1: Add permission creation to ProvisionOperator**
 
 In `app/Actions/Operators/ProvisionOperator.php`, after line 37 (`$role = Role::findOrCreate('super_admin', 'web');`):
 
@@ -225,7 +225,7 @@ if (! $role->hasPermissionTo($importPermission)) {
 if (! $user->hasRole($role)) {
 ```
 
-- [ ] **Step 2: Register the Gate in AppServiceProvider**
+- [x] **Step 2: Register the Gate in AppServiceProvider**
 
 In `app/Providers/AppServiceProvider.php`, inside the existing `boot()` method, add after the existing gate:
 
@@ -240,13 +240,13 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 ```
 
-- [ ] **Step 3: Run existing tests to verify nothing broke**
+- [x] **Step 3: Run existing tests to verify nothing broke**
 
 Run: `php artisan test --compact --filter="ProvisionOperator"` (if tests exist) or just run the full suite quickly:
 `php artisan test --compact`
 Expected: All tests pass
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add app/Actions/Operators/ProvisionOperator.php app/Providers/AppServiceProvider.php
@@ -270,7 +270,7 @@ git commit -m "feat: add product::import permission and gate for super_admin imp
 - Consumes: `PortfolioSnapshotStats::byProduct(): array`, `SamplesProduct::cases()`
 - Produces: Product card with Refresh Stats button, "Last refreshed" timestamp, green pulse animation on changed stats
 
-- [ ] **Step 1: Write the failing tests for refresh action**
+- [x] **Step 1: Write the failing tests for refresh action**
 
 ```php
 <?php
@@ -326,12 +326,12 @@ test('non super admin can see refresh stats button', function () {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `php artisan test --compact --filter="refresh"` or `php artisan test tests/Feature/Admin/ProductCardActionsTest.php --compact`
 Expected: Tests fail (class/method not found)
 
-- [ ] **Step 3: Update ProductPortfolioCard widget**
+- [x] **Step 3: Update ProductPortfolioCard widget**
 
 Rewrite `app/Filament/Admin/Widgets/ProductPortfolioCard.php`:
 
@@ -435,7 +435,7 @@ final class ProductPortfolioCard extends Widget implements HasActions
 }
 ```
 
-- [ ] **Step 4: Update the card Blade view**
+- [x] **Step 4: Update the card Blade view**
 
 Rewrite `resources/views/filament/admin/widgets/product-portfolio-card.blade.php`:
 
@@ -528,7 +528,7 @@ Rewrite `resources/views/filament/admin/widgets/product-portfolio-card.blade.php
 </x-filament-widgets::widget>
 ```
 
-- [ ] **Step 5: Add the green pulse animation CSS**
+- [x] **Step 5: Add the green pulse animation CSS**
 
 In Filament's theme CSS (`resources/css/filament/admin/theme.css`), add:
 
@@ -548,7 +548,7 @@ In Filament's theme CSS (`resources/css/filament/admin/theme.css`), add:
 }
 ```
 
-- [ ] **Step 6: Update the Portfolio page to use the widget**
+- [x] **Step 6: Update the Portfolio page to use the widget**
 
 Rewrite `app/Filament/Admin/Pages/Portfolio.php`:
 
@@ -588,12 +588,12 @@ Rewrite `resources/views/filament/admin/pages/portfolio.blade.php`:
 </x-filament-panels::page>
 ```
 
-- [ ] **Step 7: Run tests to verify they pass**
+- [x] **Step 7: Run tests to verify they pass**
 
 Run: `php artisan test --compact --filter="refresh"` and also `php artisan test tests/Feature/Filament/PortfolioTest.php --compact`
 Expected: All tests pass
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add app/Filament/Admin/Widgets/ProductPortfolioCard.php \
@@ -619,7 +619,7 @@ git commit -m "feat: consolidate card component and add stats refresh with times
 - Consumes: `ProductImportJob::dispatch($product)`, `ResetWindow::assertWritable()`, `product::import` gate
 - Produces: Import Data button visible only to super_admin, confirmation modal with product details, job dispatch on confirm
 
-- [ ] **Step 1: Add import action tests**
+- [x] **Step 1: Add import action tests**
 
 Append to `tests/Feature/Admin/ProductCardActionsTest.php`:
 
@@ -673,12 +673,12 @@ test('confirming import shows started notification', function () {
 });
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+- [x] **Step 2: Run tests to verify they fail**
 
 Run: `php artisan test tests/Feature/Admin/ProductCardActionsTest.php --compact`
 Expected: Tests fail — import action not yet defined
 
-- [ ] **Step 3: Add import action to ProductPortfolioCard**
+- [x] **Step 3: Add import action to ProductPortfolioCard**
 
 In `ProductPortfolioCard.php`, add the import action method alongside the existing refresh action:
 
@@ -725,7 +725,7 @@ public function importDataAction(): Action
 }
 ```
 
-- [ ] **Step 4: Add the modal detail view**
+- [x] **Step 4: Add the modal detail view**
 
 Create `resources/views/filament/admin/widgets/import-confirmation-detail.blade.php`:
 
@@ -755,7 +755,7 @@ Create `resources/views/filament/admin/widgets/import-confirmation-detail.blade.
 </div>
 ```
 
-- [ ] **Step 5: Update the card Blade view to render the import button**
+- [x] **Step 5: Update the card Blade view to render the import button**
 
 In `resources/views/filament/admin/widgets/product-portfolio-card.blade.php`, inside the flex button container (after the `$this->refreshStatsAction` line), add:
 
@@ -763,12 +763,12 @@ In `resources/views/filament/admin/widgets/product-portfolio-card.blade.php`, in
 {{ $this->importDataAction }}
 ```
 
-- [ ] **Step 6: Run tests to verify they pass**
+- [x] **Step 6: Run tests to verify they pass**
 
 Run: `php artisan test tests/Feature/Admin/ProductCardActionsTest.php --compact`
 Expected: All 9 tests pass (4 refresh + 5 import)
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add app/Filament/Admin/Widgets/ProductPortfolioCard.php \
@@ -793,7 +793,7 @@ git commit -m "feat: add Import Data button with confirmation modal, permission 
 - Consumes: `ResetRun` model
 - Produces: Polling status badge per product; auto-refresh stats when import completes
 
-- [ ] **Step 1: Write the failing tests for status badge**
+- [x] **Step 1: Write the failing tests for status badge**
 
 Append to `tests/Feature/Admin/ProductCardActionsTest.php`:
 
@@ -847,12 +847,12 @@ test('status badge shows failed state after failed import', function () {
 });
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+- [x] **Step 2: Run tests to verify they fail**
 
 Run: `php artisan test tests/Feature/Admin/ProductCardActionsTest.php --compact --filter="badge"`
 Expected: Tests fail — importStatus not populated
 
-- [ ] **Step 3: Add status badge polling to the widget**
+- [x] **Step 3: Add status badge polling to the widget**
 
 In `ProductPortfolioCard.php`:
 
@@ -907,7 +907,7 @@ Also add `wire:poll.5s` to the Blade view by adding it to the widget's container
      @if($importStatus === 'running' || $importStatus === null) wire:poll.60s="refreshStatus" @endif>
 ```
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 Run: `php artisan test tests/Feature/Admin/ProductCardActionsTest.php --compact`
 Expected: 17 tests pass (4 refresh + 5 import + 3 status badge + 3 auto-refresh... wait, I only added 3 badge tests but haven't written auto-refresh tests yet)
@@ -942,18 +942,18 @@ test('stats auto-refresh when import transitions to succeeded', function () {
 });
 ```
 
-- [ ] **Step 5: Run the full test suite to verify nothing is broken**
+- [x] **Step 5: Run the full test suite to verify nothing is broken**
 
 Run: `php artisan test --compact`
 Expected: All tests pass (including the Portfolio page tests that now test the widget-based layout)
 
-- [ ] **Step 6: Run Pint to format all PHP files**
+- [x] **Step 6: Run Pint to format all PHP files**
 
 ```bash
 vendor/bin/pint --format agent
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add app/Filament/Admin/Widgets/ProductPortfolioCard.php \
