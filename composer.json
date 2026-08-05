@@ -41,6 +41,7 @@
         "tpetry/laravel-postgresql-enhanced": "^3.7"
     },
     "require-dev": {
+        "albertoarena/laravel-truss": "^1.5",
         "barryvdh/laravel-ide-helper": "^3.7",
         "carthage-software/mago": "^1.45",
         "driftingly/rector-laravel": "^2.5",
@@ -171,7 +172,7 @@
         ],
         "analyze": [
             "@lint:check",
-            "@types:check",
+            "@insights",
             "@filacheck",
             "@mago:analyze",
             "@types-check"
@@ -186,6 +187,10 @@
         ],
         "filacheck": "vendor/bin/filacheck --detailed --dry-run",
         "filacheck:fix": "vendor/bin/filacheck --detailed --fix --backup",
+        "insights": [
+            "cpx icanhazstring/composer-unused",
+            "cpx nunomaduro/phpinsights"
+        ],
         "lint": [
             "pint --parallel",
             "vendor/bin/phpstan analyse --memory-limit=512M",
@@ -212,24 +217,23 @@
             "@php artisan config:clear --ansi",
             "@lint:check",
             "@types:check",
-            "@php artisan test"
+            "vendor/bin/pest"
         ],
         "test:arch": [
             "@mago:guard",
             "vendor/bin/pest --testsuite=Architecture"
         ],
-        "test:coverage": "php artisan test --coverage --min=80 --coverage-html=storage/coverage",
-        "test:feature": "php artisan test --testsuite=Feature",
-        "test:livewire": "php artisan test --filter=Livewire",
+        "test:coverage": "vendor/bin/pest --coverage --min=100 --coverage-html=storage/coverage",
+        "test:feature": "vendor/bin/pest --testsuite=Feature",
+        "test:livewire": "vendor/bin/pest --filter=Livewire",
         "test:mutation": "PATH=\"$(pwd)/vendor/bin:$PATH\" vendor/bin/infection --threads=max",
-        "test:pg": "php artisan test tests/Feature/Postgres",
+        "test:pg": "vendor/bin/pest tests/Feature/Postgres",
         "test:type-cov": "vendor/bin/pest --type-coverage --min=100 --compact --coverage-html=storage/coverage",
-        "test:unit": "php artisan test --testsuite=Unit",
+        "test:unit": "vendor/bin/pest --testsuite=Unit",
         "types:check": [
             "vendor/bin/phpstan analyse --memory-limit=2G"
         ],
         "update:requirements": [
-            "composer update -oW",
             "composer normalize",
             "composer bump",
             "composer update -oW",

@@ -8,7 +8,55 @@
 
 **Tech Stack:** Laravel 13, PHP 8.5, PostgreSQL (multi-schema: `public`, `chinook`, `northwind`, `pagila`, `*_source`, `*_staging`), Pest 5, Spatie Permission, pgvector, Eloquent.
 
-## Global Constraints
+<details>
+  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
+    Expand for Table of Contents
+  </summary>
+
+- [1. Global Constraints](#1-global-constraints)
+- [2. Critical Design Constraints (read before implementing)](#2-critical-design-constraints-read-before-implementing)
+- [3. File Structure](#3-file-structure)
+    - [3.1. Files to Create](#31-files-to-create)
+    - [3.2. Files to Modify](#32-files-to-modify)
+- [4. Task Index](#4-task-index)
+- [5. Phase 0 — Schema corrections](#5-phase-0--schema-corrections)
+    - [5.1. Task 0.1: Pagila addresses table + FK graph](#51-task-01-pagila-addresses-table--fk-graph)
+    - [5.2. Task 0.2: Binary blob columns → bytea](#52-task-02-binary-blob-columns--bytea)
+    - [5.3. Task 0.3: Rewrite search-projection triggers with TG\_TABLE\_SCHEMA + #31 mapping](#53-task-03-rewrite-search-projection-triggers-with-tg_table_schema--31-mapping)
+    - [5.4. Task 0.4: Make portfolio view recreatable post-swap](#54-task-04-make-portfolio-view-recreatable-post-swap)
+    - [5.5. Task 0.5: Model corrections](#55-task-05-model-corrections)
+- [6. Phase 1 — Transform infrastructure](#6-phase-1--transform-infrastructure)
+    - [6.1. Task 1.1: Staging model subclasses](#61-task-11-staging-model-subclasses)
+    - [6.2. Task 1.2: StagingSchemaBuilder + product:stage command](#62-task-12-stagingschemabuilder--productstage-command)
+    - [6.3. Task 1.3: Wire is\_staging flag (verified, not a standalone task)](#63-task-13-wire-is_staging-flag-verified-not-a-standalone-task)
+- [7. Phase 2 — Mapping layer](#7-phase-2--mapping-layer)
+    - [7.1. Task 2.1: TableMapper abstract base (Eloquent write)](#71-task-21-tablemapper-abstract-base-eloquent-write)
+    - [7.2. Task 2.2: SelfReferentialMapper](#72-task-22-selfreferentialmapper)
+    - [7.3. Task 2.3: ProductMapper orchestrator](#73-task-23-productmapper-orchestrator)
+    - [7.4. Task 2.4: Concrete per-product mappers (corrected from audit)](#74-task-24-concrete-per-product-mappers-corrected-from-audit)
+        - [7.4.1. Chinook (11 mappers) — cleanest, 1:1](#741-chinook-11-mappers--cleanest-11)
+        - [7.4.2. Northwind (11 mappers) — string PKs, bytea blobs, discontinued cast](#742-northwind-11-mappers--string-pks-bytea-blobs-discontinued-cast)
+        - [7.4.3. Pagila (17 mappers — incl. AddressMapper)](#743-pagila-17-mappers--incl-addressmapper)
+- [8. Phase 3 — Importer rewrite](#8-phase-3--importer-rewrite)
+    - [8.1. Task 3.1: Three-schema importer flow](#81-task-31-three-schema-importer-flow)
+    - [8.2. Task 3.2: Wire ResetEvidence into the pipeline](#82-task-32-wire-resetevidence-into-the-pipeline)
+    - [8.3. Task 3.3: Confirm `BelongsToProductDomain` arch-rule refinement](#83-task-33-confirm-belongstoproductdomain-arch-rule-refinement)
+- [9. Phase 4 — Tests](#9-phase-4--tests)
+    - [9.1. Task 4.1: Behavioral-compliance test (#81, the prerequisite blocker)](#91-task-41-behavioral-compliance-test-81-the-prerequisite-blocker)
+    - [9.2. Task 4.2: Fixtures](#92-task-42-fixtures)
+    - [9.3. Task 4.3: Per-product transform tests + trigger-coverage tests](#93-task-43-per-product-transform-tests--trigger-coverage-tests)
+    - [9.4. Task 4.4: Commit tests](#94-task-44-commit-tests)
+- [10. Phase 5 — Gates](#10-phase-5--gates)
+    - [10.1. Task 5.1: Full suite + real import](#101-task-51-full-suite--real-import)
+- [11. Self-Review](#11-self-review)
+- [12. Open questions for execution (not blocking)](#12-open-questions-for-execution-not-blocking)
+- [13. Out of scope](#13-out-of-scope)
+
+</details>
+
+---
+
+## 1. Global Constraints
 
 - PHP 8.5 constructor property promotion: `public function __construct(public string $product) {}`
 - Explicit return type declarations on all methods: `public function load(string $schema): void`
@@ -28,7 +76,7 @@
 
 ---
 
-## Critical Design Constraints (read before implementing)
+## 2. Critical Design Constraints (read before implementing)
 
 1. **Search-projection trigger functions are currently hardcoded to `<product>.`** in their bodies (e.g. `INSERT INTO chinook.search_projections …`). They MUST be rewritten to use `TG_TABLE_SCHEMA` (Phase 0, Task 0.3) before the shadow-swap can work — otherwise staging writes hit the live schema, breaking swap isolation. This is non-negotiable and lands first.
 2. **`BelongsToProductDomain` gates by product, not schema.** `getProductDomain()` returns a hardcoded `SamplesProduct` enum; `ResetWindow::assertWritable()` throws during any active `ResetRun`. So Eloquent writes through domain models are blocked during import — UNLESS the write goes through a staging-model subclass that does NOT use the trait. Phase 1 builds those subclasses. This makes #29 Decision 2's stated staging exemption real.
@@ -42,9 +90,9 @@
 
 ---
 
-## File Structure
+## 3. File Structure
 
-### Files to Create
+### 3.1. Files to Create
 
 | File                                                                                    | Responsibility                                                                                             |
 | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -76,7 +124,7 @@
 | `tests/Fixtures/Sources/northwind/minimal.sql`                                          | Minimal Northwind dump (incl. bytea picture/photo)                                                         |
 | `tests/Fixtures/Sources/pagila/schema-minimal.sql` + `data-minimal.sql`                 | Minimal Pagila dumps (incl. normalized address)                                                            |
 
-### Files to Modify
+### 3.2. Files to Modify
 
 | File                                                                                | Change                                                                                                                |
 | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -93,7 +141,7 @@
 
 ---
 
-## Task Index
+## 4. Task Index
 
 - **Phase 0 — Schema corrections** (Tasks 0.1–0.5): migrations + model fixes; transform writes against corrected schema
 - **Phase 1 — Transform infrastructure** (Tasks 1.1–1.3): staging subclasses, `StagingSchemaBuilder`, `is_staging` wiring
@@ -104,9 +152,9 @@
 
 ---
 
-## Phase 0 — Schema corrections
+## 5. Phase 0 — Schema corrections
 
-### Task 0.1: Pagila addresses table + FK graph
+### 5.1. Task 0.1: Pagila addresses table + FK graph
 
 **Files:**
 
@@ -286,7 +334,7 @@ git add database/migrations/pagila/2026_07_24_212002_create_pagila_addresses_and
 git commit -m "feat(pagila): add normalized addresses table, relink staff/customer/store via address_id FK"
 ```
 
-### Task 0.2: Binary blob columns → bytea
+### 5.2. Task 0.2: Binary blob columns → bytea
 
 **Files:**
 
@@ -397,7 +445,7 @@ git add database/migrations/2026_08_05_000001_change_blob_columns_to_bytea.php t
 git commit -m "feat: change blob columns (picture/photo) from text to bytea for proper binary storage"
 ```
 
-### Task 0.3: Rewrite search-projection triggers with TG_TABLE_SCHEMA + #31 mapping
+### 5.3. Task 0.3: Rewrite search-projection triggers with TG_TABLE_SCHEMA + #31 mapping
 
 This is the largest schema task. It fixes the swap-isolation bug (triggers hardcoded to `chinook.`) and implements the operator's "complete search projections" decision (#31 field→weight mapping + gap triggers).
 
@@ -633,7 +681,7 @@ git add database/migrations/chinook/2026_07_24_210002_rewrite_chinook_search_tri
 git commit -m "feat(search): rewrite triggers with TG_TABLE_SCHEMA + implement #31 field-weight mapping (B-weight live)"
 ```
 
-### Task 0.4: Make portfolio view recreatable post-swap
+### 5.4. Task 0.4: Make portfolio view recreatable post-swap
 
 **Files:**
 
@@ -747,7 +795,7 @@ git add app/Services/ProductImport/PortfolioViewRecreator.php \
 git commit -m "feat(import): extract portfolio view DDL into recreator for post-swap recreate"
 ```
 
-### Task 0.5: Model corrections
+### 5.5. Task 0.5: Model corrections
 
 **Files:**
 
@@ -844,9 +892,9 @@ git commit -m "fix(models): delete phantom product-root models, add missing cast
 
 ---
 
-## Phase 1 — Transform infrastructure
+## 6. Phase 1 — Transform infrastructure
 
-### Task 1.1: Staging model subclasses
+### 6.1. Task 1.1: Staging model subclasses
 
 **Files:**
 
@@ -938,7 +986,7 @@ git add app/Domain/Staging/ tests/Unit/Staging/StagingModelTraitTest.php
 git commit -m "feat(import): add staging model subclasses that exempt staging writes from BelongsToProductDomain (#29 D2)"
 ```
 
-### Task 1.2: StagingSchemaBuilder + product:stage command
+### 6.2. Task 1.2: StagingSchemaBuilder + product:stage command
 
 **Files:**
 
@@ -1139,7 +1187,7 @@ git add app/Services/ProductImport/StagingSchemaBuilder.php app/Console/Commands
 git commit -m "feat(import): add StagingSchemaBuilder + product:stage command for shadow-swap staging"
 ```
 
-### Task 1.3: Wire is_staging flag (verified, not a standalone task)
+### 6.3. Task 1.3: Wire is_staging flag (verified, not a standalone task)
 
 The `is_staging` flag is wired inside the importer's staging-build scope (Phase 3, Task 3.1). There is no standalone class — it's a two-line bind/forget around the transform. Verify the guard works with a focused test here, then apply it in Task 3.1.
 
@@ -1212,9 +1260,9 @@ git commit -m "test(import): verify Tier1SourceObserver is_staging suppression g
 
 ---
 
-## Phase 2 — Mapping layer
+## 7. Phase 2 — Mapping layer
 
-### Task 2.1: TableMapper abstract base (Eloquent write)
+### 7.1. Task 2.1: TableMapper abstract base (Eloquent write)
 
 **Files:**
 
@@ -1477,7 +1525,7 @@ git add app/Services/ProductImport/Mapping/TableMapper.php tests/Unit/Mapping/Ta
 git commit -m "feat(import): add TableMapper abstract base — Eloquent write via staging subclasses"
 ```
 
-### Task 2.2: SelfReferentialMapper
+### 7.2. Task 2.2: SelfReferentialMapper
 
 **Files:**
 
@@ -1665,7 +1713,7 @@ git add app/Services/ProductImport/Mapping/SelfReferentialMapper.php tests/Unit/
 git commit -m "feat(import): add SelfReferentialMapper for two-pass self-FK resolution"
 ```
 
-### Task 2.3: ProductMapper orchestrator
+### 7.3. Task 2.3: ProductMapper orchestrator
 
 **Files:**
 
@@ -1814,7 +1862,7 @@ git add app/Services/ProductImport/Mapping/ProductMapper.php tests/Unit/Mapping/
 git commit -m "feat(import): add ProductMapper orchestrator — truncate + run mappers in transaction"
 ```
 
-### Task 2.4: Concrete per-product mappers (corrected from audit)
+### 7.4. Task 2.4: Concrete per-product mappers (corrected from audit)
 
 This task implements the 11+11+17 concrete mappers. Because each mapper is small and follows the pattern established in Task 2.1–2.3, they are batched by product with a representative full example + a spec table for the rest. **Read the corrected spec tables carefully — they differ from the original plan (address normalization, bytea blobs, fixed typos).**
 
@@ -1825,7 +1873,7 @@ This task implements the 11+11+17 concrete mappers. Because each mapper is small
 - Create: `app/Services/ProductImport/Mapping/Pagila/PagilaProductMapper.php` + 17 mappers (incl. AddressMapper)
 - Tests: `tests/Feature/Import/TransformChinookTest.php`, `TransformNorthwindTest.php`, `TransformPagilaTest.php` (see Phase 4)
 
-#### Chinook (11 mappers) — cleanest, 1:1
+#### 7.4.1. Chinook (11 mappers) — cleanest, 1:1
 
 - [ ] **Step 1: Create `ArtistMapper`** (canonical example)
 
@@ -1923,7 +1971,7 @@ php artisan test --compact --filter=TransformChinook
 
 Expected: PASS.
 
-#### Northwind (11 mappers) — string PKs, bytea blobs, discontinued cast
+#### 7.4.2. Northwind (11 mappers) — string PKs, bytea blobs, discontinued cast
 
 - [ ] **Step 5: Create the 11 Northwind mappers per this spec table**
 
@@ -1958,7 +2006,7 @@ Omit `customer_demographics`, `customer_customer_demo`, `us_states` (no app coun
 
 - [ ] **Step 6: Create `NorthwindProductMapper`** (mirror Chinook; `truncateOrder()` reverse-FK: order_details, orders, employee_territories, territories, products, shippers, suppliers, regions, employees, customers, categories — all `northwind_staging.` prefixed)
 
-#### Pagila (17 mappers — incl. AddressMapper)
+#### 7.4.3. Pagila (17 mappers — incl. AddressMapper)
 
 - [ ] **Step 7: Create the 17 Pagila mappers per this spec table**
 
@@ -2010,9 +2058,9 @@ git commit -m "feat(import): implement corrected per-product mappers (Chinook 11
 
 ---
 
-## Phase 3 — Importer rewrite
+## 8. Phase 3 — Importer rewrite
 
-### Task 3.1: Three-schema importer flow
+### 8.1. Task 3.1: Three-schema importer flow
 
 **Files:**
 
@@ -2246,7 +2294,7 @@ git add app/Services/ProductImport/EmbeddingDrain.php \
 git commit -m "feat(import): restore shadow-swap flow + embedding drain in all three importers"
 ```
 
-### Task 3.2: Wire ResetEvidence into the pipeline
+### 8.2. Task 3.2: Wire ResetEvidence into the pipeline
 
 **Files:**
 
@@ -2266,7 +2314,7 @@ git add app/Services/ProductImport/ProductImportPipeline.php tests/Feature/Impor
 git commit -m "feat(import): wire ResetEvidence value object into run record"
 ```
 
-### Task 3.3: Confirm `BelongsToProductDomain` arch-rule refinement
+### 8.3. Task 3.3: Confirm `BelongsToProductDomain` arch-rule refinement
 
 - [ ] **Step 1: Locate the arch test** for the `BelongsToProductDomain` mandate (search `tests/` for the rule from #29). Update it to scope the mandate to `App\Models\<Product>\` and explicitly exempt `App\Domain\Staging\`. If no such arch test exists yet, add one:
 
@@ -2304,9 +2352,9 @@ git commit -m "test(import): refine #29 arch rule — staging models exempt from
 
 ---
 
-## Phase 4 — Tests
+## 9. Phase 4 — Tests
 
-### Task 4.1: Behavioral-compliance test (#81, the prerequisite blocker)
+### 9.1. Task 4.1: Behavioral-compliance test (#81, the prerequisite blocker)
 
 **Files:**
 
@@ -2388,7 +2436,7 @@ it('compliance: chinook import populates domain tables with UUID PKs and resolve
 Run: `php artisan test --compact --filter=BehavioralCompliance`
 Expected: RED initially, GREEN after Phases 0–3 complete.
 
-### Task 4.2: Fixtures
+### 9.2. Task 4.2: Fixtures
 
 - [ ] **Step 1: `tests/Fixtures/Sources/chinook/minimal.sql`** — minimal Chinook dump (upstream table/column names, `public.`-qualified — `PostgresSourceReader` rewrites). 2 artists, 1 album, 1 genre, 1 media_type, 2 employees (self-ref), 1 customer, 1 track, 1 playlist, 1 playlist_track, 1 invoice, 1 invoice_line. (Copy from the original plan's Task C1 fixture; it was correct.)
 
@@ -2403,14 +2451,14 @@ git add tests/Fixtures/Sources/
 git commit -m "test(import): add corrected minimal fixtures (Pagila w/ normalized address, Northwind w/ bytea blobs)"
 ```
 
-### Task 4.3: Per-product transform tests + trigger-coverage tests
+### 9.3. Task 4.3: Per-product transform tests + trigger-coverage tests
 
 - [ ] **Step 1: `TransformChinookTest.php`** — assert counts, FK resolution, idempotency, self-ref (reports_to).
 - [ ] **Step 2: `TransformNorthwindTest.php`** — assert string-PK customer round-trips, self-ref, `discontinued` is boolean, bytea blobs land.
 - [ ] **Step 3: `TransformPagilaTest.php`** — assert address normalization (FK to addresses), circular staff↔store FK resolves, payments collapse.
 - [ ] **Step 4: `SearchProjectionMappingTest.php`** — for each product, assert every tier-1/tier-2 entity has a projection row with #31-correct `weight_*` and `embedding_state`; tier-3 entities have NO projection row.
 
-### Task 4.4: Commit tests
+### 9.4. Task 4.4: Commit tests
 
 ```bash
 php artisan test --compact --filter=Transform
@@ -2422,9 +2470,9 @@ git commit -m "test(import): per-product transform tests + #31 trigger-coverage 
 
 ---
 
-## Phase 5 — Gates
+## 10. Phase 5 — Gates
 
-### Task 5.1: Full suite + real import
+### 10.1. Task 5.1: Full suite + real import
 
 - [ ] **Step 1: Full test suite**
 
@@ -2472,7 +2520,7 @@ bd close <id>  # close completed beads for this work
 
 ---
 
-## Self-Review
+## 11. Self-Review
 
 **1. Spec coverage (against the approved plan + audit findings):**
 
@@ -2502,7 +2550,7 @@ bd close <id>  # close completed beads for this work
 
 ---
 
-## Open questions for execution (not blocking)
+## 12. Open questions for execution (not blocking)
 
 1. **`StagingSchemaBuilder` `pg_dump` availability** — Herd provides `pg_dump`; CI Postgres should too. If the execution environment lacks it, fall back to catalog introspection (`pg_class`/`pg_constraint`/`pg_index`/`pg_trigger` → re-issue DDL). Pin at Task 1.2.
 2. **Trigger `weight_b` FK-lookup** — the `EXECUTE format(...)` pattern inside the trigger function must correctly qualify the lookup table with `TG_TABLE_SCHEMA`. The Chinook genre lookup (Task 0.3) uses this; confirm it works for the many-to-many Pagila film→category case (film_category join).
@@ -2510,7 +2558,7 @@ bd close <id>  # close completed beads for this work
 
 ---
 
-## Out of scope
+## 13. Out of scope
 
 - Full Baseline Invariants 1–8 implementation (#28 Decision 10) — structure present, full check suite is #81 ongoing.
 - `source:purge` command — not needed for completion.

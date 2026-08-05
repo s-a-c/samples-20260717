@@ -18,7 +18,45 @@ updated: 2026-08-05
 
 ---
 
-## Reader's guide
+<details>
+  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
+    Expand for Table of Contents
+  </summary>
+
+- [1. Reader's guide](#1-readers-guide)
+    - [1.1. Recommendations at a glance](#11-recommendations-at-a-glance)
+- [2. §0. The shared root cause — #29's stated exemption was never built](#2-0-the-shared-root-cause--29s-stated-exemption-was-never-built)
+- [3. §1. Deviation 2 — Raw `DB::table()->insert()` instead of Eloquent-per-row](#3-1-deviation-2--raw-dbtable-insert-instead-of-eloquent-per-row)
+    - [3.1. The recorded decision](#31-the-recorded-decision)
+    - [3.2. The plan deviation](#32-the-plan-deviation)
+    - [3.3. Why the plan deviates](#33-why-the-plan-deviates)
+    - [3.4. A. What breaks if we ratify the deviation](#34-a-what-breaks-if-we-ratify-the-deviation)
+    - [3.5. B. What breaks if we revert to Eloquent-per-row](#35-b-what-breaks-if-we-revert-to-eloquent-per-row)
+    - [3.6. C. Third options considered](#36-c-third-options-considered)
+    - [3.7. D. Recommendation: Revert](#37-d-recommendation-revert)
+- [4. §2. Deviation 1 — Abandoning the shadow-schema-swap](#4-2-deviation-1--abandoning-the-shadow-schema-swap)
+    - [4.1. The recorded decision](#41-the-recorded-decision)
+    - [4.2. The plan deviation](#42-the-plan-deviation)
+    - [4.3. Why the plan deviates](#43-why-the-plan-deviates)
+    - [4.4. A. What breaks if we ratify the deviation](#44-a-what-breaks-if-we-ratify-the-deviation)
+    - [4.5. B. What breaks if we revert (keep the swap)](#45-b-what-breaks-if-we-revert-keep-the-swap)
+    - [4.6. C. Third options considered](#46-c-third-options-considered)
+    - [4.7. D. Recommendation: Revert](#47-d-recommendation-revert)
+- [5. §3. Required revisions to the plan](#5-3-required-revisions-to-the-plan)
+    - [5.1. Phase A — restructured](#51-phase-a--restructured)
+    - [5.2. Phase B — transform writes through Eloquent, to a migration-built staging](#52-phase-b--transform-writes-through-eloquent-to-a-migration-built-staging)
+    - [5.3. Phases C–E — mapper families](#53-phases-ce--mapper-families)
+    - [5.4. Phase F — wiring](#54-phase-f--wiring)
+    - [5.5. Open questions for the revision](#55-open-questions-for-the-revision)
+- [6. §4. ADR and follow-up work (filed, not executed here)](#6-4-adr-and-follow-up-work-filed-not-executed-here)
+- [7. §5. The eight Baseline Invariants under each path](#7-5-the-eight-baseline-invariants-under-each-path)
+- [8. References](#8-references)
+
+</details>
+
+---
+
+## 1. Reader's guide
 
 The plan deviates from two recorded Map #15 decisions. The handoff framed these
 as two independent deviations to analyze separately. After reading the decision
@@ -32,7 +70,7 @@ write path** where it is possible. It is not only possible — it is the _only_
 path that does not silently break semantic search. Both deviations should be
 reverted.
 
-### Recommendations at a glance
+### 1.1. Recommendations at a glance
 
 | #   | Deviation                                      | Recommendation             | One-line reason                                                                                                                                            |
 | --- | ---------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -41,7 +79,7 @@ reverted.
 
 ---
 
-## §0. The shared root cause — #29's stated exemption was never built
+## 2. §0. The shared root cause — #29's stated exemption was never built
 
 Both deviations dissolve into one fact: **#29 Decision 2 describes a staging
 write exemption that does not exist in the code.**
@@ -109,12 +147,12 @@ also both narrow, fixable gaps, not structural flaws.
 
 ---
 
-## §1. Deviation 2 — Raw `DB::table()->insert()` instead of Eloquent-per-row
+## 3. §1. Deviation 2 — Raw `DB::table()->insert()` instead of Eloquent-per-row
 
 > Analyzed first because it is load-bearing: the swap abandonment (§2) was a
 > downstream consequence of this choice, not an independent decision.
 
-### The recorded decision
+### 3.1. The recorded decision
 
 **#28 Decision 7** — _"Row processing model: Eloquent model per row. For each
 source row: construct the target model, set attributes from source + registry
@@ -127,7 +165,7 @@ the observer's queue path is suppressed (trigger still writes the projection wit
 `embedding_state='pending'`); after publish, the rebuild phase queues embedding
 jobs and waits for drain.
 
-### The plan deviation
+### 3.2. The plan deviation
 
 **Phase B, Task B2** — the transform layer uses `DB::table()->insert()`:
 
@@ -136,14 +174,14 @@ jobs and waits for drain.
 DB::table($this->domainTable())->insert($domain);
 ```
 
-### Why the plan deviates
+### 3.3. Why the plan deviates
 
 **#29 Decision 2** added `BelongsToProductDomain`, which throws
 `ProductResetWindowOpen` during a running `ResetRun`. The plan correctly observed
 that `ProductImportPipeline::run()` marks the run `running` before calling the
 importer, so Eloquent writes are blocked. Raw inserts dodge the trait entirely.
 
-### A. What breaks if we ratify the deviation
+### 3.4. A. What breaks if we ratify the deviation
 
 **A.1 — Embeddings are silently never queued (the handoff's central question,
 confirmed in code).**
@@ -210,7 +248,7 @@ observer (app-level embedding reactor). Raw inserts keep the trigger half but
 drop the observer half — during import, the embedding reactor simply does not
 run. #32's split assumed Eloquent writes; the deviation breaks the assumption.
 
-### B. What breaks if we revert to Eloquent-per-row
+### 3.5. B. What breaks if we revert to Eloquent-per-row
 
 **B.1 — The #28-vs-#29 conflict is real _as built_, but only against the live
 schema.**
@@ -239,7 +277,7 @@ _requires_ wiring the `is_staging` flag. Fortunately that is a one-line bind
 products, Eloquent-save overhead invisible at sample scale. Latency is not a
 reason to deviate.
 
-### C. Third options considered
+### 3.6. C. Third options considered
 
 **C.1 — `session_replication_role = replica` / `DISABLE TRIGGER`.** This is a
 DB-level hammer: it suspends _Postgres_ triggers and FK checks for the session.
@@ -255,7 +293,7 @@ pokes a deliberate hole in the write-safety gate that #29 exists to enforce. The
 staging-exemption approach (#29's own stated design) achieves the same end
 without weakening the gate for non-staging paths. Prefer the narrower exemption.
 
-### D. Recommendation: Revert
+### 3.7. D. Recommendation: Revert
 
 Keep Eloquent-per-row (#28 Decision 7). Make #29's staging exemption real so
 the #28-vs-#29 conflict resolves as #29 always intended. Concretely:
@@ -293,9 +331,9 @@ This honors #28 Decision 7, #28 Decision 15, #29 Decision 2 (as written), and
 
 ---
 
-## §2. Deviation 1 — Abandoning the shadow-schema-swap
+## 4. §2. Deviation 1 — Abandoning the shadow-schema-swap
 
-### The recorded decision
+### 4.1. The recorded decision
 
 **#28 Decision 3** — _"Staging shape: shadow schema swap. Publish =
 `BEGIN; DROP SCHEMA <product> CASCADE; ALTER SCHEMA <product>_staging RENAME TO
@@ -309,14 +347,14 @@ its own Decision 34 already flagging: _"Foreign key relationships from shared
 infrastructure to product-domain tables (e.g. search documents) must be handled
 carefully across schema swaps."_
 
-### The plan deviation
+### 4.2. The plan deviation
 
 **Phase A, Task A1** — remove `DROP SCHEMA IF EXISTS chinook CASCADE;` from the
 schema-migration `up()` methods. **Phase A, Task A3 / Phase F, Task F1** —
 replace the swap with staging-only load + truncate-and-reload of the live domain
 tables via the transform layer.
 
-### Why the plan deviates
+### 4.3. Why the plan deviates
 
 The original premise — "only per-product objects are dropped by the CASCADE" —
 was invalidated when T9 added the `public.product_portfolio_snapshots` view (a
@@ -324,7 +362,7 @@ was invalidated when T9 added the `public.product_portfolio_snapshots` view (a
 objects (living inside the product schemas). CASCADE now traverses back into
 `public` and drops the view.
 
-### A. What breaks if we ratify the deviation
+### 4.4. A. What breaks if we ratify the deviation
 
 **A.1 — #28 Decisions 2, 3, and 12 all assume the swap.** Atomicity
 (two-statement tx, brief lock), the unification of first-import and reset
@@ -365,7 +403,7 @@ unification depends on both operations ending in the same swap. Splitting them
 (truncate for import, swap for reset) reintroduces the two-code-path complexity
 #28 Decision 2 explicitly eliminated.
 
-### B. What breaks if we revert (keep the swap)
+### 4.5. B. What breaks if we revert (keep the swap)
 
 **B.1 — The `product_portfolio_snapshots` view IS dropped by the CASCADE — and
 is trivially recreated.** This is the deviation's entire motivation. It is real:
@@ -411,7 +449,7 @@ tables (it stores `domain_id` as a loose UUID, by design — it must survive the
 drop). So the portfolio view is the _only_ cross-schema dependent. Confirmed
 scope: one view.
 
-### C. Third options considered
+### 4.6. C. Third options considered
 
 **C.1 — Hybrid: swap for Reset, truncate for Import.** Since import and reset
 are conceptually different (#28 Decision 2 unified them as "first-import =
@@ -433,7 +471,7 @@ views are not resilient by design — a view depends on its underlying tables, a
 dropping the tables drops the view. There is no "lazy view" option. This is not
 a real lever.
 
-### D. Recommendation: Revert
+### 4.7. D. Recommendation: Revert
 
 Keep the shadow-swap (#28 Decision 3, ADR 100308). Add a post-swap
 `CREATE OR REPLACE VIEW public.product_portfolio_snapshots AS …` step to the
@@ -454,14 +492,14 @@ code comment cross-referencing ADR 100308 Decision 34.
 
 ---
 
-## §3. Required revisions to the plan
+## 5. §3. Required revisions to the plan
 
 Reverting both deviations means the plan
 (`docs/superpowers/plans/2026-08-05-import-cascade-fix-and-transform.md`) must be
 restructured. This analysis does not rewrite the plan — that is a follow-up —
 but records the required changes so the revision is scoped.
 
-### Phase A — restructured
+### 5.1. Phase A — restructured
 
 - **Keep** `DROP SCHEMA … CASCADE` in the schema-migration `down()` methods
   (already correct) **and** in the importers' publish step. Do **not** remove it
@@ -475,7 +513,7 @@ but records the required changes so the revision is scoped.
   "import recreates the view during publish." Same coverage, adjusted
   expectation.
 
-### Phase B — transform writes through Eloquent, to a migration-built staging
+### 5.2. Phase B — transform writes through Eloquent, to a migration-built staging
 
 **Critical staging-shape correction.** #28 Decision 4 specified staging as
 _migration-built_ (schema-name-parameterised migrations replayed against
@@ -521,14 +559,14 @@ the rebuild phase then drains embeddings.
   suppression actually arms — staging Eloquent writes fire the observer, which
   then no-ops instead of dispatching per-row `EmbeddingJob`s.
 
-### Phases C–E — mapper families
+### 5.3. Phases C–E — mapper families
 
 - The per-product mapper families (Chinook/Northwind/Pagila) largely survive —
   the declarative column/FK mapping is independent of the write mechanism. The
   concrete change is the write call in the base `TableMapper`, already covered
   in Phase B.
 
-### Phase F — wiring
+### 5.4. Phase F — wiring
 
 - The importer refactor (Task F1) restores the shadow-swap publish step and
   adds the post-swap view recreate.
@@ -537,7 +575,7 @@ the rebuild phase then drains embeddings.
   dispatch `EmbeddingJob` per row, wait for drain (#28 Decision 15). This step
   is **required** for Invariant 8 to be passable.
 
-### Open questions for the revision
+### 5.5. Open questions for the revision
 
 1. **Staging-model shape.** The staging-resolved subclass pattern adds a new
    namespace (`App\Domain\<Product>\Staging\`). Whether this lives alongside the
@@ -557,7 +595,7 @@ the rebuild phase then drains embeddings.
 
 ---
 
-## §4. ADR and follow-up work (filed, not executed here)
+## 6. §4. ADR and follow-up work (filed, not executed here)
 
 Per the operator's decision, this session produces analysis only. The following
 are filed as follow-ups:
@@ -588,7 +626,7 @@ than left as prose.
 
 ---
 
-## §5. The eight Baseline Invariants under each path
+## 7. §5. The eight Baseline Invariants under each path
 
 #28 Decision 10 specified eight invariants gating publish/verify. The handoff
 asked whether they hold under truncate-and-reload. They do not — which is
@@ -611,7 +649,7 @@ Invariant 8 outright under the raw-insert deviation.
 
 ---
 
-## References
+## 8. References
 
 - **Decisions of record:** [#28](https://github.com/s-a-c/samples-20260717/issues/28)
   (pipeline + invariants), [#29](https://github.com/s-a-c/samples-20260717/issues/29)

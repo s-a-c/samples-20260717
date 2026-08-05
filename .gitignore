@@ -43,3 +43,9 @@ yarn-error.log
 .env.siyuan
 
 .mago/
+
+# OS noise
+.DS_Store
+
+# understand-anything generated knowledge graph + fingerprints cache
+.understand-anything/

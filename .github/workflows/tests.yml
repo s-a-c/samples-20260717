@@ -12,9 +12,14 @@ env:
   DB_DATABASE: testing_db
   DB_USERNAME: postgres
   DB_PASSWORD: secret
+  GH_TOKEN: ${{ github.token }}
+
+permissions:
+  contents: read
+  actions: read
 
 jobs:
-  tests:
+  coverage:
     runs-on: ubuntu-latest
 
     services:
@@ -32,6 +37,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -70,6 +77,66 @@ jobs:
           composer types:check
           composer mago:guard
           composer test:arch
-          # Pest is the test runner (NOT phpunit). Every app class is at 100.0%
-          # line coverage as of 2026-07-30 — enforce it.
-          vendor/bin/pest --coverage --min=100
+          php -d memory_limit=2G vendor/bin/pest --type-coverage --min=100
+          php -d memory_limit=2G vendor/bin/pest --coverage --min=100
+
+  tia-shards:
+    name: TIA Feature shard ${{ matrix.shard }}/${{ matrix.total }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
+        total: [2]
+
+    services:
+      postgres:
+        image: pgvector/pgvector:pg18
+        env:
+          POSTGRES_DB: testing_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --restart unless-stopped
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          extensions: pgsql, pcov
+          coverage: pcov
+          tools: composer
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: composer-
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Configure database
+        run: |
+          touch .env
+          echo "DB_CONNECTION=pgsql" >> .env
+          echo "DB_HOST=${{ env.DB_HOST }}" >> .env
+          echo "DB_PORT=${{ env.DB_PORT }}" >> .env
+          echo "DB_DATABASE=${{ env.DB_DATABASE }}" >> .env
+          echo "DB_USERNAME=${{ env.DB_USERNAME }}" >> .env
+          echo "DB_PASSWORD=${{ env.DB_PASSWORD }}" >> .env
+
+      - name: Run affected Feature tests
+        run: vendor/bin/pest tests/Feature --tia --baselined --shard=${{ matrix.shard }}/${{ matrix.total }} --parallel

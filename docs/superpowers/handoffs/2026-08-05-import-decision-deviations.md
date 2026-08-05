@@ -15,7 +15,30 @@ updated: 2026-08-05
 
 ---
 
-## Your task
+<details>
+  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
+    Expand for Table of Contents
+  </summary>
+
+- [1. Your task](#1-your-task)
+- [2. Skills to invoke before starting](#2-skills-to-invoke-before-starting)
+- [3. The two deviations](#3-the-two-deviations)
+    - [3.1. Deviation 1 — Abandoning the shadow-schema-swap](#31-deviation-1--abandoning-the-shadow-schema-swap)
+    - [3.2. Deviation 2 — Raw `DB::table()->insert()` instead of Eloquent-per-row](#32-deviation-2--raw-dbtable-insert-instead-of-eloquent-per-row)
+- [4. What to analyze](#4-what-to-analyze)
+    - [4.1. A. What breaks if we ratify the deviation](#41-a-what-breaks-if-we-ratify-the-deviation)
+    - [4.2. B. What breaks if we revert to the recorded decision](#42-b-what-breaks-if-we-revert-to-the-recorded-decision)
+    - [4.3. C. Third options not yet considered](#43-c-third-options-not-yet-considered)
+    - [4.4. D. Recommendation](#44-d-recommendation)
+- [5. Constraints](#5-constraints)
+- [6. Deliverables](#6-deliverables)
+- [7. Out of scope](#7-out-of-scope)
+
+</details>
+
+---
+
+## 1. Your task
 
 The import-cascade-fix-and-transform plan, as written, **deviates from two
 recorded Wayfinder Map #15 decisions**. Both deviations are defensible, but
@@ -29,16 +52,16 @@ Produce a written consequence analysis for each deviation, then decide (with
 the operator) whether to ratify each as a superseding ADR or to revise the
 plan.
 
-## Skills to invoke before starting
+## 2. Skills to invoke before starting
 
 Per `using-superpowers`: invoke `superpowers:brainstorming` first (this is a
 design/decision task, not a bugfix), then `wayfinder` (you are working a
 decision that re-opens recorded map-#15 resolutions), and `domain-modeling`
 for the FK/write-semantics reasoning. Announce each as you invoke it.
 
-## The two deviations
+## 3. The two deviations
 
-### Deviation 1 — Abandoning the shadow-schema-swap
+### 3.1. Deviation 1 — Abandoning the shadow-schema-swap
 
 **Recorded decision (#28 / #41):** Product Import publish = atomic
 `DROP SCHEMA <product> CASCADE` + `ALTER SCHEMA <product>_staging RENAME TO
@@ -55,7 +78,7 @@ are dropped" — was invalidated when T9 added the `product_portfolio_snapshots`
 view (a `public` view depending on per-product tables) and the search-projection
 objects (living _inside_ the product schemas). CASCADE now destroys both.
 
-### Deviation 2 — Raw `DB::table()->insert()` instead of Eloquent-per-row
+### 3.2. Deviation 2 — Raw `DB::table()->insert()` instead of Eloquent-per-row
 
 **Recorded decision (#28):** _"Eloquent model-per-row processing (triggers
 fire naturally per #32)."_
@@ -73,11 +96,11 @@ during run") are in direct conflict.
 
 ---
 
-## What to analyze
+## 4. What to analyze
 
 For **each** deviation, produce a written analysis covering:
 
-### A. What breaks if we ratify the deviation
+### 4.1. A. What breaks if we ratify the deviation
 
 - Which other recorded decisions, ADRs, code, or tests assume the _original_
   behavior? Trace the dependencies. (e.g. does any arch rule, any observer,
@@ -94,7 +117,7 @@ For **each** deviation, produce a written analysis covering:
   single most important question to resolve** — it determines whether search
   works after an import.
 
-### B. What breaks if we revert to the recorded decision
+### 4.2. B. What breaks if we revert to the recorded decision
 
 - If we instead _keep_ the CASCADE swap, how do we protect the
   `product_portfolio_snapshots` view and the search-projection objects?
@@ -106,7 +129,7 @@ For **each** deviation, produce a written analysis covering:
   run-status transition to _after_ the import; (iii) use a separate
   non-Eloquent write path. What does each cost in safety?
 
-### C. Third options not yet considered
+### 4.3. C. Third options not yet considered
 
 - Is there a hybrid? (e.g. keep the swap for full Product Reset, but use
   truncate-and-reload for Import only — since Import and Reset are
@@ -122,7 +145,7 @@ For **each** deviation, produce a written analysis covering:
   _observer_ (PHP-side, queues the embedding job) that won't. Confirm this
   distinction and its consequences.)
 
-### D. Recommendation
+### 4.4. D. Recommendation
 
 For each deviation, recommend one of:
 
@@ -131,7 +154,7 @@ For each deviation, recommend one of:
   changes to undo).
 - **Hybrid** (specify the hybrid and its boundary).
 
-## Constraints
+## 5. Constraints
 
 - Read the actual decision text before analyzing:
   `gh issue view 28` and `gh issue view 29` and `gh issue view 41` (the
@@ -144,7 +167,7 @@ For each deviation, recommend one of:
 - Per AGENTS.md §5, any ratified deviation becomes a superseding ADR under
   `docs/10-architecture/1003-adr/`.
 
-## Deliverables
+## 6. Deliverables
 
 1. A consequence-analysis document per deviation (A–D above), saved to
    `docs/superpowers/specs/2026-08-05-import-deviation-analysis.md`.
@@ -155,7 +178,7 @@ For each deviation, recommend one of:
 4. A bd bead / GitHub issue for the ADR-writing work, if it isn't done in
    this session.
 
-## Out of scope
+## 7. Out of scope
 
 - Implementing the import-cascade-fix-and-transform plan itself. That waits
   until (a) this analysis lands and (b) issue #81 (behavioral-compliance
