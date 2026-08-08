@@ -1,27 +1,24 @@
 {
     "scripts": {
+        "build": "vp build",
+        "dev": "vp dev",
         "prepare": "vp config"
     },
     "dependencies": {
         "@laravel/passkeys": "^0.2.0",
         "@tailwindcss/vite": "^4.3.3",
         "concurrently": "^10.0.4",
+        "fontaine": "^0.8.0",
         "laravel-vite-plugin": "^3.1.3",
-        "morphicons": "^1.2.0",
-        "rolldown": "^1.2.2",
+        "morphicons": "^1.5.0",
+        "rolldown": "^1.2.3",
         "tailwindcss": "^4.3.3",
-        "vite": "npm:@voidzero-dev/vite-plus-core@^0.2.7"
+        "vite": "catalog:"
     },
     "devDependencies": {
         "laravel-echo": "^2.4.0",
         "pusher-js": "^8.6.0",
         "vite-plus": "catalog:"
     },
-    "devEngines": {
-        "packageManager": {
-            "name": "pnpm",
-            "version": "11.18.0",
-            "onFail": "download"
-        }
-    }
+    "packageManager": "pnpm@11.20.0"
 }

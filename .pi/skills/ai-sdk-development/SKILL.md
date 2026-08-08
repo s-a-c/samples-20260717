@@ -3,7 +3,7 @@ name: ai-sdk-development
 description: TRIGGER when working with ai-sdk which is Laravel official first-party AI SDK. Activate when building, editing AI agents, chatbots, text generation, image generation, audio/TTS, transcription/STT, embeddings, RAG, vector stores, reranking, structured output, streaming, conversation memory, tools, queueing, broadcasting, and provider failover across OpenAI, Anthropic, Gemini, Azure, Groq, xAI, DeepSeek, Mistral, Ollama, ElevenLabs, Cohere, Jina, and VoyageAI. Invoke when the user references ai-sdk, the `Laravel\Ai\` namespace, or this project's AI features — not for other AI packages used directly.
 license: MIT
 metadata:
-  author: laravel
+    author: laravel
 ---
 
 # Developing with the Laravel AI SDK
@@ -407,23 +407,35 @@ $store->assertAdded('file_id');
 
 ## OpenAI-Compatible Provider
 
-Point the SDK at any OpenAI Chat Completions endpoint (LM Studio, vLLM, Together, etc.) with the config-driven `openai-compatible` driver. Define named instances in `config/ai.php`, no code required:
+Point the SDK at any OpenAI-compatible endpoint (LM Studio, vLLM, Together, etc.) with the config-driven `openai-compatible` driver. Define named instances in `config/ai.php`, no code required:
 
 ```php
 'my-llm' => [
     'driver' => 'openai-compatible',
     'url' => env('MY_LLM_URL'),        // required
     'key' => env('MY_LLM_API_KEY'),    // optional Bearer token
+    'models' => [
+        'text' => ['default' => 'some-chat-model'],
+        'embeddings' => [
+            'default' => 'some-embedding-model',
+            'dimensions' => 1024, // optional; omit to use native dimensions
+        ],
+    ],
 ],
 ```
 
-Reference it by config key (or `Lab::OpenAiCompatible`). A model is required via `models.text.default` or per-call `model:`:
+Reference it by config key (or `Lab::OpenAiCompatible`). A model is required via the corresponding `models` configuration or per-call `model:`:
 
 ```php
 agent()->prompt('Hello', provider: 'my-llm', model: 'some-model');
+
+Embeddings::for(['Hello'])->generate(
+    provider: 'my-llm',
+    model: 'some-embedding-model',
+);
 ```
 
-It uses OpenAI-standard shapes and supports text, streaming, tools, structured output, and image attachments. For extra request-body fields, implement `HasProviderOptions` — the returned array is merged into the body.
+It uses OpenAI-standard shapes and supports text, streaming, tools, structured output, image attachments, and text embeddings. Embedding dimensions are optional; omit them to use the model's native dimensions. For extra request-body fields, implement `HasProviderOptions` — the returned array is merged into the body.
 
 ## Common Pitfalls
 
@@ -448,15 +460,15 @@ Calling a capability not supported by a provider throws a `LogicException`. Refe
 
 ## Provider Support
 
-| Feature    | Providers                                                       |
-| ---------- | --------------------------------------------------------------- |
+| Feature    | Providers                                                                                             |
+| ---------- | ----------------------------------------------------------------------------------------------------- |
 | Text       | OpenAI, Anthropic, Gemini, Azure, Groq, xAI, DeepSeek, Mistral, Ollama, OpenRouter, OpenAI-compatible |
-| Images     | OpenAI, Gemini, xAI                                            |
-| TTS        | OpenAI, ElevenLabs                                              |
-| STT        | OpenAI, ElevenLabs, Mistral                                     |
-| Embeddings | OpenAI, Gemini, Azure, Cohere, Mistral, Jina, VoyageAI         |
-| Reranking  | Cohere, Jina                                                    |
-| Files      | OpenAI, Anthropic, Gemini                                       |
+| Images     | OpenAI, Gemini, xAI                                                                                   |
+| TTS        | OpenAI, ElevenLabs                                                                                    |
+| STT        | OpenAI, ElevenLabs, Mistral                                                                           |
+| Embeddings | OpenAI, OpenAI-compatible, Gemini, Azure, Cohere, Mistral, Jina, VoyageAI                             |
+| Reranking  | Cohere, Jina                                                                                          |
+| Files      | OpenAI, Anthropic, Gemini                                                                             |
 
 Use the `Laravel\Ai\Enums\Lab` enum to reference providers in code instead of plain strings:
 
@@ -466,6 +478,6 @@ use Laravel\Ai\Enums\Lab;
 Lab::Anthropic;
 Lab::OpenAI;
 Lab::Gemini;
-Lab::OpenAiCompatible; // configurable OpenAI Chat Completions endpoint
+Lab::OpenAiCompatible; // configurable OpenAI-compatible endpoint
 // ...
 ```

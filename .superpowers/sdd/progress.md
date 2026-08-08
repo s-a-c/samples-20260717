@@ -23,3 +23,15 @@ Task 19: complete (Portfolio overview page with product portfolio card widgets)
 Task 20: complete (Team artefacts schema and federated search Livewire page)
 Task 21: complete (Architecture tests via Pest, Larastan max level passing, debug calls removed)
 Task 22: complete (ADR documentation — 0001 through 0005 with index README)
+BASE=d657a6507cc3009caf314715587090b85c3c04f0
+
+## Import Pipeline Completion plan (2026-08-05)
+
+Base: d657a6507cc3009caf314715587090b85c3c04f0 (branch import-pipeline-completion off main d657a65)
+
+Task 0.1: complete (commits d657a65..8d629e1, review clean — Approved)
+
+## Cross-task notes
+
+- ENV: `psr` pecl ext breaks Pest on PHP 8.5. Workaround: `PHP_INI_SCAN_DIR=/tmp/php-no-psr-scandir php artisan test ...` (scan dir created once, excludes 20-psr.ini, sets memory_limit=2048M). Bake into every dispatch.
+- KNOWN DOWNSTREAM: Task 0.1's `address` column drop broke ~18 Pagila tests (PagilaDomainTest, PagilaModelsTest, PagilaResourcesTest) + the stale `sync_stores_search_projection` trigger (212001 refs NEW.address). Fixed by Task 0.3 (trigger rewrite) + a dedicated test-update pass after Task 0.3. Track separately — do NOT block on it now.

@@ -1,0 +1,139 @@
+name: Mutation Testing
+
+on:
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+env:
+  DB_HOST: 127.0.0.1
+  DB_PORT: 5432
+  DB_DATABASE: testing_db
+  DB_USERNAME: postgres
+  DB_PASSWORD: secret
+  GH_TOKEN: ${{ github.token }}
+
+permissions:
+  contents: read
+
+jobs:
+  pull-request:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: pgvector/pgvector:pg18
+        env:
+          POSTGRES_DB: testing_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --restart unless-stopped
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          extensions: pgsql, pcov
+          coverage: pcov
+          tools: composer
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Configure database
+        run: |
+          touch .env
+          echo "DB_CONNECTION=pgsql" >> .env
+          echo "DB_HOST=${{ env.DB_HOST }}" >> .env
+          echo "DB_PORT=${{ env.DB_PORT }}" >> .env
+          echo "DB_DATABASE=${{ env.DB_DATABASE }}" >> .env
+          echo "DB_USERNAME=${{ env.DB_USERNAME }}" >> .env
+          echo "DB_PASSWORD=${{ env.DB_PASSWORD }}" >> .env
+
+      - name: Run mutation testing (advisory)
+        continue-on-error: true
+        run: >-
+          composer run test:mutation --
+          --logger-github=true
+          --logger-summary-json=storage/mutation/pr-summary.json
+
+      - name: Upload PR mutation summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mutation-summary-pr
+          path: storage/mutation/pr-summary.json
+          if-no-files-found: warn
+          retention-days: 14
+
+  nightly:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: pgvector/pgvector:pg18
+        env:
+          POSTGRES_DB: testing_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --restart unless-stopped
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          extensions: pgsql, pcov
+          coverage: pcov
+          tools: composer
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Configure database
+        run: |
+          touch .env
+          echo "DB_CONNECTION=pgsql" >> .env
+          echo "DB_HOST=${{ env.DB_HOST }}" >> .env
+          echo "DB_PORT=${{ env.DB_PORT }}" >> .env
+          echo "DB_DATABASE=${{ env.DB_DATABASE }}" >> .env
+          echo "DB_USERNAME=${{ env.DB_USERNAME }}" >> .env
+          echo "DB_PASSWORD=${{ env.DB_PASSWORD }}" >> .env
+
+      - name: Run mutation testing (blocking)
+        run: >-
+          composer run test:mutation --
+          --min-msi=50
+          --logger-summary-json=storage/mutation/nightly-summary.json
+
+      - name: Upload nightly mutation summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mutation-summary-nightly
+          path: storage/mutation/nightly-summary.json
+          if-no-files-found: warn
+          retention-days: 30

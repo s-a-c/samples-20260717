@@ -15,8 +15,19 @@
     "guidelines": true,
     "mcp": true,
     "nightwatch": false,
+    "packages": [
+        "spatie/laravel-activitylog",
+        "filament/blueprint",
+        "laraveldaily/filacheck-pro",
+        "livewire/blaze",
+        "relaticle/flowforge",
+        "fruitcake/laravel-debugbar",
+        "joshcirre/instruckt-laravel",
+        "spatie/laravel-ray"
+    ],
     "sail": false,
     "skills": [
+        "infer-conventions",
         "ai-sdk-development",
         "fortify-development",
         "laravel-best-practices",
@@ -24,6 +35,14 @@
         "pulse-development",
         "fluxui-development",
         "livewire-development",
-        "pest-testing"
+        "pest-testing",
+        "echo-development",
+        "tailwindcss-development",
+        "blaze-optimize",
+        "flowforge-development",
+        "filament-security-audit",
+        "debug-using-debugbar",
+        "instruckt",
+        "debugging-output-and-previewing-html-using-ray"
     ]
 }

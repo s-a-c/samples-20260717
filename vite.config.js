@@ -27,8 +27,8 @@ export default defineConfig({
             ],
             refresh: true,
             fonts: [
-                bunny("Atkinson Hyperlegible Next VF", {
-                    weights: [400, 500, 600],
+                bunny("Atkinson Hyperlegible", {
+                    weights: [400, 700],
                 }),
                 bunny("Atkinson Hyperlegible Mono", {
                     weights: [400, 500, 600],
