@@ -223,4 +223,4 @@ test('real fixture imports populate domains and preserve published read models',
     'chinook' => ['chinook', 'artists'],
     'northwind' => ['northwind', 'products'],
     'pagila' => ['pagila', 'films'],
-]);
+])->group('serial');
