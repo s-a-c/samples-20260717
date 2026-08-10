@@ -28,12 +28,15 @@ final class ProductPortfolioCard extends Widget implements HasActions, HasSchema
 
     public ?string $productKey = null;
 
+    /** @var array<int, array{label: string, value: string}> */
     public array $stats = [];
 
     public ?string $lastRefreshedAt = null;
 
+    /** @var array<int, array{label: string, value: string}> */
     public array $previousStats = [];
 
+    /** @var array<int, int> */
     public array $changedStats = [];
 
     public ?string $importStatus = null;
@@ -175,7 +178,9 @@ final class ProductPortfolioCard extends Widget implements HasActions, HasSchema
             });
     }
 
-    /** @return array{product: array|null} */
+    /**
+     * @return array{product: array{key: string, name: string, description: string, url: string, icon: Heroicon, stats: array<int, array{label: string, value: string}>}|null}
+     */
     protected function getViewData(): array
     {
         $products = self::getProducts();

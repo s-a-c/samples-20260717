@@ -1,0 +1,45 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main, develop]
+    paths-ignore:
+      - public/js/**
+      - public/build/**
+  pull_request:
+    branches: [main, develop]
+    paths-ignore:
+      - public/js/**
+      - public/build/**
+  schedule:
+    - cron: "15 5 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript-typescript, actions]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          config-file: ./.github/codeql/codeql-config.yml
+
+      - name: Analyze with CodeQL
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"

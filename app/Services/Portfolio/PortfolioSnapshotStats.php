@@ -34,6 +34,7 @@ final class PortfolioSnapshotStats
             $raw = $row->stats;
             $decoded = is_string($raw) ? json_decode($raw, true) : null;
 
+            /** @var array<int, array{label: string, value: string}> $stats */
             $stats = [];
 
             if (is_array($decoded)) {

@@ -6,7 +6,21 @@
         "ChinookImporter.php",
         "NorthwindImporter.php",
         "PagilaImporter.php",
-        "ProductImportPipeline.php"
+        "ProductImportPipeline.php",
+        "PortfolioViewRecreator.php",
+        "StagingSchemaBuilder.php",
+        "SearchProjectionSchema.php",
+        "ProductStage.php",
+        "TableMapper.php",
+        "SelfReferentialMapper.php",
+        "ProductMapper.php",
+        "StagingContext.php",
+        "SourceSchemaBuilder.php",
+        "ChinookProductMapper.php",
+        "NorthwindProductMapper.php",
+        "PagilaProductMapper.php",
+        "EmbeddingDrain.php",
+        "ImportInvariants.php"
     ],
     "preset": "laravel",
     "rules": {

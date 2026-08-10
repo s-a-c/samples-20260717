@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Services\ProductImport;
 
 use App\Models\ResetRun;
+use App\Services\ProductImport\Schema\SourceSchemaBuilder;
+use App\Services\ProductImport\Mapping\Pagila\PagilaProductMapper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Throwable;
@@ -13,6 +15,7 @@ class PagilaImporter
 {
     public function __construct(
         private PostgresSourceReader $pgReader,
+        private PortfolioViewRecreator $viewRecreator,
     ) {}
 
     /**
@@ -26,16 +29,23 @@ class PagilaImporter
             return ['success' => true];
         }
 
+        $sourceSchema = 'pagila_source';
         $stagingSchema = 'pagila_staging';
 
         try {
-            DB::statement("CREATE SCHEMA IF NOT EXISTS {$stagingSchema};");
+            SourceSchemaBuilder::create('pagila');
+            $sourceLoaded = $this->processSourceRows($sourceSchema);
 
-            $this->processSourceRows($stagingSchema);
+            app(StagingSchemaBuilder::class)->build('pagila');
+
+            if ($sourceLoaded) {
+                app(PagilaProductMapper::class)->load($sourceSchema, $stagingSchema);
+            }
 
             DB::transaction(function () use ($stagingSchema) {
                 DB::statement('DROP SCHEMA IF EXISTS pagila CASCADE;');
                 DB::statement("ALTER SCHEMA {$stagingSchema} RENAME TO pagila;");
+                $this->viewRecreator->recreate();
             });
 
             return ['success' => true];
@@ -45,28 +55,33 @@ class PagilaImporter
     }
 
     /**
-     * Process source files into staging schema.
+     * Load the Pagila schema and data dumps into the isolated source schema.
      */
-    private function processSourceRows(string $stagingSchema): void
+    private function processSourceRows(string $sourceSchema): bool
     {
         $manifest = $this->getManifest();
 
         if ($manifest === null) {
-            return;
+            return false;
         }
 
-        $productDir = $manifest['product'];
-        $commitSha = $manifest['commit_sha'];
         $schemaPath = $this->getSourceFilePath($manifest['schema_filename']);
         $dataPath = $this->getSourceFilePath($manifest['data_filename']);
 
-        if ($schemaPath !== null && File::exists($schemaPath)) {
-            $this->pgReader->executeSqlDump($schemaPath, $stagingSchema);
+        if ($schemaPath === null || $dataPath === null || ! File::exists($schemaPath) || ! File::exists($dataPath)) {
+            return false;
         }
 
-        if ($dataPath !== null && File::exists($dataPath)) {
-            $this->pgReader->executeSqlDump($dataPath, $stagingSchema);
-        }
+        $this->pgReader->executeMultiFile([$schemaPath, $dataPath], $sourceSchema);
+
+        return $this->sourceHasTables($sourceSchema);
+    }
+
+    private function sourceHasTables(string $sourceSchema): bool
+    {
+        return DB::table('information_schema.tables')
+            ->where('table_schema', $sourceSchema)
+            ->exists();
     }
 
     /**

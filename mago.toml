@@ -70,6 +70,7 @@ layering = [
     "App\\Traits",
     "App\\Models",
     "App\\Data",
+    "App\\Domain",
     "App\\Rules",
     "App\\Exceptions",
     "App\\Services",
@@ -147,6 +148,10 @@ namespace = "App\\Data\\"
 permit = ["@self", "@layer:native", "@layer:laravel", "App\\Models\\**", "App\\Enums\\**"]
 
 [[guard.perimeter.rules]]
+namespace = "App\\Domain\\"
+permit = ["@self", "@layer:native", "@layer:laravel", "App\\Domain\\**"]
+
+[[guard.perimeter.rules]]
 namespace = "App\\Rules\\"
 permit = ["@self", "@layer:native", "@layer:laravel"]
 
@@ -164,6 +169,7 @@ permit = [
     "App\\Traits\\**",
     "App\\Models\\**",
     "App\\Enums\\**",
+    "App\\Domain\\**",
 ]
 
 [[guard.perimeter.rules]]
@@ -347,9 +353,10 @@ reason = "Pagila domain models must be final, use BelongsToProductDomain trait, 
 
 [[guard.structural.rules]]
 on = "App\\Services\\**"
+not-on = "App\\Services\\ProductImport\\**"
 target = "class"
 must-be-final = true
-reason = "Services must be final."
+reason = "Application services must be final; the ProductImport subsystem contains test-double seams and abstract mapper bases; finality is enforced by targeted architecture rules where applicable."
 
 [[guard.structural.rules]]
 on = "App\\Providers\\Filament\\**"

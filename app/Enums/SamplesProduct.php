@@ -76,17 +76,17 @@ enum SamplesProduct: string implements HasColor, HasIcon, HasLabel
         };
     }
 
-    public function getLabel(): ?string
+    public function getLabel(): string
     {
         return $this->profile()->label;
     }
 
-    public function getColor(): string|array|null
+    public function getColor(): string
     {
         return $this->profile()->color;
     }
 
-    public function getIcon(): string|Heroicon|null
+    public function getIcon(): Heroicon
     {
         return $this->profile()->icon;
     }

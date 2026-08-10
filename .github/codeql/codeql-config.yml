@@ -1,0 +1,7 @@
+name: "Samples CodeQL configuration"
+
+# Published vendor assets are generated from package sources and are scanned
+# separately from the application source by the Semgrep workflow.
+paths-ignore:
+  - public/js/**
+  - public/build/**

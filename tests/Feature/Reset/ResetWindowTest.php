@@ -81,7 +81,10 @@ test('reset evidence vo can be created with schema version 1 and serialized unse
 
     $json = json_encode($evidence);
     expect($json)->toBeJson();
+    assert(is_string($json));
     $decoded = json_decode($json, true);
+    assert(is_array($decoded));
+    assert(isset($decoded['schema_version']) && is_int($decoded['schema_version']));
     expect($decoded['schema_version'])->toBe(1);
 });
 

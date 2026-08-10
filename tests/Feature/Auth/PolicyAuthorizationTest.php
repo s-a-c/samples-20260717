@@ -12,7 +12,6 @@ use App\Policies\NorthwindPolicy;
 use App\Policies\PagilaPolicy;
 use App\Policies\TeamPolicy;
 use Spatie\Permission\Models\Role;
-use stdClass;
 
 covers(
     ChinookPolicy::class,
@@ -133,6 +132,9 @@ beforeEach(function () {
 });
 
 test('team policy viewAny is always true', function () {
+    assert($this->outsider instanceof User);
+    assert($this->member instanceof User);
+
     $policy = new TeamPolicy;
 
     expect($policy->viewAny($this->outsider))->toBeTrue();
@@ -140,10 +142,17 @@ test('team policy viewAny is always true', function () {
 });
 
 test('team policy create is always true', function () {
+    assert($this->outsider instanceof User);
+
     expect((new TeamPolicy)->create($this->outsider))->toBeTrue();
 });
 
 test('team policy view allows members and denies outsiders', function () {
+    assert($this->owner instanceof User);
+    assert($this->member instanceof User);
+    assert($this->outsider instanceof User);
+    assert($this->team instanceof Team);
+
     $policy = new TeamPolicy;
 
     expect($policy->view($this->owner, $this->team))->toBeTrue();
@@ -152,6 +161,12 @@ test('team policy view allows members and denies outsiders', function () {
 });
 
 test('team policy update respects role permissions', function () {
+    assert($this->owner instanceof User);
+    assert($this->admin instanceof User);
+    assert($this->member instanceof User);
+    assert($this->outsider instanceof User);
+    assert($this->team instanceof Team);
+
     $policy = new TeamPolicy;
 
     expect($policy->update($this->owner, $this->team))->toBeTrue();
@@ -161,6 +176,11 @@ test('team policy update respects role permissions', function () {
 });
 
 test('team policy add member respects role permissions', function () {
+    assert($this->owner instanceof User);
+    assert($this->admin instanceof User);
+    assert($this->member instanceof User);
+    assert($this->team instanceof Team);
+
     $policy = new TeamPolicy;
 
     expect($policy->addMember($this->owner, $this->team))->toBeTrue();
@@ -169,6 +189,12 @@ test('team policy add member respects role permissions', function () {
 });
 
 test('team policy update and remove member are owner-only', function () {
+    assert($this->owner instanceof User);
+    assert($this->admin instanceof User);
+    assert($this->member instanceof User);
+    assert($this->outsider instanceof User);
+    assert($this->team instanceof Team);
+
     $policy = new TeamPolicy;
 
     expect($policy->updateMember($this->owner, $this->team))->toBeTrue();
@@ -178,6 +204,12 @@ test('team policy update and remove member are owner-only', function () {
 });
 
 test('team policy invite and cancel invitation respect role permissions', function () {
+    assert($this->owner instanceof User);
+    assert($this->admin instanceof User);
+    assert($this->member instanceof User);
+    assert($this->outsider instanceof User);
+    assert($this->team instanceof Team);
+
     $policy = new TeamPolicy;
 
     expect($policy->inviteMember($this->owner, $this->team))->toBeTrue();
@@ -189,6 +221,12 @@ test('team policy invite and cancel invitation respect role permissions', functi
 });
 
 test('team policy delete requires owner on non-personal team', function () {
+    assert($this->owner instanceof User);
+    assert($this->admin instanceof User);
+    assert($this->member instanceof User);
+    assert($this->outsider instanceof User);
+    assert($this->team instanceof Team);
+
     $policy = new TeamPolicy;
 
     expect($policy->delete($this->owner, $this->team))->toBeTrue();
@@ -205,6 +243,12 @@ test('team policy delete is denied for personal teams', function () {
 });
 
 test('team policy leave allows non-owner members and denies owner', function () {
+    assert($this->owner instanceof User);
+    assert($this->admin instanceof User);
+    assert($this->member instanceof User);
+    assert($this->outsider instanceof User);
+    assert($this->team instanceof Team);
+
     $policy = new TeamPolicy;
 
     expect($policy->leave($this->member, $this->team))->toBeTrue();

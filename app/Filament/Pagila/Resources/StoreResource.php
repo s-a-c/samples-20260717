@@ -30,8 +30,9 @@ final class StoreResource extends Resource
                 Forms\Components\Select::make('manager_staff_id')
                     ->relationship('manager', 'last_name')
                     ->searchable(),
-                Forms\Components\TextInput::make('address')
-                    ->maxLength(255),
+                Forms\Components\Select::make('address_id')
+                    ->relationship('address', 'address')
+                    ->searchable(),
             ]);
     }
 
@@ -45,7 +46,7 @@ final class StoreResource extends Resource
                     ->label('Manager')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('address')
+                Tables\Columns\TextColumn::make('address.address')
                     ->searchable(),
             ])
             ->filters([
