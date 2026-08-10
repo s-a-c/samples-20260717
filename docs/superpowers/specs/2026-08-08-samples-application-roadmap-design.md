@@ -150,6 +150,47 @@ Collect Baseline Evidence Fixtures, Reset Isolation Proof, Authorization
 Acceptance Matrix evidence, Golden Search Corpus evidence, Herd verification,
 Linux CI verification, recovery evidence, and final dossier sign-off.
 
+### 5.8. Phase 7 — Closure and stabilization
+
+The closure frontier is tracked by GitHub issues #101–#108 and Beads
+`samples-20260717-7rg.13`–`.19`.
+
+- **Task 12 / #101 / .13 — Teams and Settings:** tracker-closed and locally
+  verified. The SFCs were present; failures came from an ignored stale route
+  cache generated with the non-testing APP_KEY. After `php artisan route:clear`,
+  the focused suite passed 59/59.
+- **Task 13 / #102 / .14 — Admin ProductCardActions:** tracker-closed and
+  locally verified for the same stale Livewire route cache. The focused suite
+  passed 13/13; no widget limitation or production widget change was needed.
+- **Task 14 / #103 / .15 — Real source imports:** implementation is present and
+  local operator verification passed. Production importers now create isolated
+  source schemas, load complete PostgreSQL dumps atomically, build migration-
+  backed staging schemas, invoke product mappers, publish atomically, recreate
+  the portfolio view, and run invariants/embedding drain. Fresh local runs
+  produced 4,652 Chinook, 214 Northwind, and 2,534 Pagila search projections.
+  Full acceptance still requires durable evidence in the committed branch.
+- **Task 15 / #104 / .16 — Linux CI:** workflow remediation is implemented
+  locally, including scoped `COMPOSER_AUTH`, correct `.env` ordering, cache
+  clearing, and PostgreSQL service setup. It remains open until a committed
+  remote SHA/PR produces green Tests, TIA, and Mutation runs. Local PHPStan
+  remains a quality-gate blocker and must not be represented as accepted.
+- **Task 17 / #106 / .18 — PHPStan quality gate:** **tracker-closed and locally
+  verified**. Code-level typing fixes and stale baseline cleanup reduced the
+  direct PHPStan command to zero errors; full Pest, Pint, Mago, and Architecture
+  gates also pass. Linux CI acceptance remains owned by #104.
+- **Task 18 / #108 / .19 — Coverage gate:** **tracker-closed and verified**.
+  Meaningful source-schema, dump-reader, mapper, import-orchestration, command,
+  model, provider, and UI branch coverage now satisfies the configured 100%
+  line/type gates locally and in PR #107 Linux CI.
+- **Task 16 / #105 / .17 — Documentation alignment:** reconcile this spec,
+  the delivery plan, Wayfinder #85, the implementation-readiness dossier,
+  applicable ADR/operator references, and all tracker evidence after the
+  implementation and CI states are final.
+
+The CI verification task depends on the implementation, real-data evidence,
+and documentation-alignment tasks. The epic cannot be accepted while any
+quality gate or documentation evidence family remains unresolved.
+
 ## 6. Completion Semantics
 
 The roadmap uses four distinct states:
@@ -208,3 +249,4 @@ schema swap.
 - `docs/superpowers/plans/2026-08-05-import-cascade-fix-and-transform.md`
 - `docs/superpowers/specs/2026-08-05-import-deviation-analysis.md`
 - `docs/15-delivery/1515-implementation-readiness-dossier/`
+- GitHub issues [#101](https://github.com/s-a-c/samples-20260717/issues/101)–[#104](https://github.com/s-a-c/samples-20260717/issues/104) — closure blockers

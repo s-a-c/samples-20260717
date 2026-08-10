@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Features;
@@ -35,7 +36,9 @@ test('passkey login response redirects to the current team dashboard', function 
     $request = Request::create(route('login', absolute: false), 'GET', server: [
         'HTTP_ACCEPT' => 'application/json',
     ]);
-    $request->setLaravelSession($this->app->make('session.store'));
+    $session = $this->app->make('session.store');
+    assert($session instanceof Session);
+    $request->setLaravelSession($session);
     $request->setUserResolver(fn () => $user);
 
     $jsonResponse = app(PasskeyLoginResponse::class)->toResponse($request);

@@ -39,7 +39,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -49,20 +48,41 @@ jobs:
           tools: composer
 
       - name: Install Composer dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
         run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Generate application key
-        run: php artisan key:generate
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.20.0
 
-      - name: Configure database
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install frontend dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build frontend assets
+        run: pnpm run build
+
+      - name: Configure application and database
         run: |
-          touch .env
-          echo "DB_CONNECTION=pgsql" >> .env
-          echo "DB_HOST=${{ env.DB_HOST }}" >> .env
-          echo "DB_PORT=${{ env.DB_PORT }}" >> .env
-          echo "DB_DATABASE=${{ env.DB_DATABASE }}" >> .env
-          echo "DB_USERNAME=${{ env.DB_USERNAME }}" >> .env
-          echo "DB_PASSWORD=${{ env.DB_PASSWORD }}" >> .env
+          cp .env.example .env
+          php artisan key:generate --force
+          {
+            echo "DB_CONNECTION=pgsql"
+            echo "DB_HOST=${{ env.DB_HOST }}"
+            echo "DB_PORT=${{ env.DB_PORT }}"
+            echo "DB_DATABASE=${{ env.DB_DATABASE }}"
+            echo "DB_USERNAME=${{ env.DB_USERNAME }}"
+            echo "DB_PASSWORD=${{ env.DB_PASSWORD }}"
+          } >> .env
+          php artisan config:clear --no-interaction
+          php artisan route:clear --no-interaction
 
       - name: Record TIA baseline
         run: vendor/bin/pest --parallel --tia --coverage --fresh

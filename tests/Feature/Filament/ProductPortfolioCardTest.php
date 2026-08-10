@@ -6,23 +6,29 @@ use App\Filament\Admin\Widgets\ProductPortfolioCard;
 
 covers(ProductPortfolioCard::class);
 
+/**
+ * @return array{product: array{key: string, name: string, description: string, url: string, icon: Filament\Support\Icons\Heroicon, stats: array<int, array{label: string, value: string}>}|null}
+ */
 function callViewData(?string $productKey): array
 {
     $card = new ProductPortfolioCard;
     $card->productKey = $productKey;
 
     $method = new ReflectionMethod($card, 'getViewData');
-    $method->setAccessible(true);
+    /**
+     * @var array{product: array{key: string, name: string, description: string, url: string, icon: Filament\Support\Icons\Heroicon, stats: array<int, array{label: string, value: string}>}|null} $data
+     */
+    $data = $method->invoke($card);
 
-    /** @var array{product: array|null} */
-    return $method->invoke($card);
+    return $data;
 }
 
 test('product portfolio card returns the matching product when a valid key is set', function () {
     $data = callViewData('chinook');
 
-    expect($data['product'])->not->toBeNull()
-        ->and($data['product']['key'])->toBe('chinook')
+    assert(is_array($data['product']));
+
+    expect($data['product']['key'])->toBe('chinook')
         ->and($data['product']['name'])->toBeString();
 });
 

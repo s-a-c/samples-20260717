@@ -17,18 +17,24 @@ beforeEach(function () {
 });
 
 test('dossier generate scaffolds the contents and stage template files', function () {
+    $dossierDir = $this->dossierDir;
+    assert(is_string($dossierDir));
+
     $this->artisan('dossier:generate')
         ->assertSuccessful()
         ->expectsOutputToContain('Implementation-Readiness Dossier scaffolded');
 
-    expect("{$this->dossierDir}/151501-contents.md")->toBeFile()
-        ->and("{$this->dossierDir}/151502-stage-template.md")->toBeFile();
+    expect("{$dossierDir}/151501-contents.md")->toBeFile()
+        ->and("{$dossierDir}/151502-stage-template.md")->toBeFile();
 });
 
 test('contents file includes the evidence checklist', function () {
+    $dossierDir = $this->dossierDir;
+    assert(is_string($dossierDir));
+
     $this->artisan('dossier:generate')->assertSuccessful();
 
-    $contents = (string) file_get_contents("{$this->dossierDir}/151501-contents.md");
+    $contents = (string) file_get_contents("{$dossierDir}/151501-contents.md");
 
     expect($contents)
         ->toContain('Implementation-Readiness Dossier')
@@ -39,9 +45,12 @@ test('contents file includes the evidence checklist', function () {
 });
 
 test('stage template file includes the per-stage structure', function () {
+    $dossierDir = $this->dossierDir;
+    assert(is_string($dossierDir));
+
     $this->artisan('dossier:generate')->assertSuccessful();
 
-    $template = (string) file_get_contents("{$this->dossierDir}/151502-stage-template.md");
+    $template = (string) file_get_contents("{$dossierDir}/151502-stage-template.md");
 
     expect($template)
         ->toContain('Stage N')
@@ -51,28 +60,34 @@ test('stage template file includes the per-stage structure', function () {
 });
 
 test('dossier generate is idempotent without force', function () {
+    $dossierDir = $this->dossierDir;
+    assert(is_string($dossierDir));
+
     $this->artisan('dossier:generate')->assertSuccessful();
 
     // Mutate the contents to prove a second run does not overwrite.
-    file_put_contents("{$this->dossierDir}/151501-contents.md", 'SENTINEL');
+    file_put_contents("{$dossierDir}/151501-contents.md", 'SENTINEL');
 
     $this->artisan('dossier:generate')
         ->assertSuccessful()
         ->expectsOutputToContain('already exist');
 
-    expect(file_get_contents("{$this->dossierDir}/151501-contents.md"))->toBe('SENTINEL');
+    expect(file_get_contents("{$dossierDir}/151501-contents.md"))->toBe('SENTINEL');
 });
 
 test('force overwrites existing dossier files', function () {
+    $dossierDir = $this->dossierDir;
+    assert(is_string($dossierDir));
+
     $this->artisan('dossier:generate')->assertSuccessful();
 
-    file_put_contents("{$this->dossierDir}/151501-contents.md", 'SENTINEL');
+    file_put_contents("{$dossierDir}/151501-contents.md", 'SENTINEL');
 
     $this->artisan('dossier:generate', ['--force' => true])
         ->assertSuccessful()
         ->expectsOutputToContain('Overwrote');
 
-    expect(file_get_contents("{$this->dossierDir}/151501-contents.md"))
+    expect(file_get_contents("{$dossierDir}/151501-contents.md"))
         ->not->toBe('SENTINEL')
         ->toContain('Implementation-Readiness Dossier');
 });

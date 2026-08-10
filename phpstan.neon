@@ -51,6 +51,23 @@ parameters:
             # access on mixed in Pest test code. Scoped to tests/*. Wayfinder #15 G1.
 
         -
+            identifier: method.notFound
+            paths:
+                - tests/*
+            # framework-idiom: Pest/Laravel and Livewire test helpers are dynamically
+            # mixed into the bound test case; PHPStan's Pest stubs model the receiver
+            # as TestCall and report framework methods as missing. Scoped to tests;
+            # application method-not-found errors remain strict. Revisit on Pest/Larastan
+            # major version bump. Task .18 / GitHub #106.
+
+        -
+            identifier: property.notFound
+            paths:
+                - tests/*
+            # framework-idiom: the same Pest/Laravel test-case receiver limitation as
+            # method.notFound. Scoped to tests only. Task .18 / GitHub #106.
+
+        -
             identifier: method.deprecated
             paths:
                 - app/Filament/*

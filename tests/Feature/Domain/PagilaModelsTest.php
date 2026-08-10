@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\SamplesProduct;
 use App\Models\Pagila\Actor;
+use App\Models\Pagila\Address;
 use App\Models\Pagila\Category;
 use App\Models\Pagila\City;
 use App\Models\Pagila\Country;
@@ -20,6 +21,7 @@ use App\Models\Pagila\Staff;
 use App\Models\Pagila\Store;
 
 covers(
+    Address::class,
     Actor::class,
     Category::class,
     City::class,
@@ -77,7 +79,10 @@ test('pagila film has many relations resolve', function () {
         'description' => 'A high-altitude thriller.',
     ]);
 
-    $store = Store::create(['address' => '99 Film Lane']);
+    $country = Country::create(['country' => 'Test Country']);
+    $city = City::create(['city' => 'Test City', 'country_id' => $country->id]);
+    $address = Address::create(['address' => '99 Film Lane', 'city_id' => $city->id]);
+    $store = Store::create(['address_id' => $address->id]);
     Inventory::create([
         'film_id' => $film->id,
         'store_id' => $store->id,
@@ -151,7 +156,10 @@ test('pagila film text relation resolves', function () {
 });
 
 test('pagila store, staff and customer relations resolve', function () {
-    $store = Store::create(['address' => '47 MyGate Drive']);
+    $country = Country::create(['country' => 'Test Country']);
+    $city = City::create(['city' => 'Test City', 'country_id' => $country->id]);
+    $address = Address::create(['address' => '47 MyGate Drive', 'city_id' => $city->id]);
+    $store = Store::create(['address_id' => $address->id]);
     $staff = Staff::create([
         'first_name' => 'Mike',
         'last_name' => 'Hillyer',
@@ -159,15 +167,17 @@ test('pagila store, staff and customer relations resolve', function () {
         'store_id' => $store->id,
         'username' => 'Mike',
         'active' => true,
+        'address_id' => $address->id,
     ]);
     $store->update(['manager_staff_id' => $staff->id]);
 
-    Customer::create([
+    $customer = Customer::create([
         'store_id' => $store->id,
         'first_name' => 'MARY',
         'last_name' => 'SMITH',
         'email' => 'mary@pagila.test',
         'active' => true,
+        'address_id' => $address->id,
     ]);
 
     Inventory::create([
@@ -175,11 +185,17 @@ test('pagila store, staff and customer relations resolve', function () {
         'store_id' => $store->id,
     ]);
 
-    expect($store->manager->first_name)->toBe('Mike')
+    expect($address->city->city)->toBe('Test City')
+        ->and($address->staff->first()->last_name)->toBe('Hillyer')
+        ->and($address->customers->first()->last_name)->toBe('SMITH')
+        ->and($address->stores->first()->id)->toBe($store->id)
+        ->and($store->manager->first_name)->toBe('Mike')
+        ->and($staff->address->address)->toBe('47 MyGate Drive')
+        ->and($customer->address->address)->toBe('47 MyGate Drive')
         ->and($store->staff->first()->last_name)->toBe('Hillyer')
         ->and($store->customers->first()->last_name)->toBe('SMITH')
         ->and($store->inventories->first()->film->title)->toBe('TEST FILM');
-    expect($staff->store->address)->toBe('47 MyGate Drive')
+    expect($staff->store->address->address)->toBe('47 MyGate Drive')
         ->and($staff->managedStore->id)->toBe($store->id)
         ->and($staff->rentals)->toBeEmpty()
         ->and($staff->payments)->toBeEmpty();
@@ -189,7 +205,10 @@ test('pagila store, staff and customer relations resolve', function () {
 test('pagila inventory, rental and payment relations resolve', function () {
     $language = Language::create(['name' => 'English']);
     $film = Film::create(['title' => 'BLANKET BEVERLY', 'language_id' => $language->id]);
-    $store = Store::create(['address' => '123 Main St']);
+    $country = Country::create(['country' => 'Test Country']);
+    $city = City::create(['city' => 'Test City', 'country_id' => $country->id]);
+    $address = Address::create(['address' => '123 Main St', 'city_id' => $city->id]);
+    $store = Store::create(['address_id' => $address->id]);
     $staff = Staff::create([
         'first_name' => 'Jon',
         'last_name' => 'Stephens',

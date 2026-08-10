@@ -83,7 +83,10 @@ test('pagila country, city, store, staff, and customer relationships work', func
     ]);
 
     $store = Store::create([
-        'address' => '47 MyGate Drive',
+        'address_id' => App\Models\Pagila\Address::create([
+            'address' => '47 MyGate Drive',
+            'city_id' => City::create(['city' => 'Test City', 'country_id' => Country::create(['country' => 'Test Country'])->id])->id,
+        ])->id,
     ]);
 
     $staff = Staff::create([
@@ -108,7 +111,7 @@ test('pagila country, city, store, staff, and customer relationships work', func
     expect($city->country->country)->toBe('United States');
     expect($country->cities->first()->city)->toBe('Lethbridge');
     expect($store->manager->first_name)->toBe('Mike');
-    expect($staff->store->address)->toBe('47 MyGate Drive');
+    expect($staff->store->address->address)->toBe('47 MyGate Drive');
     expect($staff->managedStore->id)->toBe($store->id);
     expect($customer->store->id)->toBe($store->id);
     expect($store->customers->first()->last_name)->toBe('SMITH');
@@ -122,7 +125,10 @@ test('pagila inventory, rental, and payment relationships work', function () {
         'language_id' => $language->id,
     ]);
 
-    $store = Store::create(['address' => '123 Main St']);
+    $country = Country::create(['country' => 'Test Country']);
+    $city = City::create(['city' => 'Test City', 'country_id' => $country->id]);
+    $address = App\Models\Pagila\Address::create(['address' => '123 Main St', 'city_id' => $city->id]);
+    $store = Store::create(['address_id' => $address->id]);
     $staff = Staff::create([
         'first_name' => 'Jon',
         'last_name' => 'Stephens',
