@@ -235,7 +235,7 @@ test('chinook importer processes source rows when the cached source file exists'
     } finally {
         restoreSourceFixture($path);
     }
-});
+})->group('serial');
 
 test('chinook importer returns failure when executeSqlDump throws', function () {
     $pgReader = Mockery::mock(new PostgresSourceReader);
@@ -260,7 +260,7 @@ test('chinook importer returns failure when executeSqlDump throws', function () 
     } finally {
         restoreSourceFixture($path);
     }
-});
+})->group('serial');
 
 test('chinook importer handles a missing manifest gracefully', function () {
     bindMockViewRecreator();
@@ -303,7 +303,7 @@ test('northwind importer processes source rows when the cached source file exist
     } finally {
         restoreSourceFixture($path);
     }
-});
+})->group('serial');
 
 test('northwind importer returns failure when executeSqlDump throws', function () {
     $pgReader = Mockery::mock(new PostgresSourceReader);
@@ -328,7 +328,7 @@ test('northwind importer returns failure when executeSqlDump throws', function (
     } finally {
         restoreSourceFixture($path);
     }
-});
+})->group('serial');
 
 test('northwind importer handles a missing manifest gracefully', function () {
     bindMockViewRecreator();
@@ -374,7 +374,7 @@ test('pagila importer processes source rows when schema and data files exist', f
         restoreSourceFixture($schemaPath);
         restoreSourceFixture($dataPath);
     }
-});
+})->group('serial');
 
 test('pagila importer returns failure when executeMultiFile throws', function () {
     $pgReader = Mockery::mock(new PostgresSourceReader);
@@ -401,7 +401,7 @@ test('pagila importer returns failure when executeMultiFile throws', function ()
         restoreSourceFixture($schemaPath);
         restoreSourceFixture($dataPath);
     }
-});
+})->group('serial');
 
 test('pagila importer handles a missing manifest gracefully', function () {
     bindMockViewRecreator();
