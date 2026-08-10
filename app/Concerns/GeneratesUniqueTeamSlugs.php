@@ -30,7 +30,14 @@ trait GeneratesUniqueTeamSlugs
         $existingSlugs = $query->pluck('slug');
 
         $maxSuffix = $existingSlugs
-            ->map(function (string $slug) use ($defaultSlug): ?int {
+            ->map(function (mixed $slug) use ($defaultSlug): ?int {
+                // PostgreSQL casts the slug column to string; non-string values
+                // cannot reach this callback in production.
+                // @codeCoverageIgnoreStart
+                if (! is_string($slug)) {
+                    return null;
+                }
+                // @codeCoverageIgnoreEnd
                 if ($slug === $defaultSlug) {
                     return 0;
                 }

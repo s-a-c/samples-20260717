@@ -1,0 +1,15 @@
+INSERT INTO pagila_source.country (country_id, country) VALUES (1, 'United States');
+INSERT INTO pagila_source.country (country_id, country) VALUES (2, 'Canada');
+INSERT INTO pagila_source.city (city_id, city, country_id) VALUES (1, 'Lethbridge', 2);
+INSERT INTO pagila_source.city (city_id, city, country_id) VALUES (2, 'Woodridge', 1);
+INSERT INTO pagila_source.category (category_id, name) VALUES (1, 'Action');
+INSERT INTO pagila_source.category (category_id, name) VALUES (2, 'Animation');
+INSERT INTO pagila_source.language (language_id, name) VALUES (1, 'English');
+INSERT INTO pagila_source.actor (actor_id, first_name, last_name) VALUES (1, 'Penelope', 'Guiness');
+INSERT INTO pagila_source.actor (actor_id, first_name, last_name) VALUES (2, 'Nick', 'Wahlberg');
+INSERT INTO pagila_source.store (store_id, manager_staff_id) VALUES (1, 1);
+INSERT INTO pagila_source.staff (staff_id, first_name, last_name, email, store_id, active, username, password) VALUES (1, 'Mike', 'Hillyer', 'Mike.Hillyer@sakilastaff.com', 1, true, 'Mike', '8cb2237d0679ca88db6464eac60da96345513964');
+INSERT INTO pagila_source.film (film_id, title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating) VALUES (1, 'Academy Dinosaur', 'An Epic Drama...', 2006, 1, 3, 4.99, 86, 20.99, 'PG');
+INSERT INTO pagila_source.film (film_id, title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating) VALUES (2, 'Ace Goldfinger', 'An Astounding Drama...', 2006, 1, 3, 4.99, 48, 20.99, 'G');
+INSERT INTO pagila_source.customer (customer_id, store_id, first_name, last_name, email, active) VALUES (1, 1, 'Mary', 'Smith', 'mary.smith@sakilacustomer.org', true);
+INSERT INTO pagila_source.customer (customer_id, store_id, first_name, last_name, email, active) VALUES (2, 1, 'Patricia', 'Johnson', 'patricia.johnson@sakilacustomer.org', true);

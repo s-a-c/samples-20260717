@@ -8,7 +8,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Laravel\Ai\Embeddings;
-use RuntimeException;
+
+function embeddingDimension(mixed $value): int
+{
+    $dimension = filter_var($value, FILTER_VALIDATE_INT);
+
+    if ($dimension === false) {
+        throw new RuntimeException('Expected an integer vector dimension.');
+    }
+
+    return $dimension;
+}
 
 covers(EmbeddingJob::class);
 
@@ -19,7 +29,7 @@ test('embedding job handles pending projection row and generates vector embeddin
 
     $artist = Artist::create(['name' => 'Pink Floyd']);
 
-    $job = new EmbeddingJob('chinook', $artist->id);
+    $job = new EmbeddingJob('chinook', (string) $artist->id);
     $job->handle();
 
     // The embedding was generated through the AI SDK, not the raw HTTP fallback.
@@ -35,7 +45,7 @@ test('embedding job handles pending projection row and generates vector embeddin
     expect($projection->embedding)->not->toBeNull();
 
     $vectorDim = DB::selectOne('SELECT vector_dims(embedding) as dim FROM chinook.search_projections WHERE id = ?', [$artist->id]);
-    expect((int) $vectorDim->dim)->toBe(1024);
+    expect(embeddingDimension($vectorDim->dim))->toBe(1024);
 });
 
 test('embedding job returns early when no projection row exists for the entity', function () {

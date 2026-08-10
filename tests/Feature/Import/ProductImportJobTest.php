@@ -3,12 +3,9 @@
 declare(strict_types=1);
 
 use App\Jobs\ProductImportJob;
-use App\Models\ResetRun;
 use App\Services\ProductImport\ProductImportPipeline;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
-use Illuminate\Support\Str;
-use Mockery;
 
 uses(RefreshDatabase::class);
 

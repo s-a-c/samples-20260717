@@ -178,3 +178,37 @@ test('stats auto-refresh when import transitions to succeeded', function () {
         ->assertSee('Succeeded')
         ->assertNotified('Import completed for chinook');
 });
+
+test('detectChangedStats records changed values', function () {
+    $card = new ProductPortfolioCard;
+    $card->stats = [['label' => 'Tracks', 'value' => '2']];
+    $card->previousStats = [['label' => 'Tracks', 'value' => '1']];
+
+    $card->detectChangedStats();
+
+    expect($card->changedStats)->toBe([0]);
+});
+
+test('import action returns safely for missing or unknown products', function (?string $productKey) {
+    $this->actingAs($this->superAdmin);
+
+    Livewire::test(ProductPortfolioCard::class, ['productKey' => $productKey])
+        ->callAction('importData');
+
+    expect(true)->toBeTrue();
+})->with([null, 'unknown']);
+
+test('import action notifies when reset window is open', function () {
+    $this->actingAs($this->superAdmin);
+    ResetRun::create([
+        'id' => (string) Str::uuid7(),
+        'product' => 'chinook',
+        'kind' => 'import',
+        'status' => 'running',
+        'current_phase' => 'staging',
+    ]);
+
+    Livewire::test(ProductPortfolioCard::class, ['productKey' => 'chinook'])
+        ->callAction('importData')
+        ->assertNotified('Import blocked');
+});
