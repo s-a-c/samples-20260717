@@ -15,55 +15,6 @@ parameters:
 			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
-			message: '#^Method App\\Enums\\SamplesProduct\:\:getColor\(\) never returns array\<string\> so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: app/Enums/SamplesProduct.php
-			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Method App\\Enums\\SamplesProduct\:\:getColor\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: app/Enums/SamplesProduct.php
-			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Method App\\Enums\\SamplesProduct\:\:getIcon\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: app/Enums/SamplesProduct.php
-			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Method App\\Enums\\SamplesProduct\:\:getIcon\(\) never returns string so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: app/Enums/SamplesProduct.php
-			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Method App\\Enums\\SamplesProduct\:\:getLabel\(\) never returns null so it can be removed from the return type\.$#'
-			identifier: return.unusedType
-			count: 1
-			path: app/Enums/SamplesProduct.php
-			# bd:wf15-g1-ratchet — return.unusedType (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Method App\\Filament\\Admin\\Pages\\Portfolio\:\:getViewData\(\) should return array\{products\: array\<int, array\{key\: string, name\: string, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\<int, array\{label\: string, value\: string\}\>\}\>\} but returns array\{products\: array\{array\{key\: ''chinook'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''12''\}, array\{label\: ''Artists'', value\: ''275\+''\}, array\{label\: ''Tracks'', value\: ''3,500\+''\}\}\}, array\{key\: ''northwind'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''13''\}, array\{label\: ''Products'', value\: ''75\+''\}, array\{label\: ''Orders'', value\: ''830\+''\}\}\}, array\{key\: ''pagila'', name\: string\|null, description\: string, url\: string, icon\: Filament\\Support\\Icons\\Heroicon, stats\: array\{array\{label\: ''Tables'', value\: ''16''\}, array\{label\: ''Films'', value\: ''1,000''\}, array\{label\: ''Actors'', value\: ''200\+''\}\}\}\}\}\.$#'
-			identifier: return.type
-			count: 1
-			path: app/Filament/Admin/Pages/Portfolio.php
-			# bd:wf15-g1-ratchet — return.type (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Method App\\Filament\\Admin\\Widgets\\ProductPortfolioCard\:\:getViewData\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Filament/Admin/Widgets/ProductPortfolioCard.php
-			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
-
-		-
 			message: '#^Class App\\Models\\ResetRun has PHPDoc tag @property for property \$evidence with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -111,62 +62,6 @@ parameters:
 			count: 1
 			path: app/Services/ProductImport/PagilaImporter.php
 			# bd:wf15-g1-ratchet — varTag.variableNotFound (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Argument of an invalid type list\<string\>\|false supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 1
-			path: app/Services/ProductImport/PostgresSourceReader.php
-			# bd:wf15-g1-ratchet — foreach.nonIterable (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Method App\\Services\\ProductImport\\PostgresSourceReader\:\:executeMultiFile\(\) has parameter \$filePaths with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Services/ProductImport/PostgresSourceReader.php
-			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Method App\\Services\\ProductImport\\PostgresSourceReader\:\:executeSqlDump\(\) has parameter \$excludePatterns with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: app/Services/ProductImport/PostgresSourceReader.php
-			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
-			identifier: if.condNotBoolean
-			count: 1
-			path: app/Services/ProductImport/PostgresSourceReader.php
-			# bd:wf15-g1-ratchet — if.condNotBoolean (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Parameter \#1 \$filePath of method App\\Services\\ProductImport\\PostgresSourceReader\:\:executeSqlDump\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Services/ProductImport/PostgresSourceReader.php
-			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Parameter \#1 \$pattern of function preg_match expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Services/ProductImport/PostgresSourceReader.php
-			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Parameter \#3 \$subject of function preg_replace expects array\<float\|int\|string\>\|string, string\|null given\.$#'
-			identifier: argument.type
-			count: 3
-			path: app/Services/ProductImport/PostgresSourceReader.php
-			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, string\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: app/Services/ProductImport/PostgresSourceReader.php
-			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Method App\\Services\\ProductReset\\ResetEvidence\:\:getSection\(\) should return array\<string, mixed\> but returns mixed\.$#'
@@ -438,25 +333,11 @@ parameters:
 			# bd:wf15-g1-ratchet — cast.int (wayfinder #15 G1; fix in Phase B)
 
 		-
-			message: '#^Access to an undefined property Pest\\Arch\\Contracts\\ArchExpectation\:\:\$not\.$#'
-			identifier: property.notFound
-			count: 1
-			path: tests/Architecture/ArchitectureTest.php
-			# bd:wf15-g1-ratchet — property.notFound (wayfinder #15 G1; fix in Phase B)
-
-		-
 			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
 			identifier: ternary.shortNotAllowed
 			count: 2
 			path: tests/Architecture/PhpStanBaselineCitationTest.php
 			# bd:wf15-g1-ratchet — ternary.shortNotAllowed (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Calling toBeArray\(\) on Expectation\<list\<\(string\|false\)\>\>; assertion is redundant\.$#'
-			identifier: pest.expectation.redundant
-			count: 1
-			path: tests/Architecture/ProductPolicyNamespaceTest.php
-			# bd:wf15-g1-ratchet — pest.expectation.redundant (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Unable to resolve the template type TValue in call to function expect$#'
@@ -475,7 +356,7 @@ parameters:
 		-
 			message: '#^Unable to resolve the template type TValue in call to function expect$#'
 			identifier: argument.templateType
-			count: 28
+			count: 27
 			path: tests/Feature/Domain/PagilaDomainTest.php
 			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
 
@@ -496,21 +377,21 @@ parameters:
 		-
 			message: '#^Unable to resolve the template type TValue in call to function expect$#'
 			identifier: argument.templateType
-			count: 8
+			count: 9
 			path: tests/Feature/Domain/NorthwindModelsTest.php
 			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Unable to resolve the template type TAndValue in call to method Pest\\Expectation\<mixed\>\:\:and\(\)$#'
 			identifier: argument.templateType
-			count: 12
+			count: 13
 			path: tests/Feature/Domain/NorthwindModelsTest.php
 			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
 
 		-
 			message: '#^Unable to resolve the template type TAndValue in call to method Pest\\Expectation\<mixed\>\:\:and\(\)$#'
 			identifier: argument.templateType
-			count: 16
+			count: 25
 			path: tests/Feature/Domain/PagilaModelsTest.php
 			# bd:wf15-g1-ratchet — argument.templateType (wayfinder #15 G1; fix in Phase B)
 
@@ -529,113 +410,8 @@ parameters:
 			# bd:wf15-g1-ratchet — varTag.variableNotFound (wayfinder #15 G1; fix in Phase B)
 
 		-
-			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
-			identifier: pest.config.redundantLocalUse
-			count: 1
-			path: tests/Feature/Import/ProductImportPipelineTest.php
-			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Calling toBeArray\(\) on Expectation\<array\>; assertion is redundant\.$#'
-			identifier: pest.expectation.redundant
-			count: 1
-			path: tests/Feature/Import/SourceFetchTest.php
-			# bd:wf15-g1-ratchet — pest.expectation.redundant (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^PHPDoc tag @var for variable \$manifest has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/Feature/Import/SourceFetchTest.php
-			# bd:wf15-g1-ratchet — missingType.iterableValue (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
-			identifier: pest.config.redundantLocalUse
-			count: 1
-			path: tests/Feature/Import/SourceIdentityRegistryTest.php
-			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Cannot access offset ''schema_version'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: tests/Feature/Reset/ResetWindowTest.php
-			# bd:wf15-g1-ratchet — offsetAccess.nonOffsetAccessible (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|false given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/Feature/Reset/ResetWindowTest.php
-			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
-			identifier: pest.config.redundantLocalUse
-			count: 1
-			path: tests/Feature/Reset/ResetWindowTest.php
-			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 1
-			path: tests/Feature/Search/EmbeddingJobTest.php
-			# bd:wf15-g1-ratchet — cast.int (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Parameter \#2 \$entityId of class App\\Jobs\\EmbeddingJob constructor expects string, int given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/Feature/Search/EmbeddingJobTest.php
-			# bd:wf15-g1-ratchet — argument.type (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
-			identifier: pest.config.redundantLocalUse
-			count: 1
-			path: tests/Feature/Search/EmbeddingJobTest.php
-			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
-			identifier: pest.config.redundantLocalUse
-			count: 1
-			path: tests/Feature/Search/FederatedSearchTest.php
-			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^RefreshDatabase is already applied globally through tests/Pest\.php for this test file\.$#'
-			identifier: pest.config.redundantLocalUse
-			count: 1
-			path: tests/Feature/Search/SearchProjectionTriggerTest.php
-			# bd:wf15-g1-ratchet — pest.config.redundantLocalUse (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Calling toBeString\(\) on Expectation\<string\>; assertion is redundant\.$#'
-			identifier: pest.expectation.redundant
-			count: 2
-			path: tests/Feature/Teams/TeamArtefactTest.php
-			# bd:wf15-g1-ratchet — pest.expectation.redundant (wayfinder #15 G1; fix in Phase B)
-
-		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Relations\\Pivot\:\:\$role\.$#'
 			identifier: property.notFound
 			count: 1
 			path: tests/Feature/Teams/TeamMemberTest.php
 			# bd:wf15-g1-ratchet — property.notFound (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Call to an undefined method Pest\\Expectation\<string\>\:\:toHaveTypeCoverage\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: tests/TypeCoverage.php
-			# bd:wf15-g1-ratchet — method.notFound (wayfinder #15 G1; fix in Phase B)
-
-		-
-			message: '#^Calling toBeInstanceOf\(\) on Expectation\<App\\Enums\\SamplesProduct\:\:Chinook\>; assertion is redundant\.$#'
-			identifier: pest.expectation.redundant
-			count: 1
-			path: tests/Unit/SamplesProductTest.php
-			# bd:wf15-g1-ratchet — pest.expectation.redundant (wayfinder #15 G1; fix in Phase B)

@@ -6,12 +6,15 @@ use App\Models\ResetConfirmation;
 use App\Models\ResetRun;
 use App\Models\User;
 use App\Services\ProductImport\ChinookImporter;
+use App\Services\ProductImport\EmbeddingDrain;
+use App\Services\ProductImport\ImportInvariants;
 use App\Services\ProductImport\NorthwindImporter;
 use App\Services\ProductImport\PagilaImporter;
+use App\Services\ProductImport\PortfolioViewRecreator;
 use App\Services\ProductImport\ProductImportPipeline;
+use App\Services\ProductImport\StagingSchemaBuilder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Mockery;
 use Spatie\Permission\Models\Role;
 
 covers(
@@ -20,10 +23,17 @@ covers(
     App\Console\Commands\ProductConfirm::class,
     App\Console\Commands\ProductRecover::class,
     App\Console\Commands\ProductStatusCommand::class,
+    App\Console\Commands\ProductStage::class,
     ProductImportPipeline::class,
 );
 
 uses(RefreshDatabase::class);
+
+/** @phpstan-assert ChinookImporter $importer */
+function assertChinookImporter(mixed $importer): void
+{
+    assert($importer instanceof ChinookImporter);
+}
 
 test('product import command with dry-run runs successfully without mutating DB state and returns exit code 0', function () {
     $initialRunCount = ResetRun::count();
@@ -131,6 +141,30 @@ test('import pipeline dry-run short-circuits before creating a reset run', funct
 });
 
 test('import pipeline full run creates a reset run marks it succeeded and returns run_id', function () {
+    // The staging schema is empty (no source data), so the view recreator
+    // would fail on missing table references. Mock it; the real lifecycle
+    // test with populated staging tables is in PortfolioViewRecreatorTest.
+    app()->bind(PortfolioViewRecreator::class, function () {
+        $mock = Mockery::mock(PortfolioViewRecreator::class);
+        $mock->shouldReceive('recreate')->andReturn(null);
+
+        return $mock;
+    });
+
+    app()->bind(ImportInvariants::class, function () {
+        $mock = Mockery::mock(ImportInvariants::class);
+        $mock->shouldReceive('evaluate')->andReturn(['passed' => true, 'failures' => []]);
+
+        return $mock;
+    });
+
+    app()->bind(EmbeddingDrain::class, function () {
+        $mock = Mockery::mock(EmbeddingDrain::class);
+        $mock->shouldReceive('drain')->andReturn(['dispatched' => 0, 'failed' => 0]);
+
+        return $mock;
+    });
+
     $pipeline = app(ProductImportPipeline::class);
 
     $result = $pipeline->run('chinook', dryRun: false);
@@ -150,6 +184,27 @@ test('import pipeline full run creates a reset run marks it succeeded and return
 });
 
 test('import pipeline full run for northwind succeeds', function () {
+    app()->bind(PortfolioViewRecreator::class, function () {
+        $mock = Mockery::mock(PortfolioViewRecreator::class);
+        $mock->shouldReceive('recreate')->andReturn(null);
+
+        return $mock;
+    });
+
+    app()->bind(ImportInvariants::class, function () {
+        $mock = Mockery::mock(ImportInvariants::class);
+        $mock->shouldReceive('evaluate')->andReturn(['passed' => true, 'failures' => []]);
+
+        return $mock;
+    });
+
+    app()->bind(EmbeddingDrain::class, function () {
+        $mock = Mockery::mock(EmbeddingDrain::class);
+        $mock->shouldReceive('drain')->andReturn(['dispatched' => 0, 'failed' => 0]);
+
+        return $mock;
+    });
+
     $pipeline = app(ProductImportPipeline::class);
 
     $result = $pipeline->run('northwind');
@@ -159,6 +214,27 @@ test('import pipeline full run for northwind succeeds', function () {
 });
 
 test('import pipeline full run for pagila succeeds', function () {
+    app()->bind(PortfolioViewRecreator::class, function () {
+        $mock = Mockery::mock(PortfolioViewRecreator::class);
+        $mock->shouldReceive('recreate')->andReturn(null);
+
+        return $mock;
+    });
+
+    app()->bind(ImportInvariants::class, function () {
+        $mock = Mockery::mock(ImportInvariants::class);
+        $mock->shouldReceive('evaluate')->andReturn(['passed' => true, 'failures' => []]);
+
+        return $mock;
+    });
+
+    app()->bind(EmbeddingDrain::class, function () {
+        $mock = Mockery::mock(EmbeddingDrain::class);
+        $mock->shouldReceive('drain')->andReturn(['dispatched' => 0, 'failed' => 0]);
+
+        return $mock;
+    });
+
     $pipeline = app(ProductImportPipeline::class);
 
     $result = $pipeline->run('pagila');
@@ -271,26 +347,83 @@ test('import pipeline marks the run failed when the importer returns an error', 
     $chinook->shouldReceive('import')
         ->andReturn(['success' => false, 'error' => 'import exploded']);
 
+    assertChinookImporter($chinook);
+
     $pipeline = new ProductImportPipeline(
         $chinook,
         app(NorthwindImporter::class),
         app(PagilaImporter::class),
+        app(ImportInvariants::class),
+        app(EmbeddingDrain::class),
     );
 
     $result = $pipeline->run('chinook');
 
     expect($result['success'])->toBeFalse()
-        ->and($result['error'])->toBe('import exploded');
+        ->and($result['error'] ?? null)->toBe('import exploded');
 
     $run = ResetRun::where('product', 'chinook')->first();
     assert($run !== null);
+    $evidence = $run->evidence;
+    assert(is_array($evidence));
+    $sections = $evidence['sections'] ?? null;
+    assert(is_array($sections));
+    $summary = $sections['execution_summary'] ?? null;
+    assert(is_array($summary));
+
     expect($run->status)->toBe('failed')
         ->and($run->current_phase)->toBe('failed')
-        ->and($run->evidence['error'])->toBe('import exploded');
+        ->and($summary['error'] ?? null)->toBe('import exploded');
 });
 
 test('product import command reports failure for an unknown product', function () {
     $this->artisan('product:import', ['product' => 'invalid_product'])
         ->assertFailed()
         ->expectsOutput('Import failed: Unknown product: invalid_product');
+});
+
+test('import pipeline marks the run failed when invariants fail', function () {
+    app(ChinookImporter::class);
+
+    $chinook = Mockery::mock(ChinookImporter::class);
+    $chinook->shouldReceive('import')->once()->andReturn(['success' => true]);
+    assertChinookImporter($chinook);
+    app()->instance(ChinookImporter::class, $chinook);
+
+    $invariants = Mockery::mock(ImportInvariants::class);
+    $invariants->shouldReceive('evaluate')->once()->andReturn([
+        'passed' => false,
+        'failures' => ['projection failure'],
+    ]);
+    app()->instance(ImportInvariants::class, $invariants);
+
+    $result = app(ProductImportPipeline::class)->run('chinook');
+
+    expect($result['success'])->toBeFalse()
+        ->and($result['error'] ?? null)->toBe('Invariant check failed: projection failure');
+
+    $run = ResetRun::find($result['run_id'] ?? '');
+    expect($run)->not->toBeNull()
+        ->and($run?->status)->toBe('failed')
+        ->and($run?->current_phase)->toBe('invariant_check');
+});
+
+test('product stage command builds a staging schema', function () {
+    $builder = Mockery::mock(StagingSchemaBuilder::class);
+    $builder->shouldReceive('build')->once()->with('chinook');
+    app()->instance(StagingSchemaBuilder::class, $builder);
+
+    $this->artisan('product:stage chinook')
+        ->assertSuccessful()
+        ->expectsOutput("Staging schema 'chinook_staging' built successfully.");
+});
+
+test('product stage command reports an invalid product', function () {
+    $builder = Mockery::mock(StagingSchemaBuilder::class);
+    $builder->shouldReceive('build')->once()->with('unknown')->andThrow(new InvalidArgumentException('Unknown product: unknown'));
+    app()->instance(StagingSchemaBuilder::class, $builder);
+
+    $this->artisan('product:stage unknown')
+        ->assertFailed()
+        ->expectsOutput('Unknown product: unknown');
 });

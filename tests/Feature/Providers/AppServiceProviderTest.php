@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\User;
 use App\Providers\AppServiceProvider;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
@@ -25,11 +26,25 @@ test('gate before closure grants access to super admin users', function () {
 });
 
 test('password defaults closure executes and returns a rule in production', function () {
-    $this->app['env'] = 'production';
+    $app = $this->app;
+    assert($app instanceof Application);
+    $app['env'] = 'production';
 
     $rule = Password::default();
 
     expect($rule)->toBeInstanceOf(Password::class);
 
-    $this->app['env'] = 'testing';
+    $app['env'] = 'testing';
+});
+
+test('password defaults return the production-strength rule when production is configured', function () {
+    $app = $this->app;
+    assert($app instanceof Application);
+    $app['env'] = 'production';
+
+    try {
+        expect(Password::default())->toBeInstanceOf(Password::class);
+    } finally {
+        $app['env'] = 'testing';
+    }
 });

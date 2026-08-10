@@ -19,7 +19,7 @@ it('creates pagila.addresses with the expected columns and FK to cities', functi
         SELECT conname FROM pg_constraint
         WHERE conrelid = 'pagila.addresses'::regclass AND contype = 'f'
     ");
-    expect(collect($fks)->pluck('conname')->contains(fn ($n) => str_contains($n, 'city_id')))->toBeTrue();
+    expect(collect($fks)->pluck('conname')->contains(fn (mixed $n): bool => is_string($n) && str_contains($n, 'city_id')))->toBeTrue();
 });
 
 it('relinks staff, customers, stores to address_id FK and drops the flat address column', function () {

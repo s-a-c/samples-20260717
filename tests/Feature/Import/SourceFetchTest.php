@@ -12,7 +12,7 @@ test('all three pin manifests exist and return valid configuration arrays', func
 
     expect(File::exists($manifestPath))->toBeTrue();
 
-    /** @var array $manifest */
+    /** @var array<string, mixed> $manifest */
     $manifest = require $manifestPath;
 
     expect($manifest)->toBeArray()

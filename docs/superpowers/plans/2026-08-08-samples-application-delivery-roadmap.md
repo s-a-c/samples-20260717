@@ -646,6 +646,127 @@ If any gate fails, reopen the owning task and record the exact failure/recovery 
 
 ---
 
+## Phase 7 — Closure and Stabilization
+
+The core Tasks 0–11 are implemented. Closure and acceptance are tracked by
+GitHub #101–#108 and Beads `.13`–`.19`; tracker closure is not acceptance.
+
+### Task 12: Teams and Settings Livewire verification — **verified locally**
+
+**Tracker:** [#101](https://github.com/s-a-c/samples-20260717/issues/101) · Beads
+`samples-20260717-7rg.13`.
+
+The failures were caused by an ignored `bootstrap/cache/routes-v7.php` generated
+under `.env` APP_KEY (`livewire-e2bba137`) while tests used `.env.testing`
+(`livewire-855ec315`). Clearing the route cache restored the generated update
+endpoint. No application code change was required.
+
+**Evidence:** `php artisan route:clear --no-interaction`; Teams/Settings
+focused suite **59/59 passed**; full Pest suite subsequently **563/563 passed**.
+
+### Task 13: Admin ProductCardActions verification — **verified locally**
+
+**Tracker:** [#102](https://github.com/s-a-c/samples-20260717/issues/102) · Beads
+`samples-20260717-7rg.14`.
+
+The widget already had the required Filament action/schema traits. Its null
+component and 404 symptoms had the same stale Livewire route-cache cause.
+
+**Evidence:** `php artisan route:clear --no-interaction`; ProductCardActions
+focused suite **13/13 passed**; full Pest suite **563/563 passed**.
+
+### Task 14: Real source-data imports through the production pipeline
+
+**Tracker:** [#103](https://github.com/s-a-c/samples-20260717/issues/103) · Beads
+`samples-20260717-7rg.15`.
+
+**Implementation files:** `app/Services/ProductImport/{ChinookImporter,NorthwindImporter,PagilaImporter,ProductImportPipeline,PostgresSourceReader}.php`, `app/Services/ProductImport/Schema/`, `app/Services/ProductImport/Mapping/`, and the related Pest suites.
+
+- [x] Build isolated `<product>_source` schemas and load complete PostgreSQL
+      dumps without semicolon-splitting function bodies.
+- [x] Build migration-backed `<product>_staging` schemas and invoke the product
+      mappers before atomic publish.
+- [x] Recreate the portfolio view, evaluate invariants, and drain embeddings.
+- [x] Fetch pinned upstream data with `php artisan source:fetch {product}`.
+- [x] Run the production pipeline for all three products locally.
+
+**Local evidence:** Chinook published 275 artists, 347 albums, 3,503 tracks,
+412 invoices, and 4,652 search projections; Northwind published 214 search
+projections; Pagila published 1,000 films, 200 actors, 599 customers, and 2,534
+search projections. Reset runs reached `succeeded` / `complete`. The source
+reader restores the caller's PostgreSQL `search_path` after each dump.
+
+**Gate:** implementation and local operator verification are complete, but the
+acceptance record remains open until the evidence is attached to the committed
+branch and the final CI/quality gates pass.
+
+### Task 15: Linux CI with pgvector/pgvector:pg18
+
+**Tracker:** [#104](https://github.com/s-a-c/samples-20260717/issues/104) · Beads
+`samples-20260717-7rg.16`.
+
+**Workflow changes:** `.github/workflows/tests.yml`,
+`.github/workflows/tia-baseline.yml`, and `.github/workflows/mutation.yml` now
+scope `COMPOSER_AUTH` to Composer installation, create `.env` before key
+generation, clear framework caches, and retain the `pgvector/pgvector:pg18`
+service.
+
+- [ ] Run the local quality gate with Pint, PHPStan, Mago, Architecture, type
+      coverage, line coverage, TIA, and mutation checks.
+- [ ] Commit and push the implementation to a reviewable branch.
+- [ ] Open a PR and record the Tests, TIA, and Mutation run URLs.
+- [ ] Confirm the Linux matrix is green on the committed SHA.
+
+**Current blocker:** Pest, Pint, Mago, Architecture, and focused import suites
+are green locally; PHPStan remains red with pre-existing and roadmap static
+analysis debt. No CI run is accepted until that gate is resolved.
+
+### Task 17: PHPStan quality gate — **verified locally**
+
+**Tracker:** [#106](https://github.com/s-a-c/samples-20260717/issues/106) · Beads
+`samples-20260717-7rg.18` — tracker-closed.
+
+- [x] Fix code-level strict-analysis violations and remove stale unmatched
+      baseline entries.
+- [x] Retain only documented framework-idiom exceptions.
+- [x] Verify `composer types:check` / the direct PHPStan command exits 0.
+
+**Evidence:** PHPStan 0 errors; Pest 563/563; Pint pass; Mago pass;
+Architecture 26/26. Linux CI and committed-SHA acceptance remain tracked by
+Task 15 / #104.
+
+### Task 18: Coverage gate remediation — **verified**
+
+**Tracker:** [#108](https://github.com/s-a-c/samples-20260717/issues/108) · Beads
+`samples-20260717-7rg.19` — tracker-closed.
+
+- [x] Add meaningful tests for uncovered source-schema, dump-reader, mapper,
+      and import-orchestration paths.
+- [x] Keep the configured 100% line-coverage threshold; do not lower it or
+      blanket-exclude roadmap code.
+- [x] Verify the coverage command exits 0 on the committed SHA and Linux CI.
+
+**Evidence:** PR #107 Linux Coverage and type coverage pass at 100%; TIA shards
+1/2 and 2/2 pass; mutation pull-request job passes. Local `composer test` is
+581/581 with 1,761 assertions.
+
+### Task 16: Documentation and acceptance-record alignment
+
+**Tracker:** [#105](https://github.com/s-a-c/samples-20260717/issues/105) · Beads
+`samples-20260717-7rg.17`.
+
+- [ ] Reconcile this plan and the roadmap spec with the final implementation
+      and verification states.
+- [ ] Update Wayfinder map #85, GitHub resolution comments, Beads notes, and
+      the implementation-readiness dossier.
+- [ ] Update applicable ADR, CONTEXT, operator/recovery, and quality-gate
+      references when behavior or commands changed.
+- [ ] Run documentation metadata, navigation, link, and parity checks.
+
+**Gate:** no document claims that real-data imports or CI are accepted without
+committed-SHA evidence, and all relevant docs use the same task IDs, commands,
+and acceptance semantics.
+
 ## Historical Task Reconciliation Rules
 
 - Do not reopen issues 2–42 merely because their decisions are old; reopen only for a material implementation conflict and link the new evidence.
@@ -684,10 +805,11 @@ Every remaining task has a tracker issue, files, interfaces, test command, and a
 - Task 9 depends on Tasks 2–7 as needed by the search lifecycle.
 - Task 10 depends on the implementation/evidence tasks.
 - Task 11 is the final gate and consumes Tasks 5, 8, 9, and 10.
+- Task 15 (CI verification) depends on Tasks 12 (Teams/Settings fix), 13 (Admin fix), and 14 (real imports).
 
 ## Execution Handoff
 
-Plan complete and saved to `docs/superpowers/plans/2026-08-08-samples-application-delivery-roadmap.md`. The canonical tracker is [Wayfinder — Samples Application Delivery Roadmap](https://github.com/s-a-c/samples-20260717/issues/85), with new execution issues [86–97](https://github.com/s-a-c/samples-20260717/issues/86) and Beads parent `samples-20260717-7rg`.
+Plan complete and saved to `docs/superpowers/plans/2026-08-08-samples-application-delivery-roadmap.md`. The canonical tracker is [Wayfinder — Samples Application Delivery Roadmap](https://github.com/s-a-c/samples-20260717/issues/85), with execution issues [86–97](https://github.com/s-a-c/samples-20260717/issues/86) (core roadmap) and [101–104](https://github.com/s-a-c/samples-20260717/issues/101) (closure blockers) and Beads parent `samples-20260717-7rg`.
 
 Two execution options:
 

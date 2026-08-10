@@ -232,7 +232,10 @@ test('staff resource renders columns and data', function () {
 });
 
 test('store resource renders columns and data', function () {
-    $store = Store::create(['address' => '47 MyPagila Drive']);
+    $store = Store::create(['address_id' => App\Models\Pagila\Address::create([
+        'address' => '47 MyPagila Drive',
+        'city_id' => App\Models\Pagila\City::create(['city' => 'Test City', 'country_id' => App\Models\Pagila\Country::create(['country' => 'Test Country'])->id])->id,
+    ])->id]);
 
     $this->actingAs($this->pagilaCurator)
         ->get('/pagila/stores')
@@ -242,7 +245,7 @@ test('store resource renders columns and data', function () {
     Livewire::test(ListStores::class)
         ->assertCanSeeTableRecords([$store])
         ->assertTableColumnExists('id')
-        ->assertTableColumnExists('address');
+        ->assertTableColumnExists('address.address');
 });
 
 test('rental resource renders columns and data', function () {
@@ -424,7 +427,10 @@ test('staff edit page renders form', function () {
 });
 
 test('store edit page renders form', function () {
-    $store = Store::create(['address' => '47 MyPagila Drive']);
+    $store = Store::create(['address_id' => App\Models\Pagila\Address::create([
+        'address' => '47 MyPagila Drive',
+        'city_id' => App\Models\Pagila\City::create(['city' => 'Test City', 'country_id' => App\Models\Pagila\Country::create(['country' => 'Test Country'])->id])->id,
+    ])->id]);
 
     $this->actingAs($this->pagilaCurator)
         ->get("/pagila/stores/{$store->id}/edit")
