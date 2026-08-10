@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Schema;
 
 uses(RefreshDatabase::class);
 
-/** @var array<string, array<string, string>> */
+/** @var array<string, array{filename: string, fixture: string}> */
 const BEHAVIORAL_IMPORT_FIXTURES = [
     'chinook' => [
         'filename' => 'ChinookDatabase/DataSources/Chinook_PostgreSql.sql',
@@ -65,19 +65,32 @@ CREATE TABLE customer (customer_id SERIAL PRIMARY KEY, store_id INTEGER, first_n
 SQL,
 ];
 
-function installBehavioralImportFixture(string $product): string
+/**
+ * @return array{directory: string, existed: bool, files: array<string, string|null>}
+ */
+function installBehavioralImportFixture(string $product): array
 {
     $fixture = BEHAVIORAL_IMPORT_FIXTURES[$product];
     /** @var array{product: string, commit_sha: string} $manifest */
     $manifest = require database_path("sources/{$product}.php");
 
     $directory = storage_path("app/private/sources/{$manifest['product']}/{$manifest['commit_sha']}");
-    File::ensureDirectoryExists($directory);
+    $directoryExisted = File::isDirectory($directory);
     $source = base_path($fixture['fixture']);
-
     $target = $directory.'/'.$fixture['filename'];
-    File::ensureDirectoryExists(dirname($target));
+    $targets = [$target];
 
+    if ($product === 'pagila') {
+        $targets[] = $directory.'/pagila-schema.sql';
+    }
+
+    /** @var array<string, string|null> $backups */
+    $backups = [];
+    foreach ($targets as $path) {
+        $backups[$path] = File::exists($path) ? File::get($path) : null;
+    }
+
+    File::ensureDirectoryExists(dirname($target));
     if ($product === 'pagila') {
         File::put($directory.'/pagila-schema.sql', '');
     }
@@ -86,7 +99,24 @@ function installBehavioralImportFixture(string $product): string
     $contents = str_replace($product.'_source.', 'public.', $contents);
     File::put($target, $contents);
 
-    return $directory;
+    return ['directory' => $directory, 'existed' => $directoryExisted, 'files' => $backups];
+}
+
+/** @param array{directory: string, existed: bool, files: array<string, string|null>} $fixture */
+function restoreBehavioralImportFixture(array $fixture): void
+{
+    foreach ($fixture['files'] as $path => $contents) {
+        if ($contents === null) {
+            File::delete($path);
+        } else {
+            File::ensureDirectoryExists(dirname($path));
+            File::put($path, $contents);
+        }
+    }
+
+    if (! $fixture['existed'] && File::isDirectory($fixture['directory'])) {
+        File::deleteDirectory($fixture['directory']);
+    }
 }
 
 /** @return list<string> */
@@ -108,7 +138,7 @@ function assertUuidV7Ids(string $table): void
     expect($rows)->not->toBeEmpty();
 
     foreach ($rows as $row) {
-        expect($row->id)->toMatch('/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}$/i');
+        expect($row->id)->toMatch('/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i');
     }
 }
 
@@ -125,7 +155,7 @@ function assertPublishedProduct(string $product, string $domainTable): void
 }
 
 test('real fixture imports populate domains and preserve published read models', function (string $product, string $domainTable) {
-    $directory = installBehavioralImportFixture($product);
+    $fixture = installBehavioralImportFixture($product);
 
     try {
         $result = app(ProductImportPipeline::class)->run($product);
@@ -153,10 +183,11 @@ test('real fixture imports populate domains and preserve published read models',
             $storeIds = behavioralColumnIds('pagila.stores', 'id');
             expect(DB::table('pagila.films')->count())->toBeGreaterThan(0);
             expect(array_diff(behavioralColumnIds('pagila.films', 'language_id'), $languageIds))->toBeEmpty();
+            expect(DB::table('pagila.customers')->count())->toBeGreaterThan(0);
             expect(array_diff(behavioralColumnIds('pagila.customers', 'store_id'), $storeIds))->toBeEmpty();
         }
     } finally {
-        File::deleteDirectory($directory);
+        restoreBehavioralImportFixture($fixture);
     }
 })->with([
     'chinook' => ['chinook', 'artists'],
