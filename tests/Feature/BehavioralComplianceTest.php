@@ -119,26 +119,14 @@ function restoreBehavioralImportFixture(array $fixture): void
     }
 }
 
-/** @return list<string> */
-function behavioralColumnIds(string $table, string $column): array
-{
-    return array_values(DB::table($table)->pluck($column)->map(function (mixed $value): string {
-        if (! is_scalar($value)) {
-            throw new UnexpectedValueException('Expected a scalar database identifier.');
-        }
-
-        return (string) $value;
-    })->all());
-}
-
 function assertUuidV7Ids(string $table): void
 {
-    $rows = DB::table($table)->get();
+    $ids = DB::table($table)->pluck('id');
 
-    expect($rows)->not->toBeEmpty();
+    expect($ids)->not->toBeEmpty();
 
-    foreach ($rows as $row) {
-        expect($row->id)->toMatch('/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i');
+    foreach ($ids as $id) {
+        expect($id)->toMatch('/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i');
     }
 }
 
@@ -147,7 +135,15 @@ function assertPublishedProduct(string $product, string $domainTable): void
     assertUuidV7Ids("{$product}.{$domainTable}");
 
     expect(Schema::hasTable("{$product}.search_projections"))->toBeTrue();
-    expect(DB::table("{$product}.search_projections")->count())->toBeGreaterThan(0);
+    $projections = DB::table("{$product}.search_projections")->get([
+        'entity_type', 'weight_d_text', 'weight_c_text', 'weight_b_text', 'weight_a_text', 'embedding_state',
+    ]);
+    expect($projections)->not->toBeEmpty();
+    foreach ($projections as $projection) {
+        expect($projection->embedding_state)->toBe('lexical_only');
+        expect($projection->weight_d_text)->not->toBeNull();
+        expect($projection->entity_type)->not->toBeEmpty();
+    }
 
     $view = DB::select('SELECT product, stats FROM product_portfolio_snapshots WHERE product = ?', [$product]);
     expect($view)->toHaveCount(1)
@@ -161,30 +157,49 @@ test('real fixture imports populate domains and preserve published read models',
         $result = app(ProductImportPipeline::class)->run($product);
 
         expect($result['success'])->toBeTrue();
-        expect(ResetRun::find($result['run_id'] ?? '')->status)->toBe('succeeded');
+        $runId = $result['run_id'] ?? null;
+        expect($runId)->toBeString()->not->toBeEmpty();
+        $run = ResetRun::find($runId);
+        expect($run)->not->toBeNull();
+        assert($run instanceof ResetRun);
+        expect($run->status)->toBe('succeeded');
         assertPublishedProduct($product, $domainTable);
 
         if ($product === 'chinook') {
-            $artistIds = behavioralColumnIds('chinook.artists', 'id');
-            expect(DB::table('chinook.albums')->count())->toBeGreaterThan(0);
-            expect(array_diff(behavioralColumnIds('chinook.albums', 'artist_id'), $artistIds))->toBeEmpty();
+            $albums = DB::table('chinook.albums')
+                ->join('chinook.artists', 'chinook.albums.artist_id', '=', 'chinook.artists.id')
+                ->pluck('chinook.artists.name', 'chinook.albums.title')
+                ->all();
+            expect($albums)->toMatchArray([
+                'For Those About To Rock We Salute You' => 'AC/DC',
+                'Balls to the Wall' => 'Accept',
+            ]);
         }
 
         if ($product === 'northwind') {
-            $supplierIds = behavioralColumnIds('northwind.suppliers', 'id');
-            $categoryIds = behavioralColumnIds('northwind.categories', 'id');
-            expect(DB::table('northwind.products')->count())->toBeGreaterThan(0);
-            expect(array_diff(behavioralColumnIds('northwind.products', 'supplier_id'), $supplierIds))->toBeEmpty();
-            expect(array_diff(behavioralColumnIds('northwind.products', 'category_id'), $categoryIds))->toBeEmpty();
+            $products = DB::table('northwind.products')
+                ->join('northwind.suppliers', 'northwind.products.supplier_id', '=', 'northwind.suppliers.id')
+                ->join('northwind.categories', 'northwind.products.category_id', '=', 'northwind.categories.id')
+                ->pluck('northwind.suppliers.company_name', 'northwind.products.product_name')
+                ->all();
+            expect($products)->toMatchArray([
+                'Chai' => 'Exotic Liquids',
+                'Chang' => 'Exotic Liquids',
+            ]);
         }
 
         if ($product === 'pagila') {
-            $languageIds = behavioralColumnIds('pagila.languages', 'id');
-            $storeIds = behavioralColumnIds('pagila.stores', 'id');
-            expect(DB::table('pagila.films')->count())->toBeGreaterThan(0);
-            expect(array_diff(behavioralColumnIds('pagila.films', 'language_id'), $languageIds))->toBeEmpty();
-            expect(DB::table('pagila.customers')->count())->toBeGreaterThan(0);
-            expect(array_diff(behavioralColumnIds('pagila.customers', 'store_id'), $storeIds))->toBeEmpty();
+            $films = DB::table('pagila.films')
+                ->join('pagila.languages', 'pagila.films.language_id', '=', 'pagila.languages.id')
+                ->pluck('pagila.languages.name', 'pagila.films.title')
+                ->all();
+            expect($films)->toMatchArray([
+                'Academy Dinosaur' => 'English',
+                'Ace Goldfinger' => 'English',
+            ]);
+            expect(DB::table('pagila.customers')->count())->toBeGreaterThan(0)
+                ->and(DB::table('pagila.customers')->whereNotNull('store_id')->count())
+                ->toBe(DB::table('pagila.customers')->count());
         }
     } finally {
         restoreBehavioralImportFixture($fixture);
