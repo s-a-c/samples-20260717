@@ -119,6 +119,18 @@ function restoreBehavioralImportFixture(array $fixture): void
     }
 }
 
+/** @return list<string> */
+function behavioralColumnIds(string $table, string $column): array
+{
+    return array_values(DB::table($table)->pluck($column)->map(function (mixed $value): string {
+        if (! is_scalar($value)) {
+            throw new UnexpectedValueException('Expected a scalar database identifier.');
+        }
+
+        return (string) $value;
+    })->all());
+}
+
 function assertUuidV7Ids(string $table): void
 {
     $ids = DB::table($table)->pluck('id');
@@ -197,8 +209,8 @@ test('real fixture imports populate domains and preserve published read models',
                 'Academy Dinosaur' => 'English',
                 'Ace Goldfinger' => 'English',
             ]);
-            $storeIds = DB::table('pagila.stores')->pluck('id')->all();
-            $customerStoreIds = DB::table('pagila.customers')->pluck('store_id')->all();
+            $storeIds = behavioralColumnIds('pagila.stores', 'id');
+            $customerStoreIds = behavioralColumnIds('pagila.customers', 'store_id');
             expect(DB::table('pagila.customers')->count())->toBeGreaterThan(0)
                 ->and(DB::table('pagila.customers')->whereNotNull('store_id')->count())
                 ->toBe(DB::table('pagila.customers')->count())
