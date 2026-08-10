@@ -197,9 +197,12 @@ test('real fixture imports populate domains and preserve published read models',
                 'Academy Dinosaur' => 'English',
                 'Ace Goldfinger' => 'English',
             ]);
+            $storeIds = DB::table('pagila.stores')->pluck('id')->all();
+            $customerStoreIds = DB::table('pagila.customers')->pluck('store_id')->all();
             expect(DB::table('pagila.customers')->count())->toBeGreaterThan(0)
                 ->and(DB::table('pagila.customers')->whereNotNull('store_id')->count())
-                ->toBe(DB::table('pagila.customers')->count());
+                ->toBe(DB::table('pagila.customers')->count())
+                ->and(array_diff($customerStoreIds, $storeIds))->toBeEmpty();
         }
     } finally {
         restoreBehavioralImportFixture($fixture);
