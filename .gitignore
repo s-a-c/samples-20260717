@@ -49,3 +49,6 @@ yarn-error.log
 
 # understand-anything generated knowledge graph + fingerprints cache
 .understand-anything/
+
+# bd runtime gate lock (repo root)
+.beads.gate.lock
