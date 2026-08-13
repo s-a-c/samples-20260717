@@ -11,7 +11,7 @@ updated: 2026-08-05
 
 # Import Decision Deviations — Consequence Analysis
 
-> **Origin:** [`docs/superpowers/handoffs/2026-08-05-import-decision-deviations.md`](../handoffs/2026-08-05-import-decision-deviations.md).
+> **Origin:** [`docs/superpowers/handoffs/2026-08-05-import-decision-deviations.md`](../../agents/handoffs/2026-08-05-import-decision-deviations.md).
 > **Plan under analysis:** [`docs/superpowers/plans/2026-08-05-import-cascade-fix-and-transform.md`](../plans/2026-08-05-import-cascade-fix-and-transform.md).
 > **Decisions of record:** Map #15 tickets [#28](https://github.com/s-a-c/samples-20260717/issues/28), [#29](https://github.com/s-a-c/samples-20260717/issues/29), [#41](https://github.com/s-a-c/samples-20260717/issues/41), [#32](https://github.com/s-a-c/samples-20260717/issues/32).
 > **Status:** Analysis only. Does not implement the plan. ADR drafting is filed separately.

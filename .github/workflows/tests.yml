@@ -165,6 +165,7 @@ jobs:
           php artisan route:clear --no-interaction
 
       - name: Run serial Feature tests
+        if: matrix.shard == 1
         run: vendor/bin/pest tests/Feature --group=serial
 
       - name: Run affected Feature tests

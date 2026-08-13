@@ -76,7 +76,7 @@ decision**:
   Postgres schema design):** _"Search Projections per-product; drops
   atomically with `DROP SCHEMA … CASCADE` during Product Reset."_ The
   per-product schemas can be nuked and rebuilt wholesale.
-  [`source_identities`](../../database/migrations/0001_01_01_000001_create_source_identities_table.php)
+  [`source_identities`](../../../database/migrations/0001_01_01_000001_create_source_identities_table.php)
   was placed in `public` _"so it survives per-product reset"_ (Decision #10,
   [#25](https://github.com/s-a-c/samples-20260717/issues/25)).
 
@@ -91,7 +91,7 @@ dependency graph as it then stood**.
 ### 2.3. What changed underneath the decision
 
 Two days later (2026-07-27, remediation **T9**, commit `a2f2818`), the
-[`product_portfolio_snapshots`](../../database/migrations/2026_07_24_213000_create_product_portfolio_snapshots_view.php)
+[`product_portfolio_snapshots`](../../../database/migrations/2026_07_24_213000_create_product_portfolio_snapshots_view.php)
 **VIEW** was added — in `public`, but `UNION ALL`-ing over `chinook.artists`,
 `chinook.tracks`, `northwind.products`, `northwind.orders`, `pagila.films`,
 `pagila.actors`. Postgres records the view's dependency on those objects.
@@ -151,7 +151,7 @@ Map #15 decided the upstream→UUID transform in detail:
   `$model->id` from the registry on a hit, leaves it unset on a miss."_
 - **Decision #10 ([#25](https://github.com/s-a-c/samples-20260717/issues/25),
   Source Identity Registry):** built
-  [`public.source_identities`](../../app/Services/ProductImport/SourceIdentityRegistry.php),
+  [`public.source_identities`](../../../app/Services/ProductImport/SourceIdentityRegistry.php),
   `getOrMint()`, JSONB keys, the `entity` CHECK constraint — the complete
   FK-translation layer.
 - **Decision #14 ([#28](https://github.com/s-a-c/samples-20260717/issues/28)):**
@@ -181,10 +181,10 @@ as a test failure.
 Decision #28 said _"Eloquent model-per-row processing,"_ but Decision #29
 ([#29](https://github.com/s-a-c/samples-20260717/issues/29), Reset semantics)
 added the
-[`BelongsToProductDomain`](../../app/Traits/BelongsToProductDomain.php) trait
+[`BelongsToProductDomain`](../../../app/Traits/BelongsToProductDomain.php) trait
 — a trait that **blocks all Eloquent writes during a running `ResetRun`**.
 Since
-[`ProductImportPipeline::run()`](../../app/Services/ProductImport/ProductImportPipeline.php)
+[`ProductImportPipeline::run()`](../../../app/Services/ProductImport/ProductImportPipeline.php)
 marks the run `running` _before_ calling the importer, Eloquent inserts would
 throw `ProductResetWindowOpen`. The two decisions conflict.
 
@@ -271,11 +271,11 @@ consequences of these deviations before they are locked in. See §7.
 
 This lesson produced three follow-up artifacts:
 
-| Artifact                  | Location                                                                                                                           | Purpose                                                                                                                                                             |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The plan                  | [`docs/superpowers/plans/2026-08-05-import-cascade-fix-and-transform.md`](../plans/2026-08-05-import-cascade-fix-and-transform.md) | Fixes both gaps (Phase A defangs CASCADE; Phases B–E build the transform)                                                                                           |
-| Prerequisite issue + bead | GitHub issue (search `behavioral-compliance-check`); bd bead synced                                                                | A standing behavioral-compliance test that loads a real fixture through each importer and asserts the post-state. **Must land before the plan's transform phases.** |
-| Handoff prompt            | [`docs/superpowers/handoffs/2026-08-05-import-decision-deviations.md`](../handoffs/2026-08-05-import-decision-deviations.md)       | Analyzes the two decision deviations (swap abandonment, Eloquent→raw inserts) before they are locked in as superseding ADRs                                         |
+| Artifact                  | Location                                                                                                                               | Purpose                                                                                                                                                             |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The plan                  | [`docs/superpowers/plans/2026-08-05-import-cascade-fix-and-transform.md`](../plans/2026-08-05-import-cascade-fix-and-transform.md)     | Fixes both gaps (Phase A defangs CASCADE; Phases B–E build the transform)                                                                                           |
+| Prerequisite issue + bead | GitHub issue (search `behavioral-compliance-check`); bd bead synced                                                                    | A standing behavioral-compliance test that loads a real fixture through each importer and asserts the post-state. **Must land before the plan's transform phases.** |
+| Handoff prompt            | [`docs/superpowers/handoffs/2026-08-05-import-decision-deviations.md`](../../agents/handoffs/2026-08-05-import-decision-deviations.md) | Analyzes the two decision deviations (swap abandonment, Eloquent→raw inserts) before they are locked in as superseding ADRs                                         |
 
 ---
 

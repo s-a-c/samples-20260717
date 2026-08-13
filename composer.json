@@ -11,25 +11,25 @@
         "php": "^8.5",
         "asmit/resized-column": "^4.0.2",
         "awcodes/filament-badgeable-column": "^4.2",
-        "awcodes/filament-curator": "^5.1.4",
+        "awcodes/filament-curator": "^5.1.5",
         "bezhansalleh/filament-panel-switch": "^3.1",
         "bezhansalleh/filament-shield": "^4.3.1",
-        "filament/spatie-laravel-tags-plugin": "^5.7.5",
+        "filament/spatie-laravel-tags-plugin": "^5.7.6",
         "lara-zeus/activity-timeline": "^5.0.3",
         "laravel-chronicle/core": "^1.13",
-        "laravel/ai": "^0.10.2",
+        "laravel/ai": "^0.10.3",
         "laravel/chisel": "^0.1.1",
         "laravel/fortify": "^1.37.3",
         "laravel/framework": "^13.24.0",
-        "laravel/horizon": "^5.48.1",
-        "laravel/pulse": "^1.7.4",
+        "laravel/horizon": "^5.48.2",
+        "laravel/pulse": "^1.8.0",
         "laravel/reverb": "^1.11",
         "laravel/sanctum": "^4.3.3",
-        "laravel/telescope": "^5.21",
+        "laravel/telescope": "^5.22",
         "laravel/tinker": "^3.0.2",
         "livewire/blaze": "^1.0.14",
-        "livewire/flux": "^2.15.0",
-        "livewire/flux-pro": "^2.15",
+        "livewire/flux": "^2.15.1",
+        "livewire/flux-pro": "^2.15.1",
         "livewire/livewire": "^4.3.5",
         "nunomaduro/essentials": "^1.2",
         "relaticle/flowforge": "^4.0.14",
@@ -41,29 +41,29 @@
         "tpetry/laravel-postgresql-enhanced": "^3.7"
     },
     "require-dev": {
-        "albertoarena/laravel-truss": "^1.6.1",
+        "albertoarena/laravel-truss": "^1.7.0",
         "barryvdh/laravel-ide-helper": "^3.7",
-        "carthage-software/mago": "^1.45",
+        "carthage-software/mago": "^1.46",
         "driftingly/rector-laravel": "^2.5",
         "ergebnis/composer-normalize": "^2.52",
         "ergebnis/rector-rules": "^1.18.3",
         "fakerphp/faker": "^1.24.1",
         "filament/blueprint": "^2.2.0",
         "fruitcake/laravel-debugbar": "^4.4.1",
-        "infection/infection": "^0.34.1",
+        "infection/infection": "^0.34.2",
         "jasonmccreary/laravel-test-assertions": "^2.9",
         "joshcirre/instruckt-laravel": "^0.4.29",
         "larastan/larastan": "^3.10",
-        "laravel/boost": "^2.4.13",
+        "laravel/boost": "^2.5.3",
         "laravel/doctor": "^0.1.0",
         "laravel/pail": "^1.2.7",
         "laravel/pao": "^1.1.3",
-        "laravel/pint": "^1.30.3",
-        "laravel/sail": "^1.64",
+        "laravel/pint": "^1.30.4",
+        "laravel/sail": "^1.65",
         "laraveldaily/filacheck-pro": "^1.2.7",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.9.5",
-        "pestphp/pest": "^5.0.3",
+        "pestphp/pest": "^5.0.4",
         "pestphp/pest-plugin-arch": "^5.0",
         "pestphp/pest-plugin-drift": "^5.0",
         "pestphp/pest-plugin-faker": "^5.0",
@@ -76,7 +76,7 @@
         "php-parallel-lint/php-console-highlighter": "^1.0",
         "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpstan/extension-installer": "^1.4.3",
-        "phpstan/phpstan": "^2.2.7",
+        "phpstan/phpstan": "^2.2.8",
         "phpstan/phpstan-deprecation-rules": "^2.0.5",
         "phpstan/phpstan-phpunit": "^2.0.18",
         "phpstan/phpstan-strict-rules": "^2.0.12",
@@ -175,7 +175,7 @@
             "@insights",
             "@filacheck",
             "@mago:analyze",
-            "@types:check"
+            "@phpstan:analyze"
         ],
         "ci:check": [
             "Composer\\Config::disableProcessTimeout",
@@ -192,16 +192,22 @@
             "cpx nunomaduro/phpinsights"
         ],
         "lint": [
-            "pint --parallel",
-            "vendor/bin/phpstan analyse --memory-limit=512M",
-            "@test:mago"
+            "@rector:fix",
+            "pint --parallel"
         ],
         "lint:check": [
+            "@rector",
             "vendor/bin/pint --parallel --test"
         ],
         "mago:analyze": "vendor/bin/mago analyze",
         "mago:analyze:fix": "vendor/bin/mago analyze --fix",
         "mago:guard": "vendor/bin/mago guard",
+        "phpstan:analyze": [
+            "vendor/bin/phpstan analyse --memory-limit=2G"
+        ],
+        "phpstan:analyze:fix": [
+            "vendor/bin/phpstan analyse --memory-limit=2G --fix"
+        ],
         "rector": "vendor/bin/rector process --dry-run",
         "rector:fix": "vendor/bin/rector process",
         "setup": [
@@ -216,7 +222,9 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@lint:check",
-            "@types:check",
+            "@mago:analyze",
+            "@phpstan:analyze",
+            "@mago:guard",
             "vendor/bin/pest"
         ],
         "test:arch": [
@@ -230,9 +238,6 @@
         "test:pg": "vendor/bin/pest tests/Feature/Postgres",
         "test:type-cov": "vendor/bin/pest --type-coverage --min=100 --compact --coverage-html=storage/coverage",
         "test:unit": "vendor/bin/pest --testsuite=Unit",
-        "types:check": [
-            "vendor/bin/phpstan analyse --memory-limit=2G"
-        ],
         "update:requirements": [
             "composer normalize",
             "composer bump",

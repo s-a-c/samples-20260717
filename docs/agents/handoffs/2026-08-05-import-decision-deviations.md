@@ -9,8 +9,8 @@ updated: 2026-08-05
 # Import Decision Deviations — Consequence Analysis Handoff
 
 > **Handoff for:** a follow-up agent session.
-> **Origin:** [`docs/superpowers/lessons/2026-08-05-structure-not-behavior-compliance.md`](../lessons/2026-08-05-structure-not-behavior-compliance.md) §6.
-> **Related plan:** [`docs/superpowers/plans/2026-08-05-import-cascade-fix-and-transform.md`](../plans/2026-08-05-import-cascade-fix-and-transform.md).
+> **Origin:** [`docs/superpowers/lessons/2026-08-05-structure-not-behavior-compliance.md`](../../superpowers/lessons/2026-08-05-structure-not-behavior-compliance.md) §6.
+> **Related plan:** [`docs/superpowers/plans/2026-08-05-import-cascade-fix-and-transform.md`](../../superpowers/plans/2026-08-05-import-cascade-fix-and-transform.md).
 > **Related issue:** [#81 — behavioral-compliance check](https://github.com/s-a-c/samples-20260717/issues/81).
 
 ---

@@ -1,6 +1,17 @@
+---
+title: "Samples Application Delivery Roadmap Implementation Plan"
+description: "Canonical project-wide roadmap delivery plan consolidating prior wayfinder decisions, completed work, and remaining delivery gaps."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: \[plan, roadmap, implementation, wayfinder, delivery, samples\]
+updated: 2026-08-10
+---
+
 # Samples Application Delivery Roadmap Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` (recommended) or `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> [!IMPORTANT] **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` (recommended) or `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Deliver and accept the Laravel Samples application end to end: three independently importable/resettable/searchable sample products, correct Admin workflows, lifecycle-safe derived data, and evidence-backed Herd + Linux acceptance.
 
@@ -8,7 +19,64 @@
 
 **Tech Stack:** PHP 8.5, Laravel 13.24, Livewire 4, Filament 5, Pest 5, PostgreSQL 18 with `pgvector`, `laravel/ai`, Spatie Permission/Activitylog, GitHub Actions, Laravel Herd, Composer, pnpm/Vite+.
 
-## Global Constraints
+---
+
+<details>
+  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
+    Expand for Table of Contents
+  </summary>
+
+- [1. Global Constraints](#1-global-constraints)
+- [2. Current-State Ledger](#2-current-state-ledger)
+    - [2.1. Completed Maps](#21-completed-maps)
+    - [2.2. Completed Original Decisions: Issues 2–13](#22-completed-original-decisions-issues-213)
+    - [2.3. Completed Refined Decisions: Issues 16–42](#23-completed-refined-decisions-issues-1642)
+    - [2.4. Completed Remediation: Issues 46–63](#24-completed-remediation-issues-4663)
+    - [2.5. Completed Admin Decisions: Issues 65–69](#25-completed-admin-decisions-issues-6569)
+    - [2.6. Completed Pest/CI Work: Issues 74–80](#26-completed-pestci-work-issues-7480)
+    - [2.7. Existing Open Work](#27-existing-open-work)
+- [3. File and Responsibility Map](#3-file-and-responsibility-map)
+    - [3.1. Existing files to modify](#31-existing-files-to-modify)
+    - [3.2. New files to create](#32-new-files-to-create)
+- [4. Phase 0 — Baseline and Governance](#4-phase-0--baseline-and-governance)
+    - [4.1. Task 0: Audit roadmap status and acceptance evidence](#41-task-0-audit-roadmap-status-and-acceptance-evidence)
+- [5. Phase 1 — Runtime and Schema Safety](#5-phase-1--runtime-and-schema-safety)
+    - [5.1. Task 1: Restore portfolio view after shadow-schema publish](#51-task-1-restore-portfolio-view-after-shadow-schema-publish)
+    - [5.2. Task 2: Build migration-backed staging and schema-safe projections](#52-task-2-build-migration-backed-staging-and-schema-safe-projections)
+- [6. Phase 2 — Import and Reset Correctness](#6-phase-2--import-and-reset-correctness)
+    - [6.1. Task 3: Implement Eloquent staging transform infrastructure](#61-task-3-implement-eloquent-staging-transform-infrastructure)
+    - [6.2. Task 4: Complete Chinook import mapping and acceptance](#62-task-4-complete-chinook-import-mapping-and-acceptance)
+    - [6.3. Task 5: Complete Northwind import mapping and resources](#63-task-5-complete-northwind-import-mapping-and-resources)
+    - [6.4. Task 6: Complete Pagila import mapping and normalization](#64-task-6-complete-pagila-import-mapping-and-normalization)
+    - [6.5. Task 7: Complete reset evidence, invariants, embedding drain, and recovery](#65-task-7-complete-reset-evidence-invariants-embedding-drain-and-recovery)
+- [7. Phase 3 — Product Panels and Admin Workflows](#7-phase-3--product-panels-and-admin-workflows)
+    - [7.1. Task 8: Verify Admin import and stats lifecycle](#71-task-8-verify-admin-import-and-stats-lifecycle)
+- [8. Phase 4 — Search and Derived Read Models](#8-phase-4--search-and-derived-read-models)
+    - [8.1. Task 9: Complete search projections and Golden Search Corpus](#81-task-9-complete-search-projections-and-golden-search-corpus)
+- [9. Phase 5 — Quality, CI, and Documentation](#9-phase-5--quality-ci-and-documentation)
+    - [9.1. Task 10: Reconcile ADRs, dossier, CI, and project documentation](#91-task-10-reconcile-adrs-dossier-ci-and-project-documentation)
+- [10. Phase 6 — Release Acceptance and Operations](#10-phase-6--release-acceptance-and-operations)
+    - [10.1. Task 11: Run two-environment release acceptance and sign-off](#101-task-11-run-two-environment-release-acceptance-and-sign-off)
+- [11. Phase 7 — Closure and Stabilization](#11-phase-7--closure-and-stabilization)
+    - [11.1. Task 12: Teams and Settings Livewire verification — **verified locally**](#111-task-12-teams-and-settings-livewire-verification--verified-locally)
+    - [11.2. Task 13: Admin ProductCardActions verification — **verified locally**](#112-task-13-admin-productcardactions-verification--verified-locally)
+    - [11.3. Task 14: Real source-data imports through the production pipeline](#113-task-14-real-source-data-imports-through-the-production-pipeline)
+    - [11.4. Task 15: Linux CI with pgvector/pgvector:pg18](#114-task-15-linux-ci-with-pgvectorpgvectorpg18)
+    - [11.5. Task 17: PHPStan quality gate — **verified locally**](#115-task-17-phpstan-quality-gate--verified-locally)
+    - [11.6. Task 18: Coverage gate remediation — **verified**](#116-task-18-coverage-gate-remediation--verified)
+    - [11.7. Task 16: Documentation and acceptance-record alignment](#117-task-16-documentation-and-acceptance-record-alignment)
+- [12. Historical Task Reconciliation Rules](#12-historical-task-reconciliation-rules)
+- [13. Self-Review](#13-self-review)
+    - [13.1. Scope coverage](#131-scope-coverage)
+    - [13.2. Placeholder scan](#132-placeholder-scan)
+    - [13.3. Dependency consistency](#133-dependency-consistency)
+- [14. Execution Handoff](#14-execution-handoff)
+
+---
+
+</details>
+
+## 1. Global Constraints
 
 - Use the accepted PostgreSQL-only suite; `phpunit.xml` points all tests at `pgsql` and CI uses `pgvector/pgvector:pg18`.
 - Keep product schemas isolated: `chinook`, `northwind`, and `pagila`; never merge their business domains.
@@ -29,11 +97,11 @@
 
 ---
 
-## Current-State Ledger
+## 2. Current-State Ledger
 
 The following work is part of this roadmap even when its original issue is closed. These entries are historical prerequisites and must be linked from evidence; they are not recreated as duplicate issues.
 
-### Completed Maps
+### 2.1. Completed Maps
 
 | Tracker item                                                                                                       | Status entering this roadmap            | Roadmap treatment                                                            |
 | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------- | ---------------------------------------------------------------------------- |
@@ -43,7 +111,7 @@ The following work is part of this roadmap even when its original issue is close
 | [Wayfinder — Admin UI Product Import & Stats Refresh Buttons](https://github.com/s-a-c/samples-20260717/issues/64) | Open decision map with closed decisions | Existing Admin decisions feed Task 6; execution is not accepted until Task 6 |
 | [Wayfinder — Pest 5 Comprehensive Adoption](https://github.com/s-a-c/samples-20260717/issues/73)                   | Open map with closed execution tickets  | Historical CI work; release evidence is rechecked by Task 0 and Task 9       |
 
-### Completed Original Decisions: Issues 2–13
+### 2.2. Completed Original Decisions: Issues 2–13
 
 | Issue                                                     | Completed task                                                                               |
 | --------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -60,7 +128,7 @@ The following work is part of this roadmap even when its original issue is close
 | [12](https://github.com/s-a-c/samples-20260717/issues/12) | Define native SQLite extension bootstrap and diagnostics; superseded by the PostgreSQL pivot |
 | [13](https://github.com/s-a-c/samples-20260717/issues/13) | Define authorization, audit, and configurable-dashboard package boundaries                   |
 
-### Completed Refined Decisions: Issues 16–42
+### 2.3. Completed Refined Decisions: Issues 16–42
 
 | Issue                                                     | Completed task                                                                |
 | --------------------------------------------------------- | ----------------------------------------------------------------------------- |
@@ -92,7 +160,7 @@ The following work is part of this roadmap even when its original issue is close
 | [41](https://github.com/s-a-c/samples-20260717/issues/41) | Decide PostgreSQL schema design for three products                            |
 | [42](https://github.com/s-a-c/samples-20260717/issues/42) | Decide PostgreSQL extension management                                        |
 
-### Completed Remediation: Issues 46–63
+### 2.4. Completed Remediation: Issues 46–63
 
 | Issue                                                     | Completed task                                          |
 | --------------------------------------------------------- | ------------------------------------------------------- |
@@ -114,7 +182,7 @@ The following work is part of this roadmap even when its original issue is close
 | [62](https://github.com/s-a-c/samples-20260717/issues/62) | Document macOS Herd PHPStan quirk and quality tools     |
 | [63](https://github.com/s-a-c/samples-20260717/issues/63) | Update CONTEXT.md to remove SQLite terminology          |
 
-### Completed Admin Decisions: Issues 65–69
+### 2.5. Completed Admin Decisions: Issues 65–69
 
 | Issue                                                     | Completed task                                          |
 | --------------------------------------------------------- | ------------------------------------------------------- |
@@ -124,7 +192,7 @@ The following work is part of this roadmap even when its original issue is close
 | [68](https://github.com/s-a-c/samples-20260717/issues/68) | Design stats refresh behavior                           |
 | [69](https://github.com/s-a-c/samples-20260717/issues/69) | Design import button UX                                 |
 
-### Completed Pest/CI Work: Issues 74–80
+### 2.6. Completed Pest/CI Work: Issues 74–80
 
 | Issue                                                     | Completed task                                     |
 | --------------------------------------------------------- | -------------------------------------------------- |
@@ -136,7 +204,7 @@ The following work is part of this roadmap even when its original issue is close
 | [79](https://github.com/s-a-c/samples-20260717/issues/79) | Build PR TIA/sharded coverage CI                   |
 | [80](https://github.com/s-a-c/samples-20260717/issues/80) | Build advisory PR and blocking nightly mutation CI |
 
-### Existing Open Work
+### 2.7. Existing Open Work
 
 | Issue                                                                                                             | Treatment                                                                          |
 | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
@@ -145,9 +213,9 @@ The following work is part of this roadmap even when its original issue is close
 
 ---
 
-## File and Responsibility Map
+## 3. File and Responsibility Map
 
-### Existing files to modify
+### 3.1. Existing files to modify
 
 - `database/migrations/2026_07_24_213000_create_product_portfolio_snapshots_view.php`: single source of truth for portfolio-view DDL.
 - `app/Services/ProductImport/{Chinook,Northwind,Pagila}Importer.php`: staging/source lifecycle, atomic publish, view recreation, cleanup.
@@ -159,7 +227,7 @@ The following work is part of this roadmap even when its original issue is close
 - `tests/Feature/Import/`, `tests/Feature/Reset/`, `tests/Feature/Search/`, and `tests/Feature/Admin/`: regression and acceptance seams.
 - `CONTEXT.md`, ADRs under `docs/10-architecture/1003-adr/`, and dossier files under `docs/15-delivery/1515-implementation-readiness-dossier/`.
 
-### New files to create
+### 3.2. New files to create
 
 - `app/Services/ProductImport/PortfolioViewRecreator.php`.
 - `app/Services/ProductImport/StagingSchemaBuilder.php` and `app/Console/Commands/ProductStage.php`.
@@ -172,9 +240,9 @@ The following work is part of this roadmap even when its original issue is close
 
 ---
 
-## Phase 0 — Baseline and Governance
+## 4. Phase 0 — Baseline and Governance
 
-### Task 0: Audit roadmap status and acceptance evidence
+### 4.1. Task 0: Audit roadmap status and acceptance evidence
 
 **Tracker:** [Audit roadmap status and acceptance evidence](https://github.com/s-a-c/samples-20260717/issues/86) · Beads `samples-20260717-7rg.1`.
 
@@ -210,9 +278,9 @@ Comment the matrix and evidence paths on the tracker issue, mirror the execution
 
 ---
 
-## Phase 1 — Runtime and Schema Safety
+## 5. Phase 1 — Runtime and Schema Safety
 
-### Task 1: Restore portfolio view after shadow-schema publish
+### 5.1. Task 1: Restore portfolio view after shadow-schema publish
 
 **Tracker:** [Restore portfolio view after shadow-schema publish](https://github.com/s-a-c/samples-20260717/issues/87) · Beads `samples-20260717-7rg.2`.
 
@@ -279,7 +347,7 @@ composer types:check
 
 **Gate:** the view exists after fresh migration and after each product publish; `/admin` can read stats after import.
 
-### Task 2: Build migration-backed staging and schema-safe projections
+### 5.2. Task 2: Build migration-backed staging and schema-safe projections
 
 **Tracker:** [Build migration-backed staging and schema-safe projections](https://github.com/s-a-c/samples-20260717/issues/88) · Beads `samples-20260717-7rg.3`.
 
@@ -317,9 +385,9 @@ vendor/bin/pint --dirty --format agent
 
 ---
 
-## Phase 2 — Import and Reset Correctness
+## 6. Phase 2 — Import and Reset Correctness
 
-### Task 3: Implement Eloquent staging transform infrastructure
+### 6.1. Task 3: Implement Eloquent staging transform infrastructure
 
 **Tracker:** [Implement Eloquent staging transform infrastructure](https://github.com/s-a-c/samples-20260717/issues/89) · Beads `samples-20260717-7rg.4`.
 
@@ -376,7 +444,7 @@ composer test:arch
 
 **Gate:** no raw domain-table insert path remains in the transform; staging writes are allowed, live writes remain guarded, and observers are correctly suppressed.
 
-### Task 4: Complete Chinook import mapping and acceptance
+### 6.2. Task 4: Complete Chinook import mapping and acceptance
 
 **Tracker:** [Complete Chinook import mapping and acceptance](https://github.com/s-a-c/samples-20260717/issues/90) · Beads `samples-20260717-7rg.5`.
 
@@ -406,7 +474,7 @@ Run: `php artisan test --compact --filter='TransformChinook|Importers'`.
 
 **Gate:** Chinook passes all import invariants and remains queryable through portfolio, panel, and search paths after publish.
 
-### Task 5: Complete Northwind import mapping and resources
+### 6.3. Task 5: Complete Northwind import mapping and resources
 
 **Tracker:** [Complete Northwind import mapping and resources](https://github.com/s-a-c/samples-20260717/issues/91) · Beads `samples-20260717-7rg.6` · coordinates with [T8: Create Northwind Filament resources](https://github.com/s-a-c/samples-20260717/issues/50).
 
@@ -437,7 +505,7 @@ composer test:arch
 
 **Gate:** Northwind imports and resources work on PostgreSQL with the approved panel/permission boundaries.
 
-### Task 6: Complete Pagila import mapping and normalization
+### 6.4. Task 6: Complete Pagila import mapping and normalization
 
 **Tracker:** [Complete Pagila import mapping and normalization](https://github.com/s-a-c/samples-20260717/issues/92) · Beads `samples-20260717-7rg.7`.
 
@@ -468,7 +536,7 @@ composer test:arch
 
 **Gate:** Pagila imports with normalized addresses, valid circular FKs, projections, portfolio view, and product isolation.
 
-### Task 7: Complete reset evidence, invariants, embedding drain, and recovery
+### 6.5. Task 7: Complete reset evidence, invariants, embedding drain, and recovery
 
 **Tracker:** [Complete reset evidence invariants embedding drain and recovery](https://github.com/s-a-c/samples-20260717/issues/93) · Beads `samples-20260717-7rg.8`.
 
@@ -506,9 +574,9 @@ composer test:arch
 
 ---
 
-## Phase 3 — Product Panels and Admin Workflows
+## 7. Phase 3 — Product Panels and Admin Workflows
 
-### Task 8: Verify Admin import and stats lifecycle
+### 7.1. Task 8: Verify Admin import and stats lifecycle
 
 **Tracker:** [Verify Admin import and stats lifecycle](https://github.com/s-a-c/samples-20260717/issues/94) · Beads `samples-20260717-7rg.9` · executes [Spec: Admin UI Product Import & Refresh Stats Buttons](https://github.com/s-a-c/samples-20260717/issues/70).
 
@@ -541,9 +609,9 @@ vendor/bin/pint --dirty --format agent
 
 ---
 
-## Phase 4 — Search and Derived Read Models
+## 8. Phase 4 — Search and Derived Read Models
 
-### Task 9: Complete search projections and Golden Search Corpus
+### 8.1. Task 9: Complete search projections and Golden Search Corpus
 
 **Tracker:** [Complete search projections and Golden Search Corpus](https://github.com/s-a-c/samples-20260717/issues/95) · Beads `samples-20260717-7rg.10`.
 
@@ -576,9 +644,9 @@ composer types:check
 
 ---
 
-## Phase 5 — Quality, CI, and Documentation
+## 9. Phase 5 — Quality, CI, and Documentation
 
-### Task 10: Reconcile ADRs, dossier, CI, and project documentation
+### 9.1. Task 10: Reconcile ADRs, dossier, CI, and project documentation
 
 **Tracker:** [Reconcile ADRs dossier CI and project documentation](https://github.com/s-a-c/samples-20260717/issues/96) · Beads `samples-20260717-7rg.11`.
 
@@ -616,9 +684,9 @@ Parse all workflow YAML and confirm the Pest TIA/shard, coverage/type-coverage, 
 
 ---
 
-## Phase 6 — Release Acceptance and Operations
+## 10. Phase 6 — Release Acceptance and Operations
 
-### Task 11: Run two-environment release acceptance and sign-off
+### 10.1. Task 11: Run two-environment release acceptance and sign-off
 
 **Tracker:** [Run two-environment release acceptance and sign-off](https://github.com/s-a-c/samples-20260717/issues/97) · Beads `samples-20260717-7rg.12`.
 
@@ -646,12 +714,12 @@ If any gate fails, reopen the owning task and record the exact failure/recovery 
 
 ---
 
-## Phase 7 — Closure and Stabilization
+## 11. Phase 7 — Closure and Stabilization
 
 The core Tasks 0–11 are implemented. Closure and acceptance are tracked by
 GitHub #101–#108 and Beads `.13`–`.19`; tracker closure is not acceptance.
 
-### Task 12: Teams and Settings Livewire verification — **verified locally**
+### 11.1. Task 12: Teams and Settings Livewire verification — **verified locally**
 
 **Tracker:** [#101](https://github.com/s-a-c/samples-20260717/issues/101) · Beads
 `samples-20260717-7rg.13`.
@@ -664,7 +732,7 @@ endpoint. No application code change was required.
 **Evidence:** `php artisan route:clear --no-interaction`; Teams/Settings
 focused suite **59/59 passed**; full Pest suite subsequently **563/563 passed**.
 
-### Task 13: Admin ProductCardActions verification — **verified locally**
+### 11.2. Task 13: Admin ProductCardActions verification — **verified locally**
 
 **Tracker:** [#102](https://github.com/s-a-c/samples-20260717/issues/102) · Beads
 `samples-20260717-7rg.14`.
@@ -675,7 +743,7 @@ component and 404 symptoms had the same stale Livewire route-cache cause.
 **Evidence:** `php artisan route:clear --no-interaction`; ProductCardActions
 focused suite **13/13 passed**; full Pest suite **563/563 passed**.
 
-### Task 14: Real source-data imports through the production pipeline
+### 11.3. Task 14: Real source-data imports through the production pipeline
 
 **Tracker:** [#103](https://github.com/s-a-c/samples-20260717/issues/103) · Beads
 `samples-20260717-7rg.15`.
@@ -700,7 +768,7 @@ reader restores the caller's PostgreSQL `search_path` after each dump.
 acceptance record remains open until the evidence is attached to the committed
 branch and the final CI/quality gates pass.
 
-### Task 15: Linux CI with pgvector/pgvector:pg18
+### 11.4. Task 15: Linux CI with pgvector/pgvector:pg18
 
 **Tracker:** [#104](https://github.com/s-a-c/samples-20260717/issues/104) · Beads
 `samples-20260717-7rg.16`.
@@ -721,7 +789,7 @@ service.
 are green locally; PHPStan remains red with pre-existing and roadmap static
 analysis debt. No CI run is accepted until that gate is resolved.
 
-### Task 17: PHPStan quality gate — **verified locally**
+### 11.5. Task 17: PHPStan quality gate — **verified locally**
 
 **Tracker:** [#106](https://github.com/s-a-c/samples-20260717/issues/106) · Beads
 `samples-20260717-7rg.18` — tracker-closed.
@@ -735,7 +803,7 @@ analysis debt. No CI run is accepted until that gate is resolved.
 Architecture 26/26. Linux CI and committed-SHA acceptance remain tracked by
 Task 15 / #104.
 
-### Task 18: Coverage gate remediation — **verified**
+### 11.6. Task 18: Coverage gate remediation — **verified**
 
 **Tracker:** [#108](https://github.com/s-a-c/samples-20260717/issues/108) · Beads
 `samples-20260717-7rg.19` — tracker-closed.
@@ -750,7 +818,7 @@ Task 15 / #104.
 1/2 and 2/2 pass; mutation pull-request job passes. Local `composer test` is
 581/581 with 1,761 assertions.
 
-### Task 16: Documentation and acceptance-record alignment
+### 11.7. Task 16: Documentation and acceptance-record alignment
 
 **Tracker:** [#105](https://github.com/s-a-c/samples-20260717/issues/105) · Beads
 `samples-20260717-7rg.17`.
@@ -767,7 +835,7 @@ Task 15 / #104.
 committed-SHA evidence, and all relevant docs use the same task IDs, commands,
 and acceptance semantics.
 
-## Historical Task Reconciliation Rules
+## 12. Historical Task Reconciliation Rules
 
 - Do not reopen issues 2–42 merely because their decisions are old; reopen only for a material implementation conflict and link the new evidence.
 - Do not treat issues 47–63 as final acceptance; use Task 0 to classify which are implemented, verified, or only documented.
@@ -775,9 +843,9 @@ and acceptance semantics.
 - Keep issues 74–80 as historical Pest/CI work; Task 10 and Task 11 verify that the workflows are actually part of the release gate.
 - Close each new GitHub issue only with a resolution comment containing files, commands, evidence locations, and the corresponding Beads ID.
 
-## Self-Review
+## 13. Self-Review
 
-### Scope coverage
+### 13.1. Scope coverage
 
 - Product architecture and prior decisions: Current-State Ledger.
 - Missing view: Task 1.
@@ -791,11 +859,11 @@ and acceptance semantics.
 - Herd/Linux final acceptance: Task 11.
 - Completed tasks: all historical issue groups are listed with links.
 
-### Placeholder scan
+### 13.2. Placeholder scan
 
 Every remaining task has a tracker issue, files, interfaces, test command, and acceptance gate; no step is unowned or deferred behind an unspecified implementation choice.
 
-### Dependency consistency
+### 13.3. Dependency consistency
 
 - Task 1 and Task 2 depend on Task 0.
 - Task 3 depends on Task 2.
@@ -807,7 +875,7 @@ Every remaining task has a tracker issue, files, interfaces, test command, and a
 - Task 11 is the final gate and consumes Tasks 5, 8, 9, and 10.
 - Task 15 (CI verification) depends on Tasks 12 (Teams/Settings fix), 13 (Admin fix), and 14 (real imports).
 
-## Execution Handoff
+## 14. Execution Handoff
 
 Plan complete and saved to `docs/superpowers/plans/2026-08-08-samples-application-delivery-roadmap.md`. The canonical tracker is [Wayfinder — Samples Application Delivery Roadmap](https://github.com/s-a-c/samples-20260717/issues/85), with execution issues [86–97](https://github.com/s-a-c/samples-20260717/issues/86) (core roadmap) and [101–104](https://github.com/s-a-c/samples-20260717/issues/101) (closure blockers) and Beads parent `samples-20260717-7rg`.
 
