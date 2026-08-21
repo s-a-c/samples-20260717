@@ -225,8 +225,8 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3(@voidzero-dev/vite-plus-core@0.2.9(jiti@2.7.0))
       concurrently:
-        specifier: ^10.0.4
-        version: 10.0.4
+        specifier: ^10.0.5
+        version: 10.0.5
       fontaine:
         specifier: ^0.8.0
         version: 0.8.0
@@ -234,8 +234,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(@voidzero-dev/vite-plus-core@0.2.9(jiti@2.7.0))(fontaine@0.8.0)
       morphicons:
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.7.0
+        version: 1.7.0
       rolldown:
         specifier: ^1.2.4
         version: 1.2.4
@@ -243,7 +243,7 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3
       vite:
-        specifier: npm:@voidzero-dev/vite-plus-core@^0.2.9
+        specifier: npm:@voidzero-dev/vite-plus-core@^0.2.8
         version: '@voidzero-dev/vite-plus-core@0.2.9(jiti@2.7.0)'
     devDependencies:
       laravel-echo:
@@ -1096,8 +1096,8 @@ packages:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
 
-  ansi-regex@6.2.2:
-    resolution: {integrity: sha512-Bq3SmSpyFHaWjPk8If9yc6svM8c56dB5BAtW4Qbw5jHTwwXXcTLoRMkpDJp6VL0XzlWaCHTXrkFURMYmD0sLqg==}
+  ansi-regex@6.3.0:
+    resolution: {integrity: sha512-WpDfL7NO6j7tH88IDBNVdUJxDh9nmCteAVW9dsep846XdwF4naCBK+/tGLX3KJgcpgMRXCFlTM2hKGoK9FsdrQ==}
     engines: {node: '>=12'}
 
   ansi-styles@5.2.0:
@@ -1127,8 +1127,8 @@ packages:
     resolution: {integrity: sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w==}
     engines: {node: '>=20'}
 
-  concurrently@10.0.4:
-    resolution: {integrity: sha512-trZql+7l/0+WRAsAnEdctr4+iiOS6ZrViI6H8QWcCF9MFS/LT0dKpe8vluB1to6it+OxSI4VospFTIFMW8DJRw==}
+  concurrently@10.0.5:
+    resolution: {integrity: sha512-JaP/CoftUrCcAFW/g//RbgEGwlelnEae6cfBLgH6ZdO6s8jPkn6p9SB9u6pdVxYXoiSnFqseOlHfrEfF82TVOg==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -1401,8 +1401,8 @@ packages:
   mlly@1.8.2:
     resolution: {integrity: sha512-d+ObxMQFmbt10sretNDytwt85VrbkhhUA/JBGm1MPaWJ65Cl4wOgLaB1NYvJSZ0Ef03MMEU/0xpPMXUIQ29UfA==}
 
-  morphicons@1.6.0:
-    resolution: {integrity: sha512-Sq1110Tzm53D07V6T2smlU6aXVb3XACdF7MSred76ttuhpVj6Rvt4i4D5N7m/GYEJ5GaK89XBTJRBm8SQvGWGA==}
+  morphicons@1.7.0:
+    resolution: {integrity: sha512-MOqSK+O5RdxynER5016vUvvqQaHkqqWYmNpocsk9TEszUZ9PB/K52Yqq8AGTRK1NUO5dj8znGSEVf9slqEIQaw==}
     peerDependencies:
       react: '>=18'
       react-native: '>=0.71'
@@ -2207,7 +2207,7 @@ snapshots:
 
   ansi-regex@5.0.1: {}
 
-  ansi-regex@6.2.2: {}
+  ansi-regex@6.3.0: {}
 
   ansi-styles@5.2.0: {}
 
@@ -2229,7 +2229,7 @@ snapshots:
       strip-ansi: 7.2.0
       wrap-ansi: 9.0.2
 
-  concurrently@10.0.4:
+  concurrently@10.0.5:
     dependencies:
       chalk: 5.6.2
       rxjs: 7.8.2
@@ -2437,7 +2437,7 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.4
 
-  morphicons@1.6.0: {}
+  morphicons@1.7.0: {}
 
   mrmime@2.0.1: {}
 
@@ -2587,7 +2587,7 @@ snapshots:
 
   strip-ansi@7.2.0:
     dependencies:
-      ansi-regex: 6.2.2
+      ansi-regex: 6.3.0
 
   supports-color@10.2.2: {}
 

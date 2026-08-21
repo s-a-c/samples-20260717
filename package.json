@@ -7,10 +7,10 @@
     "dependencies": {
         "@laravel/passkeys": "^0.4.0",
         "@tailwindcss/vite": "^4.3.3",
-        "concurrently": "^10.0.4",
+        "concurrently": "^10.0.5",
         "fontaine": "^0.8.0",
         "laravel-vite-plugin": "^3.2.0",
-        "morphicons": "^1.6.0",
+        "morphicons": "^1.7.0",
         "rolldown": "^1.2.4",
         "tailwindcss": "^4.3.3",
         "vite": "npm:@voidzero-dev/vite-plus-core@^0.2.9"
