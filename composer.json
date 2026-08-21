@@ -50,7 +50,7 @@
         "fakerphp/faker": "^1.24.1",
         "filament/blueprint": "^2.2.0",
         "fruitcake/laravel-debugbar": "^4.4.1",
-        "infection/infection": "^0.34.2",
+        "infection/infection": "^0.35.0",
         "jasonmccreary/laravel-test-assertions": "^2.9",
         "joshcirre/instruckt-laravel": "^0.4.29",
         "larastan/larastan": "^3.10",
