@@ -1,0 +1,135 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_md",
+            "label": "151598-index.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "1515-implementation-readiness-dossier \u2014 Index",
+                "description": "Semantic index and glossary for docs/15-delivery/1515-implementation-readiness-dossier.",
+                "type": "index",
+                "tags": "[navigation, index, glossary]",
+                "created": "2026-08-17",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_1515_implementation_readiness_dossier_index",
+            "label": "1515-implementation-readiness-dossier \u2014 Index",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L13"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_1_topic_index",
+            "label": "1. Topic index",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L29"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_2_glossary",
+            "label": "2. Glossary",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L38"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_md",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_1515_implementation_readiness_dossier_index",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_1515_implementation_readiness_dossier_index",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_1_topic_index",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_md",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151504_stage_1_foundation_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L31",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/15-delivery/1515-implementation-readiness-dossier/151504-stage-1-foundation.md"
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_md",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151507_stage_2_domain_resources_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L32",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/15-delivery/1515-implementation-readiness-dossier/151507-stage-2-domain-resources.md"
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_md",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151508_stage_3_quality_features_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L33",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/15-delivery/1515-implementation-readiness-dossier/151508-stage-3-quality-features.md"
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_md",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L34",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md"
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_md",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L35",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md"
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_1515_implementation_readiness_dossier_index",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_2_glossary",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L38",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151598_index_md",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151501_contents_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151598-index.md",
+            "source_location": "L40",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/15-delivery/1515-implementation-readiness-dossier/151501-contents.md"
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

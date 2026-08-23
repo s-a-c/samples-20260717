@@ -1,0 +1,143 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_09_product_0907_backlog_md",
+            "label": "0907-backlog.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "Backlog",
+                "description": "This document tracks the status of planning tickets and the graduation of fog-of-war items within the Samples implementation effort.",
+                "type": "plan",
+                "tags": "[product, backlog]",
+                "created": "2026-07-30",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0907_backlog_backlog",
+            "label": "Backlog",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0907_backlog_1_purpose",
+            "label": "1. Purpose",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L31"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0907_backlog_2_current_frontier_open_tickets",
+            "label": "2. Current Frontier (Open Tickets)",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L35"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0907_backlog_3_decisions_so_far",
+            "label": "3. Decisions So Far",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L43"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0907_backlog_4_not_yet_specified_fog_of_war",
+            "label": "4. Not Yet Specified (Fog of War)",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L49"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0907_backlog_5_out_of_scope",
+            "label": "5. Out of Scope",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L54"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0907_backlog_6_diagrams",
+            "label": "6. Diagrams",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L58"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_09_product_0907_backlog_md",
+            "target": "$graphify-root$_docs_09_product_0907_backlog_backlog",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0907_backlog_backlog",
+            "target": "$graphify-root$_docs_09_product_0907_backlog_1_purpose",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L31",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0907_backlog_backlog",
+            "target": "$graphify-root$_docs_09_product_0907_backlog_2_current_frontier_open_tickets",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L35",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0907_backlog_backlog",
+            "target": "$graphify-root$_docs_09_product_0907_backlog_3_decisions_so_far",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L43",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0907_backlog_backlog",
+            "target": "$graphify-root$_docs_09_product_0907_backlog_4_not_yet_specified_fog_of_war",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L49",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0907_backlog_backlog",
+            "target": "$graphify-root$_docs_09_product_0907_backlog_5_out_of_scope",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L54",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0907_backlog_backlog",
+            "target": "$graphify-root$_docs_09_product_0907_backlog_6_diagrams",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0907-backlog.md",
+            "source_location": "L58",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

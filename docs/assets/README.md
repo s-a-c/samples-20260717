@@ -30,7 +30,7 @@ This directory contains the canonical Mermaid source files for all diagrams used
 | `api-interaction-sequence.mmd`  | Sequence of search and AI embedding interactions.      | `1204-api-spec.md`                | Active |
 | `ux-flow.mmd`                   | Sitemap and navigation logic across Filament panels.   | `1207-ux-design.md`               | Active |
 | `state-reset-run.mmd`           | Lifecycle of a product reset operation.                | `1202-data-model.md`              | Active |
-| `security-trust-boundaries.mmd` | Maps auth, RBAC, and data access boundaries.           | `security-design.md`              | Active |
+| `security-trust-boundaries.mmd` | Maps auth, RBAC, and data access boundaries.           | `1208-security-design.md`         | Active |
 | `test-strategy.mmd`             | The test pyramid and CI/CD quality gates.              | `1802-test-strategy.md`           | Active |
 | `acceptance-test-flow.mmd`      | Sequence diagram of an acceptance matrix test.         | `1804-acceptance-tests.md`        | Active |
 

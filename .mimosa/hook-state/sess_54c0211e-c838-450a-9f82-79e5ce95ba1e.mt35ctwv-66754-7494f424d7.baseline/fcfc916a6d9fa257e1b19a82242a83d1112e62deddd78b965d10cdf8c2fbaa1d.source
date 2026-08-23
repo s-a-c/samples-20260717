@@ -1,0 +1,160 @@
+<?php if (isset($component)) { $__componentOriginale4e92fa6d4792d4e92552ece04c2b0e7 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale4e92fa6d4792d4e92552ece04c2b0e7 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'activity-timeline::components.section','data' => ['aside' => $isAside(),'compact' => $isCompact(),'extraAttributes' => $getExtraAttributes(),'headingVisible' => $isHeadingVisible()]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('activity-timeline::section'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['aside' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($isAside()),'compact' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($isCompact()),'extraAttributes' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($getExtraAttributes()),'headingVisible' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($isHeadingVisible())]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+     <?php $__env->slot('heading', null, []); ?> 
+        <?php echo e($getLabel() ?? $getHeading()); ?>
+
+     <?php $__env->endSlot(); ?>
+
+     <?php $__env->slot('description', null, []); ?> 
+        <?php echo e($getDescription()); ?>
+
+     <?php $__env->endSlot(); ?>
+
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(count($childComponentContainers = $getChildComponentContainers()) &&
+            count($childComponentContainers[0]->getComponents()) > 0): ?>
+        <?php
+            $childItemsCount = count($childComponentContainers);
+            $showItemsCount = $getShowItemsCount() ?? $childItemsCount;
+        ?>
+
+        <div x-data="{ childItemsCount: <?php echo \Illuminate\Support\Js::from($childItemsCount)->toHtml() ?>, showItemsCount: <?php echo \Illuminate\Support\Js::from($showItemsCount)->toHtml() ?>, totalShowItemsCount: <?php echo \Illuminate\Support\Js::from($showItemsCount)->toHtml() ?> }">
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $childComponentContainers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $container): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                <?php
+                    $activityComponents = [
+                        'activityIcon' => null,
+                        'activityTitle' => null,
+                        'activityDate' => null,
+                        'activityDescription' => null,
+                    ];
+
+                    foreach ($container->getComponents() as $component) {
+                        $viewIdentifier = $component->getViewIdentifier();
+                        if (array_key_exists($viewIdentifier, $activityComponents)) {
+                            $activityComponents[$viewIdentifier] = $component;
+                        }
+                    }
+
+                    extract($activityComponents);
+                ?>
+
+
+                <div x-show="<?php echo \Illuminate\Support\Js::from($index)->toHtml() ?> < totalShowItemsCount" x-collapse :key="<?php echo \Illuminate\Support\Js::from(rand())->toHtml() ?>"
+                    class="<?php echo \Illuminate\Support\Arr::toCssClasses(['flex flex-col']); ?>">
+
+                    <div class="flex gap-x-3">
+
+                        <div class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                            'relative last:after:hidden',
+                            'after:absolute after:top-8 after:bottom-0 after:start-4 after:w-px after:-translate-x-[0.5px] after:bg-gray-300 dark:after:bg-gray-700' => !$loop->last,
+                        ]); ?>">
+                            <?php echo e($activityIcon); ?>
+
+                        </div>
+
+                        <div class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                            'fi-timeline-item',
+                            'grow pt-1 space-y-1',
+                            'mb-7' => !$loop->last,
+                            'mb-0' => $loop->last,
+                        ]); ?>">
+                            <div class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                                'fi-timeline-item-heading flex',
+                                'flex-col items-start space-y-1 md:space-y-0 md:items-center md:flex-row md:justify-between md:space-x-5' => !$isAside(),
+                                'flex-col items-start space-y-1 lg:space-y-0 lg:items-center lg:flex-row lg:justify-between lg:space-x-5' => $isAside(),
+                            ]); ?>">
+
+                                <?php echo e($activityTitle); ?>
+
+
+                                <?php echo e($activityDate); ?>
+
+
+                            </div>
+
+                            <?php echo e($activityDescription); ?>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+
+            <div x-show="totalShowItemsCount < childItemsCount">
+                <?php
+                    $icon = $getShowItemsIcon();
+                    $label = $getShowItemsLabel();
+                    $color = $getShowItemsColor();
+                ?>
+                <?php if (isset($component)) { $__componentOriginal549c94d872270b69c72bdf48cb183bc9 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal549c94d872270b69c72bdf48cb183bc9 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.link','data' => ['xOn:click' => 'totalShowItemsCount += showItemsCount','icon' => $icon,'color' => $color,'class' => 'ms-1.5 cursor-pointer hover:underline']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['x-on:click' => 'totalShowItemsCount += showItemsCount','icon' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($icon),'color' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($color),'class' => 'ms-1.5 cursor-pointer hover:underline']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                    <?php echo e($label); ?>
+
+                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal549c94d872270b69c72bdf48cb183bc9)): ?>
+<?php $attributes = $__attributesOriginal549c94d872270b69c72bdf48cb183bc9; ?>
+<?php unset($__attributesOriginal549c94d872270b69c72bdf48cb183bc9); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal549c94d872270b69c72bdf48cb183bc9)): ?>
+<?php $component = $__componentOriginal549c94d872270b69c72bdf48cb183bc9; ?>
+<?php unset($__componentOriginal549c94d872270b69c72bdf48cb183bc9); ?>
+<?php endif; ?>
+            </div>
+
+        </div>
+    <?php else: ?>
+        <?php if (isset($component)) { $__componentOriginala1c6c33564113285d49a9d641bf4d3ad = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala1c6c33564113285d49a9d641bf4d3ad = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'activity-timeline::components.empty-state','data' => ['compact' => $isCompact(),'description' => $getEmptyStateDescription(),'heading' => $getEmptyStateHeading(),'icon' => $getEmptyStateIcon()]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('activity-timeline::empty-state'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['compact' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($isCompact()),'description' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($getEmptyStateDescription()),'heading' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($getEmptyStateHeading()),'icon' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($getEmptyStateIcon())]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala1c6c33564113285d49a9d641bf4d3ad)): ?>
+<?php $attributes = $__attributesOriginala1c6c33564113285d49a9d641bf4d3ad; ?>
+<?php unset($__attributesOriginala1c6c33564113285d49a9d641bf4d3ad); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala1c6c33564113285d49a9d641bf4d3ad)): ?>
+<?php $component = $__componentOriginala1c6c33564113285d49a9d641bf4d3ad; ?>
+<?php unset($__componentOriginala1c6c33564113285d49a9d641bf4d3ad); ?>
+<?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale4e92fa6d4792d4e92552ece04c2b0e7)): ?>
+<?php $attributes = $__attributesOriginale4e92fa6d4792d4e92552ece04c2b0e7; ?>
+<?php unset($__attributesOriginale4e92fa6d4792d4e92552ece04c2b0e7); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale4e92fa6d4792d4e92552ece04c2b0e7)): ?>
+<?php $component = $__componentOriginale4e92fa6d4792d4e92552ece04c2b0e7; ?>
+<?php unset($__componentOriginale4e92fa6d4792d4e92552ece04c2b0e7); ?>
+<?php endif; ?>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/lara-zeus/activity-timeline/resources/views/infolists/components/activity-section.blade.php ENDPATH**/ ?>

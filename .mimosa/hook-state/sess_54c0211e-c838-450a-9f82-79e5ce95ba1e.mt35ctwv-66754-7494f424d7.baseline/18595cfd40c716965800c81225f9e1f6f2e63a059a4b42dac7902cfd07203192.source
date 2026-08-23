@@ -1,0 +1,74 @@
+<?php
+    use LaraZeus\ActivityTimeline\Enums\IconAnimation;
+?>
+<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($icon = $getIcon($getState())): ?>
+    <?php
+        $color = $getColor($getState()) ?? 'gray';
+        $animation = $getAnimation($getState());
+    ?>
+
+    <div class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+        'relative flex items-center justify-center w-8 h-8',
+        match ($animation) {
+            IconAnimation::Spin, 'spin' => 'animate-spin',
+            IconAnimation::Ping, 'ping' => 'animate-ping',
+            IconAnimation::Pulse, 'pulse' => 'animate-pulse',
+            IconAnimation::Bounce, 'bounce' => 'animate-bounce',
+            default => $animation,
+        },
+    ]); ?>">
+        <span class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+            'flex flex-shrink-0 p-[5px] w-8 h-8 justify-center items-center dark:border rounded-full dark:bg-gray-800 dark:border-gray-700',
+            match ($color) {
+                'gray' => 'bg-gray-100',
+                default => 'fi-color-custom bg-custom-100',
+            },
+        ]); ?>" style="<?php echo \Illuminate\Support\Arr::toCssStyles([
+            \Filament\Support\get_color_css_variables($color, shades: [100, 800], alias: 'infolists::components.icon-entry.item') => $color !== 'gray',
+        ]) ?>">
+            <?php if (isset($component)) { $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.icon','data' => ['icon' => $icon,'class' => \Illuminate\Support\Arr::toCssClasses([
+                'fi-in-icon-item fi-in-icon-item-size-md h-4 w-4',
+                match ($color) {
+                    'gray' => 'fi-color-gray text-gray-400 dark:text-gray-500',
+                    default => 'fi-color-custom text-custom-500 dark:text-custom-400',
+                },
+            ]),'style' => \Illuminate\Support\Arr::toCssStyles([
+                \Filament\Support\get_color_css_variables($color, shades: [400, 500], alias: 'infolists::components.icon-entry.item') => $color !== 'gray',
+            ])]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['icon' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($icon),'class' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(\Illuminate\Support\Arr::toCssClasses([
+                'fi-in-icon-item fi-in-icon-item-size-md h-4 w-4',
+                match ($color) {
+                    'gray' => 'fi-color-gray text-gray-400 dark:text-gray-500',
+                    default => 'fi-color-custom text-custom-500 dark:text-custom-400',
+                },
+            ])),'style' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(\Illuminate\Support\Arr::toCssStyles([
+                \Filament\Support\get_color_css_variables($color, shades: [400, 500], alias: 'infolists::components.icon-entry.item') => $color !== 'gray',
+            ]))]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $attributes = $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $component = $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+        </span>
+    </div>
+<?php else: ?>
+    <div class="relative flex items-center justify-center w-8 h-8">
+        <div class="w-2 h-2 bg-gray-400 rounded-full dark:bg-gray-600"></div>
+    </div>
+<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/lara-zeus/activity-timeline/resources/views/infolists/components/activity-icon.blade.php ENDPATH**/ ?>

@@ -1,0 +1,116 @@
+<?php # [BlazeFolded]:{flux::icon.x-mark}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/icon/x-mark.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::icon.chevron-up-down}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/icon/chevron-up-down.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::icon.chevron-down}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/icon/chevron-down.blade.php}:{1786296215} ?>
+<?php
+if (!function_exists('_5c76b5bbea2d5b77975655c5ab72f3f5')):
+function _5c76b5bbea2d5b77975655c5ab72f3f5($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
+$__env = $__blaze->env;
+$__slots['slot'] ??= new \Illuminate\View\ComponentSlot('');
+if (($__data['attributes'] ?? null) instanceof \Illuminate\View\ComponentAttributeBag) { $__data = $__data + $__data['attributes']->all(); unset($__data['attributes']); }
+extract($__slots, EXTR_SKIP); unset($__slots);
+extract($__data, EXTR_SKIP);
+$attributes = \Livewire\Blaze\Runtime\BlazeAttributeBag::make($__data, $__bound, $__keys);
+unset($__data, $__bound, $__keys);
+ob_start();
+?>
+
+
+<?php
+$__awareDefaults = [ 'placeholder', 'variant' ];
+$placeholder = $__blaze->getConsumableData('placeholder'); unset($attributes['placeholder']);
+$variant = $__blaze->getConsumableData('variant'); unset($attributes['variant']);
+unset($__awareDefaults);
+?>
+
+<?php
+$__defaults = [
+    'placeholder' => null,
+    'clearable' => null,
+    'invalid' => null,
+    'suffix' => null,
+    'size' => null,
+    'max' => null,
+];
+$placeholder ??= $attributes['placeholder'] ?? $__defaults['placeholder']; unset($attributes['placeholder']);
+$clearable ??= $attributes['clearable'] ?? $__defaults['clearable']; unset($attributes['clearable']);
+$invalid ??= $attributes['invalid'] ?? $__defaults['invalid']; unset($attributes['invalid']);
+$suffix ??= $attributes['suffix'] ?? $__defaults['suffix']; unset($attributes['suffix']);
+$size ??= $attributes['size'] ?? $__defaults['size']; unset($attributes['size']);
+$max ??= $attributes['max'] ?? $__defaults['max']; unset($attributes['max']);
+unset($__defaults);
+?>
+
+<?php
+$classes = Flux::classes()
+    ->add('group/listbox-button cursor-default')
+    ->add('overflow-hidden') // Overflow hidden is here to prevent the button from growing when selected text is too long.
+    ->add('flex items-center')
+    ->add('shadow-xs')
+    ->add('bg-white dark:bg-white/10 dark:disabled:bg-white/[7%]')
+    // Make the placeholder match the text color of standard input placeholders...
+    ->add('disabled:shadow-none')
+    ->add(match($size) {
+        default => 'min-h-10 text-base sm:text-sm rounded-lg ps-[calc(0.5rem-1px)] pe-3 py-[calc(0.5rem-1px)] block w-full',
+        'sm' => 'min-h-6 text-sm rounded-md ps-[calc(0.25rem)] pe-2 py-[calc(0.25rem)] block w-full',
+    })
+    ->add('border border-zinc-200 border-b-zinc-300/80 dark:border-white/10 data-invalid:border-red-500')
+    ->add('in-[data-target]:text-start')
+    ->add($variant === 'combobox' ? 'has-focus-visible:outline-default has-data-invalid:border-red-500 has-data-invalid:outline-red-500!' : '')
+    ;
+?>
+
+<ui-pillbox-trigger <?php echo e($attributes->class($classes)); ?> <?php if($invalid): ?> data-invalid <?php endif; ?> data-flux-group-target data-flux-pillbox-trigger>
+    <?php if ($slot->isNotEmpty()): ?>
+        <?php echo e($slot); ?>
+
+    <?php else: ?>
+        <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/src/../stubs/resources/views/flux/pillbox/selected.blade.php', $__blaze->compiledPath.'/7eb40450f207f1f8d988849f28f89a10.php'); ?>
+<?php $__blaze->pushData(['placeholder' => $placeholder,'max' => $max,'suffix' => $suffix,'size' => $size]); ?>
+<?php _7eb40450f207f1f8d988849f28f89a10($__blaze, ['placeholder' => $placeholder,'max' => $max,'suffix' => $suffix,'size' => $size], [], ['placeholder', 'max', 'suffix', 'size'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php $__blaze->popData(); ?>
+    <?php endif; ?>
+
+    <?php if ($clearable): ?>
+        <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php', $__blaze->compiledPath.'/fe655d7748da53c95044c686e985c3de.php'); ?>
+<?php if (isset($__slotsfe655d7748da53c95044c686e985c3de)) { $__slotsStackfe655d7748da53c95044c686e985c3de[] = $__slotsfe655d7748da53c95044c686e985c3de; } ?>
+<?php if (isset($__attrsfe655d7748da53c95044c686e985c3de)) { $__attrsStackfe655d7748da53c95044c686e985c3de[] = $__attrsfe655d7748da53c95044c686e985c3de; } ?>
+<?php $__attrsfe655d7748da53c95044c686e985c3de = ['as' => 'div','class' => 'self-start cursor-pointer -my-1 ms-2 -me-2 [[data-flux-pillbox-trigger]:has([data-flux-pillbox-placeholder])_&]:hidden [[data-flux-pillbox][disabled]:has([data-selected])_&]:hidden','variant' => 'subtle','size' => $size === 'sm' ? 'xs' : 'sm','square' => true,'tabindex' => '-1','ariaLabel' => e(__('Clear selected')),'xOn:click.prevent.stop' => '$el.closest(\'ui-pillbox\').clear()']; ?>
+<?php $__slotsfe655d7748da53c95044c686e985c3de = []; ?>
+<?php $__blaze->pushData($__attrsfe655d7748da53c95044c686e985c3de); ?>
+<?php ob_start(); ?>
+            <?php ob_start(); ?><svg class="shrink-0 [:where(&amp;)]:size-4" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"/>
+</svg>
+
+        <?php echo ltrim(ob_get_clean()); ?>
+        <?php $__slotsfe655d7748da53c95044c686e985c3de['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slotsfe655d7748da53c95044c686e985c3de); ?>
+<?php _fe655d7748da53c95044c686e985c3de($__blaze, $__attrsfe655d7748da53c95044c686e985c3de, $__slotsfe655d7748da53c95044c686e985c3de, ['size', 'square'], ['ariaLabel' => 'aria-label', 'xOn:click.prevent.stop' => 'x-on:click.prevent.stop'], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStackfe655d7748da53c95044c686e985c3de)) { $__slotsfe655d7748da53c95044c686e985c3de = array_pop($__slotsStackfe655d7748da53c95044c686e985c3de); } ?>
+<?php if (! empty($__attrsStackfe655d7748da53c95044c686e985c3de)) { $__attrsfe655d7748da53c95044c686e985c3de = array_pop($__attrsStackfe655d7748da53c95044c686e985c3de); } ?>
+<?php $__blaze->popData(); ?>
+    <?php endif; ?>
+
+    <?php if($variant == 'combobox'): ?>
+        <?php ob_start(); ?><button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-8 text-sm rounded-md w-8 inline-flex  bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white      self-start -me-2 -my-1 [[disabled]_&]:pointer-events-none" data-flux-button="data-flux-button" tabindex="-1">
+        <?php ob_start(); ?>
+            <?php ob_start(); ?><svg class="shrink-0 [:where(&amp;)]:size-5 text-zinc-400/75 [[data-flux-input]:hover_&]:text-zinc-800 [[disabled]_&]:text-zinc-200! dark:text-white/60 dark:[[data-flux-input]:hover_&]:text-white dark:[[disabled]_&]:text-white/40!" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M10.53 3.47a.75.75 0 0 0-1.06 0L6.22 6.72a.75.75 0 0 0 1.06 1.06L10 5.06l2.72 2.72a.75.75 0 1 0 1.06-1.06l-3.25-3.25Zm-4.31 9.81 3.25 3.25a.75.75 0 0 0 1.06 0l3.25-3.25a.75.75 0 1 0-1.06-1.06L10 14.94l-2.72-2.72a.75.75 0 0 0-1.06 1.06Z" clip-rule="evenodd"/>
+</svg>
+
+        <?php echo ltrim(ob_get_clean()); ?>
+        <?php echo trim(ob_get_clean()); ?>
+
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+    <?php else: ?>
+        <?php ob_start(); ?><svg class="shrink-0 [:where(&amp;)]:size-5 self-start <?php echo e($size === 'sm' ? 'mt-0.25 mb-0.25' : 'mt-0.5'); ?> ms-2 -me-1 pointer-events-none text-zinc-300 [[data-flux-pillbox-trigger]:hover_&]:text-zinc-800 [[disabled]_&]:text-zinc-200! dark:text-white/60 dark:[[data-flux-pillbox-trigger]:hover_&]:text-white dark:[[disabled]_&]:text-white/40!" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+</svg>
+
+        <?php echo ltrim(ob_get_clean()); ?>
+    <?php endif; ?>
+</ui-pillbox-trigger><?php
+echo ltrim(ob_get_clean());
+} endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/pillbox/trigger.blade.php ENDPATH**/ ?>

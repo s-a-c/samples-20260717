@@ -1,0 +1,1 @@
+{"nodes": [{"id": "debug_using_debugbar_skill", "label": "Debug Using Debugbar Skill", "file_type": "concept", "source_file": ".pi/skills/debug-using-debugbar/SKILL.md", "rationale": "CLI-based request profiling and N+1 query detection."}], "edges": [], "hyperedges": []}

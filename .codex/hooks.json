@@ -1,51 +1,91 @@
 {
-  "hooks": {
-    "PostCompact": [
-      {
-        "hooks": [
-          {
-            "command": "bd codex-hook PostCompact",
-            "statusMessage": "Scheduling Beads context refresh",
-            "type": "command"
-          }
+    "hooks": {
+        "PreCompact": [
+            {
+                "hooks": [
+                    {
+                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-pre-compact.sh\"",
+                        "timeout": 5,
+                        "type": "command"
+                    }
+                ]
+            }
         ],
-        "matcher": "manual|auto"
-      }
-    ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "command": "bd codex-hook PreCompact",
-            "statusMessage": "Checking Beads context",
-            "type": "command"
-          }
+        "SessionEnd": [
+            {
+                "hooks": [
+                    {
+                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-end.sh\"",
+                        "timeout": 5,
+                        "type": "command"
+                    }
+                ]
+            }
         ],
-        "matcher": "manual|auto"
-      }
-    ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "command": "bd codex-hook SessionStart",
-            "statusMessage": "Loading Beads context",
-            "type": "command"
-          }
+        "SessionStart": [
+            {
+                "hooks": [
+                    {
+                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-start.sh\"",
+                        "timeout": 5,
+                        "type": "command"
+                    }
+                ],
+                "matcher": "startup"
+            },
+            {
+                "hooks": [
+                    {
+                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-start.sh\"",
+                        "timeout": 5,
+                        "type": "command"
+                    }
+                ],
+                "matcher": "resume"
+            },
+            {
+                "hooks": [
+                    {
+                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-start.sh\"",
+                        "timeout": 5,
+                        "type": "command"
+                    }
+                ],
+                "matcher": "compact"
+            }
         ],
-        "matcher": "startup|resume|clear"
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "command": "bd codex-hook UserPromptSubmit",
-            "statusMessage": "Refreshing Beads context",
-            "type": "command"
-          }
+        "Stop": [
+            {
+                "hooks": [
+                    {
+                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-stop.sh\"",
+                        "timeout": 5,
+                        "type": "command"
+                    }
+                ]
+            }
+        ],
+        "SubagentStop": [
+            {
+                "hooks": [
+                    {
+                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-stop.sh\"",
+                        "timeout": 5,
+                        "type": "command"
+                    }
+                ]
+            }
+        ],
+        "UserPromptSubmit": [
+            {
+                "hooks": [
+                    {
+                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-user-prompt.sh\"",
+                        "timeout": 5,
+                        "type": "command"
+                    }
+                ]
+            }
         ]
-      }
-    ]
-  }
+    }
 }

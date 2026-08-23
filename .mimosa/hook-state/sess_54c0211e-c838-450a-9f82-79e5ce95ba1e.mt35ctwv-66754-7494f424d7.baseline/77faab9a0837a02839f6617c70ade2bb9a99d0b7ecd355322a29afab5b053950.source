@@ -1,0 +1,458 @@
+#!/usr/bin/env python3
+import json
+
+OUT = "/Users/s-a-c/Herd/samples-20260717/.understand-anything/intermediate/batch-1.json"
+
+nodes = []
+edges = []
+
+def add_node(node):
+    nodes.append(node)
+
+def add_edge(source, target, etype, weight):
+    edges.append({
+        "source": source, "target": target,
+        "type": etype, "direction": "forward", "weight": weight,
+    })
+
+# ---- Staging model table map (path -> (ClassName, product, entity, table)) ----
+chinook_staging = [
+    ("Album", "album", "chinook_staging.albums"),
+    ("Artist", "artist", "chinook_staging.artists"),
+    ("Customer", "customer", "chinook_staging.customers"),
+    ("Employee", "employee", "chinook_staging.employees"),
+    ("Genre", "genre", "chinook_staging.genres"),
+    ("Invoice", "invoice", "chinook_staging.invoices"),
+    ("MediaType", "media-type", "chinook_staging.media_types"),
+    ("Playlist", "playlist", "chinook_staging.playlists"),
+    ("Track", "track", "chinook_staging.tracks"),
+]
+northwind_staging = [
+    ("Category", "category", "northwind_staging.categories"),
+    ("Customer", "customer", "northwind_staging.customers"),
+    ("Employee", "employee", "northwind_staging.employees"),
+    ("Product", "product", "northwind_staging.products"),
+    ("Supplier", "supplier", "northwind_staging.suppliers"),
+]
+pagila_staging = [
+    ("Actor", "actor", "pagila_staging.actors"),
+    ("Category", "category", "pagila_staging.categories"),
+    ("Customer", "customer", "pagila_staging.customers"),
+    ("Film", "film", "pagila_staging.films"),
+    ("Staff", "staff", "pagila_staging.staff"),
+    ("Store", "store", "pagila_staging.stores"),
+]
+
+def staging_path(product, cls):
+    return f"app/Domain/Staging/{product}/{cls}.php"
+
+def add_staging_file(product, cls, entity, table):
+    p = staging_path(product, cls)
+    fid = f"file:{p}"
+    cid = f"class:{p}:{cls}"
+    add_node({
+        "id": fid, "type": "file", "name": f"{cls}.php", "filePath": p,
+        "summary": f"Final staging Eloquent model for the {product} {entity} entity, targeting `{table}`; mass-assignment open ($guarded = []) for import-only writes during a ResetRun.",
+        "tags": ["staging-model", product.lower(), entity, "eloquent", "import"],
+        "complexity": "simple",
+    })
+    add_node({
+        "id": cid, "type": "class", "name": cls, "filePath": p,
+        "summary": f"Final staging model extending StagingModel, mapped to `{table}` via the Illuminate Table attribute.",
+        "tags": ["staging-model", product.lower(), entity],
+        "complexity": "simple",
+        "lineRange": [10, 11],
+    })
+    add_edge(fid, cid, "contains", 1.0)
+    add_edge(fid, cid, "exports", 0.8)
+    add_edge(fid, "file:app/Domain/Staging/StagingModel.php", "imports", 0.7)
+    add_edge(cid, "class:app/Domain/Staging/StagingModel.php:StagingModel", "inherits", 0.9)
+
+# ---- 1. ProductStage command ----
+P = "app/Console/Commands/ProductStage.php"
+add_node({"id": f"file:{P}", "type": "file", "name": "ProductStage.php", "filePath": P,
+    "summary": "Artisan console command `product:stage {product}` that builds the migration-backed staging schema for a product (chinook/northwind/pagila) by delegating to StagingSchemaBuilder; reports success or surfaces InvalidArgumentException messages.",
+    "tags": ["cli-command", "artisan", "staging-schema", "product-stage"], "complexity": "simple"})
+add_node({"id": f"class:{P}:ProductStage", "type": "class", "name": "ProductStage", "filePath": P,
+    "summary": "Command class extending Illuminate\\Console\\Command with signature `product:stage {product}` and a handle() that builds the staging schema via injected StagingSchemaBuilder.",
+    "tags": ["cli-command", "artisan", "staging-schema"], "complexity": "simple", "lineRange": [11, 33]})
+add_node({"id": f"function:{P}:ProductStage::handle", "type": "function", "name": "handle", "filePath": P,
+    "summary": "Lowercases the product argument, calls $builder->build(), returns FAILURE with an error message on InvalidArgumentException or SUCCESS with an info line.",
+    "tags": ["artisan", "command-handler", "staging-schema"], "complexity": "simple", "lineRange": [17, 32]})
+add_edge(f"file:{P}", f"class:{P}:ProductStage", "contains", 1.0)
+add_edge(f"file:{P}", f"function:{P}:ProductStage::handle", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:ProductStage", "exports", 0.8)
+add_edge(f"file:{P}", "file:app/Services/ProductImport/StagingSchemaBuilder.php", "imports", 0.7)
+
+# ---- 2. StagingModel ----
+P = "app/Domain/Staging/StagingModel.php"
+add_node({"id": f"file:{P}", "type": "file", "name": "StagingModel.php", "filePath": P,
+    "summary": "Abstract base class for all staging Eloquent models. Targets `<product>_staging.<table>` via subclass Table attributes, uses HasUuids, opens mass-assignment ($guarded = []), and is the explicit import-only exemption from the domain write guard (writes happen during a ResetRun when live writes are blocked).",
+    "tags": ["staging-model", "eloquent", "base-class", "import"], "complexity": "simple"})
+add_node({"id": f"class:{P}:StagingModel", "type": "class", "name": "StagingModel", "filePath": P,
+    "summary": "Abstract Eloquent Model using HasUuids with $guarded = []; the shared parent for every product staging model.",
+    "tags": ["staging-model", "eloquent", "base-class", "abstract"], "complexity": "simple", "lineRange": [21, 26]})
+add_edge(f"file:{P}", f"class:{P}:StagingModel", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:StagingModel", "exports", 0.8)
+
+# ---- 3. All staging model files ----
+for cls, entity, table in chinook_staging:
+    add_staging_file("Chinook", cls, entity, table)
+for cls, entity, table in northwind_staging:
+    add_staging_file("Northwind", cls, entity, table)
+for cls, entity, table in pagila_staging:
+    add_staging_file("Pagila", cls, entity, table)
+
+# ---- 4. PortfolioSnapshotStats ----
+P = "app/Services/Portfolio/PortfolioSnapshotStats.php"
+add_node({"id": f"file:{P}", "type": "file", "name": "PortfolioSnapshotStats.php", "filePath": P,
+    "summary": "Service-layer reader for cross-product portfolio statistics from the product_portfolio_snapshots Postgres view. Lives outside the Filament presentation layer (per ADR 100326 / Wayfinder #17) so presentation classes stay free of direct DB facade usage. byProduct() decodes and shape-validates the JSONB stats column into a typed per-product array.",
+    "tags": ["service", "portfolio", "db-reader", "statistics"], "complexity": "moderate"})
+add_node({"id": f"class:{P}:PortfolioSnapshotStats", "type": "class", "name": "PortfolioSnapshotStats", "filePath": P,
+    "summary": "Final service class exposing a static byProduct() reader over the product_portfolio_snapshots view.",
+    "tags": ["service", "portfolio", "statistics"], "complexity": "moderate", "lineRange": [17, 56]})
+add_node({"id": f"function:{P}:PortfolioSnapshotStats::byProduct", "type": "function", "name": "byProduct", "filePath": P,
+    "summary": "Static method that reads product_portfolio_snapshots, json_decodes each row's stats, and validates each item to a {label,value} shape, returning a per-product array of stat rows.",
+    "tags": ["portfolio", "statistics", "db-reader"], "complexity": "moderate", "lineRange": [27, 55]})
+add_edge(f"file:{P}", f"class:{P}:PortfolioSnapshotStats", "contains", 1.0)
+add_edge(f"file:{P}", f"function:{P}:PortfolioSnapshotStats::byProduct", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:PortfolioSnapshotStats", "exports", 0.8)
+
+# ---- 5. ChinookImporter ----
+P = "app/Services/ProductImport/ChinookImporter.php"
+add_node({"id": f"file:{P}", "type": "file", "name": "ChinookImporter.php", "filePath": P,
+    "summary": "Service that executes the Chinook product import into PostgreSQL: creates the chinook_source schema, loads the upstream SQL dump, builds the staging schema, runs ChinookProductMapper, then atomically swaps the staging schema to chinook and recreates portfolio views inside a transaction.",
+    "tags": ["service", "importer", "chinook", "product-import", "schema-swap"], "complexity": "moderate"})
+add_node({"id": f"class:{P}:ChinookImporter", "type": "class", "name": "ChinookImporter", "filePath": P,
+    "summary": "Importer class constructed with a PostgresSourceReader and PortfolioViewRecreator; orchestrates source load, staging build, mapping, and the shadow-schema swap.",
+    "tags": ["service", "importer", "chinook"], "complexity": "moderate", "lineRange": [14, 93]})
+methods = [
+    ("__construct", [16, 19], "Constructor injecting PostgresSourceReader and PortfolioViewRecreator via promoted properties.", ["constructor", "dependency-injection"], "simple"),
+    ("import", [26, 55], "Runs the full Chinook import (short-circuits on dry-run): create source schema, load source rows, build staging schema, run ChinookProductMapper, then drop/rename schemas and recreate views inside a DB transaction; returns success or the caught error message.", ["importer", "chinook", "schema-swap", "orchestration"], "moderate"),
+    ("processSourceRows", [60, 71], "Resolves the source SQL dump path and, if present, executes it into the isolated source schema via the Postgres reader; returns whether any tables were created.", ["importer", "source-load", "chinook"], "simple"),
+    ("sourceHasTables", [73, 78], "Checks information_schema.tables for any table in the given source schema.", ["importer", "schema-check"], "simple"),
+    ("getSourceFilePath", [80, 92], "Reads the database/sources/chinook.php manifest and returns the absolute storage path to the source SQL dump (or null if the manifest is absent).", ["importer", "manifest", "chinook"], "simple"),
+]
+for mname, lr, summ, tags, cx in methods:
+    add_node({"id": f"function:{P}:ChinookImporter::{mname}", "type": "function", "name": mname, "filePath": P,
+        "summary": summ, "tags": tags, "complexity": cx, "lineRange": lr})
+    add_edge(f"file:{P}", f"function:{P}:ChinookImporter::{mname}", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:ChinookImporter", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:ChinookImporter", "exports", 0.8)
+for tgt in ["app/Models/ResetRun.php",
+            "app/Services/ProductImport/Mapping/Chinook/ChinookProductMapper.php",
+            "app/Services/ProductImport/Schema/SourceSchemaBuilder.php"]:
+    add_edge(f"file:{P}", f"file:{tgt}", "imports", 0.7)
+add_edge(f"function:{P}:ChinookImporter::import", f"function:{P}:ChinookImporter::processSourceRows", "calls", 0.8)
+add_edge(f"function:{P}:ChinookImporter::processSourceRows", f"function:{P}:ChinookImporter::getSourceFilePath", "calls", 0.8)
+add_edge(f"function:{P}:ChinookImporter::processSourceRows", f"function:{P}:ChinookImporter::sourceHasTables", "calls", 0.8)
+add_edge(f"function:{P}:ChinookImporter::import",
+         "function:app/Services/ProductImport/Mapping/Chinook/ChinookProductMapper.php:ChinookProductMapper::load", "calls", 0.8)
+
+# ---- 6. EmbeddingDrain ----
+P = "app/Services/ProductImport/EmbeddingDrain.php"
+add_node({"id": f"file:{P}", "type": "file", "name": "EmbeddingDrain.php", "filePath": P,
+    "summary": "Service that drains pending embedding jobs from a product schema's search_projections table after a publish: marks pending rows as lexical_only, and reports completion and failed counts.",
+    "tags": ["service", "embedding", "search-projections", "post-publish"], "complexity": "moderate"})
+add_node({"id": f"class:{P}:EmbeddingDrain", "type": "class", "name": "EmbeddingDrain", "filePath": P,
+    "summary": "Service class exposing drain(), isComplete(), and failedCount() over a product schema's search_projections embedding_state.",
+    "tags": ["service", "embedding", "search-projections"], "complexity": "moderate", "lineRange": [17, 70]})
+for mname, lr, summ, tags, cx in [
+    ("drain", [25, 47], "Collects pending search_projections rows for a schema, marks each as 'lexical_only', and returns dispatched and failed counts.", ["embedding", "drain", "search-projections"], "moderate"),
+    ("isComplete", [52, 59], "Returns true when no search_projections rows remain in the 'pending' embedding_state.", ["embedding", "completion-check"], "simple"),
+    ("failedCount", [64, 69], "Returns the count of search_projections rows in the 'failed' embedding_state for a schema.", ["embedding", "failure-count"], "simple"),
+]:
+    add_node({"id": f"function:{P}:EmbeddingDrain::{mname}", "type": "function", "name": mname, "filePath": P,
+        "summary": summ, "tags": tags, "complexity": cx, "lineRange": lr})
+    add_edge(f"file:{P}", f"function:{P}:EmbeddingDrain::{mname}", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:EmbeddingDrain", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:EmbeddingDrain", "exports", 0.8)
+
+# ---- 7. ImportInvariants ----
+P = "app/Services/ProductImport/ImportInvariants.php"
+add_node({"id": f"file:{P}", "type": "file", "name": "ImportInvariants.php", "filePath": P,
+    "summary": "Service that evaluates post-publish invariants before a ResetRun is marked succeeded: verifies search projections are populated when domain tables have data, and that the public.product_portfolio_snapshots view exists.",
+    "tags": ["service", "invariants", "post-publish", "validation"], "complexity": "moderate"})
+add_node({"id": f"class:{P}:ImportInvariants", "type": "class", "name": "ImportInvariants", "filePath": P,
+    "summary": "Service class exposing evaluate() which returns a {passed, failures} verdict for a published product schema.",
+    "tags": ["service", "invariants", "validation"], "complexity": "moderate", "lineRange": [14, 65]})
+add_node({"id": f"function:{P}:ImportInvariants::evaluate", "type": "function", "name": "evaluate", "filePath": P,
+    "summary": "Checks that search_projections has rows when any domain table has data, and that the product_portfolio_snapshots view exists via to_regclass; returns passed flag and a failures list.",
+    "tags": ["invariants", "validation", "post-publish"], "complexity": "moderate", "lineRange": [22, 64]})
+add_edge(f"file:{P}", f"class:{P}:ImportInvariants", "contains", 1.0)
+add_edge(f"file:{P}", f"function:{P}:ImportInvariants::evaluate", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:ImportInvariants", "exports", 0.8)
+
+# ---- 8. ProductMapper (abstract) ----
+P = "app/Services/ProductImport/Mapping/ProductMapper.php"
+add_node({"id": f"file:{P}", "type": "file", "name": "ProductMapper.php", "filePath": P,
+    "summary": "Abstract orchestrator that runs per-product table mappers in dependency order. Subclasses declare the ordered list of TableMappers (mappers()) and implement load() to truncate staging tables then run each mapper in a transaction.",
+    "tags": ["mapper", "abstract", "orchestrator", "product-import"], "complexity": "simple"})
+add_node({"id": f"class:{P}:ProductMapper", "type": "class", "name": "ProductMapper", "filePath": P,
+    "summary": "Abstract base for product mappers; declares abstract load() and mappers() contracts.",
+    "tags": ["mapper", "abstract", "orchestrator"], "complexity": "simple", "lineRange": [14, 31]})
+for mname, lr, summ in [
+    ("load", [23, 23], "Abstract contract: load all tables for a product from source to staging, returning {tables, rows}."),
+    ("mappers", [30, 30], "Abstract contract: return the ordered list of TableMappers for this product."),
+]:
+    add_node({"id": f"function:{P}:ProductMapper::{mname}", "type": "function", "name": mname, "filePath": P,
+        "summary": summ, "tags": ["mapper", "abstract", "contract"], "complexity": "simple", "lineRange": lr})
+    add_edge(f"file:{P}", f"function:{P}:ProductMapper::{mname}", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:ProductMapper", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:ProductMapper", "exports", 0.8)
+
+# ---- 9. SelfReferentialMapper (abstract) ----
+P = "app/Services/ProductImport/Mapping/SelfReferentialMapper.php"
+add_node({"id": f"file:{P}", "type": "file", "name": "SelfReferentialMapper.php", "filePath": P,
+    "summary": "Abstract mapper for tables with self-referential foreign keys. Defines a two-pass load() contract: insert with the self-FK null, collect the source-to-UUID map, then UPDATE to set the resolved value.",
+    "tags": ["mapper", "abstract", "self-referential", "product-import"], "complexity": "simple"})
+add_node({"id": f"class:{P}:SelfReferentialMapper", "type": "class", "name": "SelfReferentialMapper", "filePath": P,
+    "summary": "Abstract subclass of TableMapper refining load() to return an int row count for two-pass self-referential FK resolution.",
+    "tags": ["mapper", "abstract", "self-referential"], "complexity": "simple", "lineRange": [13, 23]})
+add_node({"id": f"function:{P}:SelfReferentialMapper::load", "type": "function", "name": "load", "filePath": P,
+    "summary": "Abstract contract: load source rows with two-pass self-referential FK resolution, returning the number of rows loaded.",
+    "tags": ["mapper", "abstract", "self-referential"], "complexity": "simple", "lineRange": [22, 22]})
+add_edge(f"file:{P}", f"class:{P}:SelfReferentialMapper", "contains", 1.0)
+add_edge(f"file:{P}", f"function:{P}:SelfReferentialMapper::load", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:SelfReferentialMapper", "exports", 0.8)
+add_edge(f"class:{P}:SelfReferentialMapper",
+         "class:app/Services/ProductImport/Mapping/TableMapper.php:TableMapper", "inherits", 0.9)
+
+# ---- 10. TableMapper (abstract) ----
+P = "app/Services/ProductImport/Mapping/TableMapper.php"
+add_node({"id": f"file:{P}", "type": "file", "name": "TableMapper.php", "filePath": P,
+    "summary": "Abstract per-table mapper base: reads source rows and writes staging rows. Concrete subclasses define entity, source table, staging model, key columns, and column/FK mappings. Provides the load() contract plus sourceInt()/sourceFloat() coercion helpers and countSourceRows()/readSourceRows() query helpers.",
+    "tags": ["mapper", "abstract", "base-class", "product-import"], "complexity": "moderate"})
+add_node({"id": f"class:{P}:TableMapper", "type": "class", "name": "TableMapper", "filePath": P,
+    "summary": "Abstract base for per-table mappers; declares load() and provides sourceInt/sourceFloat coercion and source row read/count helpers.",
+    "tags": ["mapper", "abstract", "base-class"], "complexity": "moderate", "lineRange": [18, 72]})
+for mname, lr, summ, tags in [
+    ("load", [27, 27], "Abstract contract: read source rows, map them, resolve FKs, and save through Eloquent staging subclasses with observer suppression; returns the row count.", ["mapper", "abstract", "contract"]),
+    ("sourceInt", [29, 40], "Coerces a mixed source value to int (accepting int or numeric string), throwing InvalidArgumentException otherwise.", ["mapper", "coercion", "helper"]),
+    ("sourceFloat", [42, 53], "Coerces a mixed source value to float (accepting float, int, or numeric string), throwing InvalidArgumentException otherwise.", ["mapper", "coercion", "helper"]),
+    ("countSourceRows", [58, 61], "Returns the row count of a source table for progress reporting.", ["mapper", "query-helper", "progress"]),
+    ("readSourceRows", [68, 71], "Reads all rows from a source table as an array of stdClass objects.", ["mapper", "query-helper"]),
+]:
+    cx = "simple"
+    add_node({"id": f"function:{P}:TableMapper::{mname}", "type": "function", "name": mname, "filePath": P,
+        "summary": summ, "tags": tags, "complexity": cx, "lineRange": lr})
+    add_edge(f"file:{P}", f"function:{P}:TableMapper::{mname}", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:TableMapper", "contains", 1.0)
+add_edge(f"file:{P}", f"class:{P}:TableMapper", "exports", 0.8)
+
+TM = "class:app/Services/ProductImport/Mapping/TableMapper.php:TableMapper"
+SRM = "class:app/Services/ProductImport/Mapping/SelfReferentialMapper.php:SelfReferentialMapper"
+PM_BASE = "class:app/Services/ProductImport/Mapping/ProductMapper.php:ProductMapper"
+
+# ---- helper for multi-class mapper files ----
+def add_mapper_file(path, file_summary, file_tags, primary_cls, primary_lr, primary_methods,
+                    subclasses, imports, inherits_map, calls_targets):
+    """
+    subclasses: list of dicts {name, lr, summary, tags, cx, parent (TM/SRM/PM_BASE),
+                               methods: [(name, lr, summary, tags, cx)]}
+    imports: list of file paths
+    inherits_map: list of (class_node_id_in_this_file, parent_node_id)  -- but we build ids here
+    calls_targets: list of (primary_load_func_id, target_func_id)
+    """
+    fid = f"file:{path}"
+    add_node({"id": fid, "type": "file", "name": path.split("/")[-1], "filePath": path,
+              "summary": file_summary, "tags": file_tags, "complexity": "complex"})
+    # primary class
+    pid = f"class:{path}:{primary_cls}"
+    add_node({"id": pid, "type": "class", "name": primary_cls, "filePath": path,
+              "summary": primary_methods["class_summary"], "tags": primary_methods["class_tags"],
+              "complexity": "moderate", "lineRange": primary_lr})
+    add_edge(fid, pid, "contains", 1.0)
+    for mname, lr, summ, tags, cx in primary_methods["methods"]:
+        mid = f"function:{path}:{primary_cls}::{mname}"
+        add_node({"id": mid, "type": "function", "name": mname, "filePath": path,
+                  "summary": summ, "tags": tags, "complexity": cx, "lineRange": lr})
+        add_edge(fid, mid, "contains", 1.0)
+    add_edge(fid, pid, "exports", 0.8)
+    add_edge(pid, PM_BASE, "inherits", 0.9)
+    # subclasses
+    for sc in subclasses:
+        scid = f"class:{path}:{sc['name']}"
+        add_node({"id": scid, "type": "class", "name": sc["name"], "filePath": path,
+                  "summary": sc["summary"], "tags": sc["tags"],
+                  "complexity": sc["cx"], "lineRange": sc["lr"]})
+        add_edge(fid, scid, "contains", 1.0)
+        for (mname, lr, summ, tags, cx) in sc["methods"]:
+            mid = f"function:{path}:{sc['name']}::{mname}"
+            add_node({"id": mid, "type": "function", "name": mname, "filePath": path,
+                      "summary": summ, "tags": tags, "complexity": cx, "lineRange": lr})
+            add_edge(fid, mid, "contains", 1.0)
+        add_edge(scid, sc["parent"], "inherits", 0.9)
+    # imports
+    for tgt in imports:
+        add_edge(fid, f"file:{tgt}", "imports", 0.7)
+    # calls from primary load to each subclass load
+    primary_load_id = f"function:{path}:{primary_cls}::load"
+    for tgt_func_id in calls_targets:
+        add_edge(primary_load_id, tgt_func_id, "calls", 0.8)
+
+CTOR_SIMPLE = ("__construct", None, "Constructor injecting the SourceIdentityRegistry.", ["constructor", "dependency-injection"], "simple")
+
+# ---- 11. ChinookProductMapper.php ----
+CPM = "app/Services/ProductImport/Mapping/Chinook/ChinookProductMapper.php"
+chinook_imports = [stag for stag in [staging_path("Chinook", c) for c, _, _ in chinook_staging]]
+chinook_imports += [
+    "app/Services/ProductImport/Mapping/ProductMapper.php",
+    "app/Services/ProductImport/Mapping/SelfReferentialMapper.php",
+    "app/Services/ProductImport/Mapping/TableMapper.php",
+    "app/Services/ProductImport/SourceIdentityRegistry.php",
+    "app/Services/ProductImport/StagingContext.php",
+]
+chinook_subs = [
+    ("ArtistMapper", [84, 103], "Final TableMapper reading chinook_source.artist and creating StagingArtist rows, minting ArtistId identities via the registry.",
+     ["mapper", "chinook", "artist"], "simple", TM,
+     [("load", [90, 102], "Reads chinook_source.artist rows, mints each ArtistId to a UUID, and creates StagingArtist records, returning the count.", ["mapper", "chinook", "artist"], "simple")]),
+    ("AlbumMapper", [105, 125], "Final TableMapper reading chinook_source.album and creating StagingAlbum rows, resolving artist FK identities.",
+     ["mapper", "chinook", "album"], "simple", TM,
+     [("load", [111, 124], "Reads chinook_source.album rows, mints AlbumId and ArtistId identities, and creates StagingAlbum records.", ["mapper", "chinook", "album"], "simple")]),
+    ("GenreMapper", [127, 146], "Final TableMapper reading chinook_source.genre and creating StagingGenre rows via GenreId identities.",
+     ["mapper", "chinook", "genre"], "simple", TM,
+     [("load", [133, 145], "Reads chinook_source.genre rows, mints GenreId identities, and creates StagingGenre records.", ["mapper", "chinook", "genre"], "simple")]),
+    ("MediaTypeMapper", [148, 167], "Final TableMapper reading chinook_source.media_type and creating StagingMediaType rows via MediaTypeId identities.",
+     ["mapper", "chinook", "media-type"], "simple", TM,
+     [("load", [154, 166], "Reads chinook_source.media_type rows, mints MediaTypeId identities, and creates StagingMediaType records.", ["mapper", "chinook", "media-type"], "simple")]),
+    ("EmployeeMapper", [169, 217], "Final SelfReferentialMapper reading chinook_source.employee (ordered by employee_id) and creating StagingEmployee rows, then two-pass updating the reports_to self-FK from the resolved source-to-UUID map.",
+     ["mapper", "chinook", "employee", "self-referential"], "moderate", SRM,
+     [("load", [175, 216], "Two-pass load: inserts StagingEmployee rows with reports_to null, collects the source-to-UUID map, then UPDATEs the resolved manager FK where present.", ["mapper", "chinook", "employee", "self-referential"], "moderate")]),
+    ("CustomerMapper", [219, 256], "Final TableMapper reading chinook_source.customer and creating StagingCustomer rows, resolving support representative FK identities.",
+     ["mapper", "chinook", "customer"], "simple", TM,
+     [("load", [225, 255], "Reads chinook_source.customer rows, mints CustomerId and support-rep identities, and creates StagingCustomer records.", ["mapper", "chinook", "customer"], "moderate")]),
+    ("TrackMapper", [258, 295], "Final TableMapper reading chinook_source.track and creating StagingTrack rows, resolving album, genre, and media-type FK identities with coerced int/float values.",
+     ["mapper", "chinook", "track"], "moderate", TM,
+     [("load", [264, 294], "Reads chinook_source.track rows, mints Track/Album/Genre/MediaType identities, coerces bytes/milliseconds/unit price, and creates StagingTrack records.", ["mapper", "chinook", "track"], "moderate")]),
+    ("PlaylistMapper", [297, 327], "Final TableMapper creating StagingPlaylist rows and inserting the playlist_track pivot rows directly via DB::table with resolved playlist/track identities.",
+     ["mapper", "chinook", "playlist", "pivot"], "moderate", TM,
+     [("load", [303, 326], "Creates StagingPlaylist rows from chinook_source.playlist, then inserts playlist_track pivot rows into the staging schema with resolved playlist/track UUIDs.", ["mapper", "chinook", "playlist", "pivot"], "moderate")]),
+    ("InvoiceMapper", [329, 377], "Final TableMapper creating StagingInvoice rows from chinook_source.invoice and inserting invoice_lines pivot rows directly via DB::table with resolved customer and track identities.",
+     ["mapper", "chinook", "invoice", "pivot"], "moderate", TM,
+     [("load", [335, 376], "Creates StagingInvoice rows from chinook_source.invoice, then inserts invoice_lines pivot rows with resolved customer/track UUIDs and coerced unit-price/quantity values.", ["mapper", "chinook", "invoice", "pivot"], "moderate")]),
+]
+def ctor(lr):
+    return list(CTOR_SIMPLE[:2]) if False else (CTOR_SIMPLE[0], lr, CTOR_SIMPLE[2], CTOR_SIMPLE[3], CTOR_SIMPLE[4])
+chinook_sub_dicts = []
+for name, lr, summ, tags, cx, parent, meths in chinook_subs:
+    ctor_lr = lr[0] + 2  # __construct is 2 lines below class start (matches structure)
+    methods = [ctor((lr[0]+2, lr[0]+4))] + meths
+    chinook_sub_dicts.append({"name": name, "lr": lr, "summary": summ, "tags": tags, "cx": cx, "parent": parent, "methods": methods})
+chinook_calls = [f"function:{CPM}:{s['name']}::load" for s in chinook_sub_dicts]
+add_mapper_file(
+    CPM,
+    "Chinook product mapper orchestrating nine per-table mappers (Artist, Album, Genre, MediaType, Employee [self-referential], Customer, Track, Playlist, Invoice) in FK dependency order inside a StagingContext transaction. Also defines each concrete TableMapper/SelfReferentialMapper subclass that reads the chinook_source schema and writes chinook_staging models.",
+    ["mapper", "chinook", "orchestrator", "product-import", "table-mappers"],
+    "ChinookProductMapper", [26, 80],
+    {"class_summary": "ProductMapper subclass that builds the ordered Chinook mapper list and runs them under StagingContext, returning {tables, rows}.",
+     "class_tags": ["mapper", "chinook", "orchestrator"],
+     "methods": [
+         ("load", [33, 59], "Resolves SourceIdentityRegistry and StagingContext, constructs the nine ordered mappers, runs each load() under the context, and returns {tables, rows}.", ["mapper", "chinook", "orchestration"], "moderate"),
+         ("mappers", [64, 79], "Returns the ordered array of Chinook TableMapper instances constructed with a SourceIdentityRegistry.", ["mapper", "chinook", "factory"], "simple"),
+     ]},
+    chinook_sub_dicts, chinook_imports, [], chinook_calls,
+)
+
+# ---- 12. NorthwindProductMapper.php ----
+NPM = "app/Services/ProductImport/Mapping/Northwind/NorthwindProductMapper.php"
+northwind_imports = [stag for stag in [staging_path("Northwind", c) for c, _, _ in northwind_staging]]
+northwind_imports += [
+    "app/Services/ProductImport/Mapping/ProductMapper.php",
+    "app/Services/ProductImport/Mapping/SelfReferentialMapper.php",
+    "app/Services/ProductImport/Mapping/TableMapper.php",
+    "app/Services/ProductImport/SourceIdentityRegistry.php",
+    "app/Services/ProductImport/StagingContext.php",
+]
+northwind_subs_raw = [
+    ("CategoryMapper", [59, 76], "TableMapper reading northwind_source.categories and creating StagingCategory rows via CategoryID identities.",
+     ["mapper", "northwind", "category"], "simple", TM,
+     [("load", [63, 75], "Reads northwind_source.categories rows, mints CategoryID identities, and creates StagingCategory records.", ["mapper", "northwind", "category"], "simple")], (61, 61)),
+    ("SupplierMapper", [78, 108], "TableMapper reading northwind_source.suppliers and creating StagingSupplier rows via SupplierID identities.",
+     ["mapper", "northwind", "supplier"], "simple", TM,
+     [("load", [82, 107], "Reads northwind_source.suppliers rows, mints SupplierID identities, and creates StagingSupplier records.", ["mapper", "northwind", "supplier"], "simple")], (80, 80)),
+    ("EmployeeMapper", [110, 143], "SelfReferentialMapper reading northwind_source.employees (ordered by employee_id) and creating StagingEmployee rows, then two-pass updating the reports-to self-FK from the resolved source-to-UUID map.",
+     ["mapper", "northwind", "employee", "self-referential"], "moderate", SRM,
+     [("load", [114, 142], "Two-pass load: inserts StagingEmployee rows with reports-to null, collects the source-to-UUID map, then UPDATEs the resolved manager FK where present.", ["mapper", "northwind", "employee", "self-referential"], "moderate")], (112, 112)),
+    ("CustomerMapper", [145, 174], "TableMapper reading northwind_source.customers and creating StagingCustomer rows via CustomerID identities.",
+     ["mapper", "northwind", "customer"], "simple", TM,
+     [("load", [149, 173], "Reads northwind_source.customers rows, mints CustomerID identities, and creates StagingCustomer records.", ["mapper", "northwind", "customer"], "simple")], (147, 147)),
+    ("ProductMapper_", [176, 211], "TableMapper reading northwind_source.products and creating StagingProduct rows, resolving category and supplier FK identities with coerced int/float values.",
+     ["mapper", "northwind", "product"], "moderate", TM,
+     [("load", [180, 210], "Reads northwind_source.products rows, mints Product/Category/Supplier identities, coerces unit-price/units-in-stock/units-on-order/reorder-level values, and creates StagingProduct records.", ["mapper", "northwind", "product"], "moderate")], (178, 178)),
+]
+northwind_sub_dicts = []
+for name, lr, summ, tags, cx, parent, meths, ctor_lr in northwind_subs_raw:
+    methods = [(CTOR_SIMPLE[0], list(ctor_lr), CTOR_SIMPLE[2], CTOR_SIMPLE[3], CTOR_SIMPLE[4])] + meths
+    northwind_sub_dicts.append({"name": name, "lr": lr, "summary": summ, "tags": tags, "cx": cx, "parent": parent, "methods": methods})
+northwind_calls = [f"function:{NPM}:{s['name']}::load" for s in northwind_sub_dicts]
+add_mapper_file(
+    NPM,
+    "Northwind product mapper orchestrating five per-table mappers (Category, Supplier, Employee [self-referential], Customer, Product) in FK dependency order under a StagingContext transaction. Also defines each concrete TableMapper/SelfReferentialMapper subclass reading the northwind_source schema and writing northwind_staging models.",
+    ["mapper", "northwind", "orchestrator", "product-import", "table-mappers"],
+    "NorthwindProductMapper", [19, 57],
+    {"class_summary": "ProductMapper subclass that builds the ordered Northwind mapper list and runs them under StagingContext, returning {tables, rows}.",
+     "class_tags": ["mapper", "northwind", "orchestrator"],
+     "methods": [
+         ("load", [21, 43], "Resolves SourceIdentityRegistry and StagingContext, constructs the five ordered mappers, runs each load() under the context, and returns {tables, rows}.", ["mapper", "northwind", "orchestration"], "moderate"),
+         ("mappers", [45, 56], "Returns the ordered array of Northwind TableMapper instances constructed with a SourceIdentityRegistry.", ["mapper", "northwind", "factory"], "simple"),
+     ]},
+    northwind_sub_dicts, northwind_imports, [], northwind_calls,
+)
+
+# ---- 13. PagilaProductMapper.php ----
+PPM = "app/Services/ProductImport/Mapping/Pagila/PagilaProductMapper.php"
+pagila_imports = [stag for stag in [staging_path("Pagila", c) for c, _, _ in pagila_staging]]
+pagila_imports += [
+    "app/Services/ProductImport/Mapping/ProductMapper.php",
+    "app/Services/ProductImport/Mapping/TableMapper.php",
+    "app/Services/ProductImport/SourceIdentityRegistry.php",
+    "app/Services/ProductImport/StagingContext.php",
+]
+pagila_subs_raw = [
+    ("CountryCityMapper", [63, 92], "TableMapper inserting pagila_staging.countries and pagila_staging.cities directly via DB::table from pagila_source.country/city, resolving country FK identities for cities.",
+     ["mapper", "pagila", "country", "city"], "moderate", TM,
+     [("load", [67, 91], "Inserts countries then cities into the staging schema, minting country/city identities and resolving each city's country FK.", ["mapper", "pagila", "country", "city"], "moderate")], (65, 65)),
+    ("CategoryMapper", [94, 111], "TableMapper reading pagila_source.category and creating StagingCategory rows via category_id identities.",
+     ["mapper", "pagila", "category"], "simple", TM,
+     [("load", [98, 110], "Reads pagila_source.category rows, mints category_id identities, and creates StagingCategory records.", ["mapper", "pagila", "category"], "simple")], (96, 96)),
+    ("LanguageMapper", [113, 132], "TableMapper inserting pagila_staging.languages directly via DB::table from pagila_source.language via language_id identities.",
+     ["mapper", "pagila", "language"], "simple", TM,
+     [("load", [117, 131], "Reads pagila_source.language rows, mints language_id identities, and inserts pagila_staging.languages rows.", ["mapper", "pagila", "language"], "simple")], (115, 115)),
+    ("ActorMapper", [134, 151], "TableMapper reading pagila_source.actor and creating StagingActor rows via actor_id identities.",
+     ["mapper", "pagila", "actor"], "simple", TM,
+     [("load", [138, 150], "Reads pagila_source.actor rows, mints actor_id identities, and creates StagingActor records.", ["mapper", "pagila", "actor"], "simple")], (136, 136)),
+    ("FilmMapper", [153, 183], "TableMapper reading pagila_source.film and creating StagingFilm rows, resolving language FK identities with coerced int/float values for rental rate, length, and replacement cost.",
+     ["mapper", "pagila", "film"], "moderate", TM,
+     [("load", [157, 182], "Reads pagila_source.film rows, mints Film/language identities, coerces release year/rental rate/length/replacement cost, and creates StagingFilm records.", ["mapper", "pagila", "film"], "moderate")], (155, 155)),
+    ("StoreStaffMapper", [185, 240], "TableMapper resolving the circular store<->staff FK by inserting both inside a single DB::transaction: creates StagingStore and StagingStaff rows, then UPDATEs each store's manager and each staff's store reference from resolved identity maps.",
+     ["mapper", "pagila", "store", "staff", "circular-fk"], "complex", TM,
+     [("load", [189, 239], "Within a transaction, reads store and staff source rows, creates StagingStore/StagingStaff with cross-FKs nulled, then UPDATEs the store manager and staff store references from the resolved UUID maps.", ["mapper", "pagila", "store", "staff", "circular-fk"], "complex")], (187, 187)),
+    ("CustomerMapper", [242, 268], "TableMapper reading pagila_source.customer and creating StagingCustomer rows, resolving store FK identities.",
+     ["mapper", "pagila", "customer"], "simple", TM,
+     [("load", [246, 267], "Reads pagila_source.customer rows, mints customer/store identities, and creates StagingCustomer records.", ["mapper", "pagila", "customer"], "simple")], (244, 244)),
+]
+pagila_sub_dicts = []
+for name, lr, summ, tags, cx, parent, meths, ctor_lr in pagila_subs_raw:
+    methods = [(CTOR_SIMPLE[0], list(ctor_lr), CTOR_SIMPLE[2], CTOR_SIMPLE[3], CTOR_SIMPLE[4])] + meths
+    pagila_sub_dicts.append({"name": name, "lr": lr, "summary": summ, "tags": tags, "cx": cx, "parent": parent, "methods": methods})
+pagila_calls = [f"function:{PPM}:{s['name']}::load" for s in pagila_sub_dicts]
+add_mapper_file(
+    PPM,
+    "Pagila product mapper orchestrating seven per-table mappers (CountryCity, Category, Language, Actor, Film, StoreStaff [circular store+staff FK in one transaction], Customer) in FK dependency order under a StagingContext transaction. Also defines each concrete TableMapper subclass reading the pagila_source schema and writing pagila_staging models/tables.",
+    ["mapper", "pagila", "orchestrator", "product-import", "table-mappers"],
+    "PagilaProductMapper", [19, 61],
+    {"class_summary": "ProductMapper subclass that builds the ordered Pagila mapper list and runs them under StagingContext, returning {tables, rows}.",
+     "class_tags": ["mapper", "pagila", "orchestrator"],
+     "methods": [
+         ("load", [21, 45], "Resolves SourceIdentityRegistry and StagingContext, constructs the seven ordered mappers, runs each load() under the context, and returns {tables, rows}.", ["mapper", "pagila", "orchestration"], "moderate"),
+         ("mappers", [47, 60], "Returns the ordered array of Pagila TableMapper instances constructed with a SourceIdentityRegistry.", ["mapper", "pagila", "factory"], "simple"),
+     ]},
+    pagila_sub_dicts, pagila_imports, [], pagila_calls,
+)
+
+# ---- write ----
+with open(OUT, "w") as f:
+    json.dump({"nodes": nodes, "edges": edges}, f, indent=2, ensure_ascii=False)
+
+print(f"nodes={len(nodes)} edges={len(edges)}")

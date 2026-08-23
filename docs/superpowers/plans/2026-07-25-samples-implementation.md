@@ -1,9 +1,13 @@
 ---
 title: "Samples Application Implementation Plan"
 description: "> **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` (recommended) or `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: plan
-tags: \[plan, plans, implementation]
-updated: 2026-07-30
+tags: [plan, plans, implementation]
+created: 2026-07-25
+updated: 2026-08-17
 ---
 
 # Samples Application Implementation Plan

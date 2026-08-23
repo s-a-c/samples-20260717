@@ -1,0 +1,672 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_md",
+            "label": "SKILL.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L1",
+            "frontmatter": { "name": "filament-security-audit" }
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_filament_security_audit",
+            "label": "Filament Security Audit",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L9"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_how_to_scan",
+            "label": "How to Scan",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L17"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_run_in_parallel_with_subagents",
+            "label": "Run in parallel with subagents",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L40"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_writing_the_plan",
+            "label": "Writing the Plan",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L47"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_1_summary",
+            "label": "1. Summary",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L72"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_2_findings",
+            "label": "2. Findings",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L78"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_3_checks_performed",
+            "label": "3. Checks Performed",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L105"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_4_recommended_tests",
+            "label": "4. Recommended Tests",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L110"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_5_optional_hardening_tips",
+            "label": "5. Optional Hardening Tips",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L115"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_when_to_ask_vs_proceed",
+            "label": "When to ask vs proceed",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L129"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_security_checks_catalogue",
+            "label": "Security Checks Catalogue",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L135"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_a_access_control",
+            "label": "A. Access Control",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L142"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_a1_bulk_delete_restore_missing_the_any_policy_guard_seed_conditional",
+            "label": "A1. Bulk delete/restore missing the `*Any()` policy guard \u2014 `[Seed]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L144"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_a2_import_bypasses_the_create_update_policy_seed_conditional",
+            "label": "A2. Import bypasses the `create()` / `update()` policy \u2014 `[Seed]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L172"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_a3_overridden_can_methods_no_longer_invoked_v4_site_conditional",
+            "label": "A3. Overridden `can*()` methods no longer invoked (v4+) \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L196"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_a4_inline_editable_columns_bypass_the_update_policy_site_conditional",
+            "label": "A4. Inline editable columns bypass the `update()` policy \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L214"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_a5_livewire_upload_rpc_on_components_without_an_upload_field_seed_conditional",
+            "label": "A5. Livewire upload RPC on components without an upload field \u2014 `[Seed]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L242"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_a6_custom_livewire_work_runs_before_authorization_seed_conditional",
+            "label": "A6. Custom Livewire: work runs before authorization \u2014 `[Seed]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L265"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_b_file_uploads_rce",
+            "label": "B. File Uploads & RCE",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L294"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_b1_path_tampering_on_shared_disks_fileupload_richeditor_seed_conditional",
+            "label": "B1. Path tampering on shared disks (`FileUpload` + `RichEditor`) \u2014 `[Seed]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L296"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_b2_upload_field_accepts_any_file_type_site_conditional",
+            "label": "B2. Upload field accepts any file type \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L444"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_b3_user_controlled_file_names_remote_code_execution_site_conditional",
+            "label": "B3. User-controlled file names \u2192 remote code execution \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L490"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_c_xss_injection",
+            "label": "C. XSS & Injection",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L516"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_c1_unsanitized_rich_editor_markdown_output_in_blade_seed_conditional",
+            "label": "C1. Unsanitized rich-editor / markdown output in Blade \u2014 `[Seed]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L531"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_c2_raw_html_bypasses_the_sanitizer_htmlstring_view_site_conditional",
+            "label": "C2. Raw HTML bypasses the sanitizer (`HtmlString` / `view()`) \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L553"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_c3_unsafe_url_schemes_in_url_site_conditional",
+            "label": "C3. Unsafe URL schemes in `url()` \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L583"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_c4_unescaped_html_in_option_labels_allowhtml_allowoptionshtml_site_conditional",
+            "label": "C4. Unescaped HTML in option labels (`allowHtml` / `allowOptionsHtml`) \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L603"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_c5_unescaped_extraattributes_values_site_conditional",
+            "label": "C5. Unescaped `extraAttributes()` values \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L616"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_c6_unescaped_validation_messages_allowhtmlvalidationmessages_site_conditional",
+            "label": "C6. Unescaped validation messages (`allowHtmlValidationMessages`) \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L630"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_c7_user_input_in_client_side_js_expressions_site_conditional",
+            "label": "C7. User input in client-side JS expressions \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L642"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_d_query_scoping_data_exposure_multi_tenancy",
+            "label": "D. Query Scoping, Data Exposure & Multi-Tenancy",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L656"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_d1_list_widget_query_ignores_an_ownership_rule_enforced_elsewhere_seed_conditional",
+            "label": "D1. List/widget query ignores an ownership rule enforced elsewhere \u2014 `[Seed]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L658"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_d2_sensitive_model_attributes_exposed_to_javascript_seed_conditional",
+            "label": "D2. Sensitive model attributes exposed to JavaScript \u2014 `[Seed]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L697"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_d3_models_queries_not_auto_scoped_to_the_tenant_seed_conditional",
+            "label": "D3. Models/queries not auto-scoped to the tenant \u2014 `[Seed]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L714"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_d4_over_permissive_tenant_access_methods_site_conditional",
+            "label": "D4. Over-permissive tenant-access methods \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L750"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_d5_unique_exists_validation_ignores_the_tenancy_scope_site_conditional",
+            "label": "D5. `unique` / `exists` validation ignores the tenancy scope \u2014 `[Site]` `[Conditional]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L770"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_e_dependencies",
+            "label": "E. Dependencies",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L788"
+        },
+        {
+            "id": "$graphify-root$_pi_skills_filament_security_audit_skill_e1_known_vulnerabilities_in_filament_livewire_filament_plugins_site",
+            "label": "E1. Known vulnerabilities in Filament / Livewire / Filament plugins \u2014 `[Site]`",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L790"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_md",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_filament_security_audit",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_filament_security_audit",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_how_to_scan",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L17",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_how_to_scan",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_run_in_parallel_with_subagents",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L40",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_filament_security_audit",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_writing_the_plan",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L47",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_writing_the_plan",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_1_summary",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L72",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_writing_the_plan",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_2_findings",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L78",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_writing_the_plan",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_3_checks_performed",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L105",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_writing_the_plan",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_4_recommended_tests",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L110",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_writing_the_plan",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_5_optional_hardening_tips",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L115",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_writing_the_plan",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_when_to_ask_vs_proceed",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L129",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_md",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_security_checks_catalogue",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L135",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_security_checks_catalogue",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_a_access_control",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L142",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_a_access_control",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_a1_bulk_delete_restore_missing_the_any_policy_guard_seed_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L144",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_a_access_control",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_a2_import_bypasses_the_create_update_policy_seed_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L172",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_a_access_control",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_a3_overridden_can_methods_no_longer_invoked_v4_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L196",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_a_access_control",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_a4_inline_editable_columns_bypass_the_update_policy_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L214",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_a_access_control",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_a5_livewire_upload_rpc_on_components_without_an_upload_field_seed_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L242",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_a_access_control",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_a6_custom_livewire_work_runs_before_authorization_seed_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L265",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_security_checks_catalogue",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_b_file_uploads_rce",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L294",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_b_file_uploads_rce",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_b1_path_tampering_on_shared_disks_fileupload_richeditor_seed_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L296",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_b_file_uploads_rce",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_b2_upload_field_accepts_any_file_type_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L444",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_b_file_uploads_rce",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_b3_user_controlled_file_names_remote_code_execution_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L490",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_security_checks_catalogue",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_c_xss_injection",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L516",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_c_xss_injection",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_c1_unsanitized_rich_editor_markdown_output_in_blade_seed_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L531",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_c_xss_injection",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_c2_raw_html_bypasses_the_sanitizer_htmlstring_view_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L553",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_c_xss_injection",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_c3_unsafe_url_schemes_in_url_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L583",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_c_xss_injection",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_c4_unescaped_html_in_option_labels_allowhtml_allowoptionshtml_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L603",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_c_xss_injection",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_c5_unescaped_extraattributes_values_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L616",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_c_xss_injection",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_c6_unescaped_validation_messages_allowhtmlvalidationmessages_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L630",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_c_xss_injection",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_c7_user_input_in_client_side_js_expressions_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L642",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_security_checks_catalogue",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_d_query_scoping_data_exposure_multi_tenancy",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L656",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_d_query_scoping_data_exposure_multi_tenancy",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_d1_list_widget_query_ignores_an_ownership_rule_enforced_elsewhere_seed_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L658",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_d_query_scoping_data_exposure_multi_tenancy",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_d2_sensitive_model_attributes_exposed_to_javascript_seed_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L697",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_d_query_scoping_data_exposure_multi_tenancy",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_d3_models_queries_not_auto_scoped_to_the_tenant_seed_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L714",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_d_query_scoping_data_exposure_multi_tenancy",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_d4_over_permissive_tenant_access_methods_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L750",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_d_query_scoping_data_exposure_multi_tenancy",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_d5_unique_exists_validation_ignores_the_tenancy_scope_site_conditional",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L770",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_md",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_unique_exists_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L774",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_security_checks_catalogue",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_e_dependencies",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L788",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_pi_skills_filament_security_audit_skill_e_dependencies",
+            "target": "$graphify-root$_pi_skills_filament_security_audit_skill_e1_known_vulnerabilities_in_filament_livewire_filament_plugins_site",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".pi/skills/filament-security-audit/SKILL.md",
+            "source_location": "L790",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

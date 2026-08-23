@@ -1,0 +1,78 @@
+<?php return array (
+  'livewireComponents' => 
+  array (
+    'App\\Filament\\Admin\\Pages\\Portfolio' => 'App\\Filament\\Admin\\Pages\\Portfolio',
+    'Filament\\Pages\\Dashboard' => 'Filament\\Pages\\Dashboard',
+    'App\\Filament\\Admin\\Widgets\\ProductPortfolioCard' => 'App\\Filament\\Admin\\Widgets\\ProductPortfolioCard',
+    'Filament\\Widgets\\AccountWidget' => 'Filament\\Widgets\\AccountWidget',
+    'Filament\\Widgets\\FilamentInfoWidget' => 'Filament\\Widgets\\FilamentInfoWidget',
+    'Filament\\Livewire\\DatabaseNotifications' => 'Filament\\Livewire\\DatabaseNotifications',
+    'Filament\\Auth\\Pages\\EditProfile' => 'Filament\\Auth\\Pages\\EditProfile',
+    'Filament\\Livewire\\GlobalSearch' => 'Filament\\Livewire\\GlobalSearch',
+    'Filament\\Livewire\\Notifications' => 'Filament\\Livewire\\Notifications',
+    'Filament\\Livewire\\Sidebar' => 'Filament\\Livewire\\Sidebar',
+    'Filament\\Livewire\\SimpleUserMenu' => 'Filament\\Livewire\\SimpleUserMenu',
+    'Filament\\Livewire\\Topbar' => 'Filament\\Livewire\\Topbar',
+    'BezhanSalleh\\FilamentShield\\Resources\\Roles\\Pages\\ListRoles' => 'BezhanSalleh\\FilamentShield\\Resources\\Roles\\Pages\\ListRoles',
+    'BezhanSalleh\\FilamentShield\\Resources\\Roles\\Pages\\CreateRole' => 'BezhanSalleh\\FilamentShield\\Resources\\Roles\\Pages\\CreateRole',
+    'BezhanSalleh\\FilamentShield\\Resources\\Roles\\Pages\\ViewRole' => 'BezhanSalleh\\FilamentShield\\Resources\\Roles\\Pages\\ViewRole',
+    'BezhanSalleh\\FilamentShield\\Resources\\Roles\\Pages\\EditRole' => 'BezhanSalleh\\FilamentShield\\Resources\\Roles\\Pages\\EditRole',
+  ),
+  'clusters' => 
+  array (
+  ),
+  'clusteredComponents' => 
+  array (
+  ),
+  'clusterDirectories' => 
+  array (
+  ),
+  'clusterNamespaces' => 
+  array (
+  ),
+  'pages' => 
+  array (
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Admin/Pages/Portfolio.php' => 'App\\Filament\\Admin\\Pages\\Portfolio',
+    0 => 'Filament\\Pages\\Dashboard',
+  ),
+  'pageConfigurations' => 
+  array (
+  ),
+  'pageDirectories' => 
+  array (
+    0 => '/Users/s-a-c/Herd/samples-20260717/app/Filament/Admin/Pages',
+  ),
+  'pageNamespaces' => 
+  array (
+    0 => 'App\\Filament\\Admin\\Pages',
+  ),
+  'resources' => 
+  array (
+    0 => 'BezhanSalleh\\FilamentShield\\Resources\\Roles\\RoleResource',
+  ),
+  'resourceConfigurations' => 
+  array (
+  ),
+  'resourceDirectories' => 
+  array (
+    0 => '/Users/s-a-c/Herd/samples-20260717/app/Filament/Admin/Resources',
+  ),
+  'resourceNamespaces' => 
+  array (
+    0 => 'App\\Filament\\Admin\\Resources',
+  ),
+  'widgets' => 
+  array (
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Admin/Widgets/ProductPortfolioCard.php' => 'App\\Filament\\Admin\\Widgets\\ProductPortfolioCard',
+    0 => 'Filament\\Widgets\\AccountWidget',
+    1 => 'Filament\\Widgets\\FilamentInfoWidget',
+  ),
+  'widgetDirectories' => 
+  array (
+    0 => '/Users/s-a-c/Herd/samples-20260717/app/Filament/Admin/Widgets',
+  ),
+  'widgetNamespaces' => 
+  array (
+    0 => 'App\\Filament\\Admin\\Widgets',
+  ),
+);

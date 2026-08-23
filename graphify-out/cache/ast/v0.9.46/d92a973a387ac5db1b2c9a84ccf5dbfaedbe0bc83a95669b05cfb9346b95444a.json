@@ -1,0 +1,109 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_md",
+            "label": "100314-product-reset-semantics.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "0007 - Product Reset Semantics",
+                "description": "Understanding how reset operations affect different product models.",
+                "type": "adr",
+                "tags": "[adr, &quot;0007&quot;, product]",
+                "created": "2026-07-25",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_0007_product_reset_semantics",
+            "label": "0007 - Product Reset Semantics",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_1_status_proposed",
+            "label": "1. Status: Proposed",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L27"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_2_context",
+            "label": "2. Context",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L29"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_3_decision",
+            "label": "3. Decision",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L33"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_4_consequences",
+            "label": "4. Consequences",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L37"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_0007_product_reset_semantics",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_0007_product_reset_semantics",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_1_status_proposed",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L27",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_0007_product_reset_semantics",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_2_context",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_0007_product_reset_semantics",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_3_decision",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L33",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_0007_product_reset_semantics",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_4_consequences",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100314-product-reset-semantics.md",
+            "source_location": "L37",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

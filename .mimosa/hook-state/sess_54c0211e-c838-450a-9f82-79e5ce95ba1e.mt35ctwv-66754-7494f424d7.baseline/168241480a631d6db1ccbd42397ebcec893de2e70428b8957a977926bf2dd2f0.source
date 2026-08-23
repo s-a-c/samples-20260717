@@ -1,0 +1,71 @@
+<?php
+if (!function_exists('_a91caafac346355fe22ce91c0f5fdc66')):
+function _a91caafac346355fe22ce91c0f5fdc66($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
+$__env = $__blaze->env;
+$__slots['slot'] ??= new \Illuminate\View\ComponentSlot('');
+if (($__data['attributes'] ?? null) instanceof \Illuminate\View\ComponentAttributeBag) { $__data = $__data + $__data['attributes']->all(); unset($__data['attributes']); }
+extract($__slots, EXTR_SKIP); unset($__slots);
+extract($__data, EXTR_SKIP);
+$attributes = \Livewire\Blaze\Runtime\BlazeAttributeBag::make($__data, $__bound, $__keys);
+unset($__data, $__bound, $__keys);
+ob_start();
+?>
+
+
+<?php
+$__defaults = [
+    'variant' => 'default',
+];
+$variant ??= $attributes['variant'] ?? $__defaults['variant']; unset($attributes['variant']);
+unset($__defaults);
+?>
+
+<?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/with-field.blade.php', $__blaze->compiledPath.'/d81702b349357c415b7603de075b8b4f.php'); ?>
+<?php if (isset($__slotsd81702b349357c415b7603de075b8b4f)) { $__slotsStackd81702b349357c415b7603de075b8b4f[] = $__slotsd81702b349357c415b7603de075b8b4f; } ?>
+<?php if (isset($__attrsd81702b349357c415b7603de075b8b4f)) { $__attrsStackd81702b349357c415b7603de075b8b4f[] = $__attrsd81702b349357c415b7603de075b8b4f; } ?>
+<?php $__attrsd81702b349357c415b7603de075b8b4f = ['attributes' => $attributes]; ?>
+<?php $__slotsd81702b349357c415b7603de075b8b4f = []; ?>
+<?php $__blaze->pushData($__attrsd81702b349357c415b7603de075b8b4f); ?>
+<?php ob_start(); ?>
+    <?php $__resolved = $__blaze->resolve('flux::' . 'pillbox.variants.' . $variant); ?>
+<?php $__delegatedData = $__blaze->unescapeAttributes($attributes->getAttributes()); ?>
+<?php $__blaze->pushData($__delegatedData); ?>
+<?php if ($__resolved !== false): ?>
+<?php if (isset($__slotsa9333703c56653c8311869f102fbc487)) { $__slotsStacka9333703c56653c8311869f102fbc487[] = $__slotsa9333703c56653c8311869f102fbc487; } ?>
+<?php $__slotsa9333703c56653c8311869f102fbc487 = []; ?>
+<?php ob_start(); ?><?php echo e($slot); ?><?php $__slotsa9333703c56653c8311869f102fbc487['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__slotsa9333703c56653c8311869f102fbc487 = array_merge($__blaze->mergedComponentSlots(), $__slotsa9333703c56653c8311869f102fbc487); ?>
+<?php ('_' . $__resolved)($__blaze, $__delegatedData, $__slotsa9333703c56653c8311869f102fbc487, [], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStacka9333703c56653c8311869f102fbc487)) { $__slotsa9333703c56653c8311869f102fbc487 = array_pop($__slotsStacka9333703c56653c8311869f102fbc487); } ?>
+<?php else: ?>
+<?php if (!Flux::componentExists($name = 'pillbox.variants.' . $variant)) throw new \Exception("Flux component [{$name}] does not exist."); ?><?php if (isset($component)) { $__componentOriginal2dcbb3485f613c98f0a7cb4853f4b939 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal2dcbb3485f613c98f0a7cb4853f4b939 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve([
+    'view' => (app()->version() >= 12 ? hash('xxh128', 'flux') : md5('flux')) . '::' . 'pillbox.variants.' . $variant,
+    'data' => $__env->getCurrentComponentData(),
+] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::' . 'pillbox.variants.' . $variant); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes($attributes->getAttributes()); ?><?php echo e($slot); ?> <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal2dcbb3485f613c98f0a7cb4853f4b939)): ?>
+<?php $attributes = $__attributesOriginal2dcbb3485f613c98f0a7cb4853f4b939; ?>
+<?php unset($__attributesOriginal2dcbb3485f613c98f0a7cb4853f4b939); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal2dcbb3485f613c98f0a7cb4853f4b939)): ?>
+<?php $component = $__componentOriginal2dcbb3485f613c98f0a7cb4853f4b939; ?>
+<?php unset($__componentOriginal2dcbb3485f613c98f0a7cb4853f4b939); ?>
+<?php endif; ?>
+<?php endif; ?>
+<?php $__blaze->popData(); ?>
+<?php unset($__resolved, $__delegatedData) ?>
+<?php $__slotsd81702b349357c415b7603de075b8b4f['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slotsd81702b349357c415b7603de075b8b4f); ?>
+<?php _d81702b349357c415b7603de075b8b4f($__blaze, $__attrsd81702b349357c415b7603de075b8b4f, $__slotsd81702b349357c415b7603de075b8b4f, ['attributes'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStackd81702b349357c415b7603de075b8b4f)) { $__slotsd81702b349357c415b7603de075b8b4f = array_pop($__slotsStackd81702b349357c415b7603de075b8b4f); } ?>
+<?php if (! empty($__attrsStackd81702b349357c415b7603de075b8b4f)) { $__attrsd81702b349357c415b7603de075b8b4f = array_pop($__attrsStackd81702b349357c415b7603de075b8b4f); } ?>
+<?php $__blaze->popData(); ?>
+<?php
+echo ltrim(ob_get_clean());
+} endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/pillbox/index.blade.php ENDPATH**/ ?>

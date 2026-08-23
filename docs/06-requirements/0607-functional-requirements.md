@@ -1,9 +1,13 @@
 ---
 title: "Functional Requirements"
 description: "Functional requirements for shared capabilities and isolated sample-product panels."
-type: requirements
-tags: \[requirements, functional]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [requirements, functional]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Functional Requirements
@@ -17,9 +21,9 @@ updated: 2026-07-30
 - [2. Requirement Identifiers](#2-requirement-identifiers)
 - [3. Functional Requirements](#3-functional-requirements)
     - [3.1. FR-1: Multi-Product Isolation](#31-fr-1-multi-product-isolation)
-    - [3.2. FR-2: Authentication \& Authorization](#32-fr-2-authentication--authorization)
+    - [3.2. FR-2: Authentication & Authorization](#32-fr-2-authentication-authorization)
     - [3.3. FR-3: Product Lifecycle](#33-fr-3-product-lifecycle)
-    - [3.4. FR-4: Search \& Discovery](#34-fr-4-search--discovery)
+    - [3.4. FR-4: Search & Discovery](#34-fr-4-search-discovery)
     - [3.5. FR-5: Portfolio Management](#35-fr-5-portfolio-management)
 - [4. Diagrams](#4-diagrams)
 

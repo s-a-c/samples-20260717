@@ -1,0 +1,102 @@
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
+    'item' => null,
+    'src' => null,
+    'controls' => null,
+    'lazy' => null,
+    'player' => false,
+    'iconClasses' => '',
+    'constrained' => false,
+]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter(([
+    'item' => null,
+    'src' => null,
+    'controls' => null,
+    'lazy' => null,
+    'player' => false,
+    'iconClasses' => '',
+    'constrained' => false,
+]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<?php
+    if ($item && is_array($item)) {
+        $item = (object) $item;
+    }
+
+    if (!$src) {
+      $src = $item->url;
+    }
+?>
+
+<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(curator()->isPreviewable($item->ext)): ?>
+    <img
+        src="<?php echo e($src); ?>"
+        alt="<?php echo e($item->alt ?? ''); ?>"
+        loading="<?php echo e($lazy ? 'lazy' : 'eager'); ?>"
+        <?php echo e($attributes
+                ->merge(['width' => $item->width, 'height' => $item->height])
+                ->except(['src', 'alt', 'lazy', 'item'])
+                ->class([
+                    'object-cover' => ! $constrained,
+                    'object-contain' => $constrained,
+                ])); ?>
+
+    />
+<?php elseif(curator()->isVideo($item->ext) && $player): ?>
+    <video
+        src="<?php echo e($src); ?>"
+        <?php if($controls): ?>
+            controls
+        <?php endif; ?>
+        preload="<?php echo e($lazy ? 'none' : 'auto'); ?>"
+        <?php echo e($attributes->except(['src', 'controls', 'lazy', 'item'])); ?>
+
+    ></video>
+<?php else: ?>
+    <div
+        class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+            'curator-document-image grid place-items-center w-full h-full text-xs uppercase relative bg-gray-100 dark:bg-gray-900',
+            $attributes->get('class')
+        ]); ?>"
+        <?php echo e($attributes->except(['src', 'alt', 'lazy', 'item', 'class'])); ?>
+
+    >
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(curator()->isVideo($item->ext)): ?>
+            <?php echo e(svg('heroicon-o-film', ['class' => 'opacity-20 ' . $iconClasses])); ?>
+            <span class="block absolute"><?php echo e($item->ext); ?></span>
+        <?php elseif(curator()->isAudio($item->ext)): ?>
+            <?php echo e(svg('heroicon-o-speaker-wave', ['class' => 'opacity-20 ' . $iconClasses])); ?>
+            <span class="block absolute"><?php echo e($item->ext); ?></span>
+        <?php else: ?>
+            <?php echo e(svg('heroicon-o-document', ['class' => 'opacity-20 ' . $iconClasses])); ?>
+            <span class="block absolute"><?php echo e($item->ext); ?></span>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        <span class="sr-only"><?php echo e($item->pretty_name); ?></span>
+    </div>
+<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/display/index.blade.php ENDPATH**/ ?>

@@ -1,9 +1,13 @@
 ---
 title: "Sample Databases"
 description: "Research comparison of candidate sample databases and the selected Chinook, Northwind, and Pagila sources."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: guide
-tags: \[guide, documentation, sample, databases]
-updated: 2026-07-30
+tags: [guide, documentation, sample, databases]
+created: 2026-07-25
+updated: 2026-08-17
 ---
 
 # Sample Databases

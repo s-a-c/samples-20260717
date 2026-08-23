@@ -1,0 +1,546 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_php",
+            "label": "TeamPolicy.php",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "label": "TeamPolicy",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L11",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_viewany",
+            "label": ".viewAny()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L16",
+            "_callable": true
+        },
+        {
+            "id": "user",
+            "label": "User",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Policies/TeamPolicy.php"
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_view",
+            "label": ".view()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L24",
+            "_callable": true
+        },
+        {
+            "id": "team",
+            "label": "Team",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Policies/TeamPolicy.php"
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_create",
+            "label": ".create()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L32",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_update",
+            "label": ".update()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L40",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_leave",
+            "label": ".leave()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L48",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_addmember",
+            "label": ".addMember()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L58",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_updatemember",
+            "label": ".updateMember()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L66",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_removemember",
+            "label": ".removeMember()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L74",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_invitemember",
+            "label": ".inviteMember()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L82",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_cancelinvitation",
+            "label": ".cancelInvitation()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L90",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_policies_teampolicy_teampolicy_delete",
+            "label": ".delete()",
+            "file_type": "code",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L98",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_php",
+            "target": "teampermission",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_php",
+            "target": "team",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_php",
+            "target": "user",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_php",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_viewany",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L16",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_viewany",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L16",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_view",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L24",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_view",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L24",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_view",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L24",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_create",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L32",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_create",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L32",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_update",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L40",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_update",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L40",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_update",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L40",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_leave",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L48",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_leave",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L48",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_leave",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L48",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_addmember",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L58",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_addmember",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L58",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_addmember",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L58",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_updatemember",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L66",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_updatemember",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L66",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_updatemember",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L66",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_removemember",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L74",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_removemember",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L74",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_removemember",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L74",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_invitemember",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L82",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_invitemember",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L82",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_invitemember",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L82",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_cancelinvitation",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L90",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_cancelinvitation",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L90",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_cancelinvitation",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L90",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy",
+            "target": "$graphify-root$_app_policies_teampolicy_teampolicy_delete",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L98",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_delete",
+            "target": "user",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L98",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_policies_teampolicy_teampolicy_delete",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L98",
+            "weight": 1.0,
+            "context": "parameter_type"
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_view",
+            "callee": "belongsToTeam",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L26",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_update",
+            "callee": "hasTeamPermission",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L42",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_leave",
+            "callee": "belongsToTeam",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L51",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_leave",
+            "callee": "ownsTeam",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L52",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_addmember",
+            "callee": "hasTeamPermission",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L60",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_updatemember",
+            "callee": "hasTeamPermission",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L68",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_removemember",
+            "callee": "hasTeamPermission",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L76",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_invitemember",
+            "callee": "hasTeamPermission",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L84",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_cancelinvitation",
+            "callee": "hasTeamPermission",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L92",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_policies_teampolicy_teampolicy_delete",
+            "callee": "hasTeamPermission",
+            "is_member_call": true,
+            "source_file": "app/Policies/TeamPolicy.php",
+            "source_location": "L100",
+            "receiver": null
+        }
+    ]
+}

@@ -1,12 +1,13 @@
 ---
 title: "Import Decision Deviations — Consequence Analysis"
-description: >-
-    Analysis of two deviations in the import-cascade-fix-and-transform plan from
-    Wayfinder Map #15 decisions (#28, #29, #41, #32). Recommendation: revert both.
-    Not an implementation; a decision input.
+description: ">-"
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: spec
 tags: [spec, wayfinder, "15", import, adr, decisions, analysis]
-updated: 2026-08-05
+created: 2026-08-05
+updated: 2026-08-17
 ---
 
 # Import Decision Deviations — Consequence Analysis

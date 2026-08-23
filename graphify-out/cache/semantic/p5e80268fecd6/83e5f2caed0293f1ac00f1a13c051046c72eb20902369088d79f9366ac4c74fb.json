@@ -1,0 +1,1 @@
+{"nodes": [{"id": "configuring_horizon_notifications", "label": "Horizon Notifications & Alerts", "file_type": "document", "source_file": ".junie/skills/configuring-horizon/references/notifications.md", "rationale": "Details built-in notification routing and LongWaitDetected event thresholds."}], "edges": [], "hyperedges": []}

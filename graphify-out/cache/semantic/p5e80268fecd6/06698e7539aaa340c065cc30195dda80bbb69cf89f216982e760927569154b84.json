@@ -1,0 +1,1 @@
+{"nodes": [{"id": "factory_skills_infer_conventions_references_checklist", "label": "Detection Checklist", "file_type": "document", "source_file": ".factory/skills/infer-conventions/references/checklist.md", "rationale": "A comprehensive guide for detecting application-specific Laravel conventions."}], "edges": [], "hyperedges": []}

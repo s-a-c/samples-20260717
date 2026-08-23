@@ -1,0 +1,12 @@
+<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($curatedMedia): ?>
+<img
+    src="<?php echo e($curatedMedia['url']); ?>"
+    alt="<?php echo e($media['alt']); ?>"
+    width="<?php echo e($curatedMedia['width']); ?>"
+    height="<?php echo e($curatedMedia['height']); ?>"
+    <?php echo e($attributes); ?>
+
+/>
+<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/curation.blade.php ENDPATH**/ ?>

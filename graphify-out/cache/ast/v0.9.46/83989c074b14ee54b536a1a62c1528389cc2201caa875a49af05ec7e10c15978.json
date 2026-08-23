@@ -1,0 +1,325 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_rules_uniqueteaminvitation_php",
+            "label": "UniqueTeamInvitation.php",
+            "file_type": "code",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation",
+            "label": "UniqueTeamInvitation",
+            "file_type": "code",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L14",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "validationrule",
+            "label": "ValidationRule",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_construct",
+            "label": ".__construct()",
+            "file_type": "code",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L16",
+            "_callable": true
+        },
+        {
+            "id": "team",
+            "label": "Team",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Rules/UniqueTeamInvitation.php"
+        },
+        {
+            "id": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "label": ".validate()",
+            "file_type": "code",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L26",
+            "_callable": true
+        },
+        {
+            "id": "closure",
+            "label": "Closure",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Rules/UniqueTeamInvitation.php"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_php",
+            "target": "team",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_php",
+            "target": "teaminvitation",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_php",
+            "target": "closure",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_php",
+            "target": "validationrule",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_php",
+            "target": "builder",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_php",
+            "target": "potentiallytranslatedstring",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_php",
+            "target": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation",
+            "target": "validationrule",
+            "relation": "implements",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation",
+            "target": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_construct",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L16",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_construct",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L16",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation",
+            "target": "team",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L16",
+            "weight": 1.0,
+            "context": "field"
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation",
+            "target": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L26",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "target": "closure",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L26",
+            "weight": 1.0,
+            "context": "parameter_type"
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "mb_strtolower",
+            "is_member_call": false,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L28",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "is_string",
+            "is_member_call": false,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L28",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "exists",
+            "is_member_call": true,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L30",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "whereRaw",
+            "is_member_call": true,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L30",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "members",
+            "is_member_call": true,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L30",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "$fail",
+            "is_member_call": false,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L35",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "__",
+            "is_member_call": false,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L35",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "exists",
+            "is_member_call": true,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "where",
+            "is_member_call": true,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "whereNull",
+            "is_member_call": true,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "whereRaw",
+            "is_member_call": true,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "TeamInvitation",
+            "is_member_call": false,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "orWhere",
+            "is_member_call": true,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L44",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "whereNull",
+            "is_member_call": true,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L44",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "now",
+            "is_member_call": false,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L45",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "$fail",
+            "is_member_call": false,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L50",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_rules_uniqueteaminvitation_uniqueteaminvitation_validate",
+            "callee": "__",
+            "is_member_call": false,
+            "source_file": "app/Rules/UniqueTeamInvitation.php",
+            "source_location": "L50",
+            "receiver": null
+        }
+    ]
+}

@@ -1,0 +1,78 @@
+<?php # [BlazeFolded]:{flux::pillbox.indicator}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/src/../stubs/resources/views/flux/pillbox/indicator.blade.php}:{1786376618} ?>
+<?php # [BlazeFolded]:{flux::icon.loading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/icon/loading.blade.php}:{1786296215} ?>
+<?php
+if (!function_exists('_4eecd1fefb68126cd8fd8249a67c6ba3')):
+function _4eecd1fefb68126cd8fd8249a67c6ba3($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
+$__env = $__blaze->env;
+$__slots['slot'] ??= new \Illuminate\View\ComponentSlot('');
+if (($__data['attributes'] ?? null) instanceof \Illuminate\View\ComponentAttributeBag) { $__data = $__data + $__data['attributes']->all(); unset($__data['attributes']); }
+extract($__slots, EXTR_SKIP); unset($__slots);
+extract($__data, EXTR_SKIP);
+$attributes = \Livewire\Blaze\Runtime\BlazeAttributeBag::make($__data, $__bound, $__keys);
+unset($__data, $__bound, $__keys);
+ob_start();
+?>
+
+
+<?php
+$__defaults = [
+    'filterable' => null,
+    'loading' => null,
+    'label' => null,
+    'value' => null,
+];
+$filterable ??= $attributes['filterable'] ?? $__defaults['filterable']; unset($attributes['filterable']);
+$loading ??= $attributes['loading'] ?? $__defaults['loading']; unset($attributes['loading']);
+$label ??= $attributes['label'] ?? $__defaults['label']; unset($attributes['label']);
+$value ??= $attributes['value'] ?? $__defaults['value']; unset($attributes['value']);
+unset($__defaults);
+?>
+
+<?php
+$classes = Flux::classes()
+    ->add('group/option overflow-hidden data-hidden:hidden group flex items-center px-2 py-1.5 w-full focus:outline-hidden')
+    ->add('rounded-md')
+    ->add('text-start text-sm font-medium select-none')
+    ->add('text-zinc-800 data-active:bg-zinc-100 [&[disabled]]:text-zinc-400 dark:text-white dark:data-active:bg-zinc-600 dark:[&[disabled]]:text-zinc-400')
+    ;
+
+$livewireAction = $attributes->whereStartsWith('wire:click')->isNotEmpty();
+$alpineAction = $attributes->whereStartsWith('x-on:click')->isNotEmpty();
+
+$loading ??= $loading ?? $livewireAction;
+
+if ($loading) {
+    $attributes = $attributes->merge(['wire:loading.attr' => 'data-flux-loading']);
+}
+?>
+
+<ui-option
+    <?php if($value !== null): ?> value="<?php echo e($value); ?>" <?php endif; ?>
+    <?php if($value): ?> <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::$currentLoop['key'] = ''.e($value).''; ?>wire:key="<?php echo e($value); ?>" <?php endif; ?>
+    <?php if($filterable === false): ?> filter="manual" <?php endif; ?>
+    <?php if($livewireAction || $alpineAction): ?> action <?php endif; ?>
+    <?php echo e($attributes->class($classes)); ?>
+
+    data-flux-listbox-option
+>
+    <div class="w-6 shrink-0 [ui-selected_&]:hidden">
+        <?php ob_start(); ?><svg class="shrink-0 [:where(&amp;)]:size-5 hidden [ui-option[data-selected]_&]:block" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/>
+</svg>
+
+        <?php echo ltrim(ob_get_clean()); ?>
+    </div>
+
+    <?php echo e($slot->isNotEmpty() ? $slot : $label); ?>
+
+
+    <?php if ($loading): ?>
+        <?php ob_start(); ?><svg class="shrink-0 [:where(&amp;)]:size-4 animate-spin hidden [[data-flux-loading]>&]:block ms-auto text-zinc-400 [[data-flux-menu-item]:hover_&]:text-current" data-flux-icon xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon">
+    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+</svg>
+        <?php echo ltrim(ob_get_clean()); ?>
+    <?php endif; ?>
+</ui-option><?php
+echo ltrim(ob_get_clean());
+} endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/pillbox/option.blade.php ENDPATH**/ ?>

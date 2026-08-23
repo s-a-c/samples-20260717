@@ -1,9 +1,13 @@
 ---
 title: "UX Design"
 description: "This document describes the user experience principles, navigation patterns, and panel structures of the Samples application."
-type: design
-tags: \[design, ux]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [design, ux]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # UX Design

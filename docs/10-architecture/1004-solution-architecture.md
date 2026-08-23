@@ -1,9 +1,13 @@
 ---
 title: "Solution Architecture"
 description: "This document describes the internal structure of the Samples application, its core components, data flows, and deployment patterns."
-type: architecture
-tags: \[architecture, solution]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: reference
+tags: [architecture, solution]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Solution Architecture

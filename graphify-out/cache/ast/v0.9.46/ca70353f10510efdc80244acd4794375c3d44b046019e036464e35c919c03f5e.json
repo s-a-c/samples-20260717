@@ -1,0 +1,68 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_domain_staging_northwind_customer_php",
+            "label": "Customer.php",
+            "file_type": "code",
+            "source_file": "app/Domain/Staging/Northwind/Customer.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_domain_staging_northwind_customer_customer",
+            "label": "Customer",
+            "file_type": "code",
+            "source_file": "app/Domain/Staging/Northwind/Customer.php",
+            "source_location": "L10",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "stagingmodel",
+            "label": "StagingModel",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_domain_staging_northwind_customer_php",
+            "target": "stagingmodel",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Domain/Staging/Northwind/Customer.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_domain_staging_northwind_customer_php",
+            "target": "table",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Domain/Staging/Northwind/Customer.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_domain_staging_northwind_customer_php",
+            "target": "$graphify-root$_app_domain_staging_northwind_customer_customer",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Domain/Staging/Northwind/Customer.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_domain_staging_northwind_customer_customer",
+            "target": "stagingmodel",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Domain/Staging/Northwind/Customer.php",
+            "source_location": "L11",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": []
+}

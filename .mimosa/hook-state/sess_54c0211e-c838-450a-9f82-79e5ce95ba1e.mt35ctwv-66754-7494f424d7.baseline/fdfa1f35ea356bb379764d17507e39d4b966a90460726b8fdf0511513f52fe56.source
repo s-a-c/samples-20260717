@@ -1,0 +1,158 @@
+<?php
+    $record = $getRecord();
+    $labelClasses = 'text-sm font-medium leading-4 text-gray-700 dark:text-gray-300';
+    $dataClasses = 'mt-2';
+    $dimensions = '-';
+    if (filled($record) && ($record->width && $record->height)) {
+        $dimensions = $record->width . ' x ' . $record->height;
+    }
+?>
+
+<div>
+    <dl class="grid md:grid-cols-3 gap-6">
+        <div>
+            <dt class="<?php echo e($labelClasses); ?>">
+                <?php echo e(trans('curator::views.details.uploaded_on')); ?>
+
+            </dt>
+            <dd class="<?php echo e($dataClasses); ?>">
+                <?php echo e(filled($record) ? $record->created_at->format('M j, Y') : '-'); ?>
+
+            </dd>
+        </div>
+        <div>
+            <dt class="<?php echo e($labelClasses); ?>">
+                <?php echo e(trans('curator::views.details.mime_type')); ?>
+
+            </dt>
+            <dd class="<?php echo e($dataClasses); ?>">
+                <?php echo e(filled($record) ? $record->type : '-'); ?>
+
+            </dd>
+        </div>
+        <div>
+            <dt class="<?php echo e($labelClasses); ?>">
+                <?php echo e(trans('curator::views.details.file_size')); ?>
+
+            </dt>
+            <dd class="<?php echo e($dataClasses); ?>">
+                <?php echo e(filled($record?->size) ? curator()->sizeForHumans($record->size) : '-'); ?>
+
+            </dd>
+        </div>
+        <div>
+            <dt class="<?php echo e($labelClasses); ?>">
+                <?php echo e(trans('curator::views.details.dimensions')); ?>
+
+            </dt>
+            <dd class="<?php echo e($dataClasses); ?>">
+                <?php echo e($dimensions); ?>
+
+            </dd>
+        </div>
+        <div>
+            <dt class="<?php echo e($labelClasses); ?>">
+                <?php echo e(trans('curator::views.details.disk')); ?>
+
+            </dt>
+            <dd class="<?php echo e($dataClasses); ?>">
+                <?php echo e(filled($record) ? $record->disk : '-'); ?>
+
+            </dd>
+        </div>
+        <div>
+            <dt class="<?php echo e($labelClasses); ?>">
+                <?php echo e(trans('curator::views.details.directory')); ?>
+
+            </dt>
+            <dd class="<?php echo e($dataClasses); ?>">
+                <?php echo e(filled($record) ? $record->directory : '-'); ?>
+
+            </dd>
+        </div>
+        <div class="md:col-span-3">
+            <dt class="<?php echo e($labelClasses); ?>">
+                <?php echo e(trans('curator::views.details.file_url')); ?>
+
+            </dt>
+            <dd class="<?php echo e($dataClasses); ?>">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(filled($record)): ?>
+                    <div class="flex items-start justify-between gap-6">
+                        <span class="truncate"><?php echo e($record->url); ?></span>
+                        <button
+                                type="button"
+                                class="text-sm flex-shrink-0 flex items-center gap-2"
+                                x-data="{
+                                    showMessage: false,
+                                    toggleMessage: function() {
+                                        this.showMessage = true;
+                                        setTimeout(() => {
+                                            this.showMessage = false;
+                                        }, 1000)
+                                    },
+                                    handleCopy: function(subject) {
+                                        navigator.clipboard.writeText(subject)
+                                    }
+                                }"
+                                x-on:click="handleCopy('<?php echo e($record->url); ?>'); toggleMessage();"
+                        >
+                            <span x-show="! showMessage" class="filament-link">
+                                <?php if (isset($component)) { $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.icon','data' => ['alias' => 'curator::copy-link','icon' => 'heroicon-s-clipboard-document','class' => 'w-4 h-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['alias' => 'curator::copy-link','icon' => 'heroicon-s-clipboard-document','class' => 'w-4 h-4']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $attributes = $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $component = $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+                            </span>
+                            <span x-show="! showMessage" class="filament-link"><?php echo e(trans('curator::views.details.copy_url')); ?></span>
+                            <span x-show="showMessage" class="text-success-500 font-bold" style="display:none;">
+                                <?php if (isset($component)) { $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.icon','data' => ['alias' => 'curator::copy-link','icon' => 'heroicon-s-check-circle','class' => 'w-4 h-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['alias' => 'curator::copy-link','icon' => 'heroicon-s-check-circle','class' => 'w-4 h-4']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $attributes = $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $component = $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+                            </span>
+                            <span x-show="showMessage" class="text-success-500 font-bold" style="display:none;"><?php echo e(trans('curator::views.details.url_copied')); ?></span>
+                        </button>
+                    </div>
+                <?php else: ?>
+                -
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </dd>
+        </div>
+    </dl>
+</div>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/forms/details.blade.php ENDPATH**/ ?>

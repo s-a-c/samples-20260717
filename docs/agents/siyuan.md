@@ -1,9 +1,13 @@
 ---
 title: "SiYuan Integration (samples-20260717)"
 description: "Integration contract for the samples-20260717 Siyuan notebook and API access."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: guide
-tags: \[guide, agents, siyuan, integration]
-updated: 2026-07-30
+tags: [guide, agents, siyuan, integration]
+created: 2026-07-19
+updated: 2026-08-17
 ---
 
 # SiYuan Integration (samples-20260717)

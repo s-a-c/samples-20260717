@@ -1,0 +1,140 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_cursor_skills_instruckt_skill_md",
+            "label": "SKILL.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "name": "instruckt",
+                "description": "Visual feedback from users via in-browser annotations. Activates when the user pastes UI feedback markdown starting with &#x27;# UI Feedback&#x27;, when annotations or visual feedback are mentioned, or when you need to check for pending UI feedback via MCP.",
+                "license": "MIT"
+            }
+        },
+        {
+            "id": "$graphify-root$_cursor_skills_instruckt_skill_instruckt_visual_feedback_for_ai_agents",
+            "label": "Instruckt \u2014 Visual Feedback for AI Agents",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L10"
+        },
+        {
+            "id": "$graphify-root$_cursor_skills_instruckt_skill_workflow",
+            "label": "Workflow",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L14"
+        },
+        {
+            "id": "$graphify-root$_cursor_skills_instruckt_skill_recognizing_pasted_feedback",
+            "label": "Recognizing Pasted Feedback",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L22"
+        },
+        {
+            "id": "$graphify-root$_cursor_skills_instruckt_skill_source_resolution",
+            "label": "Source Resolution",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L42"
+        },
+        {
+            "id": "$graphify-root$_cursor_skills_instruckt_skill_screenshots",
+            "label": "Screenshots",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L53"
+        },
+        {
+            "id": "$graphify-root$_cursor_skills_instruckt_skill_mcp_tools",
+            "label": "MCP Tools",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L57"
+        },
+        {
+            "id": "$graphify-root$_cursor_skills_instruckt_skill_best_practices",
+            "label": "Best Practices",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L65"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_cursor_skills_instruckt_skill_md",
+            "target": "$graphify-root$_cursor_skills_instruckt_skill_instruckt_visual_feedback_for_ai_agents",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_cursor_skills_instruckt_skill_instruckt_visual_feedback_for_ai_agents",
+            "target": "$graphify-root$_cursor_skills_instruckt_skill_workflow",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_cursor_skills_instruckt_skill_instruckt_visual_feedback_for_ai_agents",
+            "target": "$graphify-root$_cursor_skills_instruckt_skill_recognizing_pasted_feedback",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L22",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_cursor_skills_instruckt_skill_instruckt_visual_feedback_for_ai_agents",
+            "target": "$graphify-root$_cursor_skills_instruckt_skill_source_resolution",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L42",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_cursor_skills_instruckt_skill_instruckt_visual_feedback_for_ai_agents",
+            "target": "$graphify-root$_cursor_skills_instruckt_skill_screenshots",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L53",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_cursor_skills_instruckt_skill_instruckt_visual_feedback_for_ai_agents",
+            "target": "$graphify-root$_cursor_skills_instruckt_skill_mcp_tools",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L57",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_cursor_skills_instruckt_skill_instruckt_visual_feedback_for_ai_agents",
+            "target": "$graphify-root$_cursor_skills_instruckt_skill_best_practices",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".cursor/skills/instruckt/SKILL.md",
+            "source_location": "L65",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

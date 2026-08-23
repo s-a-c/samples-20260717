@@ -1,0 +1,1 @@
+{"nodes": [{"id": "instruckt_skill", "label": "Instruckt Skill", "file_type": "concept", "source_file": ".junie/skills/instruckt/SKILL.md", "rationale": "Handles visual UI feedback and annotations from users."}], "edges": [], "hyperedges": []}

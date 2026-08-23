@@ -1,0 +1,40 @@
+<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($mediaItem): ?>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($mediaItem->isPreviewable()): ?>
+        <img
+            src="<?php echo e($source); ?>"
+            alt="<?php echo e($mediaItem->getAlt()); ?>"
+            width="<?php echo e($width ?? $mediaItem->getWidth()); ?>"
+            height="<?php echo e($height ?? $mediaItem->getHeight()); ?>"
+            <?php if($sourceSet): ?>
+                srcset="<?php echo e($sourceSet); ?>"
+                sizes="<?php echo e($sizes); ?>"
+            <?php endif; ?>
+            <?php echo e($attributes->filter(fn ($attr) => $attr !== '')); ?>
+
+        />
+    <?php else: ?>
+        <?php if (isset($component)) { $__componentOriginal3a0d3873a15efd0452d3b59132f62129 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3a0d3873a15efd0452d3b59132f62129 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'curator::components.display.document','data' => ['label' => ''.e($mediaItem->getName()).'','extension' => $mediaItem->getExtension(),'iconSize' => 'xl','attributes' => $attributes->merge(['class' => 'p-4'])]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('curator::display.document'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['label' => ''.e($mediaItem->getName()).'','extension' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($mediaItem->getExtension()),'icon-size' => 'xl','attributes' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($attributes->merge(['class' => 'p-4']))]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3a0d3873a15efd0452d3b59132f62129)): ?>
+<?php $attributes = $__attributesOriginal3a0d3873a15efd0452d3b59132f62129; ?>
+<?php unset($__attributesOriginal3a0d3873a15efd0452d3b59132f62129); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3a0d3873a15efd0452d3b59132f62129)): ?>
+<?php $component = $__componentOriginal3a0d3873a15efd0452d3b59132f62129; ?>
+<?php unset($__componentOriginal3a0d3873a15efd0452d3b59132f62129); ?>
+<?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/glider.blade.php ENDPATH**/ ?>

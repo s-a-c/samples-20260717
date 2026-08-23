@@ -1,0 +1,1 @@
+{"nodes": [{"id": "claude_skills_blaze_optimize_references_folding_safety", "label": "Blaze Folding Safety Checklist", "file_type": "document", "source_file": ".claude/skills/blaze-optimize/references/folding-safety.md", "rationale": "Detailed safety checks for compile-time folding, including global state and prop analysis."}], "edges": [], "hyperedges": []}

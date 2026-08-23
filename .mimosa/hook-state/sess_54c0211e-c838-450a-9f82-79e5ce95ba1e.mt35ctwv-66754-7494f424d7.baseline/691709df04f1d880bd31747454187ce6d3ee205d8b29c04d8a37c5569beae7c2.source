@@ -1,0 +1,101 @@
+<?php return array (
+  'livewireComponents' => 
+  array (
+    'App\\Filament\\Chinook\\Resources\\AlbumResource\\Pages\\CreateAlbum' => 'App\\Filament\\Chinook\\Resources\\AlbumResource\\Pages\\CreateAlbum',
+    'App\\Filament\\Chinook\\Resources\\AlbumResource\\Pages\\EditAlbum' => 'App\\Filament\\Chinook\\Resources\\AlbumResource\\Pages\\EditAlbum',
+    'App\\Filament\\Chinook\\Resources\\AlbumResource\\Pages\\ListAlbums' => 'App\\Filament\\Chinook\\Resources\\AlbumResource\\Pages\\ListAlbums',
+    'App\\Filament\\Chinook\\Resources\\ArtistResource\\Pages\\CreateArtist' => 'App\\Filament\\Chinook\\Resources\\ArtistResource\\Pages\\CreateArtist',
+    'App\\Filament\\Chinook\\Resources\\ArtistResource\\Pages\\EditArtist' => 'App\\Filament\\Chinook\\Resources\\ArtistResource\\Pages\\EditArtist',
+    'App\\Filament\\Chinook\\Resources\\ArtistResource\\Pages\\ListArtists' => 'App\\Filament\\Chinook\\Resources\\ArtistResource\\Pages\\ListArtists',
+    'App\\Filament\\Chinook\\Resources\\CustomerResource\\Pages\\CreateCustomer' => 'App\\Filament\\Chinook\\Resources\\CustomerResource\\Pages\\CreateCustomer',
+    'App\\Filament\\Chinook\\Resources\\CustomerResource\\Pages\\EditCustomer' => 'App\\Filament\\Chinook\\Resources\\CustomerResource\\Pages\\EditCustomer',
+    'App\\Filament\\Chinook\\Resources\\CustomerResource\\Pages\\ListCustomers' => 'App\\Filament\\Chinook\\Resources\\CustomerResource\\Pages\\ListCustomers',
+    'App\\Filament\\Chinook\\Resources\\EmployeeResource\\Pages\\CreateEmployee' => 'App\\Filament\\Chinook\\Resources\\EmployeeResource\\Pages\\CreateEmployee',
+    'App\\Filament\\Chinook\\Resources\\EmployeeResource\\Pages\\EditEmployee' => 'App\\Filament\\Chinook\\Resources\\EmployeeResource\\Pages\\EditEmployee',
+    'App\\Filament\\Chinook\\Resources\\EmployeeResource\\Pages\\ListEmployees' => 'App\\Filament\\Chinook\\Resources\\EmployeeResource\\Pages\\ListEmployees',
+    'App\\Filament\\Chinook\\Resources\\GenreResource\\Pages\\CreateGenre' => 'App\\Filament\\Chinook\\Resources\\GenreResource\\Pages\\CreateGenre',
+    'App\\Filament\\Chinook\\Resources\\GenreResource\\Pages\\EditGenre' => 'App\\Filament\\Chinook\\Resources\\GenreResource\\Pages\\EditGenre',
+    'App\\Filament\\Chinook\\Resources\\GenreResource\\Pages\\ListGenres' => 'App\\Filament\\Chinook\\Resources\\GenreResource\\Pages\\ListGenres',
+    'App\\Filament\\Chinook\\Resources\\InvoiceResource\\Pages\\CreateInvoice' => 'App\\Filament\\Chinook\\Resources\\InvoiceResource\\Pages\\CreateInvoice',
+    'App\\Filament\\Chinook\\Resources\\InvoiceResource\\Pages\\EditInvoice' => 'App\\Filament\\Chinook\\Resources\\InvoiceResource\\Pages\\EditInvoice',
+    'App\\Filament\\Chinook\\Resources\\InvoiceResource\\Pages\\ListInvoices' => 'App\\Filament\\Chinook\\Resources\\InvoiceResource\\Pages\\ListInvoices',
+    'App\\Filament\\Chinook\\Resources\\PlaylistResource\\Pages\\CreatePlaylist' => 'App\\Filament\\Chinook\\Resources\\PlaylistResource\\Pages\\CreatePlaylist',
+    'App\\Filament\\Chinook\\Resources\\PlaylistResource\\Pages\\EditPlaylist' => 'App\\Filament\\Chinook\\Resources\\PlaylistResource\\Pages\\EditPlaylist',
+    'App\\Filament\\Chinook\\Resources\\PlaylistResource\\Pages\\ListPlaylists' => 'App\\Filament\\Chinook\\Resources\\PlaylistResource\\Pages\\ListPlaylists',
+    'App\\Filament\\Chinook\\Resources\\TrackResource\\Pages\\CreateTrack' => 'App\\Filament\\Chinook\\Resources\\TrackResource\\Pages\\CreateTrack',
+    'App\\Filament\\Chinook\\Resources\\TrackResource\\Pages\\EditTrack' => 'App\\Filament\\Chinook\\Resources\\TrackResource\\Pages\\EditTrack',
+    'App\\Filament\\Chinook\\Resources\\TrackResource\\Pages\\ListTracks' => 'App\\Filament\\Chinook\\Resources\\TrackResource\\Pages\\ListTracks',
+    'Filament\\Pages\\Dashboard' => 'Filament\\Pages\\Dashboard',
+    'Filament\\Widgets\\AccountWidget' => 'Filament\\Widgets\\AccountWidget',
+    'Filament\\Widgets\\FilamentInfoWidget' => 'Filament\\Widgets\\FilamentInfoWidget',
+    'Filament\\Livewire\\DatabaseNotifications' => 'Filament\\Livewire\\DatabaseNotifications',
+    'Filament\\Auth\\Pages\\EditProfile' => 'Filament\\Auth\\Pages\\EditProfile',
+    'Filament\\Livewire\\GlobalSearch' => 'Filament\\Livewire\\GlobalSearch',
+    'Filament\\Livewire\\Notifications' => 'Filament\\Livewire\\Notifications',
+    'Filament\\Livewire\\Sidebar' => 'Filament\\Livewire\\Sidebar',
+    'Filament\\Livewire\\SimpleUserMenu' => 'Filament\\Livewire\\SimpleUserMenu',
+    'Filament\\Livewire\\Topbar' => 'Filament\\Livewire\\Topbar',
+  ),
+  'clusters' => 
+  array (
+  ),
+  'clusteredComponents' => 
+  array (
+  ),
+  'clusterDirectories' => 
+  array (
+  ),
+  'clusterNamespaces' => 
+  array (
+  ),
+  'pages' => 
+  array (
+    0 => 'Filament\\Pages\\Dashboard',
+  ),
+  'pageConfigurations' => 
+  array (
+  ),
+  'pageDirectories' => 
+  array (
+    0 => '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Pages',
+  ),
+  'pageNamespaces' => 
+  array (
+    0 => 'App\\Filament\\Chinook\\Pages',
+  ),
+  'resources' => 
+  array (
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Resources/AlbumResource.php' => 'App\\Filament\\Chinook\\Resources\\AlbumResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Resources/ArtistResource.php' => 'App\\Filament\\Chinook\\Resources\\ArtistResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Resources/CustomerResource.php' => 'App\\Filament\\Chinook\\Resources\\CustomerResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Resources/EmployeeResource.php' => 'App\\Filament\\Chinook\\Resources\\EmployeeResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Resources/GenreResource.php' => 'App\\Filament\\Chinook\\Resources\\GenreResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Resources/InvoiceResource.php' => 'App\\Filament\\Chinook\\Resources\\InvoiceResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Resources/PlaylistResource.php' => 'App\\Filament\\Chinook\\Resources\\PlaylistResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Resources/TrackResource.php' => 'App\\Filament\\Chinook\\Resources\\TrackResource',
+  ),
+  'resourceConfigurations' => 
+  array (
+  ),
+  'resourceDirectories' => 
+  array (
+    0 => '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Resources',
+  ),
+  'resourceNamespaces' => 
+  array (
+    0 => 'App\\Filament\\Chinook\\Resources',
+  ),
+  'widgets' => 
+  array (
+    0 => 'Filament\\Widgets\\AccountWidget',
+    1 => 'Filament\\Widgets\\FilamentInfoWidget',
+  ),
+  'widgetDirectories' => 
+  array (
+    0 => '/Users/s-a-c/Herd/samples-20260717/app/Filament/Chinook/Widgets',
+  ),
+  'widgetNamespaces' => 
+  array (
+    0 => 'App\\Filament\\Chinook\\Widgets',
+  ),
+);

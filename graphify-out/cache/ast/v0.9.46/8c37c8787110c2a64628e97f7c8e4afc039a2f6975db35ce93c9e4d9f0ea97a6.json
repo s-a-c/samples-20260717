@@ -1,0 +1,54 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_tests_feature_search_embeddingjobfailuretest_php",
+            "label": "EmbeddingJobFailureTest.php",
+            "file_type": "code",
+            "source_file": "tests/Feature/Search/EmbeddingJobFailureTest.php",
+            "source_location": "L1"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_tests_feature_search_embeddingjobfailuretest_php",
+            "target": "embeddingjob",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Search/EmbeddingJobFailureTest.php",
+            "source_location": "L5",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_search_embeddingjobfailuretest_php",
+            "target": "db",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Search/EmbeddingJobFailureTest.php",
+            "source_location": "L6",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_search_embeddingjobfailuretest_php",
+            "target": "str",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Search/EmbeddingJobFailureTest.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_search_embeddingjobfailuretest_php",
+            "target": "embeddings",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Search/EmbeddingJobFailureTest.php",
+            "source_location": "L8",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": []
+}

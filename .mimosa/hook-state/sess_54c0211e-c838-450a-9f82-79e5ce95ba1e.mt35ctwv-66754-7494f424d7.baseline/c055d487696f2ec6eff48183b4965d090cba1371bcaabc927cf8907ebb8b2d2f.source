@@ -1,0 +1,133 @@
+---
+name: pulse-development
+description: "Handles Laravel Pulse setup, configuration, and custom card development. Activates when installing Pulse; configuring the dashboard or authorization gate; setting up recorders and filtering; building custom Livewire cards; optimizing with Redis ingest or sampling; or when the user mentions /pulse, pulse:check, pulse:work, Pulse::record(), or application monitoring."
+license: MIT
+metadata:
+  author: laravel
+---
+@php
+/** @var \Laravel\Boost\Install\GuidelineAssist $assist */
+@endphp
+# Laravel Pulse Development
+
+## Documentation
+
+Use ___SINGLE_BACKTICK___search-docs___SINGLE_BACKTICK___ for detailed Laravel Pulse patterns and documentation, including card layout customization, user resolver configuration, all recorder options, sampling, dedicated database connections, Vite/CSS integration, Tailwind scoping, blade card components, and lazy loading.
+
+## Installation
+
+Pulse stores data in your application's database. The current package supports MySQL, MariaDB, PostgreSQL, and SQLite.
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___bash
+composer require laravel/pulse
+{{ $assist->artisanCommand('vendor:publish --provider="Laravel\Pulse\PulseServiceProvider"') }}
+{{ $assist->artisanCommand('migrate') }}
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+The dashboard is available at ___SINGLE_BACKTICK___/pulse___SINGLE_BACKTICK___. 
+
+## Dashboard Authorization
+
+Define the ___SINGLE_BACKTICK___viewPulse___SINGLE_BACKTICK___ gate in ___SINGLE_BACKTICK___AppServiceProvider::boot()___SINGLE_BACKTICK___ to enable production access:
+
+___BOOST_SNIPPET_0___
+
+Without this gate, the dashboard is inaccessible in all non-local environments.
+
+## Recorders
+
+All 10 built-in recorders are configurable in ___SINGLE_BACKTICK___config/pulse.php___SINGLE_BACKTICK___:
+
+| Recorder | Key Config Options |
+|---|---|
+| ___SINGLE_BACKTICK___CacheInteractions___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___sample_rate___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___groups___SINGLE_BACKTICK___ (regex find/replace) |
+| ___SINGLE_BACKTICK___Exceptions___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___sample_rate___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___location___SINGLE_BACKTICK___ |
+| ___SINGLE_BACKTICK___Queues___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___sample_rate___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___ |
+| ___SINGLE_BACKTICK___SlowJobs___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___threshold___SINGLE_BACKTICK___ (ms, per-job regex map), ___SINGLE_BACKTICK___sample_rate___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___ |
+| ___SINGLE_BACKTICK___SlowOutgoingRequests___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___threshold___SINGLE_BACKTICK___ (ms, per-URL regex map), ___SINGLE_BACKTICK___sample_rate___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___groups___SINGLE_BACKTICK___ |
+| ___SINGLE_BACKTICK___SlowQueries___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___threshold___SINGLE_BACKTICK___ (ms, per-query regex map), ___SINGLE_BACKTICK___sample_rate___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___location___SINGLE_BACKTICK___ |
+| ___SINGLE_BACKTICK___SlowRequests___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___threshold___SINGLE_BACKTICK___ (ms, per-route regex map), ___SINGLE_BACKTICK___sample_rate___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___ |
+| ___SINGLE_BACKTICK___Servers___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___PULSE_SERVER_NAME___SINGLE_BACKTICK___ env var, monitored disk paths |
+| ___SINGLE_BACKTICK___UserJobs___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___sample_rate___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___ |
+| ___SINGLE_BACKTICK___UserRequests___SINGLE_BACKTICK___ | ___SINGLE_BACKTICK___sample_rate___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___ |
+
+Per-route and per-job threshold overrides use a regex-keyed map with a ___SINGLE_BACKTICK___default___SINGLE_BACKTICK___ fallback:
+
+___BOOST_SNIPPET_1___
+
+The ___SINGLE_BACKTICK___Servers___SINGLE_BACKTICK___ recorder requires ___SINGLE_BACKTICK___pulse:check___SINGLE_BACKTICK___ running as a persistent daemon (Supervisor recommended).
+
+### Filtering Entries
+
+Use ___SINGLE_BACKTICK___Pulse::filter()___SINGLE_BACKTICK___ in ___SINGLE_BACKTICK___AppServiceProvider::boot()___SINGLE_BACKTICK___ to exclude entries globally. Return ___SINGLE_BACKTICK___true___SINGLE_BACKTICK___ to record, ___SINGLE_BACKTICK___false___SINGLE_BACKTICK___ to skip:
+
+___BOOST_SNIPPET_2___
+
+## Performance
+
+### Redis Ingest
+
+Offload entry writes from the request cycle to a Redis stream (requires Redis 6.2+ and ___SINGLE_BACKTICK___phpredis___SINGLE_BACKTICK___ or ___SINGLE_BACKTICK___predis___SINGLE_BACKTICK___):
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___ini
+PULSE_INGEST_DRIVER=redis
+PULSE_REDIS_CONNECTION=pulse
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+Run a worker to drain the Redis stream into the database:
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___bash
+{{ $assist->artisanCommand('pulse:work') }}
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+Signal a graceful restart during deployment (requires a working cache driver):
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___bash
+{{ $assist->artisanCommand('pulse:restart') }}
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+## Custom Cards
+
+Custom cards are Livewire components extending Pulse's base ___SINGLE_BACKTICK___Card___SINGLE_BACKTICK___ class.
+
+### Recording Entries
+
+Call ___SINGLE_BACKTICK___Pulse::record()___SINGLE_BACKTICK___ from a recorder, listener, or observer. Chain aggregation methods (___SINGLE_BACKTICK___avg___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___count___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___max___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___min___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___sum___SINGLE_BACKTICK___) in a single call:
+
+___BOOST_SNIPPET_3___
+
+When the entry is tied to the authenticated user, use ___SINGLE_BACKTICK___Pulse::resolveAuthenticatedUserId()___SINGLE_BACKTICK___ instead of ___SINGLE_BACKTICK___Auth::id()___SINGLE_BACKTICK___ to respect custom user resolvers.
+
+### Card Component
+
+___BOOST_SNIPPET_4___
+
+___SINGLE_BACKTICK___$this->aggregate(type, aggregates)___SINGLE_BACKTICK___ returns a ___SINGLE_BACKTICK___Collection___SINGLE_BACKTICK___ of ___SINGLE_BACKTICK___stdClass___SINGLE_BACKTICK___ objects with ___SINGLE_BACKTICK___key___SINGLE_BACKTICK___ and one property per aggregation method. ___SINGLE_BACKTICK___$this->aggregateTotal(type, aggregate)___SINGLE_BACKTICK___ returns a single scalar.
+
+### Custom Recorders
+
+A recorder is a plain class with a ___SINGLE_BACKTICK___$listen___SINGLE_BACKTICK___ array of Laravel events:
+
+___BOOST_SNIPPET_5___
+
+Register the recorder in the ___SINGLE_BACKTICK___recorders___SINGLE_BACKTICK___ array in ___SINGLE_BACKTICK___config/pulse.php___SINGLE_BACKTICK___.
+
+## Verification
+
+1. Run migrations and confirm ___SINGLE_BACKTICK___/pulse___SINGLE_BACKTICK___ is accessible in local
+2. Define ___SINGLE_BACKTICK___viewPulse___SINGLE_BACKTICK___ gate and verify production access
+3. Confirm ___SINGLE_BACKTICK___pulse:check___SINGLE_BACKTICK___ is running for the Servers card
+4. If using Redis ingest, confirm ___SINGLE_BACKTICK___pulse:work___SINGLE_BACKTICK___ is running
+
+## Common Pitfalls
+
+- An empty dashboard or database errors usually mean the Pulse tables have not been published and migrated yet.
+- The dashboard is local-only by default. Define the ___SINGLE_BACKTICK___viewPulse___SINGLE_BACKTICK___ gate to enable production access.
+- The Servers card shows no data unless ___SINGLE_BACKTICK___pulse:check___SINGLE_BACKTICK___ runs as a persistent process. Supervisor is recommended.
+- Redis ingest silently queues data. The dashboard appears empty if ___SINGLE_BACKTICK___pulse:work___SINGLE_BACKTICK___ is not running.
+- ___SINGLE_BACKTICK___pulse:restart___SINGLE_BACKTICK___ requires a working cache driver. Without it, the signal is never received.
+- Pulse exceptions fail silently. Use ___SINGLE_BACKTICK___Pulse::handleExceptionsUsing()___SINGLE_BACKTICK___ to surface errors during development.
+- Multiple ___SINGLE_BACKTICK___Authenticatable___SINGLE_BACKTICK___ models can cause incorrect user tracking. Use ___SINGLE_BACKTICK___Pulse::resolveAuthenticatedUserId()___SINGLE_BACKTICK___ when recording user-keyed entries.
+- SQS queues may appear duplicated in the Queue card. Use ___SINGLE_BACKTICK___ignore___SINGLE_BACKTICK___ regex patterns to suppress them.
+- Sampled dashboard values are approximate and prefixed with ___SINGLE_BACKTICK___~___SINGLE_BACKTICK___. They are not suitable for financial or audit reporting.
+- Always use ___SINGLE_BACKTICK___search-docs___SINGLE_BACKTICK___ for the latest Pulse documentation rather than relying on this skill alone.

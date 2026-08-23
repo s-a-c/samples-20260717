@@ -1,0 +1,135 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_10_architecture_1001_contents_md",
+            "label": "1001-contents.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "10-architecture \u2014 Contents",
+                "description": "Structural contents page: every direct child of docs/10-architecture, in prefix order.",
+                "type": "contents",
+                "tags": "[navigation, contents]",
+                "created": "2026-08-17",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1001_contents_10_architecture_contents",
+            "label": "10-architecture \u2014 Contents",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L13"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1001_contents_1_purpose",
+            "label": "1. Purpose",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L29"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1001_contents_2_direct_children",
+            "label": "2. Direct children",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L37"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_10_architecture_1001_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1001_contents_10_architecture_contents",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1001_contents_10_architecture_contents",
+            "target": "$graphify-root$_docs_10_architecture_1001_contents_1_purpose",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1001_contents_md",
+            "target": "$graphify-root$_docs_01_contents_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L35",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/01-contents.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1001_contents_10_architecture_contents",
+            "target": "$graphify-root$_docs_10_architecture_1001_contents_2_direct_children",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L37",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1001_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1002_system_context_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L41",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1002-system-context.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1001_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L42",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100301-contents.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1001_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1004_solution_architecture_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L43",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1004-solution-architecture.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1001_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1007_ontology_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L44",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1007-ontology.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1001_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1008_semantic_layer_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1001-contents.md",
+            "source_location": "L45",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1008-semantic-layer.md"
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

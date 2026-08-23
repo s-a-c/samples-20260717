@@ -1,0 +1,1 @@
+{"nodes": [], "edges": [{"source": "grok_skills_configuring_horizon_skill", "target": "factory_skills_laravel_best_practices_skill", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 0.9, "source_file": ".factory/skills/laravel-best-practices/rules/queue-jobs.md"}], "hyperedges": []}

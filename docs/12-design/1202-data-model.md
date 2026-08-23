@@ -1,9 +1,13 @@
 ---
 title: "Data Model"
 description: "Shared public-schema entities and polymorphic references to product-domain entities."
-type: design
-tags: \[design, data, model]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [design, data, model]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Data Model
@@ -21,8 +25,9 @@ updated: 2026-07-30
 - [4. Search Projections](#4-search-projections)
 - [5. Relationships](#5-relationships)
 - [6. Diagrams](#6-diagrams)
-    - [6.1. The connected model is in `data-model.mmd`.](#61-the-connected-model-is-in-data-modelmmd)
-    - [6.2. While standalone product entities are in `data-model-unconnected.mmd`.](#62-while-standalone-product-entities-are-in-data-model-unconnectedmmd)
+    - [6.1. The connected model is in [`data-model.mmd`](../assets/data-model.mmd).](#61-the-connected-model-is-in-data-modelmmdassetsdata-modelmmd)
+    - [6.2. While standalone product entities are in [`data-model-unconnected.mmd`](../assets/data-model-unconnected.mmd).](#62-while-standalone-product-entities-are-in-data-model-unconnectedmmdassetsdata-model-unconnectedmmd)
+    - [6.3. Reset Run Lifecycle](#63-reset-run-lifecycle)
 
 </details>
 

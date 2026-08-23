@@ -1,22 +1,41 @@
 ---
 title: "ADR 0018: Acceptance & Operational Gates"
 description: "Accepted — restated from [Wayfinder #11](https://github.com/s-a-c/samples-20260717/issues/11) (map [#15](https://github.com/s-a-c/samples-20260717/issues/15))."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: adr
-tags: \[adr, "0018", acceptance]
-updated: 2026-07-30
+tags: [adr, "0018", acceptance]
+created: 2026-07-28
+updated: 2026-08-17
 ---
 
 # ADR 0018: Acceptance & Operational Gates
 
-## Status
+<details>
+  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
+    Expand for Table of Contents
+  </summary>
+
+- [1. Status](#1-status)
+- [2. Context](#2-context)
+- [3. Decision](#3-decision)
+- [4. Consequences](#4-consequences)
+- [5. References](#5-references)
+
+</details>
+
+---
+
+## 1. Status
 
 Accepted — restated from [Wayfinder #11](https://github.com/s-a-c/samples-20260717/issues/11) (map [#15](https://github.com/s-a-c/samples-20260717/issues/15)).
 
-## Context
+## 2. Context
 
 The application needs a strict, traceable acceptance model: "mostly working" is not acceptable. Every named gate is mandatory and must retain repeatable evidence. This decision fixes what "done" means across the whole delivery and how it is proven on two environments.
 
-## Decision
+## 3. Decision
 
 Adopt a risk-ordered, evidence-backed acceptance model.
 
@@ -42,12 +61,12 @@ Adopt a risk-ordered, evidence-backed acceptance model.
 
 **Implementation-Readiness Dossier:** a version-controlled record (ADR 0015) maps each approved decision to its gates, tests, operator commands, evidence location, and recovery procedure. Generated evidence stays as CI/release artifacts, not committed output.
 
-## Consequences
+## 4. Consequences
 
 - "Done" is gate-bound, not opinion-bound; no stage advances on partial evidence.
 - CI must mirror the Herd production shape (Postgres + pgvector) — see ADR 0021.
 - The four evidence families drive test design across the suite (Authorization Matrix, Reset Isolation, Golden Corpus, Baseline Fixture).
 
-## References
+## 5. References
 
 - [Wayfinder #11](https://github.com/s-a-c/samples-20260717/issues/11) · ADR 0015 (Dossier) · ADR 0013 (Test Pyramid) · ADR 0021 (Single Postgres Test Suite)

@@ -1,0 +1,105 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_09_product_0998_index_md",
+            "label": "0998-index.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "09-product \u2014 Index",
+                "description": "Semantic index and glossary for docs/09-product.",
+                "type": "index",
+                "tags": "[navigation, index, glossary]",
+                "created": "2026-08-17",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0998_index_09_product_index",
+            "label": "09-product \u2014 Index",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L13"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0998_index_1_topic_index",
+            "label": "1. Topic index",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L29"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0998_index_2_glossary",
+            "label": "2. Glossary",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L36"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_09_product_0998_index_md",
+            "target": "$graphify-root$_docs_09_product_0998_index_09_product_index",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0998_index_09_product_index",
+            "target": "$graphify-root$_docs_09_product_0998_index_1_topic_index",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0998_index_md",
+            "target": "$graphify-root$_docs_09_product_0907_backlog_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L31",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/09-product/0907-backlog.md"
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0998_index_md",
+            "target": "$graphify-root$_docs_09_product_0902_mvp_scope_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L32",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/09-product/0902-mvp-scope.md"
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0998_index_md",
+            "target": "$graphify-root$_docs_09_product_0904_user_stories_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L33",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/09-product/0904-user-stories.md"
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0998_index_09_product_index",
+            "target": "$graphify-root$_docs_09_product_0998_index_2_glossary",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0998-index.md",
+            "source_location": "L36",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

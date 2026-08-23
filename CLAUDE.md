@@ -59,7 +59,7 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 ## Searching Documentation (IMPORTANT)
 
-- Always use `search-docs` before making code changes. Do not skip this step. It returns version-specific docs based on installed packages automatically.
+- Use `search-docs` before changes that depend on Laravel ecosystem APIs, behavior, configuration, or version-specific syntax. Skip it for copy-only edits and other changes where package documentation is irrelevant. Reuse sufficient results already in context instead of searching again.
 - Pass a `packages` array to scope results when you know which packages are relevant.
 - Use multiple broad, topic-based queries: `['rate limiting', 'routing rate limiting', 'routing']`. Expect the most relevant results first.
 - Do not add package names to queries because package info is already shared. Use `test resource table`, not `filament 4 test resource table`.
@@ -404,3 +404,18 @@ This protocol applies when ending a Beads implementation workflow. It is subordi
 - If a required sync or push is blocked, stop and report the exact command and error.
 
 <!-- END BEADS INTEGRATION -->
+
+## SAGE — Persistent Memory
+
+You have persistent institutional memory via SAGE MCP.
+
+### Boot Sequence (IMPORTANT)
+
+1. Call `sage_inception` as your first action in every new conversation, before responding to the user
+2. This loads the context stored in previous sessions, so it must run first
+3. Follow the instructions returned by inception (they adapt to the user's settings)
+
+### If SAGE MCP is not connected
+
+Start the node: `sage-gui serve`
+MCP config is in `.mcp.json` at project root. Restart your session after starting.

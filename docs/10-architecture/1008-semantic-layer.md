@@ -1,9 +1,13 @@
 ---
 title: "Semantic Layer"
 description: "This document describes the semantic layer of the Samples application, detailing how physical data is operationalized, mapped, and consumed as canonical business concepts."
-type: architecture
-tags: \[architecture, semantic, layer]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: reference
+tags: [architecture, semantic, layer]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Semantic Layer
@@ -17,8 +21,8 @@ updated: 2026-07-30
 - [2. Semantic Mappings](#2-semantic-mappings)
     - [2.1. Physical to Canonical Mapping](#21-physical-to-canonical-mapping)
     - [2.2. Search Projection Semantics](#22-search-projection-semantics)
-- [3. Metrics \& KPIs](#3-metrics--kpis)
-- [4. Access Control \& Governance](#4-access-control--governance)
+- [3. Metrics & KPIs](#3-metrics-kpis)
+- [4. Access Control & Governance](#4-access-control-governance)
 - [5. Consumption](#5-consumption)
 - [6. Diagrams](#6-diagrams)
 

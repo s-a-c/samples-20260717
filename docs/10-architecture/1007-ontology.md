@@ -1,9 +1,13 @@
 ---
 title: "Domain Ontology"
 description: "This document defines the core concepts and entities within the Samples domain, representing the conceptual model of the application independently of the physical implementation."
-type: architecture
-tags: \[architecture, domain, ontology]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: reference
+tags: [architecture, domain, ontology]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Domain Ontology
@@ -17,7 +21,7 @@ updated: 2026-07-30
 - [2. Core Concepts](#2-core-concepts)
     - [2.1. Product Domain](#21-product-domain)
     - [2.2. Sample Entity](#22-sample-entity)
-    - [2.3. Team \& Membership](#23-team--membership)
+    - [2.3. Team & Membership](#23-team-membership)
 - [3. Relationships](#3-relationships)
 - [4. Competency Questions](#4-competency-questions)
 - [5. Diagrams](#5-diagrams)

@@ -1,0 +1,135 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_github_pull_request_template_md",
+            "label": "PULL_REQUEST_TEMPLATE.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_github_pull_request_template_pull_request",
+            "label": "Pull Request",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_github_pull_request_template_1_work_item",
+            "label": "1. Work item",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L5"
+        },
+        {
+            "id": "$graphify-root$_github_pull_request_template_2_summary",
+            "label": "2. Summary",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_github_pull_request_template_3_scope",
+            "label": "3. Scope",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L16"
+        },
+        {
+            "id": "$graphify-root$_github_pull_request_template_4_dependency_changes",
+            "label": "4. Dependency changes",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L22"
+        },
+        {
+            "id": "$graphify-root$_github_pull_request_template_5_verification",
+            "label": "5. Verification",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L26"
+        },
+        {
+            "id": "$graphify-root$_github_pull_request_template_6_review_notes",
+            "label": "6. Review notes",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L32"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_github_pull_request_template_md",
+            "target": "$graphify-root$_github_pull_request_template_pull_request",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L1",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_github_pull_request_template_pull_request",
+            "target": "$graphify-root$_github_pull_request_template_1_work_item",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L5",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_github_pull_request_template_pull_request",
+            "target": "$graphify-root$_github_pull_request_template_2_summary",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_github_pull_request_template_pull_request",
+            "target": "$graphify-root$_github_pull_request_template_3_scope",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L16",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_github_pull_request_template_pull_request",
+            "target": "$graphify-root$_github_pull_request_template_4_dependency_changes",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L22",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_github_pull_request_template_pull_request",
+            "target": "$graphify-root$_github_pull_request_template_5_verification",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L26",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_github_pull_request_template_pull_request",
+            "target": "$graphify-root$_github_pull_request_template_6_review_notes",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+            "source_location": "L32",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

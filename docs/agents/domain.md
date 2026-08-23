@@ -1,9 +1,13 @@
 ---
 title: "Domain Docs"
 description: "This repo is **single-context**: one [`../../CONTEXT.md`](../../CONTEXT.md) at the"
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: guide
-tags: \[guide, agents, domain, docs]
-updated: 2026-07-30
+tags: [guide, agents, domain, docs]
+created: 2026-07-19
+updated: 2026-08-17
 ---
 
 # Domain Docs

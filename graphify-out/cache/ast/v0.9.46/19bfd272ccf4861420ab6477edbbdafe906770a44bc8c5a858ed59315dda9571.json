@@ -1,0 +1,74 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_assets_readme_md",
+            "label": "README.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/assets/README.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "Assets Index",
+                "description": "This directory contains the canonical Mermaid source files for all diagrams used in the Samples project documentation.",
+                "type": "readme",
+                "tags": "\\[readme, assets, index]",
+                "updated": "2026-07-30"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_assets_readme_assets_index",
+            "label": "Assets Index",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/assets/README.md",
+            "source_location": "L9"
+        },
+        {
+            "id": "$graphify-root$_docs_assets_readme_diagram_index",
+            "label": "Diagram Index",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/assets/README.md",
+            "source_location": "L13"
+        },
+        {
+            "id": "$graphify-root$_docs_assets_readme_usage",
+            "label": "Usage",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/assets/README.md",
+            "source_location": "L37"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_assets_readme_md",
+            "target": "$graphify-root$_docs_assets_readme_assets_index",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/assets/README.md",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_assets_readme_assets_index",
+            "target": "$graphify-root$_docs_assets_readme_diagram_index",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/assets/README.md",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_assets_readme_assets_index",
+            "target": "$graphify-root$_docs_assets_readme_usage",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/assets/README.md",
+            "source_location": "L37",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

@@ -1,0 +1,100 @@
+<?php
+if (!function_exists('_2eada2b4b284e8f1f28f93e400f3fc0f')):
+function _2eada2b4b284e8f1f28f93e400f3fc0f($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
+$__env = $__blaze->env;
+$errors = $__blaze->errors;
+$__slots['slot'] ??= new \Illuminate\View\ComponentSlot('');
+if (($__data['attributes'] ?? null) instanceof \Illuminate\View\ComponentAttributeBag) { $__data = $__data + $__data['attributes']->all(); unset($__data['attributes']); }
+extract($__slots, EXTR_SKIP); unset($__slots);
+extract($__data, EXTR_SKIP);
+$attributes = \Livewire\Blaze\Runtime\BlazeAttributeBag::make($__data, $__bound, $__keys);
+unset($__data, $__bound, $__keys);
+ob_start();
+?>
+
+
+<?php $searchPlaceholder ??= $attributes->pluck('search:placeholder'); ?>
+
+<?php
+$__defaults = [
+    'selectedSuffix' => null,
+    'placeholder' => null,
+    'searchable' => null,
+    'clearable' => null,
+    'invalid' => null,
+    'trigger' => null,
+    'search' => null, // Slot forwarding...
+    'empty' => null, // Slot forwarding...
+    'clear' => null,
+    'close' => null,
+    'name' => null,
+    'size' => null,
+];
+$selectedSuffix ??= $attributes['selected-suffix'] ?? $attributes['selectedSuffix'] ?? $__defaults['selectedSuffix']; unset($attributes['selectedSuffix'], $attributes['selected-suffix']);
+$placeholder ??= $attributes['placeholder'] ?? $__defaults['placeholder']; unset($attributes['placeholder']);
+$searchable ??= $attributes['searchable'] ?? $__defaults['searchable']; unset($attributes['searchable']);
+$clearable ??= $attributes['clearable'] ?? $__defaults['clearable']; unset($attributes['clearable']);
+$invalid ??= $attributes['invalid'] ?? $__defaults['invalid']; unset($attributes['invalid']);
+$trigger ??= $attributes['trigger'] ?? $__defaults['trigger']; unset($attributes['trigger']);
+$search ??= $attributes['search'] ?? $__defaults['search']; unset($attributes['search']);
+$empty ??= $attributes['empty'] ?? $__defaults['empty']; unset($attributes['empty']);
+$clear ??= $attributes['clear'] ?? $__defaults['clear']; unset($attributes['clear']);
+$close ??= $attributes['close'] ?? $__defaults['close']; unset($attributes['close']);
+$name ??= $attributes['name'] ?? $__defaults['name']; unset($attributes['name']);
+$size ??= $attributes['size'] ?? $__defaults['size']; unset($attributes['size']);
+unset($__defaults);
+?>
+
+<?php
+// We only want to show the name attribute on the checkbox if it has been set
+// manually, but not if it has been set from the wire:model attribute...
+$showName = isset($name);
+
+if (! isset($name)) {
+    $name = $attributes->whereStartsWith('wire:model')->first();
+}
+
+$invalid ??= ($name && $errors->has($name));
+
+$class = Flux::classes()
+    ->add('w-full')
+    // The below reverts styles added by Tailwind Forms plugin
+    ->add('border-0 p-0 bg-transparent')
+    ;
+?>
+
+<ui-pillbox
+    clear="<?php echo e($clear ?? 'close esc select'); ?>"
+    <?php if($close): ?> close="<?php echo e($close); ?>" <?php endif; ?>
+    <?php echo e($attributes->class($class)->merge(['filter' => true])); ?>
+
+    <?php if($showName): ?> name="<?php echo e($name); ?>" <?php endif; ?>
+    data-flux-control
+    data-flux-pillbox
+>
+    <?php if ($trigger): ?> <?php echo e($trigger); ?> <?php else: ?>
+        <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/src/../stubs/resources/views/flux/pillbox/trigger.blade.php', $__blaze->compiledPath.'/f3f1e3afd696a2258a43c5b2dff97ead.php'); ?>
+<?php $__blaze->pushData(['placeholder' => $placeholder,'invalid' => $invalid,'size' => $size,'clearable' => $clearable,'suffix' => $selectedSuffix]); ?>
+<?php _f3f1e3afd696a2258a43c5b2dff97ead($__blaze, ['placeholder' => $placeholder,'invalid' => $invalid,'size' => $size,'clearable' => $clearable,'suffix' => $selectedSuffix], [], ['placeholder', 'invalid', 'size', 'clearable', 'suffix'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php $__blaze->popData(); ?>
+    <?php endif; ?>
+
+    <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/src/../stubs/resources/views/flux/pillbox/options.blade.php', $__blaze->compiledPath.'/44c2ce3ba9c26daac991e10cc6a35220.php'); ?>
+<?php if (isset($__slots44c2ce3ba9c26daac991e10cc6a35220)) { $__slotsStack44c2ce3ba9c26daac991e10cc6a35220[] = $__slots44c2ce3ba9c26daac991e10cc6a35220; } ?>
+<?php if (isset($__attrs44c2ce3ba9c26daac991e10cc6a35220)) { $__attrsStack44c2ce3ba9c26daac991e10cc6a35220[] = $__attrs44c2ce3ba9c26daac991e10cc6a35220; } ?>
+<?php $__attrs44c2ce3ba9c26daac991e10cc6a35220 = ['search' => $search,'searchable' => $searchable,'searchPlaceholder' => $searchPlaceholder,'empty' => $empty]; ?>
+<?php $__slots44c2ce3ba9c26daac991e10cc6a35220 = []; ?>
+<?php $__blaze->pushData($__attrs44c2ce3ba9c26daac991e10cc6a35220); ?>
+<?php ob_start(); ?>
+        <?php echo e($slot); ?>
+
+    <?php $__slots44c2ce3ba9c26daac991e10cc6a35220['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots44c2ce3ba9c26daac991e10cc6a35220); ?>
+<?php _44c2ce3ba9c26daac991e10cc6a35220($__blaze, $__attrs44c2ce3ba9c26daac991e10cc6a35220, $__slots44c2ce3ba9c26daac991e10cc6a35220, ['search', 'searchable', 'searchPlaceholder', 'empty'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack44c2ce3ba9c26daac991e10cc6a35220)) { $__slots44c2ce3ba9c26daac991e10cc6a35220 = array_pop($__slotsStack44c2ce3ba9c26daac991e10cc6a35220); } ?>
+<?php if (! empty($__attrsStack44c2ce3ba9c26daac991e10cc6a35220)) { $__attrs44c2ce3ba9c26daac991e10cc6a35220 = array_pop($__attrsStack44c2ce3ba9c26daac991e10cc6a35220); } ?>
+<?php $__blaze->popData(); ?>
+</ui-pillbox>
+<?php
+echo ltrim(ob_get_clean());
+} endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/pillbox/variants/default.blade.php ENDPATH**/ ?>

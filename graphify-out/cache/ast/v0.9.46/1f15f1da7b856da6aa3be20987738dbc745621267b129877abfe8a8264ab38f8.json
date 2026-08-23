@@ -1,0 +1,245 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_services_productimport_stagingschemabuilder_php",
+            "label": "StagingSchemaBuilder.php",
+            "file_type": "code",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder",
+            "label": "StagingSchemaBuilder",
+            "file_type": "code",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L22",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_projectionconfigs",
+            "label": ".projectionConfigs()",
+            "file_type": "code",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L29",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "label": ".build()",
+            "file_type": "code",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L78",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_drop",
+            "label": ".drop()",
+            "file_type": "code",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L118",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_dropsource",
+            "label": ".dropSource()",
+            "file_type": "code",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L127",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_services_productimport_stagingschemabuilder_php",
+            "target": "searchprojectionschema",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_services_productimport_stagingschemabuilder_php",
+            "target": "db",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_services_productimport_stagingschemabuilder_php",
+            "target": "pdo",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_services_productimport_stagingschemabuilder_php",
+            "target": "invalidargumentexception",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_services_productimport_stagingschemabuilder_php",
+            "target": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L22",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder",
+            "target": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_projectionconfigs",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder",
+            "target": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L78",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder",
+            "target": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_drop",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L118",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder",
+            "target": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_dropsource",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L127",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "self",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L80",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "isset",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L82",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "DB",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L90",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "DB",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L91",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "DB",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L96",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "prepare",
+            "is_member_call": true,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L97",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "execute",
+            "is_member_call": true,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L100",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "fetchAll",
+            "is_member_call": true,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L102",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "DB",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L105",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "SearchProjectionSchema",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L111",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_build",
+            "callee": "SearchProjectionSchema",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L112",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_drop",
+            "callee": "DB",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L121",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_services_productimport_stagingschemabuilder_stagingschemabuilder_dropsource",
+            "callee": "DB",
+            "is_member_call": false,
+            "source_file": "app/Services/ProductImport/StagingSchemaBuilder.php",
+            "source_location": "L130",
+            "receiver": null
+        }
+    ]
+}

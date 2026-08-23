@@ -1,0 +1,126 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_md",
+            "label": "151511-stage-4-polish.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "Stage 4 \u2014 Polish",
+                "description": "Acceptance Stage 4 (Polish) of the Implementation-Readiness Dossier \u2014 gates, checks, operator commands, evidence, and recovery.",
+                "type": "plan",
+                "tags": "[dossier, delivery, acceptance]",
+                "created": "2026-08-17",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_stage_4_polish",
+            "label": "Stage 4 \u2014 Polish",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_1_acceptance_gates",
+            "label": "1. Acceptance gates",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L33"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_2_automated_checks",
+            "label": "2. Automated checks",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L41"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_3_operator_commands",
+            "label": "3. Operator commands",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L46"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_4_evidence_location",
+            "label": "4. Evidence location",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L54"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_5_recovery_procedure",
+            "label": "5. Recovery procedure",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L59"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_md",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_stage_4_polish",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_stage_4_polish",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_1_acceptance_gates",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L33",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_stage_4_polish",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_2_automated_checks",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L41",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_stage_4_polish",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_3_operator_commands",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L46",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_stage_4_polish",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_4_evidence_location",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L54",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_stage_4_polish",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151511_stage_4_polish_5_recovery_procedure",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md",
+            "source_location": "L59",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

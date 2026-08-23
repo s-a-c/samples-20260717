@@ -1,0 +1,745 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_php",
+            "label": "ImportersTest.php",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_mockviewrecreator",
+            "label": "mockViewRecreator()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L26",
+            "_callable": true
+        },
+        {
+            "id": "portfolioviewrecreator",
+            "label": "PortfolioViewRecreator",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/tests/Feature/Import/ImportersTest.php"
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_bindmockviewrecreator",
+            "label": "bindMockViewRecreator()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L38",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_sourcemanifest",
+            "label": "sourceManifest()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L115",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "label": "pagilaManifest()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L137",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_assertimporterdoubles",
+            "label": "assertImporterDoubles()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L162",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_sourcefilepath",
+            "label": "sourceFilePath()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L168",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_sourcefixturestore",
+            "label": "SourceFixtureStore",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L175",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_writesourcefixture",
+            "label": "writeSourceFixture()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L181",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_restoresourcefixture",
+            "label": "restoreSourceFixture()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L190",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "label": "createTempSqliteFile()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L635",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_load",
+            "label": "load()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L704",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_integer",
+            "label": "integer()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L709",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_decimal",
+            "label": "decimal()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L714",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_sourcecount",
+            "label": "sourceCount()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L719",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_tests_feature_import_importerstest_sourcerows",
+            "label": "sourceRows()",
+            "file_type": "code",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L725",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "chinookimporter",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L5",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "chinookproductmapper",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L6",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "northwindproductmapper",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "pagilaproductmapper",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "tablemapper",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "northwindimporter",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "pagilaimporter",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "portfolioviewrecreator",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "postgressourcereader",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "sqlitesourcereader",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "sqlsourcereader",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L15",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "db",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L16",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "file",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L17",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "str",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L18",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_mockviewrecreator",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L26",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_mockviewrecreator",
+            "target": "portfolioviewrecreator",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L26",
+            "weight": 1.0,
+            "context": "return_type"
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_bindmockviewrecreator",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L38",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_sourcemanifest",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L115",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L137",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_assertimporterdoubles",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L162",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_sourcefilepath",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L168",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_sourcefixturestore",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L175",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_writesourcefixture",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L181",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_restoresourcefixture",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L190",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L635",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_load",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L704",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_integer",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L709",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_decimal",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L714",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_sourcecount",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L719",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_php",
+            "target": "$graphify-root$_tests_feature_import_importerstest_sourcerows",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L725",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_bindmockviewrecreator",
+            "target": "portfolioviewrecreator",
+            "relation": "references_constant",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L40",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_bindmockviewrecreator",
+            "target": "$graphify-root$_tests_feature_import_importerstest_mockviewrecreator",
+            "relation": "calls",
+            "context": "call",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L40",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_sourcefilepath",
+            "target": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "relation": "calls",
+            "context": "call",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L170",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_sourcefilepath",
+            "target": "$graphify-root$_tests_feature_import_importerstest_sourcemanifest",
+            "relation": "calls",
+            "context": "call",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L170",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_writesourcefixture",
+            "target": "$graphify-root$_tests_feature_import_importerstest_sourcefixturestore",
+            "relation": "uses_static_prop",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L183",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_import_importerstest_restoresourcefixture",
+            "target": "$graphify-root$_tests_feature_import_importerstest_sourcefixturestore",
+            "relation": "uses_static_prop",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L192",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_bindmockviewrecreator",
+            "callee": "bind",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_bindmockviewrecreator",
+            "callee": "app",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_sourcemanifest",
+            "callee": "database_path",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L117",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_sourcemanifest",
+            "callee": "is_array",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L119",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_sourcemanifest",
+            "callee": "isset",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L120",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_sourcemanifest",
+            "callee": "is_string",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L121",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_sourcemanifest",
+            "callee": "is_string",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L122",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_sourcemanifest",
+            "callee": "is_string",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L123",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "callee": "database_path",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L139",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "callee": "is_array",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L141",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "callee": "isset",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L142",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "callee": "is_string",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L143",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "callee": "is_string",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L144",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "callee": "is_string",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L145",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_pagilamanifest",
+            "callee": "is_string",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L146",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_assertimporterdoubles",
+            "callee": "assert",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L164",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_assertimporterdoubles",
+            "callee": "assert",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L165",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_sourcefilepath",
+            "callee": "storage_path",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L172",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_writesourcefixture",
+            "callee": "array_key_exists",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L183",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_restoresourcefixture",
+            "callee": "array_key_exists",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L192",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "callee": "sys_get_temp_dir",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L637",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "callee": "uniqid",
+            "is_member_call": false,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L637",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "callee": "setAttribute",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L639",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "callee": "exec",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L640",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "callee": "exec",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L641",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "callee": "exec",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L642",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "callee": "exec",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L643",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_createtempsqlitefile",
+            "callee": "exec",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L644",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_integer",
+            "callee": "sourceInt",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L711",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_decimal",
+            "callee": "sourceFloat",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L716",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_sourcecount",
+            "callee": "countSourceRows",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L721",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_tests_feature_import_importerstest_sourcerows",
+            "callee": "readSourceRows",
+            "is_member_call": true,
+            "source_file": "tests/Feature/Import/ImportersTest.php",
+            "source_location": "L727",
+            "receiver": null
+        }
+    ]
+}

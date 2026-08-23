@@ -1,9 +1,13 @@
 ---
 title: "Non-functional Requirements"
 description: "Quality, security, performance, and operational requirements for the application."
-type: requirements
-tags: \[requirements, non, functional]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [requirements, non, functional]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Non-functional Requirements
@@ -16,10 +20,10 @@ updated: 2026-07-30
 - [1. Purpose](#1-purpose)
 - [2. Requirement Identifiers](#2-requirement-identifiers)
 - [3. Non-functional Requirements](#3-non-functional-requirements)
-    - [3.1. NFR-1: Reliability \& Durability](#31-nfr-1-reliability--durability)
-    - [3.2. NFR-2: Performance \& Scalability](#32-nfr-2-performance--scalability)
-    - [3.3. NFR-3: Security \& Compliance](#33-nfr-3-security--compliance)
-    - [3.4. NFR-4: Maintainability \& Quality](#34-nfr-4-maintainability--quality)
+    - [3.1. NFR-1: Reliability & Durability](#31-nfr-1-reliability-durability)
+    - [3.2. NFR-2: Performance & Scalability](#32-nfr-2-performance-scalability)
+    - [3.3. NFR-3: Security & Compliance](#33-nfr-3-security-compliance)
+    - [3.4. NFR-4: Maintainability & Quality](#34-nfr-4-maintainability-quality)
 - [4. Diagrams](#4-diagrams)
 
 </details>

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "configuring_horizon_metrics", "label": "Horizon Metrics & Snapshots", "file_type": "document", "source_file": ".junie/skills/configuring-horizon/references/metrics.md", "rationale": "Provides guidance on scheduling horizon:snapshot and configuring trim_snapshots."}], "edges": [], "hyperedges": []}

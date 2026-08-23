@@ -1,5 +1,14 @@
 ---
 trigger: always_on
+title: "# Samples Application Agent Instructions"
+description: "Project-level contract for AI agents working in **samples-20260717**. Global behavior, rule triggers, skill discovery, git policy, and the DOX hierarchy are defined in [`~/.config/agents/AGENTS.md`](../../.config/agents/AGENTS.md). This file adds repo scope and does not duplicate or weaken global rules."
+tableOfContents:
+    minHeadingLevel: 1
+    maxHeadingLevel: 3
+type: spec
+tags: \[ai, agents, contract\]
+created: 2026-08-04
+updated: 2026-08-15
 ---
 
 # Samples Application Agent Instructions
@@ -8,60 +17,9 @@ Project-level contract for AI agents working in **samples-20260717**. Global
 behavior, rule triggers, skill discovery, git policy, and the DOX hierarchy are
 defined in [`~/.config/agents/AGENTS.md`](../../.config/agents/AGENTS.md). This file
 adds repo scope and does not duplicate or weaken global rules.
-
-<details>
-  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
-    Expand for Table of Contents
-  </summary>
-
-- [1. Instruction Priority](#1-instruction-priority)
-- [2. Project Scope](#2-project-scope)
-- [3. Agent skills config](#3-agent-skills-config)
-- [4. Identity switch](#4-identity-switch)
-- [5. ADR Compliance Mandate](#5-adr-compliance-mandate)
-    - [5.1. Development Governance](#51-development-governance)
-    - [5.2. ADR Creation Triggers](#52-adr-creation-triggers)
-    - [5.3. Required Documentation](#53-required-documentation)
-    - [5.4. Implementation Process](#54-implementation-process)
-    - [5.5. Documentation Maintenance](#55-documentation-maintenance)
-- [6. Laravel Boost Guidelines](#6-laravel-boost-guidelines)
-    - [6.1. Foundational Context](#61-foundational-context)
-        - [6.1.1. Skills Activation](#611-skills-activation)
-        - [6.1.2. Conventions](#612-conventions)
-        - [6.1.3. Verification Scripts](#613-verification-scripts)
-        - [6.1.4. Application Structure \& Architecture](#614-application-structure--architecture)
-        - [6.1.5. Frontend Bundling](#615-frontend-bundling)
-        - [6.1.6. Documentation Files](#616-documentation-files)
-        - [6.1.7. Replies](#617-replies)
-    - [6.2. Laravel Boost](#62-laravel-boost)
-        - [6.2.1. Tools](#621-tools)
-        - [6.2.2. Searching Documentation (IMPORTANT)](#622-searching-documentation-important)
-            - [6.2.2.1. Search Syntax](#6221-search-syntax)
-        - [6.2.3. Artisan](#623-artisan)
-        - [6.2.4. Tinker](#624-tinker)
-    - [6.3. PHP](#63-php)
-    - [6.4. Deployment](#64-deployment)
-    - [6.5. Test Enforcement](#65-test-enforcement)
-    - [6.6. Do Things the Laravel Way](#66-do-things-the-laravel-way)
-        - [6.6.1. Model Creation](#661-model-creation)
-        - [6.6.2. APIs \& Eloquent Resources](#662-apis--eloquent-resources)
-        - [6.6.3. URL Generation](#663-url-generation)
-        - [6.6.4. Testing](#664-testing)
-        - [6.6.5. Vite Error](#665-vite-error)
-    - [6.7. Livewire](#67-livewire)
-    - [6.8. Laravel Pint Code Formatter](#68-laravel-pint-code-formatter)
-    - [6.9. Pest](#69-pest)
-- [7. Beads Issue Tracker](#7-beads-issue-tracker)
-    - [7.1. Quick Reference](#71-quick-reference)
-    - [7.2. Rules](#72-rules)
-    - [7.3. Agent Context Profiles](#73-agent-context-profiles)
-    - [7.4. Session Completion](#74-session-completion)
-
-</details>
-
 ---
 
-## 1. Instruction Priority
+## Instruction Priority
 
 1. Explicit user, system, and orchestrator instructions win.
 2. The nearest applicable `AGENTS.md` wins for local work details.
@@ -69,7 +27,7 @@ adds repo scope and does not duplicate or weaken global rules.
    `~/.config/agents/rules/` apply when this file and its linked children do not
    say otherwise.
 
-## 2. Project Scope
+## Project Scope
 
 - Laravel 13 + PHP 8.5 application that presents **Chinook, Northwind, and
   Pagila** as distinct sample products. Shared application capabilities connect
@@ -78,7 +36,21 @@ adds repo scope and does not duplicate or weaken global rules.
 - A `Sample Product` is one independently recognisable reference dataset and its
   UX (Chinook, Northwind, or Pagila) — not a tenant or customer account.
 
-## 3. Agent skills config
+### Documentation tree exemptions
+
+The following `docs/` subdirectories are declared structural exemptions per
+§6.1 of `s-a-c-doc-tree-prefixes`:
+
+| Directory           | Category | Exempt from                                                              | Still requires                                 |
+| ------------------- | -------- | ------------------------------------------------------------------------ | ---------------------------------------------- |
+| `docs/assets/`      | Asset    | prefix grammar, nav pages, document shape, Markdown metadata frontmatter | `.mmd` Mermaid frontmatter/theme/contrast (§4) |
+| `docs/agents/`      | Working  | prefix grammar, nav pages, document shape, heading numbering             | eight-field Markdown metadata frontmatter      |
+| `docs/superpowers/` | Working  | prefix grammar, nav pages, document shape, heading numbering             | eight-field Markdown metadata frontmatter      |
+
+All other `docs/` subdirectories follow the full prefix, navigation, metadata,
+and document-shape contract.
+
+## Agent skills config
 
 - **Issue tracker:** Hybrid — GitHub Issues is the source of truth for wayfinder
   maps and decision tickets (native parent/child/blocking + the `wayfinder:*`
@@ -98,7 +70,7 @@ adds repo scope and does not duplicate or weaken global rules.
   notebook lives on a SEPARATE container and is unreachable from this
   token.** See [`docs/agents/siyuan.md`](docs/agents/siyuan.md).
 
-## 4. Identity switch
+## Identity switch
 
 direnv (`.envrc`) is the namespace switch: `cd` into this repo → SAGE identity
 becomes `project/samples-20260717`; `cd` out → home identity is restored. All
@@ -106,16 +78,16 @@ seven agent hosts (OpenCode, Codex, Claude Code, Cursor, Zed, Junie, GitHub
 Copilot) read the same shared SAGE bearer under their expected env-var name.
 Infisical is the source of truth; `.env.sage` is a git-ignored offline cache.
 
-## 5. ADR Compliance Mandate
+## ADR Compliance Mandate
 
-### 5.1. Development Governance
+### Development Governance
 
 - All development decisions must be documented in the architecture decision records (ADRs) system unless explicitly exempted by a documented exception
 - The ADR system is located at `docs/10-architecture/1003-adr/`
 - Each new feature, architectural change, or technical decision requires a new ADR entry following the established naming convention (0001-0017+)
 - Decisions to deviate from ADR requirements must themselves be documented as exceptions
 
-### 5.2. ADR Creation Triggers
+### ADR Creation Triggers
 
 New ADRs are required for:
 
@@ -126,7 +98,7 @@ New ADRs are required for:
 - Removal or deprecation of existing functionality
 - Definition of new APIs or data models
 
-### 5.3. Required Documentation
+### Required Documentation
 
 Every ADR must follow the documentation-formats and documentation-structure rules in `~/.agents/rules/`, including:
 
@@ -135,19 +107,107 @@ Every ADR must follow the documentation-formats and documentation-structure rule
 - Table of contents and navigation
 - References to existing documentation
 
-### 5.4. Implementation Process
+### Implementation Process
 
 - Before any major development work, verify relevant ADRs exist at `docs/10-architecture/1003-adr/`
 - All code changes and implementation decisions must reference their enabling ADR
 - Wayfinder #15 compliance is the primary ADR enforcement mechanism for this project
 - Any ADR-labeled work must be tracked via the Beads issue tracker (Wayfinder #15 epic, work items T1-T17)
 
-### 5.5. Documentation Maintenance
+### Documentation Maintenance
 
 - ADR status should be tracked as "proposed", "accepted", "rejected", or "superseded"
 - Newer ADRs take precedence over older ones; old ADRs may be moved to archive when superseded
 - All ADR changes are tracked in the wayfinder:map tags
 - Review process follows Wayfinder workflow governance
+
+<!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:6cd5cc61 -->
+
+# Beads Issue Tracker
+
+This project uses **bd (beads)** for issue tracking. Run `bd prime` to see full workflow context and commands.
+
+## Quick Reference
+
+```bash
+bd ready              # Find available work
+bd show <id>          # View issue details
+bd update <id> --claim  # Claim work
+bd close <id>         # Complete work
+```
+
+## Rules
+
+- Use `bd` for ALL task tracking — do NOT use TodoWrite, TaskCreate, or markdown TODO lists
+- Run `bd prime` for detailed command reference and session close protocol
+- Use `bd remember` for persistent knowledge — do NOT use MEMORY.md files
+
+**Architecture in one line:** issues live in a local Dolt DB; sync uses `refs/dolt/data` on your git remote; `.beads/issues.jsonl` is a passive export. See https://github.com/gastownhall/beads/blob/main/docs/SYNC_CONCEPTS.md for details and anti-patterns.
+
+## Agent Context Profiles
+
+The managed Beads block is task-tracking guidance, not permission to override repository, user, or orchestrator instructions.
+
+- **Conservative (default)**: Use `bd` for task tracking. Do not run git commits, git pushes, or Dolt remote sync unless explicitly asked. At handoff, report changed files, validation, and suggested next commands.
+- **Minimal**: Keep tool instruction files as pointers to `bd prime`; use the same conservative git policy unless active instructions say otherwise.
+- **Team-maintainer**: Only when the repository explicitly opts in, agents may close beads, run quality gates, commit, and push as part of session close. A current "do not commit" or "do not push" instruction still wins.
+
+## Session Completion
+
+This protocol applies when ending a Beads implementation workflow. It is subordinate to explicit user, repository, and orchestrator instructions.
+
+1. **File issues for remaining work** - Create beads for anything that needs follow-up
+2. **Run quality gates** (if code changed) - Tests, linters, builds
+3. **Update issue status** - Close finished work, update in-progress items
+4. **Handle git/sync by active profile**:
+    ```bash
+    # Conservative/minimal/default: report status and proposed commands; wait for approval.
+    git status
+
+    # Team-maintainer opt-in only, unless current instructions forbid it:
+    git pull --rebase
+    git push
+    git status
+    ```
+5. **Hand off** - Summarize changes, validation, issue status, and any blocked sync/commit/push step
+
+**Critical rules:**
+
+- Explicit user or orchestrator instructions override this Beads block.
+- Do not commit or push without clear authority from the active profile or the current user request.
+- If a required sync or push is blocked, stop and report the exact command and error.
+
+<!-- END BEADS INTEGRATION -->
+
+# Using Vite+, the Unified Toolchain for the Web
+
+<!--VITE PLUS START-->
+
+# Using Vite+, the Unified Toolchain for the Web
+
+This project is using Vite+, a unified toolchain built on top of Vite, Rolldown, Vitest, tsdown, Oxlint, Oxfmt, and Vite Task. Vite+ wraps runtime management, package management, and frontend tooling in a single global CLI called `vp`. Vite+ is distinct from Vite, and it invokes Vite through `vp dev` and `vp build`. Run `vp help` to print a list of commands and `vp <command> --help` for information about a specific command.
+
+Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.dev/guide/.
+
+## Built-in Commands vs Scripts
+
+`vp <name>` runs a built-in command. `vp run <name>` runs a `package.json` script or a `vite.config.ts` task. Scripts cannot overwrite built-ins, so `vp dev` and `vp run dev` may do different things. Check `package.json` and `vite.config.ts` first, and run `vp run <name>` when the project defines a script or task with that name.
+
+## Tool Versions
+
+Run `vp toolchain` to show versions and relationships in the active Vite+
+release. Add a tool name to select part of the graph. For example, run
+`vp toolchain vite`. Use `--global` to ignore the local `vite-plus` package. Use
+`vp why <package>` to show the package-manager dependency graph.
+
+## Review Checklist
+
+- [ ] Run `vp install` after pulling remote changes and before getting started.
+- [ ] Run `vp check` and `vp test` to format, lint, type check and test changes.
+- [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
+- [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
+
+<!--VITE PLUS END-->
 
 <laravel-boost-guidelines>
 === foundation rules ===
@@ -210,7 +270,7 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 ## Searching Documentation (IMPORTANT)
 
-- Always use `search-docs` before making code changes. Do not skip this step. It returns version-specific docs based on installed packages automatically.
+- Use `search-docs` before changes that depend on Laravel ecosystem APIs, behavior, configuration, or version-specific syntax. Skip it for copy-only edits and other changes where package documentation is irrelevant. Reuse sufficient results already in context instead of searching again.
 - Pass a `packages` array to scope results when you know which packages are relevant.
 - Use multiple broad, topic-based queries: `['rate limiting', 'routing rate limiting', 'routing']`. Expect the most relevant results first.
 - Do not add package names to queries because package info is already shared. Use `test resource table`, not `filament 4 test resource table`.
@@ -497,89 +557,3 @@ required sections, and what to clarify with the user before planning.
 - Exit code 0 means no remaining issues; exit code 1 means violations remain after `--fix`. Any reported violation that `--fix` could not resolve MUST be addressed (consult the rule's suggestion message) before continuing the task.
 
 </laravel-boost-guidelines>
-
-<!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:6cd5cc61 -->
-
-## 7. Beads Issue Tracker
-
-This project uses **bd (beads)** for issue tracking. Run `bd prime` to see full workflow context and commands.
-
-### 7.1. Quick Reference
-
-```bash
-bd ready              # Find available work
-bd show <id>          # View issue details
-bd update <id> --claim  # Claim work
-bd close <id>         # Complete work
-```
-
-### 7.2. Rules
-
-- Use `bd` for ALL task tracking — do NOT use TodoWrite, TaskCreate, or markdown TODO lists
-- Run `bd prime` for detailed command reference and session close protocol
-- Use `bd remember` for persistent knowledge — do NOT use MEMORY.md files
-
-**Architecture in one line:** issues live in a local Dolt DB; sync uses `refs/dolt/data` on your git remote; `.beads/issues.jsonl` is a passive export. See https://github.com/gastownhall/beads/blob/main/docs/SYNC_CONCEPTS.md for details and anti-patterns.
-
-### 7.3. Agent Context Profiles
-
-The managed Beads block is task-tracking guidance, not permission to override repository, user, or orchestrator instructions.
-
-- **Conservative (default)**: Use `bd` for task tracking. Do not run git commits, git pushes, or Dolt remote sync unless explicitly asked. At handoff, report changed files, validation, and suggested next commands.
-- **Minimal**: Keep tool instruction files as pointers to `bd prime`; use the same conservative git policy unless active instructions say otherwise.
-- **Team-maintainer**: Only when the repository explicitly opts in, agents may close beads, run quality gates, commit, and push as part of session close. A current "do not commit" or "do not push" instruction still wins.
-
-### 7.4. Session Completion
-
-This protocol applies when ending a Beads implementation workflow. It is subordinate to explicit user, repository, and orchestrator instructions.
-
-1. **File issues for remaining work** - Create beads for anything that needs follow-up
-2. **Run quality gates** (if code changed) - Tests, linters, builds
-3. **Update issue status** - Close finished work, update in-progress items
-4. **Handle git/sync by active profile**:
-    ```bash
-    # Conservative/minimal/default: report status and proposed commands; wait for approval.
-    git status
-
-    # Team-maintainer opt-in only, unless current instructions forbid it:
-    git pull --rebase
-    git push
-    git status
-    ```
-5. **Hand off** - Summarize changes, validation, issue status, and any blocked sync/commit/push step
-
-**Critical rules:**
-
-- Explicit user or orchestrator instructions override this Beads block.
-- Do not commit or push without clear authority from the active profile or the current user request.
-- If a required sync or push is blocked, stop and report the exact command and error.
-
-<!-- END BEADS INTEGRATION -->
-
-<!--VITE PLUS START-->
-
-# Using Vite+, the Unified Toolchain for the Web
-
-This project is using Vite+, a unified toolchain built on top of Vite, Rolldown, Vitest, tsdown, Oxlint, Oxfmt, and Vite Task. Vite+ wraps runtime management, package management, and frontend tooling in a single global CLI called `vp`. Vite+ is distinct from Vite, and it invokes Vite through `vp dev` and `vp build`. Run `vp help` to print a list of commands and `vp <command> --help` for information about a specific command.
-
-Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.dev/guide/.
-
-## Built-in Commands vs Scripts
-
-`vp <name>` runs a built-in command. `vp run <name>` runs a `package.json` script or a `vite.config.ts` task. Scripts cannot overwrite built-ins, so `vp dev` and `vp run dev` may do different things. Check `package.json` and `vite.config.ts` first, and run `vp run <name>` when the project defines a script or task with that name.
-
-## Tool Versions
-
-Run `vp toolchain` to show versions and relationships in the active Vite+
-release. Add a tool name to select part of the graph. For example, run
-`vp toolchain vite`. Use `--global` to ignore the local `vite-plus` package. Use
-`vp why <package>` to show the package-manager dependency graph.
-
-## Review Checklist
-
-- [ ] Run `vp install` after pulling remote changes and before getting started.
-- [ ] Run `vp check` and `vp test` to format, lint, type check and test changes.
-- [ ] Check if there are `vite.config.ts` tasks or `package.json` scripts necessary for validation, run via `vp run <script>`.
-- [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
-
-<!--VITE PLUS END-->

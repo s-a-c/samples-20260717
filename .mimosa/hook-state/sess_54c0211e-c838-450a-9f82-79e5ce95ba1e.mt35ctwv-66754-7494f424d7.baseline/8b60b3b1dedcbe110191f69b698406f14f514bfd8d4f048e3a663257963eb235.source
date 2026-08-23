@@ -1,0 +1,186 @@
+<?php # [BlazeFolded]:{flux::heading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/heading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::subheading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/subheading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::text}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/text.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::modal}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/modal/index.blade.php}:{1786296215} ?>
+<?php
+
+use App\Models\TeamInvitation;
+use Flux\Flux;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
+
+new class extends Component {
+    public bool $showPendingInvitationsModal = true;
+
+    public function mount(): void
+    {
+        if (session()->pull('team-invitation-accepted')) {
+            Flux::toast(variant: 'success', text: __('Invitation accepted.'));
+        }
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection<int, array{code: string, inviter_name: string, team_name: string}>
+     */
+    #[Computed]
+    public function pendingInvitations(): \Illuminate\Support\Collection
+    {
+        $email = Str::lower(Auth::user()->email);
+
+        return TeamInvitation::query()
+            ->with(['inviter', 'team'])
+            ->whereRaw('LOWER(email) = ?', [$email])
+            ->whereNull('accepted_at')
+            ->where(fn ($query) => $query
+                ->whereNull('expires_at')
+                ->orWhere('expires_at', '>=', now()))
+            ->latest()
+            ->get()
+            ->map(fn (TeamInvitation $invitation) => [
+                'code' => $invitation->code,
+                'inviter_name' => $invitation->inviter->name,
+                'team_name' => $invitation->team->name,
+            ]);
+    }
+
+    public function acceptInvitation(string $code): void
+    {
+        $invitation = $this->findPendingInvitation($code);
+
+        $this->redirectRoute('invitations.accept', ['invitation' => $invitation->code], navigate: true);
+    }
+
+    public function declineInvitation(string $code): void
+    {
+        $invitation = $this->findPendingInvitation($code);
+
+        $invitation->delete();
+
+        Flux::toast(variant: 'success', text: __('Invitation declined.'));
+    }
+
+    private function findPendingInvitation(string $code): TeamInvitation
+    {
+        $invitation = TeamInvitation::query()
+            ->where('code', $code)
+            ->whereNull('accepted_at')
+            ->firstOrFail();
+
+        if ($invitation->isExpired()) {
+            throw ValidationException::withMessages([
+                'invitation' => [__('This invitation has expired.')],
+            ]);
+        }
+
+        if (Str::lower($invitation->email) !== Str::lower(Auth::user()->email)) {
+            throw ValidationException::withMessages([
+                'invitation' => [__('This invitation was sent to a different email address.')],
+            ]);
+        }
+
+        return $invitation;
+    }
+}; ?>
+
+<div>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($this->pendingInvitations->isNotEmpty()): ?>
+        <?php ob_start(); ?><ui-modal wire:model.self="showPendingInvitationsModal" focusable="focusable" data-flux-modal>
+    
+    <dialog
+        wire:ignore.self 
+        class="p-6 [:where(&amp;)]:max-w-xl [:where(&amp;)]:min-w-xs shadow-lg rounded-xl bg-white dark:bg-zinc-800 ring ring-black/5 dark:ring-zinc-700 shadow-lg rounded-xl max-w-lg"
+         data-modal="pending-invitations"                         <?php if (isset($scope)) $__scope = $scope; ?><?php $scope = array (
+  'name' => 'pending-invitations',
+); ?>
+        x-data="fluxModal(<?php echo \Illuminate\Support\Js::from($scope['name'])->toHtml() ?>, <?php echo \Illuminate\Support\Js::from(isset($__livewire) ? $__livewire->getId() : null)->toHtml() ?>)"
+        <?php if (isset($__scope)) { $scope = $__scope; unset($__scope); } ?>
+        x-on:modal-show.document="handleShow($event)"
+        x-on:modal-close.document="handleClose($event)"
+    >
+                    <?php ob_start(); ?>
+            <div data-test="pending-invitations-modal" class="space-y-6">
+                <div>
+                    <?php ob_start(); ?><div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-base [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2" data-flux-heading><?php ob_start(); ?><?php echo e(__('Pending team invitations')); ?><?php echo trim(ob_get_clean()); ?></div>
+<?php echo ltrim(ob_get_clean()); ?>
+                    <?php ob_start(); ?><div class="text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70" data-flux-subheading>
+    <?php ob_start(); ?><?php echo e(__('Accept or decline the teams you have been invited to join.')); ?><?php echo trim(ob_get_clean()); ?>
+
+</div>
+<?php echo ltrim(ob_get_clean()); ?>
+                </div>
+
+                <div class="grid gap-4">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $this->pendingInvitations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $invitation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <div data-test="pending-invitation-row" class="rounded-lg border border-zinc-200 p-4 dark:border-zinc-700">
+                            <div class="space-y-1">
+                                <p class="font-medium"><?php echo e($invitation['team_name']); ?></p>
+                                <?php ob_start(); ?><p class="[:where(&amp;)]:font-normal [:where(&amp;)]:text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70 text-sm text-zinc-500 dark:text-zinc-400" data-flux-text ><?php ob_start(); ?>
+                                    <?php echo e(__(':inviter invited you to join this team.', ['inviter' => $invitation['inviter_name']])); ?>
+
+                                <?php echo trim(ob_get_clean()); ?></p><?php echo ltrim(ob_get_clean()); ?>
+                            </div>
+
+                            <div class="mt-4 flex justify-end gap-2">
+                                <?php ob_start(); ?><button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-10 text-sm rounded-lg ps-4 pe-4 inline-flex  bg-zinc-800/5 hover:bg-zinc-800/10 dark:bg-white/10 dark:hover:bg-white/20 text-zinc-800 dark:text-white   [[data-flux-button-group]_&amp;]:border-e [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 [[data-flux-button-group]_&amp;]:border-zinc-200/80 dark:[[data-flux-button-group]_&amp;]:border-zinc-900/50 *:transition-opacity [&amp;[data-loading]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[data-flux-loading]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[data-loading]&gt;[data-flux-loading-indicator]]:opacity-100 [&amp;[data-flux-loading]&gt;[data-flux-loading-indicator]]:opacity-100 data-loading:pointer-events-none data-flux-loading:pointer-events-none" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" wire:target="declineInvitation('<?php echo e($invitation['code']); ?>')" wire:loading.attr="disabled" wire:click="declineInvitation('<?php echo e($invitation['code']); ?>')" data-test="pending-invitation-decline">
+        <div class="absolute inset-0 flex items-center justify-center opacity-0" data-flux-loading-indicator>
+                <svg class="shrink-0 [:where(&amp;)]:size-4 animate-spin" data-flux-icon xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon">
+    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+</svg>
+                    </div>
+        
+        
+                    
+            
+            <span><?php ob_start(); ?>
+                                    <?php echo e(__('Decline')); ?>
+
+                                <?php echo trim(ob_get_clean()); ?></span>
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+
+                                <?php ob_start(); ?><button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-10 text-sm rounded-lg ps-4 pe-4 inline-flex  bg-[var(--color-accent)] hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)] text-[var(--color-accent-foreground)] border border-black/10 dark:border-0 shadow-[inset_0px_1px_--theme(--color-white/.2)] [[data-flux-button-group]_&amp;]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-[1px] dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-s-[1px] [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[color-mix(in_srgb,var(--color-accent-foreground),transparent_85%)] *:transition-opacity [&amp;[data-loading]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[data-flux-loading]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[data-loading]&gt;[data-flux-loading-indicator]]:opacity-100 [&amp;[data-flux-loading]&gt;[data-flux-loading-indicator]]:opacity-100 data-loading:pointer-events-none data-flux-loading:pointer-events-none" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" wire:target="acceptInvitation('<?php echo e($invitation['code']); ?>')" wire:loading.attr="disabled" wire:click="acceptInvitation('<?php echo e($invitation['code']); ?>')" data-test="pending-invitation-accept">
+        <div class="absolute inset-0 flex items-center justify-center opacity-0" data-flux-loading-indicator>
+                <svg class="shrink-0 [:where(&amp;)]:size-4 animate-spin" data-flux-icon xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon">
+    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+</svg>
+                    </div>
+        
+        
+                    
+            
+            <span><?php ob_start(); ?>
+                                    <?php echo e(__('Accept')); ?>
+
+                                <?php echo trim(ob_get_clean()); ?></span>
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+                            </div>
+                        </div>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                </div>
+            </div>
+        <?php echo trim(ob_get_clean()); ?>
+
+
+                            <div class="absolute top-0 end-0 mt-4 me-4">
+                    <ui-close data-flux-modal-close >
+    <button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-8 text-sm rounded-md w-8 inline-flex  bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white      text-zinc-400! hover:text-zinc-800! dark:text-zinc-500! dark:hover:text-white!" data-flux-button="data-flux-button" aria-label="Close modal">
+        <svg class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"/>
+</svg>
+    </button>
+</ui-close>
+                </div>
+                        </dialog>
+</ui-modal>
+<?php echo ltrim(ob_get_clean()); ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+</div>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/resources/views/pages/teams/⚡pending-invitations-modal.blade.php ENDPATH**/ ?>

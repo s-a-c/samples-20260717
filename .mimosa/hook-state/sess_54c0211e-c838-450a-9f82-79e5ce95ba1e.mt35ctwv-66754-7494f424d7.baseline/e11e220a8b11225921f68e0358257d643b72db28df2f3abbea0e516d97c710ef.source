@@ -1,0 +1,133 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Enums\TeamRole;
+use App\Models\Membership;
+use App\Models\Team;
+use App\Models\User;
+use Livewire\Livewire;
+
+covers(Membership::class, Team::class);
+
+test('team member role can be updated by owner', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create();
+    $team = Team::factory()->create();
+
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+
+    $this->actingAs($owner);
+
+    Livewire::test('pages::teams.edit', ['team' => $team])
+        ->call('updateMember', $member->id, TeamRole::Admin->value)
+        ->assertHasNoErrors();
+
+    $teamMember = $team->members()->where('user_id', $member->id)->first();
+    assert($teamMember !== null);
+
+    $this->assertEquals(
+        TeamRole::Admin->value,
+        $teamMember->pivot->role->value,
+    );
+});
+
+test('team member role cannot be updated by non owner', function () {
+    $owner = User::factory()->create();
+    $admin = User::factory()->create();
+    $member = User::factory()->create();
+    $team = Team::factory()->create();
+
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($admin, ['role' => TeamRole::Admin->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+
+    $this->actingAs($admin);
+
+    Livewire::test('pages::teams.edit', ['team' => $team])
+        ->call('updateMember', $member->id, TeamRole::Admin->value)
+        ->assertForbidden();
+});
+
+test('team member can be removed by owner', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create();
+    $team = Team::factory()->create();
+
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+
+    $this->actingAs($owner);
+
+    Livewire::test('pages::teams.remove-member-modal', ['team' => $team])
+        ->set('memberId', $member->id)
+        ->call('removeMember')
+        ->assertHasNoErrors();
+
+    $freshMember = $member->fresh();
+    assert($freshMember !== null);
+
+    $this->assertFalse($freshMember->belongsToTeam($team));
+});
+
+test('team member cannot be removed by non owners', function () {
+    $owner = User::factory()->create();
+    $admin = User::factory()->create();
+    $member = User::factory()->create();
+    $team = Team::factory()->create();
+
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($admin, ['role' => TeamRole::Admin->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+
+    $this->actingAs($admin);
+
+    Livewire::test('pages::teams.remove-member-modal', ['team' => $team])
+        ->set('memberId', $member->id)
+        ->call('removeMember')
+        ->assertForbidden();
+});
+
+test('removed members current team is set to personal team', function () {
+    $owner = User::factory()->create();
+    $member = User::factory()->create();
+    $personalTeam = $member->personalTeam();
+    assert($personalTeam !== null);
+    $team = Team::factory()->create();
+
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+    $team->members()->attach($member, ['role' => TeamRole::Member->value]);
+
+    $member->update(['current_team_id' => $team->id]);
+
+    $this->actingAs($owner);
+
+    Livewire::test('pages::teams.remove-member-modal', ['team' => $team])
+        ->set('memberId', $member->id)
+        ->call('removeMember')
+        ->assertHasNoErrors();
+
+    $freshMember = $member->fresh();
+    assert($freshMember !== null);
+
+    $this->assertEquals($personalTeam->id, $freshMember->current_team_id);
+});
+
+test('membership belongs to team and user', function () {
+    $owner = User::factory()->create();
+    $team = Team::factory()->create();
+
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+
+    $membership = Membership::where('team_id', $team->id)
+        ->where('user_id', $owner->id)
+        ->first();
+
+    expect($membership)->not->toBeNull()
+        ->and($membership->team)->toBeInstanceOf(Team::class)
+        ->and($membership->team->id)->toBe($team->id)
+        ->and($membership->user)->toBeInstanceOf(User::class)
+        ->and($membership->user->id)->toBe($owner->id)
+        ->and($membership->role)->toBe(TeamRole::Owner);
+});

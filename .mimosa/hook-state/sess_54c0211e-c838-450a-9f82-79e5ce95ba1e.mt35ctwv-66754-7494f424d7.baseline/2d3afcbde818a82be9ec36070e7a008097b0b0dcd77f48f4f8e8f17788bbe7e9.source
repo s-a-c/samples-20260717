@@ -1,0 +1,108 @@
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['columnId', 'record']));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter((['columnId', 'record']), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<?php
+    $processedRecordActions = $this->getBoard()->getBoardRecordActions($record);
+    $hasActions = !empty($processedRecordActions);
+    $cardAction = $this->getBoard()->getCardAction();
+    $hasCardAction = $cardAction !== null;
+    $hasPositionIdentifier = $this->getBoard()->getPositionIdentifierAttribute() !== null;
+?>
+
+<div
+    class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+        'flowforge-card mb-3 bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-200 hover:shadow-md',
+        'cursor-pointer' => $hasActions || $hasCardAction,
+        'cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg hover:border-gray-400 active:shadow-md' => $hasCardAction,
+        'cursor-grab hover:cursor-grabbing' => $hasPositionIdentifier,
+        'cursor-default' => !$hasActions && !$hasCardAction && !$hasPositionIdentifier,
+    ]); ?>"
+    x-sortable-item="<?php echo e($record['id']); ?>"
+    data-card-id="<?php echo e($record['id']); ?>"
+    <?php if($hasPositionIdentifier): ?>
+        x-sortable-handle
+    <?php endif; ?>
+    data-position="<?php echo e($record['position'] ?? ''); ?>"
+>
+    <div class="flowforge-card-content">
+        <div class="flex items-start justify-between mb-2">
+            <h4 class="text-sm font-semibold text-gray-900 dark:text-white p-3"
+                <?php if($hasCardAction && $cardAction): ?>
+                    wire:click="mountAction('<?php echo e($cardAction); ?>', [], <?php echo \Illuminate\Support\Js::from(['recordKey' => $record['id']])->toHtml() ?>)"
+                style="cursor: pointer;"
+                <?php endif; ?>
+            >
+                <?php echo e($record['title']); ?>
+
+            </h4>
+
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($hasActions): ?>
+                <div class="m-3">
+                    <?php if (isset($component)) { $__componentOriginalbdee036326cbc931a2e3bf686403ecb7 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbdee036326cbc931a2e3bf686403ecb7 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament-actions::components.group','data' => ['actions' => $processedRecordActions]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament-actions::group'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['actions' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($processedRecordActions)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbdee036326cbc931a2e3bf686403ecb7)): ?>
+<?php $attributes = $__attributesOriginalbdee036326cbc931a2e3bf686403ecb7; ?>
+<?php unset($__attributesOriginalbdee036326cbc931a2e3bf686403ecb7); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbdee036326cbc931a2e3bf686403ecb7)): ?>
+<?php $component = $__componentOriginalbdee036326cbc931a2e3bf686403ecb7; ?>
+<?php unset($__componentOriginalbdee036326cbc931a2e3bf686403ecb7); ?>
+<?php endif; ?>
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+
+        <div class="px-3 pb-3"
+             <?php if($hasCardAction && $cardAction): ?>
+                 wire:click="mountAction('<?php echo e($cardAction); ?>', [], <?php echo \Illuminate\Support\Js::from(['recordKey' => $record['id']])->toHtml() ?>)"
+             style="cursor: pointer;"
+            <?php endif; ?>
+        >
+            
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(filled($record['schema'])): ?>
+                <?php echo e($record['schema']); ?>
+
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+    </div>
+</div>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/relaticle/flowforge/resources/views/livewire/card.blade.php ENDPATH**/ ?>

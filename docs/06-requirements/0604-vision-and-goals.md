@@ -1,9 +1,13 @@
 ---
 title: "Vision and Goals"
 description: "Product vision and measurable goals for the Samples application."
-type: requirements
-tags: \[requirements, vision, goals]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [requirements, vision, goals]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Vision and Goals

@@ -1,0 +1,248 @@
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['columnId', 'column', 'config']));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter((['columnId', 'column', 'config']), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<?php
+    use Relaticle\Flowforge\Support\ColorResolver;
+
+    // Resolve the color once using our centralized resolver
+    $resolvedColor = ColorResolver::resolve($column['color']);
+    $isSemantic = ColorResolver::isSemantic($resolvedColor);
+
+    // For non-semantic colors, get the color array
+    $colorShades = $isSemantic ? null : $resolvedColor;
+?>
+
+<div
+    class="flowforge-column w-[300px] min-w-[300px] flex-shrink-0 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-md rounded-xl flex flex-col max-h-full overflow-hidden">
+    <!-- Column Header -->
+    <div class="flowforge-column-header flex items-center justify-between py-3 px-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center">
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($column['icon'] ?? null): ?>
+                <?php if (isset($component)) { $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.icon','data' => ['icon' => $column['icon'],'class' => 'h-4 w-4 text-gray-500 dark:text-gray-400 me-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['icon' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($column['icon']),'class' => 'h-4 w-4 text-gray-500 dark:text-gray-400 me-2']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $attributes = $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $component = $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <h3 class="text-sm font-medium text-gray-700 dark:text-gray-200">
+                <?php echo e($column['label']); ?>
+
+            </h3>
+
+            
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isSemantic): ?>
+                
+                <?php if (isset($component)) { $__componentOriginal986dce9114ddce94a270ab00ce6c273d = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal986dce9114ddce94a270ab00ce6c273d = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.badge','data' => ['tag' => 'div','color' => $resolvedColor,'class' => 'ms-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['tag' => 'div','color' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($resolvedColor),'class' => 'ms-2']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                    <?php echo e($column['total'] ?? (isset($column['items']) ? count($column['items']) : 0)); ?>
+
+                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal986dce9114ddce94a270ab00ce6c273d)): ?>
+<?php $attributes = $__attributesOriginal986dce9114ddce94a270ab00ce6c273d; ?>
+<?php unset($__attributesOriginal986dce9114ddce94a270ab00ce6c273d); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal986dce9114ddce94a270ab00ce6c273d)): ?>
+<?php $component = $__componentOriginal986dce9114ddce94a270ab00ce6c273d; ?>
+<?php unset($__componentOriginal986dce9114ddce94a270ab00ce6c273d); ?>
+<?php endif; ?>
+            <?php elseif($colorShades): ?>
+                
+                <div
+                    style="<?php echo \Illuminate\Support\Arr::toCssStyles([
+                        Filament\Support\get_color_css_variables($resolvedColor, shades: [50, 300, 600, 700])
+                    ]) ?>"
+                    class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                        'ms-2 items-center border px-2 py-0.5 rounded-md text-xs font-semibold',
+                        'bg-custom-50 dark:bg-custom-600/20',
+                        'text-custom-700 dark:text-custom-300',
+                        'border-custom-700/30 dark:border-custom-300/30',
+                    ]); ?>">
+                    <?php echo e($column['total'] ?? (isset($column['items']) ? count($column['items']) : 0)); ?>
+
+                </div>
+            <?php else: ?>
+                
+                <div class="ms-2 items-center border px-2 py-0.5 rounded-md text-xs font-semibold bg-gray-50 dark:bg-gray-600/20 text-gray-700 dark:text-gray-300 border-gray-700/30 dark:border-gray-300/30">
+                    <?php echo e($column['total'] ?? (isset($column['items']) ? count($column['items']) : 0)); ?>
+
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+
+
+        
+        <?php
+            $processedActions = $this->getBoardColumnActions($columnId);
+        ?>
+
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(count($processedActions) > 0): ?>
+            <div>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(count($processedActions) === 1): ?>
+                    <?php echo e($processedActions[0]); ?>
+
+                <?php else: ?>
+                    <?php if (isset($component)) { $__componentOriginalbdee036326cbc931a2e3bf686403ecb7 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbdee036326cbc931a2e3bf686403ecb7 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament-actions::components.group','data' => ['actions' => $processedActions]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament-actions::group'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['actions' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($processedActions)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbdee036326cbc931a2e3bf686403ecb7)): ?>
+<?php $attributes = $__attributesOriginalbdee036326cbc931a2e3bf686403ecb7; ?>
+<?php unset($__attributesOriginalbdee036326cbc931a2e3bf686403ecb7); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbdee036326cbc931a2e3bf686403ecb7)): ?>
+<?php $component = $__componentOriginalbdee036326cbc931a2e3bf686403ecb7; ?>
+<?php unset($__componentOriginalbdee036326cbc931a2e3bf686403ecb7); ?>
+<?php endif; ?>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+    </div>
+
+    <!-- Column Content -->
+    <div
+        data-column-id="<?php echo e($columnId); ?>"
+        <?php if($this->getBoard()->getPositionIdentifierAttribute()): ?>
+            x-sortable
+        x-sortable-group="cards"
+        @end.stop="handleSortableEnd($event)"
+        <?php endif; ?>
+        <?php if(isset($column['total']) && $column['total'] > count($column['items'])): ?>
+            @scroll.throttle.100ms="handleColumnScroll($event, '<?php echo e($columnId); ?>')"
+        <?php endif; ?>
+        class="flowforge-column-content p-3 flex-1 overflow-y-auto overflow-x-hidden overscroll-y-contain kanban-cards"
+        style="max-height: calc(100vh - 13rem);"
+    >
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($column['items']) && count($column['items']) > 0): ?>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $column['items']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $record): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                <?php if (isset($component)) { $__componentOriginalcb90fb1e6915bdf0d17455cf0dc365ea = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalcb90fb1e6915bdf0d17455cf0dc365ea = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'flowforge::livewire.card','data' => ['record' => $record,'config' => $config,'columnId' => $columnId,'wire:key' => 'card-'.e($record['id']).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flowforge::card'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['record' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($record),'config' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($config),'columnId' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($columnId),'wire:key' => 'card-'.e($record['id']).'']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalcb90fb1e6915bdf0d17455cf0dc365ea)): ?>
+<?php $attributes = $__attributesOriginalcb90fb1e6915bdf0d17455cf0dc365ea; ?>
+<?php unset($__attributesOriginalcb90fb1e6915bdf0d17455cf0dc365ea); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalcb90fb1e6915bdf0d17455cf0dc365ea)): ?>
+<?php $component = $__componentOriginalcb90fb1e6915bdf0d17455cf0dc365ea; ?>
+<?php unset($__componentOriginalcb90fb1e6915bdf0d17455cf0dc365ea); ?>
+<?php endif; ?>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+
+            
+            <div class="py-3 text-center">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($column['total']) && $column['total'] > count($column['items'])): ?>
+                    
+                    <div
+                        x-intersect.margin.300px="handleSmoothScroll('<?php echo e($columnId); ?>')"
+                        class="w-full">
+
+                        <div x-show="isLoadingColumn('<?php echo e($columnId); ?>')"
+                             x-transition
+                             class="text-xs text-primary-600 dark:text-primary-400 flex items-center justify-center gap-2">
+                            <?php echo e(__('flowforge::flowforge.loading_more_cards')); ?>
+
+                        </div>
+                    </div>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+        <?php else: ?>
+            <?php if (isset($component)) { $__componentOriginal53b50aa2d55f973993c022f67a5baae8 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal53b50aa2d55f973993c022f67a5baae8 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'flowforge::livewire.empty-column','data' => ['columnId' => $columnId,'pluralCardLabel' => $config['pluralCardLabel']]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flowforge::empty-column'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['columnId' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($columnId),'pluralCardLabel' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($config['pluralCardLabel'])]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal53b50aa2d55f973993c022f67a5baae8)): ?>
+<?php $attributes = $__attributesOriginal53b50aa2d55f973993c022f67a5baae8; ?>
+<?php unset($__attributesOriginal53b50aa2d55f973993c022f67a5baae8); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal53b50aa2d55f973993c022f67a5baae8)): ?>
+<?php $component = $__componentOriginal53b50aa2d55f973993c022f67a5baae8; ?>
+<?php unset($__componentOriginal53b50aa2d55f973993c022f67a5baae8); ?>
+<?php endif; ?>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+    </div>
+</div><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/relaticle/flowforge/resources/views/livewire/column.blade.php ENDPATH**/ ?>

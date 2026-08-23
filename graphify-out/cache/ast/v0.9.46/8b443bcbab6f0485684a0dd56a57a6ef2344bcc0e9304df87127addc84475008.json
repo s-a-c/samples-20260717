@@ -1,0 +1,224 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_md",
+            "label": "siyuan.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "SiYuan Integration (samples-20260717)",
+                "description": "Integration contract for the samples-20260717 Siyuan notebook and API access.",
+                "type": "guide",
+                "tags": "[guide, agents, siyuan, integration]",
+                "created": "2026-07-19",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "label": "SiYuan Integration (samples-20260717)",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_1_notebook",
+            "label": "1. Notebook",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L14"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_2_endpoint",
+            "label": "2. Endpoint",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L19"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_3_access_path",
+            "label": "3. Access path",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L26"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_4_shared_multi_tenant_container_read_this_before_any_write",
+            "label": "4. Shared multi-tenant container \u2014 read this before any write",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L37"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_5_when_to_use",
+            "label": "5. When to use",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L54"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_6_when_not_to_use",
+            "label": "6. When not to use",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L61"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_7_fail_closed",
+            "label": "7. Fail closed",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L69"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_8_verification",
+            "label": "8. Verification",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L74"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_siyuan_9_references",
+            "label": "9. References",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L82"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_md",
+            "target": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "target": "$graphify-root$_docs_agents_siyuan_1_notebook",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "target": "$graphify-root$_docs_agents_siyuan_2_endpoint",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L19",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "target": "$graphify-root$_docs_agents_siyuan_3_access_path",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L26",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "target": "$graphify-root$_docs_agents_siyuan_4_shared_multi_tenant_container_read_this_before_any_write",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L37",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "target": "$graphify-root$_docs_agents_siyuan_5_when_to_use",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L54",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "target": "$graphify-root$_docs_agents_siyuan_6_when_not_to_use",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L61",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_md",
+            "target": "$graphify-root$_docs_agents_issue_tracker_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L63",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/agents/issue-tracker.md"
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_md",
+            "target": "$graphify-root$_docs_agents_sage_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L65",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/agents/sage.md"
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_md",
+            "target": "$graphify-root$_context_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L66",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/CONTEXT.md"
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "target": "$graphify-root$_docs_agents_siyuan_7_fail_closed",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L69",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "target": "$graphify-root$_docs_agents_siyuan_8_verification",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L74",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_siyuan_siyuan_integration_samples_20260717",
+            "target": "$graphify-root$_docs_agents_siyuan_9_references",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/siyuan.md",
+            "source_location": "L82",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

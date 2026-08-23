@@ -1,9 +1,13 @@
 ---
 title: "Backlog"
 description: "This document tracks the status of planning tickets and the graduation of fog-of-war items within the Samples implementation effort."
-type: product
-tags: \[product, backlog]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: plan
+tags: [product, backlog]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Backlog

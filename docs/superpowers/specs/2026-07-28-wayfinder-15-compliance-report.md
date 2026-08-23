@@ -1,9 +1,13 @@
 ---
 title: "Wayfinder #15 Compliance Report (Re-audit)"
 description: "> **Map:** [Wayfinder — Samples Implementation](https://github.com/s-a-c/samples-20260717/issues/15)"
-type: report
-tags: \[report, specs, wayfinder, "15"]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: research
+tags: [report, specs, wayfinder, "15"]
+created: 2026-07-28
+updated: 2026-08-17
 ---
 
 # Wayfinder #15 Compliance Report (Re-audit)

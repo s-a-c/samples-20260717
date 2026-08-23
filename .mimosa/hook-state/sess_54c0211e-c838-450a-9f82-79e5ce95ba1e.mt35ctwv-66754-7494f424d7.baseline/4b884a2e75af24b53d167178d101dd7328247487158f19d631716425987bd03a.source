@@ -1,0 +1,258 @@
+<?php
+    $statePath = $getStatePath();
+    $items = $getState() ?? [];
+    $itemsCount = count($items);
+    $isMultiple = $isMultiple();
+    $maxItems = $getMaxItems();
+    $shouldDisplayAsList = $shouldDisplayAsList();
+    $constrained = $isConstrained();
+?>
+
+<?php if (isset($component)) { $__componentOriginal511d4862ff04963c3c16115c05a86a9d = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal511d4862ff04963c3c16115c05a86a9d = $attributes; } ?>
+<?php $component = Illuminate\View\DynamicComponent::resolve(['component' => $getFieldWrapperView()] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('dynamic-component'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\DynamicComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['field' => $field]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+
+    <div class="curator-media-picker w-full">
+        <ul
+            class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                'w-full',
+                'grid gap-6 sm:grid-cols-2 md:grid-cols-3' => $isMultiple && ! $shouldDisplayAsList,
+                'overflow-hidden bg-white border border-gray-300 rounded-lg shadow-sm divide-y divide-gray-300 dark:border-gray-700 dark:text-white dark:divide-gray-700 dark:bg-white/5' => $itemsCount > 0 && $shouldDisplayAsList,
+            ]); ?>"
+            x-sortable
+            wire:end.stop="mountAction('reorder', { items: $event.target.sortable.toArray() }, { schemaComponent: '<?php echo e($getKey()); ?>' })"
+        >
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $uuid => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                <li
+                    <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::$currentLoop['key'] = ''.e($this->getId()).'.'.e($uuid).'.'.e($field::class).'.item'; ?>wire:key="<?php echo e($this->getId()); ?>.<?php echo e($uuid); ?>.<?php echo e($field::class); ?>.item"
+                    x-sortable-item="<?php echo e($uuid); ?>"
+                    <?php echo e($attributes->merge($getExtraAttributes())->class(['relative w-full'])); ?>
+
+                >
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($shouldDisplayAsList): ?>
+                        <div class="w-full flex items-center gap-4 text-xs pe-2">
+                            <div class="curator-picker-list-preview flex-shrink-0 h-12 w-12 checkered">
+                                <?php if (isset($component)) { $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'curator::components.display.index','data' => ['item' => $item,'src' => $item['thumbnail_url'],'lazy' => true,'iconClasses' => 'size-6']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('curator::display'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['item' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($item),'src' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($item['thumbnail_url']),'lazy' => true,'icon-classes' => 'size-6']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $attributes = $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $component = $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+                            </div>
+                            <div class="curator-picker-list-details min-w-0 overflow-hidden py-2">
+                                <p><?php echo e($item['pretty_name']); ?></p>
+                            </div>
+                            <div class="curator-picker-list-details flex-shrink-0 ml-auto py-2">
+                                <p><?php echo e(filled($item['size']) ? curator()->sizeForHumans($item['size']) : null); ?></p>
+                            </div>
+                            <div class="curator-picker-list-actions flex-shrink-0">
+                                <div class="relative flex items-center">
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isMultiple): ?>
+                                        <div
+                                            x-sortable-handle
+                                            class="flex items-center justify-center flex-none w-8 h-8 transition text-gray-400 hover:text-gray-300"
+                                        >
+                                            <?php echo e($getAction('reorder')); ?>
+
+                                        </div>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                                    <div class="flex items-center justify-center flex-none w-8 h-8">
+                                        <?php if (isset($component)) { $__componentOriginalbdee036326cbc931a2e3bf686403ecb7 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbdee036326cbc931a2e3bf686403ecb7 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament-actions::components.group','data' => ['actions' => [
+                                                $getAction('view')(['url' => $item['url']]),
+                                                $getAction('edit')(['id' => $item['id']]),
+                                                $getAction('download')(['uuid' => $uuid]),
+                                                $getAction('remove')(['uuid' => $uuid]),
+                                            ],'color' => 'gray','size' => 'xs','dropdownPlacement' => 'bottom-end']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament-actions::group'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['actions' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute([
+                                                $getAction('view')(['url' => $item['url']]),
+                                                $getAction('edit')(['id' => $item['id']]),
+                                                $getAction('download')(['uuid' => $uuid]),
+                                                $getAction('remove')(['uuid' => $uuid]),
+                                            ]),'color' => 'gray','size' => 'xs','dropdown-placement' => 'bottom-end']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbdee036326cbc931a2e3bf686403ecb7)): ?>
+<?php $attributes = $__attributesOriginalbdee036326cbc931a2e3bf686403ecb7; ?>
+<?php unset($__attributesOriginalbdee036326cbc931a2e3bf686403ecb7); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbdee036326cbc931a2e3bf686403ecb7)): ?>
+<?php $component = $__componentOriginalbdee036326cbc931a2e3bf686403ecb7; ?>
+<?php unset($__componentOriginalbdee036326cbc931a2e3bf686403ecb7); ?>
+<?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div
+                            class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                                'relative block w-full overflow-hidden border border-gray-300 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white flex justify-center checkered',
+                                'h-64' => ! curator()->isVideo($item['ext']),
+                            ]); ?>"
+                        >
+                            <?php if (isset($component)) { $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'curator::components.display.index','data' => ['item' => $item,'src' => $constrained ? $item['large_url'] : $item['medium_url'],'lazy' => true,'iconClasses' => 'size-24','constrained' => $constrained]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('curator::display'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['item' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($item),'src' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($constrained ? $item['large_url'] : $item['medium_url']),'lazy' => true,'icon-classes' => 'size-24','constrained' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($constrained)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $attributes = $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $component = $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+
+                            <div class="absolute top-0 right-0">
+                                <div class="relative flex items-center bg-gray-950 divide-x divide-gray-700 rounded-bl-lg shadow-md">
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isMultiple): ?>
+                                        <div
+                                            x-sortable-handle
+                                            class="flex items-center justify-center flex-none w-10 h-10 transition text-gray-400 hover:text-gray-300"
+                                        >
+                                            <?php echo e($getAction('reorder')); ?>
+
+                                        </div>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                                    <div class="flex items-center justify-center flex-none w-10 h-10">
+                                        <?php if (isset($component)) { $__componentOriginalbdee036326cbc931a2e3bf686403ecb7 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbdee036326cbc931a2e3bf686403ecb7 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament-actions::components.group','data' => ['actions' => [
+                                                $getAction('view')(['url' => $item['url']]),
+                                                $getAction('edit')(['id' => $item['id']]),
+                                                $getAction('download')(['uuid' => $uuid]),
+                                                $getAction('remove')(['uuid' => $uuid]),
+                                            ],'color' => 'gray','size' => 'xs','dropdownPlacement' => 'bottom-end']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament-actions::group'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['actions' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute([
+                                                $getAction('view')(['url' => $item['url']]),
+                                                $getAction('edit')(['id' => $item['id']]),
+                                                $getAction('download')(['uuid' => $uuid]),
+                                                $getAction('remove')(['uuid' => $uuid]),
+                                            ]),'color' => 'gray','size' => 'xs','dropdown-placement' => 'bottom-end']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbdee036326cbc931a2e3bf686403ecb7)): ?>
+<?php $attributes = $__attributesOriginalbdee036326cbc931a2e3bf686403ecb7; ?>
+<?php unset($__attributesOriginalbdee036326cbc931a2e3bf686403ecb7); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbdee036326cbc931a2e3bf686403ecb7)): ?>
+<?php $component = $__componentOriginalbdee036326cbc931a2e3bf686403ecb7; ?>
+<?php unset($__componentOriginalbdee036326cbc931a2e3bf686403ecb7); ?>
+<?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(! curator()->isVideo($item['ext'])): ?>
+                                <?php if (isset($component)) { $__componentOriginale256aedfc58098b4693183f668d02d0e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale256aedfc58098b4693183f668d02d0e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'curator::components.display.info-overlay','data' => ['label' => $item['pretty_name'],'size' => $item['size']]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('curator::display.info-overlay'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($item['pretty_name']),'size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($item['size'])]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale256aedfc58098b4693183f668d02d0e)): ?>
+<?php $attributes = $__attributesOriginale256aedfc58098b4693183f668d02d0e; ?>
+<?php unset($__attributesOriginale256aedfc58098b4693183f668d02d0e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale256aedfc58098b4693183f668d02d0e)): ?>
+<?php $component = $__componentOriginale256aedfc58098b4693183f668d02d0e; ?>
+<?php unset($__componentOriginale256aedfc58098b4693183f668d02d0e); ?>
+<?php endif; ?>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        </div>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </li>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+        </ul>
+
+        <div
+            class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                'flex items-center gap-4',
+                'mt-4' => $itemsCount > 0
+            ]); ?>"
+        >
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($itemsCount === 0 || $isMultiple): ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(! $maxItems || $itemsCount < $maxItems): ?>
+                    <?php echo e($getAction('launchPanel')); ?>
+
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($itemsCount > 1): ?>
+                <?php echo e($getAction('removeAll')); ?>
+
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+    </div>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal511d4862ff04963c3c16115c05a86a9d)): ?>
+<?php $attributes = $__attributesOriginal511d4862ff04963c3c16115c05a86a9d; ?>
+<?php unset($__attributesOriginal511d4862ff04963c3c16115c05a86a9d); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal511d4862ff04963c3c16115c05a86a9d)): ?>
+<?php $component = $__componentOriginal511d4862ff04963c3c16115c05a86a9d; ?>
+<?php unset($__componentOriginal511d4862ff04963c3c16115c05a86a9d); ?>
+<?php endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/forms/picker.blade.php ENDPATH**/ ?>

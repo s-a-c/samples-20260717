@@ -1,0 +1,3167 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_composer_json",
+            "label": "composer.json",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_composer_name",
+            "label": "name",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L2"
+        },
+        {
+            "id": "$graphify-root$_composer_description",
+            "label": "description",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L3"
+        },
+        {
+            "id": "$graphify-root$_composer_license",
+            "label": "license",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L4"
+        },
+        {
+            "id": "$graphify-root$_composer_type",
+            "label": "type",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L5"
+        },
+        {
+            "id": "$graphify-root$_composer_keywords",
+            "label": "keywords",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L6"
+        },
+        {
+            "id": "ref_laravel",
+            "label": "laravel",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L6"
+        },
+        {
+            "id": "ref_framework",
+            "label": "framework",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L6"
+        },
+        {
+            "id": "$graphify-root$_composer_require",
+            "label": "require",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L10"
+        },
+        {
+            "id": "$graphify-root$_composer_require_php",
+            "label": "php",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L11"
+        },
+        {
+            "id": "$graphify-root$_composer_require_asmit_resized_column",
+            "label": "asmit/resized-column",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_composer_require_awcodes_filament_badgeable_column",
+            "label": "awcodes/filament-badgeable-column",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L13"
+        },
+        {
+            "id": "$graphify-root$_composer_require_awcodes_filament_curator",
+            "label": "awcodes/filament-curator",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L14"
+        },
+        {
+            "id": "$graphify-root$_composer_require_bezhansalleh_filament_panel_switch",
+            "label": "bezhansalleh/filament-panel-switch",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L15"
+        },
+        {
+            "id": "$graphify-root$_composer_require_bezhansalleh_filament_shield",
+            "label": "bezhansalleh/filament-shield",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L16"
+        },
+        {
+            "id": "$graphify-root$_composer_require_filament_spatie_laravel_tags_plugin",
+            "label": "filament/spatie-laravel-tags-plugin",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L17"
+        },
+        {
+            "id": "$graphify-root$_composer_require_lara_zeus_activity_timeline",
+            "label": "lara-zeus/activity-timeline",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L18"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_chronicle_core",
+            "label": "laravel-chronicle/core",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L19"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_ai",
+            "label": "laravel/ai",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L20"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_chisel",
+            "label": "laravel/chisel",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L21"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_fortify",
+            "label": "laravel/fortify",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L22"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_framework",
+            "label": "laravel/framework",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L23"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_horizon",
+            "label": "laravel/horizon",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L24"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_pulse",
+            "label": "laravel/pulse",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L25"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_reverb",
+            "label": "laravel/reverb",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L26"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_sanctum",
+            "label": "laravel/sanctum",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L27"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_telescope",
+            "label": "laravel/telescope",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L28"
+        },
+        {
+            "id": "$graphify-root$_composer_require_laravel_tinker",
+            "label": "laravel/tinker",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L29"
+        },
+        {
+            "id": "$graphify-root$_composer_require_livewire_blaze",
+            "label": "livewire/blaze",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L30"
+        },
+        {
+            "id": "$graphify-root$_composer_require_livewire_flux",
+            "label": "livewire/flux",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L31"
+        },
+        {
+            "id": "$graphify-root$_composer_require_livewire_flux_pro",
+            "label": "livewire/flux-pro",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L32"
+        },
+        {
+            "id": "$graphify-root$_composer_require_livewire_livewire",
+            "label": "livewire/livewire",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L33"
+        },
+        {
+            "id": "$graphify-root$_composer_require_nunomaduro_essentials",
+            "label": "nunomaduro/essentials",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L34"
+        },
+        {
+            "id": "$graphify-root$_composer_require_relaticle_flowforge",
+            "label": "relaticle/flowforge",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L35"
+        },
+        {
+            "id": "$graphify-root$_composer_require_shuvroroy_filament_spatie_laravel_backup",
+            "label": "shuvroroy/filament-spatie-laravel-backup",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L36"
+        },
+        {
+            "id": "$graphify-root$_composer_require_shuvroroy_filament_spatie_laravel_health",
+            "label": "shuvroroy/filament-spatie-laravel-health",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L37"
+        },
+        {
+            "id": "$graphify-root$_composer_require_spatie_laravel_activitylog",
+            "label": "spatie/laravel-activitylog",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L38"
+        },
+        {
+            "id": "$graphify-root$_composer_require_spatie_laravel_horizon_watcher",
+            "label": "spatie/laravel-horizon-watcher",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L39"
+        },
+        {
+            "id": "$graphify-root$_composer_require_stechstudio_filament_impersonate",
+            "label": "stechstudio/filament-impersonate",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L40"
+        },
+        {
+            "id": "$graphify-root$_composer_require_tpetry_laravel_postgresql_enhanced",
+            "label": "tpetry/laravel-postgresql-enhanced",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L41"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev",
+            "label": "require-dev",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L43"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_albertoarena_laravel_truss",
+            "label": "albertoarena/laravel-truss",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L44"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_barryvdh_laravel_ide_helper",
+            "label": "barryvdh/laravel-ide-helper",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L45"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_carthage_software_mago",
+            "label": "carthage-software/mago",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L46"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_driftingly_rector_laravel",
+            "label": "driftingly/rector-laravel",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L47"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_ergebnis_composer_normalize",
+            "label": "ergebnis/composer-normalize",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L48"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_ergebnis_rector_rules",
+            "label": "ergebnis/rector-rules",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L49"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_fakerphp_faker",
+            "label": "fakerphp/faker",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L50"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_filament_blueprint",
+            "label": "filament/blueprint",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L51"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_fruitcake_laravel_debugbar",
+            "label": "fruitcake/laravel-debugbar",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L52"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_infection_infection",
+            "label": "infection/infection",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L53"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_jasonmccreary_laravel_test_assertions",
+            "label": "jasonmccreary/laravel-test-assertions",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L54"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_joshcirre_instruckt_laravel",
+            "label": "joshcirre/instruckt-laravel",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L55"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_larastan_larastan",
+            "label": "larastan/larastan",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L56"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_laravel_boost",
+            "label": "laravel/boost",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L57"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_laravel_doctor",
+            "label": "laravel/doctor",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L58"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_laravel_pail",
+            "label": "laravel/pail",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L59"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_laravel_pao",
+            "label": "laravel/pao",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L60"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_laravel_pint",
+            "label": "laravel/pint",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L61"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_laravel_sail",
+            "label": "laravel/sail",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L62"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_laraveldaily_filacheck_pro",
+            "label": "laraveldaily/filacheck-pro",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L63"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_mockery_mockery",
+            "label": "mockery/mockery",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L64"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_nunomaduro_collision",
+            "label": "nunomaduro/collision",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L65"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_pestphp_pest",
+            "label": "pestphp/pest",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L66"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_arch",
+            "label": "pestphp/pest-plugin-arch",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L67"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_drift",
+            "label": "pestphp/pest-plugin-drift",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L68"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_faker",
+            "label": "pestphp/pest-plugin-faker",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L69"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_laravel",
+            "label": "pestphp/pest-plugin-laravel",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L70"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_livewire",
+            "label": "pestphp/pest-plugin-livewire",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L71"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_mutate",
+            "label": "pestphp/pest-plugin-mutate",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L72"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_profanity",
+            "label": "pestphp/pest-plugin-profanity",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L73"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_type_coverage",
+            "label": "pestphp/pest-plugin-type-coverage",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L74"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_php_parallel_lint_php_console_color",
+            "label": "php-parallel-lint/php-console-color",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L75"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_php_parallel_lint_php_console_highlighter",
+            "label": "php-parallel-lint/php-console-highlighter",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L76"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_php_parallel_lint_php_parallel_lint",
+            "label": "php-parallel-lint/php-parallel-lint",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L77"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_phpstan_extension_installer",
+            "label": "phpstan/extension-installer",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L78"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_phpstan_phpstan",
+            "label": "phpstan/phpstan",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L79"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_phpstan_phpstan_deprecation_rules",
+            "label": "phpstan/phpstan-deprecation-rules",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L80"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_phpstan_phpstan_phpunit",
+            "label": "phpstan/phpstan-phpunit",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L81"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_phpstan_phpstan_strict_rules",
+            "label": "phpstan/phpstan-strict-rules",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L82"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_rector_rector",
+            "label": "rector/rector",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L83"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_rector_swiss_knife",
+            "label": "rector/swiss-knife",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L84"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_roave_security_advisories",
+            "label": "roave/security-advisories",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L85"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_spatie_laravel_ray",
+            "label": "spatie/laravel-ray",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L86"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_spatie_laravel_web_tinker",
+            "label": "spatie/laravel-web-tinker",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L87"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_spatie_pest_plugin_snapshots",
+            "label": "spatie/pest-plugin-snapshots",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L88"
+        },
+        {
+            "id": "$graphify-root$_composer_require_dev_tomasvotruba_type_coverage",
+            "label": "tomasvotruba/type-coverage",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L89"
+        },
+        {
+            "id": "$graphify-root$_composer_repositories",
+            "label": "repositories",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L91"
+        },
+        {
+            "id": "$graphify-root$_composer_minimum_stability",
+            "label": "minimum-stability",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L113"
+        },
+        {
+            "id": "$graphify-root$_composer_prefer_stable",
+            "label": "prefer-stable",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L114"
+        },
+        {
+            "id": "$graphify-root$_composer_autoload",
+            "label": "autoload",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L115"
+        },
+        {
+            "id": "$graphify-root$_composer_autoload_psr_4",
+            "label": "psr-4",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L116"
+        },
+        {
+            "id": "$graphify-root$_composer_psr_4_app",
+            "label": "App\\\\",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L117"
+        },
+        {
+            "id": "$graphify-root$_composer_psr_4_database_factories",
+            "label": "Database\\\\Factories\\\\",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L118"
+        },
+        {
+            "id": "$graphify-root$_composer_psr_4_database_seeders",
+            "label": "Database\\\\Seeders\\\\",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L119"
+        },
+        {
+            "id": "$graphify-root$_composer_autoload_exclude_from_classmap",
+            "label": "exclude-from-classmap",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L121"
+        },
+        {
+            "id": "ref_vendor_marc_mabe_php_enum_stubs_stringable_php",
+            "label": "/vendor/marc-mabe/php-enum/stubs/Stringable.php",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L121"
+        },
+        {
+            "id": "$graphify-root$_composer_autoload_dev",
+            "label": "autoload-dev",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L125"
+        },
+        {
+            "id": "$graphify-root$_composer_autoload_dev_psr_4",
+            "label": "psr-4",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L126"
+        },
+        {
+            "id": "$graphify-root$_composer_psr_4_tests",
+            "label": "Tests\\\\",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L127"
+        },
+        {
+            "id": "$graphify-root$_composer_config",
+            "label": "config",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L130"
+        },
+        {
+            "id": "$graphify-root$_composer_config_allow_plugins",
+            "label": "allow-plugins",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L131"
+        },
+        {
+            "id": "$graphify-root$_composer_allow_plugins_ergebnis_composer_normalize",
+            "label": "ergebnis/composer-normalize",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L132"
+        },
+        {
+            "id": "$graphify-root$_composer_allow_plugins_infection_extension_installer",
+            "label": "infection/extension-installer",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L133"
+        },
+        {
+            "id": "$graphify-root$_composer_allow_plugins_pestphp_pest_plugin",
+            "label": "pestphp/pest-plugin",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L134"
+        },
+        {
+            "id": "$graphify-root$_composer_allow_plugins_php_http_discovery",
+            "label": "php-http/discovery",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L135"
+        },
+        {
+            "id": "$graphify-root$_composer_allow_plugins_phpstan_extension_installer",
+            "label": "phpstan/extension-installer",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L136"
+        },
+        {
+            "id": "$graphify-root$_composer_config_optimize_autoloader",
+            "label": "optimize-autoloader",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L138"
+        },
+        {
+            "id": "$graphify-root$_composer_config_platform",
+            "label": "platform",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L139"
+        },
+        {
+            "id": "$graphify-root$_composer_platform_php",
+            "label": "php",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L140"
+        },
+        {
+            "id": "$graphify-root$_composer_config_preferred_install",
+            "label": "preferred-install",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L142"
+        },
+        {
+            "id": "$graphify-root$_composer_config_sort_packages",
+            "label": "sort-packages",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L143"
+        },
+        {
+            "id": "$graphify-root$_composer_extra",
+            "label": "extra",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L145"
+        },
+        {
+            "id": "$graphify-root$_composer_extra_laravel",
+            "label": "laravel",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L146"
+        },
+        {
+            "id": "$graphify-root$_composer_laravel_dont_discover",
+            "label": "dont-discover",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L147"
+        },
+        {
+            "id": "$graphify-root$_composer_laravel_installer",
+            "label": "installer",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L148"
+        },
+        {
+            "id": "$graphify-root$_composer_installer_post_create_project",
+            "label": "post-create-project",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L149"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts",
+            "label": "scripts",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L153"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_post_update_cmd",
+            "label": "post-update-cmd",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L154"
+        },
+        {
+            "id": "ref_php_artisan_vendor_publish_tag_laravel_assets_ansi_force",
+            "label": "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L154"
+        },
+        {
+            "id": "ref_php_artisan_boost_update_ansi",
+            "label": "@php artisan boost:update --ansi",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L154"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_pre_package_uninstall",
+            "label": "pre-package-uninstall",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L158"
+        },
+        {
+            "id": "ref_illuminate_foundation_composerscripts_prepackageuninstall",
+            "label": "Illuminate\\\\Foundation\\\\ComposerScripts::prePackageUninstall",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L158"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_post_autoload_dump",
+            "label": "post-autoload-dump",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L161"
+        },
+        {
+            "id": "ref_illuminate_foundation_composerscripts_postautoloaddump",
+            "label": "Illuminate\\\\Foundation\\\\ComposerScripts::postAutoloadDump",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L161"
+        },
+        {
+            "id": "ref_php_artisan_package_discover_ansi",
+            "label": "@php artisan package:discover --ansi",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L161"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_post_root_package_install",
+            "label": "post-root-package-install",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L165"
+        },
+        {
+            "id": "ref_php_r_file_exists_env_copy_env_example_env",
+            "label": "@php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L165"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_post_create_project_cmd",
+            "label": "post-create-project-cmd",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L168"
+        },
+        {
+            "id": "ref_php_artisan_key_generate_ansi",
+            "label": "@php artisan key:generate --ansi",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L168"
+        },
+        {
+            "id": "ref_php_r_file_exists_database_database_sqlite_touch_database_database_sqlite",
+            "label": "@php -r \\\"file_exists('database/database.sqlite') || touch('database/database.sqlite');\\",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L168"
+        },
+        {
+            "id": "ref_php_artisan_migrate_graceful_ansi",
+            "label": "@php artisan migrate --graceful --ansi",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L168"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_analyze",
+            "label": "analyze",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L173"
+        },
+        {
+            "id": "ref_lint_check",
+            "label": "@lint:check",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L173"
+        },
+        {
+            "id": "ref_insights",
+            "label": "@insights",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L173"
+        },
+        {
+            "id": "ref_filacheck",
+            "label": "@filacheck",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L173"
+        },
+        {
+            "id": "ref_mago_analyze",
+            "label": "@mago:analyze",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L173"
+        },
+        {
+            "id": "ref_phpstan_analyze",
+            "label": "@phpstan:analyze",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L173"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_ci_check",
+            "label": "ci:check",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L180"
+        },
+        {
+            "id": "ref_composer_config_disableprocesstimeout",
+            "label": "Composer\\\\Config::disableProcessTimeout",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L180"
+        },
+        {
+            "id": "ref_test",
+            "label": "@test",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L180"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_dev",
+            "label": "dev",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L184"
+        },
+        {
+            "id": "ref_php_artisan_dev",
+            "label": "@php artisan dev",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L184"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_filacheck",
+            "label": "filacheck",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L188"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_filacheck_fix",
+            "label": "filacheck:fix",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L189"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_insights",
+            "label": "insights",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L190"
+        },
+        {
+            "id": "ref_cpx_icanhazstring_composer_unused",
+            "label": "cpx icanhazstring/composer-unused",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L190"
+        },
+        {
+            "id": "ref_cpx_nunomaduro_phpinsights",
+            "label": "cpx nunomaduro/phpinsights",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L190"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_lint",
+            "label": "lint",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L194"
+        },
+        {
+            "id": "ref_rector_fix",
+            "label": "@rector:fix",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L194"
+        },
+        {
+            "id": "ref_pint_parallel",
+            "label": "pint --parallel",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L194"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_lint_check",
+            "label": "lint:check",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L198"
+        },
+        {
+            "id": "ref_rector",
+            "label": "@rector",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L198"
+        },
+        {
+            "id": "ref_vendor_bin_pint_parallel_test",
+            "label": "vendor/bin/pint --parallel --test",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L198"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_mago_analyze",
+            "label": "mago:analyze",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L202"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_mago_analyze_fix",
+            "label": "mago:analyze:fix",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L203"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_mago_guard",
+            "label": "mago:guard",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L204"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_phpstan_analyze",
+            "label": "phpstan:analyze",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L205"
+        },
+        {
+            "id": "ref_vendor_bin_phpstan_analyse_memory_limit_2g",
+            "label": "vendor/bin/phpstan analyse --memory-limit=2G",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L205"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_phpstan_analyze_fix",
+            "label": "phpstan:analyze:fix",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L208"
+        },
+        {
+            "id": "ref_vendor_bin_phpstan_analyse_memory_limit_2g_fix",
+            "label": "vendor/bin/phpstan analyse --memory-limit=2G --fix",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L208"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_rector",
+            "label": "rector",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L211"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_rector_fix",
+            "label": "rector:fix",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L212"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_setup",
+            "label": "setup",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L213"
+        },
+        {
+            "id": "ref_composer_install",
+            "label": "composer install",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L213"
+        },
+        {
+            "id": "ref_php_artisan_key_generate",
+            "label": "@php artisan key:generate",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L213"
+        },
+        {
+            "id": "ref_php_artisan_migrate_force",
+            "label": "@php artisan migrate --force",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L213"
+        },
+        {
+            "id": "ref_pnpm_install_frozen_lockfile",
+            "label": "pnpm install --frozen-lockfile",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L213"
+        },
+        {
+            "id": "ref_pnpm_run_build",
+            "label": "pnpm run build",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L213"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_test",
+            "label": "test",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L222"
+        },
+        {
+            "id": "ref_php_artisan_config_clear_ansi",
+            "label": "@php artisan config:clear --ansi",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L222"
+        },
+        {
+            "id": "ref_mago_guard",
+            "label": "@mago:guard",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L222"
+        },
+        {
+            "id": "ref_vendor_bin_pest",
+            "label": "vendor/bin/pest",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L222"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_test_arch",
+            "label": "test:arch",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L230"
+        },
+        {
+            "id": "ref_vendor_bin_pest_testsuite_architecture",
+            "label": "vendor/bin/pest --testsuite=Architecture",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L230"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_test_coverage",
+            "label": "test:coverage",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L234"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_test_feature",
+            "label": "test:feature",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L235"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_test_livewire",
+            "label": "test:livewire",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L236"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_test_mutation",
+            "label": "test:mutation",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L237"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_test_pg",
+            "label": "test:pg",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L238"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_test_type_cov",
+            "label": "test:type-cov",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L239"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_test_unit",
+            "label": "test:unit",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L240"
+        },
+        {
+            "id": "$graphify-root$_composer_scripts_update_requirements",
+            "label": "update:requirements",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L241"
+        },
+        {
+            "id": "ref_composer_normalize",
+            "label": "composer normalize",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L241"
+        },
+        {
+            "id": "ref_composer_bump",
+            "label": "composer bump",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L241"
+        },
+        {
+            "id": "ref_composer_update_ow",
+            "label": "composer update -oW",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L241"
+        },
+        {
+            "id": "ref_pnpm_pkg_fix",
+            "label": "pnpm pkg fix",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L241"
+        },
+        {
+            "id": "ref_pnpm_dlx_sort_package_json",
+            "label": "pnpm dlx sort-package-json",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L241"
+        },
+        {
+            "id": "ref_pnpm_dlx_npm_check_updates_u",
+            "label": "pnpm dlx npm-check-updates -u",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L241"
+        },
+        {
+            "id": "ref_pnpm_update",
+            "label": "pnpm update",
+            "file_type": "concept",
+            "source_file": "composer.json",
+            "source_location": "L241"
+        },
+        {
+            "id": "$graphify-root$_composer_schema",
+            "label": "$schema",
+            "file_type": "code",
+            "source_file": "composer.json",
+            "source_location": "L251"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_name",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L2",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_description",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L3",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_license",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L4",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_type",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L5",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_keywords",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L6",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_keywords",
+            "target": "ref_laravel",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L6",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_keywords",
+            "target": "ref_framework",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L6",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_require",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_php",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_asmit_resized_column",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_awcodes_filament_badgeable_column",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_awcodes_filament_curator",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_bezhansalleh_filament_panel_switch",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L15",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_bezhansalleh_filament_shield",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L16",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_filament_spatie_laravel_tags_plugin",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L17",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_lara_zeus_activity_timeline",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L18",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_chronicle_core",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L19",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_ai",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L20",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_chisel",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L21",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_fortify",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L22",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_framework",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L23",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_horizon",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L24",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_pulse",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L25",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_reverb",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L26",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_sanctum",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L27",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_telescope",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L28",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_laravel_tinker",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_livewire_blaze",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L30",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_livewire_flux",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L31",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_livewire_flux_pro",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L32",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_livewire_livewire",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L33",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_nunomaduro_essentials",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L34",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_relaticle_flowforge",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L35",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_shuvroroy_filament_spatie_laravel_backup",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L36",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_shuvroroy_filament_spatie_laravel_health",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L37",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_spatie_laravel_activitylog",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L38",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_spatie_laravel_horizon_watcher",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L39",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_stechstudio_filament_impersonate",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L40",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require",
+            "target": "$graphify-root$_composer_require_tpetry_laravel_postgresql_enhanced",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L41",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_require_dev",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L43",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_albertoarena_laravel_truss",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L44",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_barryvdh_laravel_ide_helper",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L45",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_carthage_software_mago",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L46",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_driftingly_rector_laravel",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L47",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_ergebnis_composer_normalize",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L48",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_ergebnis_rector_rules",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L49",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_fakerphp_faker",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L50",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_filament_blueprint",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L51",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_fruitcake_laravel_debugbar",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L52",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_infection_infection",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L53",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_jasonmccreary_laravel_test_assertions",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L54",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_joshcirre_instruckt_laravel",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L55",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_larastan_larastan",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L56",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_laravel_boost",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L57",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_laravel_doctor",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L58",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_laravel_pail",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L59",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_laravel_pao",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L60",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_laravel_pint",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L61",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_laravel_sail",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L62",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_laraveldaily_filacheck_pro",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L63",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_mockery_mockery",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L64",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_nunomaduro_collision",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L65",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_pestphp_pest",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L66",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_arch",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L67",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_drift",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L68",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_faker",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L69",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_laravel",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L70",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_livewire",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L71",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_mutate",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L72",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_profanity",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L73",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_pestphp_pest_plugin_type_coverage",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L74",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_php_parallel_lint_php_console_color",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L75",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_php_parallel_lint_php_console_highlighter",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L76",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_php_parallel_lint_php_parallel_lint",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L77",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_phpstan_extension_installer",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L78",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_phpstan_phpstan",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L79",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_phpstan_phpstan_deprecation_rules",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L80",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_phpstan_phpstan_phpunit",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L81",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_phpstan_phpstan_strict_rules",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L82",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_rector_rector",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L83",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_rector_swiss_knife",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L84",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_roave_security_advisories",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L85",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_spatie_laravel_ray",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L86",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_spatie_laravel_web_tinker",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L87",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_spatie_pest_plugin_snapshots",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L88",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_require_dev",
+            "target": "$graphify-root$_composer_require_dev_tomasvotruba_type_coverage",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L89",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_repositories",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L91",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_minimum_stability",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L113",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_prefer_stable",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L114",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_autoload",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L115",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_autoload",
+            "target": "$graphify-root$_composer_autoload_psr_4",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L116",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_autoload_psr_4",
+            "target": "$graphify-root$_composer_psr_4_app",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L117",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_autoload_psr_4",
+            "target": "$graphify-root$_composer_psr_4_database_factories",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L118",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_autoload_psr_4",
+            "target": "$graphify-root$_composer_psr_4_database_seeders",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L119",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_autoload",
+            "target": "$graphify-root$_composer_autoload_exclude_from_classmap",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L121",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_autoload_exclude_from_classmap",
+            "target": "ref_vendor_marc_mabe_php_enum_stubs_stringable_php",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L121",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_autoload_dev",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L125",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_autoload_dev",
+            "target": "$graphify-root$_composer_autoload_dev_psr_4",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L126",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_autoload_dev_psr_4",
+            "target": "$graphify-root$_composer_psr_4_tests",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L127",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_config",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L130",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config",
+            "target": "$graphify-root$_composer_config_allow_plugins",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L131",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config_allow_plugins",
+            "target": "$graphify-root$_composer_allow_plugins_ergebnis_composer_normalize",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L132",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config_allow_plugins",
+            "target": "$graphify-root$_composer_allow_plugins_infection_extension_installer",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L133",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config_allow_plugins",
+            "target": "$graphify-root$_composer_allow_plugins_pestphp_pest_plugin",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L134",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config_allow_plugins",
+            "target": "$graphify-root$_composer_allow_plugins_php_http_discovery",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L135",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config_allow_plugins",
+            "target": "$graphify-root$_composer_allow_plugins_phpstan_extension_installer",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L136",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config",
+            "target": "$graphify-root$_composer_config_optimize_autoloader",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L138",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config",
+            "target": "$graphify-root$_composer_config_platform",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L139",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config_platform",
+            "target": "$graphify-root$_composer_platform_php",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L140",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config",
+            "target": "$graphify-root$_composer_config_preferred_install",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L142",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_config",
+            "target": "$graphify-root$_composer_config_sort_packages",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L143",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_extra",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L145",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_extra",
+            "target": "$graphify-root$_composer_extra_laravel",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L146",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_extra_laravel",
+            "target": "$graphify-root$_composer_laravel_dont_discover",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L147",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_extra_laravel",
+            "target": "$graphify-root$_composer_laravel_installer",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L148",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_laravel_installer",
+            "target": "$graphify-root$_composer_installer_post_create_project",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L149",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_scripts",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L153",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_post_update_cmd",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L154",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_post_update_cmd",
+            "target": "ref_php_artisan_vendor_publish_tag_laravel_assets_ansi_force",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L154",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_post_update_cmd",
+            "target": "ref_php_artisan_boost_update_ansi",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L154",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_pre_package_uninstall",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L158",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_pre_package_uninstall",
+            "target": "ref_illuminate_foundation_composerscripts_prepackageuninstall",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L158",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_post_autoload_dump",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L161",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_post_autoload_dump",
+            "target": "ref_illuminate_foundation_composerscripts_postautoloaddump",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L161",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_post_autoload_dump",
+            "target": "ref_php_artisan_package_discover_ansi",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L161",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_post_root_package_install",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L165",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_post_root_package_install",
+            "target": "ref_php_r_file_exists_env_copy_env_example_env",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L165",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_post_create_project_cmd",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L168",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_post_create_project_cmd",
+            "target": "ref_php_artisan_key_generate_ansi",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L168",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_post_create_project_cmd",
+            "target": "ref_php_r_file_exists_database_database_sqlite_touch_database_database_sqlite",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L168",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_post_create_project_cmd",
+            "target": "ref_php_artisan_migrate_graceful_ansi",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L168",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_analyze",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L173",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_analyze",
+            "target": "ref_lint_check",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L173",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_analyze",
+            "target": "ref_insights",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L173",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_analyze",
+            "target": "ref_filacheck",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L173",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_analyze",
+            "target": "ref_mago_analyze",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L173",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_analyze",
+            "target": "ref_phpstan_analyze",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L173",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_ci_check",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L180",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_ci_check",
+            "target": "ref_composer_config_disableprocesstimeout",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L180",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_ci_check",
+            "target": "ref_test",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L180",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_dev",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L184",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_dev",
+            "target": "ref_composer_config_disableprocesstimeout",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L184",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_dev",
+            "target": "ref_php_artisan_dev",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L184",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_filacheck",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L188",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_filacheck_fix",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L189",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_insights",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L190",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_insights",
+            "target": "ref_cpx_icanhazstring_composer_unused",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L190",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_insights",
+            "target": "ref_cpx_nunomaduro_phpinsights",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L190",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_lint",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L194",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_lint",
+            "target": "ref_rector_fix",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L194",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_lint",
+            "target": "ref_pint_parallel",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L194",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_lint_check",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L198",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_lint_check",
+            "target": "ref_rector",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L198",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_lint_check",
+            "target": "ref_vendor_bin_pint_parallel_test",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L198",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_mago_analyze",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L202",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_mago_analyze_fix",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L203",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_mago_guard",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L204",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_phpstan_analyze",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L205",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_phpstan_analyze",
+            "target": "ref_vendor_bin_phpstan_analyse_memory_limit_2g",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L205",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_phpstan_analyze_fix",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L208",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_phpstan_analyze_fix",
+            "target": "ref_vendor_bin_phpstan_analyse_memory_limit_2g_fix",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L208",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_rector",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L211",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_rector_fix",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L212",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_setup",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L213",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_setup",
+            "target": "ref_composer_install",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L213",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_setup",
+            "target": "ref_php_r_file_exists_env_copy_env_example_env",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L213",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_setup",
+            "target": "ref_php_artisan_key_generate",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L213",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_setup",
+            "target": "ref_php_r_file_exists_database_database_sqlite_touch_database_database_sqlite",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L213",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_setup",
+            "target": "ref_php_artisan_migrate_force",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L213",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_setup",
+            "target": "ref_pnpm_install_frozen_lockfile",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L213",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_setup",
+            "target": "ref_pnpm_run_build",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L213",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_test",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L222",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_test",
+            "target": "ref_php_artisan_config_clear_ansi",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L222",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_test",
+            "target": "ref_lint_check",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L222",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_test",
+            "target": "ref_mago_analyze",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L222",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_test",
+            "target": "ref_phpstan_analyze",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L222",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_test",
+            "target": "ref_mago_guard",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L222",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_test",
+            "target": "ref_vendor_bin_pest",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L222",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_test_arch",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L230",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_test_arch",
+            "target": "ref_mago_guard",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L230",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_test_arch",
+            "target": "ref_vendor_bin_pest_testsuite_architecture",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L230",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_test_coverage",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L234",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_test_feature",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L235",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_test_livewire",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L236",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_test_mutation",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L237",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_test_pg",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L238",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_test_type_cov",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L239",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_test_unit",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L240",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts",
+            "target": "$graphify-root$_composer_scripts_update_requirements",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L241",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_update_requirements",
+            "target": "ref_composer_normalize",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L241",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_update_requirements",
+            "target": "ref_composer_bump",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L241",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_update_requirements",
+            "target": "ref_composer_update_ow",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L241",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_update_requirements",
+            "target": "ref_pnpm_pkg_fix",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L241",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_update_requirements",
+            "target": "ref_pnpm_dlx_sort_package_json",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L241",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_update_requirements",
+            "target": "ref_pnpm_dlx_npm_check_updates_u",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L241",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_scripts_update_requirements",
+            "target": "ref_pnpm_update",
+            "relation": "extends",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L241",
+            "weight": 1.0,
+            "context": "import"
+        },
+        {
+            "source": "$graphify-root$_composer_json",
+            "target": "$graphify-root$_composer_schema",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "composer.json",
+            "source_location": "L251",
+            "weight": 1.0
+        }
+    ]
+}

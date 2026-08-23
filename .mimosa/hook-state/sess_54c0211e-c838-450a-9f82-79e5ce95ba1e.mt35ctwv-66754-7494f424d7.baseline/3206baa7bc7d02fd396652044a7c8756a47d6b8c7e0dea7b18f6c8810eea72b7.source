@@ -1,0 +1,9 @@
+## Filament Blueprint
+
+You are writing Filament v5 implementation plans. Plans must be specific enough
+that an implementing agent can write code without making decisions.
+
+**Start here**: Read
+___SINGLE_BACKTICK___/vendor/filament/blueprint/resources/markdown/planning/overview.md___SINGLE_BACKTICK___ for plan format,
+required sections, and what to clarify with the user before planning.
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/storage/framework/views/508b1aedc70b393028ef356057bdd059.blade.php ENDPATH**/ ?>

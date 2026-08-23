@@ -1,0 +1,230 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_console_commands_productconfirm_php",
+            "label": "ProductConfirm.php",
+            "file_type": "code",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_console_commands_productconfirm_productconfirm",
+            "label": "ProductConfirm",
+            "file_type": "code",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L13",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "command",
+            "label": "Command",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "label": ".handle()",
+            "file_type": "code",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L32",
+            "_callable": true
+        },
+        {
+            "id": "resetconfirmationservice",
+            "label": "ResetConfirmationService",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Console/Commands/ProductConfirm.php"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_console_commands_productconfirm_php",
+            "target": "user",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_productconfirm_php",
+            "target": "resetconfirmationservice",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_productconfirm_php",
+            "target": "command",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_productconfirm_php",
+            "target": "file",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_productconfirm_php",
+            "target": "role",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_productconfirm_php",
+            "target": "$graphify-root$_app_console_commands_productconfirm_productconfirm",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_productconfirm_productconfirm",
+            "target": "command",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_productconfirm_productconfirm",
+            "target": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L32",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "target": "resetconfirmationservice",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L32",
+            "weight": 1.0,
+            "context": "parameter_type"
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "mb_strtolower",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L34",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "argument",
+            "is_member_call": true,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L34",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "Role",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L36",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "first",
+            "is_member_call": true,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L39",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "User",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L39",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "User",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L42",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "create",
+            "is_member_call": true,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L47",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "User",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L47",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "assignRole",
+            "is_member_call": true,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L51",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "database_path",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L54",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "mint",
+            "is_member_call": true,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L65",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_productconfirm_productconfirm_handle",
+            "callee": "info",
+            "is_member_call": true,
+            "source_file": "app/Console/Commands/ProductConfirm.php",
+            "source_location": "L67",
+            "receiver": null
+        }
+    ]
+}

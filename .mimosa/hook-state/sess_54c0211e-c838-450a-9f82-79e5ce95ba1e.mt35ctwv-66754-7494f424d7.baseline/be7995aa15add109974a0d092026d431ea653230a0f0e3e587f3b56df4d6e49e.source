@@ -1,0 +1,254 @@
+<?php
+    use Filament\Support\Enums\Width;
+    use Filament\Support\Facades\FilamentView;
+    use Filament\Tables\Enums\FiltersLayout;
+    use Filament\Tables\Filters\Indicator;
+    use Filament\Tables\View\TablesRenderHook;
+
+    $table = $this->getTable();
+    $isFilterable = $table->isFilterable();
+    $isSearchable = $table->isSearchable();
+    $filterIndicators = $table->getFilterIndicators();
+
+    $filtersLayout = $table->getFiltersLayout();
+    $filtersTriggerAction = $table->getFiltersTriggerAction();
+    $filtersApplyAction = $table->getFiltersApplyAction();
+    $filtersForm = $this->getTableFiltersForm();
+    $filtersFormWidth = $table->getFiltersFormWidth();
+    $filtersFormMaxHeight = $table->getFiltersFormMaxHeight();
+    $filtersResetActionPosition = $table->getFiltersResetActionPosition();
+    $activeFiltersCount = $table->getActiveFiltersCount();
+
+    if (is_string($filtersFormWidth)) {
+        $filtersFormWidth = Width::tryFrom($filtersFormWidth) ?? $filtersFormWidth;
+    }
+
+    $hasFiltersDialog = $isFilterable && in_array($filtersLayout, [FiltersLayout::Dropdown, FiltersLayout::Modal]);
+    $isModalLayout = ($filtersLayout === FiltersLayout::Modal) || ($hasFiltersDialog && $filtersTriggerAction->isModalSlideOver());
+?>
+
+<div class="flex flex-col gap-y-1">
+    
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(filled($breadcrumbs)): ?>
+        <?php if (isset($component)) { $__componentOriginale1cebc129855f156aa8f78d22103aca1 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale1cebc129855f156aa8f78d22103aca1 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.breadcrumbs','data' => ['breadcrumbs' => $breadcrumbs,'class' => 'mb-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::breadcrumbs'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['breadcrumbs' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($breadcrumbs),'class' => 'mb-2']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale1cebc129855f156aa8f78d22103aca1)): ?>
+<?php $attributes = $__attributesOriginale1cebc129855f156aa8f78d22103aca1; ?>
+<?php unset($__attributesOriginale1cebc129855f156aa8f78d22103aca1); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale1cebc129855f156aa8f78d22103aca1)): ?>
+<?php $component = $__componentOriginale1cebc129855f156aa8f78d22103aca1; ?>
+<?php unset($__componentOriginale1cebc129855f156aa8f78d22103aca1); ?>
+<?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+    
+    <div class="flex items-center gap-4">
+        <div class="flex-1 min-w-0">
+            <h1 class="fi-header-heading text-2xl font-bold tracking-tight text-gray-950 dark:text-white sm:text-3xl">
+                <?php echo e($heading); ?>
+
+            </h1>
+
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(filled($subheading)): ?>
+                <p class="fi-header-subheading mt-1 max-w-2xl text-sm text-gray-600 dark:text-gray-400">
+                    <?php echo e($subheading); ?>
+
+                </p>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+
+        <div class="flex items-center gap-x-6 shrink-0">
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isFilterable && $hasFiltersDialog): ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isModalLayout): ?>
+                    <?php
+                        $filtersTriggerActionModalAlignment = $filtersTriggerAction->getModalAlignment();
+                        $filtersTriggerActionIsModalAutofocused = $filtersTriggerAction->isModalAutofocused();
+                        $filtersTriggerActionHasModalCloseButton = $filtersTriggerAction->hasModalCloseButton();
+                        $filtersTriggerActionIsModalClosedByClickingAway = $filtersTriggerAction->isModalClosedByClickingAway();
+                        $filtersTriggerActionIsModalClosedByEscaping = $filtersTriggerAction->isModalClosedByEscaping();
+                        $filtersTriggerActionModalDescription = $filtersTriggerAction->getModalDescription();
+                        $filtersTriggerActionVisibleModalFooterActions = $filtersTriggerAction->getVisibleModalFooterActions();
+                        $filtersTriggerActionModalFooterActionsAlignment = $filtersTriggerAction->getModalFooterActionsAlignment();
+                        $filtersTriggerActionModalHeading = $filtersTriggerAction->getCustomModalHeading() ?? __('filament-tables::table.filters.heading');
+                        $filtersTriggerActionModalIcon = $filtersTriggerAction->getModalIcon();
+                        $filtersTriggerActionModalIconColor = $filtersTriggerAction->getModalIconColor();
+                        $filtersTriggerActionIsModalSlideOver = $filtersTriggerAction->isModalSlideOver();
+                        $filtersTriggerActionIsModalFooterSticky = $filtersTriggerAction->isModalFooterSticky();
+                        $filtersTriggerActionIsModalHeaderSticky = $filtersTriggerAction->isModalHeaderSticky();
+                    ?>
+
+                    <?php if (isset($component)) { $__componentOriginal0942a211c37469064369f887ae8d1cef = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal0942a211c37469064369f887ae8d1cef = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.modal.index','data' => ['alignment' => $filtersTriggerActionModalAlignment,'autofocus' => $filtersTriggerActionIsModalAutofocused,'closeButton' => $filtersTriggerActionHasModalCloseButton,'closeByClickingAway' => $filtersTriggerActionIsModalClosedByClickingAway,'closeByEscaping' => $filtersTriggerActionIsModalClosedByEscaping,'description' => $filtersTriggerActionModalDescription,'footerActions' => $filtersTriggerActionVisibleModalFooterActions,'footerActionsAlignment' => $filtersTriggerActionModalFooterActionsAlignment,'heading' => $filtersTriggerActionModalHeading,'icon' => $filtersTriggerActionModalIcon,'iconColor' => $filtersTriggerActionModalIconColor,'slideOver' => $filtersTriggerActionIsModalSlideOver,'stickyFooter' => $filtersTriggerActionIsModalFooterSticky,'stickyHeader' => $filtersTriggerActionIsModalHeaderSticky,'width' => $filtersFormWidth,'wire:key' => $this->getId() . '.board.filters','class' => 'fi-ta-filters-modal']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::modal'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['alignment' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionModalAlignment),'autofocus' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionIsModalAutofocused),'close-button' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionHasModalCloseButton),'close-by-clicking-away' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionIsModalClosedByClickingAway),'close-by-escaping' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionIsModalClosedByEscaping),'description' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionModalDescription),'footer-actions' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionVisibleModalFooterActions),'footer-actions-alignment' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionModalFooterActionsAlignment),'heading' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionModalHeading),'icon' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionModalIcon),'icon-color' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionModalIconColor),'slide-over' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionIsModalSlideOver),'sticky-footer' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionIsModalFooterSticky),'sticky-header' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersTriggerActionIsModalHeaderSticky),'width' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersFormWidth),'wire:key' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($this->getId() . '.board.filters'),'class' => 'fi-ta-filters-modal']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                         <?php $__env->slot('trigger', null, []); ?> 
+                            <?php echo e($filtersTriggerAction->badge($activeFiltersCount)); ?>
+
+                         <?php $__env->endSlot(); ?>
+
+                        <?php echo e($filtersTriggerAction->getModalContent()); ?>
+
+
+                        <?php echo e($filtersForm); ?>
+
+
+                        <?php echo e($filtersTriggerAction->getModalContentFooter()); ?>
+
+                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal0942a211c37469064369f887ae8d1cef)): ?>
+<?php $attributes = $__attributesOriginal0942a211c37469064369f887ae8d1cef; ?>
+<?php unset($__attributesOriginal0942a211c37469064369f887ae8d1cef); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal0942a211c37469064369f887ae8d1cef)): ?>
+<?php $component = $__componentOriginal0942a211c37469064369f887ae8d1cef; ?>
+<?php unset($__componentOriginal0942a211c37469064369f887ae8d1cef); ?>
+<?php endif; ?>
+                <?php else: ?>
+                    
+                    <div class="fi-ta-ctn fi-ta-ctn-with-header" style="display: contents;">
+                        <div class="fi-ta-header-toolbar" style="display: contents;">
+                            <?php if (isset($component)) { $__componentOriginal22ab0dbc2c6619d5954111bba06f01db = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal22ab0dbc2c6619d5954111bba06f01db = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.dropdown.index','data' => ['maxHeight' => $filtersFormMaxHeight,'placement' => 'bottom-end','shift' => true,'flip' => false,'width' => $filtersFormWidth ?? Width::ExtraSmall,'wire:key' => $this->getId() . '.board.filters','class' => 'fi-ta-filters-dropdown']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::dropdown'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['max-height' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersFormMaxHeight),'placement' => 'bottom-end','shift' => true,'flip' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false),'width' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersFormWidth ?? Width::ExtraSmall),'wire:key' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($this->getId() . '.board.filters'),'class' => 'fi-ta-filters-dropdown']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                 <?php $__env->slot('trigger', null, []); ?> 
+                                    <?php echo e($filtersTriggerAction->badge($activeFiltersCount)); ?>
+
+                                 <?php $__env->endSlot(); ?>
+
+                                <?php if (isset($component)) { $__componentOriginal8fcc8bb3dcedd6e3c85ec7cd95e48b39 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal8fcc8bb3dcedd6e3c85ec7cd95e48b39 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament-tables::components.filters','data' => ['applyAction' => $filtersApplyAction,'form' => $filtersForm,'resetActionPosition' => $filtersResetActionPosition]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament-tables::filters'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['apply-action' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersApplyAction),'form' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersForm),'reset-action-position' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($filtersResetActionPosition)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal8fcc8bb3dcedd6e3c85ec7cd95e48b39)): ?>
+<?php $attributes = $__attributesOriginal8fcc8bb3dcedd6e3c85ec7cd95e48b39; ?>
+<?php unset($__attributesOriginal8fcc8bb3dcedd6e3c85ec7cd95e48b39); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8fcc8bb3dcedd6e3c85ec7cd95e48b39)): ?>
+<?php $component = $__componentOriginal8fcc8bb3dcedd6e3c85ec7cd95e48b39; ?>
+<?php unset($__componentOriginal8fcc8bb3dcedd6e3c85ec7cd95e48b39); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal22ab0dbc2c6619d5954111bba06f01db)): ?>
+<?php $attributes = $__attributesOriginal22ab0dbc2c6619d5954111bba06f01db; ?>
+<?php unset($__attributesOriginal22ab0dbc2c6619d5954111bba06f01db); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal22ab0dbc2c6619d5954111bba06f01db)): ?>
+<?php $component = $__componentOriginal22ab0dbc2c6619d5954111bba06f01db; ?>
+<?php unset($__componentOriginal22ab0dbc2c6619d5954111bba06f01db); ?>
+<?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isSearchable): ?>
+                <?php if (isset($component)) { $__componentOriginal7ccc00a3eaa8946ec9c0ec17f5ab229b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal7ccc00a3eaa8946ec9c0ec17f5ab229b = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament-tables::components.search-field','data' => ['debounce' => $table->getSearchDebounce(),'onBlur' => $table->isSearchOnBlur(),'placeholder' => $table->getSearchPlaceholder()]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament-tables::search-field'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['debounce' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($table->getSearchDebounce()),'on-blur' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($table->isSearchOnBlur()),'placeholder' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($table->getSearchPlaceholder())]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal7ccc00a3eaa8946ec9c0ec17f5ab229b)): ?>
+<?php $attributes = $__attributesOriginal7ccc00a3eaa8946ec9c0ec17f5ab229b; ?>
+<?php unset($__attributesOriginal7ccc00a3eaa8946ec9c0ec17f5ab229b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal7ccc00a3eaa8946ec9c0ec17f5ab229b)): ?>
+<?php $component = $__componentOriginal7ccc00a3eaa8946ec9c0ec17f5ab229b; ?>
+<?php unset($__componentOriginal7ccc00a3eaa8946ec9c0ec17f5ab229b); ?>
+<?php endif; ?>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+    </div>
+
+    
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($filterIndicators): ?>
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(filled($filterIndicatorsView = FilamentView::renderHook(TablesRenderHook::FILTER_INDICATORS, scopes: static::class, data: ['filterIndicators' => $filterIndicators]))): ?>
+            <?php echo e($filterIndicatorsView); ?>
+
+        <?php else: ?>
+            <div class="fi-ta-filter-indicators flex flex-wrap items-center gap-1 mt-1">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $filterIndicators; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $indicator): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                    <?php if (isset($component)) { $__componentOriginal986dce9114ddce94a270ab00ce6c273d = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal986dce9114ddce94a270ab00ce6c273d = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.badge','data' => ['color' => $indicator->getColor()]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['color' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($indicator->getColor())]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                        <?php echo e($indicator->getLabel()); ?>
+
+
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($indicator->isRemovable()): ?>
+                             <?php $__env->slot('deleteButton', null, ['label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('filament-tables::table.filters.actions.remove.label')),'wire:click' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($indicator->getRemoveLivewireClickHandler()),'wire:loading.attr' => 'disabled','wire:target' => 'removeTableFilter']); ?>  <?php $__env->endSlot(); ?>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal986dce9114ddce94a270ab00ce6c273d)): ?>
+<?php $attributes = $__attributesOriginal986dce9114ddce94a270ab00ce6c273d; ?>
+<?php unset($__attributesOriginal986dce9114ddce94a270ab00ce6c273d); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal986dce9114ddce94a270ab00ce6c273d)): ?>
+<?php $component = $__componentOriginal986dce9114ddce94a270ab00ce6c273d; ?>
+<?php unset($__componentOriginal986dce9114ddce94a270ab00ce6c273d); ?>
+<?php endif; ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+            </div>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+</div>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/relaticle/flowforge/resources/views/filament/pages/board-header.blade.php ENDPATH**/ ?>

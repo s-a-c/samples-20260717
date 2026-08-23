@@ -1,9 +1,13 @@
 ---
 title: "Wayfinder handoff — next session"
 description: "| Ticket                                                                  | Decision                                                                                                                                                                                                                                                                                                                                                                                                            | SAGE fact  |"
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: handoff
-tags: \[handoff, handoffs, wayfinder, next]
-updated: 2026-07-30
+tags: [handoff, handoffs, wayfinder, next]
+created: 2026-07-22
+updated: 2026-08-17
 ---
 
 # Wayfinder handoff — next session

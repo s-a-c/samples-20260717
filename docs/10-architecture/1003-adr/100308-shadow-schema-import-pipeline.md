@@ -1,9 +1,13 @@
 ---
 title: "ADR 0004: Shadow-Schema Import Pipeline"
 description: "Documentation for ADR 0004: Shadow-Schema Import Pipeline."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: adr
-tags: \[adr, "0004", shadow]
-updated: 2026-07-30
+tags: [adr, "0004", shadow]
+created: 2026-07-25
+updated: 2026-08-17
 ---
 
 # ADR 0004: Shadow-Schema Import Pipeline
@@ -36,6 +40,6 @@ updated: 2026-07-30
 
 **Related:**
 
-- [ADR 0001: Multi-Product Architecture](0001-multi-product-architecture.md) — per-product schema isolation
-- [ADR 0002: UUIDv7 for All Entities](0002-uuidv7-for-all-entities.md) — stable Domain Identities across resets
-- [CONTEXT.md](../../CONTEXT.md) — Product Import, Product Reset, Reset Window, Source Baseline, Source Identity Registry, Pin Manifest
+- [ADR 0001: Multi-Product Architecture](100302-multi-product-architecture.md) — per-product schema isolation
+- [ADR 0002: UUIDv7 for All Entities](100304-uuidv7-for-all-entities.md) — stable Domain Identities across resets
+- [CONTEXT.md](../../../CONTEXT.md) — Product Import, Product Reset, Reset Window, Source Baseline, Source Identity Registry, Pin Manifest

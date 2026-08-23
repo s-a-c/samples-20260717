@@ -1,0 +1,44 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_tests_feature_actions_provisionoperatortest_php",
+            "label": "ProvisionOperatorTest.php",
+            "file_type": "code",
+            "source_file": "tests/Feature/Actions/ProvisionOperatorTest.php",
+            "source_location": "L1"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_tests_feature_actions_provisionoperatortest_php",
+            "target": "provisionoperator",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Actions/ProvisionOperatorTest.php",
+            "source_location": "L5",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_actions_provisionoperatortest_php",
+            "target": "user",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Actions/ProvisionOperatorTest.php",
+            "source_location": "L6",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_actions_provisionoperatortest_php",
+            "target": "role",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Actions/ProvisionOperatorTest.php",
+            "source_location": "L7",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": []
+}

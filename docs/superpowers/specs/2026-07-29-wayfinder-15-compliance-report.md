@@ -1,9 +1,13 @@
 ---
 title: "Wayfinder #15 Compliance Report (Review #3)"
 description: "> **Map:** [Wayfinder — Samples Implementation](https://github.com/s-a-c/samples-20260717/issues/15)"
-type: report
-tags: \[report, specs, wayfinder, "15"]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: research
+tags: [report, specs, wayfinder, "15"]
+created: 2026-07-29
+updated: 2026-08-17
 ---
 
 # Wayfinder #15 Compliance Report (Review #3)
@@ -156,7 +160,7 @@ Wayfinder #17 specifies an 80% line coverage floor. Current test coverage is **2
 
 ### Gap R4 — Dossier Stage Evidence and Completion Tracking (P2)
 
-Stage files `151503-stage-1-foundation.md` through `151506-stage-4-polish.md` exist and reference all ADRs and commands. However:
+Stage files `151504-stage-1-foundation.md` through `151511-stage-4-polish.md` exist and reference all ADRs and commands. However:
 
 - Stage status indicators remain `_pending_`.
 - Acceptance gate tables retain `> **OPERATOR TODO:**` markers.

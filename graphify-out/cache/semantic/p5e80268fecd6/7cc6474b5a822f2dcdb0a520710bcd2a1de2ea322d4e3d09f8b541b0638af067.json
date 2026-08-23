@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agents_skills_infer_conventions_references_checklist", "label": "Laravel Convention Detection Checklist", "file_type": "document", "source_file": ".agents/skills/infer-conventions/references/checklist.md", "rationale": "A comprehensive checklist for identifying architectural and stylistic forks in Laravel applications."}], "edges": [], "hyperedges": []}

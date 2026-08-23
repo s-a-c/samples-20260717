@@ -1,9 +1,13 @@
 ---
 title: "ADR 0003: Postgres-Native Search (Hybrid)"
 description: "Documentation for ADR 0003: Postgres-Native Search (Hybrid)."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: adr
-tags: \[adr, "0003", postgres]
-updated: 2026-07-30
+tags: [adr, "0003", postgres]
+created: 2026-07-25
+updated: 2026-08-17
 ---
 
 # ADR 0003: Postgres-Native Search (Hybrid)
@@ -33,5 +37,5 @@ updated: 2026-07-30
 
 **Related:**
 
-- [ADR 0001: Multi-Product Architecture](0001-multi-product-architecture.md) — product-scoped search
-- [CONTEXT.md](../../CONTEXT.md) — Search Document, Search Surface, Search Tier, Embedding Profile, Hybrid Retrieval, Federated Search, Search Projection
+- [ADR 0001: Multi-Product Architecture](100302-multi-product-architecture.md) — product-scoped search
+- [CONTEXT.md](../../../CONTEXT.md) — Search Document, Search Surface, Search Tier, Embedding Profile, Hybrid Retrieval, Federated Search, Search Projection

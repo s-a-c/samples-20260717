@@ -1,9 +1,13 @@
 ---
 title: "Issue Tracker"
 description: "This repo uses a **hybrid** tracker: GitHub Issues is the source of truth for"
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: guide
-tags: \[guide, agents, issue, tracker]
-updated: 2026-07-30
+tags: [guide, agents, issue, tracker]
+created: 2026-07-19
+updated: 2026-08-17
 ---
 
 # Issue Tracker

@@ -1,0 +1,600 @@
+<?php # [BlazeFolded]:{flux::heading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/heading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::heading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/heading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::heading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/heading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::subheading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/subheading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::modal.trigger}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/modal/trigger.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::text}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/text.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::menu.item}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/menu/item.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::menu}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/menu/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::dropdown}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/dropdown.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::badge}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/badge/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::modal.trigger}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/modal/trigger.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::heading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/heading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::subheading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/subheading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::icon}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/icon/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::text}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/text.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::modal.trigger}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/modal/trigger.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::heading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/heading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::subheading}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/subheading.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/button/index.blade.php}:{1786296215} ?>
+<?php # [BlazeFolded]:{flux::modal.trigger}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/modal/trigger.blade.php}:{1786296215} ?>
+<?php
+
+use App\Data\TeamPermissions;
+use App\Enums\TeamRole;
+use App\Models\Team;
+use App\Rules\TeamName;
+use Flux\Flux;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
+
+new class extends Component
+{
+    public Team $teamModel;
+
+    public string $teamName = '';
+
+    public array $teamData = [];
+
+    public array $members = [];
+
+    public array $invitations = [];
+
+    public array $availableRoles = [];
+
+    public bool $isCurrentTeam = false;
+
+    public function mount(Team $team): void
+    {
+        $this->teamModel = $team;
+        $this->teamName = $team->name;
+
+        $this->populateTeamData();
+    }
+
+    public function updateTeam(): void
+    {
+        Gate::authorize('update', $this->teamModel);
+
+        $validated = $this->validate([
+            'teamName' => ['required', 'string', 'max:255', new TeamName],
+        ]);
+
+        $team = DB::transaction(function () use ($validated) {
+            $team = Team::whereKey($this->teamModel->id)->lockForUpdate()->firstOrFail();
+
+            $team->update(['name' => $validated['teamName']]);
+
+            return $team;
+        });
+
+        $this->teamModel = $team;
+
+        $this->populateTeamData();
+
+        Flux::toast(variant: 'success', text: __('Team updated.'));
+
+        $this->redirectRoute('teams.edit', ['team' => $this->teamModel->fresh()->slug], navigate: true);
+    }
+
+    public function updateMember(string $userId, string $role): void
+    {
+        Gate::authorize('updateMember', $this->teamModel);
+
+        $validated = Validator::make(['role' => $role], [
+            'role' => ['required', 'string', Rule::enum(TeamRole::class)],
+        ])->validate();
+
+        $this->teamModel->memberships()
+            ->where('user_id', $userId)
+            ->firstOrFail()
+            ->update(['role' => TeamRole::from($validated['role'])]);
+
+        $this->populateTeamData();
+
+        Flux::toast(variant: 'success', text: __('Member role updated.'));
+    }
+
+    private function populateTeamData(): void
+    {
+        $user = Auth::user();
+
+        $team = $this->teamModel->fresh();
+
+        $this->teamData = [
+            'id' => $team->id,
+            'name' => $team->name,
+            'slug' => $team->slug,
+            'is_personal' => $team->is_personal,
+        ];
+
+        $this->members = $team->members()->get()->map(fn ($member) => [
+            'id' => $member->id,
+            'name' => $member->name,
+            'email' => $member->email,
+            'avatar' => $member->avatar ?? null,
+            'initials' => $member->initials(),
+            'role' => $member->pivot->role->value,
+            'role_label' => $member->pivot->role->label(),
+        ])->toArray();
+
+        $this->invitations = $team->invitations()
+            ->whereNull('accepted_at')
+            ->get()
+            ->map(fn ($invitation) => [
+                'code' => $invitation->code,
+                'email' => $invitation->email,
+                'role' => $invitation->role->value,
+                'role_label' => $invitation->role->label(),
+                'created_at' => $invitation->created_at->toISOString(),
+            ])->toArray();
+
+        $this->availableRoles = TeamRole::assignable();
+
+        $this->isCurrentTeam = $user->isCurrentTeam($team);
+    }
+
+    public function render()
+    {
+        $teamName = $this->teamData['name'] ?? $this->teamModel->name;
+
+        $title = $this->permissions->canUpdateTeam
+            ? __('Edit :name', ['name' => $teamName])
+            : __('View :name', ['name' => $teamName]);
+
+        return $this->view()->title($title);
+    }
+
+    #[Computed]
+    public function permissions(): TeamPermissions
+    {
+        return Auth::user()->toTeamPermissions($this->teamModel);
+    }
+}; ?>
+
+<section class="w-full">
+    <?php echo $__env->make('partials.settings-heading', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+    <?php ob_start(); ?><div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-sm [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2 sr-only" data-flux-heading><?php ob_start(); ?><?php echo e(__('Teams')); ?><?php echo trim(ob_get_clean()); ?></div>
+<?php echo ltrim(ob_get_clean()); ?>
+
+    <?php if (isset($component)) { $__componentOriginal47c6e5d793050babb6edb764210472f1 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal47c6e5d793050babb6edb764210472f1 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'af6a29d55d306249cfe5b80ece79872b::settings.layout','data' => ['heading' => __('Teams'),'subheading' => __('Manage your team settings')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('pages::settings.layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['heading' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Teams')),'subheading' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Manage your team settings'))]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+        <div class="space-y-10">
+            <div class="space-y-6">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($this->permissions->canUpdateTeam): ?>
+                    <div class="space-y-4">
+                        <form wire:submit="updateTeam" class="space-y-6">
+                            <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/input/index.blade.php', $__blaze->compiledPath.'/26b2b14fcdff080be56fd55cf856f0be.php'); ?>
+<?php $__blaze->pushData(['wire:model' => 'teamName','label' => __('Team name'),'required' => true,'dataTest' => 'team-name-input']); ?>
+<?php _26b2b14fcdff080be56fd55cf856f0be($__blaze, ['wire:model' => 'teamName','label' => __('Team name'),'required' => true,'dataTest' => 'team-name-input'], [], ['label', 'required'], ['dataTest' => 'data-test'], $__this ?? (isset($this) ? $this : null)); ?>
+<?php $__blaze->popData(); ?>
+
+                            <?php ob_start(); ?><button type="submit" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-10 text-sm rounded-lg ps-4 pe-4 inline-flex  bg-[var(--color-accent)] hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)] text-[var(--color-accent-foreground)] border border-black/10 dark:border-0 shadow-[inset_0px_1px_--theme(--color-white/.2)] [[data-flux-button-group]_&amp;]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-[1px] dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-s-[1px] [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[color-mix(in_srgb,var(--color-accent-foreground),transparent_85%)] *:transition-opacity [&amp;[disabled]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[disabled]&gt;[data-flux-loading-indicator]]:opacity-100 [&amp;[disabled]]:pointer-events-none" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" data-test="team-save-button">
+        <div class="absolute inset-0 flex items-center justify-center opacity-0" data-flux-loading-indicator>
+                <svg class="shrink-0 [:where(&amp;)]:size-4 animate-spin" data-flux-icon xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon">
+    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+</svg>
+                    </div>
+        
+        
+                    
+            
+            <span><?php ob_start(); ?>
+                                <?php echo e(__('Save')); ?>
+
+                            <?php echo trim(ob_get_clean()); ?></span>
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+                        </form>
+                    </div>
+                <?php else: ?>
+                    <div>
+                        <?php ob_start(); ?><div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-sm [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2" data-flux-heading><?php ob_start(); ?><?php echo e($teamData['name']); ?><?php echo trim(ob_get_clean()); ?></div>
+<?php echo ltrim(ob_get_clean()); ?>
+                    </div>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <?php ob_start(); ?><div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-sm [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2" data-flux-heading><?php ob_start(); ?><?php echo e(__('Team members')); ?><?php echo trim(ob_get_clean()); ?></div>
+<?php echo ltrim(ob_get_clean()); ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($this->permissions->canAddMember || $this->permissions->canUpdateMember || $this->permissions->canRemoveMember): ?>
+                            <?php ob_start(); ?><div class="text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70" data-flux-subheading>
+    <?php ob_start(); ?><?php echo e(__('Manage who belongs to this team')); ?><?php echo trim(ob_get_clean()); ?>
+
+</div>
+<?php echo ltrim(ob_get_clean()); ?>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                    </div>
+
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($this->permissions->canCreateInvitation): ?>
+                        <?php ob_start(); ?><div
+    class="contents"
+    x-data
+    x-on:click="$el.querySelector('button[disabled]') || $dispatch('modal-show', { name: 'invite-member' })"
+        data-flux-modal-trigger
+>
+    <?php ob_start(); ?>
+                            <?php ob_start(); ?><button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-10 text-sm rounded-lg ps-3 pe-4 inline-flex  bg-[var(--color-accent)] hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)] text-[var(--color-accent-foreground)] border border-black/10 dark:border-0 shadow-[inset_0px_1px_--theme(--color-white/.2)] [[data-flux-button-group]_&amp;]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-[1px] dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-s-[1px] [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[color-mix(in_srgb,var(--color-accent-foreground),transparent_85%)]" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" data-test="invite-member-button">
+        <svg class="shrink-0 [:where(&amp;)]:size-4" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M8.5 4.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 13c.552 0 1.01-.452.9-.994a5.002 5.002 0 0 0-9.802 0c-.109.542.35.994.902.994h8ZM12.5 3.5a.75.75 0 0 1 .75.75v1h1a.75.75 0 0 1 0 1.5h-1v1a.75.75 0 0 1-1.5 0v-1h-1a.75.75 0 0 1 0-1.5h1v-1a.75.75 0 0 1 .75-.75Z"/>
+</svg>
+
+                
+                    
+            
+            <span><?php ob_start(); ?>
+                                <?php echo e(__('Invite member')); ?>
+
+                            <?php echo trim(ob_get_clean()); ?></span>
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+                        <?php echo trim(ob_get_clean()); ?>
+
+</div>
+<?php echo ltrim(ob_get_clean()); ?>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </div>
+
+                <div class="space-y-3">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $members; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $member): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <div class="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900" data-test="member-row">
+                            <div class="flex items-center gap-4">
+                                <?php $blaze_memoized_key = \Livewire\Blaze\Memoizer\Memo::key("flux::avatar", ['name' => $member['name'], 'initials' => $member['initials']]); ?><?php if ($blaze_memoized_key !== null && \Livewire\Blaze\Memoizer\Memo::has($blaze_memoized_key)) : ?><?php echo \Livewire\Blaze\Memoizer\Memo::get($blaze_memoized_key); ?><?php else : ?><?php ob_start(); ?><?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/avatar/index.blade.php', $__blaze->compiledPath.'/a5b1aa2482b043676db7548adf29e574.php'); ?>
+<?php $__blaze->pushData(['name' => $member['name'],'initials' => $member['initials']]); ?>
+<?php _a5b1aa2482b043676db7548adf29e574($__blaze, ['name' => $member['name'],'initials' => $member['initials']], [], ['name', 'initials'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php $__blaze->popData(); ?><?php $blaze_memoized_html = ob_get_clean(); ?><?php if ($blaze_memoized_key !== null) { \Livewire\Blaze\Memoizer\Memo::put($blaze_memoized_key, $blaze_memoized_html); } ?><?php echo $blaze_memoized_html; ?><?php endif; ?>
+                                <div>
+                                    <div class="font-medium"><?php echo e($member['name']); ?></div>
+                                    <?php ob_start(); ?><p class="[:where(&amp;)]:font-normal [:where(&amp;)]:text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70 text-sm text-zinc-500 dark:text-zinc-400" data-flux-text ><?php ob_start(); ?><?php echo e($member['email']); ?><?php echo trim(ob_get_clean()); ?></p><?php echo ltrim(ob_get_clean()); ?>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($member['role'] !== 'owner' && $this->permissions->canUpdateMember): ?>
+                                    <?php ob_start(); ?><ui-dropdown position="bottom end"  data-flux-dropdown>
+    <?php ob_start(); ?>
+                                        <?php ob_start(); ?><button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-8 text-sm rounded-md px-3 inline-flex  bg-white hover:bg-zinc-50 dark:bg-zinc-700 dark:hover:bg-zinc-600/75 text-zinc-800 dark:text-white border border-zinc-200 hover:border-zinc-200 border-b-zinc-300/80 dark:border-zinc-600 dark:hover:border-zinc-600 shadow-xs [[data-flux-button-group]_&amp;]:border-s-0 [:is([data-flux-button-group]&gt;&amp;:first-child,_[data-flux-button-group]_:first-child&gt;&amp;)]:border-s-[1px]" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" data-test="member-role-trigger">
+        <span><?php ob_start(); ?>
+                                            <?php echo e($member['role_label']); ?>
+
+                                        <?php echo trim(ob_get_clean()); ?></span>
+        
+        
+                    
+                        <svg class="shrink-0 [:where(&amp;)]:size-4" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+</svg>
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+                                        <?php ob_start(); ?><ui-menu
+    class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden"
+    popover="manual"
+    data-flux-menu
+>
+    <?php ob_start(); ?>
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $availableRoles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                                <?php ob_start(); ?><button type="button" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" wire:click="updateMember('<?php echo e($member['id']); ?>', '<?php echo e($role['value']); ?>')" data-test="member-role-option">
+        <div class="w-7 hidden [[data-flux-menu]:has(>[data-flux-menu-item-has-icon])_&]:block"></div>
+    
+    <?php ob_start(); ?>
+                                                    <?php echo e($role['label']); ?>
+
+                                                <?php echo trim(ob_get_clean()); ?>
+
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                                        <?php echo trim(ob_get_clean()); ?>
+
+</ui-menu>
+<?php echo ltrim(ob_get_clean()); ?>
+                                    <?php echo trim(ob_get_clean()); ?>
+
+</ui-dropdown>
+<?php echo ltrim(ob_get_clean()); ?>
+                                <?php else: ?>
+                                    <?php ob_start(); ?><div data-flux-badge="data-flux-badge" class="inline-flex items-center font-medium whitespace-nowrap  [print-color-adjust:exact] text-sm py-1 **:data-flux-badge-icon:me-1.5 rounded-md px-2 text-zinc-700 [&amp;_button]:text-zinc-700! dark:text-zinc-200 dark:[&amp;_button]:text-zinc-200! bg-zinc-400/15 dark:bg-zinc-400/40 [&amp;:is(button)]:hover:bg-zinc-400/25 dark:[button]:hover:bg-zinc-400/50">
+        <?php ob_start(); ?><?php echo e($member['role_label']); ?><?php echo trim(ob_get_clean()); ?>
+
+    </div>
+<?php echo ltrim(ob_get_clean()); ?>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($member['role'] !== 'owner' && $this->permissions->canRemoveMember): ?>
+                                    <?php ob_start(); ?><div
+    class="contents"
+    x-data
+    x-on:click="$el.querySelector('button[disabled]') || $dispatch('modal-show', { name: 'remove-member-<?php echo e($member['id']); ?>' })"
+        data-flux-modal-trigger
+>
+    <?php ob_start(); ?>
+                                        <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/tooltip/index.blade.php', $__blaze->compiledPath.'/85607f3fa1f418efd018e8e7428b09a6.php'); ?>
+<?php if (isset($__slots85607f3fa1f418efd018e8e7428b09a6)) { $__slotsStack85607f3fa1f418efd018e8e7428b09a6[] = $__slots85607f3fa1f418efd018e8e7428b09a6; } ?>
+<?php if (isset($__attrs85607f3fa1f418efd018e8e7428b09a6)) { $__attrsStack85607f3fa1f418efd018e8e7428b09a6[] = $__attrs85607f3fa1f418efd018e8e7428b09a6; } ?>
+<?php $__attrs85607f3fa1f418efd018e8e7428b09a6 = ['content' => __('Remove member')]; ?>
+<?php $__slots85607f3fa1f418efd018e8e7428b09a6 = []; ?>
+<?php $__blaze->pushData($__attrs85607f3fa1f418efd018e8e7428b09a6); ?>
+<?php ob_start(); ?>
+                                            <?php ob_start(); ?><button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-8 text-sm rounded-md w-8 inline-flex  bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" data-test="member-remove-button">
+        <svg class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"/>
+</svg>
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+                                        <?php $__slots85607f3fa1f418efd018e8e7428b09a6['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots85607f3fa1f418efd018e8e7428b09a6); ?>
+<?php _85607f3fa1f418efd018e8e7428b09a6($__blaze, $__attrs85607f3fa1f418efd018e8e7428b09a6, $__slots85607f3fa1f418efd018e8e7428b09a6, ['content'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack85607f3fa1f418efd018e8e7428b09a6)) { $__slots85607f3fa1f418efd018e8e7428b09a6 = array_pop($__slotsStack85607f3fa1f418efd018e8e7428b09a6); } ?>
+<?php if (! empty($__attrsStack85607f3fa1f418efd018e8e7428b09a6)) { $__attrs85607f3fa1f418efd018e8e7428b09a6 = array_pop($__attrsStack85607f3fa1f418efd018e8e7428b09a6); } ?>
+<?php $__blaze->popData(); ?>
+                                    <?php echo trim(ob_get_clean()); ?>
+
+</div>
+<?php echo ltrim(ob_get_clean()); ?>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                            </div>
+                        </div>
+
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($member['role'] !== 'owner' && $this->permissions->canRemoveMember): ?>
+                            <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('pages::teams.remove-member-modal', ['team' => $teamModel,'member-id' => $member['id'],'member-name' => $member['name'],'modal-name' => 'remove-member-'.$member['id']]);
+
+$__keyOuter = $__key ?? null;
+
+$__key = 'remove-member-modal-'.$member['id'];
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-1102476884-0', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                </div>
+            </div>
+
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(count($invitations) > 0): ?>
+                <div class="space-y-6">
+                    <div>
+                        <?php ob_start(); ?><div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-sm [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2" data-flux-heading><?php ob_start(); ?><?php echo e(__('Pending invitations')); ?><?php echo trim(ob_get_clean()); ?></div>
+<?php echo ltrim(ob_get_clean()); ?>
+                        <?php ob_start(); ?><div class="text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70" data-flux-subheading>
+    <?php ob_start(); ?><?php echo e(__('Invitations that have not been accepted yet')); ?><?php echo trim(ob_get_clean()); ?>
+
+</div>
+<?php echo ltrim(ob_get_clean()); ?>
+                    </div>
+
+                    <div class="space-y-3">
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $invitations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $invitation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                            <div class="flex items-center justify-between rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-900" data-test="invitation-row">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex size-10 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
+                                        <?php ob_start(); ?><svg class="shrink-0 [:where(&amp;)]:size-6 text-zinc-500" data-flux-icon xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+</svg>
+
+        <?php echo ltrim(ob_get_clean()); ?>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium"><?php echo e($invitation['email']); ?></div>
+                                        <?php ob_start(); ?><p class="[:where(&amp;)]:font-normal [:where(&amp;)]:text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70 text-sm text-zinc-500 dark:text-zinc-400" data-flux-text ><?php ob_start(); ?><?php echo e($invitation['role_label']); ?><?php echo trim(ob_get_clean()); ?></p><?php echo ltrim(ob_get_clean()); ?>
+                                    </div>
+                                </div>
+
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($this->permissions->canCancelInvitation): ?>
+                                    <?php ob_start(); ?><div
+    class="contents"
+    x-data
+    x-on:click="$el.querySelector('button[disabled]') || $dispatch('modal-show', { name: 'cancel-invitation-<?php echo e($invitation['code']); ?>' })"
+        data-flux-modal-trigger
+>
+    <?php ob_start(); ?>
+                                        <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/tooltip/index.blade.php', $__blaze->compiledPath.'/85607f3fa1f418efd018e8e7428b09a6.php'); ?>
+<?php if (isset($__slots85607f3fa1f418efd018e8e7428b09a6)) { $__slotsStack85607f3fa1f418efd018e8e7428b09a6[] = $__slots85607f3fa1f418efd018e8e7428b09a6; } ?>
+<?php if (isset($__attrs85607f3fa1f418efd018e8e7428b09a6)) { $__attrsStack85607f3fa1f418efd018e8e7428b09a6[] = $__attrs85607f3fa1f418efd018e8e7428b09a6; } ?>
+<?php $__attrs85607f3fa1f418efd018e8e7428b09a6 = ['content' => __('Cancel invitation')]; ?>
+<?php $__slots85607f3fa1f418efd018e8e7428b09a6 = []; ?>
+<?php $__blaze->pushData($__attrs85607f3fa1f418efd018e8e7428b09a6); ?>
+<?php ob_start(); ?>
+                                            <?php ob_start(); ?><button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-8 text-sm rounded-md w-8 inline-flex  bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" data-test="invitation-cancel-button">
+        <svg class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"/>
+</svg>
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+                                        <?php $__slots85607f3fa1f418efd018e8e7428b09a6['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots85607f3fa1f418efd018e8e7428b09a6); ?>
+<?php _85607f3fa1f418efd018e8e7428b09a6($__blaze, $__attrs85607f3fa1f418efd018e8e7428b09a6, $__slots85607f3fa1f418efd018e8e7428b09a6, ['content'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack85607f3fa1f418efd018e8e7428b09a6)) { $__slots85607f3fa1f418efd018e8e7428b09a6 = array_pop($__slotsStack85607f3fa1f418efd018e8e7428b09a6); } ?>
+<?php if (! empty($__attrsStack85607f3fa1f418efd018e8e7428b09a6)) { $__attrs85607f3fa1f418efd018e8e7428b09a6 = array_pop($__attrsStack85607f3fa1f418efd018e8e7428b09a6); } ?>
+<?php $__blaze->popData(); ?>
+                                    <?php echo trim(ob_get_clean()); ?>
+
+</div>
+<?php echo ltrim(ob_get_clean()); ?>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                            </div>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($this->permissions->canCancelInvitation): ?>
+                                <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('pages::teams.cancel-invitation-modal', ['team' => $teamModel,'invitation-code' => $invitation['code'],'invitation-email' => $invitation['email'],'modal-name' => 'cancel-invitation-'.$invitation['code']]);
+
+$__keyOuter = $__key ?? null;
+
+$__key = 'cancel-invitation-modal-'.$invitation['code'];
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-1102476884-1', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($this->permissions->canDeleteTeam && ! $teamData['is_personal']): ?>
+                <div class="space-y-6">
+                    <div>
+                        <?php ob_start(); ?><div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-sm [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2" data-flux-heading><?php ob_start(); ?><?php echo e(__('Delete team')); ?><?php echo trim(ob_get_clean()); ?></div>
+<?php echo ltrim(ob_get_clean()); ?>
+                        <?php ob_start(); ?><div class="text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70" data-flux-subheading>
+    <?php ob_start(); ?><?php echo e(__('Permanently delete your team')); ?><?php echo trim(ob_get_clean()); ?>
+
+</div>
+<?php echo ltrim(ob_get_clean()); ?>
+                    </div>
+
+                    <div class="space-y-4 rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-200/10 dark:bg-red-900/20 dark:text-red-100">
+                        <div>
+                            <p class="font-medium"><?php echo e(__('Warning')); ?></p>
+                            <p class="text-sm"><?php echo e(__('Please proceed with caution, this cannot be undone.')); ?></p>
+                        </div>
+
+                        <?php ob_start(); ?><div
+    class="contents"
+    x-data
+    x-on:click="$el.querySelector('button[disabled]') || $dispatch('modal-show', { name: 'delete-team' })"
+        data-flux-modal-trigger
+>
+    <?php ob_start(); ?>
+                            <?php ob_start(); ?><button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-10 text-sm rounded-lg ps-4 pe-4 inline-flex  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-500 text-white  shadow-[inset_0px_1px_var(--color-red-500),inset_0px_2px_--theme(--color-white/.15)] dark:shadow-none [[data-flux-button-group]_&amp;]:border-e [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 [[data-flux-button-group]_&amp;]:border-red-600 dark:[[data-flux-button-group]_&amp;]:border-red-900/25" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" data-test="delete-team-button">
+        <?php ob_start(); ?>
+                                <?php echo e(__('Delete team')); ?>
+
+                            <?php echo trim(ob_get_clean()); ?>
+
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+                        <?php echo trim(ob_get_clean()); ?>
+
+</div>
+<?php echo ltrim(ob_get_clean()); ?>
+                    </div>
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal47c6e5d793050babb6edb764210472f1)): ?>
+<?php $attributes = $__attributesOriginal47c6e5d793050babb6edb764210472f1; ?>
+<?php unset($__attributesOriginal47c6e5d793050babb6edb764210472f1); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal47c6e5d793050babb6edb764210472f1)): ?>
+<?php $component = $__componentOriginal47c6e5d793050babb6edb764210472f1; ?>
+<?php unset($__componentOriginal47c6e5d793050babb6edb764210472f1); ?>
+<?php endif; ?>
+
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($this->permissions->canCreateInvitation): ?>
+        <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('pages::teams.invite-member-modal', ['team' => $teamModel]);
+
+$__keyOuter = $__key ?? null;
+
+$__key = null;
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-1102476884-2', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($this->permissions->canDeleteTeam && ! $teamData['is_personal']): ?>
+        <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('pages::teams.delete-team-modal', ['team' => $teamModel]);
+
+$__keyOuter = $__key ?? null;
+
+$__key = null;
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-1102476884-3', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+</section>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/resources/views/pages/teams/⚡edit.blade.php ENDPATH**/ ?>

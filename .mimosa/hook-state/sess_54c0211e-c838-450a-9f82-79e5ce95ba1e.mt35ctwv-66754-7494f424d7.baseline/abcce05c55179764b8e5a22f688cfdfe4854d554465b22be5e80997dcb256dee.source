@@ -1,0 +1,65 @@
+<?php
+    $record = $getRecord();
+    $isSvg = curator()->isSvg($record->ext);
+?>
+
+<div <?php echo e($attributes->merge($getExtraAttributes())->class(['curator-grid-column absolute inset-0 rounded-t-xl overflow-hidden'])); ?>>
+    <div class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+        'rounded-t-xl h-full overflow-hidden bg-gray-100 dark:bg-gray-950/50',
+        'checkered' => $isSvg,
+    ]); ?>">
+        <?php if (isset($component)) { $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'curator::components.display.index','data' => ['item' => $record,'src' => $record->mediumUrl,'lazy' => true,'iconClasses' => 'size-24','xOn:click' => 'toggleSelectedRecord(\''.e($record->id).'\')','class' => \Illuminate\Support\Arr::toCssClasses([
+                'h-full',
+                'w-auto mx-auto p-2' => $isSvg,
+                'w-full' => ! $isSvg,
+            ])]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('curator::display'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['item' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($record),'src' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($record->mediumUrl),'lazy' => true,'icon-classes' => 'size-24','x-on:click' => 'toggleSelectedRecord(\''.e($record->id).'\')','class' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(\Illuminate\Support\Arr::toCssClasses([
+                'h-full',
+                'w-auto mx-auto p-2' => $isSvg,
+                'w-full' => ! $isSvg,
+            ]))]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $attributes = $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $component = $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+        <?php if (isset($component)) { $__componentOriginale256aedfc58098b4693183f668d02d0e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale256aedfc58098b4693183f668d02d0e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'curator::components.display.info-overlay','data' => ['label' => $record->pretty_name,'size' => $record->size]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('curator::display.info-overlay'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($record->pretty_name),'size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($record->size)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale256aedfc58098b4693183f668d02d0e)): ?>
+<?php $attributes = $__attributesOriginale256aedfc58098b4693183f668d02d0e; ?>
+<?php unset($__attributesOriginale256aedfc58098b4693183f668d02d0e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale256aedfc58098b4693183f668d02d0e)): ?>
+<?php $component = $__componentOriginale256aedfc58098b4693183f668d02d0e; ?>
+<?php unset($__componentOriginale256aedfc58098b4693183f668d02d0e); ?>
+<?php endif; ?>
+    </div>
+</div>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/tables/grid-column.blade.php ENDPATH**/ ?>

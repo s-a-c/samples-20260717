@@ -1,0 +1,98 @@
+<?php $__env->startSection('content'); ?>
+    <div class="chr-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <h1 style="font-size:1.25rem; font-weight:700;">Ledger</h1>
+            <a href="<?php echo e(route('chronicle.stats')); ?>" class="chr-btn">Stats -></a>
+        </div>
+
+        <form method="GET" action="<?php echo e(route('chronicle.entries.index')); ?>" class="chr-filter-bar chr-card" style="padding:0.75rem;">
+            <input type="text" name="action" placeholder="Action (e.g. invoice.sent)"
+                   value="<?php echo e($filters['action'] ?? ''); ?>" style="min-width:200px;">
+            <input type="text" name="actor_id" placeholder="Actor ID"
+                   value="<?php echo e($filters['actor_id'] ?? ''); ?>">
+            <input type="text" name="subject_type" placeholder="Subject type"
+                   value="<?php echo e($filters['subject_type'] ?? ''); ?>">
+            <input type="text" name="subject_id" placeholder="Subject ID"
+                   value="<?php echo e($filters['subject_id'] ?? ''); ?>">
+            <input type="text" name="tag" placeholder="Tag"
+                   value="<?php echo e($filters['tag'] ?? ''); ?>">
+            <input type="date" name="from" value="<?php echo e($filters['from'] ?? ''); ?>" title="From date">
+            <input type="date" name="to" value="<?php echo e($filters['to'] ?? ''); ?>" title="To date">
+            <select name="sort">
+                <option value="desc" <?php if(($filters['sort'] ?? 'desc') === 'desc'): echo 'selected'; endif; ?>>Newest first</option>
+                <option value="asc" <?php if(($filters['sort'] ?? 'desc') === 'asc'): echo 'selected'; endif; ?>>Oldest first</option>
+            </select>
+            <button type="submit" class="chr-btn chr-btn-primary">Filter</button>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(array_filter($filters)): ?>
+                <a href="<?php echo e(route('chronicle.entries.index')); ?>" class="chr-btn">Clear</a>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </form>
+
+        <p style="color:var(--chr-text-muted); margin-bottom:0.75rem; font-size:0.8rem;">
+            <?php echo e(number_format($entries->total())); ?> <?php echo e(Str::plural('entry', $entries->total())); ?>
+
+        </p>
+
+        <div class="chr-card" style="padding:0; overflow:hidden;">
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($entries->isEmpty()): ?>
+                <p style="padding:2rem; text-align:center; color:var(--chr-text-muted);">No entries found.</p>
+            <?php else: ?>
+                <table class="chr-table">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Actor</th>
+                            <th>Subject</th>
+                            <th>Tags</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $entries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $entry): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                            <tr>
+                                <td><span class="chr-badge"><?php echo e($entry->action); ?></span></td>
+                                <td style="color:var(--chr-text-muted);">
+                            <span title="<?php echo e($entry->actor_type); ?>">
+                                <?php echo e(class_basename($entry->actor_type)); ?>
+
+                                <span style="font-weight:600; color:var(--chr-text);">#<?php echo e($entry->actor_id); ?></span>
+                            </span>
+                                </td>
+                                <td style="color:var(--chr-text-muted);">
+                            <span title="<?php echo e($entry->subject_type); ?>">
+                                <?php echo e(class_basename($entry->subject_type)); ?>
+
+                                <span style="font-weight:600; color:var(--chr-text);">#<?php echo e($entry->subject_id); ?></span>
+                            </span>
+                                </td>
+                                <td>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = ($entry->tags ?? []); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                        <span class="chr-badge"><?php echo e($tag); ?></span>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                                </td>
+                                <td class="chr-hash" title="<?php echo e($entry->created_at->toIso8601String()); ?>">
+                                    <?php echo e($entry->created_at->format('Y-m-d H:i:s')); ?>
+
+                                </td>
+                                <td>
+                                    <a href="<?php echo e(route('chronicle.entries.show', $entry->id)); ?>"
+                                       style="font-size:0.75rem;">View -></a>
+                                </td>
+                            </tr>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($entries->hasPages()): ?>
+            <div style="margin-top:1rem;">
+                <?php echo e($entries->links()); ?>
+
+            </div>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('chronicle::layout', ['title' => 'Ledger'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/laravel-chronicle/core/resources/views/entries/index.blade.php ENDPATH**/ ?>

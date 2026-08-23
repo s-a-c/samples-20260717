@@ -1,0 +1,1 @@
+{"nodes": [{"id": "factory_skills_pest_testing_skill", "label": "Pest Testing Skill", "file_type": "document", "source_file": ".factory/skills/pest-testing/SKILL.md", "rationale": "Guidelines for Pest 5 testing, including TIA, sharding, and architecture tests."}], "edges": [], "hyperedges": []}

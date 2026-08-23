@@ -1,0 +1,113 @@
+<?php $__env->startSection('content'); ?>
+    <div class="chr-container">
+        <div style="margin-bottom:1rem;">
+            <a href="<?php echo e(route('chronicle.entries.index')); ?>" style="font-size:0.8rem;">← Back to Ledger</a>
+        </div>
+
+        <h1 style="font-size:1.25rem; font-weight:700; margin-bottom:1.5rem;">Entry Detail</h1>
+
+        <div class="chr-section">
+            <div class="chr-section-title">Identity</div>
+            <div class="chr-card">
+                <dl class="chr-kv">
+                    <dt>ID</dt>             <dd class="chr-hash"><?php echo e($entry->id); ?></dd>
+                    <dt>Action</dt>         <dd><span class="chr-badge"><?php echo e($entry->action); ?></span></dd>
+                    <dt>Actor</dt>          <dd><?php echo e($entry->actor_type); ?> <strong>#<?php echo e($entry->actor_id); ?></strong></dd>
+                    <dt>Subject</dt>        <dd><?php echo e($entry->subject_type); ?> <strong>#<?php echo e($entry->subject_id); ?></strong></dd>
+                    <dt>Created at</dt>     <dd><?php echo e($entry->created_at->format('Y-m-d H:i:s T')); ?></dd>
+                    <dt>Correlation ID</dt> <dd class="chr-hash"><?php echo e($entry->correlation_id ?: '-'); ?></dd>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($entry->tags): ?>
+                        <dt>Tags</dt>
+                        <dd>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $entry->tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                <span class="chr-badge"><?php echo e($tag); ?></span>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                        </dd>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </dl>
+            </div>
+        </div>
+
+        <div class="chr-section">
+            <div class="chr-section-title">Chain Integrity</div>
+            <div class="chr-card">
+                <dl class="chr-kv">
+                    <dt>Payload hash</dt> <dd class="chr-hash"><?php echo e($entry->payload_hash); ?></dd>
+                    <dt>Chain hash</dt>   <dd class="chr-hash"><?php echo e($entry->chain_hash); ?></dd>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($checkpoint): ?>
+                        <dt>Checkpoint</dt>   <dd class="chr-hash"><?php echo e($checkpoint->id); ?></dd>
+                        <dt>Signed</dt>       <dd><?php echo e($checkpoint->algorithm); ?> · key <?php echo e($checkpoint->key_id); ?></dd>
+                    <?php else: ?>
+                        <dt>Checkpoint</dt>   <dd style="color:var(--chr-text-muted);">None</dd>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </dl>
+            </div>
+        </div>
+
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($entry->diff)): ?>
+            <div class="chr-section">
+                <div class="chr-section-title">Changes</div>
+                <div class="chr-card" style="padding:0; overflow:hidden;">
+                    <table class="chr-table">
+                        <thead>
+                            <tr><th>Field</th><th>Before</th><th>After</th></tr>
+                        </thead>
+                        <tbody>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $entry->diff; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field => $change): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                <tr>
+                                    <td style="font-weight:600;"><?php echo e($field); ?></td>
+                                    <td style="color:var(--chr-danger);"><?php echo e(is_array($change['old'] ?? null) ? json_encode($change['old']) : ($change['old'] ?? '-')); ?></td>
+                                    <td style="color:var(--chr-success);"><?php echo e(is_array($change['new'] ?? null) ? json_encode($change['new']) : ($change['new'] ?? '-')); ?></td>
+                                </tr>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+        <div class="chr-section">
+            <div class="chr-section-title">Payload</div>
+            <div class="chr-card">
+                <pre class="chr-hash" style="white-space:pre-wrap; word-break:break-all;"><?php echo e(json_encode($entry->payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)); ?></pre>
+            </div>
+        </div>
+
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($entry->metadata)): ?>
+            <div class="chr-section">
+                <div class="chr-section-title">Metadata</div>
+                <div class="chr-card">
+                    <dl class="chr-kv">
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $entry->metadata; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                            <dt><?php echo e($key); ?></dt>
+                            <dd><?php echo e(is_array($value) ? json_encode($value) : $value); ?></dd>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                    </dl>
+                </div>
+            </div>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($entry->context)): ?>
+            <div class="chr-section">
+                <div class="chr-section-title">Context</div>
+                <div class="chr-card">
+                    <dl class="chr-kv">
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $entry->context; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $resolver => $values): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(is_array($values)): ?>
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                    <dt><?php echo e($resolver); ?>.<?php echo e($key); ?></dt>
+                                    <dd><?php echo e(is_array($value) ? json_encode($value) : ($value ?? '-')); ?></dd>
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                            <?php else: ?>
+                                <dt><?php echo e($resolver); ?></dt>
+                                <dd><?php echo e($values ?? '-'); ?></dd>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                    </dl>
+                </div>
+            </div>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('chronicle::layout', ['title' => 'Entry ' . Str::limit($entry->id, 8, '')], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/laravel-chronicle/core/resources/views/entries/show.blade.php ENDPATH**/ ?>

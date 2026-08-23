@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agents_skills_configuring_horizon_references_supervisors", "label": "Horizon Supervisor & Balancing", "file_type": "document", "source_file": ".agents/skills/configuring-horizon/references/supervisors.md", "rationale": "Explains supervisor blocks, environment merging, queue priority, and balancing strategies."}], "edges": [], "hyperedges": []}

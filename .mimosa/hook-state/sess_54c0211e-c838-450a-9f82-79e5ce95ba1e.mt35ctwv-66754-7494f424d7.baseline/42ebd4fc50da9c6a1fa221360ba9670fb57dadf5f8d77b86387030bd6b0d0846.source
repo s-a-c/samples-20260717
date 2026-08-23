@@ -1,0 +1,44 @@
+<?php
+if (!function_exists('_da59f9981404279b32e49c9456ed10f9')):
+function _da59f9981404279b32e49c9456ed10f9($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
+$__env = $__blaze->env;
+$__slots['slot'] ??= new \Illuminate\View\ComponentSlot('');
+if (($__data['attributes'] ?? null) instanceof \Illuminate\View\ComponentAttributeBag) { $__data = $__data + $__data['attributes']->all(); unset($__data['attributes']); }
+extract($__slots, EXTR_SKIP); unset($__slots);
+extract($__data, EXTR_SKIP);
+$attributes = \Livewire\Blaze\Runtime\BlazeAttributeBag::make($__data, $__bound, $__keys);
+unset($__data, $__bound, $__keys);
+ob_start();
+?>
+
+
+<?php
+$__defaults = [
+    'selected' => false,
+    'name' => null,
+];
+$selected ??= $attributes['selected'] ?? $__defaults['selected']; unset($attributes['selected']);
+$name ??= $attributes['name'] ?? $__defaults['name']; unset($attributes['name']);
+unset($__defaults);
+?>
+
+<?php
+$classes = Flux::classes()
+    ->add('[&:not([data-selected])]:hidden [:where(&)]:pt-8')
+;
+
+if ($name) {
+    $attributes = $attributes->merge([
+        'name' => $name,
+        'wire:key' => $name,
+    ]);
+}
+?>
+
+<div <?php echo e($attributes->class($classes)->merge(['data-selected' => $selected])); ?> data-flux-tab-panel>
+    <?php echo e($slot); ?>
+
+</div>
+<?php
+echo ltrim(ob_get_clean());
+} endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/tab/panel.blade.php ENDPATH**/ ?>

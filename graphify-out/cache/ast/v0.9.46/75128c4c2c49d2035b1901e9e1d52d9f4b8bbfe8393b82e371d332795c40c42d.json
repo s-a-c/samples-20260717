@@ -1,0 +1,428 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "label": "LanguageResource.php",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource",
+            "label": "LanguageResource",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L18",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "resource",
+            "label": "Resource",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "unitenum",
+            "label": "UnitEnum",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Filament/Pagila/Resources/LanguageResource.php"
+        },
+        {
+            "id": "backedenum",
+            "label": "BackedEnum",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Filament/Pagila/Resources/LanguageResource.php"
+        },
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_form",
+            "label": ".form()",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L26",
+            "_callable": true
+        },
+        {
+            "id": "schema",
+            "label": "Schema",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Filament/Pagila/Resources/LanguageResource.php"
+        },
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "label": ".table()",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L36",
+            "_callable": true
+        },
+        {
+            "id": "table",
+            "label": "Table",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Filament/Pagila/Resources/LanguageResource.php"
+        },
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_getpages",
+            "label": ".getPages()",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L57",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "pages",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "language",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "backedenum",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "actions",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "forms",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "resource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "schema",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "tables",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "table",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L15",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "unitenum",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L16",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_php",
+            "target": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L18",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource",
+            "target": "resource",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L18",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource",
+            "target": "unitenum",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L22",
+            "weight": 1.0,
+            "context": "field"
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource",
+            "target": "backedenum",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L24",
+            "weight": 1.0,
+            "context": "field"
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource",
+            "target": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_form",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L26",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_form",
+            "target": "schema",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L26",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_form",
+            "target": "schema",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L26",
+            "weight": 1.0,
+            "context": "return_type"
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource",
+            "target": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L36",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "target": "table",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L36",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "target": "table",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L36",
+            "weight": 1.0,
+            "context": "return_type"
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource",
+            "target": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_getpages",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L57",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_form",
+            "callee": "components",
+            "is_member_call": true,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L28",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L30",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_form",
+            "callee": "required",
+            "is_member_call": true,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L30",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L30",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "toolbarActions",
+            "is_member_call": true,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L38",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "actions",
+            "is_member_call": true,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L38",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "filters",
+            "is_member_call": true,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L38",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "columns",
+            "is_member_call": true,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L38",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "sortable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "searchable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "Tables\\Columns\\TextColumn",
+            "is_member_call": false,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "Actions\\EditAction",
+            "is_member_call": false,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L48",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "Actions\\BulkActionGroup",
+            "is_member_call": false,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L51",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_table",
+            "callee": "Actions\\DeleteBulkAction",
+            "is_member_call": false,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L52",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_getpages",
+            "callee": "Pages\\ListLanguages",
+            "is_member_call": false,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L60",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_getpages",
+            "callee": "Pages\\CreateLanguage",
+            "is_member_call": false,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L61",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_languageresource_languageresource_getpages",
+            "callee": "Pages\\EditLanguage",
+            "is_member_call": false,
+            "source_file": "app/Filament/Pagila/Resources/LanguageResource.php",
+            "source_location": "L62",
+            "receiver": null
+        }
+    ]
+}

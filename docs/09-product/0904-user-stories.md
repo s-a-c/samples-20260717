@@ -1,9 +1,13 @@
 ---
 title: "User Stories"
 description: "User stories describing curator, operator, and product-specific workflows."
-type: product
-tags: \[product, user, stories]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [product, user, stories]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # User Stories

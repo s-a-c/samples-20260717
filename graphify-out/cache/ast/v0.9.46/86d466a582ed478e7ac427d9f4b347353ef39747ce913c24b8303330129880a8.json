@@ -1,0 +1,34 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_tests_feature_console_dossiergeneratetest_php",
+            "label": "DossierGenerateTest.php",
+            "file_type": "code",
+            "source_file": "tests/Feature/Console/DossierGenerateTest.php",
+            "source_location": "L1"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_tests_feature_console_dossiergeneratetest_php",
+            "target": "dossiergenerate",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Console/DossierGenerateTest.php",
+            "source_location": "L5",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_console_dossiergeneratetest_php",
+            "target": "file",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Console/DossierGenerateTest.php",
+            "source_location": "L6",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": []
+}

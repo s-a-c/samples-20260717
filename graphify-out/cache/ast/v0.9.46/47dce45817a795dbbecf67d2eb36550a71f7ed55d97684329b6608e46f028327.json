@@ -1,0 +1,104 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_php",
+            "label": "ListOrders.php",
+            "file_type": "code",
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_listorders",
+            "label": "ListOrders",
+            "file_type": "code",
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L11",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "listrecords",
+            "label": "ListRecords",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_listorders_getheaderactions",
+            "label": ".getHeaderActions()",
+            "file_type": "code",
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L15",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_php",
+            "target": "orderresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_php",
+            "target": "actions",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_php",
+            "target": "listrecords",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_php",
+            "target": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_listorders",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_listorders",
+            "target": "listrecords",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_listorders",
+            "target": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_listorders_getheaderactions",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L15",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_orderresource_pages_listorders_listorders_getheaderactions",
+            "callee": "Actions\\CreateAction",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/OrderResource/Pages/ListOrders.php",
+            "source_location": "L18",
+            "receiver": null
+        }
+    ]
+}

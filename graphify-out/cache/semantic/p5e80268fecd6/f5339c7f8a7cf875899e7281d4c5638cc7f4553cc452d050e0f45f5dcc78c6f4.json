@@ -1,0 +1,1 @@
+{"nodes": [{"id": "grok_skills_infer_conventions_skill", "label": "Infer Conventions Skill", "file_type": "document", "source_file": ".grok/skills/infer-conventions/SKILL.md", "rationale": "A meta-skill for analyzing and recording project-specific coding conventions into .ai/rules."}], "edges": [], "hyperedges": []}

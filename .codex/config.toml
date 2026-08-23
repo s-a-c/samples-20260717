@@ -4,3 +4,16 @@ args = ["artisan", "boost:mcp"]
 
 [features]
 hooks = true
+
+[mcp_servers.sage]
+command = "/Applications/SAGE.app/Contents/MacOS/sage-gui"
+args = ["mcp"]
+
+[mcp_servers.sage.env]
+SAGE_HOME = "/Users/s-a-c/.sage"
+SAGE_PROVIDER = "codex"
+SAGE_API_URL = "http://127.0.0.1:8080"
+SAGE_IDENTITY_MODE = "pinned"
+SAGE_IDENTITY_PATH = "/Users/s-a-c/.sage/agents/samples-20260717-codex-932d9718/agent.key"
+
+SAGE_PROJECT = "samples-20260717"

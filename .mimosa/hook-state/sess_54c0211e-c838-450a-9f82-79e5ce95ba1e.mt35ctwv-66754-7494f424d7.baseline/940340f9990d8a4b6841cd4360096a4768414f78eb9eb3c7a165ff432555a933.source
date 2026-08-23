@@ -1,0 +1,10 @@
+<h3 class="text-base text-gray-800 fi-timeline-item-title dark:text-white">
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isHtmlAllowed()): ?>
+        <?php echo $getModifiedState() ?? (!is_array($getState()) ? $getState() ?? $getPlaceholder() : null); ?>
+
+    <?php else: ?>
+        <?php echo e($getModifiedState() ?? (!is_array($getState()) ? $getState() ?? $getPlaceholder() : null)); ?>
+
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+</h3>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/lara-zeus/activity-timeline/resources/views/infolists/components/activity-title.blade.php ENDPATH**/ ?>

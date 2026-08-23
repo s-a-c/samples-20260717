@@ -1,0 +1,27 @@
+<?php
+    $record = $getRecord();
+?>
+
+<?php if (isset($component)) { $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'curator::components.display.index','data' => ['item' => $record,'src' => $record?->large_url,'iconClasses' => 'h-24']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('curator::display'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['item' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($record),'src' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($record?->large_url),'icon-classes' => 'h-24']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $attributes = $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $component = $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/forms/preview.blade.php ENDPATH**/ ?>

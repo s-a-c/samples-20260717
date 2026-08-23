@@ -1,22 +1,44 @@
 ---
 title: "Acceptance Tests"
 description: "This document describes the high-level acceptance tests and scenarios used to verify the Samples application meets its business requirements and user needs."
-type: testing
-tags: \[testing, acceptance, tests]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: reference
+tags: [testing, acceptance, tests]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Acceptance Tests
 
-## Purpose
+<details>
+  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
+    Expand for Table of Contents
+  </summary>
+
+- [1. Purpose](#1-purpose)
+- [2. Acceptance Matrix (TC-1)](#2-acceptance-matrix-tc-1)
+    - [2.1. Scenario: Product Curator Access](#21-scenario-product-curator-access)
+- [3. Core Acceptance Journeys](#3-core-acceptance-journeys)
+    - [3.1. J-1: Search to Resource](#31-j-1-search-to-resource)
+    - [3.2. J-2: Product Reset Lifecycle](#32-j-2-product-reset-lifecycle)
+- [4. Operational Gates](#4-operational-gates)
+- [5. Diagrams](#5-diagrams)
+
+</details>
+
+---
+
+## 1. Purpose
 
 This document describes the high-level acceptance tests and scenarios used to verify the Samples application meets its business requirements and user needs.
 
-## Acceptance Matrix (TC-1)
+## 2. Acceptance Matrix (TC-1)
 
 The primary acceptance mechanism is the **Authorization Acceptance Matrix**, which verifies that users with specific roles can or cannot access specific product resources.
 
-### Scenario: Product Curator Access
+### 2.1. Scenario: Product Curator Access
 
 **Given** a user with the role `chinook_curator`,
 **When** they attempt to access the Chinook Artists index,
@@ -25,16 +47,16 @@ The primary acceptance mechanism is the **Authorization Acceptance Matrix**, whi
 **When** they attempt to access the Pagila Films index,
 **Then** they receive a `403 Forbidden` response.
 
-## Core Acceptance Journeys
+## 3. Core Acceptance Journeys
 
-### J-1: Search to Resource
+### 3.1. J-1: Search to Resource
 
 1. User enters "Black Sabbath" in the federated search.
 2. Result "Black Sabbath (Artist - Chinook)" appears with high relevance.
 3. Clicking the link navigates the user to `/filament/chinook/artists/{uuid}`.
 4. The user verifies the artist's albums are visible.
 
-### J-2: Product Reset Lifecycle
+### 3.2. J-2: Product Reset Lifecycle
 
 1. Operator requests a reset token for the Northwind domain.
 2. System provides a signed token.
@@ -42,16 +64,16 @@ The primary acceptance mechanism is the **Authorization Acceptance Matrix**, whi
 4. System truncates the `northwind` schema and reloads from source shadow schemas.
 5. Operator verifies the Northwind dashboard shows fresh record counts.
 
-## Operational Gates
+## 4. Operational Gates
 
 Following **ADR 0034**, the project uses the "Operational Gate" pattern:
 
 - **Pre-flight:** `php artisan pgsql:check` ensures extensions and schemas are ready.
 - **Post-flight:** `php artisan dossier:generate` ensures documentation and evidence are in sync.
 
-## Diagrams
+## 5. Diagrams
 
-[Acceptance Test Flow](../../assets/acceptance-test-flow.mmd)
+[Acceptance Test Flow](../assets/acceptance-test-flow.mmd)
 
 ````mermaid
 ---

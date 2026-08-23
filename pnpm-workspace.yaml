@@ -17,6 +17,7 @@ minimumReleaseAgeExclude:
   - "@rolldown/binding-win32-arm64-msvc@1.2.4"
   - "@rolldown/binding-win32-x64-msvc@1.2.4"
   - rolldown@1.2.4
+  - fontaine@0.8.1
 overrides:
   shell-quote: 1.9.0
   vite: "catalog:"

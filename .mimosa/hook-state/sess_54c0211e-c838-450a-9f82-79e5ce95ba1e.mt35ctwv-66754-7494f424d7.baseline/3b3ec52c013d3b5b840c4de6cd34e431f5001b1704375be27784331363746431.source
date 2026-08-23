@@ -1,0 +1,70 @@
+<?php use \Filament\Support\Enums\FontFamily; ?>
+<?php use \Filament\Support\Enums\FontWeight; ?>
+<?php use \Filament\Support\Enums\Size; ?>
+<?php use \Illuminate\Support\Arr; ?>
+
+<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(! $isHidden()): ?>
+    <?php
+        $color = $getColor();
+
+        $size = match ($size = $getSize()) {
+            Size::ExtraSmall, 'xs' => 'xs',
+            Size::Small, 'sm', null => 'sm',
+            Size::Medium, 'base', 'md' => 'md',
+            Size::Large, 'lg' => 'lg',
+            Size::ExtraLarge, 'xl' => 'xl',
+            default => $size,
+        };
+
+        $badgeClasses = Arr::toCssClasses([
+            "badgeable-column-badge",
+            match ($shouldBePill()) {
+                true => 'px-2 !rounded-full',
+                default => null,
+            },
+            match ($getFontFamily()) {
+                FontFamily::Sans, 'sans' => 'font-sans',
+                FontFamily::Serif, 'serif' => 'font-serif',
+                FontFamily::Mono, 'mono' => 'font-mono',
+                default => null,
+            },
+            match ($getWeight() ?? 'medium') {
+                FontWeight::Thin, 'thin' => 'font-thin',
+                FontWeight::ExtraLight, 'extralight' => 'font-extralight',
+                FontWeight::Light, 'light' => 'font-light',
+                FontWeight::Medium, 'medium' => 'font-medium',
+                FontWeight::SemiBold, 'semibold' => 'font-semibold',
+                FontWeight::Bold, 'bold' => 'font-bold',
+                FontWeight::ExtraBold, 'extrabold' => 'font-extrabold',
+                FontWeight::Black, 'black' => 'font-black',
+                default => null,
+            }
+        ]);
+    ?>
+
+    <?php if (isset($component)) { $__componentOriginal986dce9114ddce94a270ab00ce6c273d = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal986dce9114ddce94a270ab00ce6c273d = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.badge','data' => ['class' => $badgeClasses,'color' => $color,'size' => $size]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($badgeClasses),'color' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($color),'size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($size)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+        <?php echo e($getLabel()); ?>
+
+     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal986dce9114ddce94a270ab00ce6c273d)): ?>
+<?php $attributes = $__attributesOriginal986dce9114ddce94a270ab00ce6c273d; ?>
+<?php unset($__attributesOriginal986dce9114ddce94a270ab00ce6c273d); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal986dce9114ddce94a270ab00ce6c273d)): ?>
+<?php $component = $__componentOriginal986dce9114ddce94a270ab00ce6c273d; ?>
+<?php unset($__componentOriginal986dce9114ddce94a270ab00ce6c273d); ?>
+<?php endif; ?>
+<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-badgeable-column/resources/views/components/badge.blade.php ENDPATH**/ ?>

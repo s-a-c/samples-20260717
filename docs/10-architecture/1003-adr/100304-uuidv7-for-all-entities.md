@@ -1,9 +1,13 @@
 ---
 title: "ADR 0002: UUIDv7 for All Entities"
 description: "Decision to use UUIDv7 identifiers for shared and product-domain entities."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: adr
-tags: \[adr, "0002", uuidv7]
-updated: 2026-07-30
+tags: [adr, "0002", uuidv7]
+created: 2026-07-25
+updated: 2026-08-17
 ---
 
 # ADR 0002: UUIDv7 for All Entities
@@ -42,5 +46,5 @@ updated: 2026-07-30
 
 **Related:**
 
-- [ADR 0004: Shadow-Schema Import Pipeline](0004-shadow-schema-import-pipeline.md) — offline ID generation critical for shadow-schema reset
-- [CONTEXT.md](../../CONTEXT.md) — Domain Identity definition
+- [ADR 0004: Shadow-Schema Import Pipeline](100308-shadow-schema-import-pipeline.md) — offline ID generation critical for shadow-schema reset
+- [CONTEXT.md](../../../CONTEXT.md) — Domain Identity definition

@@ -1,0 +1,86 @@
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
+    'status' => null,
+    'align' => null,
+    'size' => null,
+]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter(([
+    'status' => null,
+    'align' => null,
+    'size' => null,
+]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<?php
+$classes = Flux::classes();
+
+$leadingLineClasses = Flux::classes()
+    ->add('[[data-flux-timeline-status=complete]+[data-flux-timeline-item]_&]:*:bg-accent')
+    ->add('*:bg-zinc-200 dark:*:bg-zinc-700')
+    ->add('[[data-flux-timeline][data-flux-timeline-size=lg]_&]:*:bg-zinc-100')
+    ;
+
+$trailingLineClasses = Flux::classes()
+    ->add('[[data-flux-timeline-status=complete]_&]:*:bg-accent')
+    ->add('*:bg-zinc-200 dark:*:bg-zinc-700')
+    ->add('[[data-flux-timeline][data-flux-timeline-size=lg]_&]:*:bg-zinc-100')
+    ;
+
+$attributes = $attributes->merge([
+    'data-flux-timeline-status' => $status,
+]);
+
+if ($align) {
+    $attributes = $attributes->merge([
+        'data-flux-timeline-align' => $align,
+    ]);
+}
+
+if ($size) {
+    $attributes = $attributes->merge([
+        'data-flux-timeline-size' => $size,
+    ]);
+}
+?>
+
+<li <?php echo e($attributes->class($classes)); ?> data-flux-timeline-item>
+    <div class="<?php echo e($leadingLineClasses); ?>" data-flux-timeline-line-leading>
+        <div></div>
+    </div>
+
+    <div data-flux-timeline-gap-leading></div>
+
+    <?php echo e($slot); ?>
+
+
+    <div class="<?php echo e($trailingLineClasses); ?>" data-flux-timeline-line-trailing>
+        <div></div>
+    </div>
+
+    <div data-flux-timeline-gap-trailing></div>
+</li><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/timeline/item.blade.php ENDPATH**/ ?>

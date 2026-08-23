@@ -1,0 +1,42 @@
+<?php
+if (!function_exists('_78b248579bdb2eba3f9c3d87bffb9392')):
+function _78b248579bdb2eba3f9c3d87bffb9392($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
+$__env = $__blaze->env;
+
+if (($__data['attributes'] ?? null) instanceof \Illuminate\View\ComponentAttributeBag) { $__data = $__data + $__data['attributes']->all(); unset($__data['attributes']); }
+extract($__slots, EXTR_SKIP); unset($__slots);
+extract($__data, EXTR_SKIP);
+$attributes = \Livewire\Blaze\Runtime\BlazeAttributeBag::make($__data, $__bound, $__keys);
+unset($__data, $__bound, $__keys);
+ob_start();
+?>
+
+
+<?php
+$__awareDefaults = ['axis' => 'x'];
+$axis = $__blaze->getConsumableData('axis', $__awareDefaults['axis']); unset($attributes['axis']);
+unset($__awareDefaults);
+?>
+
+<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($axis === 'x'): ?>
+    <template name="grid-line">
+        <line <?php echo e($attributes->merge([
+            'type' => 'horizontal',
+            'class' => 'text-zinc-200/50 dark:text-white/15',
+            'stroke' => 'currentColor',
+            'stroke-width' => '1',
+        ])); ?>></line>
+    </template>
+<?php else: ?>
+    <template name="grid-line">
+        <line <?php echo e($attributes->merge([
+            'type' => 'vertical',
+            'class' => 'text-zinc-200/50 dark:text-white/15',
+            'stroke' => 'currentColor',
+            'stroke-width' => '1',
+        ])); ?>></line>
+    </template>
+<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+<?php
+echo ltrim(ob_get_clean());
+} endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/chart/axis/grid.blade.php ENDPATH**/ ?>

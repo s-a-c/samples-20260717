@@ -1,9 +1,13 @@
 ---
 title: "Wayfinder #15 — Handover (2026-07-22)"
 description: "Continue wayfinder map #15 — Wayfinder — Samples Implementation."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: handoff
-tags: \[handoff, handoffs, wayfinder, "15"]
-updated: 2026-07-30
+tags: [handoff, handoffs, wayfinder, "15"]
+created: 2026-07-22
+updated: 2026-08-17
 ---
 
 # Wayfinder #15 — Handover (2026-07-22)

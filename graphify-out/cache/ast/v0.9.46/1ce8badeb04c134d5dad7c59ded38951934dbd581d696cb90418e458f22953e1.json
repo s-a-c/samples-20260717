@@ -1,0 +1,126 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_md",
+            "label": "100328-larastan-baseline.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "0014 - Larastan Target Level + Baseline Policy",
+                "description": "Larastan provides static analysis for the application but requires configuration.",
+                "type": "adr",
+                "tags": "[adr, &quot;0014&quot;, larastan]",
+                "created": "2026-07-25",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_0014_larastan_target_level_baseline_policy",
+            "label": "0014 - Larastan Target Level + Baseline Policy",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_1_status_proposed",
+            "label": "1. Status: Proposed",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L28"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_2_context",
+            "label": "2. Context",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L30"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_3_decision",
+            "label": "3. Decision",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L34"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_4_consequences",
+            "label": "4. Consequences",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L38"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_5_monitoring",
+            "label": "5. Monitoring",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L44"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_0014_larastan_target_level_baseline_policy",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_0014_larastan_target_level_baseline_policy",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_1_status_proposed",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L28",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_0014_larastan_target_level_baseline_policy",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_2_context",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L30",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_0014_larastan_target_level_baseline_policy",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_3_decision",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L34",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_0014_larastan_target_level_baseline_policy",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_4_consequences",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L38",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_0014_larastan_target_level_baseline_policy",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_5_monitoring",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100328-larastan-baseline.md",
+            "source_location": "L44",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

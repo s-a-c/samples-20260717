@@ -1,0 +1,112 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_agents_domain_md",
+            "label": "domain.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "Domain Docs",
+                "description": "This repo is **single-context**: one [`../../CONTEXT.md`](../../CONTEXT.md) at the",
+                "type": "guide",
+                "tags": "[guide, agents, domain, docs]",
+                "created": "2026-07-19",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_agents_domain_domain_docs",
+            "label": "Domain Docs",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_domain_1_before_exploring_read",
+            "label": "1. Before exploring, read",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L17"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_domain_2_use_the_glossary_vocabulary",
+            "label": "2. Use the glossary vocabulary",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L31"
+        },
+        {
+            "id": "$graphify-root$_docs_agents_domain_3_resolution_order",
+            "label": "3. Resolution order",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L37"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_agents_domain_md",
+            "target": "$graphify-root$_context_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L3",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/CONTEXT.md"
+        },
+        {
+            "source": "$graphify-root$_docs_agents_domain_md",
+            "target": "$graphify-root$_docs_agents_domain_domain_docs",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_domain_domain_docs",
+            "target": "$graphify-root$_docs_agents_domain_1_before_exploring_read",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L17",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_domain_md",
+            "target": "$graphify-root$_agents_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L26",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/AGENTS.md"
+        },
+        {
+            "source": "$graphify-root$_docs_agents_domain_domain_docs",
+            "target": "$graphify-root$_docs_agents_domain_2_use_the_glossary_vocabulary",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L31",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_agents_domain_domain_docs",
+            "target": "$graphify-root$_docs_agents_domain_3_resolution_order",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/agents/domain.md",
+            "source_location": "L37",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

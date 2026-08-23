@@ -1,0 +1,632 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "label": "CustomerResource.php",
+            "file_type": "code",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource",
+            "label": "CustomerResource",
+            "file_type": "code",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L17",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "resource",
+            "label": "Resource",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "backedenum",
+            "label": "BackedEnum",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Filament/Northwind/Resources/CustomerResource.php"
+        },
+        {
+            "id": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "label": ".form()",
+            "file_type": "code",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L23",
+            "_callable": true
+        },
+        {
+            "id": "schema",
+            "label": "Schema",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Filament/Northwind/Resources/CustomerResource.php"
+        },
+        {
+            "id": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "label": ".table()",
+            "file_type": "code",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L51",
+            "_callable": true
+        },
+        {
+            "id": "table",
+            "label": "Table",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Filament/Northwind/Resources/CustomerResource.php"
+        },
+        {
+            "id": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_getpages",
+            "label": ".getPages()",
+            "file_type": "code",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L83",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "pages",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "customer",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "backedenum",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "actions",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "forms",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "resource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "schema",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "tables",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "table",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L15",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_php",
+            "target": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L17",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource",
+            "target": "resource",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L17",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource",
+            "target": "backedenum",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L21",
+            "weight": 1.0,
+            "context": "field"
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource",
+            "target": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L23",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "target": "schema",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L23",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "target": "schema",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L23",
+            "weight": 1.0,
+            "context": "return_type"
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource",
+            "target": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L51",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "target": "table",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L51",
+            "weight": 1.0,
+            "context": "parameter_type"
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "target": "table",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L51",
+            "weight": 1.0,
+            "context": "return_type"
+        },
+        {
+            "source": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource",
+            "target": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_getpages",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L83",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "components",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L25",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L27",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "required",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L27",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L27",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L30",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L30",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L32",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L32",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L34",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L34",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L36",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L36",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L38",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L38",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L40",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L42",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L42",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L44",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L44",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "maxLength",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L46",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_form",
+            "callee": "Forms\\Components\\TextInput",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L46",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "toolbarActions",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L53",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "actions",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L53",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "filters",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L53",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "columns",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L53",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "sortable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L55",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "searchable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L55",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "Tables\\Columns\\TextColumn",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L55",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "sortable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L58",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "searchable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L58",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "Tables\\Columns\\TextColumn",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L58",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "sortable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L61",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "searchable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L61",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "Tables\\Columns\\TextColumn",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L61",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "sortable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L64",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "searchable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L64",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "Tables\\Columns\\TextColumn",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L64",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "searchable",
+            "is_member_call": true,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L67",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "Tables\\Columns\\TextColumn",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L67",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "Actions\\EditAction",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L74",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "Actions\\BulkActionGroup",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L77",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_table",
+            "callee": "Actions\\DeleteBulkAction",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L78",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_getpages",
+            "callee": "Pages\\ListCustomers",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L86",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_getpages",
+            "callee": "Pages\\CreateCustomer",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L87",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_filament_northwind_resources_customerresource_customerresource_getpages",
+            "callee": "Pages\\EditCustomer",
+            "is_member_call": false,
+            "source_file": "app/Filament/Northwind/Resources/CustomerResource.php",
+            "source_location": "L88",
+            "receiver": null
+        }
+    ]
+}

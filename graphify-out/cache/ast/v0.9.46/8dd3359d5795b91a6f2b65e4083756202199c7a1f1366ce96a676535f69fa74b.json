@@ -1,0 +1,30 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_resources_views_filament_admin_widgets_product_portfolio_card_blade_php",
+            "label": "product-portfolio-card.blade.php",
+            "file_type": "code",
+            "source_file": "resources/views/filament/admin/widgets/product-portfolio-card.blade.php",
+            "source_location": null
+        },
+        {
+            "id": "refreshstats",
+            "label": "refreshStats",
+            "file_type": "code",
+            "source_file": "resources/views/filament/admin/widgets/product-portfolio-card.blade.php",
+            "source_location": null
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_resources_views_filament_admin_widgets_product_portfolio_card_blade_php",
+            "target": "refreshstats",
+            "relation": "binds_method",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "resources/views/filament/admin/widgets/product-portfolio-card.blade.php",
+            "source_location": null,
+            "weight": 1.0
+        }
+    ]
+}

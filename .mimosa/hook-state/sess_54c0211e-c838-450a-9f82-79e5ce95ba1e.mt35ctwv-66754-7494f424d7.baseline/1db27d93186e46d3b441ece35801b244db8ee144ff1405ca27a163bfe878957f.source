@@ -1,0 +1,172 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  DB_HOST: 127.0.0.1
+  DB_PORT: 5432
+  DB_DATABASE: testing_db
+  DB_USERNAME: postgres
+  DB_PASSWORD: secret
+  GH_TOKEN: ${{ github.token }}
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: pgvector/pgvector:pg18
+        env:
+          POSTGRES_DB: testing_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --restart unless-stopped
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          extensions: pgsql, pcov
+          coverage: pcov
+          tools: composer
+
+      - name: Install Composer dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.20.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install frontend dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build frontend assets
+        run: pnpm run build
+
+      - name: Configure application and database
+        run: |
+          cp .env.example .env
+          php artisan key:generate --force
+          {
+            echo "DB_CONNECTION=pgsql"
+            echo "DB_HOST=${{ env.DB_HOST }}"
+            echo "DB_PORT=${{ env.DB_PORT }}"
+            echo "DB_DATABASE=${{ env.DB_DATABASE }}"
+            echo "DB_USERNAME=${{ env.DB_USERNAME }}"
+            echo "DB_PASSWORD=${{ env.DB_PASSWORD }}"
+          } >> .env
+          php artisan config:clear --no-interaction
+          php artisan route:clear --no-interaction
+
+      - name: Quality gate
+        run: |
+          vendor/bin/pint --test --parallel
+          composer types:check
+          composer mago:guard
+          composer test:arch
+          php -d memory_limit=2G vendor/bin/pest --type-coverage --min=100
+          php -d memory_limit=2G vendor/bin/pest --coverage --min=100
+
+  tia-shards:
+    name: TIA Feature shard ${{ matrix.shard }}/${{ matrix.total }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
+        total: [2]
+
+    services:
+      postgres:
+        image: pgvector/pgvector:pg18
+        env:
+          POSTGRES_DB: testing_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --restart unless-stopped
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          extensions: pgsql, pcov
+          coverage: pcov
+          tools: composer
+
+      - name: Install Composer dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.20.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install frontend dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build frontend assets
+        run: pnpm run build
+
+      - name: Configure application and database
+        run: |
+          cp .env.example .env
+          php artisan key:generate --force
+          {
+            echo "DB_CONNECTION=pgsql"
+            echo "DB_HOST=${{ env.DB_HOST }}"
+            echo "DB_PORT=${{ env.DB_PORT }}"
+            echo "DB_DATABASE=${{ env.DB_DATABASE }}"
+            echo "DB_USERNAME=${{ env.DB_USERNAME }}"
+            echo "DB_PASSWORD=${{ env.DB_PASSWORD }}"
+          } >> .env
+          php artisan config:clear --no-interaction
+          php artisan route:clear --no-interaction
+
+      - name: Run serial Feature tests
+        if: matrix.shard == 1
+        run: vendor/bin/pest tests/Feature --group=serial
+
+      - name: Run affected Feature tests
+        run: vendor/bin/pest tests/Feature --tia --baselined --shard=${{ matrix.shard }}/${{ matrix.total }} --parallel --exclude-group=serial

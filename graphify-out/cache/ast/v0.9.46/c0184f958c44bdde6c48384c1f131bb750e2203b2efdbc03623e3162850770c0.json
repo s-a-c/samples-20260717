@@ -1,0 +1,374 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "label": "ChinookResourcesTest.php",
+            "file_type": "code",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L1"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "albumresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L5",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "editalbum",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L6",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "listalbums",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "artistresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "editartist",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "listartists",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "customerresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "editcustomer",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "listcustomers",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "employeeresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "editemployee",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L15",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "listemployees",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L16",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "genreresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L17",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "editgenre",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L18",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "listgenres",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L19",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "invoiceresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L20",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "editinvoice",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L21",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "listinvoices",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L22",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "playlistresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L23",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "editplaylist",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L24",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "listplaylists",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L25",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "trackresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L26",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "edittrack",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L27",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "listtracks",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L28",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "album",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "artist",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L30",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "customer",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L31",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "employee",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L32",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "genre",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L33",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "invoice",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L34",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "mediatype",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L35",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "playlist",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L36",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "track",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L37",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "user",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L38",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "livewire",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L39",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_filament_chinookresourcestest_php",
+            "target": "role",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Filament/ChinookResourcesTest.php",
+            "source_location": "L40",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": []
+}

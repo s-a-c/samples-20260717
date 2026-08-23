@@ -1,0 +1,93 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_php",
+            "label": "2026_07_24_211001_create_northwind_search_projections.php",
+            "file_type": "code",
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_up",
+            "label": "up()",
+            "file_type": "code",
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L10",
+            "_callable": true
+        },
+        {
+            "id": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_down",
+            "label": "down()",
+            "file_type": "code",
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L27",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_php",
+            "target": "searchprojectionschema",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L5",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_php",
+            "target": "migration",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L6",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_php",
+            "target": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_up",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_php",
+            "target": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_down",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L27",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_up",
+            "callee": "SearchProjectionSchema",
+            "is_member_call": false,
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L12",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_up",
+            "callee": "SearchProjectionSchema",
+            "is_member_call": false,
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L14",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_database_migrations_northwind_2026_07_24_211001_create_northwind_search_projections_down",
+            "callee": "SearchProjectionSchema",
+            "is_member_call": false,
+            "source_file": "database/migrations/northwind/2026_07_24_211001_create_northwind_search_projections.php",
+            "source_location": "L29",
+            "receiver": null
+        }
+    ]
+}

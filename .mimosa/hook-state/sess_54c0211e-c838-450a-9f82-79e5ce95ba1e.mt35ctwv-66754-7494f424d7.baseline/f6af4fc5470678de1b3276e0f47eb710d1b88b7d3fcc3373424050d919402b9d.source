@@ -1,0 +1,52 @@
+<?php
+if (!function_exists('_ae5c6f0989112b7ff62584ccfbba2b12')):
+function _ae5c6f0989112b7ff62584ccfbba2b12($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
+$__env = $__blaze->env;
+$__slots['slot'] ??= new \Illuminate\View\ComponentSlot('');
+if (($__data['attributes'] ?? null) instanceof \Illuminate\View\ComponentAttributeBag) { $__data = $__data + $__data['attributes']->all(); unset($__data['attributes']); }
+extract($__slots, EXTR_SKIP); unset($__slots);
+extract($__data, EXTR_SKIP);
+$attributes = \Livewire\Blaze\Runtime\BlazeAttributeBag::make($__data, $__bound, $__keys);
+unset($__data, $__bound, $__keys);
+ob_start();
+?>
+
+
+<?php
+$__defaults = ['value', 'variant' => 'line'];
+$value ??= $attributes['value']; unset($attributes['value']);
+$variant ??= $attributes['variant'] ?? $__defaults['variant']; unset($attributes['variant']);
+unset($__defaults);
+?>
+
+<?php
+    $classes = Flux::classes()
+        ->add('relative w-px h-full min-h-4 min-w-4 flex flex-col justify-center items-center text-xs font-medium whitespace-nowrap -translate-x-1/2')
+        ->add(match ($variant) {
+            'dot' => 'text-black/25 dark:text-white/25 in-data-[flux-slider-tick-position=inside]:data-active:text-white/50',
+            default => 'text-zinc-400 data-active:text-zinc-500 dark:text-white/70 dark:data-active:text-white',
+        })
+    ;
+
+    $tickLineClasses = Flux::classes()
+        ->add('h-1 w-px bg-black/25 dark:bg-white/25')
+    ;
+
+    $tickDotClasses = Flux::classes()
+        ->add('size-1 shrink-0 rounded-full bg-current')
+    ;
+?>
+
+<div <?php echo e($attributes->class($classes)); ?> data-flux-slider-tick data-value="<?php echo e($value); ?>" size="sm" variant="subtle">
+    <?php if ($variant === 'dot'): ?>
+        <span data-flux-slider-tick-dot class="<?php echo e($tickDotClasses); ?>"></span>
+    <?php elseif ($slot->isNotEmpty()): ?>
+        <?php echo e($slot); ?>
+
+    <?php else: ?>
+        <span data-flux-slider-tick-line class="<?php echo e($tickLineClasses); ?>"></span>
+    <?php endif; ?>
+</div>
+<?php
+echo ltrim(ob_get_clean());
+} endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/slider/tick.blade.php ENDPATH**/ ?>

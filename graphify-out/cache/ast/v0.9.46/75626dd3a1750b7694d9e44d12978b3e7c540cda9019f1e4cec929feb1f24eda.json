@@ -1,0 +1,123 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_filament_admin_pages_portfolio_php",
+            "label": "Portfolio.php",
+            "file_type": "code",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_filament_admin_pages_portfolio_portfolio",
+            "label": "Portfolio",
+            "file_type": "code",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L12",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "page",
+            "label": "Page",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "backedenum",
+            "label": "BackedEnum",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Filament/Admin/Pages/Portfolio.php"
+        },
+        {
+            "id": "$graphify-root$_app_filament_admin_pages_portfolio_portfolio_getheaderwidgets",
+            "label": ".getHeaderWidgets()",
+            "file_type": "code",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L20",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_filament_admin_pages_portfolio_php",
+            "target": "productportfoliocard",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_admin_pages_portfolio_php",
+            "target": "backedenum",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_admin_pages_portfolio_php",
+            "target": "page",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_admin_pages_portfolio_php",
+            "target": "widgetconfiguration",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_admin_pages_portfolio_php",
+            "target": "$graphify-root$_app_filament_admin_pages_portfolio_portfolio",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_admin_pages_portfolio_portfolio",
+            "target": "page",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_admin_pages_portfolio_portfolio",
+            "target": "backedenum",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L14",
+            "weight": 1.0,
+            "context": "field"
+        },
+        {
+            "source": "$graphify-root$_app_filament_admin_pages_portfolio_portfolio",
+            "target": "$graphify-root$_app_filament_admin_pages_portfolio_portfolio_getheaderwidgets",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Admin/Pages/Portfolio.php",
+            "source_location": "L20",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": []
+}

@@ -1,0 +1,32 @@
+<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(config('instruckt.enabled', false)): ?>
+<div id="instruckt-root">
+    <script>
+        (function() {
+            function boot() {
+                if (window.__instruckt) return;
+                if (typeof Instruckt === 'undefined') return;
+                var opts = {
+                    endpoint: <?php echo json_encode($endpoint, 15, 512) ?>,
+                    adapters: <?php echo $adapters; ?>,
+                    theme: <?php echo json_encode($theme, 15, 512) ?>,
+                    position: <?php echo json_encode($position, 15, 512) ?>,
+                    mcp: true,
+                };
+                var colors = <?php echo $colors; ?>;
+                var keys = <?php echo $keys; ?>;
+                var tools = <?php echo $tools; ?>;
+                if (Object.keys(colors).length) opts.colors = colors;
+                if (Object.keys(keys).length) opts.keys = keys;
+                if (Object.keys(tools).length) opts.tools = tools;
+                window.__instruckt = Instruckt.init(opts);
+            }
+
+            var s = document.createElement('script');
+            s.src = <?php echo json_encode($scriptSrc, 15, 512) ?>;
+            s.onload = boot;
+            document.getElementById('instruckt-root').appendChild(s);
+        })();
+    </script>
+</div>
+<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/joshcirre/instruckt-laravel/resources/views/components/toolbar.blade.php ENDPATH**/ ?>

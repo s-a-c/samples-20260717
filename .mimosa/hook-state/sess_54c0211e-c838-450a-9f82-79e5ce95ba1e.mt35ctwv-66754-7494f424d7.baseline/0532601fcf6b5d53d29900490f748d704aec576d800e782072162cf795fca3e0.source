@@ -1,0 +1,4 @@
+<template name="group" <?php echo e($attributes); ?>>
+    <?php echo e($slot); ?>
+
+</template><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/chart/group.blade.php ENDPATH**/ ?>

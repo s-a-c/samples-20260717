@@ -1,9 +1,13 @@
 ---
 title: "Wayfinder #15 Compliance Review #3 Remediation Plan"
 description: "> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: plan
-tags: \[plan, plans, wayfinder, "15"]
-updated: 2026-07-30
+tags: [plan, plans, wayfinder, "15"]
+created: 2026-07-29
+updated: 2026-08-17
 ---
 
 # Wayfinder #15 Compliance Review #3 Remediation Plan
@@ -33,7 +37,7 @@ updated: 2026-07-30
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **Task 1** | `phpstan-baseline.neon`, `tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php`, `tests/Feature/Console/OperatorCreateTest.php` | Fix 5 PHPStan errors so `composer types:check` passes with zero errors                  |
 | **Task 2** | `composer.json`                                                                                                                     | Update `"test:arch"` script to call `vendor/bin/pest --testsuite=Architecture` directly |
-| **Task 3** | `docs/15-delivery/1515-implementation-readiness-dossier/151503-stage-1-foundation.md` through `151506-stage-4-polish.md`            | Record completed stage statuses and verified evidence paths in dossier files            |
+| **Task 3** | `docs/15-delivery/1515-implementation-readiness-dossier/151504-stage-1-foundation.md` through `151511-stage-4-polish.md`            | Record completed stage statuses and verified evidence paths in dossier files            |
 | **Task 4** | `tests/Feature/Import/ProductImportPipelineTest.php`, `tests/Feature/Reset/ResetWindowTest.php`                                     | Add targeted feature tests to advance line coverage ratchet toward 80%                  |
 
 ---
@@ -153,17 +157,17 @@ git commit -m "fix(ci): use pest runner directly in composer test:arch for clean
 
 **Files:**
 
-- Modify: `docs/15-delivery/1515-implementation-readiness-dossier/151503-stage-1-foundation.md`
-- Modify: `docs/15-delivery/1515-implementation-readiness-dossier/151504-stage-2-domain-resources.md`
-- Modify: `docs/15-delivery/1515-implementation-readiness-dossier/151505-stage-3-quality-features.md`
-- Modify: `docs/15-delivery/1515-implementation-readiness-dossier/151506-stage-4-polish.md`
+- Modify: `docs/15-delivery/1515-implementation-readiness-dossier/151504-stage-1-foundation.md`
+- Modify: `docs/15-delivery/1515-implementation-readiness-dossier/151507-stage-2-domain-resources.md`
+- Modify: `docs/15-delivery/1515-implementation-readiness-dossier/151508-stage-3-quality-features.md`
+- Modify: `docs/15-delivery/1515-implementation-readiness-dossier/151511-stage-4-polish.md`
 
 **Interfaces:**
 
 - Consumes: ADRs 100301–100337, automated test suites, CI workflow
 - Produces: Completed Stage Files with `Status: complete`, verified evidence links, and operational commands
 
-- [ ] **Step 1: Update Stage 1 Foundation (`151503-stage-1-foundation.md`)**
+- [ ] **Step 1: Update Stage 1 Foundation (`151504-stage-1-foundation.md`)**
 
 Set `Status: complete`. Populate the Acceptance Gates table with:
 
@@ -172,7 +176,7 @@ Set `Status: complete`. Populate the Acceptance Gates table with:
 - Artisan check `php artisan pgsql:check` (Pass)
   Set Evidence Location to `.github/workflows/tests.yml` and `tests/Feature/Postgres/PostgresExtensionsTest.php`.
 
-- [ ] **Step 2: Update Stage 2 Domain Resources (`151504-stage-2-domain-resources.md`)**
+- [ ] **Step 2: Update Stage 2 Domain Resources (`151507-stage-2-domain-resources.md`)**
 
 Set `Status: complete`. Populate Acceptance Gates with:
 
@@ -181,7 +185,7 @@ Set `Status: complete`. Populate Acceptance Gates with:
 - Shadow schema import pipeline (`ChinookImporter`, `NorthwindImporter`, `PagilaImporter`)
   Set Evidence Location to `tests/Feature/Import/ProductImportPipelineTest.php`.
 
-- [ ] **Step 3: Update Stage 3 Quality & Features (`151505-stage-3-quality-features.md`)**
+- [ ] **Step 3: Update Stage 3 Quality & Features (`151508-stage-3-quality-features.md`)**
 
 Set `Status: complete`. Populate Acceptance Gates with:
 
@@ -190,7 +194,7 @@ Set `Status: complete`. Populate Acceptance Gates with:
 - Portfolio Card & Snapshot view (`PortfolioTest.php`)
   Set Evidence Location to `tests/Feature/Search/FederatedSearchTest.php`.
 
-- [ ] **Step 4: Update Stage 4 Polish (`151506-stage-4-polish.md`)**
+- [ ] **Step 4: Update Stage 4 Polish (`151511-stage-4-polish.md`)**
 
 Set `Status: complete`. Populate Acceptance Gates with:
 

@@ -1,0 +1,94 @@
+<?php
+    $items = $getMedia();
+    $overlap = $getOverlap() ?? 'sm';
+    $imageCount = count($items);
+    $ring = match ($getRing()) {
+        0 => 'ring-0',
+        1 => 'ring-1',
+        2 => 'ring-2',
+        4 => 'ring-4',
+        default => 'ring',
+    };
+
+    $overlap = match ($overlap) {
+        0 => 'space-x-0',
+        2 => '-space-x-2',
+        3 => '-space-x-3',
+        4 => '-space-x-4',
+        default => '-space-x-1',
+    };
+
+    $resolution = $getResolution();
+
+    $height = $getImageHeight();
+    $width = $getImageWidth() ?? ($isRounded() ? $height : null);
+?>
+
+<div
+    <?php echo e($attributes->merge($getExtraAttributes())->class([
+        'curator-column px-4 py-3',
+        $overlap . ' flex items-center' => $imageCount > 1,
+    ])); ?>
+
+>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($items): ?>
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+            <div style="
+                    <?php echo $height !== null ? "height: {$height};" : null; ?>
+
+                    <?php echo $width !== null ? "width: {$width};" : null; ?>
+
+                "
+                class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                    'rounded-full overflow-hidden' => $isRounded(),
+                    $ring . ' ring-white dark:ring-gray-900' => $imageCount > 1,
+                ]); ?>"
+            >
+                <?php
+                    $img_width = $width ? (int)$width : null;
+                    $img_height = $height ? (int)$height : null;
+
+                    if ($resolution) {
+                        $img_width *= $resolution;
+                        $img_height *= $resolution;
+                    }
+                ?>
+
+                <?php if (isset($component)) { $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'curator::components.display.index','data' => ['item' => $item,'src' => $item->thumbnailUrl,'lazy' => true,'iconClasses' => 'size-6','width' => $width,'height' => $height,'class' => \Illuminate\Support\Arr::toCssClasses([
+                        'bg-gray-100 dark:bg-gray-950/50',
+                        'h-full w-auto checkered' => curator()->isSvg($item->ext),
+                        'max-w-none' => $height && ! $width,
+                        'object-cover object-center' => ! curator()->isSvg($item->ext) && ($isRounded() || $width || $height),
+                        'w-full h-full' => curator()->isDocument($item->ext)
+                    ])]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('curator::display'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['item' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($item),'src' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($item->thumbnailUrl),'lazy' => true,'icon-classes' => 'size-6','width' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($width),'height' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($height),'class' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(\Illuminate\Support\Arr::toCssClasses([
+                        'bg-gray-100 dark:bg-gray-950/50',
+                        'h-full w-auto checkered' => curator()->isSvg($item->ext),
+                        'max-w-none' => $height && ! $width,
+                        'object-cover object-center' => ! curator()->isSvg($item->ext) && ($isRounded() || $width || $height),
+                        'w-full h-full' => curator()->isDocument($item->ext)
+                    ]))]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $attributes = $__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__attributesOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503)): ?>
+<?php $component = $__componentOriginal3bff58ae0a49c15d494bfd4c570f1503; ?>
+<?php unset($__componentOriginal3bff58ae0a49c15d494bfd4c570f1503); ?>
+<?php endif; ?>
+            </div>
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+</div><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/tables/curator-column.blade.php ENDPATH**/ ?>

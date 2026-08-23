@@ -1,3 +1,15 @@
+---
+title: "Admin UI Import & Refresh Buttons — Implementation Plan"
+description: "Documentation page for 2026-07-31-admin-import-refresh-buttons."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: plan
+tags: [documentation]
+created: 2026-07-31
+updated: 2026-08-17
+---
+
 # Admin UI Import & Refresh Buttons — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

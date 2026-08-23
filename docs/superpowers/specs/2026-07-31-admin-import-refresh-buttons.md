@@ -1,3 +1,15 @@
+---
+title: "2026-07-31-admin-import-refresh-buttons"
+description: "Documentation page for 2026-07-31-admin-import-refresh-buttons."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [documentation]
+created: 2026-07-31
+updated: 2026-08-17
+---
+
 ## Problem Statement
 
 Product data management is entirely CLI-only. A super_admin who wants to reload Chinook, Northwind, or Pagila data must shell into the server, run `product:confirm`, copy a token, then run `product:import --confirm-token=...` — with no feedback in the admin UI about data freshness, import status, or whether an import is already in progress. There is no way to trigger a Product Import or Product Reset from the admin panel, and no way to see current data freshness at a glance.

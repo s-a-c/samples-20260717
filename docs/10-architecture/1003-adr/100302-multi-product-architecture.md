@@ -1,9 +1,13 @@
 ---
 title: "ADR 0001: Multi-Product Architecture"
 description: "Decision to keep Chinook, Northwind, and Pagila as distinct sample products with shared infrastructure"
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: adr
-tags: \[adr, architecture, multi-product]
-updated: 2026-07-30
+tags: [adr, architecture, multi-product]
+created: 2026-07-25
+updated: 2026-08-17
 ---
 
 # ADR 0001: Multi-Product Architecture

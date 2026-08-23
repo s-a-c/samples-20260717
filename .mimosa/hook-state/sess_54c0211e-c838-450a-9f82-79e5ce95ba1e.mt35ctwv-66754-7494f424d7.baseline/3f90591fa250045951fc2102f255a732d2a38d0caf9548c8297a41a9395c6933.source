@@ -1,0 +1,47 @@
+<?php # [BlazeFolded]:{flux::editor.button}:{/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/src/../stubs/resources/views/flux/editor/button.blade.php}:{1786376618} ?>
+<?php
+if (!function_exists('_ce0227d192b0053c6028d53e50508c28')):
+function _ce0227d192b0053c6028d53e50508c28($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
+$__env = $__blaze->env;
+
+if (($__data['attributes'] ?? null) instanceof \Illuminate\View\ComponentAttributeBag) { $__data = $__data + $__data['attributes']->all(); unset($__data['attributes']); }
+extract($__slots, EXTR_SKIP); unset($__slots);
+extract($__data, EXTR_SKIP);
+$attributes = \Livewire\Blaze\Runtime\BlazeAttributeBag::make($__data, $__bound, $__keys);
+unset($__data, $__bound, $__keys);
+ob_start();
+?>
+
+
+<?php
+$__defaults = [
+    'kbd' => null,
+];
+$kbd ??= $attributes['kbd'] ?? $__defaults['kbd']; unset($attributes['kbd']);
+unset($__defaults);
+?>
+
+<?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/tooltip/index.blade.php', $__blaze->compiledPath.'/85607f3fa1f418efd018e8e7428b09a6.php'); ?>
+<?php if (isset($__slots85607f3fa1f418efd018e8e7428b09a6)) { $__slotsStack85607f3fa1f418efd018e8e7428b09a6[] = $__slots85607f3fa1f418efd018e8e7428b09a6; } ?>
+<?php if (isset($__attrs85607f3fa1f418efd018e8e7428b09a6)) { $__attrsStack85607f3fa1f418efd018e8e7428b09a6[] = $__attrs85607f3fa1f418efd018e8e7428b09a6; } ?>
+<?php $__attrs85607f3fa1f418efd018e8e7428b09a6 = ['content' => e(__('Highlight')),'kbd' => $kbd,'class' => 'contents']; ?>
+<?php $__slots85607f3fa1f418efd018e8e7428b09a6 = []; ?>
+<?php $__blaze->pushData($__attrs85607f3fa1f418efd018e8e7428b09a6); ?>
+<?php ob_start(); ?>
+    <?php ob_start(); ?><button type="button" class="p-0.5 flex items-center justify-center text-sm font-medium rounded-sm touch-manipulation text-zinc-400 data-open:text-zinc-800 hover:text-zinc-800 focus:text-zinc-800 data-match:text-zinc-800 disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none dark:text-zinc-400 dark:data-open:text-white dark:hover:text-white dark:focus:text-white dark:data-match:text-white hover:bg-zinc-200 hover:text-zinc-800 dark:hover:bg-white/10 dark:hover:text-white" data-editor="highlight">
+        
+        <?php ob_start(); ?>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>
+    <?php echo trim(ob_get_clean()); ?>
+
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+<?php $__slots85607f3fa1f418efd018e8e7428b09a6['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots85607f3fa1f418efd018e8e7428b09a6); ?>
+<?php _85607f3fa1f418efd018e8e7428b09a6($__blaze, $__attrs85607f3fa1f418efd018e8e7428b09a6, $__slots85607f3fa1f418efd018e8e7428b09a6, ['kbd'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack85607f3fa1f418efd018e8e7428b09a6)) { $__slots85607f3fa1f418efd018e8e7428b09a6 = array_pop($__slotsStack85607f3fa1f418efd018e8e7428b09a6); } ?>
+<?php if (! empty($__attrsStack85607f3fa1f418efd018e8e7428b09a6)) { $__attrs85607f3fa1f418efd018e8e7428b09a6 = array_pop($__attrsStack85607f3fa1f418efd018e8e7428b09a6); } ?>
+<?php $__blaze->popData(); ?>
+<?php
+echo ltrim(ob_get_clean());
+} endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux-pro/stubs/resources/views/flux/editor/highlight.blade.php ENDPATH**/ ?>

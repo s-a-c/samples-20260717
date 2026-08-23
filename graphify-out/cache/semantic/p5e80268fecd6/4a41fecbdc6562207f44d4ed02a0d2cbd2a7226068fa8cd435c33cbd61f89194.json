@@ -1,0 +1,1 @@
+{"nodes": [{"id": "docs_10_architecture_1003_adr_100313_source_identity_registry", "label": "ADR 0006: Source Identity Registry", "file_type": "document", "source_file": "docs/10-architecture/1003-adr/100313-source-identity-registry.md", "rationale": "Standardized way to identify source systems for sample products (Chinook, Northwind, Pagila)."}], "edges": [], "hyperedges": []}

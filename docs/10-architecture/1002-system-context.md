@@ -1,9 +1,13 @@
 ---
 title: "System Context"
 description: "This document provides a high-level overview of the Samples application, its users, and its external dependencies."
-type: architecture
-tags: \[architecture, system, context]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: reference
+tags: [architecture, system, context]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # System Context

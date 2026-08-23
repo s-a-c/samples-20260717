@@ -1,0 +1,68 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_inventoryresource_pages_createinventory_php",
+            "label": "CreateInventory.php",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/InventoryResource/Pages/CreateInventory.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_inventoryresource_pages_createinventory_createinventory",
+            "label": "CreateInventory",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/InventoryResource/Pages/CreateInventory.php",
+            "source_location": "L10",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "createrecord",
+            "label": "CreateRecord",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_inventoryresource_pages_createinventory_php",
+            "target": "inventoryresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/InventoryResource/Pages/CreateInventory.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_inventoryresource_pages_createinventory_php",
+            "target": "createrecord",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/InventoryResource/Pages/CreateInventory.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_inventoryresource_pages_createinventory_php",
+            "target": "$graphify-root$_app_filament_pagila_resources_inventoryresource_pages_createinventory_createinventory",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/InventoryResource/Pages/CreateInventory.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_inventoryresource_pages_createinventory_createinventory",
+            "target": "createrecord",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/InventoryResource/Pages/CreateInventory.php",
+            "source_location": "L10",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": []
+}

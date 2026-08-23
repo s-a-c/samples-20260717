@@ -1,0 +1,987 @@
+<div
+    class="curator curation h-full absolute inset-0 flex flex-col"
+>
+    <div
+        class="flex-1 relative flex flex-col lg:flex-row overflow-hidden"
+        x-ignore
+        x-load="visible"
+        x-load-src="<?php echo e(\Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('curation', 'awcodes/curator')); ?>"
+        x-data="curation({
+            statePath: '<?php echo e($statePath); ?>',
+            fileName: '<?php echo e($media->name); ?>',
+            fileType: '<?php echo e($media->type); ?>',
+            presets: <?php echo \Illuminate\Support\Js::from($presets)->toHtml() ?>,
+        })"
+        x-on:add-curation.window="$dispatch('close-modal', { id: '<?php echo e($modalId); ?>' })"
+    >
+
+        <div class="flex-1 w-full lg:h-full overflow-auto p-4">
+            <div class="h-full w-full">
+                <img
+                    x-ref="image"
+                    src="<?php echo e($media->url); ?>"
+                    alt=""
+                    x-on:ready="setData()"
+                    x-on:crop="updateData()"
+                    class="h-full w-auto"
+                    crossorigin="anonymous"
+                />
+            </div>
+        </div>
+
+        <div class="w-full h-96 lg:h-full lg:max-w-xs overflow-auto bg-gray-50 dark:bg-gray-950/30 flex flex-col shadow-top lg:shadow-none z-[1]">
+            <div class="flex-1 overflow-hidden">
+                <div class="flex flex-col h-full overflow-y-auto">
+                    <div class="flex items-center justify-between gap-3">
+                        <h2 class="font-bold py-2 px-4 mb-0">
+                            <?php echo e(trans('curator::views.curation.adjustments')); ?>
+
+                        </h2>
+                        <?php if (isset($component)) { $__componentOriginalf0029cce6d19fd6d472097ff06a800a1 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalf0029cce6d19fd6d472097ff06a800a1 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.icon-button','data' => ['xOn:click' => 'close()','icon' => 'heroicon-o-x-mark','color' => 'gray','class' => 'mr-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::icon-button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['x-on:click' => 'close()','icon' => 'heroicon-o-x-mark','color' => 'gray','class' => 'mr-2']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalf0029cce6d19fd6d472097ff06a800a1)): ?>
+<?php $attributes = $__attributesOriginalf0029cce6d19fd6d472097ff06a800a1; ?>
+<?php unset($__attributesOriginalf0029cce6d19fd6d472097ff06a800a1); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf0029cce6d19fd6d472097ff06a800a1)): ?>
+<?php $component = $__componentOriginalf0029cce6d19fd6d472097ff06a800a1; ?>
+<?php unset($__componentOriginalf0029cce6d19fd6d472097ff06a800a1); ?>
+<?php endif; ?>
+                    </div>
+
+                    <div class="flex-1 overflow-auto p-4">
+                        <div class="space-y-3">
+                            <div x-show="presets" x-cloak>
+                                <?php if (isset($component)) { $__componentOriginal505efd9768415fdb4543e8c564dad437 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal505efd9768415fdb4543e8c564dad437 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.wrapper','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.wrapper'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                     <?php $__env->slot('prefix', null, []); ?> 
+                                        <?php echo e(trans('curator::views.curation.preset')); ?>
+
+                                     <?php $__env->endSlot(); ?>
+                                    <?php if (isset($component)) { $__componentOriginal97dc683fe4ff7acce9e296503563dd85 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal97dc683fe4ff7acce9e296503563dd85 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.select','data' => ['name' => 'preset','xModel' => 'preset']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.select'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['name' => 'preset','x-model' => 'preset']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                        <option value="custom"><?php echo e(trans('curator::views.curation.custom')); ?></option>
+                                        <template x-for="preset in presets">
+                                            <option x-bind:value="preset.key" x-bind:key="preset.key" x-text="preset.label"></option>
+                                        </template>
+                                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal97dc683fe4ff7acce9e296503563dd85)): ?>
+<?php $attributes = $__attributesOriginal97dc683fe4ff7acce9e296503563dd85; ?>
+<?php unset($__attributesOriginal97dc683fe4ff7acce9e296503563dd85); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal97dc683fe4ff7acce9e296503563dd85)): ?>
+<?php $component = $__componentOriginal97dc683fe4ff7acce9e296503563dd85; ?>
+<?php unset($__componentOriginal97dc683fe4ff7acce9e296503563dd85); ?>
+<?php endif; ?>
+                                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $attributes = $__attributesOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__attributesOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $component = $__componentOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__componentOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+                            </div>
+                            <div>
+                                <?php if (isset($component)) { $__componentOriginal505efd9768415fdb4543e8c564dad437 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal505efd9768415fdb4543e8c564dad437 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.wrapper','data' => ['alpineValid' => 'key !== null']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.wrapper'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['alpine-valid' => 'key !== null']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                     <?php $__env->slot('prefix', null, []); ?> 
+                                        <?php echo e(trans('curator::views.curation.key')); ?>
+
+                                     <?php $__env->endSlot(); ?>
+                                    <?php if (isset($component)) { $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.index','data' => ['type' => 'text','xModel' => 'key','name' => 'key']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'text','x-model' => 'key','name' => 'key']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $attributes = $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $component = $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+                                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $attributes = $__attributesOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__attributesOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $component = $__componentOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__componentOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+                                <p class="text-xs mt-1 pl-2"><?php echo e(trans('curator::views.curation.key_helper')); ?></p>
+                            </div>
+                            <?php if (isset($component)) { $__componentOriginal505efd9768415fdb4543e8c564dad437 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal505efd9768415fdb4543e8c564dad437 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.wrapper','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.wrapper'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                 <?php $__env->slot('prefix', null, []); ?> 
+                                    <?php echo e(trans('curator::views.curation.format')); ?>
+
+                                 <?php $__env->endSlot(); ?>
+                                <?php if (isset($component)) { $__componentOriginal97dc683fe4ff7acce9e296503563dd85 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal97dc683fe4ff7acce9e296503563dd85 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.select','data' => ['name' => 'format','xModel' => 'format']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.select'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['name' => 'format','x-model' => 'format']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $formats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $format): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                        <option value="<?php echo e($format); ?>"><?php echo e($format); ?></option>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal97dc683fe4ff7acce9e296503563dd85)): ?>
+<?php $attributes = $__attributesOriginal97dc683fe4ff7acce9e296503563dd85; ?>
+<?php unset($__attributesOriginal97dc683fe4ff7acce9e296503563dd85); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal97dc683fe4ff7acce9e296503563dd85)): ?>
+<?php $component = $__componentOriginal97dc683fe4ff7acce9e296503563dd85; ?>
+<?php unset($__componentOriginal97dc683fe4ff7acce9e296503563dd85); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $attributes = $__attributesOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__attributesOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $component = $__componentOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__componentOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal505efd9768415fdb4543e8c564dad437 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal505efd9768415fdb4543e8c564dad437 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.wrapper','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.wrapper'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                 <?php $__env->slot('prefix', null, []); ?> 
+                                    <?php echo e(trans('curator::views.curation.quality')); ?>
+
+                                 <?php $__env->endSlot(); ?>
+                                <?php if (isset($component)) { $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.index','data' => ['type' => 'number','xModel' => 'quality','name' => 'quality']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'number','x-model' => 'quality','name' => 'quality']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $attributes = $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $component = $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $attributes = $__attributesOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__attributesOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $component = $__componentOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__componentOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal505efd9768415fdb4543e8c564dad437 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal505efd9768415fdb4543e8c564dad437 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.wrapper','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.wrapper'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                 <?php $__env->slot('prefix', null, []); ?> 
+                                    X
+                                 <?php $__env->endSlot(); ?>
+                                 <?php $__env->slot('suffix', null, []); ?> 
+                                    px
+                                 <?php $__env->endSlot(); ?>
+                                <?php if (isset($component)) { $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.index','data' => ['type' => 'text','name' => 'x','xOn:input' => 'setCropBoxX($event)','xBind:value' => 'Math.round(data.x)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'text','name' => 'x','x-on:input' => 'setCropBoxX($event)','x-bind:value' => 'Math.round(data.x)']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $attributes = $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $component = $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $attributes = $__attributesOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__attributesOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $component = $__componentOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__componentOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal505efd9768415fdb4543e8c564dad437 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal505efd9768415fdb4543e8c564dad437 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.wrapper','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.wrapper'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                 <?php $__env->slot('prefix', null, []); ?> 
+                                    Y
+                                 <?php $__env->endSlot(); ?>
+                                 <?php $__env->slot('suffix', null, []); ?> 
+                                    px
+                                 <?php $__env->endSlot(); ?>
+                                <?php if (isset($component)) { $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.index','data' => ['type' => 'text','name' => 'y','xOn:input' => 'setCropBoxY($event)','xBind:value' => 'Math.round(data.y)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'text','name' => 'y','x-on:input' => 'setCropBoxY($event)','x-bind:value' => 'Math.round(data.y)']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $attributes = $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $component = $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $attributes = $__attributesOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__attributesOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $component = $__componentOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__componentOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal505efd9768415fdb4543e8c564dad437 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal505efd9768415fdb4543e8c564dad437 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.wrapper','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.wrapper'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                 <?php $__env->slot('prefix', null, []); ?> 
+                                    <?php echo e(trans('curator::views.curation.width')); ?>
+
+                                 <?php $__env->endSlot(); ?>
+                                 <?php $__env->slot('suffix', null, []); ?> 
+                                    px
+                                 <?php $__env->endSlot(); ?>
+                                <?php if (isset($component)) { $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.index','data' => ['type' => 'text','name' => 'width','xOn:input' => 'setCropBoxWidth($event)','xBind:value' => 'Math.round(cropBoxData.width)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'text','name' => 'width','x-on:input' => 'setCropBoxWidth($event)','x-bind:value' => 'Math.round(cropBoxData.width)']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $attributes = $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $component = $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $attributes = $__attributesOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__attributesOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $component = $__componentOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__componentOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal505efd9768415fdb4543e8c564dad437 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal505efd9768415fdb4543e8c564dad437 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.wrapper','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.wrapper'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                 <?php $__env->slot('prefix', null, []); ?> 
+                                    <?php echo e(trans('curator::views.curation.height')); ?>
+
+                                 <?php $__env->endSlot(); ?>
+                                 <?php $__env->slot('suffix', null, []); ?> 
+                                    px
+                                 <?php $__env->endSlot(); ?>
+                                <?php if (isset($component)) { $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.index','data' => ['type' => 'text','name' => 'height','xOn:input' => 'setCropBoxHeight($event)','xBind:value' => 'Math.round(cropBoxData.height)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'text','name' => 'height','x-on:input' => 'setCropBoxHeight($event)','x-bind:value' => 'Math.round(cropBoxData.height)']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $attributes = $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $component = $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $attributes = $__attributesOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__attributesOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $component = $__componentOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__componentOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal505efd9768415fdb4543e8c564dad437 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal505efd9768415fdb4543e8c564dad437 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.wrapper','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.wrapper'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                 <?php $__env->slot('prefix', null, []); ?> 
+                                    <?php echo e(trans('curator::views.curation.rotate')); ?>
+
+                                 <?php $__env->endSlot(); ?>
+                                 <?php $__env->slot('suffix', null, []); ?> 
+                                    <?php echo e(trans('curator::views.curation.rotate_deg')); ?>
+
+                                 <?php $__env->endSlot(); ?>
+                                <?php if (isset($component)) { $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.index','data' => ['type' => 'text','name' => 'rotate','xOn:input' => 'cropper.rotateTo($event.target.value)','xBind:value' => 'data.rotate']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'text','name' => 'rotate','x-on:input' => 'cropper.rotateTo($event.target.value)','x-bind:value' => 'data.rotate']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $attributes = $__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__attributesOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e)): ?>
+<?php $component = $__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e; ?>
+<?php unset($__componentOriginal9ad6b66c56a2379ee0ba04e1e358c61e); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $attributes = $__attributesOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__attributesOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal505efd9768415fdb4543e8c564dad437)): ?>
+<?php $component = $__componentOriginal505efd9768415fdb4543e8c564dad437; ?>
+<?php unset($__componentOriginal505efd9768415fdb4543e8c564dad437); ?>
+<?php endif; ?>
+                        </div>
+
+                        <?php if (isset($component)) { $__componentOriginalfdab887de9877b48a57ef00a75a2effb = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalfdab887de9877b48a57ef00a75a2effb = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.group','data' => ['class' => 'w-full mt-3']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button.group'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-full mt-3']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'cropper.setAspectRatio(16/9)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'cropper.setAspectRatio(16/9)']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                16:9
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'cropper.setAspectRatio(4/3)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'cropper.setAspectRatio(4/3)']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                4:3
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'cropper.setAspectRatio(1)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'cropper.setAspectRatio(1)']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                1:1
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'cropper.setAspectRatio(2/3)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'cropper.setAspectRatio(2/3)']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                2:3
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalfdab887de9877b48a57ef00a75a2effb)): ?>
+<?php $attributes = $__attributesOriginalfdab887de9877b48a57ef00a75a2effb; ?>
+<?php unset($__attributesOriginalfdab887de9877b48a57ef00a75a2effb); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalfdab887de9877b48a57ef00a75a2effb)): ?>
+<?php $component = $__componentOriginalfdab887de9877b48a57ef00a75a2effb; ?>
+<?php unset($__componentOriginalfdab887de9877b48a57ef00a75a2effb); ?>
+<?php endif; ?>
+
+                        <?php if (isset($component)) { $__componentOriginalfdab887de9877b48a57ef00a75a2effb = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalfdab887de9877b48a57ef00a75a2effb = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.group','data' => ['class' => 'w-full mt-3']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button.group'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-full mt-3']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'cropper.zoom(0.1)','xTooltip.raw' => ''.e(trans('curator::views.curation.zoom_in')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'cropper.zoom(0.1)','x-tooltip.raw' => ''.e(trans('curator::views.curation.zoom_in')).'']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                <span class="sr-only"><?php echo e(trans('curator::views.curation.zoom_in')); ?></span>
+                                <?php if (isset($component)) { $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.icon','data' => ['alias' => 'curator::icons.zoom_in','icon' => 'heroicon-o-magnifying-glass-plus','class' => 'w-4 h-4 text-gray-950 dark:text-white']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['alias' => 'curator::icons.zoom_in','icon' => 'heroicon-o-magnifying-glass-plus','class' => 'w-4 h-4 text-gray-950 dark:text-white']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $attributes = $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $component = $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'cropper.zoom(-0.1)','xTooltip.raw' => ''.e(trans('curator::views.curation.zoom_out')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'cropper.zoom(-0.1)','x-tooltip.raw' => ''.e(trans('curator::views.curation.zoom_out')).'']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                <span class="sr-only"><?php echo e(trans('curator::views.curation.zoom_out')); ?></span>
+                                <?php if (isset($component)) { $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.icon','data' => ['alias' => 'curator::icons.zoom_out','icon' => 'heroicon-o-magnifying-glass-minus','class' => 'w-4 h-4 text-gray-950 dark:text-white']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['alias' => 'curator::icons.zoom_out','icon' => 'heroicon-o-magnifying-glass-minus','class' => 'w-4 h-4 text-gray-950 dark:text-white']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $attributes = $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $component = $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalfdab887de9877b48a57ef00a75a2effb)): ?>
+<?php $attributes = $__attributesOriginalfdab887de9877b48a57ef00a75a2effb; ?>
+<?php unset($__attributesOriginalfdab887de9877b48a57ef00a75a2effb); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalfdab887de9877b48a57ef00a75a2effb)): ?>
+<?php $component = $__componentOriginalfdab887de9877b48a57ef00a75a2effb; ?>
+<?php unset($__componentOriginalfdab887de9877b48a57ef00a75a2effb); ?>
+<?php endif; ?>
+
+                        <?php if (isset($component)) { $__componentOriginalfdab887de9877b48a57ef00a75a2effb = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalfdab887de9877b48a57ef00a75a2effb = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.group','data' => ['class' => 'w-full mt-3']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button.group'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-full mt-3']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'flipHorizontally','xTooltip.raw' => ''.e(trans('curator::views.curation.flip_horizontally')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'flipHorizontally','x-tooltip.raw' => ''.e(trans('curator::views.curation.flip_horizontally')).'']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                <span class="sr-only"><?php echo e(trans('curator::views.curation.flip_horizontally')); ?></span>
+                                <svg class="w-4 h-4" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                          stroke-linejoin="round" stroke-width="2"
+                                          d="m17 3l-5 5l-5-5h10m0 18l-5-5l-5 5h10M4 12H2m8 0H8m8 0h-2m8 0h-2"/>
+                                </svg>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'flipVertically','xTooltip.raw' => ''.e(trans('curator::views.curation.flip_vertically')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'flipVertically','x-tooltip.raw' => ''.e(trans('curator::views.curation.flip_vertically')).'']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                <span class="sr-only"><?php echo e(trans('curator::views.curation.flip_vertically')); ?></span>
+                                <svg class="w-4 h-4" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m3 7l5 5l-5 5V7m18 0l-5 5l5 5V7m-9 13v2m0-8v2m0-8v2m0-8v2"/>
+                                </svg>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalfdab887de9877b48a57ef00a75a2effb)): ?>
+<?php $attributes = $__attributesOriginalfdab887de9877b48a57ef00a75a2effb; ?>
+<?php unset($__attributesOriginalfdab887de9877b48a57ef00a75a2effb); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalfdab887de9877b48a57ef00a75a2effb)): ?>
+<?php $component = $__componentOriginalfdab887de9877b48a57ef00a75a2effb; ?>
+<?php unset($__componentOriginalfdab887de9877b48a57ef00a75a2effb); ?>
+<?php endif; ?>
+
+                        <?php if (isset($component)) { $__componentOriginalfdab887de9877b48a57ef00a75a2effb = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalfdab887de9877b48a57ef00a75a2effb = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.group','data' => ['class' => 'w-full mt-3']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button.group'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-full mt-3']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'cropper.setDragMode(\'move\')','xTooltip.raw' => ''.e(trans('curator::views.curation.drag_mode')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'cropper.setDragMode(\'move\')','x-tooltip.raw' => ''.e(trans('curator::views.curation.drag_mode')).'']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                <span class="sr-only"><?php echo e(trans('curator::views.curation.drag_mode')); ?></span>
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M13 6v5h5V7.75L22.25 12L18 16.25V13h-5v5h3.25L12 22.25L7.75 18H11v-5H6v3.25L1.75 12L6 7.75V11h5V6H7.75L12 1.75L16.25 6H13Z"/>
+                                </svg>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','xOn:click' => 'cropper.setDragMode(\'crop\')','xTooltip.raw' => ''.e(trans('curator::views.curation.crop_mode')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','x-on:click' => 'cropper.setDragMode(\'crop\')','x-tooltip.raw' => ''.e(trans('curator::views.curation.crop_mode')).'']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                                <span class="sr-only"><?php echo e(trans('curator::views.curation.crop_mode')); ?></span>
+                                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M17 23v-4H7q-.825 0-1.412-.587Q5 17.825 5 17V7H1V5h4V1h2v16h16v2h-4v4Zm0-8V7H9V5h8q.825 0 1.413.588Q19 6.175 19 7v8Z"/>
+                                </svg>
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalfdab887de9877b48a57ef00a75a2effb)): ?>
+<?php $attributes = $__attributesOriginalfdab887de9877b48a57ef00a75a2effb; ?>
+<?php unset($__attributesOriginalfdab887de9877b48a57ef00a75a2effb); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalfdab887de9877b48a57ef00a75a2effb)): ?>
+<?php $component = $__componentOriginalfdab887de9877b48a57ef00a75a2effb; ?>
+<?php unset($__componentOriginalfdab887de9877b48a57ef00a75a2effb); ?>
+<?php endif; ?>
+
+                        <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','color' => 'gray','class' => 'w-full mt-3','xOn:click' => 'cropper.reset()']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','color' => 'gray','class' => 'w-full mt-3','x-on:click' => 'cropper.reset()']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                            <?php echo e(trans('curator::views.curation.reset')); ?>
+
+                         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                    </div>
+
+                    <div class="flex items-center justify-between gap-3 py-3 px-4 border-t border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-black/10">
+                        <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','size' => 'sm','color' => 'gray','wire:click' => '$dispatch(\'close-modal\', { id: \''.e($modalId).'\' })']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','size' => 'sm','color' => 'gray','wire:click' => '$dispatch(\'close-modal\', { id: \''.e($modalId).'\' })']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                            <?php echo e(trans('curator::views.curation.cancel')); ?>
+
+                         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                        <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['type' => 'button','size' => 'sm','color' => 'success','xOn:click' => 'saveCuration()','wire:target' => 'saveCuration']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'button','size' => 'sm','color' => 'success','x-on:click' => 'saveCuration()','wire:target' => 'saveCuration']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                            <?php echo e(trans('curator::views.curation.save_curation')); ?>
+
+                         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/modals/curator-curation.blade.php ENDPATH**/ ?>

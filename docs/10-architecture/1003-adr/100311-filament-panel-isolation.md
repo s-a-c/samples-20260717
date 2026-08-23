@@ -1,9 +1,13 @@
 ---
 title: "ADR 0005: Filament Panel Isolation"
 description: "Decision to isolate Chinook, Northwind, and Pagila behind separate Filament panels."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: adr
-tags: \[adr, "0005", filament]
-updated: 2026-07-30
+tags: [adr, "0005", filament]
+created: 2026-07-25
+updated: 2026-08-17
 ---
 
 # ADR 0005: Filament Panel Isolation
@@ -42,5 +46,5 @@ updated: 2026-07-30
 
 **Related:**
 
-- [ADR 0001: Multi-Product Architecture](0001-multi-product-architecture.md) — overall multi-product architecture
-- [CONTEXT.md](../../CONTEXT.md) — Sample Panel, Admin Panel, Sample Curator, System Operator
+- [ADR 0001: Multi-Product Architecture](100302-multi-product-architecture.md) — overall multi-product architecture
+- [CONTEXT.md](../../../CONTEXT.md) — Sample Panel, Admin Panel, Sample Curator, System Operator

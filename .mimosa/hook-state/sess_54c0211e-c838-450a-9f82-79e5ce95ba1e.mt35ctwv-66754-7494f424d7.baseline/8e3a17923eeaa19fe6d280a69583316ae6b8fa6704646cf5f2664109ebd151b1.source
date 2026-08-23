@@ -1,0 +1,60 @@
+---
+name: configuring-horizon
+description: "Use this skill whenever the user mentions Horizon by name in a Laravel context. Covers the full Horizon lifecycle: installing Horizon (horizon:install, Sail setup), configuring config/horizon.php (supervisor blocks, queue assignments, balancing strategies, minProcesses/maxProcesses), fixing the dashboard (authorization via Gate::define viewHorizon, blank metrics, horizon:snapshot scheduling), and troubleshooting production issues (worker crashes, timeout chain ordering, LongWaitDetected notifications, waits config). Also covers job tagging and silencing. Do not use for generic Laravel queues without Horizon, SQS or database drivers, standalone Redis setup, Linux supervisord, Telescope, or job batching."
+license: MIT
+metadata:
+  author: laravel
+---
+<?php
+/** @var \Laravel\Boost\Install\GuidelineAssist $assist */
+?>
+# Horizon Configuration
+
+## Documentation
+
+Use ___SINGLE_BACKTICK___search-docs___SINGLE_BACKTICK___ for detailed Horizon patterns and documentation covering configuration, supervisors, balancing, dashboard authorization, tags, notifications, metrics, and deployment.
+
+For deeper guidance on specific topics, read the relevant reference file before implementing:
+
+- ___SINGLE_BACKTICK___references/supervisors.md___SINGLE_BACKTICK___ covers supervisor blocks, balancing strategies, multi-queue setups, and auto-scaling
+- ___SINGLE_BACKTICK___references/notifications.md___SINGLE_BACKTICK___ covers LongWaitDetected alerts, notification routing, and the ___SINGLE_BACKTICK___waits___SINGLE_BACKTICK___ config
+- ___SINGLE_BACKTICK___references/tags.md___SINGLE_BACKTICK___ covers job tagging, dashboard filtering, and silencing noisy jobs
+- ___SINGLE_BACKTICK___references/metrics.md___SINGLE_BACKTICK___ covers the blank metrics dashboard, snapshot scheduling, and retention config
+
+## Basic Usage
+
+### Installation
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___bash
+<?php echo e($assist->artisanCommand('horizon:install')); ?>
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+### Supervisor Configuration
+
+Define supervisors in ___SINGLE_BACKTICK___config/horizon.php___SINGLE_BACKTICK___. The ___SINGLE_BACKTICK___environments___SINGLE_BACKTICK___ array merges into ___SINGLE_BACKTICK___defaults___SINGLE_BACKTICK___ and does not replace the whole supervisor block:
+
+___BOOST_SNIPPET_0___
+
+### Dashboard Authorization
+
+Restrict access in ___SINGLE_BACKTICK___App\Providers\HorizonServiceProvider___SINGLE_BACKTICK___:
+
+___BOOST_SNIPPET_1___
+
+## Verification
+
+1. Run ___SINGLE_BACKTICK___<?php echo e($assist->artisanCommand('horizon')); ?>___SINGLE_BACKTICK___ and visit ___SINGLE_BACKTICK___/horizon___SINGLE_BACKTICK___
+2. Confirm dashboard access is restricted as expected
+3. Check that metrics populate after scheduling ___SINGLE_BACKTICK___horizon:snapshot___SINGLE_BACKTICK___
+
+## Common Pitfalls
+
+- Horizon only works with the Redis queue driver. Other drivers such as database and SQS are not supported.
+- Redis Cluster is not supported. Horizon requires a standalone Redis connection.
+- Always check ___SINGLE_BACKTICK___config/horizon.php___SINGLE_BACKTICK___ before making changes to understand the current supervisor and environment configuration.
+- The ___SINGLE_BACKTICK___environments___SINGLE_BACKTICK___ array overrides only the keys you specify. It merges into ___SINGLE_BACKTICK___defaults___SINGLE_BACKTICK___ and does not replace it.
+- The timeout chain must be ordered: job ___SINGLE_BACKTICK___timeout___SINGLE_BACKTICK___ less than supervisor ___SINGLE_BACKTICK___timeout___SINGLE_BACKTICK___ less than ___SINGLE_BACKTICK___retry_after___SINGLE_BACKTICK___. The wrong order can cause jobs to be retried before Horizon finishes timing them out.
+- The metrics dashboard stays blank until ___SINGLE_BACKTICK___horizon:snapshot___SINGLE_BACKTICK___ is scheduled. Running ___SINGLE_BACKTICK___<?php echo e($assist->artisanCommand('horizon')); ?>___SINGLE_BACKTICK___ alone does not populate metrics.
+- Always use ___SINGLE_BACKTICK___search-docs___SINGLE_BACKTICK___ for the latest Horizon documentation rather than relying on this skill alone.
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/storage/framework/views/a75c31620703fd46512c58163b252a63.blade.php ENDPATH**/ ?>

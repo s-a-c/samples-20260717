@@ -1,0 +1,1 @@
+{"nodes": [{"id": "factory_skills_fortify_development_skill", "label": "Laravel Fortify Development Skill", "file_type": "document", "source_file": ".factory/skills/fortify-development/SKILL.md", "rationale": "Defines the activation triggers and development patterns for Laravel Fortify, a headless auth backend."}], "edges": [], "hyperedges": []}

@@ -1,9 +1,13 @@
 ---
 title: "MVP Scope"
 description: "Minimum viable product scope for the Samples application."
-type: product
-tags: \[product, mvp, scope]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [product, mvp, scope]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # MVP Scope

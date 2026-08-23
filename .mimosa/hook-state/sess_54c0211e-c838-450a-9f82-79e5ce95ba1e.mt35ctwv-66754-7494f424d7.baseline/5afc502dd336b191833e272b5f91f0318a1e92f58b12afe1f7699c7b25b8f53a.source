@@ -1,0 +1,84 @@
+<div x-data="resizedStickyPanel()" class="resized-sticky-panel">
+    <?php echo e($triggerAction); ?>
+
+
+    <div
+        x-show="open"
+        x-cloak
+        x-on:click.outside="open = false"
+        x-transition.opacity
+        class="resized-sticky-panel-menu"
+    >
+        <p class="resized-sticky-panel-heading"><?php echo e(__('asmit-resized-column::sticky-panel.heading')); ?></p>
+
+        <div class="resized-sticky-panel-bulk" x-show="columns.length > 0">
+            <button type="button" class="resized-sticky-panel-bulk-btn resized-sticky-panel-bulk-btn--select" x-on:click="selectAll()">
+                Select all
+            </button>
+            <button type="button" class="resized-sticky-panel-bulk-btn resized-sticky-panel-bulk-btn--deselect" x-on:click="deselectAll()">
+                Deselect all
+            </button>
+        </div>
+
+        <template x-for="col in columns" :key="col.name">
+            <label
+                class="resized-sticky-panel-item"
+                x-bind:class="{ 'resized-sticky-panel-item--locked': col.locked }"
+            >
+                <?php if (isset($component)) { $__componentOriginal087b30d649cc1cfb7e9ea8930c92d47d = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal087b30d649cc1cfb7e9ea8930c92d47d = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.input.checkbox','data' => ['xBind:checked' => 'col.pinned','xBind:disabled' => 'col.locked','xOn:change' => 'toggleDraft(col)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::input.checkbox'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['x-bind:checked' => 'col.pinned','x-bind:disabled' => 'col.locked','x-on:change' => 'toggleDraft(col)']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal087b30d649cc1cfb7e9ea8930c92d47d)): ?>
+<?php $attributes = $__attributesOriginal087b30d649cc1cfb7e9ea8930c92d47d; ?>
+<?php unset($__attributesOriginal087b30d649cc1cfb7e9ea8930c92d47d); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal087b30d649cc1cfb7e9ea8930c92d47d)): ?>
+<?php $component = $__componentOriginal087b30d649cc1cfb7e9ea8930c92d47d; ?>
+<?php unset($__componentOriginal087b30d649cc1cfb7e9ea8930c92d47d); ?>
+<?php endif; ?>
+
+                <span x-text="col.label"></span>
+            </label>
+        </template>
+
+        <p x-show="columns.length === 0" class="resized-sticky-panel-empty">No columns</p>
+
+        <div class="resized-sticky-panel-footer" x-show="columns.length > 0">
+            <?php if (isset($component)) { $__componentOriginal6330f08526bbb3ce2a0da37da512a11f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.button.index','data' => ['size' => 'sm','xBind:disabled' => '! isDirty()','xOn:click' => 'apply()']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['size' => 'sm','x-bind:disabled' => '! isDirty()','x-on:click' => 'apply()']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+                Apply
+             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $attributes = $__attributesOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__attributesOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f)): ?>
+<?php $component = $__componentOriginal6330f08526bbb3ce2a0da37da512a11f; ?>
+<?php unset($__componentOriginal6330f08526bbb3ce2a0da37da512a11f); ?>
+<?php endif; ?>
+        </div>
+    </div>
+</div>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/asmit/resized-column/resources/views/sticky-panel.blade.php ENDPATH**/ ?>

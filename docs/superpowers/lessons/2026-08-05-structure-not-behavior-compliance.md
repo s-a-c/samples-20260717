@@ -1,9 +1,13 @@
 ---
 title: "Structure-vs-Behavior Compliance: How Three Audits Marked a Destructive Importer ✅"
 description: "> **Map:** [Wayfinder — Samples Implementation](https://github.com/s-a-c/samples-20260717/issues/15) · A review of the import-cascade-fix-and-transform plan against map #15's decision history, tracing how two latent failures — a cross-schema CASCADE and an unwired transform layer — survived three compliance reports marked ✅."
-type: spec
-tags: \[spec, lessons, wayfinder, "15", compliance, import, cascade]
-updated: 2026-08-05
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: research
+tags: [spec, lessons, wayfinder, "15", compliance, import, cascade]
+created: 2026-08-05
+updated: 2026-08-17
 ---
 
 # Structure-vs-Behavior Compliance: How Three Audits Marked a Destructive Importer ✅

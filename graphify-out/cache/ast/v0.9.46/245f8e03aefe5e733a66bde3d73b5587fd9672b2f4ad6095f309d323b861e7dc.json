@@ -1,0 +1,315 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "label": "100301-contents.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "1003-adr \u2014 Contents",
+                "description": "Structural contents page for the Architecture Decision Records: every ADR in prefix order.",
+                "type": "contents",
+                "tags": "[contents, navigation, adr]",
+                "created": "2026-07-25",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_1003_adr_contents",
+            "label": "1003-adr \u2014 Contents",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L13"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_1_purpose",
+            "label": "1. Purpose",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L29"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_2_direct_children",
+            "label": "2. Direct children",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L33"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_1003_adr_contents",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100398_index_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L27",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100398-index.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1001_contents_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L27",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1001-contents.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_1003_adr_contents",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_1_purpose",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_1003_adr_contents",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_2_direct_children",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L33",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100302_multi_product_architecture_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L37",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100302-multi-product-architecture.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100304_uuidv7_for_all_entities_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L38",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100304-uuidv7-for-all-entities.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100307_postgres_native_search_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L39",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100307-postgres-native-search.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100308_shadow_schema_import_pipeline_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L40",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100308-shadow-schema-import-pipeline.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100311_filament_panel_isolation_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L41",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100311-filament-panel-isolation.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100313_source_identity_registry_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L42",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100313-source-identity-registry.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100314_product_reset_semantics_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L43",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100314-product-reset-semantics.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100316_spatie_shield_fortify_coexistence_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L44",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100316-spatie-shield-fortify-coexistence.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100317_search_document_shape_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L45",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100317-search-document-shape.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100319_embedding_profile_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L46",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100319-embedding-profile.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100322_portfolio_card_architecture_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L47",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100322-portfolio-card-architecture.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100323_team_artefacts_schema_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L48",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100323-team-artefacts-schema.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100326_test_pyramid_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L49",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100326-test-pyramid.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100328_larastan_baseline_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L50",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100328-larastan-baseline.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100329_implementation_readiness_dossier_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L51",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100329-implementation-readiness-dossier.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100331_documentation_lifecycle_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L52",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100331-documentation-lifecycle.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L53",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100332-git-branch.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100334_acceptance_and_operational_gates_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L54",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100334-acceptance-and-operational-gates.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100337_single_postgres_test_suite_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L55",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100337-single-postgres-test-suite.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100338_samples_product_enum_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L56",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100338-samples-product-enum.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100341_authorization_audit_dashboard_boundary_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L57",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100341-authorization-audit-dashboard-boundary.md"
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100301_contents_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100343_filament_resource_generation_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100301-contents.md",
+            "source_location": "L58",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/10-architecture/1003-adr/100343-filament-resource-generation.md"
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

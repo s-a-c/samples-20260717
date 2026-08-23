@@ -1,0 +1,148 @@
+# spatie/laravel-activitylog
+
+Activity logging package for Laravel. Logs model events and manual activities to a database table.
+
+## Key Concepts
+
+- **Activity**: An Eloquent model (___SINGLE_BACKTICK___Spatie\Activitylog\Models\Activity___SINGLE_BACKTICK___) storing log entries with subject, causer, event, attribute_changes, and properties.
+- **Subject**: The model being acted upon (polymorphic ___SINGLE_BACKTICK___subject_type___SINGLE_BACKTICK___/___SINGLE_BACKTICK___subject_id___SINGLE_BACKTICK___).
+- **Causer**: The model that caused the action, typically the authenticated user (polymorphic ___SINGLE_BACKTICK___causer_type___SINGLE_BACKTICK___/___SINGLE_BACKTICK___causer_id___SINGLE_BACKTICK___).
+- **LogOptions**: Fluent configuration object returned by ___SINGLE_BACKTICK___getActivitylogOptions()___SINGLE_BACKTICK___ on models using the ___SINGLE_BACKTICK___LogsActivity___SINGLE_BACKTICK___ trait.
+- **ActivityEvent**: Enum with cases ___SINGLE_BACKTICK___Created___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___Updated___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___Deleted___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___Restored___SINGLE_BACKTICK___.
+- **___SINGLE_BACKTICK___attribute_changes___SINGLE_BACKTICK___** column: stores ___SINGLE_BACKTICK___{"attributes": {...}, "old": {...}}___SINGLE_BACKTICK___ for tracked model changes.
+- **___SINGLE_BACKTICK___properties___SINGLE_BACKTICK___** column: stores custom user data set via ___SINGLE_BACKTICK___withProperties()___SINGLE_BACKTICK___.
+
+## Traits
+
+### ___SINGLE_BACKTICK___LogsActivity___SINGLE_BACKTICK___
+Add to models to automatically log create/update/delete events. Optionally implement ___SINGLE_BACKTICK___getActivitylogOptions()___SINGLE_BACKTICK___ to configure which attributes to track (defaults to logging events without attribute changes).
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___php
+use Spatie\Activitylog\Models\Concerns\LogsActivity;
+use Spatie\Activitylog\Support\LogOptions;
+
+class Article extends Model
+{
+    use LogsActivity;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty()
+            ->dontLogEmptyChanges();
+    }
+}
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+### ___SINGLE_BACKTICK___CausesActivity___SINGLE_BACKTICK___
+Add to user/causer models. Provides ___SINGLE_BACKTICK___activitiesAsCauser()___SINGLE_BACKTICK___ relationship.
+
+### ___SINGLE_BACKTICK___HasActivity___SINGLE_BACKTICK___
+Combines ___SINGLE_BACKTICK___LogsActivity___SINGLE_BACKTICK___ and ___SINGLE_BACKTICK___CausesActivity___SINGLE_BACKTICK___. Provides ___SINGLE_BACKTICK___activities()___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___activitiesAsSubject()___SINGLE_BACKTICK___, and ___SINGLE_BACKTICK___activitiesAsCauser()___SINGLE_BACKTICK___.
+
+## Manual Logging
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___php
+activity()
+    ->performedOn($article)
+    ->causedBy($user)
+    ->event(ActivityEvent::Updated)
+    ->withProperties(['key' => 'value'])
+    ->log('Article was updated');
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+## LogOptions Methods
+
+| Method | Description |
+|--------|-------------|
+| ___SINGLE_BACKTICK___logFillable()___SINGLE_BACKTICK___ | Log all fillable attributes |
+| ___SINGLE_BACKTICK___logAll()___SINGLE_BACKTICK___ | Log all attributes |
+| ___SINGLE_BACKTICK___logOnly(array)___SINGLE_BACKTICK___ | Log specific attributes |
+| ___SINGLE_BACKTICK___logExcept(array)___SINGLE_BACKTICK___ | Exclude attributes |
+| ___SINGLE_BACKTICK___logOnlyDirty()___SINGLE_BACKTICK___ | Only log changed attributes |
+| ___SINGLE_BACKTICK___dontLogEmptyChanges()___SINGLE_BACKTICK___ | Skip logging when no tracked attributes changed |
+| ___SINGLE_BACKTICK___dontLogIfAttributesChangedOnly(array)___SINGLE_BACKTICK___ | Ignore updates that only change these attributes |
+| ___SINGLE_BACKTICK___useLogName(string)___SINGLE_BACKTICK___ | Set custom log name |
+| ___SINGLE_BACKTICK___setDescriptionForEvent(Closure)___SINGLE_BACKTICK___ | Custom description per event |
+| ___SINGLE_BACKTICK___useAttributeRawValues(array)___SINGLE_BACKTICK___ | Store raw (uncast) values |
+
+## Querying Activities
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___php
+use Spatie\Activitylog\Models\Activity;
+use Spatie\Activitylog\Enums\ActivityEvent;
+
+Activity::forEvent(ActivityEvent::Created)->get();
+Activity::causedBy($user)->get();
+Activity::forSubject($article)->get();
+Activity::inLog('orders')->get();
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+## Setting the causer
+
+Override the causer for a block of code:
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___php
+use Spatie\Activitylog\Facades\Activity;
+
+Activity::defaultCauser($admin, function () {
+    // all activities here are caused by $admin
+});
+
+// or set globally for the rest of the request
+Activity::defaultCauser($admin);
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+## Disabling Logging
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___php
+activity()->withoutLogging(function () {
+    // no activities logged here
+});
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+## Accessing Changes and Properties
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___php
+$activity = Activity::latest()->first();
+
+// Tracked model changes (set automatically by LogsActivity)
+$activity->attribute_changes; // Collection: {"attributes": {...}, "old": {...}}
+
+// Custom user data (set via withProperties)
+$activity->properties; // Collection
+$activity->getProperty('key'); // single value
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+## Custom Activity Model
+
+Set ___SINGLE_BACKTICK___activity_model___SINGLE_BACKTICK___ in ___SINGLE_BACKTICK___config/activitylog.php___SINGLE_BACKTICK___ to a class that extends ___SINGLE_BACKTICK___Model___SINGLE_BACKTICK___ and implements ___SINGLE_BACKTICK___Spatie\Activitylog\Contracts\Activity___SINGLE_BACKTICK___. Use a custom model for custom table names or database connections.
+
+## Customizing Actions
+
+The package uses action classes (___SINGLE_BACKTICK___LogActivityAction___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___CleanActivityLogAction___SINGLE_BACKTICK___) that can be extended and swapped via config:
+
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___php
+// config/activitylog.php
+'actions' => [
+    'log_activity' => \App\Actions\CustomLogActivityAction::class,
+    'clean_log' => \App\Actions\CustomCleanAction::class,
+],
+___SINGLE_BACKTICK______SINGLE_BACKTICK______SINGLE_BACKTICK___
+
+Custom action classes must extend the originals. Override protected methods (___SINGLE_BACKTICK___save()___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___beforeActivityLogged()___SINGLE_BACKTICK___, ___SINGLE_BACKTICK___resolveDescription()___SINGLE_BACKTICK___, etc.) to customize behavior.
+
+## Configuration
+
+Key config options in ___SINGLE_BACKTICK___config/activitylog.php___SINGLE_BACKTICK___:
+- ___SINGLE_BACKTICK___enabled___SINGLE_BACKTICK___: Master on/off switch (env: ___SINGLE_BACKTICK___ACTIVITYLOG_ENABLED___SINGLE_BACKTICK___)
+- ___SINGLE_BACKTICK___clean_after_days___SINGLE_BACKTICK___: Days to keep records for ___SINGLE_BACKTICK___activitylog:clean___SINGLE_BACKTICK___ command
+- ___SINGLE_BACKTICK___default_log_name___SINGLE_BACKTICK___: Default log name (string)
+- ___SINGLE_BACKTICK___default_auth_driver___SINGLE_BACKTICK___: Auth driver for causer resolution
+- ___SINGLE_BACKTICK___include_soft_deleted_subjects___SINGLE_BACKTICK___: Include soft-deleted subjects
+- ___SINGLE_BACKTICK___activity_model___SINGLE_BACKTICK___: Custom Activity model class
+- ___SINGLE_BACKTICK___default_except_attributes___SINGLE_BACKTICK___: Globally excluded attributes
+- ___SINGLE_BACKTICK___actions.log_activity___SINGLE_BACKTICK___: Action class for logging activities
+- ___SINGLE_BACKTICK___actions.clean_log___SINGLE_BACKTICK___: Action class for cleaning old activities
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/storage/framework/views/16257631a22a812875718195369743a8.blade.php ENDPATH**/ ?>

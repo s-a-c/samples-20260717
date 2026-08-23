@@ -1,0 +1,135 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_06_requirements_0601_contents_md",
+            "label": "0601-contents.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "06-requirements \u2014 Contents",
+                "description": "Structural contents page: every direct child of docs/06-requirements, in prefix order.",
+                "type": "contents",
+                "tags": "[navigation, contents]",
+                "created": "2026-08-17",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_06_requirements_0601_contents_06_requirements_contents",
+            "label": "06-requirements \u2014 Contents",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L13"
+        },
+        {
+            "id": "$graphify-root$_docs_06_requirements_0601_contents_1_purpose",
+            "label": "1. Purpose",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L29"
+        },
+        {
+            "id": "$graphify-root$_docs_06_requirements_0601_contents_2_direct_children",
+            "label": "2. Direct children",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L37"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_06_requirements_0601_contents_md",
+            "target": "$graphify-root$_docs_06_requirements_0601_contents_06_requirements_contents",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_06_requirements_0601_contents_06_requirements_contents",
+            "target": "$graphify-root$_docs_06_requirements_0601_contents_1_purpose",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_06_requirements_0601_contents_md",
+            "target": "$graphify-root$_docs_01_contents_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L35",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/01-contents.md"
+        },
+        {
+            "source": "$graphify-root$_docs_06_requirements_0601_contents_06_requirements_contents",
+            "target": "$graphify-root$_docs_06_requirements_0601_contents_2_direct_children",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L37",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_06_requirements_0601_contents_md",
+            "target": "$graphify-root$_docs_06_requirements_0602_problem_statement_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L41",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/06-requirements/0602-problem-statement.md"
+        },
+        {
+            "source": "$graphify-root$_docs_06_requirements_0601_contents_md",
+            "target": "$graphify-root$_docs_06_requirements_0604_vision_and_goals_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L42",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/06-requirements/0604-vision-and-goals.md"
+        },
+        {
+            "source": "$graphify-root$_docs_06_requirements_0601_contents_md",
+            "target": "$graphify-root$_docs_06_requirements_0607_functional_requirements_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L43",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/06-requirements/0607-functional-requirements.md"
+        },
+        {
+            "source": "$graphify-root$_docs_06_requirements_0601_contents_md",
+            "target": "$graphify-root$_docs_06_requirements_0608_non_functional_requirements_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L44",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/06-requirements/0608-non-functional-requirements.md"
+        },
+        {
+            "source": "$graphify-root$_docs_06_requirements_0601_contents_md",
+            "target": "$graphify-root$_docs_06_requirements_0611_traceability_matrix_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/06-requirements/0601-contents.md",
+            "source_location": "L45",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/06-requirements/0611-traceability-matrix.md"
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

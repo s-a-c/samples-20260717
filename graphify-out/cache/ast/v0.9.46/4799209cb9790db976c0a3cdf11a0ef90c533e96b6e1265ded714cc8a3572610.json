@@ -1,0 +1,13 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_database_sources_chinook_php",
+            "label": "chinook.php",
+            "file_type": "code",
+            "source_file": "database/sources/chinook.php",
+            "source_location": "L1"
+        }
+    ],
+    "edges": [],
+    "raw_calls": []
+}

@@ -1,0 +1,308 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_models_pagila_category_php",
+            "label": "Category.php",
+            "file_type": "code",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_models_pagila_category_category",
+            "label": "Category",
+            "file_type": "code",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L16",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "model",
+            "label": "Model",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "hasproductdomain",
+            "label": "HasProductDomain",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "belongstoproductdomain",
+            "label": "BelongsToProductDomain",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "hasuuids",
+            "label": "HasUuids",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "$graphify-root$_app_models_pagila_category_category_getproductdomain",
+            "label": ".getProductDomain()",
+            "file_type": "code",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L23",
+            "_callable": true
+        },
+        {
+            "id": "samplesproduct",
+            "label": "SamplesProduct",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Models/Pagila/Category.php"
+        },
+        {
+            "id": "$graphify-root$_app_models_pagila_category_category_films",
+            "label": ".films()",
+            "file_type": "code",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L28",
+            "_callable": true
+        },
+        {
+            "id": "belongstomany",
+            "label": "BelongsToMany",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Models/Pagila/Category.php"
+        },
+        {
+            "id": "$graphify-root$_app_models_pagila_category_category_filmcategories",
+            "label": ".filmCategories()",
+            "file_type": "code",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L33",
+            "_callable": true
+        },
+        {
+            "id": "hasmany",
+            "label": "HasMany",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": "",
+            "origin_file": "$graphify-root$/app/Models/Pagila/Category.php"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_models_pagila_category_php",
+            "target": "hasproductdomain",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_php",
+            "target": "samplesproduct",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_php",
+            "target": "belongstoproductdomain",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_php",
+            "target": "table",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_php",
+            "target": "hasuuids",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_php",
+            "target": "model",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_php",
+            "target": "belongstomany",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_php",
+            "target": "hasmany",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L14",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_php",
+            "target": "$graphify-root$_app_models_pagila_category_category",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L16",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category",
+            "target": "model",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L17",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category",
+            "target": "hasproductdomain",
+            "relation": "implements",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L17",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category",
+            "target": "belongstoproductdomain",
+            "relation": "mixes_in",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L19",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category",
+            "target": "hasuuids",
+            "relation": "mixes_in",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L19",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category",
+            "target": "$graphify-root$_app_models_pagila_category_category_getproductdomain",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L23",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category_getproductdomain",
+            "target": "samplesproduct",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L23",
+            "weight": 1.0,
+            "context": "return_type"
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category",
+            "target": "$graphify-root$_app_models_pagila_category_category_films",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L28",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category_films",
+            "target": "belongstomany",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L28",
+            "weight": 1.0,
+            "context": "return_type"
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category",
+            "target": "$graphify-root$_app_models_pagila_category_category_filmcategories",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L33",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category_filmcategories",
+            "target": "hasmany",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L33",
+            "weight": 1.0,
+            "context": "return_type"
+        },
+        {
+            "source": "$graphify-root$_app_models_pagila_category_category_getproductdomain",
+            "target": "samplesproduct",
+            "relation": "references_constant",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L25",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_models_pagila_category_category_films",
+            "callee": "belongsToMany",
+            "is_member_call": true,
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L30",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_models_pagila_category_category_filmcategories",
+            "callee": "hasMany",
+            "is_member_call": true,
+            "source_file": "app/Models/Pagila/Category.php",
+            "source_location": "L35",
+            "receiver": null
+        }
+    ]
+}

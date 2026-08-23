@@ -1,0 +1,79 @@
+<?php
+    $statePath = $getStatePath();
+?>
+
+<?php if (isset($component)) { $__componentOriginal511d4862ff04963c3c16115c05a86a9d = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal511d4862ff04963c3c16115c05a86a9d = $attributes; } ?>
+<?php $component = Illuminate\View\DynamicComponent::resolve(['component' => $getFieldWrapperView()] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('dynamic-component'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\DynamicComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['field' => $field]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+
+    <div
+        x-data="{
+            state: $wire.entangle('<?php echo e($statePath); ?>'),
+            insertPreview(event) {
+                if (event.detail.statePath !== '<?php echo e($statePath); ?>') return;
+                this.state = event.detail.curation;
+            }
+        }"
+        x-on:add-curation.window="insertPreview($event)"
+        class="w-full curator-curation-form-component"
+    >
+        <div x-show="!state">
+            <?php echo e($getAction('open_curation_panel')); ?>
+
+        </div>
+
+        <div x-show="state" x-cloak>
+            <div class="transition duration-75 overflow-hidden border border-gray-300 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white grid md:grid-cols-2 gap-3">
+                <div class="relative block w-full h-40 checkered p-4">
+                    <img
+                        x-bind:src="state?.url"
+                        x-bind:width="state?.width"
+                        x-bind:height="state?.height"
+                        alt=""
+                        class="w-full h-full object-contain"
+                    />
+                </div>
+                <div>
+                    <dl class="px-3 pb-3 md:py-3">
+                        <div class="flex gap-2">
+                            <dt class="font-bold"><?php echo e(trans('curator::views.curation.key')); ?>: </dt>
+                            <dd x-text="state?.key"></dd>
+                        </div>
+                        <div class="flex gap-2">
+                            <dt class="font-bold"><?php echo e(trans('curator::views.curation.width')); ?>: </dt>
+                            <dd x-text="state?.width"></dd>
+                        </div>
+                        <div class="flex gap-2">
+                            <dt class="font-bold"><?php echo e(trans('curator::views.curation.height')); ?>: </dt>
+                            <dd x-text="state?.height"></dd>
+                        </div>
+                        <div class="flex gap-2">
+                            <dt class="font-bold"><?php echo e(trans('curator::views.curation.format')); ?>: </dt>
+                            <dd x-text="state?.ext"></dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal511d4862ff04963c3c16115c05a86a9d)): ?>
+<?php $attributes = $__attributesOriginal511d4862ff04963c3c16115c05a86a9d; ?>
+<?php unset($__attributesOriginal511d4862ff04963c3c16115c05a86a9d); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal511d4862ff04963c3c16115c05a86a9d)): ?>
+<?php $component = $__componentOriginal511d4862ff04963c3c16115c05a86a9d; ?>
+<?php unset($__componentOriginal511d4862ff04963c3c16115c05a86a9d); ?>
+<?php endif; ?>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/awcodes/filament-curator/resources/views/components/forms/curation.blade.php ENDPATH**/ ?>

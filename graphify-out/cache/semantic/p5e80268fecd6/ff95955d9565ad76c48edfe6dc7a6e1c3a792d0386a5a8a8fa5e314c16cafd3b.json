@@ -1,0 +1,1 @@
+{"nodes": [{"id": "ai_sdk_development_skill", "label": "AI SDK Development Skill", "file_type": "concept", "source_file": ".pi/skills/ai-sdk-development/SKILL.md", "rationale": "Official Laravel AI SDK for agents, embeddings, and multi-modal AI."}], "edges": [], "hyperedges": []}

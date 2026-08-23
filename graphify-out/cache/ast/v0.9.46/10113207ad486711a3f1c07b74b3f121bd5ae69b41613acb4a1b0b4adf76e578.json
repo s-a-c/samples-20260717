@@ -1,0 +1,462 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_md",
+            "label": "SKILL.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "name": "debugging-output-and-previewing-html-using-ray",
+                "description": "Use when user says &quot;send to Ray,&quot; &quot;show in Ray,&quot; &quot;debug in Ray,&quot; &quot;log to Ray,&quot; &quot;display in Ray,&quot; or wants to visualize data, debug output, or show diagrams in the Ray desktop application."
+            }
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "label": "Ray Skill",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L13"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_overview",
+            "label": "Overview",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L15"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_connection_details",
+            "label": "Connection Details",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L23"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_request_format",
+            "label": "Request Format",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L31"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_basic_request_structure",
+            "label": "Basic Request Structure",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L37"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_fields",
+            "label": "Fields",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L59"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_origin_object",
+            "label": "Origin Object",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L67"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "label": "Payload Types",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L79"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_log_send_values",
+            "label": "Log (Send Values)",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L81"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_custom_html_text_content",
+            "label": "Custom (HTML/Text Content)",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L93"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_table",
+            "label": "Table",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L106"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_color",
+            "label": "Color",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L119"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_screen_color",
+            "label": "Screen Color",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L135"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_label",
+            "label": "Label",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L149"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_size",
+            "label": "Size",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L163"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_notify_desktop_notification",
+            "label": "Notify (Desktop Notification)",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L179"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_new_screen",
+            "label": "New Screen",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L191"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_measure_timing",
+            "label": "Measure (Timing)",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L203"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_simple_payloads_no_content",
+            "label": "Simple Payloads (No Content)",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L222"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_combining_multiple_payloads",
+            "label": "Combining Multiple Payloads",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L244"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_example_complete_request",
+            "label": "Example: Complete Request",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L277"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_availability_check",
+            "label": "Availability Check",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L316"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_getting_ray_information",
+            "label": "Getting Ray Information",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L326"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_get_windows",
+            "label": "Get Windows",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L328"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_get_theme_colors",
+            "label": "Get Theme Colors",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L345"
+        },
+        {
+            "id": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_type_reference",
+            "label": "Payload Type Reference",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L394"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_md",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_overview",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L15",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_connection_details",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L23",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_request_format",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L31",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_request_format",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_basic_request_structure",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L37",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_request_format",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_fields",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L59",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_request_format",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_origin_object",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L67",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L79",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_log_send_values",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L81",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_custom_html_text_content",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L93",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_table",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L106",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_color",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L119",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_screen_color",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L135",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_label",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L149",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_size",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L163",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_notify_desktop_notification",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L179",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_new_screen",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L191",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_measure_timing",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L203",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_types",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_simple_payloads_no_content",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L222",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_combining_multiple_payloads",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L244",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_example_complete_request",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L277",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_availability_check",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L316",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_getting_ray_information",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L326",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_getting_ray_information",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_get_windows",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L328",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_getting_ray_information",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_get_theme_colors",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L345",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_ray_skill",
+            "target": "$graphify-root$_claude_skills_debugging_output_and_previewing_html_using_ray_skill_payload_type_reference",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": ".claude/skills/debugging-output-and-previewing-html-using-ray/SKILL.md",
+            "source_location": "L394",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

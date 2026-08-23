@@ -1,0 +1,13 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_database_sources_pagila_php",
+            "label": "pagila.php",
+            "file_type": "code",
+            "source_file": "database/sources/pagila.php",
+            "source_location": "L1"
+        }
+    ],
+    "edges": [],
+    "raw_calls": []
+}

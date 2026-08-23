@@ -1,9 +1,13 @@
 ---
 title: "Problem Statement"
 description: "Problem definition for presenting unrelated reference datasets as distinct products."
-type: requirements
-tags: \[requirements, problem, statement]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [requirements, problem, statement]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Problem Statement

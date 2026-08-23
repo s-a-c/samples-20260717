@@ -1,0 +1,573 @@
+<?php return array (
+  'albertoarena/laravel-truss' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'AlbertoArena\\Truss\\TrussServiceProvider',
+    ),
+  ),
+  'anourvalar/eloquent-serialize' => 
+  array (
+    'aliases' => 
+    array (
+      'EloquentSerialize' => 'AnourValar\\EloquentSerialize\\Facades\\EloquentSerializeFacade',
+    ),
+  ),
+  'asmit/resized-column' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Asmit\\ResizedColumn\\ResizedColumnServiceProvider',
+    ),
+  ),
+  'awcodes/filament-badgeable-column' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Awcodes\\BadgeableColumn\\BadgeableColumnServiceProvider',
+    ),
+  ),
+  'awcodes/filament-curator' => 
+  array (
+    'aliases' => 
+    array (
+      'Glide' => 'Awcodes\\Curator\\Facades\\Glide',
+      'Curator' => 'Awcodes\\Curator\\Facades\\Curator',
+      'Curation' => 'Awcodes\\Curator\\Facades\\Curation',
+    ),
+    'providers' => 
+    array (
+      0 => 'Awcodes\\Curator\\CuratorServiceProvider',
+    ),
+  ),
+  'barryvdh/laravel-ide-helper' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
+    ),
+  ),
+  'bezhansalleh/filament-panel-switch' => 
+  array (
+    'aliases' => 
+    array (
+      'PanelSwitch' => 'BezhanSalleh\\PanelSwitch\\Facades\\PanelSwitch',
+    ),
+    'providers' => 
+    array (
+      0 => 'BezhanSalleh\\PanelSwitch\\PanelSwitchServiceProvider',
+    ),
+  ),
+  'bezhansalleh/filament-plugin-essentials' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BezhanSalleh\\PluginEssentials\\PluginEssentialsServiceProvider',
+    ),
+  ),
+  'bezhansalleh/filament-shield' => 
+  array (
+    'aliases' => 
+    array (
+      'FilamentShield' => 'BezhanSalleh\\FilamentShield\\Facades\\FilamentShield',
+    ),
+    'providers' => 
+    array (
+      0 => 'BezhanSalleh\\FilamentShield\\FilamentShieldServiceProvider',
+    ),
+  ),
+  'blade-ui-kit/blade-heroicons' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BladeUI\\Heroicons\\BladeHeroiconsServiceProvider',
+    ),
+  ),
+  'blade-ui-kit/blade-icons' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BladeUI\\Icons\\BladeIconsServiceProvider',
+    ),
+  ),
+  'filament/actions' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Actions\\ActionsServiceProvider',
+    ),
+  ),
+  'filament/filament' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\FilamentServiceProvider',
+    ),
+  ),
+  'filament/forms' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Forms\\FormsServiceProvider',
+    ),
+  ),
+  'filament/infolists' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Infolists\\InfolistsServiceProvider',
+    ),
+  ),
+  'filament/notifications' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Notifications\\NotificationsServiceProvider',
+    ),
+  ),
+  'filament/query-builder' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\QueryBuilder\\QueryBuilderServiceProvider',
+    ),
+  ),
+  'filament/schemas' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Schemas\\SchemasServiceProvider',
+    ),
+  ),
+  'filament/support' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Support\\SupportServiceProvider',
+    ),
+  ),
+  'filament/tables' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Tables\\TablesServiceProvider',
+    ),
+  ),
+  'filament/widgets' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Widgets\\WidgetsServiceProvider',
+    ),
+  ),
+  'fruitcake/laravel-debugbar' => 
+  array (
+    'aliases' => 
+    array (
+      'Debugbar' => 'Fruitcake\\LaravelDebugbar\\Facades\\Debugbar',
+    ),
+    'providers' => 
+    array (
+      0 => 'Fruitcake\\LaravelDebugbar\\ServiceProvider',
+    ),
+  ),
+  'jasonmccreary/laravel-test-assertions' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'JMac\\Testing\\AdditionalAssertionsServiceProvider',
+    ),
+  ),
+  'joshcirre/instruckt-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Instruckt\\Laravel\\InstrucktServiceProvider',
+    ),
+  ),
+  'kirschbaum-development/eloquent-power-joins' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Kirschbaum\\PowerJoins\\PowerJoinsServiceProvider',
+    ),
+  ),
+  'lara-zeus/activity-timeline' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LaraZeus\\ActivityTimeline\\ActivityTimelineServiceProvider',
+    ),
+  ),
+  'laravel-chronicle/core' => 
+  array (
+    'aliases' => 
+    array (
+      'chronicle' => 'Chronicle\\Facades\\Chronicle',
+    ),
+    'providers' => 
+    array (
+      0 => 'Chronicle\\ChronicleServiceProvider',
+    ),
+  ),
+  'laravel/ai' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Ai\\AiServiceProvider',
+    ),
+  ),
+  'laravel/boost' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Boost\\BoostServiceProvider',
+    ),
+  ),
+  'laravel/doctor' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Doctor\\DoctorServiceProvider',
+    ),
+  ),
+  'laravel/fortify' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Fortify\\FortifyServiceProvider',
+    ),
+  ),
+  'laravel/horizon' => 
+  array (
+    'aliases' => 
+    array (
+      'Horizon' => 'Laravel\\Horizon\\Horizon',
+    ),
+    'providers' => 
+    array (
+      0 => 'Laravel\\Horizon\\HorizonServiceProvider',
+    ),
+  ),
+  'laravel/mcp' => 
+  array (
+    'aliases' => 
+    array (
+      'Mcp' => 'Laravel\\Mcp\\Server\\Facades\\Mcp',
+    ),
+    'providers' => 
+    array (
+      0 => 'Laravel\\Mcp\\Server\\McpServiceProvider',
+    ),
+  ),
+  'laravel/pail' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Pail\\PailServiceProvider',
+    ),
+  ),
+  'laravel/pao' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Pao\\Laravel\\ServiceProvider',
+    ),
+  ),
+  'laravel/passkeys' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Passkeys\\PasskeysServiceProvider',
+    ),
+  ),
+  'laravel/pulse' => 
+  array (
+    'aliases' => 
+    array (
+      'Pulse' => 'Laravel\\Pulse\\Facades\\Pulse',
+    ),
+    'providers' => 
+    array (
+      0 => 'Laravel\\Pulse\\PulseServiceProvider',
+    ),
+  ),
+  'laravel/reverb' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Reverb\\ApplicationManagerServiceProvider',
+      1 => 'Laravel\\Reverb\\ReverbServiceProvider',
+    ),
+  ),
+  'laravel/roster' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Roster\\RosterServiceProvider',
+    ),
+  ),
+  'laravel/sail' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Sail\\SailServiceProvider',
+    ),
+  ),
+  'laravel/sanctum' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+    ),
+  ),
+  'laravel/sentinel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Sentinel\\SentinelServiceProvider',
+    ),
+  ),
+  'laravel/telescope' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Telescope\\TelescopeServiceProvider',
+    ),
+  ),
+  'laravel/tinker' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'laraveldaily/filacheck' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filacheck\\FilacheckServiceProvider',
+    ),
+  ),
+  'laraveldaily/filacheck-pro' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'FilacheckPro\\FilacheckProServiceProvider',
+    ),
+  ),
+  'livewire/blaze' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Livewire\\Blaze\\BlazeServiceProvider',
+    ),
+  ),
+  'livewire/flux' => 
+  array (
+    'aliases' => 
+    array (
+      'Flux' => 'Flux\\Flux',
+    ),
+    'providers' => 
+    array (
+      0 => 'Flux\\FluxServiceProvider',
+    ),
+  ),
+  'livewire/flux-pro' => 
+  array (
+    'aliases' => 
+    array (
+      'Flux' => 'FluxPro\\FluxPro',
+    ),
+    'providers' => 
+    array (
+      0 => 'FluxPro\\FluxProServiceProvider',
+    ),
+  ),
+  'livewire/livewire' => 
+  array (
+    'aliases' => 
+    array (
+      'Livewire' => 'Livewire\\Livewire',
+    ),
+    'providers' => 
+    array (
+      0 => 'Livewire\\LivewireServiceProvider',
+    ),
+  ),
+  'nesbot/carbon' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Carbon\\Laravel\\ServiceProvider',
+    ),
+  ),
+  'nunomaduro/collision' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'nunomaduro/essentials' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'NunoMaduro\\Essentials\\EssentialsServiceProvider',
+    ),
+  ),
+  'nunomaduro/termwind' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Termwind\\Laravel\\TermwindServiceProvider',
+    ),
+  ),
+  'pestphp/pest-plugin-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Pest\\Laravel\\PestServiceProvider',
+    ),
+  ),
+  'relaticle/flowforge' => 
+  array (
+    'aliases' => 
+    array (
+      'Flowforge' => 'Relaticle\\Flowforge\\Facades\\Flowforge',
+    ),
+    'providers' => 
+    array (
+      0 => 'Relaticle\\Flowforge\\FlowforgeServiceProvider',
+    ),
+  ),
+  'ryangjchandler/blade-capture-directive' => 
+  array (
+    'aliases' => 
+    array (
+      'BladeCaptureDirective' => 'RyanChandler\\BladeCaptureDirective\\Facades\\BladeCaptureDirective',
+    ),
+    'providers' => 
+    array (
+      0 => 'RyanChandler\\BladeCaptureDirective\\BladeCaptureDirectiveServiceProvider',
+    ),
+  ),
+  'shuvroroy/filament-spatie-laravel-backup' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'ShuvroRoy\\FilamentSpatieLaravelBackup\\FilamentSpatieLaravelBackupServiceProvider',
+    ),
+  ),
+  'shuvroroy/filament-spatie-laravel-health' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'ShuvroRoy\\FilamentSpatieLaravelHealth\\FilamentSpatieLaravelHealthServiceProvider',
+    ),
+  ),
+  'spatie/eloquent-sortable' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\EloquentSortable\\EloquentSortableServiceProvider',
+    ),
+  ),
+  'spatie/laravel-activitylog' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Activitylog\\ActivitylogServiceProvider',
+    ),
+  ),
+  'spatie/laravel-backup' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Backup\\BackupServiceProvider',
+    ),
+  ),
+  'spatie/laravel-health' => 
+  array (
+    'aliases' => 
+    array (
+      'Health' => 'Spatie\\Health\\Facades\\Health',
+    ),
+    'providers' => 
+    array (
+      0 => 'Spatie\\Health\\HealthServiceProvider',
+    ),
+  ),
+  'spatie/laravel-horizon-watcher' => 
+  array (
+    'aliases' => 
+    array (
+      'HorizonWatcher' => 'Spatie\\HorizonWatcher\\Facades\\HorizonWatcher',
+    ),
+    'providers' => 
+    array (
+      0 => 'Spatie\\HorizonWatcher\\HorizonWatcherServiceProvider',
+    ),
+  ),
+  'spatie/laravel-permission' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Permission\\PermissionServiceProvider',
+    ),
+  ),
+  'spatie/laravel-ray' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\LaravelRay\\RayServiceProvider',
+    ),
+  ),
+  'spatie/laravel-signal-aware-command' => 
+  array (
+    'aliases' => 
+    array (
+      'Signal' => 'Spatie\\SignalAwareCommand\\Facades\\Signal',
+    ),
+    'providers' => 
+    array (
+      0 => 'Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider',
+    ),
+  ),
+  'spatie/laravel-tags' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Tags\\TagsServiceProvider',
+    ),
+  ),
+  'spatie/laravel-translatable' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Translatable\\TranslatableServiceProvider',
+    ),
+  ),
+  'spatie/laravel-web-tinker' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\WebTinker\\WebTinkerServiceProvider',
+    ),
+  ),
+  'stechstudio/filament-impersonate' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'STS\\FilamentImpersonate\\FilamentImpersonateServiceProvider',
+    ),
+  ),
+  'tpetry/laravel-postgresql-enhanced' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Tpetry\\PostgresqlEnhanced\\PostgresqlEnhancedServiceProvider',
+    ),
+  ),
+);

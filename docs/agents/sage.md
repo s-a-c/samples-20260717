@@ -1,9 +1,13 @@
 ---
 title: "SAGE Integration"
 description: "Integration contract for governed SAGE project memory in samples-20260717."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: guide
-tags: \[guide, agents, sage, integration]
-updated: 2026-07-30
+tags: [guide, agents, sage, integration]
+created: 2026-07-19
+updated: 2026-08-17
 ---
 
 # SAGE Integration

@@ -1,0 +1,142 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_console_commands_pgsqlcheck_php",
+            "label": "PgsqlCheck.php",
+            "file_type": "code",
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck",
+            "label": "PgsqlCheck",
+            "file_type": "code",
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L10",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "command",
+            "label": "Command",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck_handle",
+            "label": ".handle()",
+            "file_type": "code",
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L16",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_console_commands_pgsqlcheck_php",
+            "target": "command",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_pgsqlcheck_php",
+            "target": "db",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_pgsqlcheck_php",
+            "target": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck",
+            "target": "command",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck",
+            "target": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck_handle",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L16",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck_handle",
+            "callee": "array_column",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L18",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck_handle",
+            "callee": "DB",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L18",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck_handle",
+            "callee": "in_array",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L22",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck_handle",
+            "callee": "error",
+            "is_member_call": true,
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L23",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck_handle",
+            "callee": "DB",
+            "is_member_call": false,
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L29",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck_handle",
+            "callee": "error",
+            "is_member_call": true,
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L31",
+            "receiver": null
+        },
+        {
+            "caller_nid": "$graphify-root$_app_console_commands_pgsqlcheck_pgsqlcheck_handle",
+            "callee": "info",
+            "is_member_call": true,
+            "source_file": "app/Console/Commands/PgsqlCheck.php",
+            "source_location": "L36",
+            "receiver": null
+        }
+    ]
+}

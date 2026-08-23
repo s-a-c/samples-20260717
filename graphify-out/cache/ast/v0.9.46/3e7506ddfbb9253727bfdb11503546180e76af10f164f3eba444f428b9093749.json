@@ -1,0 +1,115 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_09_product_0901_contents_md",
+            "label": "0901-contents.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "09-product \u2014 Contents",
+                "description": "Structural contents page: every direct child of docs/09-product, in prefix order.",
+                "type": "contents",
+                "tags": "[navigation, contents]",
+                "created": "2026-08-17",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0901_contents_09_product_contents",
+            "label": "09-product \u2014 Contents",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L13"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0901_contents_1_purpose",
+            "label": "1. Purpose",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L29"
+        },
+        {
+            "id": "$graphify-root$_docs_09_product_0901_contents_2_direct_children",
+            "label": "2. Direct children",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L37"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_09_product_0901_contents_md",
+            "target": "$graphify-root$_docs_09_product_0901_contents_09_product_contents",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0901_contents_09_product_contents",
+            "target": "$graphify-root$_docs_09_product_0901_contents_1_purpose",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0901_contents_md",
+            "target": "$graphify-root$_docs_01_contents_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L35",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/01-contents.md"
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0901_contents_09_product_contents",
+            "target": "$graphify-root$_docs_09_product_0901_contents_2_direct_children",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L37",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0901_contents_md",
+            "target": "$graphify-root$_docs_09_product_0902_mvp_scope_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L41",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/09-product/0902-mvp-scope.md"
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0901_contents_md",
+            "target": "$graphify-root$_docs_09_product_0904_user_stories_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L42",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/09-product/0904-user-stories.md"
+        },
+        {
+            "source": "$graphify-root$_docs_09_product_0901_contents_md",
+            "target": "$graphify-root$_docs_09_product_0907_backlog_md",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/09-product/0901-contents.md",
+            "source_location": "L43",
+            "weight": 1.0,
+            "target_file": "$graphify-root$/docs/09-product/0907-backlog.md"
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

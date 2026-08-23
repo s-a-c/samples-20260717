@@ -1,0 +1,126 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_md",
+            "label": "151502-stage-template.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "Stage N \u2014 {Title}",
+                "description": "Copyable template for authoring one Implementation-Readiness Dossier Acceptance Stage file.",
+                "type": "reference",
+                "tags": "[dossier, template, acceptance]",
+                "created": "2026-08-17",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_stage_n_title",
+            "label": "Stage N \u2014 {Title}",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_1_acceptance_gates",
+            "label": "1. Acceptance gates",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L37"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_2_automated_checks",
+            "label": "2. Automated checks",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L43"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_3_operator_commands",
+            "label": "3. Operator commands",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L51"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_4_evidence_location",
+            "label": "4. Evidence location",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L57"
+        },
+        {
+            "id": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_5_recovery_procedure",
+            "label": "5. Recovery procedure",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L62"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_md",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_stage_n_title",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_stage_n_title",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_1_acceptance_gates",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L37",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_stage_n_title",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_2_automated_checks",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L43",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_stage_n_title",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_3_operator_commands",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L51",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_stage_n_title",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_4_evidence_location",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L57",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_stage_n_title",
+            "target": "$graphify-root$_docs_15_delivery_1515_implementation_readiness_dossier_151502_stage_template_5_recovery_procedure",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151502-stage-template.md",
+            "source_location": "L62",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

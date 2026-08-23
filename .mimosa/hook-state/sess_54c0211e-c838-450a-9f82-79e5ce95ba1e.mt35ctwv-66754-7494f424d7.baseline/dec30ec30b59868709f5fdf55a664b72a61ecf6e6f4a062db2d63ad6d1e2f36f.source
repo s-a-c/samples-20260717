@@ -1,0 +1,226 @@
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
+    'panels',
+    'currentPanel',
+    'labels' => [],
+    'icons' => [],
+    'darkIcons' => [],
+    'iconSize' => 32,
+    'renderIconAsImage' => false,
+    'slideOver' => false,
+]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter(([
+    'panels',
+    'currentPanel',
+    'labels' => [],
+    'icons' => [],
+    'darkIcons' => [],
+    'iconSize' => 32,
+    'renderIconAsImage' => false,
+    'slideOver' => false,
+]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<?php
+    $defaultIcon = $slideOver ? 'heroicon-o-square-2-stack' : 'heroicon-s-square-2-stack';
+    $defaultImage = 'https://raw.githubusercontent.com/bezhanSalleh/filament-panel-switch/3.x/art/banner.jpg';
+    $tag = $slideOver ? 'ul' : 'div';
+    $tagClasses = match ($tag) {
+        'ul' => 'space-y-2',
+        default => 'flex flex-wrap items-center justify-center gap-4 md:gap-6'
+    };
+?>
+
+<<?php echo e($tag); ?> class="<?php echo e($tagClasses); ?>">
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $panels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $id => $url): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+        <?php
+            $isCurrentPanel = $id === $currentPanel->getId();
+            $panelLabel = $labels[$id] ?? str($id)->ucfirst();
+            $panelIcon = $icons[$id] ?? ($renderIconAsImage ? $defaultImage : $defaultIcon);
+            $panelDarkIcon = $darkIcons[$id] ?? null;
+        ?>
+
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($slideOver): ?>
+            <li>
+                <a
+                    href="<?php echo e($url); ?>"
+                    class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                        "flex items-center gap-x-4 p-3 rounded-xl transition duration-75",
+                        "hover:bg-gray-50 dark:hover:bg-white/5" => ! $isCurrentPanel,
+                        "bg-primary-50 dark:bg-primary-400/10 pointer-events-none" => $isCurrentPanel,
+                    ]); ?>"
+                >
+                    <?php if (isset($component)) { $__componentOriginaled19177085e146347d917c72f0bf076f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaled19177085e146347d917c72f0bf076f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament-panel-switch::components.panel-icon','data' => ['icon' => $panelIcon,'darkIcon' => $panelDarkIcon,'renderAsImage' => $renderIconAsImage,'class' => \Illuminate\Support\Arr::toCssClasses([
+                            'h-10 w-10 shrink-0 rounded-lg object-cover' => $renderIconAsImage,
+                            'h-6 w-6 shrink-0' => ! $renderIconAsImage,
+                            'text-gray-400 dark:text-gray-500' => ! $renderIconAsImage && ! $isCurrentPanel,
+                            'text-primary-600 dark:text-primary-400' => ! $renderIconAsImage && $isCurrentPanel,
+                        ]),'alt' => $panelLabel]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament-panel-switch::panel-icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['icon' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($panelIcon),'dark-icon' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($panelDarkIcon),'render-as-image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($renderIconAsImage),'class' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(\Illuminate\Support\Arr::toCssClasses([
+                            'h-10 w-10 shrink-0 rounded-lg object-cover' => $renderIconAsImage,
+                            'h-6 w-6 shrink-0' => ! $renderIconAsImage,
+                            'text-gray-400 dark:text-gray-500' => ! $renderIconAsImage && ! $isCurrentPanel,
+                            'text-primary-600 dark:text-primary-400' => ! $renderIconAsImage && $isCurrentPanel,
+                        ])),'alt' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($panelLabel)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaled19177085e146347d917c72f0bf076f)): ?>
+<?php $attributes = $__attributesOriginaled19177085e146347d917c72f0bf076f; ?>
+<?php unset($__attributesOriginaled19177085e146347d917c72f0bf076f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaled19177085e146347d917c72f0bf076f)): ?>
+<?php $component = $__componentOriginaled19177085e146347d917c72f0bf076f; ?>
+<?php unset($__componentOriginaled19177085e146347d917c72f0bf076f); ?>
+<?php endif; ?>
+
+                    <span
+                        class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                            "flex-1 text-sm font-medium",
+                            "text-gray-700 dark:text-gray-200" => ! $isCurrentPanel,
+                            "text-primary-600 dark:text-primary-400" => $isCurrentPanel,
+                        ]); ?>"
+                    >
+                        <?php echo e($panelLabel); ?>
+
+                    </span>
+
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isCurrentPanel): ?>
+                        <?php if (isset($component)) { $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.icon','data' => ['icon' => 'heroicon-m-check-circle','class' => 'h-5 w-5 shrink-0 text-primary-600 dark:text-primary-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['icon' => 'heroicon-m-check-circle','class' => 'h-5 w-5 shrink-0 text-primary-600 dark:text-primary-400']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $attributes = $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $component = $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+                    <?php else: ?>
+                        <?php if (isset($component)) { $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament::components.icon','data' => ['icon' => 'heroicon-m-chevron-right','class' => 'h-5 w-5 shrink-0 text-gray-400 dark:text-gray-500']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament::icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['icon' => 'heroicon-m-chevron-right','class' => 'h-5 w-5 shrink-0 text-gray-400 dark:text-gray-500']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $attributes = $__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__attributesOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950)): ?>
+<?php $component = $__componentOriginalbfc641e0710ce04e5fe02876ffc6f950; ?>
+<?php unset($__componentOriginalbfc641e0710ce04e5fe02876ffc6f950); ?>
+<?php endif; ?>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </a>
+            </li>
+        <?php else: ?>
+            <a
+                href="<?php echo e($url); ?>"
+                class="flex flex-col items-center justify-center hover:cursor-pointer group panel-switch-card"
+            >
+                <div
+                    class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                        "p-2 bg-white rounded-lg shadow-md dark:bg-gray-800 panel-switch-card-section",
+                        "group-hover:ring-2 group-hover:ring-primary-600" => ! $isCurrentPanel,
+                        "ring-2 ring-primary-600" => $isCurrentPanel,
+                    ]); ?>"
+                >
+                    <?php if (isset($component)) { $__componentOriginaled19177085e146347d917c72f0bf076f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaled19177085e146347d917c72f0bf076f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'filament-panel-switch::components.panel-icon','data' => ['icon' => $panelIcon,'darkIcon' => $panelDarkIcon,'renderAsImage' => $renderIconAsImage,'class' => \Illuminate\Support\Arr::toCssClasses([
+                            'text-primary-600 panel-switch-card-icon' => ! $renderIconAsImage,
+                            'rounded-lg panel-switch-card-image' => $renderIconAsImage,
+                        ]),'style' => 'width: ' . ($iconSize * 4) . 'px; height: ' . ($iconSize * 4) . 'px;','alt' => $panelLabel]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('filament-panel-switch::panel-icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['icon' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($panelIcon),'dark-icon' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($panelDarkIcon),'render-as-image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($renderIconAsImage),'class' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(\Illuminate\Support\Arr::toCssClasses([
+                            'text-primary-600 panel-switch-card-icon' => ! $renderIconAsImage,
+                            'rounded-lg panel-switch-card-image' => $renderIconAsImage,
+                        ])),'style' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('width: ' . ($iconSize * 4) . 'px; height: ' . ($iconSize * 4) . 'px;'),'alt' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($panelLabel)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaled19177085e146347d917c72f0bf076f)): ?>
+<?php $attributes = $__attributesOriginaled19177085e146347d917c72f0bf076f; ?>
+<?php unset($__attributesOriginaled19177085e146347d917c72f0bf076f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaled19177085e146347d917c72f0bf076f)): ?>
+<?php $component = $__componentOriginaled19177085e146347d917c72f0bf076f; ?>
+<?php unset($__componentOriginaled19177085e146347d917c72f0bf076f); ?>
+<?php endif; ?>
+                </div>
+                <span
+                    class="<?php echo \Illuminate\Support\Arr::toCssClasses([
+                        "mt-2 text-sm font-medium text-center break-words panel-switch-card-title",
+                        "text-gray-400 dark:text-gray-200 group-hover:text-primary-600 group-hover:dark:text-primary-400" => ! $isCurrentPanel,
+                        "text-primary-600 dark:text-primary-400" => $isCurrentPanel,
+                    ]); ?>"
+                >
+                    <?php echo e($panelLabel); ?>
+
+                </span>
+            </a>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+</<?php echo e($tag); ?>>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/bezhansalleh/filament-panel-switch/resources/views/components/panel-list.blade.php ENDPATH**/ ?>

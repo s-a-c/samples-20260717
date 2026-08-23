@@ -1,0 +1,109 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_md",
+            "label": "100332-git-branch.md",
+            "file_type": "document",
+            "node_kind": "page",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L1",
+            "frontmatter": {
+                "title": "0017 - Git Branch + PR + Dependency Strategy",
+                "description": "The application needs a standardized Git workflow to manage feature branches, PRs, and dependencies.",
+                "type": "adr",
+                "tags": "[adr, &quot;0017&quot;, git]",
+                "created": "2026-07-25",
+                "updated": "2026-08-17"
+            }
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_0017_git_branch_pr_dependency_strategy",
+            "label": "0017 - Git Branch + PR + Dependency Strategy",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L12"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_1_status_proposed",
+            "label": "1. Status: Proposed",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L27"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_2_context",
+            "label": "2. Context",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L29"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_3_decision",
+            "label": "3. Decision",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L33"
+        },
+        {
+            "id": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_4_consequences",
+            "label": "4. Consequences",
+            "file_type": "document",
+            "node_kind": "heading",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L37"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_md",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_0017_git_branch_pr_dependency_strategy",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_0017_git_branch_pr_dependency_strategy",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_1_status_proposed",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L27",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_0017_git_branch_pr_dependency_strategy",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_2_context",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L29",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_0017_git_branch_pr_dependency_strategy",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_3_decision",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L33",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_0017_git_branch_pr_dependency_strategy",
+            "target": "$graphify-root$_docs_10_architecture_1003_adr_100332_git_branch_4_consequences",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "docs/10-architecture/1003-adr/100332-git-branch.md",
+            "source_location": "L37",
+            "weight": 1.0
+        }
+    ],
+    "input_tokens": 0,
+    "output_tokens": 0
+}

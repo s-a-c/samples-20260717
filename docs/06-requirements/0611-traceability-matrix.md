@@ -1,9 +1,13 @@
 ---
 title: "Traceability Matrix"
 description: "Traceability mapping from problem and goals through requirements, acceptance criteria, and tests."
-type: requirements
-tags: \[requirements, traceability, matrix]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [requirements, traceability, matrix]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # Traceability Matrix

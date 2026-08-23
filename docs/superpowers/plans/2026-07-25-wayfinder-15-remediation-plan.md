@@ -1,9 +1,13 @@
 ---
 title: "Wayfinder #15 Gap Remediation Plan"
 description: "> **For agentic workers:** REQUIRED SUB-SKILL: Use subagent-driven-development (recommended) or executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: plan
-tags: \[plan, plans, wayfinder, "15"]
-updated: 2026-07-30
+tags: [plan, plans, wayfinder, "15"]
+created: 2026-07-25
+updated: 2026-08-17
 ---
 
 # Wayfinder #15 Gap Remediation Plan

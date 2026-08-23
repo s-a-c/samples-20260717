@@ -1,3 +1,15 @@
+---
+title: "Import Pipeline Completion — Full Mapping on the Reverted Foundation Implementation Plan"
+description: "Documentation page for 2026-08-05-import-pipeline-completion."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: plan
+tags: [documentation]
+created: 2026-08-05
+updated: 2026-08-17
+---
+
 # Import Pipeline Completion — Full Mapping on the Reverted Foundation Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

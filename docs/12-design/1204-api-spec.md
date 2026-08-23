@@ -1,9 +1,13 @@
 ---
 title: "API Specification"
 description: "This document defines the internal API and service contracts used by the Samples application, focusing on search, import, and reset interactions."
-type: design
-tags: \[design, api, specification]
-updated: 2026-07-30
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
+type: spec
+tags: [design, api, specification]
+created: 2026-07-30
+updated: 2026-08-17
 ---
 
 # API Specification

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agents_skills_configuring_horizon_references_tags", "label": "Horizon Tags & Silencing", "file_type": "document", "source_file": ".agents/skills/configuring-horizon/references/tags.md", "rationale": "Details auto-tagging for Eloquent models and silencing jobs/tags in the dashboard."}], "edges": [], "hyperedges": []}

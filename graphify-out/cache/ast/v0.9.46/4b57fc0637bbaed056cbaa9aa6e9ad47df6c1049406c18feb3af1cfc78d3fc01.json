@@ -1,0 +1,114 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "label": "ChinookDomainTest.php",
+            "file_type": "code",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L1"
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "album",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L5",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "artist",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L6",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "customer",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "employee",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "genre",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "invoice",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L10",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "invoiceline",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "mediatype",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L12",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "playlist",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L13",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_tests_feature_domain_chinookdomaintest_php",
+            "target": "track",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "tests/Feature/Domain/ChinookDomainTest.php",
+            "source_location": "L14",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": []
+}

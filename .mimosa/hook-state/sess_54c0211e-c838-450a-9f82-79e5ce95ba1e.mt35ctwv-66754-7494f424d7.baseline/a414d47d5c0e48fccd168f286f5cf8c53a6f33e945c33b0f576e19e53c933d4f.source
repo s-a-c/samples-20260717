@@ -1,0 +1,120 @@
+<?php
+if (!function_exists('__d81702b349357c415b7603de075b8b4f')):
+function __d81702b349357c415b7603de075b8b4f($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
+$__env = $__blaze->env;
+$__slots['slot'] ??= new \Illuminate\View\ComponentSlot('');
+if (($__data['attributes'] ?? null) instanceof \Illuminate\View\ComponentAttributeBag) { $__data = $__data + $__data['attributes']->all(); unset($__data['attributes']); }
+extract($__slots, EXTR_SKIP); unset($__slots);
+extract($__data, EXTR_SKIP);
+$attributes = \Livewire\Blaze\Runtime\BlazeAttributeBag::make($__data, $__bound, $__keys);
+unset($__data, $__bound, $__keys);
+ob_start();
+?>
+
+
+<?php
+extract(Flux::forwardedAttributes($attributes, [
+    'name',
+    'descriptionTrailing',
+    'description',
+    'label',
+    'badge',
+]));
+?>
+
+<?php $descriptionTrailing = $descriptionTrailing ??= $attributes->pluck('description:trailing'); ?>
+
+<?php
+$__defaults = [
+    'name' => $attributes->whereStartsWith('wire:model')->first(),
+    'descriptionTrailing' => null,
+    'description' => null,
+    'label' => null,
+    'badge' => null,
+];
+$name ??= $attributes['name'] ?? $__defaults['name']; unset($attributes['name']);
+$descriptionTrailing ??= $attributes['description-trailing'] ?? $attributes['descriptionTrailing'] ?? $__defaults['descriptionTrailing']; unset($attributes['descriptionTrailing'], $attributes['description-trailing']);
+$description ??= $attributes['description'] ?? $__defaults['description']; unset($attributes['description']);
+$label ??= $attributes['label'] ?? $__defaults['label']; unset($attributes['label']);
+$badge ??= $attributes['badge'] ?? $__defaults['badge']; unset($attributes['badge']);
+unset($__defaults);
+?>
+
+<?php if (isset($label) || isset($description) || isset($descriptionTrailing)): ?>
+    <?php
+
+        $fieldAttributes = Flux::attributesAfter('field:', $attributes, []);
+        $labelAttributes = Flux::attributesAfter('label:', $attributes, ['badge' => $badge]);
+        $descriptionAttributes = Flux::attributesAfter('description:', $attributes, []);
+        $errorAttributes = Flux::attributesAfter('error:', $attributes, ['name' => $name]);
+    ?>
+    <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/field.blade.php', $__blaze->compiledPath.'/e542ac87807a873e1bb0731ec7756920.php'); ?>
+<?php if (isset($__slotse542ac87807a873e1bb0731ec7756920)) { $__slotsStacke542ac87807a873e1bb0731ec7756920[] = $__slotse542ac87807a873e1bb0731ec7756920; } ?>
+<?php if (isset($__attrse542ac87807a873e1bb0731ec7756920)) { $__attrsStacke542ac87807a873e1bb0731ec7756920[] = $__attrse542ac87807a873e1bb0731ec7756920; } ?>
+<?php $__attrse542ac87807a873e1bb0731ec7756920 = ['attributes' => $fieldAttributes]; ?>
+<?php $__slotse542ac87807a873e1bb0731ec7756920 = []; ?>
+<?php $__blaze->pushData($__attrse542ac87807a873e1bb0731ec7756920); ?>
+<?php ob_start(); ?>
+        <?php if (isset($label)): ?>
+            <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/label.blade.php', $__blaze->compiledPath.'/25b0b440ec7d32f8f7fa49a4570df578.php'); ?>
+<?php if (isset($__slots25b0b440ec7d32f8f7fa49a4570df578)) { $__slotsStack25b0b440ec7d32f8f7fa49a4570df578[] = $__slots25b0b440ec7d32f8f7fa49a4570df578; } ?>
+<?php if (isset($__attrs25b0b440ec7d32f8f7fa49a4570df578)) { $__attrsStack25b0b440ec7d32f8f7fa49a4570df578[] = $__attrs25b0b440ec7d32f8f7fa49a4570df578; } ?>
+<?php $__attrs25b0b440ec7d32f8f7fa49a4570df578 = ['attributes' => $labelAttributes]; ?>
+<?php $__slots25b0b440ec7d32f8f7fa49a4570df578 = []; ?>
+<?php $__blaze->pushData($__attrs25b0b440ec7d32f8f7fa49a4570df578); ?>
+<?php ob_start(); ?><?php echo e($label); ?><?php $__slots25b0b440ec7d32f8f7fa49a4570df578['slot'] = new \Illuminate\View\ComponentSlot($__blaze->processPassthroughContent('trim', trim(ob_get_clean())), []); ?>
+<?php $__blaze->pushSlots($__slots25b0b440ec7d32f8f7fa49a4570df578); ?>
+<?php __25b0b440ec7d32f8f7fa49a4570df578($__blaze, $__attrs25b0b440ec7d32f8f7fa49a4570df578, $__slots25b0b440ec7d32f8f7fa49a4570df578, ['attributes'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack25b0b440ec7d32f8f7fa49a4570df578)) { $__slots25b0b440ec7d32f8f7fa49a4570df578 = array_pop($__slotsStack25b0b440ec7d32f8f7fa49a4570df578); } ?>
+<?php if (! empty($__attrsStack25b0b440ec7d32f8f7fa49a4570df578)) { $__attrs25b0b440ec7d32f8f7fa49a4570df578 = array_pop($__attrsStack25b0b440ec7d32f8f7fa49a4570df578); } ?>
+<?php $__blaze->popData(); ?>
+        <?php endif; ?>
+
+        <?php if (isset($description)): ?>
+            <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/description.blade.php', $__blaze->compiledPath.'/de93cbcfed020a9c2b29dd0a07650f91.php'); ?>
+<?php if (isset($__slotsde93cbcfed020a9c2b29dd0a07650f91)) { $__slotsStackde93cbcfed020a9c2b29dd0a07650f91[] = $__slotsde93cbcfed020a9c2b29dd0a07650f91; } ?>
+<?php if (isset($__attrsde93cbcfed020a9c2b29dd0a07650f91)) { $__attrsStackde93cbcfed020a9c2b29dd0a07650f91[] = $__attrsde93cbcfed020a9c2b29dd0a07650f91; } ?>
+<?php $__attrsde93cbcfed020a9c2b29dd0a07650f91 = ['attributes' => $descriptionAttributes]; ?>
+<?php $__slotsde93cbcfed020a9c2b29dd0a07650f91 = []; ?>
+<?php $__blaze->pushData($__attrsde93cbcfed020a9c2b29dd0a07650f91); ?>
+<?php ob_start(); ?><?php echo e($description); ?><?php $__slotsde93cbcfed020a9c2b29dd0a07650f91['slot'] = new \Illuminate\View\ComponentSlot($__blaze->processPassthroughContent('trim', trim(ob_get_clean())), []); ?>
+<?php $__blaze->pushSlots($__slotsde93cbcfed020a9c2b29dd0a07650f91); ?>
+<?php __de93cbcfed020a9c2b29dd0a07650f91($__blaze, $__attrsde93cbcfed020a9c2b29dd0a07650f91, $__slotsde93cbcfed020a9c2b29dd0a07650f91, ['attributes'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStackde93cbcfed020a9c2b29dd0a07650f91)) { $__slotsde93cbcfed020a9c2b29dd0a07650f91 = array_pop($__slotsStackde93cbcfed020a9c2b29dd0a07650f91); } ?>
+<?php if (! empty($__attrsStackde93cbcfed020a9c2b29dd0a07650f91)) { $__attrsde93cbcfed020a9c2b29dd0a07650f91 = array_pop($__attrsStackde93cbcfed020a9c2b29dd0a07650f91); } ?>
+<?php $__blaze->popData(); ?>
+        <?php endif; ?>
+
+        <?php echo e($slot); ?>
+
+
+        
+        [STARTCOMPILEDUNBLAZE:FnNpIE6iK8]<?php \Livewire\Blaze\Unblaze::storeScope("FnNpIE6iK8", scope: ['attributes' => $errorAttributes->getAttributes()]) ?>[ENDCOMPILEDUNBLAZE:FnNpIE6iK8]
+
+        <?php if (isset($descriptionTrailing)): ?>
+            <?php $__blaze->ensureRequired('/Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/description.blade.php', $__blaze->compiledPath.'/de93cbcfed020a9c2b29dd0a07650f91.php'); ?>
+<?php if (isset($__slotsde93cbcfed020a9c2b29dd0a07650f91)) { $__slotsStackde93cbcfed020a9c2b29dd0a07650f91[] = $__slotsde93cbcfed020a9c2b29dd0a07650f91; } ?>
+<?php if (isset($__attrsde93cbcfed020a9c2b29dd0a07650f91)) { $__attrsStackde93cbcfed020a9c2b29dd0a07650f91[] = $__attrsde93cbcfed020a9c2b29dd0a07650f91; } ?>
+<?php $__attrsde93cbcfed020a9c2b29dd0a07650f91 = ['attributes' => $descriptionAttributes]; ?>
+<?php $__slotsde93cbcfed020a9c2b29dd0a07650f91 = []; ?>
+<?php $__blaze->pushData($__attrsde93cbcfed020a9c2b29dd0a07650f91); ?>
+<?php ob_start(); ?><?php echo e($descriptionTrailing); ?><?php $__slotsde93cbcfed020a9c2b29dd0a07650f91['slot'] = new \Illuminate\View\ComponentSlot($__blaze->processPassthroughContent('trim', trim(ob_get_clean())), []); ?>
+<?php $__blaze->pushSlots($__slotsde93cbcfed020a9c2b29dd0a07650f91); ?>
+<?php __de93cbcfed020a9c2b29dd0a07650f91($__blaze, $__attrsde93cbcfed020a9c2b29dd0a07650f91, $__slotsde93cbcfed020a9c2b29dd0a07650f91, ['attributes'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStackde93cbcfed020a9c2b29dd0a07650f91)) { $__slotsde93cbcfed020a9c2b29dd0a07650f91 = array_pop($__slotsStackde93cbcfed020a9c2b29dd0a07650f91); } ?>
+<?php if (! empty($__attrsStackde93cbcfed020a9c2b29dd0a07650f91)) { $__attrsde93cbcfed020a9c2b29dd0a07650f91 = array_pop($__attrsStackde93cbcfed020a9c2b29dd0a07650f91); } ?>
+<?php $__blaze->popData(); ?>
+        <?php endif; ?>
+    <?php $__slotse542ac87807a873e1bb0731ec7756920['slot'] = new \Illuminate\View\ComponentSlot($__blaze->processPassthroughContent('trim', trim(ob_get_clean())), []); ?>
+<?php $__blaze->pushSlots($__slotse542ac87807a873e1bb0731ec7756920); ?>
+<?php __e542ac87807a873e1bb0731ec7756920($__blaze, $__attrse542ac87807a873e1bb0731ec7756920, $__slotse542ac87807a873e1bb0731ec7756920, ['attributes'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStacke542ac87807a873e1bb0731ec7756920)) { $__slotse542ac87807a873e1bb0731ec7756920 = array_pop($__slotsStacke542ac87807a873e1bb0731ec7756920); } ?>
+<?php if (! empty($__attrsStacke542ac87807a873e1bb0731ec7756920)) { $__attrse542ac87807a873e1bb0731ec7756920 = array_pop($__attrsStacke542ac87807a873e1bb0731ec7756920); } ?>
+<?php $__blaze->popData(); ?>
+<?php else: ?>
+    <?php echo e($slot); ?>
+
+<?php endif; ?>
+<?php
+echo $__blaze->processPassthroughContent('ltrim', ltrim(ob_get_clean()));
+} endif; ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/livewire/flux/src/../stubs/resources/views/flux/with-field.blade.php ENDPATH**/ ?>

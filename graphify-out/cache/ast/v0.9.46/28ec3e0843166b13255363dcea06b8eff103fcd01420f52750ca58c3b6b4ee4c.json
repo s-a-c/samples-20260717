@@ -1,0 +1,104 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_php",
+            "label": "EditRental.php",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L1"
+        },
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_editrental",
+            "label": "EditRental",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L11",
+            "_callable": true,
+            "_callable_class": true
+        },
+        {
+            "id": "editrecord",
+            "label": "EditRecord",
+            "file_type": "code",
+            "source_file": "",
+            "source_location": ""
+        },
+        {
+            "id": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_editrental_getheaderactions",
+            "label": ".getHeaderActions()",
+            "file_type": "code",
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L15",
+            "_callable": true
+        }
+    ],
+    "edges": [
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_php",
+            "target": "rentalresource",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L7",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_php",
+            "target": "actions",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L8",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_php",
+            "target": "editrecord",
+            "relation": "imports",
+            "context": "import",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L9",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_php",
+            "target": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_editrental",
+            "relation": "contains",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_editrental",
+            "target": "editrecord",
+            "relation": "inherits",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L11",
+            "weight": 1.0
+        },
+        {
+            "source": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_editrental",
+            "target": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_editrental_getheaderactions",
+            "relation": "method",
+            "confidence": "EXTRACTED",
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L15",
+            "weight": 1.0
+        }
+    ],
+    "raw_calls": [
+        {
+            "caller_nid": "$graphify-root$_app_filament_pagila_resources_rentalresource_pages_editrental_editrental_getheaderactions",
+            "callee": "Actions\\DeleteAction",
+            "is_member_call": false,
+            "source_file": "app/Filament/Pagila/Resources/RentalResource/Pages/EditRental.php",
+            "source_location": "L18",
+            "receiver": null
+        }
+    ]
+}

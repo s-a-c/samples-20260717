@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agents_skills_configuring_horizon_references_notifications", "label": "Horizon Notifications & Alerts", "file_type": "document", "source_file": ".agents/skills/configuring-horizon/references/notifications.md", "rationale": "Covers LongWaitDetected events, waits configuration, and notification routing in HorizonServiceProvider."}], "edges": [], "hyperedges": []}

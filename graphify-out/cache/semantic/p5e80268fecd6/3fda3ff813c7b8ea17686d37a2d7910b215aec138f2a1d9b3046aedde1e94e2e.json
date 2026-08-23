@@ -1,0 +1,1 @@
+{"nodes": [{"id": "instruckt_skill_md", "label": "Instruckt Skill", "file_type": "document", "source_file": ".claude/skills/instruckt/SKILL.md", "rationale": "Provides instructions for handling visual UI feedback via MCP tools."}], "edges": [], "hyperedges": []}

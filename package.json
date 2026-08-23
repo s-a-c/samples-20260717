@@ -7,18 +7,19 @@
     "dependencies": {
         "@laravel/passkeys": "^0.4.0",
         "@tailwindcss/vite": "^4.3.3",
-        "concurrently": "^10.0.4",
-        "fontaine": "^0.8.0",
+        "concurrently": "^10.0.5",
+        "fontaine": "^0.8.1",
         "laravel-vite-plugin": "^3.2.0",
-        "morphicons": "^1.6.0",
-        "rolldown": "^1.2.4",
+        "morphicons": "^1.7.0",
+        "rolldown": "^1.2.5",
         "tailwindcss": "^4.3.3",
         "vite": "npm:@voidzero-dev/vite-plus-core@^0.2.9"
     },
     "devDependencies": {
+        "@catppuccin/tailwindcss": "^1.0.0",
         "laravel-echo": "^2.4.0",
         "pusher-js": "^8.6.0",
         "vite-plus": "catalog:"
     },
-    "packageManager": "pnpm@11.21.0"
+    "packageManager": "pnpm@11.22.0"
 }

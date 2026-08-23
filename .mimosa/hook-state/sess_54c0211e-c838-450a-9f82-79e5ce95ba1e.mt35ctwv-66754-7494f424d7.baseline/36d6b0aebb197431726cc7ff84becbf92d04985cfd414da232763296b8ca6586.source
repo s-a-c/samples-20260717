@@ -1,0 +1,10 @@
+<span class="flex-shrink-0 text-xs font-medium text-gray-500 uppercase fi-timeline-item-date dark:text-gray-400">
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isHtmlAllowed()): ?>
+        <?php echo $getModifiedState() ?? (!is_array($getState()) ? $getState() ?? $getPlaceholder() : null); ?>
+
+    <?php else: ?>
+        <?php echo e($getModifiedState() ?? (!is_array($getState()) ? $getState() ?? $getPlaceholder() : null)); ?>
+
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+</span>
+<?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/lara-zeus/activity-timeline/resources/views/infolists/components/activity-date.blade.php ENDPATH**/ ?>

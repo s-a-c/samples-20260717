@@ -1,9 +1,13 @@
 ---
 title: "Import Decision Deviations — Consequence Analysis Handoff"
 description: "> **Handoff for:** a follow-up agent session to analyze the consequences of two decision deviations in the import-cascade-fix-and-transform plan before they are locked in as superseding ADRs. Further analysis is required."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: handoff
-tags: \[handoff, wayfinder, "15", import, adr, decisions]
-updated: 2026-08-05
+tags: [handoff, wayfinder, "15", import, adr, decisions]
+created: 2026-08-05
+updated: 2026-08-17
 ---
 
 # Import Decision Deviations — Consequence Analysis Handoff

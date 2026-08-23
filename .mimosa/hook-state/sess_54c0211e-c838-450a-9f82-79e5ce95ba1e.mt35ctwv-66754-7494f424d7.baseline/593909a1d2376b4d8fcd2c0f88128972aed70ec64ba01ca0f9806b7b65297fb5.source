@@ -1,0 +1,97 @@
+<?php return array (
+  'livewireComponents' => 
+  array (
+    'App\\Filament\\Northwind\\Resources\\CategoryResource\\Pages\\CreateCategory' => 'App\\Filament\\Northwind\\Resources\\CategoryResource\\Pages\\CreateCategory',
+    'App\\Filament\\Northwind\\Resources\\CategoryResource\\Pages\\EditCategory' => 'App\\Filament\\Northwind\\Resources\\CategoryResource\\Pages\\EditCategory',
+    'App\\Filament\\Northwind\\Resources\\CategoryResource\\Pages\\ListCategories' => 'App\\Filament\\Northwind\\Resources\\CategoryResource\\Pages\\ListCategories',
+    'App\\Filament\\Northwind\\Resources\\CustomerResource\\Pages\\CreateCustomer' => 'App\\Filament\\Northwind\\Resources\\CustomerResource\\Pages\\CreateCustomer',
+    'App\\Filament\\Northwind\\Resources\\CustomerResource\\Pages\\EditCustomer' => 'App\\Filament\\Northwind\\Resources\\CustomerResource\\Pages\\EditCustomer',
+    'App\\Filament\\Northwind\\Resources\\CustomerResource\\Pages\\ListCustomers' => 'App\\Filament\\Northwind\\Resources\\CustomerResource\\Pages\\ListCustomers',
+    'App\\Filament\\Northwind\\Resources\\EmployeeResource\\Pages\\CreateEmployee' => 'App\\Filament\\Northwind\\Resources\\EmployeeResource\\Pages\\CreateEmployee',
+    'App\\Filament\\Northwind\\Resources\\EmployeeResource\\Pages\\EditEmployee' => 'App\\Filament\\Northwind\\Resources\\EmployeeResource\\Pages\\EditEmployee',
+    'App\\Filament\\Northwind\\Resources\\EmployeeResource\\Pages\\ListEmployees' => 'App\\Filament\\Northwind\\Resources\\EmployeeResource\\Pages\\ListEmployees',
+    'App\\Filament\\Northwind\\Resources\\OrderResource\\Pages\\CreateOrder' => 'App\\Filament\\Northwind\\Resources\\OrderResource\\Pages\\CreateOrder',
+    'App\\Filament\\Northwind\\Resources\\OrderResource\\Pages\\EditOrder' => 'App\\Filament\\Northwind\\Resources\\OrderResource\\Pages\\EditOrder',
+    'App\\Filament\\Northwind\\Resources\\OrderResource\\Pages\\ListOrders' => 'App\\Filament\\Northwind\\Resources\\OrderResource\\Pages\\ListOrders',
+    'App\\Filament\\Northwind\\Resources\\ProductResource\\Pages\\CreateProduct' => 'App\\Filament\\Northwind\\Resources\\ProductResource\\Pages\\CreateProduct',
+    'App\\Filament\\Northwind\\Resources\\ProductResource\\Pages\\EditProduct' => 'App\\Filament\\Northwind\\Resources\\ProductResource\\Pages\\EditProduct',
+    'App\\Filament\\Northwind\\Resources\\ProductResource\\Pages\\ListProducts' => 'App\\Filament\\Northwind\\Resources\\ProductResource\\Pages\\ListProducts',
+    'App\\Filament\\Northwind\\Resources\\ShipperResource\\Pages\\CreateShipper' => 'App\\Filament\\Northwind\\Resources\\ShipperResource\\Pages\\CreateShipper',
+    'App\\Filament\\Northwind\\Resources\\ShipperResource\\Pages\\EditShipper' => 'App\\Filament\\Northwind\\Resources\\ShipperResource\\Pages\\EditShipper',
+    'App\\Filament\\Northwind\\Resources\\ShipperResource\\Pages\\ListShippers' => 'App\\Filament\\Northwind\\Resources\\ShipperResource\\Pages\\ListShippers',
+    'App\\Filament\\Northwind\\Resources\\SupplierResource\\Pages\\CreateSupplier' => 'App\\Filament\\Northwind\\Resources\\SupplierResource\\Pages\\CreateSupplier',
+    'App\\Filament\\Northwind\\Resources\\SupplierResource\\Pages\\EditSupplier' => 'App\\Filament\\Northwind\\Resources\\SupplierResource\\Pages\\EditSupplier',
+    'App\\Filament\\Northwind\\Resources\\SupplierResource\\Pages\\ListSuppliers' => 'App\\Filament\\Northwind\\Resources\\SupplierResource\\Pages\\ListSuppliers',
+    'Filament\\Pages\\Dashboard' => 'Filament\\Pages\\Dashboard',
+    'Filament\\Widgets\\AccountWidget' => 'Filament\\Widgets\\AccountWidget',
+    'Filament\\Widgets\\FilamentInfoWidget' => 'Filament\\Widgets\\FilamentInfoWidget',
+    'Filament\\Livewire\\DatabaseNotifications' => 'Filament\\Livewire\\DatabaseNotifications',
+    'Filament\\Auth\\Pages\\EditProfile' => 'Filament\\Auth\\Pages\\EditProfile',
+    'Filament\\Livewire\\GlobalSearch' => 'Filament\\Livewire\\GlobalSearch',
+    'Filament\\Livewire\\Notifications' => 'Filament\\Livewire\\Notifications',
+    'Filament\\Livewire\\Sidebar' => 'Filament\\Livewire\\Sidebar',
+    'Filament\\Livewire\\SimpleUserMenu' => 'Filament\\Livewire\\SimpleUserMenu',
+    'Filament\\Livewire\\Topbar' => 'Filament\\Livewire\\Topbar',
+  ),
+  'clusters' => 
+  array (
+  ),
+  'clusteredComponents' => 
+  array (
+  ),
+  'clusterDirectories' => 
+  array (
+  ),
+  'clusterNamespaces' => 
+  array (
+  ),
+  'pages' => 
+  array (
+    0 => 'Filament\\Pages\\Dashboard',
+  ),
+  'pageConfigurations' => 
+  array (
+  ),
+  'pageDirectories' => 
+  array (
+    0 => '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Pages',
+  ),
+  'pageNamespaces' => 
+  array (
+    0 => 'App\\Filament\\Northwind\\Pages',
+  ),
+  'resources' => 
+  array (
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Resources/CategoryResource.php' => 'App\\Filament\\Northwind\\Resources\\CategoryResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Resources/CustomerResource.php' => 'App\\Filament\\Northwind\\Resources\\CustomerResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Resources/EmployeeResource.php' => 'App\\Filament\\Northwind\\Resources\\EmployeeResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Resources/OrderResource.php' => 'App\\Filament\\Northwind\\Resources\\OrderResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Resources/ProductResource.php' => 'App\\Filament\\Northwind\\Resources\\ProductResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Resources/ShipperResource.php' => 'App\\Filament\\Northwind\\Resources\\ShipperResource',
+    '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Resources/SupplierResource.php' => 'App\\Filament\\Northwind\\Resources\\SupplierResource',
+  ),
+  'resourceConfigurations' => 
+  array (
+  ),
+  'resourceDirectories' => 
+  array (
+    0 => '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Resources',
+  ),
+  'resourceNamespaces' => 
+  array (
+    0 => 'App\\Filament\\Northwind\\Resources',
+  ),
+  'widgets' => 
+  array (
+    0 => 'Filament\\Widgets\\AccountWidget',
+    1 => 'Filament\\Widgets\\FilamentInfoWidget',
+  ),
+  'widgetDirectories' => 
+  array (
+    0 => '/Users/s-a-c/Herd/samples-20260717/app/Filament/Northwind/Widgets',
+  ),
+  'widgetNamespaces' => 
+  array (
+    0 => 'App\\Filament\\Northwind\\Widgets',
+  ),
+);

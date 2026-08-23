@@ -1,0 +1,13 @@
+{
+    "nodes": [
+        {
+            "id": "$graphify-root$_tests_typecoverage_php",
+            "label": "TypeCoverage.php",
+            "file_type": "code",
+            "source_file": "tests/TypeCoverage.php",
+            "source_location": "L1"
+        }
+    ],
+    "edges": [],
+    "raw_calls": []
+}

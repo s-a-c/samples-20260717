@@ -1,0 +1,84 @@
+<?php $__env->startSection('content'); ?>
+    <div class="chr-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+            <h1 style="font-size:1.25rem; font-weight:700;">Stats</h1>
+            <a href="<?php echo e(route('chronicle.entries.index')); ?>" class="chr-btn">← Ledger</a>
+        </div>
+
+        <div class="chr-stats-grid">
+            <div class="chr-stat-card">
+                <div class="chr-stat-label">Total Entries</div>
+                <div class="chr-stat-value"><?php echo e(number_format($total)); ?></div>
+            </div>
+            <div class="chr-stat-card">
+                <div class="chr-stat-label">Checkpoints</div>
+                <div class="chr-stat-value"><?php echo e(number_format($checkpointCount)); ?></div>
+            </div>
+            <div class="chr-stat-card">
+                <div class="chr-stat-label">First Entry</div>
+                <div class="chr-stat-value" style="font-size:0.9rem;">
+                    <?php echo e($oldest?->format('Y-m-d') ?? '-'); ?>
+
+                </div>
+            </div>
+            <div class="chr-stat-card">
+                <div class="chr-stat-label">Latest Entry</div>
+                <div class="chr-stat-value" style="font-size:0.9rem;">
+                    <?php echo e($newest?->format('Y-m-d') ?? '-'); ?>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="chr-section">
+            <div class="chr-section-title">Activity - last 30 days</div>
+            <div class="chr-card">
+                <?php $maxCount = $activityByDay->max('count') ?: 1; ?>
+                <div class="chr-sparkline" title="Daily entry count over last 30 days">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $activityByDay; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <?php $height = max(4, (int) round(($day['count'] / $maxCount) * 48)); ?>
+                        <div class="chr-sparkline-bar"
+                             style="height:<?php echo e($height); ?>px;"
+                             title="<?php echo e($day['date']); ?>: <?php echo e(number_format($day['count'])); ?>"></div>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                </div>
+                <p style="font-size:0.7rem; color:var(--chr-text-muted); margin-top:0.5rem;">
+                    <?php echo e($activityByDay->sum('count')); ?> entries in the last 30 days
+                </p>
+            </div>
+        </div>
+
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($topActions->isNotEmpty()): ?>
+            <div class="chr-section">
+                <div class="chr-section-title">Top Actions</div>
+                <div class="chr-card" style="padding:0; overflow:hidden;">
+                    <table class="chr-table">
+                        <thead>
+                            <tr><th>Action</th><th style="text-align:right;">Count</th><th style="width:40%;">Share</th></tr>
+                        </thead>
+                        <tbody>
+                            <?php $topTotal = $topActions->sum('count') ?: 1; ?>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $topActions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                <?php $pct = round(($row['count'] / $topTotal) * 100); ?>
+                                <tr>
+                                    <td>
+                                        <a href="<?php echo e(route('chronicle.entries.index', ['action' => $row['action']])); ?>"
+                                           class="chr-badge"><?php echo e($row['action']); ?></a>
+                                    </td>
+                                    <td style="text-align:right; font-weight:600;"><?php echo e(number_format($row['count'])); ?></td>
+                                    <td>
+                                        <div style="background:var(--chr-border); border-radius:9999px; height:6px; overflow:hidden;">
+                                            <div style="width:<?php echo e($pct); ?>%; background:var(--chr-accent); height:100%;"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('chronicle::layout', ['title' => 'Stats'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /Users/s-a-c/Herd/samples-20260717/vendor/laravel-chronicle/core/resources/views/stats/index.blade.php ENDPATH**/ ?>

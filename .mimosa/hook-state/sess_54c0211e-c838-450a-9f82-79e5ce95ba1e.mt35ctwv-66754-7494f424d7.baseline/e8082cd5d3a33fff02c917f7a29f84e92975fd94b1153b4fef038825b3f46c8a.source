@@ -1,0 +1,53 @@
+import json
+
+all_targets_expected = set()
+# Cross-batch files referenced from batch-data neighbor maps are valid forward refs.
+CROSSBATCH_FILES = {
+    "app/Services/ProductImport/StagingSchemaBuilder.php",
+    "app/Models/ResetRun.php",
+    "app/Services/ProductImport/Schema/SourceSchemaBuilder.php",
+    "app/Services/ProductImport/SourceIdentityRegistry.php",
+    "app/Services/ProductImport/StagingContext.php",
+    "app/Models/Pagila/Store.php",
+}
+
+ok = True
+for b in [1, 4, 5]:
+    p = f".understand-anything/intermediate/batch-{b}.json"
+    d = json.load(open(p))
+    n = len(d["nodes"]); e = len(d["edges"])
+    ids = set(x["id"] for x in d["nodes"])
+    dupes = [i for i in {x["id"] for x in d["nodes"]} if [y["id"] for y in d["nodes"]].count(i) > 1]
+    assert not dupes, f"batch{b} dup node ids: {dupes[:5]}"
+    for x in d["nodes"]:
+        for k in ("id", "type", "name", "filePath", "summary", "tags", "complexity"):
+            assert k in x, f"batch{b} node {x.get('id')} missing {k}"
+        if x["type"] in ("class", "function"):
+            assert "lineRange" in x, f"batch{b} {x['id']} missing lineRange"
+        assert 2 <= len(x["tags"]) <= 5, f"batch{b} {x['id']} tags={x['tags']}"
+        assert x["complexity"] in ("simple", "moderate", "complex")
+        assert not x["filePath"].startswith("./"), f"batch{b} leading ./ in {x['filePath']}"
+
+    dangling = set()
+    for ed in d["edges"]:
+        for k in ("source", "target", "type", "direction", "weight"):
+            assert k in ed, f"batch{b} edge missing {k}"
+        assert ed["direction"] == "forward"
+        for end in ("source", "target"):
+            if ed[end] not in ids:
+                dangling.add(ed[end])
+    # categorize dangling: allowed if it's a cross-batch file node
+    bad = [t for t in dangling if not (t.startswith("file:") and t[5:] in CROSSBATCH_FILES)]
+    if bad:
+        ok = False
+        print(f"batch-{b}: INVALID dangling targets: {bad}")
+    types = {}
+    for x in d["nodes"]:
+        types[x["type"]] = types.get(x["type"], 0) + 1
+    etypes = {}
+    for ed in d["edges"]:
+        etypes[ed["type"]] = etypes.get(ed["type"], 0) + 1
+    xbatch = [t for t in dangling if t.startswith("file:") and t[5:] in CROSSBATCH_FILES]
+    print(f"batch-{b}: nodes={n} {types} | edges={e} {etypes} | cross-batch-refs={len(xbatch)}")
+
+print("ALL VALID" if ok else "VALIDITY ISSUES ABOVE")

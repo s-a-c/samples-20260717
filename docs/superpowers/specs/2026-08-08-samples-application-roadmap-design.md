@@ -5,8 +5,9 @@ tableOfContents:
     minHeadingLevel: 2
     maxHeadingLevel: 3
 type: spec
-tags: \[spec, roadmap, wayfinder, delivery, samples\]
-updated: 2026-08-08
+tags: [spec, roadmap, wayfinder, delivery, samples]
+created: 2026-08-08
+updated: 2026-08-17
 ---
 
 # Samples Application Delivery Roadmap Design

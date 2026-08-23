@@ -1,9 +1,13 @@
 ---
 title: "Wayfinder #15 Re-audit Remediation Plan"
 description: "> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking."
+tableOfContents:
+    minHeadingLevel: 2
+    maxHeadingLevel: 3
 type: plan
-tags: \[plan, plans, wayfinder, "15"]
-updated: 2026-07-30
+tags: [plan, plans, wayfinder, "15"]
+created: 2026-07-28
+updated: 2026-08-17
 ---
 
 # Wayfinder #15 Re-audit Remediation Plan
@@ -442,7 +446,7 @@ Use the repo's existing ADR front-matter shape (see `100332-git-branch.md`). Bod
 - **Context:** #17 specified a dual suite (SQLite `:memory:` default + `tests/Feature/Postgres/*` on pgvector). After the #40–#42 Postgres pivot, the SQLite tier duplicated schema migrations and offered no independent signal. The codebase already runs `DB_CONNECTION=pgsql` exclusively.
 - **Decision:** Adopt a **single Postgres-only suite**. `phpunit.xml` keeps `DB_CONNECTION=pgsql`; CI's `pgvector/pgvector:pg18` service hosts every test. The `test:pg` composer script remains as an alias for the `tests/Feature/Postgres` subset; the `test:feature`/`test:unit` scripts run on Postgres too.
 - **Consequences:** One schema source of truth; CI cost is one DB, not two; no SQLite-only bug class is caught (acceptable — SQLite is not a deployment target). `tests/Feature/Postgres` marker directory retained for tests that explicitly assert PG features (vector, HNSW, `GENERATED`).
-- **Supersedes:** the dual-suite clause of [ADR 100326 — Test Pyramid](./100326-test-pyramid.md) (wayfinder #17). All other #17 decisions stand.
+- **Supersedes:** the dual-suite clause of [ADR 100326 — Test Pyramid](../../10-architecture/1003-adr/100326-test-pyramid.md) (wayfinder #17). All other #17 decisions stand.
 
 - [ ] **Step 2: Add the ADR to the index**
 
@@ -464,7 +468,7 @@ git commit -m "docs(adr): ratify single Postgres test suite, supersedes #17 dual
 **Files:**
 
 - Modify: `app/Console/Commands/DossierGenerate.php`
-- Creates (on run): `docs/15-delivery/1515-implementation-readiness-dossier/151503-stage-1-foundation.md` … `151506-stage-4-polish.md`
+- Creates (on run): `docs/15-delivery/1515-implementation-readiness-dossier/151504-stage-1-foundation.md` … `151511-stage-4-polish.md`
 
 **Interfaces:**
 

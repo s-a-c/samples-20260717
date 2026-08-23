@@ -1,0 +1,1 @@
+{"nodes": [{"id": "factory_skills_infer_conventions_skill", "label": "Infer Conventions Skill", "file_type": "document", "source_file": ".factory/skills/infer-conventions/SKILL.md", "rationale": "Systematic process for detecting and recording project-specific coding conventions in Laravel."}], "edges": [], "hyperedges": []}
