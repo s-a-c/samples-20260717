@@ -27,14 +27,23 @@
         <env name="BROADCAST_CONNECTION" value="null"/>
         <env name="CACHE_STORE" value="array"/>
         <env name="DB_CONNECTION" value="pgsql"/>
-        <env name="DB_DATABASE" value="laravel"/>
+        <env name="DB_DATABASE" value="samples_20260717_testing"/>
+        <env name="DB_HOST" value="127.0.0.1"/>
+        <env name="DB_PORT" value="6432"/>
         <env name="DB_USERNAME" value="s-a-c"/>
+        <env name="DB_POOLED" value="true"/>
+        <env name="DB_DIRECT_HOST" value="127.0.0.1"/>
+        <env name="DB_DIRECT_PORT" value="5437"/>
         <env name="DB_URL" value=""/>
+        <env name="DB_USERNAME" value="s-a-c"/>
         <env name="MAIL_MAILER" value="array"/>
+        <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="OPERATOR_EMAIL" value="system@samples-20260717.test"/>
+        <env name="OPERATOR_NAME" value="System Operator"/>
+        <env name="OPERATOR_PASSWORD" value="db4rnR@secret"/>
+        <env name="PULSE_ENABLED" value="false"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
-        <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
-        <env name="NIGHTWATCH_ENABLED" value="false"/>
     </php>
 </phpunit>

@@ -9,6 +9,9 @@ on:
 env:
   DB_HOST: 127.0.0.1
   DB_PORT: 5432
+  DB_POOLED: "false"
+  DB_DIRECT_HOST: 127.0.0.1
+  DB_DIRECT_PORT: "5432"
   DB_DATABASE: testing_db
   DB_USERNAME: postgres
   DB_PASSWORD: secret
