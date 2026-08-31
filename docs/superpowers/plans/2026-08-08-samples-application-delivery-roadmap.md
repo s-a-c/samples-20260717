@@ -718,7 +718,10 @@ If any gate fails, reopen the owning task and record the exact failure/recovery 
 ## 11. Phase 7 — Closure and Stabilization
 
 The core Tasks 0–11 are implemented. Closure and acceptance are tracked by
-GitHub #101–#108 and Beads `.13`–`.19`; tracker closure is not acceptance.
+GitHub #86–#97 and #101–#111, mirrored by exactly 20 direct closed Beads
+children under `samples-20260717-7rg`. GitHub issue #85 remains open as the
+living Wayfinder map; Beads records execution state and does not replace the
+map.
 
 ### 11.1. Task 12: Teams and Settings Livewire verification — **verified locally**
 
@@ -731,7 +734,8 @@ under `.env` APP_KEY (`livewire-e2bba137`) while tests used `.env.testing`
 endpoint. No application code change was required.
 
 **Evidence:** `php artisan route:clear --no-interaction`; Teams/Settings
-focused suite **59/59 passed**; full Pest suite subsequently **563/563 passed**.
+focused suite passed; the current hydrated full Pest suite is **588/588**
+with **1,952 assertions**.
 
 ### 11.2. Task 13: Admin ProductCardActions verification — **verified locally**
 
@@ -742,7 +746,8 @@ The widget already had the required Filament action/schema traits. Its null
 component and 404 symptoms had the same stale Livewire route-cache cause.
 
 **Evidence:** `php artisan route:clear --no-interaction`; ProductCardActions
-focused suite **13/13 passed**; full Pest suite **563/563 passed**.
+focused tests pass; the current hydrated full Pest suite is **588/588** with
+**1,952 assertions**.
 
 ### 11.3. Task 14: Real source-data imports through the production pipeline
 
@@ -765,9 +770,12 @@ projections; Pagila published 1,000 films, 200 actors, 599 customers, and 2,534
 search projections. Reset runs reached `succeeded` / `complete`. The source
 reader restores the caller's PostgreSQL `search_path` after each dump.
 
-**Gate:** implementation and local operator verification are complete, but the
-acceptance record remains open until the evidence is attached to the committed
-branch and the final CI/quality gates pass.
+**Evidence status:** implementation and local operator verification are
+complete. The release record points to the merged implementation SHAs
+`420434c8ae1f811d97c34a2d62f222479f02cb51` (PR #107) and
+`4210e5bfaa865e183559a7c81260b555306b85f6` (PR #110). Current local checks
+also cover the post-merge configuration fix, but that follow-up is not yet on
+a committed remote SHA.
 
 ### 11.4. Task 15: Linux CI with pgvector/pgvector:pg18
 
@@ -775,20 +783,19 @@ branch and the final CI/quality gates pass.
 `samples-20260717-7rg.16`.
 
 **Workflow changes:** `.github/workflows/tests.yml`,
-`.github/workflows/tia-baseline.yml`, and `.github/workflows/mutation.yml` now
-scope `COMPOSER_AUTH` to Composer installation, create `.env` before key
-generation, clear framework caches, and retain the `pgvector/pgvector:pg18`
-service.
+`.github/workflows/tia-baseline.yml`, and `.github/workflows/mutation.yml` keep
+the `pgvector/pgvector:pg18` service and now take pnpm from the single
+`package.json` `packageManager` declaration. This removes the duplicate
+pnpm-version failure seen in the scheduled TIA and mutation runs on
+`c5387f354c9ad24e61f3ced8748fc01d87760fd3`.
 
-- [ ] Run the local quality gate with Pint, PHPStan, Mago, Architecture, type
-      coverage, line coverage, TIA, and mutation checks.
-- [ ] Commit and push the implementation to a reviewable branch.
-- [ ] Open a PR and record the Tests, TIA, and Mutation run URLs.
-- [ ] Confirm the Linux matrix is green on the committed SHA.
+**Merged evidence:** PR #107 and PR #110 passed their required Linux checks,
+including PostgreSQL/pgvector tests, coverage, TIA shards, mutation, PHPStan,
+Pint, CodeQL, and Semgrep, on their respective merge SHAs above.
 
-**Current blocker:** Pest, Pint, Mago, Architecture, and focused import suites
-are green locally; PHPStan remains red with pre-existing and roadmap static
-analysis debt. No CI run is accepted until that gate is resolved.
+**Current follow-up:** the local workflow correction is validated by YAML
+parsing and `git diff --check`, but requires a committed remote SHA and a new
+GitHub run before the scheduled workflow gate can be called current.
 
 ### 11.5. Task 17: PHPStan quality gate — **verified locally**
 
@@ -800,9 +807,10 @@ analysis debt. No CI run is accepted until that gate is resolved.
 - [x] Retain only documented framework-idiom exceptions.
 - [x] Verify `composer types:check` / the direct PHPStan command exits 0.
 
-**Evidence:** PHPStan 0 errors; Pest 563/563; Pint pass; Mago pass;
-Architecture 26/26. Linux CI and committed-SHA acceptance remain tracked by
-Task 15 / #104.
+**Evidence:** PHPStan 0 errors; hydrated Pest 588/588; Pint pass; Mago guard
+pass; Architecture 26/26 on the current checkout. The strict error fixed in
+this reconciliation was the optional PostgreSQL direct-connection filter in
+`config/database.php`.
 
 ### 11.6. Task 18: Coverage gate remediation — **verified**
 
@@ -816,25 +824,25 @@ Task 15 / #104.
 - [x] Verify the coverage command exits 0 on the committed SHA and Linux CI.
 
 **Evidence:** PR #107 Linux Coverage and type coverage pass at 100%; TIA shards
-1/2 and 2/2 pass; mutation pull-request job passes. Local `composer test` is
-581/581 with 1,761 assertions.
+1/2 and 2/2 pass; mutation pull-request job passes on merge SHA
+`420434c8ae1f811d97c34a2d62f222479f02cb51`.
 
 ### 11.7. Task 16: Documentation and acceptance-record alignment
 
 **Tracker:** [#105](https://github.com/s-a-c/samples-20260717/issues/105) · Beads
 `samples-20260717-7rg.17`.
 
-- [ ] Reconcile this plan and the roadmap spec with the final implementation
+- [x] Reconcile this plan and the roadmap spec with the final implementation
       and verification states.
-- [ ] Update Wayfinder map #85, GitHub resolution comments, Beads notes, and
+- [x] Update Wayfinder map #85, GitHub resolution comments, Beads notes, and
       the implementation-readiness dossier.
-- [ ] Update applicable ADR, CONTEXT, operator/recovery, and quality-gate
+- [x] Update applicable ADR, CONTEXT, operator/recovery, and quality-gate
       references when behavior or commands changed.
-- [ ] Run documentation metadata, navigation, link, and parity checks.
+- [x] Run documentation metadata, navigation, link, and parity checks.
 
-**Gate:** no document claims that real-data imports or CI are accepted without
-committed-SHA evidence, and all relevant docs use the same task IDs, commands,
-and acceptance semantics.
+**Gate:** documents distinguish implemented, verified, and accepted states;
+current automated evidence points to committed SHAs; and the remaining local
+workflow follow-up is explicitly marked as awaiting its committed CI run.
 
 ## 12. Historical Task Reconciliation Rules
 
@@ -878,9 +886,9 @@ Every remaining task has a tracker issue, files, interfaces, test command, and a
 
 ## 14. Execution Handoff
 
-Plan complete and saved to `docs/superpowers/plans/2026-08-08-samples-application-delivery-roadmap.md`. The canonical tracker is [Wayfinder — Samples Application Delivery Roadmap](https://github.com/s-a-c/samples-20260717/issues/85), with execution issues [86–97](https://github.com/s-a-c/samples-20260717/issues/86) (core roadmap) and [101–104](https://github.com/s-a-c/samples-20260717/issues/101) (closure blockers) and Beads parent `samples-20260717-7rg`.
-
-Two execution options:
-
-1. **Subagent-Driven (recommended):** dispatch a fresh implementation/review subagent per task, honoring the GitHub/Beads dependency graph.
-2. **Inline Execution:** execute the plan in this session with `superpowers:executing-plans` checkpoints.
+Plan retained as the implementation and acceptance record at
+`docs/superpowers/plans/2026-08-08-samples-application-delivery-roadmap.md`.
+The canonical tracker is [Wayfinder — Samples Application Delivery Roadmap](https://github.com/s-a-c/samples-20260717/issues/85),
+with 20 direct execution children mirrored by Beads parent
+`samples-20260717-7rg`. #85 remains open so later evidence and follow-up work
+can be added without creating a replacement map.

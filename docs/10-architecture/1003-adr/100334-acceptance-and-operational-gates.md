@@ -7,7 +7,7 @@ tableOfContents:
 type: adr
 tags: [adr, "0018", acceptance]
 created: 2026-07-28
-updated: 2026-08-17
+updated: 2026-08-31
 ---
 
 # ADR 0018: Acceptance & Operational Gates
@@ -70,3 +70,4 @@ Adopt a risk-ordered, evidence-backed acceptance model.
 ## 5. References
 
 - [Wayfinder #11](https://github.com/s-a-c/samples-20260717/issues/11) · ADR 0015 (Dossier) · ADR 0013 (Test Pyramid) · ADR 0021 (Single Postgres Test Suite)
+- Current delivery evidence is indexed by [Wayfinder #85](https://github.com/s-a-c/samples-20260717/issues/85) and the implementation-readiness dossier.

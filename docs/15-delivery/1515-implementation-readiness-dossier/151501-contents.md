@@ -6,8 +6,8 @@ tableOfContents:
     maxHeadingLevel: 3
 type: contents
 tags: [dossier, delivery, acceptance]
-created: 2026-08-23
-updated: 2026-08-23
+created: 2026-08-31
+updated: 2026-08-31
 ---
 
 # Implementation-Readiness Dossier — Contents
@@ -19,7 +19,8 @@ updated: 2026-08-23
 
 - [1. Stages](#1-stages)
 - [2. Evidence checklist (per stage)](#2-evidence-checklist-per-stage)
-- [3. Governance](#3-governance)
+- [3. Current release evidence](#3-current-release-evidence)
+- [4. Governance](#4-governance)
 
 </details>
 
@@ -60,7 +61,28 @@ when every gate's evidence row resolves:
 - [ ] **Evidence location** — URL/path to the generated evidence (CI run, artifact)
 - [ ] **Recovery procedure** — what to do when a gate regresses
 
-## 3. Governance
+## 3. Current release evidence
+
+The current delivery map is [Wayfinder #85](https://github.com/s-a-c/samples-20260717/issues/85),
+which intentionally remains open. Its execution mirror is Beads epic
+`samples-20260717-7rg`: 20 direct children, all closed, each with a GitHub
+reference. The implementation and acceptance evidence is split by state:
+
+- Merged implementation and Linux evidence: PR #107 at
+  `420434c8ae1f811d97c34a2d62f222479f02cb51`; PR #110 at
+  `4210e5bfaa865e183559a7c81260b555306b85f6`.
+- Current Herd evidence: PostgreSQL extensions, migrations, hydrated Pest
+  588/588, PHPStan 0 errors, Pint, Mago guard, architecture tests, focused
+  import/search/Admin tests, and `pnpm run build` pass locally.
+- Current follow-up: the pnpm workflow correction is present in the working
+  tree but still needs a committed remote SHA and a fresh GitHub run before
+  scheduled TIA and mutation acceptance is current.
+
+The project database target is PostgreSQL 18 with pgvector. SQLite references
+in research and superseded ADR history do not describe the application
+database.
+
+## 4. Governance
 
 A stage may not begin until the previous stage's gates pass. A gate
 that regresses re-opens its stage.

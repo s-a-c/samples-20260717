@@ -208,16 +208,19 @@ project-wide acceptance rule.
 
 ## 7. Tracker Model
 
-Create one new GitHub issue labelled `wayfinder:map` titled
-**Wayfinder — Samples Application Delivery Roadmap**. Its body contains the
-destination, scope, notes, completed-task index, open frontier, fog, and
-out-of-scope boundaries.
+Maintain the existing GitHub issue labelled `wayfinder:map` titled
+**Wayfinder — Samples Application Delivery Roadmap** as the living map. Its
+body contains the destination, scope, evidence-backed completed-task index,
+current follow-up work, and out-of-scope boundaries. The map remains open so
+new evidence can be appended without replacing its history.
 
-Existing issues remain the identity of completed work. New child issues are
-created only for remaining deliverables that are not already represented by a
-specific issue. Each new issue contains one question/deliverable, exact
-acceptance evidence, and dependency references. Beads mirrors the new
-execution tasks; GitHub remains the canonical map and decision history.
+Existing issues remain the identity of completed work. The current map has 20
+direct execution children, with no duplicate tasks created during
+reconciliation. New child issues are created only for remaining deliverables
+that are not already represented by a specific issue. Each new issue contains
+one question/deliverable, exact acceptance evidence, and dependency
+references. Beads mirrors execution tasks; GitHub remains the canonical map
+and decision history.
 
 ## 8. Acceptance Contract
 

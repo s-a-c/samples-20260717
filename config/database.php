@@ -106,7 +106,7 @@ return [
                 'username' => env('DB_DIRECT_USERNAME'),
                 'password' => env('DB_DIRECT_PASSWORD'),
                 'sslmode' => env('DB_DIRECT_SSLMODE'),
-            ]),
+            ], static fn (mixed $value): bool => (bool) $value),
         ],
 
         'sqlsrv' => [
