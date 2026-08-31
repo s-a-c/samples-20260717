@@ -387,20 +387,29 @@ class OrderMapper extends NorthwindRawTableMapper
         }
 
         foreach (DB::table("{$sourceSchema}.orders")->get() as $row) {
+            $customerId = null;
+            if ($row->customer_id !== null) {
+                $customerId = $this->registry->getOrMint('northwind.customers', ['CustomerID' => $row->customer_id]);
+            }
+
+            $employeeId = null;
+            if ($row->employee_id !== null) {
+                $employeeId = $this->registry->getOrMint('northwind.employees', ['EmployeeID' => $row->employee_id]);
+            }
+
+            $shipperId = null;
+            if ($row->ship_via !== null) {
+                $shipperId = $this->registry->getOrMint('northwind.shippers', ['ShipperID' => $row->ship_via]);
+            }
+
             $this->insert($stagingSchema, 'orders', [
                 'id' => $this->registry->getOrMint('northwind.orders', ['OrderID' => $row->order_id]),
-                'customer_id' => $row->customer_id === null
-                    ? null
-                    : $this->registry->getOrMint('northwind.customers', ['CustomerID' => $row->customer_id]),
-                'employee_id' => $row->employee_id === null
-                    ? null
-                    : $this->registry->getOrMint('northwind.employees', ['EmployeeID' => $row->employee_id]),
+                'customer_id' => $customerId,
+                'employee_id' => $employeeId,
                 'order_date' => $row->order_date,
                 'required_date' => $row->required_date,
                 'shipped_date' => $row->shipped_date,
-                'ship_via' => $row->ship_via === null
-                    ? null
-                    : $this->registry->getOrMint('northwind.shippers', ['ShipperID' => $row->ship_via]),
+                'ship_via' => $shipperId,
                 'freight' => $this->sourceFloat($row->freight ?? 0),
                 'ship_name' => $row->ship_name,
                 'ship_address' => $row->ship_address,
