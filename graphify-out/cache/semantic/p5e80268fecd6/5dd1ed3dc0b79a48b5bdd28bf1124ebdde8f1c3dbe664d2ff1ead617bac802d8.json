@@ -1,0 +1,1 @@
+{"nodes": [{"id": "claude_skills_echo_development_skill", "label": "Laravel Echo & Broadcasting", "file_type": "document", "source_file": ".claude/skills/echo-development/SKILL.md", "rationale": "Guide for real-time broadcasting and Echo client setup."}], "edges": [], "hyperedges": []}

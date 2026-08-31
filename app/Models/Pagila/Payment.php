@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Override;
 
 #[Table('pagila.payments')]
 final class Payment extends Model implements HasProductDomain
@@ -27,6 +28,7 @@ final class Payment extends Model implements HasProductDomain
         ];
     }
 
+    #[Override]
     public function getProductDomain(): SamplesProduct
     {
         return SamplesProduct::Pagila;

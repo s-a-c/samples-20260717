@@ -1,1 +1,1 @@
-{"nodes": [{"id": "instruckt_skill", "label": "Instruckt Skill", "file_type": "concept", "source_file": ".junie/skills/instruckt/SKILL.md", "rationale": "Handles visual UI feedback and annotations from users."}], "edges": [], "hyperedges": []}
+{"nodes": [{"id": "junie_skills_instruckt_skill", "label": "Instruckt Skill (Junie)", "file_type": "document", "source_file": ".junie/skills/instruckt/SKILL.md", "source_location": null, "source_url": null, "captured_at": null, "author": "joshcirre", "contributor": null, "rationale": null}], "edges": [], "hyperedges": []}

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Override;
 
 #[Table('pagila.films')]
 final class Film extends Model implements HasProductDomain
@@ -32,6 +33,7 @@ final class Film extends Model implements HasProductDomain
         ];
     }
 
+    #[Override]
     public function getProductDomain(): SamplesProduct
     {
         return SamplesProduct::Pagila;

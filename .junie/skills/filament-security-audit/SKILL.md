@@ -1,8 +1,9 @@
 ---
 name: filament-security-audit
-description: Audit a Filament v5 application for security issues and write a per-finding
-    remediation plan. Use when asked to security-audit, security-review, harden,
-    or pen-test a Filament panel, resource, page, or Livewire component.
+description:
+  Audit a Filament v5 application for security issues and write a per-finding
+  remediation plan. Use when asked to security-audit, security-review, harden,
+  or pen-test a Filament panel, resource, page, or Livewire component.
 ---
 
 # Filament Security Audit
@@ -165,8 +166,8 @@ where a per-record guard exists but the matching bulk guard does not.
   `->strictAuthorization()` setting enabled a missing `*Any()` throws instead —
   N/A there.)
 - **Docs**:
-    - https://filamentphp.com/docs/5.x/resources/deleting-records#authorization
-    - https://filamentphp.com/docs/5.x/actions/delete#improving-the-performance-of-delete-bulk-actions
+  - https://filamentphp.com/docs/5.x/resources/deleting-records#authorization
+  - https://filamentphp.com/docs/5.x/actions/delete#improving-the-performance-of-delete-bulk-actions
 
 ### A2. Import bypasses the `create()` / `update()` policy — `[Seed]` `[Conditional]`
 
@@ -233,10 +234,10 @@ an inline column saves to it without an equivalent guard.
   `->disabled()` (and field validation) — never the `update()` policy — so any
   user who can see the row can write the value.
 - **Docs**:
-    - https://filamentphp.com/docs/5.x/tables/columns/toggle#authorization
-    - https://filamentphp.com/docs/5.x/tables/columns/text-input#authorization
-    - https://filamentphp.com/docs/5.x/tables/columns/select#authorization
-    - https://filamentphp.com/docs/5.x/tables/columns/checkbox#authorization
+  - https://filamentphp.com/docs/5.x/tables/columns/toggle#authorization
+  - https://filamentphp.com/docs/5.x/tables/columns/text-input#authorization
+  - https://filamentphp.com/docs/5.x/tables/columns/select#authorization
+  - https://filamentphp.com/docs/5.x/tables/columns/checkbox#authorization
 
 ### A5. Livewire upload RPC on components without an upload field — `[Seed]` `[Conditional]`
 
@@ -302,93 +303,93 @@ users uploaded through other fields on the same disk. Provider-backed fields
 non-provider field can read provider-backed content if its path is known.
 
 - **Search**:
-    1. **Group all upload-storing fields by resolved disk** —
-       `grep -rnE "(FileUpload|SpatieMediaLibraryFileUpload)::make" app` and
-       `grep -rn "RichEditor::make" app`, resolving each field's disk via
-       `->disk(...)` or `->fileAttachmentsDisk(...)` → panel default →
-       `config('filament.default_filesystem_disk')` → `FILESYSTEM_DISK`. Drop:
-        - Public / web-served disks (already addressable — no escalation).
-        - Disks single-user / single-tenant **by infrastructure** — Flysystem
-          `root` bound per tenant at framework level: static in
-          `config/filesystems.php`, dynamic via
-          `Storage::set('uploads', ['root' => "/tenants/{$tenantId}"])` in a
-          service provider / middleware, or a tenancy package (Spatie
-          multi-tenancy, Stancl/Tenancy). App-layer prefixing on a shared root does
-          NOT count — tampering bypasses string prefixes.
+  1. **Group all upload-storing fields by resolved disk** —
+     `grep -rnE "(FileUpload|SpatieMediaLibraryFileUpload)::make" app` and
+     `grep -rn "RichEditor::make" app`, resolving each field's disk via
+     `->disk(...)` or `->fileAttachmentsDisk(...)` → panel default →
+     `config('filament.default_filesystem_disk')` → `FILESYSTEM_DISK`. Drop:
+     - Public / web-served disks (already addressable — no escalation).
+     - Disks single-user / single-tenant **by infrastructure** — Flysystem
+       `root` bound per tenant at framework level: static in
+       `config/filesystems.php`, dynamic via
+       `Storage::set('uploads', ['root' => "/tenants/{$tenantId}"])` in a
+       service provider / middleware, or a tenancy package (Spatie
+       multi-tenancy, Stancl/Tenancy). App-layer prefixing on a shared root does
+       NOT count — tampering bypasses string prefixes.
 
-    2. **Find disclosure targets per disk** — any file on the disk root worth
-       exfiltrating, regardless of which mechanism uploaded it:
-        - **Sensitive content** in FileUpload / SpatieMediaLibraryFileUpload fields
-          or RichEditor image attachments. Judgement; ask the user when unclear.
-          Reliable name signals (apply to the field's or editor's hosting model):
-          `Medical*`, `Health*`, `Patient*`, `Tax*`, `Bank*`, `Invoice*`,
-          `Statement*`, `Identity*`, `Passport*`, `Credential*`, `Token*`,
-          `Secret*`. Generic names like `Document` / `Attachment` / `File` /
-          `Upload` are **not** signals on their own — context determines
-          sensitivity (check `composer.json` / `.env` for HIPAA / PCI / PII hints,
-          and the field's actual domain use).
-        - **Enumerable filenames** —
-          `grep -rn "preserveFilenames\|getUploadedFileNameForStorageUsing"` across
-          both field types. Spatie / UUID-scoped randomness is the safe case;
-          preserved or deterministic names are targets.
-        - **Non-Filament content** on the disk root — generated PDFs, queued
-          exports, log dumps written by other code paths.
+  2. **Find disclosure targets per disk** — any file on the disk root worth
+     exfiltrating, regardless of which mechanism uploaded it:
+     - **Sensitive content** in FileUpload / SpatieMediaLibraryFileUpload fields
+       or RichEditor image attachments. Judgement; ask the user when unclear.
+       Reliable name signals (apply to the field's or editor's hosting model):
+       `Medical*`, `Health*`, `Patient*`, `Tax*`, `Bank*`, `Invoice*`,
+       `Statement*`, `Identity*`, `Passport*`, `Credential*`, `Token*`,
+       `Secret*`. Generic names like `Document` / `Attachment` / `File` /
+       `Upload` are **not** signals on their own — context determines
+       sensitivity (check `composer.json` / `.env` for HIPAA / PCI / PII hints,
+       and the field's actual domain use).
+     - **Enumerable filenames** —
+       `grep -rn "preserveFilenames\|getUploadedFileNameForStorageUsing"` across
+       both field types. Spatie / UUID-scoped randomness is the safe case;
+       preserved or deterministic names are targets.
+     - **Non-Filament content** on the disk root — generated PDFs, queued
+       exports, log dumps written by other code paths.
 
-    3. **Find unprotected writers per disk** — two sub-categories:
-        - **FileUpload writers**: non-Spatie `FileUpload` fields without
-          `preventFilePathTampering(true)` (per-field, or via global
-          `FileUpload::configureUsing(...)` default).
+  3. **Find unprotected writers per disk** — two sub-categories:
+     - **FileUpload writers**: non-Spatie `FileUpload` fields without
+       `preventFilePathTampering(true)` (per-field, or via global
+       `FileUpload::configureUsing(...)` default).
 
-        - **RichEditor writers**: editors satisfying all three of:
-            - **Accepts attachments** — default toolbar includes `attachFiles`; a
-              custom toolbar (`->toolbarButtons([...])`) that omits it disables
-              attachment uploads, so the editor can't insert `<img data-id>` nodes.
-              Skip.
-            - **No UUID-scoped provider** — trace the editor to its hosting model and
-              check `registerRichContent(..., ...)->fileAttachmentProvider(...)` in
-              the model file (`grep -rn "fileAttachmentProvider(" app/Models`
-              enumerates registered providers). Spatie's `MediaLibrary` or any custom
-              provider that re-validates ownership protects the editor. **Action /
-              page schemas with no model backing have nowhere to register a
-              provider** — always unprotected.
-            - **No tampering protection** — no
-              `->preventFileAttachmentPathTampering(true)` on the field, and no
-              global `RichEditor::configureUsing(...)` default.
+     - **RichEditor writers**: editors satisfying all three of:
+       - **Accepts attachments** — default toolbar includes `attachFiles`; a
+         custom toolbar (`->toolbarButtons([...])`) that omits it disables
+         attachment uploads, so the editor can't insert `<img data-id>` nodes.
+         Skip.
+       - **No UUID-scoped provider** — trace the editor to its hosting model and
+         check `registerRichContent(..., ...)->fileAttachmentProvider(...)` in
+         the model file (`grep -rn "fileAttachmentProvider(" app/Models`
+         enumerates registered providers). Spatie's `MediaLibrary` or any custom
+         provider that re-validates ownership protects the editor. **Action /
+         page schemas with no model backing have nowhere to register a
+         provider** — always unprotected.
+       - **No tampering protection** — no
+         `->preventFileAttachmentPathTampering(true)` on the field, and no
+         global `RichEditor::configureUsing(...)` default.
 
-    4. **Gradient or audience check** (per disk, cheap heuristic) — either flags
-       an unprotected writer:
-        - **Gradient** — any target's gating policy (`view` / `download` /
-          equivalent) references `$record` or `$user` _in the method body_
-          (ownership scoping creates per-record asymmetry). Read the body; don't
-          infer from the signature alone — `view(User $user, Article $record)` may
-          never touch `$record`.
-        - **Audience** — the rendered field output reaches viewers beyond the
-          writer's access scope: an avatar shown on a public profile page or in a
-          staff list, an editor body rendered into a public article or into a
-          notification email. Even with flat permissions, a publicly rendered
-          tampered preview or `<img>` fetches the file without re-authenticating
-          the viewer.
+  4. **Gradient or audience check** (per disk, cheap heuristic) — either flags
+     an unprotected writer:
+     - **Gradient** — any target's gating policy (`view` / `download` /
+       equivalent) references `$record` or `$user` _in the method body_
+       (ownership scoping creates per-record asymmetry). Read the body; don't
+       infer from the signature alone — `view(User $user, Article $record)` may
+       never touch `$record`.
+     - **Audience** — the rendered field output reaches viewers beyond the
+       writer's access scope: an avatar shown on a public profile page or in a
+       staff list, an editor body rendered into a public article or into a
+       notification email. Even with flat permissions, a publicly rendered
+       tampered preview or `<img>` fetches the file without re-authenticating
+       the viewer.
 
-    5. **Identify legitimate fill sources per flagged writer** — for each writer
-       surviving steps 3 and 4, find every place its value can be set to a path
-       that did NOT come from a fresh upload or the record's original. These
-       become **mandatory** `allowFilePathUsing:` exclusions in the fix — applying
-       the global default without them breaks those workflows. Sources to inspect:
-        - **Field defaults** — `->default(...)` setting a path (FileUpload) or HTML
-          containing `<img data-id="...">` (RichEditor).
-        - **Form fill hooks** — `mutateFormDataBeforeFill()` (page),
-          `mutateRecordDataUsing()` (modal action), explicit `fillForm()` /
-          `$this->form->fill(...)` calls.
-        - **Action fills** — `Action::make(...)->action(...)` closures that call
-          `$set('<field>', ...)` or otherwise write the field from a template /
-          another record. Grep `->set('<field>'` in panels/pages hosting the
-          writer.
-        - **Reactive / live updates** — `->afterStateUpdated(...)` or `->live()`
-          callbacks writing to the field from elsewhere.
+  5. **Identify legitimate fill sources per flagged writer** — for each writer
+     surviving steps 3 and 4, find every place its value can be set to a path
+     that did NOT come from a fresh upload or the record's original. These
+     become **mandatory** `allowFilePathUsing:` exclusions in the fix — applying
+     the global default without them breaks those workflows. Sources to inspect:
+     - **Field defaults** — `->default(...)` setting a path (FileUpload) or HTML
+       containing `<img data-id="...">` (RichEditor).
+     - **Form fill hooks** — `mutateFormDataBeforeFill()` (page),
+       `mutateRecordDataUsing()` (modal action), explicit `fillForm()` /
+       `$this->form->fill(...)` calls.
+     - **Action fills** — `Action::make(...)->action(...)` closures that call
+       `$set('<field>', ...)` or otherwise write the field from a template /
+       another record. Grep `->set('<field>'` in panels/pages hosting the
+       writer.
+     - **Reactive / live updates** — `->afterStateUpdated(...)` or `->live()`
+       callbacks writing to the field from elsewhere.
 
-        Encode each allowed pattern in an `allowFilePathUsing:` closure (e.g.
-        `str_starts_with($file, 'templates/')` for a template directory; a
-        membership check on a specific Spatie media collection used by templates).
+     Encode each allowed pattern in an `allowFilePathUsing:` closure (e.g.
+     `str_starts_with($file, 'templates/')` for a template directory; a
+     membership check on a specific Spatie media collection used by templates).
 
 - **Flag if**: a disk has targets, unprotected writers (of either type), and a
   gradient or broader audience. One §2 entry per disk, listing every unprotected
@@ -398,20 +399,20 @@ non-provider field can read provider-backed content if its path is known.
   audience.
 
 - **Fix** (one §2 entry per disk):
-    1. Add the relevant global default(s) —
-       `FileUpload::configureUsing(fn (FileUpload $component) => $component->preventFilePathTampering())`
-       and/or
-       `RichEditor::configureUsing(fn (RichEditor $component) => $component->preventFileAttachmentPathTampering())`.
-    2. For **every** fill source from step 5, add a per-field exclusion:
-       `->preventFilePathTampering(allowFilePathUsing: fn (string $file): bool => str_starts_with($file, 'templates/'))`
-       (or its RichEditor equivalent). Enumerate each with file:line and the
-       specific allowed pattern.
+  1. Add the relevant global default(s) —
+     `FileUpload::configureUsing(fn (FileUpload $component) => $component->preventFilePathTampering())`
+     and/or
+     `RichEditor::configureUsing(fn (RichEditor $component) => $component->preventFileAttachmentPathTampering())`.
+  2. For **every** fill source from step 5, add a per-field exclusion:
+     `->preventFilePathTampering(allowFilePathUsing: fn (string $file): bool => str_starts_with($file, 'templates/'))`
+     (or its RichEditor equivalent). Enumerate each with file:line and the
+     specific allowed pattern.
 
-    **Step 2 is mandatory when step 5 found fill sources** — applying the global
-    default alone will break fill-from-template / copy-from-another-record /
-    default-attachment workflows in production. Alternative when only a small
-    subset of fields is affected: apply the per-field method (with the exclusion
-    in the same call) instead of registering a global default.
+  **Step 2 is mandatory when step 5 found fill sources** — applying the global
+  default alone will break fill-from-template / copy-from-another-record /
+  default-attachment workflows in production. Alternative when only a small
+  subset of fields is affected: apply the per-field method (with the exclusion
+  in the same call) instead of registering a global default.
 
 - **§5 tip**: if a disk has any non-provider writer and the corresponding global
   default is missing
@@ -421,24 +422,24 @@ non-provider field can read provider-backed content if its path is known.
 
 - **Why**: two mechanisms with the same flaw — both ask the disk for whatever
   path the client supplied.
-    - **FileUpload**: Livewire state holds a client-controlled path. Preview /
-      download URL methods read state on every render — tampering redirects them
-      to any file under the disk root, persistence not required (so
-      `storeFiles(false)` is **not** an exemption: the state is still there and
-      the URL methods still read it). `->preventFilePathTampering()` validates
-      against the record's original value or a fresh upload; off by default.
-    - **RichEditor**: image attachment `<img data-id="...">` is client-controlled.
-      The editor rewrites each `data-id` into an `<img src>` URL at render time,
-      signing whatever path it contains without checking ownership — tampering
-      redirects the rendered image to any file under the disk root.
-      `->preventFileAttachmentPathTampering()` validates the `data-id`; off by
-      default. UUID-scoped attachment providers (Spatie's
-      `fileAttachmentProvider(MediaLibrary)`, or any custom provider that
-      re-validates ownership) protect by rejecting non-owned paths.
+  - **FileUpload**: Livewire state holds a client-controlled path. Preview /
+    download URL methods read state on every render — tampering redirects them
+    to any file under the disk root, persistence not required (so
+    `storeFiles(false)` is **not** an exemption: the state is still there and
+    the URL methods still read it). `->preventFilePathTampering()` validates
+    against the record's original value or a fresh upload; off by default.
+  - **RichEditor**: image attachment `<img data-id="...">` is client-controlled.
+    The editor rewrites each `data-id` into an `<img src>` URL at render time,
+    signing whatever path it contains without checking ownership — tampering
+    redirects the rendered image to any file under the disk root.
+    `->preventFileAttachmentPathTampering()` validates the `data-id`; off by
+    default. UUID-scoped attachment providers (Spatie's
+    `fileAttachmentProvider(MediaLibrary)`, or any custom provider that
+    re-validates ownership) protect by rejecting non-owned paths.
 
 - **Docs**:
-    - https://filamentphp.com/docs/5.x/forms/file-upload#authorizing-existing-file-paths
-    - https://filamentphp.com/docs/5.x/forms/rich-editor#securing-file-attachment-ids
+  - https://filamentphp.com/docs/5.x/forms/file-upload#authorizing-existing-file-paths
+  - https://filamentphp.com/docs/5.x/forms/rich-editor#securing-file-attachment-ids
 
 ### B2. Upload field accepts any file type — `[Site]` `[Conditional]`
 
@@ -474,14 +475,14 @@ plain PHP text) are detected by content-sniffing and rejected.
   extension off disk). Real-world impact tracks the field's resolved disk
   (`->disk(...)` → panel default → `config('filament.default_filesystem_disk')`
   → `FILESYSTEM_DISK`):
-    - **Web-served disk** (`public` with `storage:link`, or anything Apache /
-      Nginx executes from): unrestricted upload → renamed `.php` lands on disk
-      with an executable extension → RCE. (B2 alone defeats the renamed-PHP
-      attack; [B3] closes the polyglot path.)
-    - **Non-served disk** (`s3` / `gcs` / private cloud storage — the production
-      default for most Filament apps): no execution path; missing restriction is
-      hygiene only, not an exploit. Still worth flagging — a future field added to
-      a different disk inherits the unrestricted pattern.
+  - **Web-served disk** (`public` with `storage:link`, or anything Apache /
+    Nginx executes from): unrestricted upload → renamed `.php` lands on disk
+    with an executable extension → RCE. (B2 alone defeats the renamed-PHP
+    attack; [B3] closes the polyglot path.)
+  - **Non-served disk** (`s3` / `gcs` / private cloud storage — the production
+    default for most Filament apps): no execution path; missing restriction is
+    hygiene only, not an exploit. Still worth flagging — a future field added to
+    a different disk inherits the unrestricted pattern.
 
 - **Docs**:
   https://filamentphp.com/docs/5.x/forms/file-upload#file-type-validation
@@ -546,8 +547,8 @@ Every C-check has two halves — **source** (the interpolated value) and **sink*
 - **Why**: editor content is raw user HTML. Filament's own renderers
   auto-sanitise, so only your own raw echoes are at risk.
 - **Docs**:
-    - https://filamentphp.com/docs/5.x/forms/rich-editor#security
-    - https://filamentphp.com/docs/5.x/forms/markdown-editor#security
+  - https://filamentphp.com/docs/5.x/forms/rich-editor#security
+  - https://filamentphp.com/docs/5.x/forms/markdown-editor#security
 
 ### C2. Raw HTML bypasses the sanitizer (`HtmlString` / `view()`) — `[Site]` `[Conditional]`
 
@@ -562,22 +563,22 @@ Every C-check has two halves — **source** (the interpolated value) and **sink*
   HTML _and_ the sink renders raw (see C-category intro). Static markup, or
   output where every dynamic value is `e()`'d, is N/A.
 - **Sink classification**:
-    - `Notification::title/body` sanitises downstream → **no finding** (residual
-      risk is broken HTML from attributes like `O'Brien` in an `href` — surface as
-      a §5 escape-interpolated-values tip if the pattern is widespread).
-    - Action `modalDescription/Heading`, `TextEntry/TextColumn::html()` fed a
-      pre-built `Htmlable`, raw `{!! !!}` in a Blade/mail/notification view — no
-      downstream sanitiser → **finding**.
-    - A custom view that calls `->sanitizeHtml()` or
-      `RichContentRenderer::toHtml()` on the value before echoing → **Pass**.
+  - `Notification::title/body` sanitises downstream → **no finding** (residual
+    risk is broken HTML from attributes like `O'Brien` in an `href` — surface as
+    a §5 escape-interpolated-values tip if the pattern is widespread).
+  - Action `modalDescription/Heading`, `TextEntry/TextColumn::html()` fed a
+    pre-built `Htmlable`, raw `{!! !!}` in a Blade/mail/notification view — no
+    downstream sanitiser → **finding**.
+  - A custom view that calls `->sanitizeHtml()` or
+    `RichContentRenderer::toHtml()` on the value before echoing → **Pass**.
 - **Fix**: prefer `->html()` (when its state isn't already pre-built raw HTML);
   otherwise `e()` every dynamic value before wrapping `HtmlString`. Symfony's
   `HtmlSanitizer` default permits inline `style` — configure a stricter
   sanitizer for fully untrusted content.
 - **Docs**:
-    - https://filamentphp.com/docs/5.x/tables/columns/text#rendering-raw-html-without-sanitization
-    - https://filamentphp.com/docs/5.x/infolists/text-entry#rendering-raw-html-without-sanitization
-    - https://filamentphp.com/docs/5.x/schemas/primes#text-component
+  - https://filamentphp.com/docs/5.x/tables/columns/text#rendering-raw-html-without-sanitization
+  - https://filamentphp.com/docs/5.x/infolists/text-entry#rendering-raw-html-without-sanitization
+  - https://filamentphp.com/docs/5.x/schemas/primes#text-component
 
 ### C3. Unsafe URL schemes in `url()` — `[Site]` `[Conditional]`
 
@@ -609,8 +610,8 @@ Every C-check has two halves — **source** (the interpolated value) and **sink*
 - **Fix**: remove the flag if labels needn't be HTML; otherwise escape any
   dynamic value with `e()` before it reaches the label.
 - **Docs**:
-    - https://filamentphp.com/docs/5.x/forms/select#allowing-html-in-the-option-labels
-    - https://filamentphp.com/docs/5.x/tables/columns/select#allowing-html-in-the-option-labels
+  - https://filamentphp.com/docs/5.x/forms/select#allowing-html-in-the-option-labels
+  - https://filamentphp.com/docs/5.x/tables/columns/select#allowing-html-in-the-option-labels
 
 ### C5. Unescaped `extraAttributes()` values — `[Site]` `[Conditional]`
 
@@ -649,8 +650,8 @@ Every C-check has two halves — **source** (the interpolated value) and **sink*
 - **Why**: these strings are `eval()`'d client-side, so PHP-side interpolation
   of user data → XSS.
 - **Docs**:
-    - https://filamentphp.com/docs/5.x/forms/overview#hiding-a-field-using-javascript
-    - https://filamentphp.com/docs/5.x/actions/overview#running-javascript-when-an-action-is-clicked
+  - https://filamentphp.com/docs/5.x/forms/overview#hiding-a-field-using-javascript
+  - https://filamentphp.com/docs/5.x/actions/overview#running-javascript-when-an-action-is-clicked
 
 ## D. Query Scoping, Data Exposure & Multi-Tenancy
 
@@ -714,33 +715,33 @@ not applying one.
 
 - **Search**: across all source roots (unscoped queries hide in
   jobs/commands/observers) —
-    1. `grep -rn "withoutGlobalScopes(" app` — empty-arg calls drop tenancy too.
-    2. Enumerate tenant-owned models by their FK
-       (`grep -rnE "team_id|organization_id|tenant_id|company_id" database/migrations app/Models`)
-       and any `BelongsToTenant`-style trait. For each, confirm it's either
-       exposed through a tenant-panel resource (auto-scoped) or explicitly scoped
-       elsewhere. Also `grep -rnE "saveQuietly\(|withoutEvents\(|unguarded\(" app`
-       for muted creation events.
+  1. `grep -rn "withoutGlobalScopes(" app` — empty-arg calls drop tenancy too.
+  2. Enumerate tenant-owned models by their FK
+     (`grep -rnE "team_id|organization_id|tenant_id|company_id" database/migrations app/Models`)
+     and any `BelongsToTenant`-style trait. For each, confirm it's either
+     exposed through a tenant-panel resource (auto-scoped) or explicitly scoped
+     elsewhere. Also `grep -rnE "saveQuietly\(|withoutEvents\(|unguarded\(" app`
+     for muted creation events.
 - **Flag if**: a tenant-owned model has no resource and no explicit scope, is
   queried before tenant identification (early middleware/providers) or outside
   the panel, or `withoutGlobalScopes()` is called with no arguments.
 - **Fix** — three mechanisms depending on context:
-    1. **Add a resource** for the model (simplest — resource queries are
-       auto-scoped via the panel).
-    2. **Register a model-level global scope** that filters by
-       `Filament::getTenant()`. Pair with
-       `tenantMiddleware([...], isPersistent: true)` so the tenant is
-       re-identified on Livewire AJAX requests (which bypass panel route
-       middleware); non-panel HTTP routes need the panel's tenant middleware
-       applied to them directly, and queue jobs need
-       `Filament::setTenant($tenant)` at the job's entry — persistent middleware
-       doesn't run on workers.
-    3. **Use a `creating` model listener** to populate the tenant FK on save
-       (covers writes without needing a query scope).
+  1. **Add a resource** for the model (simplest — resource queries are
+     auto-scoped via the panel).
+  2. **Register a model-level global scope** that filters by
+     `Filament::getTenant()`. Pair with
+     `tenantMiddleware([...], isPersistent: true)` so the tenant is
+     re-identified on Livewire AJAX requests (which bypass panel route
+     middleware); non-panel HTTP routes need the panel's tenant middleware
+     applied to them directly, and queue jobs need
+     `Filament::setTenant($tenant)` at the job's entry — persistent middleware
+     doesn't run on workers.
+  3. **Use a `creating` model listener** to populate the tenant FK on save
+     (covers writes without needing a query scope).
 
-    To drop a single scope without losing tenancy, use
-    `withoutGlobalScope(filament()->getTenancyScopeName())`. Never bare-arg
-    `withoutGlobalScopes()`.
+  To drop a single scope without losing tenancy, use
+  `withoutGlobalScope(filament()->getTenancyScopeName())`. Never bare-arg
+  `withoutGlobalScopes()`.
 
 - **Why**: automatic scoping applies only to models with a resource, only inside
   the panel, only after tenant identification.

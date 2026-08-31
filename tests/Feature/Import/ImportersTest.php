@@ -27,6 +27,7 @@ function mockViewRecreator(): PortfolioViewRecreator
 {
     return new class extends PortfolioViewRecreator
     {
+        #[Override]
         public function recreate(): void {}
     };
 }
@@ -116,11 +117,13 @@ function sourceManifest(string $product): array
 {
     $manifest = require database_path("sources/{$product}.php");
 
-    if (! is_array($manifest)
+    if (
+        ! is_array($manifest)
         || ! isset($manifest['product'], $manifest['commit_sha'], $manifest['filename'])
         || ! is_string($manifest['product'])
         || ! is_string($manifest['commit_sha'])
-        || ! is_string($manifest['filename'])) {
+        || ! is_string($manifest['filename'])
+    ) {
         throw new RuntimeException("Invalid {$product} source manifest.");
     }
 
@@ -138,12 +141,19 @@ function pagilaManifest(): array
 {
     $manifest = require database_path('sources/pagila.php');
 
-    if (! is_array($manifest)
-        || ! isset($manifest['product'], $manifest['commit_sha'], $manifest['schema_filename'], $manifest['data_filename'])
+    if (
+        ! is_array($manifest)
+        || ! isset(
+            $manifest['product'],
+            $manifest['commit_sha'],
+            $manifest['schema_filename'],
+            $manifest['data_filename'],
+        )
         || ! is_string($manifest['product'])
         || ! is_string($manifest['commit_sha'])
         || ! is_string($manifest['schema_filename'])
-        || ! is_string($manifest['data_filename'])) {
+        || ! is_string($manifest['data_filename'])
+    ) {
         throw new RuntimeException('Invalid Pagila source manifest.');
     }
 
@@ -256,7 +266,8 @@ test('chinook importer returns failure when executeSqlDump throws', function () 
         $result = $importer->import(dryRun: false);
 
         expect($result['success'])->toBeFalse()
-            ->and($result['error'] ?? null)->toBe('pg_dump failed');
+            ->and($result['error'] ?? null)
+            ->toBe('pg_dump failed');
     } finally {
         restoreSourceFixture($path);
     }
@@ -276,9 +287,12 @@ test('chinook importer handles a missing manifest gracefully', function () {
 
 test('northwind importer processes source rows when the cached source file exists', function () {
     $pgReader = Mockery::mock(new PostgresSourceReader);
-    $pgReader->shouldReceive('executeSqlDump')->once()->andReturnUsing(function (): void {
-        DB::statement('CREATE TABLE northwind_source.coverage_marker (id integer)');
-    });
+    $pgReader
+        ->shouldReceive('executeSqlDump')
+        ->once()
+        ->andReturnUsing(function (): void {
+            DB::statement('CREATE TABLE northwind_source.coverage_marker (id integer)');
+        });
 
     $viewRecreator = Mockery::mock(PortfolioViewRecreator::class);
     $viewRecreator->shouldReceive('recreate')->once();
@@ -324,7 +338,8 @@ test('northwind importer returns failure when executeSqlDump throws', function (
         $result = $importer->import(dryRun: false);
 
         expect($result['success'])->toBeFalse()
-            ->and($result['error'] ?? null)->toBe('boom');
+            ->and($result['error'] ?? null)
+            ->toBe('boom');
     } finally {
         restoreSourceFixture($path);
     }
@@ -344,9 +359,12 @@ test('northwind importer handles a missing manifest gracefully', function () {
 
 test('pagila importer processes source rows when schema and data files exist', function () {
     $pgReader = Mockery::mock(new PostgresSourceReader);
-    $pgReader->shouldReceive('executeMultiFile')->once()->andReturnUsing(function (): void {
-        DB::statement('CREATE TABLE pagila_source.coverage_marker (id integer)');
-    });
+    $pgReader
+        ->shouldReceive('executeMultiFile')
+        ->once()
+        ->andReturnUsing(function (): void {
+            DB::statement('CREATE TABLE pagila_source.coverage_marker (id integer)');
+        });
 
     $viewRecreator = Mockery::mock(PortfolioViewRecreator::class);
     $viewRecreator->shouldReceive('recreate')->once();
@@ -448,19 +466,20 @@ test('postgres source reader loads a complete dump into the requested source sch
     $path = base_path('.agents/tmp/reader-dump.sql');
     File::ensureDirectoryExists(dirname($path));
     File::put($path, <<<'SQL'
-CREATE TABLE public.artists (id integer PRIMARY KEY, name text);
-INSERT INTO public.artists VALUES (1, 'AC/DC');
-CREATE OR REPLACE FUNCTION public.artist_count() RETURNS integer LANGUAGE SQL AS $$
-    SELECT count(*)::integer FROM public.artists;
-$$;
-SQL);
+        CREATE TABLE public.artists (id integer PRIMARY KEY, name text);
+        INSERT INTO public.artists VALUES (1, 'AC/DC');
+        CREATE OR REPLACE FUNCTION public.artist_count() RETURNS integer LANGUAGE SQL AS $$
+            SELECT count(*)::integer FROM public.artists;
+        $$;
+        SQL);
 
     try {
         $reader = new PostgresSourceReader;
         $reader->executeSqlDump($path, $schema);
 
         expect(DB::table("{$schema}.artists")->value('name'))->toBe('AC/DC')
-            ->and(DB::selectOne("SELECT {$schema}.artist_count() AS count")->count)->toBe(1);
+            ->and(DB::selectOne("SELECT {$schema}.artist_count() AS count")->count)
+            ->toBe(1);
     } finally {
         DB::statement("DROP SCHEMA IF EXISTS {$schema} CASCADE");
         File::delete($path);
@@ -497,7 +516,10 @@ test('postgres source reader rejects invalid sql atomically', function () {
 
 test('postgres source reader strips psql meta-commands create database and set statements', function () {
     $tempFile = sys_get_temp_dir().'/pest_pg_meta_'.uniqid('', true).'.sql';
-    File::put($tempFile, "\\c chinook_db\nCREATE DATABASE test_db;\nDROP DATABASE IF EXISTS test_db;\nSET client_encoding TO 'UTF8';\nSELECT 42;\n");
+    File::put(
+        $tempFile,
+        "\\c chinook_db\nCREATE DATABASE test_db;\nDROP DATABASE IF EXISTS test_db;\nSET client_encoding TO 'UTF8';\nSELECT 42;\n",
+    );
 
     try {
         $reader = new PostgresSourceReader;
@@ -551,7 +573,7 @@ test('postgres source reader rejects an unavailable search path', function () {
     DB::shouldReceive('selectOne')->once()->with('SHOW search_path')->andReturn(null);
 
     try {
-        (new PostgresSourceReader)->executeSqlDump($path, 'pest_schema');
+        new PostgresSourceReader()->executeSqlDump($path, 'pest_schema');
     } finally {
         File::delete($path);
     }
@@ -568,8 +590,7 @@ test('postgres source reader executeMultiFile processes multiple files sequentia
 
         $reader->executeMultiFile([$fileA, $fileB], 'pest_schema');
 
-        expect(File::exists($fileA))->toBeTrue()
-            ->and(File::exists($fileB))->toBeTrue();
+        expect(File::exists($fileA))->toBeTrue()->and(File::exists($fileB))->toBeTrue();
     } finally {
         File::delete($fileA);
         File::delete($fileB);
@@ -608,8 +629,10 @@ test('sql source reader getStatements splits and filters statements', function (
         $statements = $reader->getStatements($tempFile);
 
         expect($statements)->toHaveCount(2)
-            ->and($statements[0])->toBe('CREATE TABLE a (id int)')
-            ->and($statements[1])->toBe('INSERT INTO a VALUES (1)');
+            ->and($statements[0])
+            ->toBe('CREATE TABLE a (id int)')
+            ->and($statements[1])
+            ->toBe('INSERT INTO a VALUES (1)');
     } finally {
         File::delete($tempFile);
     }
@@ -655,7 +678,8 @@ test('sqlite source reader connect returns configured pdo instance', function ()
         $pdo = $reader->connect($path);
 
         expect($pdo->getAttribute(PDO::ATTR_ERRMODE))->toBe(PDO::ERRMODE_EXCEPTION)
-            ->and($pdo->getAttribute(PDO::ATTR_DEFAULT_FETCH_MODE))->toBe(PDO::FETCH_ASSOC);
+            ->and($pdo->getAttribute(PDO::ATTR_DEFAULT_FETCH_MODE))
+            ->toBe(PDO::FETCH_ASSOC);
     } finally {
         File::delete($path);
     }
@@ -675,8 +699,10 @@ test('sqlite source reader getTables returns user table names excluding sqlite i
         $tables = $reader->getTables($path);
 
         expect($tables)->toContain('users')
-            ->and($tables)->toContain('orders')
-            ->and($tables)->not->toContain('sqlite_sequence');
+            ->and($tables)
+            ->toContain('orders')
+            ->and($tables)
+            ->not->toContain('sqlite_sequence');
     } finally {
         File::delete($path);
     }
@@ -690,9 +716,12 @@ test('sqlite source reader readTable returns all rows with associative keys', fu
         $rows = $reader->readTable($path, 'users');
 
         expect($rows)->toHaveCount(2)
-            ->and($rows[0])->toHaveKey('name')
-            ->and($rows[0]['name'])->toBe('Alice')
-            ->and($rows[1]['name'])->toBe('Bob');
+            ->and($rows[0])
+            ->toHaveKey('name')
+            ->and($rows[0]['name'])
+            ->toBe('Alice')
+            ->and($rows[1]['name'])
+            ->toBe('Bob');
     } finally {
         File::delete($path);
     }
@@ -701,6 +730,7 @@ test('sqlite source reader readTable returns all rows with associative keys', fu
 test('table mapper converts and validates source scalar values', function () {
     $mapper = new class extends TableMapper
     {
+        #[Override]
         public function load(string $sourceSchema, string $stagingSchema): int
         {
             return 0;
@@ -733,17 +763,20 @@ test('table mapper converts and validates source scalar values', function () {
     DB::table('mapper_coverage.rows')->insert(['id' => 1, 'label' => 'row']);
 
     expect($mapper->integer(3))->toBe(3)
-        ->and($mapper->integer('4'))->toBe(4)
-        ->and($mapper->decimal(1.5))->toBe(1.5)
-        ->and($mapper->decimal('2.5'))->toBe(2.5);
+        ->and($mapper->integer('4'))
+        ->toBe(4)
+        ->and($mapper->decimal(1.5))
+        ->toBe(1.5)
+        ->and($mapper->decimal('2.5'))
+        ->toBe(2.5);
 
-    expect(fn () => $mapper->integer('not-an-integer'))
-        ->toThrow(InvalidArgumentException::class)
+    expect(fn () => $mapper->integer('not-an-integer'))->toThrow(InvalidArgumentException::class)
         ->and(fn () => $mapper->decimal('not-a-number'))
         ->toThrow(InvalidArgumentException::class);
 
     expect($mapper->sourceCount('mapper_coverage', 'rows'))->toBe(1)
-        ->and($mapper->sourceRows('mapper_coverage', 'rows'))->toHaveCount(1);
+        ->and($mapper->sourceRows('mapper_coverage', 'rows'))
+        ->toHaveCount(1);
 
     DB::statement('DROP SCHEMA mapper_coverage CASCADE');
 });

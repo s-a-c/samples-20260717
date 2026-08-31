@@ -1,91 +1,91 @@
 {
-    "hooks": {
-        "PreCompact": [
-            {
-                "hooks": [
-                    {
-                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-pre-compact.sh\"",
-                        "timeout": 5,
-                        "type": "command"
-                    }
-                ]
-            }
-        ],
-        "SessionEnd": [
-            {
-                "hooks": [
-                    {
-                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-end.sh\"",
-                        "timeout": 5,
-                        "type": "command"
-                    }
-                ]
-            }
-        ],
-        "SessionStart": [
-            {
-                "hooks": [
-                    {
-                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-start.sh\"",
-                        "timeout": 5,
-                        "type": "command"
-                    }
-                ],
-                "matcher": "startup"
-            },
-            {
-                "hooks": [
-                    {
-                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-start.sh\"",
-                        "timeout": 5,
-                        "type": "command"
-                    }
-                ],
-                "matcher": "resume"
-            },
-            {
-                "hooks": [
-                    {
-                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-start.sh\"",
-                        "timeout": 5,
-                        "type": "command"
-                    }
-                ],
-                "matcher": "compact"
-            }
-        ],
-        "Stop": [
-            {
-                "hooks": [
-                    {
-                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-stop.sh\"",
-                        "timeout": 5,
-                        "type": "command"
-                    }
-                ]
-            }
-        ],
-        "SubagentStop": [
-            {
-                "hooks": [
-                    {
-                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-stop.sh\"",
-                        "timeout": 5,
-                        "type": "command"
-                    }
-                ]
-            }
-        ],
-        "UserPromptSubmit": [
-            {
-                "hooks": [
-                    {
-                        "command": "bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-user-prompt.sh\"",
-                        "timeout": 5,
-                        "type": "command"
-                    }
-                ]
-            }
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-pre-compact.sh\"",
+            "timeout": 5,
+            "type": "command"
+          }
         ]
-    }
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-end.sh\"",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-start.sh\"",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "matcher": "startup"
+      },
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-start.sh\"",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "matcher": "resume"
+      },
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-session-start.sh\"",
+            "timeout": 5,
+            "type": "command"
+          }
+        ],
+        "matcher": "compact"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-stop.sh\"",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-stop.sh\"",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/bash \"/Users/s-a-c/Herd/samples-20260717/.codex/hooks/sage-user-prompt.sh\"",
+            "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  }
 }

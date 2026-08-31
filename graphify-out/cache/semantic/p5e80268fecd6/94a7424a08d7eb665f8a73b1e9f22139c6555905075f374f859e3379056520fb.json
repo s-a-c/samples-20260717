@@ -1,1 +1,13 @@
-{"nodes": [{"id": "research_t14_filament_coinstall_findings", "label": "Filament 5 + Livewire Teams Starter Co-installation", "file_type": "document", "source_file": "research/t14-filament-coinstall/findings.md", "rationale": "Research on co-installing Filament v5 with the existing Livewire teams starter kit."}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "research_t14_filament_coinstall_findings",
+            "label": "Filament 5 + Livewire Teams Starter Co-installation",
+            "file_type": "document",
+            "source_file": "research/t14-filament-coinstall/findings.md",
+            "rationale": "Research on co-installing Filament v5 with the existing Livewire teams starter kit."
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

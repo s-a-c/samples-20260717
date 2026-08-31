@@ -1,1 +1,12 @@
-{"nodes": [{"id": "skill_fortify_development", "label": "Fortify Development Skill", "file_type": "code", "source_file": ".junie/skills/fortify-development/SKILL.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "skill_fortify_development",
+            "label": "Fortify Development Skill",
+            "file_type": "code",
+            "source_file": ".junie/skills/fortify-development/SKILL.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

@@ -1,1 +1,13 @@
-{"nodes": [{"id": "pulse_development_skill_md", "label": "Pulse Development", "file_type": "document", "source_file": ".claude/skills/pulse-development/SKILL.md", "rationale": "Setup and customization for Laravel Pulse monitoring."}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "pulse_development_skill_md",
+            "label": "Pulse Development",
+            "file_type": "document",
+            "source_file": ".claude/skills/pulse-development/SKILL.md",
+            "rationale": "Setup and customization for Laravel Pulse monitoring."
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

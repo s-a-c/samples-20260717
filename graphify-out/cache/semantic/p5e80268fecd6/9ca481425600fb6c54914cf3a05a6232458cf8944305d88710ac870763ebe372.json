@@ -1,1 +1,13 @@
-{"nodes": [{"id": "cursor_skills_pulse_development_skill", "label": "Pulse Development Skill", "file_type": "document", "source_file": ".cursor/skills/pulse-development/SKILL.md", "rationale": "Covers Laravel Pulse setup, custom cards, and performance optimization."}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "cursor_skills_pulse_development_skill",
+            "label": "Pulse Development Skill",
+            "file_type": "document",
+            "source_file": ".cursor/skills/pulse-development/SKILL.md",
+            "rationale": "Covers Laravel Pulse setup, custom cards, and performance optimization."
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

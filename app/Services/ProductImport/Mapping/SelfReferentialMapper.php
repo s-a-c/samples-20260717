@@ -19,5 +19,6 @@ abstract class SelfReferentialMapper extends TableMapper
      * @param  string  $stagingSchema  The app-shaped staging schema
      * @return int Number of rows loaded
      */
+    #[\Override]
     abstract public function load(string $sourceSchema, string $stagingSchema): int;
 }

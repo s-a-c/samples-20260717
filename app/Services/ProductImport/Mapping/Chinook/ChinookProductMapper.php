@@ -30,6 +30,7 @@ class ChinookProductMapper extends ProductMapper
      * @param  string  $stagingSchema  The app-shaped staging schema
      * @return array{tables: int, rows: int}
      */
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): array
     {
         $registry = app(SourceIdentityRegistry::class);
@@ -61,6 +62,7 @@ class ChinookProductMapper extends ProductMapper
     /**
      * @return array<int, TableMapper>
      */
+    #[\Override]
     protected function mappers(): array
     {
         $registry = app(SourceIdentityRegistry::class);
@@ -87,6 +89,7 @@ final class ArtistMapper extends TableMapper
         private SourceIdentityRegistry $registry,
     ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.artist")->get();
@@ -108,6 +111,7 @@ final class AlbumMapper extends TableMapper
         private SourceIdentityRegistry $registry,
     ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.album")->get();
@@ -130,6 +134,7 @@ final class GenreMapper extends TableMapper
         private SourceIdentityRegistry $registry,
     ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.genre")->get();
@@ -151,6 +156,7 @@ final class MediaTypeMapper extends TableMapper
         private SourceIdentityRegistry $registry,
     ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.media_type")->get();
@@ -172,6 +178,7 @@ final class EmployeeMapper extends SelfReferentialMapper
         private SourceIdentityRegistry $registry,
     ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.employee")->orderBy('employee_id')->get();
@@ -222,6 +229,7 @@ final class CustomerMapper extends TableMapper
         private SourceIdentityRegistry $registry,
     ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.customer")->get();
@@ -231,7 +239,9 @@ final class CustomerMapper extends TableMapper
             $uuid = $this->registry->getOrMint('chinook.customers', ['CustomerId' => $row->customer_id]);
             $supportRepUuid = null;
             if ($row->support_rep_id !== null) {
-                $supportRepUuid = $this->registry->getOrMint('chinook.employees', ['EmployeeId' => $row->support_rep_id]);
+                $supportRepUuid = $this->registry->getOrMint('chinook.employees', [
+                    'EmployeeId' => $row->support_rep_id,
+                ]);
             }
             StagingCustomer::create([
                 'id' => $uuid,
@@ -261,6 +271,7 @@ final class TrackMapper extends TableMapper
         private SourceIdentityRegistry $registry,
     ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.track")->get();
@@ -300,6 +311,7 @@ final class PlaylistMapper extends TableMapper
         private SourceIdentityRegistry $registry,
     ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.playlist")->get();
@@ -332,6 +344,7 @@ final class InvoiceMapper extends TableMapper
         private SourceIdentityRegistry $registry,
     ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.invoice")->get();
@@ -356,7 +369,9 @@ final class InvoiceMapper extends TableMapper
             // Also load invoice items
             $items = DB::table("{$sourceSchema}.invoice_line")->where('invoice_id', $row->invoice_id)->get();
             foreach ($items as $item) {
-                $itemUuid = $this->registry->getOrMint('chinook.invoice_lines', ['InvoiceLineId' => $item->invoice_line_id]);
+                $itemUuid = $this->registry->getOrMint('chinook.invoice_lines', [
+                    'InvoiceLineId' => $item->invoice_line_id,
+                ]);
                 $trackUuid = $this->registry->getOrMint('chinook.tracks', ['TrackId' => $item->track_id]);
                 DB::table("{$stagingSchema}.invoice_lines")->insert([
                     'id' => $itemUuid,

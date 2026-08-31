@@ -1,1 +1,13 @@
-{"nodes": [{"id": "grok_skills_configuring_horizon_references_notifications_long_wait_detected", "label": "LongWaitDetected Event", "file_type": "concept", "source_file": ".grok/skills/configuring-horizon/references/notifications.md", "rationale": "Horizon fires a LongWaitDetected event based on the 'waits' array in config/horizon.php."}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "grok_skills_configuring_horizon_references_notifications_long_wait_detected",
+            "label": "LongWaitDetected Event",
+            "file_type": "concept",
+            "source_file": ".grok/skills/configuring-horizon/references/notifications.md",
+            "rationale": "Horizon fires a LongWaitDetected event based on the 'waits' array in config/horizon.php."
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

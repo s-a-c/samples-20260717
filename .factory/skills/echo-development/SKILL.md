@@ -3,7 +3,7 @@ name: echo-development
 description: "Develops real-time broadcasting with Laravel Echo. Activates when setting up broadcasting (Reverb, Pusher, Ably); creating ShouldBroadcast events; defining broadcast channels (public, private, presence, encrypted); authorizing channels; configuring Echo; listening for events; implementing client events (whisper); setting up model broadcasting; broadcasting notifications; or when the user mentions broadcasting, Echo, WebSockets, real-time events, Reverb, or presence channels."
 license: MIT
 metadata:
-    author: laravel
+  author: laravel
 ---
 
 # Laravel Broadcasting & Echo
@@ -41,7 +41,6 @@ php artisan make:event OrderShipped
 ```
 
 <!-- Broadcast Event -->
-
 ```php
 namespace App\Events;
 
@@ -67,7 +66,6 @@ class OrderShipped implements ShouldBroadcast
 Dispatch the event:
 
 <!-- Dispatch Event -->
-
 ```php
 use App\Events\OrderShipped;
 
@@ -79,7 +77,6 @@ OrderShipped::dispatch($order);
 Define authorization in `routes/channels.php`:
 
 <!-- Channel Authorization -->
-
 ```php
 use App\Models\Order;
 use App\Models\User;
@@ -110,31 +107,30 @@ npm install --save-dev laravel-echo pusher-js
 ```
 
 <!-- Echo Client Configuration -->
-
 ```javascript
-import Echo from "laravel-echo";
-import Pusher from "pusher-js";
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
 window.Pusher = Pusher;
 
 window.Echo = new Echo({
-    broadcaster: "reverb",
+    broadcaster: 'reverb',
     key: import.meta.env.VITE_REVERB_APP_KEY,
     wsHost: import.meta.env.VITE_REVERB_HOST,
     wsPort: import.meta.env.VITE_REVERB_PORT ?? 80,
     wssPort: import.meta.env.VITE_REVERB_PORT ?? 443,
-    forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? "https") === "https",
-    enabledTransports: ["ws", "wss"],
+    forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? 'https') === 'https',
+    enabledTransports: ['ws', 'wss'],
 });
 ```
 
 ### Listening for Events
 
 <!-- Listen on Private Channel -->
-
 ```javascript
-Echo.private(`orders.${orderId}`).listen("OrderShipmentStatusUpdated", (e) => {
-    console.log(e.order);
-});
+Echo.private(`orders.${orderId}`)
+    .listen('OrderShipmentStatusUpdated', (e) => {
+        console.log(e.order);
+    });
 ```
 
 ### Running Required Processes

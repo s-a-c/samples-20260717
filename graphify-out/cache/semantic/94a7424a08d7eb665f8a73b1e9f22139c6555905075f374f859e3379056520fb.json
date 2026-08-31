@@ -1,1 +1,12 @@
-{"nodes": [{"id": "findings_md", "label": "Filament 5 + Livewire Teams Starter Co-installation Findings", "file_type": "document", "source_file": "research/t14-filament-coinstall/findings.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "findings_md",
+            "label": "Filament 5 + Livewire Teams Starter Co-installation Findings",
+            "file_type": "document",
+            "source_file": "research/t14-filament-coinstall/findings.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

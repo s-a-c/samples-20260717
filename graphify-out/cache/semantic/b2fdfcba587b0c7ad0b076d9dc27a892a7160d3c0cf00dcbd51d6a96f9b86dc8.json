@@ -1,1 +1,12 @@
-{"nodes": [{"id": "horizon_balancing", "label": "Horizon Balancing Strategies", "file_type": "concept", "source_file": ".claude/skills/configuring-horizon/references/supervisors.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "horizon_balancing",
+            "label": "Horizon Balancing Strategies",
+            "file_type": "concept",
+            "source_file": ".claude/skills/configuring-horizon/references/supervisors.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

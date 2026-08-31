@@ -1,1 +1,12 @@
-{"nodes": [{"id": "configuring_horizon_skill", "label": "Horizon Configuration", "file_type": "code", "source_file": ".cursor/skills/configuring-horizon/SKILL.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "configuring_horizon_skill",
+            "label": "Horizon Configuration",
+            "file_type": "code",
+            "source_file": ".cursor/skills/configuring-horizon/SKILL.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

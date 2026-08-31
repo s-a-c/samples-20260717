@@ -10,6 +10,7 @@ use App\Traits\BelongsToProductDomain;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Override;
 
 #[Table('chinook.chinook')]
 final class Chinook extends Model implements HasProductDomain
@@ -18,6 +19,7 @@ final class Chinook extends Model implements HasProductDomain
 
     protected $guarded = [];
 
+    #[Override]
     public function getProductDomain(): SamplesProduct
     {
         return SamplesProduct::Chinook;

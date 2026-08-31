@@ -1,1 +1,12 @@
-{"nodes": [{"id": "apple_touch_icon_png", "label": "Laravel Logo", "file_type": "image", "source_file": "public/apple-touch-icon.png"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "apple_touch_icon_png",
+            "label": "Laravel Logo",
+            "file_type": "image",
+            "source_file": "public/apple-touch-icon.png"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

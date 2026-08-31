@@ -1,1 +1,12 @@
-{"nodes": [{"id": "zcode_plans_terminal_font_size", "label": "ZCode Terminal Font Size Plan", "file_type": "document", "source_file": ".zcode/plans/plan-sess_9ec784fa-0034-47c2-9a2d-619125f055aa.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "zcode_plans_terminal_font_size",
+            "label": "ZCode Terminal Font Size Plan",
+            "file_type": "document",
+            "source_file": ".zcode/plans/plan-sess_9ec784fa-0034-47c2-9a2d-619125f055aa.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

@@ -37,3 +37,13 @@ Scope: reconcile GitHub issue #85, Beads epic samples-20260717-7rg, release evid
 
 - [x] G8: runtime acceptance covers real-data imports, PostgreSQL 18 with pgvector, shadow-schema isolation and reset/recovery, search projections and Golden Search Corpus, admin imports/statistics, Herd macOS, and Linux CI
       EVIDENCE: 2026-08-31 Herd imports and resets succeeded for Chinook, Northwind, and Pagila; source parity and projections are recorded in #85; focused import/reset/search/Admin tests and full Pest 589/589 passed; pgsql:check, migrations, PHPStan, Pint, Mago guard, architecture, build, and PR #126 Linux CI passed.
+
+- [ ] G9: broad Mago analysis has a current committed baseline with no stale entries
+      CHECK: vendor/bin/mago analyze --verify-baseline --baseline .mago/analyze-baseline.json && vendor/bin/mago analyze
+      EXPECT: /Baseline is up to date|No issues found/
+      EVIDENCE: pending final committed SHA
+
+- [ ] G10: full-tree strict documentation validation passes
+      CHECK: documentation-structure check --strict docs
+      EXPECT: /compliant: docs/
+      EVIDENCE: pending final committed SHA

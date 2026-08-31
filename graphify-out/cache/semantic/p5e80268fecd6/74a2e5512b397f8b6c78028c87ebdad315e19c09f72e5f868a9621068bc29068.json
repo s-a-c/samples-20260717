@@ -1,1 +1,12 @@
-{"nodes": [{"id": "pi_skills_fortify_development_skill", "label": "Fortify Development Skill", "file_type": "document", "source_file": ".pi/skills/fortify-development/SKILL.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "pi_skills_fortify_development_skill",
+            "label": "Fortify Development Skill",
+            "file_type": "document",
+            "source_file": ".pi/skills/fortify-development/SKILL.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

@@ -1,1 +1,22 @@
-{"nodes": [{"id": "factory_skills_configuring_horizon_references_notifications", "label": "Horizon Notifications & Alerts", "file_type": "document", "source_file": ".factory/skills/configuring-horizon/references/notifications.md", "rationale": "Details built-in notification routing and event handling for Horizon."}], "edges": [{"source": "factory_skills_configuring_horizon_references_notifications", "target": "factory_skills_configuring_horizon_references_metrics", "relation": "conceptually_related_to", "confidence": "INFERRED", "confidence_score": 0.7, "source_file": ".factory/skills/configuring-horizon/references/notifications.md"}], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "factory_skills_configuring_horizon_references_notifications",
+            "label": "Horizon Notifications & Alerts",
+            "file_type": "document",
+            "source_file": ".factory/skills/configuring-horizon/references/notifications.md",
+            "rationale": "Details built-in notification routing and event handling for Horizon."
+        }
+    ],
+    "edges": [
+        {
+            "source": "factory_skills_configuring_horizon_references_notifications",
+            "target": "factory_skills_configuring_horizon_references_metrics",
+            "relation": "conceptually_related_to",
+            "confidence": "INFERRED",
+            "confidence_score": 0.7,
+            "source_file": ".factory/skills/configuring-horizon/references/notifications.md"
+        }
+    ],
+    "hyperedges": []
+}

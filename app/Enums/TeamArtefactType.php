@@ -8,6 +8,7 @@ use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Icons\Heroicon;
+use Override;
 
 /**
  * The kind of a {@see \App\Models\TeamArtefact}.
@@ -20,6 +21,7 @@ enum TeamArtefactType: string implements HasColor, HasIcon, HasLabel
     case SavedSearch = 'saved_search';
     case TeamDashboard = 'team_dashboard';
 
+    #[Override]
     public function getLabel(): string
     {
         return match ($this) {
@@ -28,6 +30,7 @@ enum TeamArtefactType: string implements HasColor, HasIcon, HasLabel
         };
     }
 
+    #[Override]
     public function getColor(): string
     {
         return match ($this) {
@@ -36,6 +39,7 @@ enum TeamArtefactType: string implements HasColor, HasIcon, HasLabel
         };
     }
 
+    #[Override]
     public function getIcon(): Heroicon
     {
         return match ($this) {

@@ -2,12 +2,12 @@
 title: Stage 3 — Quality & Features
 description: Acceptance Stage 3 (Quality & Features) of the Implementation-Readiness Dossier — gates, checks, operator commands, evidence, and recovery.
 tableOfContents:
-    minHeadingLevel: 2
-    maxHeadingLevel: 3
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
 type: plan
 tags: [dossier, delivery, acceptance]
-created: 2026-08-23
-updated: 2026-08-23
+created: 2026-08-31
+updated: 2026-08-31
 ---
 
 # Stage 3 — Quality & Features
@@ -33,11 +33,11 @@ updated: 2026-08-23
 
 ## 1. Acceptance gates
 
-| Gate                                                                                 | Evidence                                                                                | Check                                                     | Status |
-| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------ |
-| Spatie + Shield + Fortify auth matrix tests                                          | `tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php`                              | `php artisan test --filter=AuthorizationAcceptanceMatrix` | Pass   |
-| Federated Search & RRF tests (FederatedSearchTest.php, ReciprocalRankFusionTest.php) | `tests/Feature/Search/FederatedSearchTest.php, tests/Unit/ReciprocalRankFusionTest.php` | `php artisan test --filter=FederatedSearch`               | Pass   |
-| Portfolio Card & Snapshot view (PortfolioTest.php)                                   | `tests/Feature/Filament/PortfolioTest.php`                                              | `php artisan test --filter=Portfolio`                     | Pass   |
+| Gate | Evidence | Check | Status |
+| --- | --- | --- | --- |
+| Spatie + Shield + Fortify auth matrix tests | `tests/Feature/Auth/AuthorizationAcceptanceMatrixTest.php` | `php artisan test --filter=AuthorizationAcceptanceMatrix` | Pass |
+| Federated Search & RRF tests (FederatedSearchTest.php, ReciprocalRankFusionTest.php) | `tests/Feature/Search/FederatedSearchTest.php, tests/Unit/ReciprocalRankFusionTest.php` | `php artisan test --filter=FederatedSearch` | Pass |
+| Portfolio Card & Snapshot view (PortfolioTest.php) | `tests/Feature/Filament/PortfolioTest.php` | `php artisan test --filter=Portfolio` | Pass |
 
 ## 2. Automated checks
 

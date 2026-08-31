@@ -9,9 +9,37 @@ tags: [documentation]
 created: 2026-08-17
 updated: 2026-08-17
 ---
-
 # Siyuan Integration — Research Findings (`samples-20260717`)
 
+<!-- generated-toc -->
+<details>
+  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
+    Expand for Table of Contents
+  </summary>
+
+- [1. 📄 TL;DR](#1--tldr)
+- [2. 📄 Notebook creation](#2--notebook-creation)
+  - [2.1. 📄 Endpoint (authoritative, from `kernel/api/router.go` + `notebook.go`)](#21--endpoint-authoritative-from-kernelapiroutergo--notebookgo)
+  - [2.2. ⚠️ Idempotency is the caller's responsibility](#22-️-idempotency-is-the-callers-responsibility)
+  - [2.3. 📄 Live result (this research session)](#23--live-result-this-research-session)
+- [3. 📄 Token model — global, not per-notebook](#3--token-model--global-not-per-notebook)
+  - [3.1. 📄 What the source says](#31--what-the-source-says)
+  - [3.2. 📄 Verified live](#32--verified-live)
+  - [3.3. 📄 Isolation verdict](#33--isolation-verdict)
+  - [3.4. 📄 Practical implications](#34--practical-implications)
+- [4. 📄 Agent access path](#4--agent-access-path)
+  - [4.1. 📄 Recommendation: **direct HTTP JSON calls**](#41--recommendation-direct-http-json-calls)
+  - [4.2. 📄 MCP server landscape (for reference, not adoption today)](#42--mcp-server-landscape-for-reference-not-adoption-today)
+- [5. 📄 Auth — exact header for programmatic access](#5--auth--exact-header-for-programmatic-access)
+  - [5.1. 📄 Setting / rotating the API token](#51--setting--rotating-the-api-token)
+- [6. 📄 Credential storage — Infisical secrets under `SAMPLES_SIYUAN_*`](#6--credential-storage--infisical-secrets-under-samples_siyuan_)
+  - [6.1. 📄 Pattern (mirrors chinook)](#61--pattern-mirrors-chinook)
+- [7. 📄 Open questions / risks (need a human decision)](#7--open-questions--risks-need-a-human-decision)
+- [8. 📄 References](#8--references)
+
+</details>
+
+---
 > First-of-kind Siyuan integration on this machine. Verified live against the
 > running `infra/siyuan` stack (v3.7.2) on 2026-07-19. Source of truth for the
 > API contract is the upstream kernel source
@@ -19,36 +47,8 @@ updated: 2026-08-17
 > [`kernel/model/session.go`](https://github.com/siyuan-note/siyuan/blob/master/kernel/model/session.go)),
 > corroborated by live `curl` calls below.
 
-<details>
-  <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
-    Expand for Table of Contents
-  </summary>
 
-- [1. TL;DR](#1-tldr)
-- [2. Notebook creation](#2-notebook-creation)
-    - [2.1. Endpoint (authoritative, from `kernel/api/router.go` + `notebook.go`)](#21-endpoint-authoritative-from-kernelapiroutergo-notebookgo)
-    - [2.2. ⚠️ Idempotency is the caller's responsibility](#22-idempotency-is-the-callers-responsibility)
-    - [2.3. Live result (this research session)](#23-live-result-this-research-session)
-- [3. Token model — global, not per-notebook](#3-token-model-global-not-per-notebook)
-    - [3.1. What the source says](#31-what-the-source-says)
-    - [3.2. Verified live](#32-verified-live)
-    - [3.3. Isolation verdict](#33-isolation-verdict)
-    - [3.4. Practical implications](#34-practical-implications)
-- [4. Agent access path](#4-agent-access-path)
-    - [4.1. Recommendation: **direct HTTP JSON calls**](#41-recommendation-direct-http-json-calls)
-    - [4.2. MCP server landscape (for reference, not adoption today)](#42-mcp-server-landscape-for-reference-not-adoption-today)
-- [5. Auth — exact header for programmatic access](#5-auth-exact-header-for-programmatic-access)
-    - [5.1. Setting / rotating the API token](#51-setting-rotating-the-api-token)
-- [6. Credential storage — Infisical secrets under `SAMPLES_SIYUAN_*`](#6-credential-storage-infisical-secrets-under-samples_siyuan_)
-    - [6.1. Pattern (mirrors chinook)](#61-pattern-mirrors-chinook)
-- [7. Open questions / risks (need a human decision)](#7-open-questions-risks-need-a-human-decision)
-- [8. References](#8-references)
-
-</details>
-
----
-
-## 1. TL;DR
+## 1. 📄 TL;DR
 
 | Question             | Verdict                                                                                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -60,9 +60,9 @@ updated: 2026-08-17
 
 ---
 
-## 2. Notebook creation
+## 2. 📄 Notebook creation
 
-### 2.1. Endpoint (authoritative, from `kernel/api/router.go` + `notebook.go`)
+### 2.1. 📄 Endpoint (authoritative, from `kernel/api/router.go` + `notebook.go`)
 
 ```http
 POST /api/notebook/createNotebook
@@ -107,7 +107,7 @@ fi
 echo "$EXISTING"   # → 20260719071714-xyhlut0
 ```
 
-### 2.3. Live result (this research session)
+### 2.3. 📄 Live result (this research session)
 
 - Notebook **created**: `name=samples-20260717`, `id=20260719071714-xyhlut0`.
 - Confirmed by `lsNotebooks` afterwards: the instance now has two notebooks (`Control Plane Golden Path` + `samples-20260717`).
@@ -115,9 +115,9 @@ echo "$EXISTING"   # → 20260719071714-xyhlut0
 
 ---
 
-## 3. Token model — global, not per-notebook
+## 3. 📄 Token model — global, not per-notebook
 
-### 3.1. What the source says
+### 3.1. 📄 What the source says
 
 From `kernel/model/session.go::CheckAuth`:
 
@@ -142,7 +142,7 @@ There is **one** `Conf.Api.Token` — a single string field in `conf.json` at
 over the entire instance) or it doesn't (→ 401). There is no notebook
 scoping, no per-notebook token, no ACL.
 
-### 3.2. Verified live
+### 3.2. 📄 Verified live
 
 ```
 $ curl /api/system/getConf -H "Authorization: Token <accessAuthCode>"   # wrong credential
@@ -155,7 +155,7 @@ $ curl /api/system/getConf -H "Authorization: Token <api.token>"        # correc
 The `accessAuthCode` (48 chars, used to log into the browser UI) is **not**
 accepted as an API token. They are independent credentials.
 
-### 3.3. Isolation verdict
+### 3.3. 📄 Isolation verdict
 
 > **Project isolation via tokens is NOT achievable in Siyuan.** Any agent
 > holding the API token has administrator rights over **every** notebook on
@@ -168,7 +168,7 @@ browser-cookie session flow can produce non-Administrator roles; the API
 token path always elevates to Administrator. So even a "read-only agent"
 cannot be constructed via API tokens today.
 
-### 3.4. Practical implications
+### 3.4. 📄 Practical implications
 
 - The convention "agent only writes to its project notebook" is **agent
   discipline, not enforced** by Siyuan.
@@ -180,9 +180,9 @@ cannot be constructed via API tokens today.
 
 ---
 
-## 4. Agent access path
+## 4. 📄 Agent access path
 
-### 4.1. Recommendation: **direct HTTP JSON calls**
+### 4.1. 📄 Recommendation: **direct HTTP JSON calls**
 
 Rationale:
 
@@ -201,7 +201,7 @@ Rationale:
    on auth failure; an MCP server adds a process boundary that can mask the
    underlying error.
 
-### 4.2. MCP server landscape (for reference, not adoption today)
+### 4.2. 📄 MCP server landscape (for reference, not adoption today)
 
 A web search found several community MCP servers for Siyuan. None are
 official; the upstream project tracks MCP support in
@@ -239,7 +239,7 @@ direct-HTTP integration, not precede it.
 
 ---
 
-## 5. Auth — exact header for programmatic access
+## 5. 📄 Auth — exact header for programmatic access
 
 | Credential                                           | Header                           | Scope                               | Use case                                                    |
 | ---------------------------------------------------- | -------------------------------- | ----------------------------------- | ----------------------------------------------------------- |
@@ -255,7 +255,7 @@ The API token is also accepted via:
 **Recommendation: standardize on `Authorization: Token <token>`** (matches
 upstream docs and is unambiguous).
 
-### 5.1. Setting / rotating the API token
+### 5.1. 📄 Setting / rotating the API token
 
 The token lives in `<workspace>/conf/conf.json` at key `api.token`. It is
 set via the **Settings → About → API token** UI (regenerate button) or by
@@ -266,7 +266,7 @@ and simultaneously.
 
 ---
 
-## 6. Credential storage — Infisical secrets under `SAMPLES_SIYUAN_*`
+## 6. 📄 Credential storage — Infisical secrets under `SAMPLES_SIYUAN_*`
 
 Mirroring the chinook 6-secret shape (`CHINOOK_SAGE_*`), store these in the
 Infisical `samples-20260717` project, `dev` env. The values below are
@@ -281,7 +281,7 @@ Infisical `samples-20260717` project, `dev` env. The values below are
 | `SAMPLES_SIYUAN_NAMED_URL`     | `https://siyuan.stands-macbook-pro.local:7244` | Named HTTPS route for browser/GUI agent contexts that trust the Caddy CA                                                                                |
 | `SAMPLES_SIYUAN_HEALTH_URL`    | `http://127.0.0.1:6806/api/system/version`     | Liveness probe target (returns `{"code":0,"data":"3.7.2"}`)                                                                                             |
 
-### 6.1. Pattern (mirrors chinook)
+### 6.1. 📄 Pattern (mirrors chinook)
 
 1. Create a project-scoped Infisical service token in the
    `samples-20260717` project (NOT a workspace token — workspace tokens
@@ -298,7 +298,7 @@ Infisical `samples-20260717` project, `dev` env. The values below are
 
 ---
 
-## 7. Open questions / risks (need a human decision)
+## 7. 📄 Open questions / risks (need a human decision)
 
 1. **Token-isolation gap is fundamental.** Siyuan cannot scope a token to
    one notebook. Options for the creating-ticket to choose:
@@ -341,7 +341,7 @@ Infisical `samples-20260717` project, `dev` env. The values below are
 
 ---
 
-## 8. References
+## 8. 📄 References
 
 - Infra guide: `/Users/s-a-c/docs/20-operations/2015-infra/201516-siyuan-guide.html`
 - Chinook worked example (secret pattern): `/Users/s-a-c/docs/20-operations/2005-memory/200517-chinook-laravel-integration-example.md`

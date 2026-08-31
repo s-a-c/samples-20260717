@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Override;
 
 #[Table('northwind.shippers')]
 final class Shipper extends Model implements HasProductDomain
@@ -19,6 +20,7 @@ final class Shipper extends Model implements HasProductDomain
 
     protected $guarded = [];
 
+    #[Override]
     public function getProductDomain(): SamplesProduct
     {
         return SamplesProduct::Northwind;

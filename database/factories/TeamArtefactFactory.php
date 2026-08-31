@@ -9,6 +9,7 @@ use App\Models\Team;
 use App\Models\TeamArtefact;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Override;
 
 /**
  * @extends Factory<TeamArtefact>
@@ -20,6 +21,7 @@ final class TeamArtefactFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    #[Override]
     public function definition(): array
     {
         return [

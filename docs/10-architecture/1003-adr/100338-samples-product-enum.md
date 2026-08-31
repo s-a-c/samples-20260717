@@ -9,7 +9,6 @@ tags: [adr, architecture, product-identity]
 created: 2026-08-17
 updated: 2026-08-17
 ---
-
 # ADR 0033: SamplesProduct Enum
 
 **Status:** Accepted

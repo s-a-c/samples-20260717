@@ -1,1 +1,12 @@
-{"nodes": [{"id": "skill_fluxui_development", "label": "Flux UI Development Skill", "file_type": "code", "source_file": ".junie/skills/fluxui-development/SKILL.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "skill_fluxui_development",
+            "label": "Flux UI Development Skill",
+            "file_type": "code",
+            "source_file": ".junie/skills/fluxui-development/SKILL.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "docs_10_architecture_1003_adr_100304_uuidv7_for_all_entities", "label": "ADR 0002: UUIDv7 for All Entities", "file_type": "document", "source_file": "docs/10-architecture/1003-adr/100304-uuidv7-for-all-entities.md", "rationale": "Decision to use UUIDv7 for global uniqueness, sortability, and offline generation."}], "edges": [], "hyperedges": []}

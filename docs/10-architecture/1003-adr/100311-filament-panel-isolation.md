@@ -9,7 +9,6 @@ tags: [adr, "0005", filament]
 created: 2026-07-25
 updated: 2026-08-17
 ---
-
 # ADR 0005: Filament Panel Isolation
 
 **Status:** Accepted

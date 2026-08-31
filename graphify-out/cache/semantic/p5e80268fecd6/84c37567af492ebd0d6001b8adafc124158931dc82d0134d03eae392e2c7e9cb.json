@@ -1,1 +1,93 @@
-{"nodes": [{"id": "research_t40_datasets_reverify_findings_chinook", "label": "Chinook Dataset", "file_type": "document", "source_file": "research/t40-datasets-reverify/findings.md", "source_location": null, "source_url": "https://github.com/lerocha/chinook-database", "captured_at": "2026-07-19", "author": null, "contributor": null, "rationale": null}, {"id": "research_t40_datasets_reverify_findings_northwind", "label": "Northwind Dataset", "file_type": "document", "source_file": "research/t40-datasets-reverify/findings.md", "source_location": null, "source_url": "https://github.com/jpwhite3/northwind-SQLite3", "captured_at": "2026-07-19", "author": null, "contributor": null, "rationale": null}, {"id": "research_t40_datasets_reverify_findings_pagila", "label": "Pagila Dataset", "file_type": "document", "source_file": "research/t40-datasets-reverify/findings.md", "source_location": null, "source_url": "https://github.com/bradleygrant/pagila-sqlite3", "captured_at": "2026-07-19", "author": null, "contributor": null, "rationale": null}, {"id": "research_t40_datasets_reverify_findings_verification_contract", "label": "Dataset Verification Contract", "file_type": "concept", "source_file": "research/t40-datasets-reverify/findings.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null, "rationale": "Triple check: Commit SHA + Git blob SHA + SHA-256."}], "edges": [{"source": "research_t40_datasets_reverify_findings_chinook", "target": "research_t40_datasets_reverify_findings_verification_contract", "relation": "participate_in", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "research/t40-datasets-reverify/findings.md"}, {"source": "research_t40_datasets_reverify_findings_northwind", "target": "research_t40_datasets_reverify_findings_verification_contract", "relation": "participate_in", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "research/t40-datasets-reverify/findings.md"}, {"source": "research_t40_datasets_reverify_findings_pagila", "target": "research_t40_datasets_reverify_findings_verification_contract", "relation": "participate_in", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "research/t40-datasets-reverify/findings.md"}], "hyperedges": [{"id": "upstream_dataset_verification_suite", "label": "Upstream Dataset Verification Suite", "nodes": ["research_t40_datasets_reverify_findings_chinook", "research_t40_datasets_reverify_findings_northwind", "research_t40_datasets_reverify_findings_pagila"], "relation": "participate_in", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "research/t40-datasets-reverify/findings.md"}]}
+{
+    "nodes": [
+        {
+            "id": "research_t40_datasets_reverify_findings_chinook",
+            "label": "Chinook Dataset",
+            "file_type": "document",
+            "source_file": "research/t40-datasets-reverify/findings.md",
+            "source_location": null,
+            "source_url": "https://github.com/lerocha/chinook-database",
+            "captured_at": "2026-07-19",
+            "author": null,
+            "contributor": null,
+            "rationale": null
+        },
+        {
+            "id": "research_t40_datasets_reverify_findings_northwind",
+            "label": "Northwind Dataset",
+            "file_type": "document",
+            "source_file": "research/t40-datasets-reverify/findings.md",
+            "source_location": null,
+            "source_url": "https://github.com/jpwhite3/northwind-SQLite3",
+            "captured_at": "2026-07-19",
+            "author": null,
+            "contributor": null,
+            "rationale": null
+        },
+        {
+            "id": "research_t40_datasets_reverify_findings_pagila",
+            "label": "Pagila Dataset",
+            "file_type": "document",
+            "source_file": "research/t40-datasets-reverify/findings.md",
+            "source_location": null,
+            "source_url": "https://github.com/bradleygrant/pagila-sqlite3",
+            "captured_at": "2026-07-19",
+            "author": null,
+            "contributor": null,
+            "rationale": null
+        },
+        {
+            "id": "research_t40_datasets_reverify_findings_verification_contract",
+            "label": "Dataset Verification Contract",
+            "file_type": "concept",
+            "source_file": "research/t40-datasets-reverify/findings.md",
+            "source_location": null,
+            "source_url": null,
+            "captured_at": null,
+            "author": null,
+            "contributor": null,
+            "rationale": "Triple check: Commit SHA + Git blob SHA + SHA-256."
+        }
+    ],
+    "edges": [
+        {
+            "source": "research_t40_datasets_reverify_findings_chinook",
+            "target": "research_t40_datasets_reverify_findings_verification_contract",
+            "relation": "participate_in",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        },
+        {
+            "source": "research_t40_datasets_reverify_findings_northwind",
+            "target": "research_t40_datasets_reverify_findings_verification_contract",
+            "relation": "participate_in",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        },
+        {
+            "source": "research_t40_datasets_reverify_findings_pagila",
+            "target": "research_t40_datasets_reverify_findings_verification_contract",
+            "relation": "participate_in",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        }
+    ],
+    "hyperedges": [
+        {
+            "id": "upstream_dataset_verification_suite",
+            "label": "Upstream Dataset Verification Suite",
+            "nodes": [
+                "research_t40_datasets_reverify_findings_chinook",
+                "research_t40_datasets_reverify_findings_northwind",
+                "research_t40_datasets_reverify_findings_pagila"
+            ],
+            "relation": "participate_in",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        }
+    ]
+}

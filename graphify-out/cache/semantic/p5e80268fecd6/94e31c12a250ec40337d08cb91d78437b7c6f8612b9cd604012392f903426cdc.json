@@ -1,1 +1,13 @@
-{"nodes": [{"id": "configuring_horizon_tags", "label": "Horizon Tags & Silencing", "file_type": "document", "source_file": ".junie/skills/configuring-horizon/references/tags.md", "rationale": "Explains auto-tagging of Eloquent models and silencing dashboard noise."}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "configuring_horizon_tags",
+            "label": "Horizon Tags & Silencing",
+            "file_type": "document",
+            "source_file": ".junie/skills/configuring-horizon/references/tags.md",
+            "rationale": "Explains auto-tagging of Eloquent models and silencing dashboard noise."
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

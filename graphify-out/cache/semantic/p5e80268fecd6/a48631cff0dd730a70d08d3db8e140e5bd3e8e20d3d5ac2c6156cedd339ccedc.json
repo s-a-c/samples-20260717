@@ -1,1 +1,12 @@
-{"nodes": [{"id": "github_pull_request_template", "label": "PR Template", "file_type": "document", "source_file": ".github/PULL_REQUEST_TEMPLATE.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "github_pull_request_template",
+            "label": "PR Template",
+            "file_type": "document",
+            "source_file": ".github/PULL_REQUEST_TEMPLATE.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

@@ -1,1 +1,0 @@
-{"nodes": [], "edges": [{"source": "151501_implementation_readiness_dossier", "target": "100302_multi_product_architecture_adr0001", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/15-delivery/1515-implementation-readiness-dossier/151504-stage-1-foundation.md", "source_location": null, "weight": 1.0}], "hyperedges": []}

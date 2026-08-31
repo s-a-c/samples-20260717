@@ -1,1 +1,12 @@
-{"nodes": [{"id": "horizon_supervisors", "label": "Horizon Supervisor Configuration", "file_type": "concept", "source_file": ".junie/skills/configuring-horizon/references/supervisors.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "horizon_supervisors",
+            "label": "Horizon Supervisor Configuration",
+            "file_type": "concept",
+            "source_file": ".junie/skills/configuring-horizon/references/supervisors.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

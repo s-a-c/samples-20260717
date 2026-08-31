@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 
 class NorthwindProductMapper extends ProductMapper
 {
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): array
     {
         $registry = app(SourceIdentityRegistry::class);
@@ -48,6 +49,7 @@ class NorthwindProductMapper extends ProductMapper
         return ['tables' => count($mappers), 'rows' => $totalRows];
     }
 
+    #[\Override]
     protected function mappers(): array
     {
         $registry = app(SourceIdentityRegistry::class);
@@ -70,8 +72,11 @@ class NorthwindProductMapper extends ProductMapper
 
 class CategoryMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.categories")->get();
@@ -94,8 +99,11 @@ class CategoryMapper extends TableMapper
 
 class SupplierMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.suppliers")->get();
@@ -126,8 +134,11 @@ class SupplierMapper extends TableMapper
 
 class EmployeeMapper extends SelfReferentialMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.employees")->orderBy('employee_id')->get();
@@ -174,8 +185,11 @@ class EmployeeMapper extends SelfReferentialMapper
 
 class CustomerMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.customers")->get();
@@ -205,8 +219,11 @@ class CustomerMapper extends TableMapper
 
 class ProductMapper_ extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.products")->get();
@@ -242,7 +259,9 @@ class ProductMapper_ extends TableMapper
 
 abstract class NorthwindRawTableMapper extends TableMapper
 {
-    public function __construct(protected SourceIdentityRegistry $registry) {}
+    public function __construct(
+        protected SourceIdentityRegistry $registry,
+    ) {}
 
     /**
      * Insert one mapped row with staging timestamps.
@@ -251,10 +270,13 @@ abstract class NorthwindRawTableMapper extends TableMapper
      */
     protected function insert(string $stagingSchema, string $table, array $attributes): void
     {
-        DB::table("{$stagingSchema}.{$table}")->insert($attributes + [
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        DB::table("{$stagingSchema}.{$table}")->insert(
+            $attributes
+            + [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        );
     }
 
     protected function sourceTableExists(string $sourceSchema, string $table): bool
@@ -268,6 +290,7 @@ abstract class NorthwindRawTableMapper extends TableMapper
 
 class RegionMapper extends NorthwindRawTableMapper
 {
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         if (! $this->sourceTableExists($sourceSchema, 'region')) {
@@ -287,6 +310,7 @@ class RegionMapper extends NorthwindRawTableMapper
 
 class TerritoryMapper extends NorthwindRawTableMapper
 {
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         if (! $this->sourceTableExists($sourceSchema, 'territories')) {
@@ -307,6 +331,7 @@ class TerritoryMapper extends NorthwindRawTableMapper
 
 class EmployeeTerritoryMapper extends NorthwindRawTableMapper
 {
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         if (! $this->sourceTableExists($sourceSchema, 'employee_territories')) {
@@ -317,7 +342,9 @@ class EmployeeTerritoryMapper extends NorthwindRawTableMapper
             $this->insert($stagingSchema, 'employee_territories', [
                 'id' => (string) \Illuminate\Support\Str::uuid7(),
                 'employee_id' => $this->registry->getOrMint('northwind.employees', ['EmployeeID' => $row->employee_id]),
-                'territory_id' => $this->registry->getOrMint('northwind.territories', ['TerritoryID' => $row->territory_id]),
+                'territory_id' => $this->registry->getOrMint('northwind.territories', [
+                    'TerritoryID' => $row->territory_id,
+                ]),
             ]);
         }
 
@@ -327,6 +354,7 @@ class EmployeeTerritoryMapper extends NorthwindRawTableMapper
 
 class ShipperMapper extends NorthwindRawTableMapper
 {
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         if (! $this->sourceTableExists($sourceSchema, 'shippers')) {
@@ -347,6 +375,7 @@ class ShipperMapper extends NorthwindRawTableMapper
 
 class OrderMapper extends NorthwindRawTableMapper
 {
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         if (! $this->sourceTableExists($sourceSchema, 'orders')) {
@@ -356,12 +385,18 @@ class OrderMapper extends NorthwindRawTableMapper
         foreach (DB::table("{$sourceSchema}.orders")->get() as $row) {
             $this->insert($stagingSchema, 'orders', [
                 'id' => $this->registry->getOrMint('northwind.orders', ['OrderID' => $row->order_id]),
-                'customer_id' => $row->customer_id === null ? null : $this->registry->getOrMint('northwind.customers', ['CustomerID' => $row->customer_id]),
-                'employee_id' => $row->employee_id === null ? null : $this->registry->getOrMint('northwind.employees', ['EmployeeID' => $row->employee_id]),
+                'customer_id' => $row->customer_id === null
+                    ? null
+                    : $this->registry->getOrMint('northwind.customers', ['CustomerID' => $row->customer_id]),
+                'employee_id' => $row->employee_id === null
+                    ? null
+                    : $this->registry->getOrMint('northwind.employees', ['EmployeeID' => $row->employee_id]),
                 'order_date' => $row->order_date,
                 'required_date' => $row->required_date,
                 'shipped_date' => $row->shipped_date,
-                'ship_via' => $row->ship_via === null ? null : $this->registry->getOrMint('northwind.shippers', ['ShipperID' => $row->ship_via]),
+                'ship_via' => $row->ship_via === null
+                    ? null
+                    : $this->registry->getOrMint('northwind.shippers', ['ShipperID' => $row->ship_via]),
                 'freight' => $this->sourceFloat($row->freight ?? 0),
                 'ship_name' => $row->ship_name,
                 'ship_address' => $row->ship_address,
@@ -378,6 +413,7 @@ class OrderMapper extends NorthwindRawTableMapper
 
 class OrderDetailMapper extends NorthwindRawTableMapper
 {
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         if (! $this->sourceTableExists($sourceSchema, 'order_details')) {

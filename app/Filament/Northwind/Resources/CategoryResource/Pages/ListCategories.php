@@ -7,11 +7,13 @@ namespace App\Filament\Northwind\Resources\CategoryResource\Pages;
 use App\Filament\Northwind\Resources\CategoryResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Override;
 
 final class ListCategories extends ListRecords
 {
     protected static string $resource = CategoryResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

@@ -1,1 +1,43 @@
-{"nodes": [{"id": "github_workflows_semgrep", "label": "Semgrep Workflow", "file_type": "code", "source_file": ".github/workflows/semgrep.yml", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null, "rationale": null}], "edges": [{"source": "github_workflows_semgrep", "target": "github_workflows_codeql", "relation": "conceptually_related_to", "confidence": "INFERRED", "confidence_score": 0.8, "source_file": ".github/workflows/semgrep.yml", "source_location": null, "weight": 1.0}], "hyperedges": [{"id": "laravel_security_scanning", "label": "Laravel Security Scanning", "nodes": ["github_workflows_codeql", "github_workflows_semgrep", "github_codeql_codeql_config"], "relation": "participate_in", "confidence": "EXTRACTED", "confidence_score": 0.9, "source_file": ".github/workflows/semgrep.yml"}]}
+{
+    "nodes": [
+        {
+            "id": "github_workflows_semgrep",
+            "label": "Semgrep Workflow",
+            "file_type": "code",
+            "source_file": ".github/workflows/semgrep.yml",
+            "source_location": null,
+            "source_url": null,
+            "captured_at": null,
+            "author": null,
+            "contributor": null,
+            "rationale": null
+        }
+    ],
+    "edges": [
+        {
+            "source": "github_workflows_semgrep",
+            "target": "github_workflows_codeql",
+            "relation": "conceptually_related_to",
+            "confidence": "INFERRED",
+            "confidence_score": 0.8,
+            "source_file": ".github/workflows/semgrep.yml",
+            "source_location": null,
+            "weight": 1.0
+        }
+    ],
+    "hyperedges": [
+        {
+            "id": "laravel_security_scanning",
+            "label": "Laravel Security Scanning",
+            "nodes": [
+                "github_workflows_codeql",
+                "github_workflows_semgrep",
+                "github_codeql_codeql_config"
+            ],
+            "relation": "participate_in",
+            "confidence": "EXTRACTED",
+            "confidence_score": 0.9,
+            "source_file": ".github/workflows/semgrep.yml"
+        }
+    ]
+}

@@ -1,1 +1,12 @@
-{"nodes": [{"id": "pulse_development_skill", "label": "Pulse Development Skill", "file_type": "code", "source_file": ".cursor/skills/pulse-development/SKILL.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "pulse_development_skill",
+            "label": "Pulse Development Skill",
+            "file_type": "code",
+            "source_file": ".cursor/skills/pulse-development/SKILL.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

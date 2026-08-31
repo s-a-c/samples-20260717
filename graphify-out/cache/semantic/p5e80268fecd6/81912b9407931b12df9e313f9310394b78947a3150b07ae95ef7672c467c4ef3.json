@@ -1,1 +1,13 @@
-{"nodes": [{"id": "grok_skills_configuring_horizon_references_supervisors", "label": "Horizon Supervisor & Balancing", "file_type": "document", "source_file": ".grok/skills/configuring-horizon/references/supervisors.md", "rationale": "Configuration rules for Horizon supervisors, balancing strategies, and environment merging."}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "grok_skills_configuring_horizon_references_supervisors",
+            "label": "Horizon Supervisor & Balancing",
+            "file_type": "document",
+            "source_file": ".grok/skills/configuring-horizon/references/supervisors.md",
+            "rationale": "Configuration rules for Horizon supervisors, balancing strategies, and environment merging."
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Samples Application — Multi-Product PostgreSQL Architecture",
+    "output": "samples-architecture.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "request-path",
+        "label": "Request path",
+        "focus": ["browser", "ui", "app", "chinook", "northwind", "pagila", "postgres"],
+        "note": "Follow a browser request through the shared application into one product schema and the PostgreSQL store."
+      },
+      {
+        "id": "product-boundaries",
+        "label": "Product boundaries",
+        "focus": ["app", "chinook", "northwind", "pagila", "postgres"],
+        "note": "Compare the three independently recognisable product schemas without merging their domain concepts."
+      },
+      {
+        "id": "frontend-assets",
+        "label": "UI and assets",
+        "focus": ["browser", "ui", "app", "vite"],
+        "note": "See how the Filament and Livewire interface is delivered alongside compiled frontend assets."
+      }
+    ]
+  },
+  "components": [
+    { "id": "browser", "type": "external", "label": "Browser", "sublabel": "Desktop client", "pos": [40, 330], "size": [150, 72] },
+    { "id": "ui", "type": "frontend", "label": "Filament + Livewire UI", "sublabel": "Sample panels", "pos": [260, 230], "size": [190, 72] },
+    { "id": "app", "type": "backend", "label": "Laravel 13 application", "sublabel": "HTTP routes + services", "pos": [520, 330], "size": [210, 72], "tag": "PHP 8.5" },
+    { "id": "chinook", "type": "backend", "label": "Chinook", "sublabel": "Sample product", "pos": [810, 130], "size": [170, 72] },
+    { "id": "northwind", "type": "backend", "label": "Northwind", "sublabel": "Sample product", "pos": [810, 320], "size": [170, 72] },
+    { "id": "pagila", "type": "backend", "label": "Pagila", "sublabel": "Sample product", "pos": [810, 510], "size": [170, 72] },
+    { "id": "postgres", "type": "database", "label": "PostgreSQL 18 database", "sublabel": "samples_20260717 / public", "pos": [1080, 320], "size": [210, 72], "tag": "pgvector + FTS" },
+    { "id": "vite", "type": "frontend", "label": "Vite+ asset pipeline", "sublabel": "Compiled CSS + JS", "pos": [260, 510], "size": [190, 72] },
+    { "id": "migrations", "type": "backend", "label": "Migrations + seed data", "sublabel": "PostgreSQL DDL + seed", "pos": [520, 560], "size": [210, 72] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Samples application", "wraps": ["ui", "app", "chinook", "northwind", "pagila", "postgres", "vite", "migrations"], "pad": 34 }
+  ],
+  "connections": [
+    { "id": "browser-to-ui", "from": "browser", "to": "ui", "label": "HTTPS", "variant": "emphasis" },
+    { "id": "assets-to-ui", "from": "vite", "to": "ui", "label": "bundled assets", "variant": "dashed", "fromSide": "top", "toSide": "bottom" },
+    { "id": "ui-to-app", "from": "ui", "to": "app", "label": "Livewire / HTTP", "variant": "emphasis", "labelDy": 10 },
+    { "id": "app-to-chinook", "from": "app", "to": "chinook", "label": "Chinook queries" },
+    { "id": "app-to-northwind", "from": "app", "to": "northwind", "label": "Northwind queries", "labelAt": [900, 285] },
+    { "id": "app-to-pagila", "from": "app", "to": "pagila", "label": "Pagila queries" },
+    { "id": "chinook-to-postgres", "from": "chinook", "to": "postgres", "label": "schema reads / writes" },
+    { "id": "northwind-to-postgres", "from": "northwind", "to": "postgres", "label": "schema reads / writes", "labelAt": [1150, 280] },
+    { "id": "pagila-to-postgres", "from": "pagila", "to": "postgres", "label": "schema reads / writes", "labelAt": [1150, 520] },
+    { "id": "migrations-to-postgres", "from": "migrations", "to": "postgres", "label": "schema + seed", "variant": "dashed", "labelAt": [1005, 620] }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Interface", "items": ["Filament and Livewire provide the sample panels", "Vite+ supplies compiled CSS and JavaScript"] },
+    { "dot": "emerald", "title": "Application", "items": ["Laravel 13 coordinates HTTP routes and services", "Chinook, Northwind, and Pagila remain distinct sample products"] },
+    { "dot": "violet", "title": "Persistence", "items": ["One PostgreSQL database hosts the product schemas", "vector, unaccent, pg_trgm, and full-text search support the data layer"] }
+  ]
+}

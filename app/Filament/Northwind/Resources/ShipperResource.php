@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Override;
 
 final class ShipperResource extends Resource
 {
@@ -20,28 +21,28 @@ final class ShipperResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-truck';
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                Forms\Components\TextInput::make('company_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
-                    ->maxLength(255),
-            ]);
+        return $schema->components([
+            Forms\Components\TextInput::make('company_name')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('phone')
+                ->maxLength(255),
+        ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('company_name')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('phone')
-                    ->searchable(),
-            ])
+        return $table->columns([
+            Tables\Columns\TextColumn::make('company_name')
+                ->searchable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('phone')
+                ->searchable(),
+        ])
             ->filters([
                 //
             ])
@@ -55,6 +56,7 @@ final class ShipperResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

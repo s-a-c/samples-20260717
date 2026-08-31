@@ -9,7 +9,6 @@ tags: [adr, "0002", uuidv7]
 created: 2026-07-25
 updated: 2026-08-17
 ---
-
 # ADR 0002: UUIDv7 for All Entities
 
 **Status:** Accepted

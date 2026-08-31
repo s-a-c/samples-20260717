@@ -9,28 +9,27 @@ tags: [requirements, traceability, matrix]
 created: 2026-07-30
 updated: 2026-08-17
 ---
-
 # Traceability Matrix
 
+<!-- generated-toc -->
 <details>
   <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
     Expand for Table of Contents
   </summary>
 
-- [1. Purpose](#1-purpose)
-- [2. Traceability Chain](#2-traceability-chain)
-- [3. Gap Analysis](#3-gap-analysis)
-- [4. Diagrams](#4-diagrams)
+- [1. 📄 Purpose](#1--purpose)
+- [2. 📄 Traceability Chain](#2--traceability-chain)
+- [3. 📄 Gap Analysis](#3--gap-analysis)
+- [4. 📄 Diagrams](#4--diagrams)
 
 </details>
 
 ---
-
-## 1. Purpose
+## 1. 📄 Purpose
 
 This document maps project requirements to their corresponding goals, user stories, architectural decisions, and verification tests.
 
-## 2. Traceability Chain
+## 2. 📄 Traceability Chain
 
 | ID       | Goal   | Functional Requirement     | User Story | ADR      | Test Case                | Status |
 | :------- | :----- | :------------------------- | :--------- | :------- | :----------------------- | :----- |
@@ -42,18 +41,17 @@ This document maps project requirements to their corresponding goals, user stori
 | **TR-6** | GOAL-4 | FR-3.2 (Reset Workflow)    | US-2       | ADR 0007 | `ResetWindowTest`        | ✅     |
 | **TR-7** | GOAL-1 | NFR-1.1 (UUIDv7)           | US-1       | ADR 0002 | `PostgresExtensionsTest` | ✅     |
 
-## 3. Gap Analysis
+## 3. 📄 Gap Analysis
 
 - **Gap-1:** Traceability from AC-1 to specific unit tests for all 25 resources is partially complete (manual verification required).
 - **Gap-2:** Non-functional requirements for performance (NFR-2.1) lack automated benchmark tests in CI.
 
-## 4. Diagrams
+## 4. 📄 Diagrams
 
 [Requirements Traceability](../assets/requirements-traceability.mmd)
 
 ````mermaid
 ---
-title: MVP Scope
 config:
   theme: redux-dark-color
   themeVariables:
@@ -62,27 +60,8 @@ config:
     primaryTextColor: "#1e1e2e"
     primaryBorderColor: "#74c7ec"
     lineColor: "#74c7ec"
-    secondaryColor: "#cba6f7"
-    secondaryTextColor: "#1e1e2e"
-    secondaryBorderColor: "#b4befe"
-    tertiaryColor: "#94e2d5"
-    tertiaryTextColor: "#1e1e2e"
-    tertiaryBorderColor: "#89dceb"
-    mainBkg: "#89b4fa"
-    secondBkg: "#cba6f7"
-    tertiaryBkg: "#94e2d5"
     textColor: "#cdd6f4"
-    nodeBorder: "#74c7ec"
-    clusterBkg: "#313244"
-    clusterBorder: "#b4befe"
-    edgeLabelBackground: "#1e1e2e"
-    titleColor: "#cdd6f4"
     fontSize: 16px
-  themeCSS: |
-    .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
-    .edgePath .path { stroke-width: 2px !important; }
-    .label { font-weight: bold !important; }
-    .edgeLabel { background-color: #1e1e2e !important; }
 ---
 flowchart LR
     subgraph InScope["MVP: In-Scope"]

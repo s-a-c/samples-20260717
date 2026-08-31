@@ -1,1 +1,37 @@
-{"nodes": [{"id": "superpowers_sdd_progress", "label": "SDD Progress Log", "file_type": "document", "source_file": ".superpowers/sdd/progress.md", "rationale": "Tracks task completion for the import pipeline and product domain implementation."}], "edges": [{"source": "superpowers_sdd_progress", "target": "docs_03_research_0311_sample_databases", "relation": "conceptually_related_to", "confidence": "INFERRED", "confidence_score": 0.9, "source_file": ".superpowers/sdd/progress.md", "rationale": "Progress log mentions Chinook, Northwind, and Pagila tasks which are researched in 0311."}], "hyperedges": [{"id": "sample_product_domain", "label": "Sample Product Implementation", "nodes": ["docs_03_research_0311_sample_databases", "superpowers_sdd_progress", "docs_06_requirements_0602_problem_statement"], "relation": "participate_in", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": ".superpowers/sdd/progress.md"}]}
+{
+    "nodes": [
+        {
+            "id": "superpowers_sdd_progress",
+            "label": "SDD Progress Log",
+            "file_type": "document",
+            "source_file": ".superpowers/sdd/progress.md",
+            "rationale": "Tracks task completion for the import pipeline and product domain implementation."
+        }
+    ],
+    "edges": [
+        {
+            "source": "superpowers_sdd_progress",
+            "target": "docs_03_research_0311_sample_databases",
+            "relation": "conceptually_related_to",
+            "confidence": "INFERRED",
+            "confidence_score": 0.9,
+            "source_file": ".superpowers/sdd/progress.md",
+            "rationale": "Progress log mentions Chinook, Northwind, and Pagila tasks which are researched in 0311."
+        }
+    ],
+    "hyperedges": [
+        {
+            "id": "sample_product_domain",
+            "label": "Sample Product Implementation",
+            "nodes": [
+                "docs_03_research_0311_sample_databases",
+                "superpowers_sdd_progress",
+                "docs_06_requirements_0602_problem_statement"
+            ],
+            "relation": "participate_in",
+            "confidence": "INFERRED",
+            "confidence_score": 0.85,
+            "source_file": ".superpowers/sdd/progress.md"
+        }
+    ]
+}

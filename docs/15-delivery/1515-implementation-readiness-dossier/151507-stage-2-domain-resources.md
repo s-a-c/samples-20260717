@@ -2,12 +2,12 @@
 title: Stage 2 — Domain & Resources
 description: Acceptance Stage 2 (Domain & Resources) of the Implementation-Readiness Dossier — gates, checks, operator commands, evidence, and recovery.
 tableOfContents:
-    minHeadingLevel: 2
-    maxHeadingLevel: 3
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
 type: plan
 tags: [dossier, delivery, acceptance]
-created: 2026-08-23
-updated: 2026-08-23
+created: 2026-08-31
+updated: 2026-08-31
 ---
 
 # Stage 2 — Domain & Resources
@@ -33,11 +33,11 @@ updated: 2026-08-23
 
 ## 1. Acceptance gates
 
-| Gate                                                                               | Evidence                                                                   | Check                                             | Status |
-| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------- | ------ |
-| UUIDv7 trait verification (HasUuids on all models)                                 | `tests/Architecture/ArchitectureTest.php`                                  | `composer test:arch`                              | Pass   |
-| Source Identity Registry (public.source_identities uniqueness and JSONB key)       | `database/migrations/0001_01_01_000001_create_source_identities_table.php` | `php artisan test --filter=SourceIdentit`         | Pass   |
-| Shadow schema import pipeline (ChinookImporter, NorthwindImporter, PagilaImporter) | `app/Services/ProductImport/{Chinook,Northwind,Pagila}Importer.php`        | `php artisan test --filter=ProductImportPipeline` | Pass   |
+| Gate | Evidence | Check | Status |
+| --- | --- | --- | --- |
+| UUIDv7 trait verification (HasUuids on all models) | `tests/Architecture/ArchitectureTest.php` | `composer test:arch` | Pass |
+| Source Identity Registry (public.source_identities uniqueness and JSONB key) | `database/migrations/0001_01_01_000001_create_source_identities_table.php` | `php artisan test --filter=SourceIdentit` | Pass |
+| Shadow schema import pipeline (ChinookImporter, NorthwindImporter, PagilaImporter) | `app/Services/ProductImport/{Chinook,Northwind,Pagila}Importer.php` | `php artisan test --filter=ProductImportPipeline` | Pass |
 
 ## 2. Automated checks
 

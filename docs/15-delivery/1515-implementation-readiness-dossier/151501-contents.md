@@ -2,8 +2,8 @@
 title: Implementation-Readiness Dossier — Contents
 description: Version-controlled operational record mapping each approved decision to its acceptance gates, automated checks, operator commands, evidence location, and recovery procedure.
 tableOfContents:
-    minHeadingLevel: 2
-    maxHeadingLevel: 3
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
 type: contents
 tags: [dossier, delivery, acceptance]
 created: 2026-08-31
@@ -38,15 +38,22 @@ dossier only indexes where to find it and what each stage requires.
 An Acceptance Stage is one risk-ordered delivery increment whose
 required Acceptance Gates must pass before the next increment begins.
 
-| Stage                        | Scope                                                            | Status   |
-| ---------------------------- | ---------------------------------------------------------------- | -------- |
-| Stage 1 — Foundation         | ADR recovery, CI, coverage baseline                              | complete |
-| Stage 2 — Domain & Resources | Domain structure, architecture rules, Northwind resources        | complete |
+| Stage | Scope | Status |
+| --- | --- | --- |
+| Stage 1 — Foundation | ADR recovery, CI, coverage baseline | complete |
+| Stage 2 — Domain & Resources | Domain structure, architecture rules, Northwind resources | complete |
 | Stage 3 — Quality & Features | Rector, Mago, Infection, Team Artefacts, search, dossier tooling | complete |
-| Stage 4 — Polish             | Documentation, unit tests for core services                      | complete |
+| Stage 4 — Polish | Documentation, unit tests for core services | complete |
 
 Copy `151502-stage-template.md` to a numbered stage file
 (e.g. `151504-stage-1-foundation.md`) to author a stage.
+
+- [151502-stage-template.md](151502-stage-template.md)
+- [151504-stage-1-foundation.md](151504-stage-1-foundation.md)
+- [151507-stage-2-domain-resources.md](151507-stage-2-domain-resources.md)
+- [151508-stage-3-quality-features.md](151508-stage-3-quality-features.md)
+- [151511-stage-4-polish.md](151511-stage-4-polish.md)
+- [151598-index.md](151598-index.md)
 
 ## 2. Evidence checklist (per stage)
 

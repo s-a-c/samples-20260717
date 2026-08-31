@@ -1,1 +1,0 @@
-{"nodes": [{"id": "events_dispatch_after_commit", "label": "ShouldDispatchAfterCommit", "file_type": "concept", "source_file": ".agents/skills/laravel-best-practices/rules/events-notifications.md"}], "edges": [], "hyperedges": []}

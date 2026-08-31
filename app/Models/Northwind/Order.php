@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Override;
 
 #[Table('northwind.orders')]
 final class Order extends Model implements HasProductDomain
@@ -36,6 +37,7 @@ final class Order extends Model implements HasProductDomain
         ];
     }
 
+    #[Override]
     public function getProductDomain(): SamplesProduct
     {
         return SamplesProduct::Northwind;

@@ -8,6 +8,7 @@ use App\Filament\Admin\Widgets\ProductPortfolioCard;
 use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Widgets\WidgetConfiguration;
+use Override;
 
 final class Portfolio extends Page
 {
@@ -17,6 +18,7 @@ final class Portfolio extends Page
 
     protected static ?string $slug = 'portfolio';
 
+    #[Override]
     protected function getHeaderWidgets(): array
     {
         return [

@@ -1,1 +1,1 @@
-{"nodes": [{"id": "debugging_output_and_previewing_html_using_ray_skill", "label": "Ray Debugging Skill", "file_type": "concept", "source_file": ".pi/skills/debugging-output-and-previewing-html-using-ray/SKILL.md", "rationale": "Visual debugging and data inspection via Spatie Ray."}], "edges": [], "hyperedges": []}
+{"nodes": [{"id": "pi_skills_debugging_output_and_previewing_html_using_ray_skill", "label": "Ray Skill", "file_type": "document", "source_file": ".pi/skills/debugging-output-and-previewing-html-using-ray/SKILL.md"}], "edges": [], "hyperedges": []}

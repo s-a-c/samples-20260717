@@ -1,1 +1,12 @@
-{"nodes": [{"id": "public_robots", "label": "Robots.txt", "file_type": "document", "source_file": "public/robots.txt"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "public_robots",
+            "label": "Robots.txt",
+            "file_type": "document",
+            "source_file": "public/robots.txt"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

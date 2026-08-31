@@ -9,7 +9,6 @@ tags: [adr, architecture, postgres, caching, connections]
 created: 2026-08-23
 updated: 2026-08-23
 ---
-
 # ADR 0023: Unlogged Cache Tables + Local PgBouncer
 
 **Status:** Accepted

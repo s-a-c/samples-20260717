@@ -18,7 +18,7 @@ covers(
     App\Services\ProductImport\Mapping\Pagila\FilmMapper::class,
     App\Services\ProductImport\Mapping\Pagila\StoreStaffMapper::class,
     App\Services\ProductImport\Mapping\Pagila\CustomerMapper::class,
-    SourceSchemaBuilder::class
+    SourceSchemaBuilder::class,
 );
 
 uses(RefreshDatabase::class);
@@ -34,7 +34,10 @@ beforeEach(function () {
     $lines = explode("\n", $sql);
     $codeLines = array_filter($lines, fn (string $line): bool => ! str_starts_with(mb_trim($line), '--'));
     $cleanSql = implode("\n", $codeLines);
-    foreach (array_filter(array_map('trim', explode(';', $cleanSql)), fn (string $statement): bool => $statement !== '') as $statement) {
+    foreach (array_filter(
+        array_map('trim', explode(';', $cleanSql)),
+        fn (string $statement): bool => $statement !== '',
+    ) as $statement) {
         if ($statement !== '') {
             DB::statement($statement);
         }
@@ -80,8 +83,7 @@ test('pagila transform resolves circular store-staff FK', function () {
     $staffMember = $staff->first();
 
     // Circular FK: store.manager_staff_id = staff.id, staff.store_id = store.id
-    expect($store->manager_staff_id)->toBe($staffMember->id)
-        ->and($staffMember->store_id)->toBe($store->id);
+    expect($store?->manager_staff_id)->toBe($staffMember?->id)->and($staffMember?->store_id)->toBe($store?->id);
 });
 
 test('pagila transform loads customers with store FK', function () {

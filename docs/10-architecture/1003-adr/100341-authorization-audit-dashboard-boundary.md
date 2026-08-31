@@ -9,33 +9,32 @@ tags: [documentation]
 created: 2026-08-17
 updated: 2026-08-17
 ---
-
 # ADR 0019: Authorization, Audit & Dashboard Boundary
 
+<!-- generated-toc -->
 <details>
   <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
     Expand for Table of Contents
   </summary>
 
-- [1. Status](#1-status)
-- [2. Context](#2-context)
-- [3. Decision](#3-decision)
-- [4. Consequences](#4-consequences)
-- [5. References](#5-references)
+- [1. 📄 Status](#1--status)
+- [2. 📄 Context](#2--context)
+- [3. 📄 Decision](#3--decision)
+- [4. 📄 Consequences](#4--consequences)
+- [5. 📄 References](#5--references)
 
 </details>
 
 ---
-
-## 1. Status
+## 1. 📄 Status
 
 Accepted — restated from [Wayfinder #13](https://github.com/s-a-c/samples-20260717/issues/13) (map [#15](https://github.com/s-a-c/samples-20260717/issues/15)). Refined by ADR 0008 (Spatie + Shield + Fortify Coexistence).
 
-## 2. Context
+## 2. 📄 Context
 
 The application spans three sample products plus team and admin surfaces. It needs an explicit package boundary for authorization, audit, and configurable dashboards — one that keeps team scope from ever leaking into shared sample data, and that does not let a generic dynamic-form package own dashboard definitions.
 
-## 3. Decision
+## 3. 📄 Decision
 
 **Authorization**
 
@@ -55,12 +54,12 @@ The application spans three sample products plus team and admin surfaces. It nee
 - Guardian, Flex Fields, and Shield Enhanced are not selected. Shield Enhanced is reassessed only if a concrete non-CRUD permission need appears.
 - Human-readable/shareable Team Artefact URLs and slug policy are deferred (ADR 0012); no sluggable package is selected here.
 
-## 4. Consequences
+## 4. 📄 Consequences
 
 - A single RBAC engine (Spatie); team scope is membership data, never a query filter on sample data.
 - Audit is layered: Activitylog for selected events, Reset Evidence for resets — no single package claims to be the operational record.
 - Dashboards stay code-owned, keeping the configuration surface auditable.
 
-## 5. References
+## 5. 📄 References
 
 - [Wayfinder #13](https://github.com/s-a-c/samples-20260717/issues/13) · ADR 0008 (Spatie + Shield + Fortify) · ADR 0007 (Product Reset) · ADR 0012 (Team Artefacts) · ADR 0011 (Portfolio Card)

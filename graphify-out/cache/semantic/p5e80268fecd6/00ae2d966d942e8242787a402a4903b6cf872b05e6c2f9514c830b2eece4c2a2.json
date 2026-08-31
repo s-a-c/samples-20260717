@@ -1,1 +1,22 @@
-{"nodes": [{"id": "cursor_skills_infer_conventions_skill", "label": "Infer Conventions Skill", "file_type": "document", "source_file": ".cursor/skills/infer-conventions/SKILL.md", "rationale": "Defines the process for analyzing Laravel project conventions and recording them as path-scoped rules."}], "edges": [{"source": "cursor_skills_infer_conventions_skill", "target": "cursor_skills_infer_conventions_references_checklist", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": ".cursor/skills/infer-conventions/SKILL.md"}], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "cursor_skills_infer_conventions_skill",
+            "label": "Infer Conventions Skill",
+            "file_type": "document",
+            "source_file": ".cursor/skills/infer-conventions/SKILL.md",
+            "rationale": "Defines the process for analyzing Laravel project conventions and recording them as path-scoped rules."
+        }
+    ],
+    "edges": [
+        {
+            "source": "cursor_skills_infer_conventions_skill",
+            "target": "cursor_skills_infer_conventions_references_checklist",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": ".cursor/skills/infer-conventions/SKILL.md"
+        }
+    ],
+    "hyperedges": []
+}

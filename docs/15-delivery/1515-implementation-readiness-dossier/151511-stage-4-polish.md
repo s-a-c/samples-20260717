@@ -2,12 +2,12 @@
 title: Stage 4 — Polish
 description: Acceptance Stage 4 (Polish) of the Implementation-Readiness Dossier — gates, checks, operator commands, evidence, and recovery.
 tableOfContents:
-    minHeadingLevel: 2
-    maxHeadingLevel: 3
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
 type: plan
 tags: [dossier, delivery, acceptance]
-created: 2026-08-23
-updated: 2026-08-23
+created: 2026-08-31
+updated: 2026-08-31
 ---
 
 # Stage 4 — Polish
@@ -33,11 +33,11 @@ updated: 2026-08-23
 
 ## 1. Acceptance gates
 
-| Gate                                                                         | Evidence                                             | Check                                               | Status |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------- | --------------------------------------------------- | ------ |
-| PHPStan level: max baseline citation guard (PhpStanBaselineCitationTest.php) | `tests/Architecture/PhpStanBaselineCitationTest.php` | `php artisan test --filter=PhpStanBaselineCitation` | Pass   |
-| 24 Architecture rules (ArchitectureTest.php)                                 | `tests/Architecture/ArchitectureTest.php`            | `composer test:arch`                                | Pass   |
-| CI Quality Gate workflow (.github/workflows/tests.yml)                       | `.github/workflows/tests.yml`                        | `GitHub Actions tests.yml green`                    | Pass   |
+| Gate | Evidence | Check | Status |
+| --- | --- | --- | --- |
+| PHPStan level: max baseline citation guard (PhpStanBaselineCitationTest.php) | `tests/Architecture/PhpStanBaselineCitationTest.php` | `php artisan test --filter=PhpStanBaselineCitation` | Pass |
+| 24 Architecture rules (ArchitectureTest.php) | `tests/Architecture/ArchitectureTest.php` | `composer test:arch` | Pass |
+| CI Quality Gate workflow (.github/workflows/tests.yml) | `.github/workflows/tests.yml` | `GitHub Actions tests.yml green` | Pass |
 
 ## 2. Automated checks
 

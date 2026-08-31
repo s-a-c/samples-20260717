@@ -6,7 +6,7 @@ import { lazyPlugins } from "vite-plus";
 
 export default defineConfig({
     staged: {
-        "*": "vp check --fix",
+        "*.{js,mjs,cjs,ts,tsx}": "vp check --fix",
     },
     fmt: {},
     lint: {

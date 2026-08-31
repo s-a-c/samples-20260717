@@ -1,1 +1,65 @@
-{"nodes": [{"id": "findings_datasets_reverify", "label": "Upstream Sample Datasets Re-verification", "file_type": "guide", "source_file": "research/t40-datasets-reverify/findings.md"}, {"id": "chinook_database", "label": "Chinook Database", "file_type": "code", "source_file": "research/t40-datasets-reverify/findings.md"}, {"id": "northwind_sqlite3", "label": "Northwind SQLite3", "file_type": "code", "source_file": "research/t40-datasets-reverify/findings.md"}, {"id": "pagila_sqlite3", "label": "Pagila SQLite3", "file_type": "code", "source_file": "research/t40-datasets-reverify/findings.md"}], "edges": [{"source": "findings_datasets_reverify", "target": "chinook_database", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "research/t40-datasets-reverify/findings.md"}, {"source": "findings_datasets_reverify", "target": "northwind_sqlite3", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "research/t40-datasets-reverify/findings.md"}, {"source": "findings_datasets_reverify", "target": "pagila_sqlite3", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "research/t40-datasets-reverify/findings.md"}], "hyperedges": [{"id": "sample_dataset_verification_group", "label": "Sample Dataset Verification Group", "nodes": ["chinook_database", "northwind_sqlite3", "pagila_sqlite3"], "relation": "form", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "research/t40-datasets-reverify/findings.md"}]}
+{
+    "nodes": [
+        {
+            "id": "findings_datasets_reverify",
+            "label": "Upstream Sample Datasets Re-verification",
+            "file_type": "guide",
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        },
+        {
+            "id": "chinook_database",
+            "label": "Chinook Database",
+            "file_type": "code",
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        },
+        {
+            "id": "northwind_sqlite3",
+            "label": "Northwind SQLite3",
+            "file_type": "code",
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        },
+        {
+            "id": "pagila_sqlite3",
+            "label": "Pagila SQLite3",
+            "file_type": "code",
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        }
+    ],
+    "edges": [
+        {
+            "source": "findings_datasets_reverify",
+            "target": "chinook_database",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        },
+        {
+            "source": "findings_datasets_reverify",
+            "target": "northwind_sqlite3",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        },
+        {
+            "source": "findings_datasets_reverify",
+            "target": "pagila_sqlite3",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        }
+    ],
+    "hyperedges": [
+        {
+            "id": "sample_dataset_verification_group",
+            "label": "Sample Dataset Verification Group",
+            "nodes": ["chinook_database", "northwind_sqlite3", "pagila_sqlite3"],
+            "relation": "form",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": "research/t40-datasets-reverify/findings.md"
+        }
+    ]
+}

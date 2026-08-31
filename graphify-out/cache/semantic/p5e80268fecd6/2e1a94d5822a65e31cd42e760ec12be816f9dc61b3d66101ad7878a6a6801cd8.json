@@ -1,1 +1,22 @@
-{"nodes": [{"id": "fluxui_development_skill", "label": "Flux UI Development Skill", "file_type": "concept", "source_file": ".junie/skills/fluxui-development/SKILL.md", "rationale": "Guidelines for using Flux UI components in Livewire applications."}], "edges": [{"source": "fluxui_development_skill", "target": "livewire_development_skill", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": ".junie/skills/fluxui-development/SKILL.md"}], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "fluxui_development_skill",
+            "label": "Flux UI Development Skill",
+            "file_type": "concept",
+            "source_file": ".junie/skills/fluxui-development/SKILL.md",
+            "rationale": "Guidelines for using Flux UI components in Livewire applications."
+        }
+    ],
+    "edges": [
+        {
+            "source": "fluxui_development_skill",
+            "target": "livewire_development_skill",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": ".junie/skills/fluxui-development/SKILL.md"
+        }
+    ],
+    "hyperedges": []
+}

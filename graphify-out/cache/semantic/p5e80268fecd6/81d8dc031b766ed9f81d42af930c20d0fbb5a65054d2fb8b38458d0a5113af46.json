@@ -1,1 +1,13 @@
-{"nodes": [{"id": "fluxui_development_skill_md", "label": "Flux UI Development", "file_type": "document", "source_file": ".cursor/skills/fluxui-development/SKILL.md", "rationale": "Usage of Flux UI Pro components in Livewire."}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "fluxui_development_skill_md",
+            "label": "Flux UI Development",
+            "file_type": "document",
+            "source_file": ".cursor/skills/fluxui-development/SKILL.md",
+            "rationale": "Usage of Flux UI Pro components in Livewire."
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

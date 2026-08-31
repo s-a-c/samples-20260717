@@ -1,1 +1,22 @@
-{"nodes": [{"id": "pulse_development_skill", "label": "Pulse Development Skill", "file_type": "concept", "source_file": ".junie/skills/pulse-development/SKILL.md", "rationale": "Monitoring and custom card development for Laravel Pulse."}], "edges": [{"source": "pulse_development_skill", "target": "livewire_development_skill", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": ".junie/skills/pulse-development/SKILL.md"}], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "pulse_development_skill",
+            "label": "Pulse Development Skill",
+            "file_type": "concept",
+            "source_file": ".junie/skills/pulse-development/SKILL.md",
+            "rationale": "Monitoring and custom card development for Laravel Pulse."
+        }
+    ],
+    "edges": [
+        {
+            "source": "pulse_development_skill",
+            "target": "livewire_development_skill",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": ".junie/skills/pulse-development/SKILL.md"
+        }
+    ],
+    "hyperedges": []
+}

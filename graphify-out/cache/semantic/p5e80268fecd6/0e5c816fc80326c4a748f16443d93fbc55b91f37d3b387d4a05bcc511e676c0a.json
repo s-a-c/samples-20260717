@@ -1,0 +1,1 @@
+{"nodes": [{"id": "skill_debug_using_debugbar", "label": "Debug Using Debugbar", "file_type": "concept", "source_file": ".factory/skills/debug-using-debugbar/SKILL.md", "rationale": "Skill for inspecting Laravel requests via Artisan commands for Debugbar data."}], "edges": [], "hyperedges": []}
