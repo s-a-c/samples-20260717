@@ -30,10 +30,10 @@ Scope: reconcile GitHub issue #85, Beads epic samples-20260717-7rg, release evid
       EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/s-a-c/Herd/samples-20260717; path=3e2e38e23c11/33 entries; EXPECT=matched; output-sha256=da3efd8f187331a68dd1069bf40364a38a98c9e80079179c34373822558e635f; output-bytes=2291
 
 - [x] G6: release acceptance evidence is current and points to committed SHAs
-      EVIDENCE: 2026-08-31 Herd acceptance recorded on committed PR #126 SHA a372cf36fe177c166956b082c9198dc02d64d964; merged baseline evidence points to PR #107 SHA 420434c8ae1f811d97c34a2d62f222479f02cb51 and PR #110 SHA 4210e5bfaa865e183559a7c81260b555306b85f6.
+      EVIDENCE: 2026-08-31 Herd acceptance recorded on committed PR #126 SHA 59ac5a010df6ead0198812c85695a55b63d2448a; merged baseline evidence points to PR #107 SHA 420434c8ae1f811d97c34a2d62f222479f02cb51 and PR #110 SHA 4210e5bfaa865e183559a7c81260b555306b85f6.
 
 - [x] G7: all #85-related PR checks and required workflow runs are resolved, with no unexplained failure or pending result
-      EVIDENCE: PR #126 final run on a372cf36fe177c166956b082c9198dc02d64d964 has 10 successful checks, 2 intentional skips, 0 failing, and 0 pending; PRs #107 and #110 merged with required checks passing.
+      EVIDENCE: PR #126 final run on 59ac5a010df6ead0198812c85695a55b63d2448a has 10 successful checks, 2 intentional skips, 0 failing, and 0 pending; PRs #107 and #110 merged with required checks passing.
 
 - [x] G8: runtime acceptance covers real-data imports, PostgreSQL 18 with pgvector, shadow-schema isolation and reset/recovery, search projections and Golden Search Corpus, admin imports/statistics, Herd macOS, and Linux CI
       EVIDENCE: 2026-08-31 Herd imports and resets succeeded for Chinook, Northwind, and Pagila; source parity and projections are recorded in #85; focused import/reset/search/Admin tests and full Pest 589/589 passed; pgsql:check, migrations, PHPStan, Pint, Mago guard, architecture, build, and PR #126 Linux CI passed.

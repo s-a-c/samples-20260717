@@ -780,7 +780,7 @@ complete. The release record points to the merged implementation SHAs
 `420434c8ae1f811d97c34a2d62f222479f02cb51` (PR #107) and
 `4210e5bfaa865e183559a7c81260b555306b85f6` (PR #110). Current local checks
 also cover the post-merge configuration fix and Northwind mapper completion on
-committed follow-up SHA `5843e9b8037717fb52142014e20ef3435e86d69c` in PR #126.
+committed follow-up SHA `59ac5a010df6ead0198812c85695a55b63d2448a` in PR #126.
 
 ### 11.4. Task 15: Linux CI with pgvector/pgvector:pg18
 
@@ -799,7 +799,7 @@ including PostgreSQL/pgvector tests, coverage, TIA shards, mutation, PHPStan,
 Pint, CodeQL, and Semgrep, on their respective merge SHAs above.
 
 **Current follow-up:** PR #126 on
-`5843e9b8037717fb52142014e20ef3435e86d69c` has 10 successful checks, 2
+`59ac5a010df6ead0198812c85695a55b63d2448a` has 10 successful checks, 2
 intentional skips, and no pending or failing checks. This validates the
 workflow correction on a committed remote SHA; the PR remains a follow-up
 change awaiting normal review/merge and is not a reason to close Wayfinder
@@ -833,7 +833,7 @@ this reconciliation was the optional PostgreSQL direct-connection filter in
 
 **Evidence:** PR #107 Linux Coverage and type coverage pass at 100%; PR #126
 also passes coverage, both TIA shards, and the mutation pull-request job on
-`5843e9b8037717fb52142014e20ef3435e86d69c`.
+`59ac5a010df6ead0198812c85695a55b63d2448a`.
 
 ### 11.7. Task 16: Documentation and acceptance-record alignment
 
