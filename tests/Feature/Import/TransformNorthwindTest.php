@@ -165,17 +165,23 @@ test('northwind transform loads every application table from the source schema',
 
 test('northwind transform skips optional source tables that are absent', function () {
     DB::statement(
-        'DROP TABLE northwind_source.territories, northwind_source.shippers, northwind_source.orders CASCADE',
+        'DROP TABLE northwind_source.region, northwind_source.territories, northwind_source.employee_territories, northwind_source.shippers, northwind_source.orders, northwind_source.order_details CASCADE',
     );
 
     $result = new NorthwindProductMapper()->load('northwind_source', 'northwind_staging');
 
     expect($result['tables'])->toBe(11)
+        ->and(DB::table('northwind_staging.regions')->count())
+        ->toBe(0)
         ->and(DB::table('northwind_staging.territories')->count())
+        ->toBe(0)
+        ->and(DB::table('northwind_staging.employee_territories')->count())
         ->toBe(0)
         ->and(DB::table('northwind_staging.shippers')->count())
         ->toBe(0)
         ->and(DB::table('northwind_staging.orders')->count())
+        ->toBe(0)
+        ->and(DB::table('northwind_staging.order_details')->count())
         ->toBe(0);
 });
 

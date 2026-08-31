@@ -270,12 +270,13 @@ abstract class NorthwindRawTableMapper extends TableMapper
      */
     protected function insert(string $stagingSchema, string $table, array $attributes): void
     {
+        $timestamp = now();
+
         DB::table("{$stagingSchema}.{$table}")->insert(
-            $attributes
-            + [
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            array_merge($attributes, [
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ]),
         );
     }
 
@@ -297,14 +298,17 @@ class RegionMapper extends NorthwindRawTableMapper
             return 0;
         }
 
+        $count = 0;
+
         foreach (DB::table("{$sourceSchema}.region")->get() as $row) {
             $this->insert($stagingSchema, 'regions', [
                 'id' => $this->registry->getOrMint('northwind.regions', ['RegionID' => $row->region_id]),
                 'region_description' => $row->region_description ?? '',
             ]);
+            $count++;
         }
 
-        return $this->countSourceRows($sourceSchema, 'region');
+        return $count;
     }
 }
 

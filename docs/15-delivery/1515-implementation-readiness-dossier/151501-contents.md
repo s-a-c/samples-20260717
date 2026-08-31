@@ -20,6 +20,7 @@ updated: 2026-08-31
 - [1. Stages](#1-stages)
 - [2. Evidence checklist (per stage)](#2-evidence-checklist-per-stage)
 - [3. Governance](#3-governance)
+- [4. Current release evidence](#4-current-release-evidence)
 
 </details>
 
@@ -71,3 +72,7 @@ when every gate's evidence row resolves:
 
 A stage may not begin until the previous stage's gates pass. A gate
 that regresses re-opens its stage.
+
+## 4. Current release evidence
+
+The current delivery target is recorded in GitHub [issue #85](https://github.com/s-a-c/samples-20260717/issues/85), with implementation and Linux acceptance in [PR #126](https://github.com/s-a-c/samples-20260717/pull/126). Local Herd observations are reproducible with `php artisan pgsql:check --no-interaction`, `php artisan source:fetch {product}`, `php artisan product:import {product} --force`, and `php -d memory_limit=2G vendor/bin/pest --compact`; the committed gate ledger in [`GATES.md`](../../../GATES.md) records the corresponding checks and remote evidence locations.
