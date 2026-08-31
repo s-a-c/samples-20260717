@@ -138,6 +138,22 @@ test('northwind transform loads every application table from the source schema',
         'ship_postal_code' => '12209',
         'ship_country' => 'Germany',
     ]);
+    DB::table('northwind_source.orders')->insert([
+        'order_id' => 10249,
+        'customer_id' => null,
+        'employee_id' => null,
+        'order_date' => null,
+        'required_date' => null,
+        'shipped_date' => null,
+        'ship_via' => null,
+        'freight' => null,
+        'ship_name' => null,
+        'ship_address' => null,
+        'ship_city' => null,
+        'ship_region' => null,
+        'ship_postal_code' => null,
+        'ship_country' => null,
+    ]);
     DB::table('northwind_source.order_details')->insert([
         'order_id' => 10248,
         'product_id' => 1,
@@ -156,11 +172,20 @@ test('northwind transform loads every application table from the source schema',
         ->and(DB::table('northwind_staging.shippers')->count())
         ->toBe(1)
         ->and(DB::table('northwind_staging.orders')->count())
-        ->toBe(1)
+        ->toBe(2)
+        ->and(DB::table('northwind_staging.orders')->whereNull('order_date')->first())
+        ->not
+        ->toBeNull()
+        ->and(DB::table('northwind_staging.orders')->whereNull('order_date')->value('customer_id'))
+        ->toBeNull()
+        ->and(DB::table('northwind_staging.orders')->whereNull('order_date')->value('employee_id'))
+        ->toBeNull()
+        ->and(DB::table('northwind_staging.orders')->whereNull('order_date')->value('ship_via'))
+        ->toBeNull()
         ->and(DB::table('northwind_staging.order_details')->count())
         ->toBe(1)
         ->and(DB::table('northwind_staging.search_projections')->where('entity_type', 'order')->count())
-        ->toBe(1);
+        ->toBe(2);
 });
 
 test('northwind transform skips optional source tables that are absent', function () {
