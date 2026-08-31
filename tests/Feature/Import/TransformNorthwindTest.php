@@ -144,6 +144,17 @@ test('northwind transform loads every application table from the source schema',
         ->and(DB::table('northwind_staging.search_projections')->where('entity_type', 'order')->count())->toBe(1);
 });
 
+test('northwind transform skips optional source tables that are absent', function () {
+    DB::statement('DROP TABLE northwind_source.territories, northwind_source.shippers, northwind_source.orders CASCADE');
+
+    $result = (new NorthwindProductMapper)->load('northwind_source', 'northwind_staging');
+
+    expect($result['tables'])->toBe(11)
+        ->and(DB::table('northwind_staging.territories')->count())->toBe(0)
+        ->and(DB::table('northwind_staging.shippers')->count())->toBe(0)
+        ->and(DB::table('northwind_staging.orders')->count())->toBe(0);
+});
+
 test('northwind transform preserves nullable product foreign keys', function () {
     DB::table('northwind_source.products')->insert([
         'product_id' => 99,
