@@ -7,7 +7,7 @@ tableOfContents:
 type: spec
 tags: [plan, roadmap, implementation, wayfinder, delivery, samples]
 created: 2026-08-08
-updated: 2026-08-17
+updated: 2026-08-31
 ---
 
 # Samples Application Delivery Roadmap Implementation Plan
@@ -91,7 +91,7 @@ updated: 2026-08-17
 - Use Pest 5 syntax and the existing `tests/Pest.php` conventions.
 - Create PHP classes/tests with Artisan generators where applicable; do not add dependencies without approval.
 - Run `vendor/bin/pint --dirty --format agent` after PHP edits.
-- Run focused Pest tests before broader suites, then `composer types:check`, `composer test:arch`, and the relevant CI gate.
+- Run focused Pest tests before broader suites, then `composer phpstan:analyze`, `composer test:arch`, and the relevant CI gate.
 - No issue is accepted solely because it is tracker-closed. Record `tracker-closed`, `implemented`, `verified`, and `accepted` separately.
 - GitHub map: [Wayfinder — Samples Application Delivery Roadmap](https://github.com/s-a-c/samples-20260717/issues/85).
 - Beads parent: `samples-20260717-7rg`.
@@ -343,7 +343,7 @@ Run:
 ```bash
 php artisan test --compact --filter='PortfolioViewRecreator|ProductPortfolioSnapshot'
 vendor/bin/pint --dirty --format agent
-composer types:check
+composer phpstan:analyze
 ```
 
 **Gate:** the view exists after fresh migration and after each product publish; `/admin` can read stats after import.
@@ -439,7 +439,7 @@ Run:
 ```bash
 php artisan test --compact --filter='StagingModel|SourceIdentityDuringRun|TableMapper|SelfReferentialMapper|ProductMapper'
 vendor/bin/pint --dirty --format agent
-composer types:check
+composer phpstan:analyze
 composer test:arch
 ```
 
@@ -567,7 +567,7 @@ Run:
 
 ```bash
 php artisan test --compact --filter='Reset|Evidence|EmbeddingDrain|Recovery'
-composer types:check
+composer phpstan:analyze
 composer test:arch
 ```
 
@@ -638,7 +638,7 @@ Run:
 
 ```bash
 php artisan test --compact --filter='Search|GoldenSearchCorpus|Embedding'
-composer types:check
+composer phpstan:analyze
 ```
 
 **Gate:** search remains correct after data lifecycle operations and all product ownership/deep-link boundaries remain explicit.
@@ -675,7 +675,7 @@ Run:
 composer validate --no-check-publish
 composer install --dry-run --no-interaction --no-progress
 composer test:arch
-composer types:check
+composer phpstan:analyze
 pnpm build
 ```
 
@@ -734,8 +734,8 @@ under `.env` APP_KEY (`livewire-e2bba137`) while tests used `.env.testing`
 endpoint. No application code change was required.
 
 **Evidence:** `php artisan route:clear --no-interaction`; Teams/Settings
-focused suite passed; the current hydrated full Pest suite is **588/588**
-with **1,952 assertions**.
+focused suite passed; the current hydrated full Pest suite is **589/589**
+with **1,959 assertions**.
 
 ### 11.2. Task 13: Admin ProductCardActions verification — **verified locally**
 
@@ -746,8 +746,8 @@ The widget already had the required Filament action/schema traits. Its null
 component and 404 symptoms had the same stale Livewire route-cache cause.
 
 **Evidence:** `php artisan route:clear --no-interaction`; ProductCardActions
-focused tests pass; the current hydrated full Pest suite is **588/588** with
-**1,952 assertions**.
+focused tests pass; the current hydrated full Pest suite is **589/589** with
+**1,959 assertions**.
 
 ### 11.3. Task 14: Real source-data imports through the production pipeline
 
@@ -779,8 +779,8 @@ caller's PostgreSQL `search_path` after each dump.
 complete. The release record points to the merged implementation SHAs
 `420434c8ae1f811d97c34a2d62f222479f02cb51` (PR #107) and
 `4210e5bfaa865e183559a7c81260b555306b85f6` (PR #110). Current local checks
-also cover the post-merge configuration fix, but that follow-up is not yet on
-a committed remote SHA.
+also cover the post-merge configuration fix and Northwind mapper completion on
+committed follow-up SHA `5843e9b8037717fb52142014e20ef3435e86d69c` in PR #126.
 
 ### 11.4. Task 15: Linux CI with pgvector/pgvector:pg18
 
@@ -798,9 +798,12 @@ pnpm-version failure seen in the scheduled TIA and mutation runs on
 including PostgreSQL/pgvector tests, coverage, TIA shards, mutation, PHPStan,
 Pint, CodeQL, and Semgrep, on their respective merge SHAs above.
 
-**Current follow-up:** the local workflow correction is validated by YAML
-parsing and `git diff --check`, but requires a committed remote SHA and a new
-GitHub run before the scheduled workflow gate can be called current.
+**Current follow-up:** PR #126 on
+`5843e9b8037717fb52142014e20ef3435e86d69c` has 10 successful checks, 2
+intentional skips, and no pending or failing checks. This validates the
+workflow correction on a committed remote SHA; the PR remains a follow-up
+change awaiting normal review/merge and is not a reason to close Wayfinder
+map #85.
 
 ### 11.5. Task 17: PHPStan quality gate — **verified locally**
 
@@ -810,9 +813,9 @@ GitHub run before the scheduled workflow gate can be called current.
 - [x] Fix code-level strict-analysis violations and remove stale unmatched
       baseline entries.
 - [x] Retain only documented framework-idiom exceptions.
-- [x] Verify `composer types:check` / the direct PHPStan command exits 0.
+- [x] Verify `composer phpstan:analyze` / the direct PHPStan command exits 0.
 
-**Evidence:** PHPStan 0 errors; hydrated Pest 588/588; Pint pass; Mago guard
+**Evidence:** PHPStan 0 errors; hydrated Pest 589/589; Pint pass; Mago guard
 pass; Architecture 26/26 on the current checkout. The strict error fixed in
 this reconciliation was the optional PostgreSQL direct-connection filter in
 `config/database.php`.
@@ -828,9 +831,9 @@ this reconciliation was the optional PostgreSQL direct-connection filter in
       blanket-exclude roadmap code.
 - [x] Verify the coverage command exits 0 on the committed SHA and Linux CI.
 
-**Evidence:** PR #107 Linux Coverage and type coverage pass at 100%; TIA shards
-1/2 and 2/2 pass; mutation pull-request job passes on merge SHA
-`420434c8ae1f811d97c34a2d62f222479f02cb51`.
+**Evidence:** PR #107 Linux Coverage and type coverage pass at 100%; PR #126
+also passes coverage, both TIA shards, and the mutation pull-request job on
+`5843e9b8037717fb52142014e20ef3435e86d69c`.
 
 ### 11.7. Task 16: Documentation and acceptance-record alignment
 
@@ -843,11 +846,13 @@ this reconciliation was the optional PostgreSQL direct-connection filter in
       the implementation-readiness dossier.
 - [x] Update applicable ADR, CONTEXT, operator/recovery, and quality-gate
       references when behavior or commands changed.
-- [x] Run documentation metadata, navigation, link, and parity checks.
+- [x] Run targeted documentation diff/parity checks; retain the existing
+      full-tree validator findings as a separately scoped documentation
+      cleanup queue.
 
 **Gate:** documents distinguish implemented, verified, and accepted states;
-current automated evidence points to committed SHAs; and the remaining local
-workflow follow-up is explicitly marked as awaiting its committed CI run.
+current automated evidence points to committed SHAs; and PR #126 has no
+pending or failing required checks.
 
 ## 12. Historical Task Reconciliation Rules
 

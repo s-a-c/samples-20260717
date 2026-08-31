@@ -7,7 +7,7 @@ tableOfContents:
 type: spec
 tags: [spec, roadmap, wayfinder, delivery, samples]
 created: 2026-08-08
-updated: 2026-08-17
+updated: 2026-08-31
 ---
 
 # Samples Application Delivery Roadmap Design
@@ -153,8 +153,8 @@ Linux CI verification, recovery evidence, and final dossier sign-off.
 
 ### 5.8. Phase 7 — Closure and stabilization
 
-The closure frontier is tracked by GitHub issues #101–#108 and Beads
-`samples-20260717-7rg.13`–`.19`.
+The closure frontier is tracked by 20 direct GitHub child issues and Beads
+children `samples-20260717-7rg.1`–`.20` under the open map #85.
 
 - **Task 12 / #101 / .13 — Teams and Settings:** tracker-closed and locally
   verified. The SFCs were present; failures came from an ignored stale route
@@ -168,13 +168,15 @@ The closure frontier is tracked by GitHub issues #101–#108 and Beads
   source schemas, load complete PostgreSQL dumps atomically, build migration-
   backed staging schemas, invoke product mappers, publish atomically, recreate
   the portfolio view, and run invariants/embedding drain. Fresh local runs
-  produced 4,652 Chinook, 214 Northwind, and 2,534 Pagila search projections.
-  Full acceptance still requires durable evidence in the committed branch.
-- **Task 15 / #104 / .16 — Linux CI:** workflow remediation is implemented
-  locally, including scoped `COMPOSER_AUTH`, correct `.env` ordering, cache
-  clearing, and PostgreSQL service setup. It remains open until a committed
-  remote SHA/PR produces green Tests, TIA, and Mutation runs. Local PHPStan
-  remains a quality-gate blocker and must not be represented as accepted.
+  produced 4,652 Chinook, 1,107 Northwind, and 2,534 Pagila search
+  projections, with Northwind source-to-target parity across all eleven
+  application tables. Full acceptance evidence is recorded against committed
+  SHAs below.
+- **Task 15 / #104 / .16 — Linux CI:** workflow remediation is implemented and
+  validated in PR #126 on committed SHA
+  `5843e9b8037717fb52142014e20ef3435e86d69c`; Tests, TIA, Mutation, CodeQL,
+  Semgrep, and PHPStan-related checks are green. The follow-up PR remains
+  open for normal review/merge; the evidence gate itself is current.
 - **Task 17 / #106 / .18 — PHPStan quality gate:** **tracker-closed and locally
   verified**. Code-level typing fixes and stale baseline cleanup reduced the
   direct PHPStan command to zero errors; full Pest, Pint, Mago, and Architecture
@@ -182,15 +184,17 @@ The closure frontier is tracked by GitHub issues #101–#108 and Beads
 - **Task 18 / #108 / .19 — Coverage gate:** **tracker-closed and verified**.
   Meaningful source-schema, dump-reader, mapper, import-orchestration, command,
   model, provider, and UI branch coverage now satisfies the configured 100%
-  line/type gates locally and in PR #107 Linux CI.
-- **Task 16 / #105 / .17 — Documentation alignment:** reconcile this spec,
-  the delivery plan, Wayfinder #85, the implementation-readiness dossier,
-  applicable ADR/operator references, and all tracker evidence after the
-  implementation and CI states are final.
+  line/type gates locally and in PRs #107 and #126 Linux CI.
+- **Task 16 / #105 / .17 — Documentation alignment:** this spec, the delivery
+  plan, Wayfinder #85, the implementation-readiness dossier, applicable
+  ADR/operator references, and tracker evidence are aligned to the current
+  implementation and CI states.
 
 The CI verification task depends on the implementation, real-data evidence,
-and documentation-alignment tasks. The epic cannot be accepted while any
-quality gate or documentation evidence family remains unresolved.
+and documentation-alignment tasks. The epic remains open as execution history
+under the living GitHub map; the current implementation and acceptance
+evidence is complete, while future follow-up remains eligible to be added
+without closing #85.
 
 ## 6. Completion Semantics
 
