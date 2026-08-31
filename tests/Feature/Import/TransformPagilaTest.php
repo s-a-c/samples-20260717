@@ -86,6 +86,24 @@ test('pagila transform resolves circular store-staff FK', function () {
     expect($store?->manager_staff_id)->toBe($staffMember?->id)->and($staffMember?->store_id)->toBe($store?->id);
 });
 
+test('pagila transform preserves nullable staff store foreign keys', function () {
+    DB::table('pagila_source.staff')->insert([
+        'staff_id' => 2,
+        'first_name' => 'No',
+        'last_name' => 'Store',
+        'email' => 'no.store@example.test',
+        'store_id' => null,
+        'active' => true,
+        'username' => 'NoStore',
+        'password' => 'password',
+    ]);
+
+    new PagilaProductMapper()->load('pagila_source', 'pagila_staging');
+
+    expect(DB::table('pagila_staging.staff')->where('username', 'NoStore')->value('store_id'))
+        ->toBeNull();
+});
+
 test('pagila transform loads customers with store FK', function () {
     $mapper = new PagilaProductMapper;
     $mapper->load('pagila_source', 'pagila_staging');
