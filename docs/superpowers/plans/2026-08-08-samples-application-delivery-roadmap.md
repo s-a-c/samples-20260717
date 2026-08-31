@@ -764,11 +764,16 @@ focused tests pass; the current hydrated full Pest suite is **588/588** with
 - [x] Fetch pinned upstream data with `php artisan source:fetch {product}`.
 - [x] Run the production pipeline for all three products locally.
 
-**Local evidence:** Chinook published 275 artists, 347 albums, 3,503 tracks,
-412 invoices, and 4,652 search projections; Northwind published 214 search
-projections; Pagila published 1,000 films, 200 actors, 599 customers, and 2,534
-search projections. Reset runs reached `succeeded` / `complete`. The source
-reader restores the caller's PostgreSQL `search_path` after each dump.
+**Local evidence:** pinned fetch and import runs succeeded for all three
+products. Chinook published 275 artists, 347 albums, 3,503 tracks, 412
+invoices, and 4,652 search projections. Northwind source-to-target parity is
+confirmed for 8 categories, 91 customers, 9 employees, 4 regions, 53
+territories, 49 employee-territory links, 6 shippers, 29 suppliers, 77
+products, 830 orders, 2,155 order details, and 1,107 search projections.
+Pagila published 1,000 films, 200 actors, 599 customers, and 2,534 search
+projections. Each reset run reached `succeeded` / `complete`, and the
+portfolio view reports all three products. The source reader restores the
+caller's PostgreSQL `search_path` after each dump.
 
 **Evidence status:** implementation and local operator verification are
 complete. The release record points to the merged implementation SHAs

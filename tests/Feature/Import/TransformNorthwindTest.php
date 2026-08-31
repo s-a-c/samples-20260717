@@ -14,8 +14,14 @@ covers(
     App\Services\ProductImport\Mapping\Northwind\CategoryMapper::class,
     App\Services\ProductImport\Mapping\Northwind\SupplierMapper::class,
     App\Services\ProductImport\Mapping\Northwind\EmployeeMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\RegionMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\TerritoryMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\EmployeeTerritoryMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\ShipperMapper::class,
     App\Services\ProductImport\Mapping\Northwind\CustomerMapper::class,
     App\Services\ProductImport\Mapping\Northwind\ProductMapper_::class,
+    App\Services\ProductImport\Mapping\Northwind\OrderMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\OrderDetailMapper::class,
     SourceSchemaBuilder::class
 );
 
@@ -95,7 +101,47 @@ test('northwind mapper exposes its ordered table mappers', function () {
     $method = new ReflectionMethod(NorthwindProductMapper::class, 'mappers');
     $mappers = $method->invoke(new NorthwindProductMapper);
 
-    expect($mappers)->toHaveCount(5);
+    expect($mappers)->toHaveCount(11);
+});
+
+test('northwind transform loads every application table from the source schema', function () {
+    DB::table('northwind_source.region')->insert(['region_id' => 1, 'region_description' => 'Eastern']);
+    DB::table('northwind_source.territories')->insert(['territory_id' => '06897', 'territory_description' => 'Westboro', 'region_id' => 1]);
+    DB::table('northwind_source.employee_territories')->insert(['employee_id' => 1, 'territory_id' => '06897']);
+    DB::table('northwind_source.shippers')->insert(['shipper_id' => 1, 'company_name' => 'Speedy Express', 'phone' => null]);
+    DB::table('northwind_source.orders')->insert([
+        'order_id' => 10248,
+        'customer_id' => 'ALFKI',
+        'employee_id' => 1,
+        'order_date' => '1996-07-04',
+        'required_date' => '1996-08-01',
+        'shipped_date' => '1996-07-16',
+        'ship_via' => 1,
+        'freight' => 32.38,
+        'ship_name' => 'Alfreds Futterkiste',
+        'ship_address' => 'Obere Str. 57',
+        'ship_city' => 'Berlin',
+        'ship_region' => null,
+        'ship_postal_code' => '12209',
+        'ship_country' => 'Germany',
+    ]);
+    DB::table('northwind_source.order_details')->insert([
+        'order_id' => 10248,
+        'product_id' => 1,
+        'unit_price' => 18,
+        'quantity' => 10,
+        'discount' => 0,
+    ]);
+
+    (new NorthwindProductMapper)->load('northwind_source', 'northwind_staging');
+
+    expect(DB::table('northwind_staging.regions')->count())->toBe(1)
+        ->and(DB::table('northwind_staging.territories')->count())->toBe(1)
+        ->and(DB::table('northwind_staging.employee_territories')->count())->toBe(1)
+        ->and(DB::table('northwind_staging.shippers')->count())->toBe(1)
+        ->and(DB::table('northwind_staging.orders')->count())->toBe(1)
+        ->and(DB::table('northwind_staging.order_details')->count())->toBe(1)
+        ->and(DB::table('northwind_staging.search_projections')->where('entity_type', 'order')->count())->toBe(1);
 });
 
 test('northwind transform preserves nullable product foreign keys', function () {

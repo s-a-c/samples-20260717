@@ -1,6 +1,6 @@
 # Gates: issue #85 delivery target
 
-OWNS: docs/**, .github/**, GATES.md
+OWNS: app/Services/ProductImport/**, config/database.php, tests/Feature/Import/**, docs/**, .github/**, GATES.md
 
 Scope: reconcile GitHub issue #85, Beads epic samples-20260717-7rg, release evidence, and required acceptance checks while leaving #85 open.
 

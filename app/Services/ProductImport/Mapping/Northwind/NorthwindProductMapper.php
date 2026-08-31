@@ -25,10 +25,16 @@ class NorthwindProductMapper extends ProductMapper
 
         $mappers = [
             new CategoryMapper($registry),
-            new SupplierMapper($registry),
-            new EmployeeMapper($registry),
             new CustomerMapper($registry),
+            new EmployeeMapper($registry),
+            new RegionMapper($registry),
+            new TerritoryMapper($registry),
+            new EmployeeTerritoryMapper($registry),
+            new ShipperMapper($registry),
+            new SupplierMapper($registry),
             new ProductMapper_($registry),
+            new OrderMapper($registry),
+            new OrderDetailMapper($registry),
         ];
 
         $totalRows = 0;
@@ -48,10 +54,16 @@ class NorthwindProductMapper extends ProductMapper
 
         return [
             new CategoryMapper($registry),
-            new SupplierMapper($registry),
-            new EmployeeMapper($registry),
             new CustomerMapper($registry),
+            new EmployeeMapper($registry),
+            new RegionMapper($registry),
+            new TerritoryMapper($registry),
+            new EmployeeTerritoryMapper($registry),
+            new ShipperMapper($registry),
+            new SupplierMapper($registry),
             new ProductMapper_($registry),
+            new OrderMapper($registry),
+            new OrderDetailMapper($registry),
         ];
     }
 }
@@ -67,7 +79,12 @@ class CategoryMapper extends TableMapper
 
         foreach ($rows as $row) {
             $uuid = $this->registry->getOrMint('northwind.categories', ['CategoryID' => $row->category_id]);
-            StagingCategory::create(['id' => $uuid, 'category_name' => $row->category_name ?? '', 'description' => $row->description]);
+            StagingCategory::create([
+                'id' => $uuid,
+                'category_name' => $row->category_name ?? '',
+                'description' => $row->description,
+                'picture' => $row->picture,
+            ]);
             $count++;
         }
 
@@ -126,6 +143,19 @@ class EmployeeMapper extends SelfReferentialMapper
                 'last_name' => $row->last_name ?? '',
                 'first_name' => $row->first_name ?? '',
                 'title' => $row->title,
+                'title_of_courtesy' => $row->title_of_courtesy,
+                'birth_date' => $row->birth_date,
+                'hire_date' => $row->hire_date,
+                'address' => $row->address,
+                'city' => $row->city,
+                'region' => $row->region,
+                'postal_code' => $row->postal_code,
+                'country' => $row->country,
+                'home_phone' => $row->home_phone,
+                'extension' => $row->extension,
+                'photo' => $row->photo,
+                'notes' => $row->notes,
+                'photo_path' => $row->photo_path,
                 'reports_to' => null,
             ]);
             $count++;
@@ -207,5 +237,164 @@ class ProductMapper_ extends TableMapper
         }
 
         return $count;
+    }
+}
+
+abstract class NorthwindRawTableMapper extends TableMapper
+{
+    public function __construct(protected SourceIdentityRegistry $registry) {}
+
+    /**
+     * Insert one mapped row with staging timestamps.
+     *
+     * @param  array<string, mixed>  $attributes
+     */
+    protected function insert(string $stagingSchema, string $table, array $attributes): void
+    {
+        DB::table("{$stagingSchema}.{$table}")->insert($attributes + [
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
+
+    protected function sourceTableExists(string $sourceSchema, string $table): bool
+    {
+        return DB::table('information_schema.tables')
+            ->where('table_schema', $sourceSchema)
+            ->where('table_name', $table)
+            ->exists();
+    }
+}
+
+class RegionMapper extends NorthwindRawTableMapper
+{
+    public function load(string $sourceSchema, string $stagingSchema): int
+    {
+        if (! $this->sourceTableExists($sourceSchema, 'region')) {
+            return 0;
+        }
+
+        foreach (DB::table("{$sourceSchema}.region")->get() as $row) {
+            $this->insert($stagingSchema, 'regions', [
+                'id' => $this->registry->getOrMint('northwind.regions', ['RegionID' => $row->region_id]),
+                'region_description' => $row->region_description ?? '',
+            ]);
+        }
+
+        return $this->countSourceRows($sourceSchema, 'region');
+    }
+}
+
+class TerritoryMapper extends NorthwindRawTableMapper
+{
+    public function load(string $sourceSchema, string $stagingSchema): int
+    {
+        if (! $this->sourceTableExists($sourceSchema, 'territories')) {
+            return 0;
+        }
+
+        foreach (DB::table("{$sourceSchema}.territories")->get() as $row) {
+            $this->insert($stagingSchema, 'territories', [
+                'id' => $this->registry->getOrMint('northwind.territories', ['TerritoryID' => $row->territory_id]),
+                'territory_description' => $row->territory_description ?? '',
+                'region_id' => $this->registry->getOrMint('northwind.regions', ['RegionID' => $row->region_id]),
+            ]);
+        }
+
+        return $this->countSourceRows($sourceSchema, 'territories');
+    }
+}
+
+class EmployeeTerritoryMapper extends NorthwindRawTableMapper
+{
+    public function load(string $sourceSchema, string $stagingSchema): int
+    {
+        if (! $this->sourceTableExists($sourceSchema, 'employee_territories')) {
+            return 0;
+        }
+
+        foreach (DB::table("{$sourceSchema}.employee_territories")->get() as $row) {
+            $this->insert($stagingSchema, 'employee_territories', [
+                'id' => (string) \Illuminate\Support\Str::uuid7(),
+                'employee_id' => $this->registry->getOrMint('northwind.employees', ['EmployeeID' => $row->employee_id]),
+                'territory_id' => $this->registry->getOrMint('northwind.territories', ['TerritoryID' => $row->territory_id]),
+            ]);
+        }
+
+        return $this->countSourceRows($sourceSchema, 'employee_territories');
+    }
+}
+
+class ShipperMapper extends NorthwindRawTableMapper
+{
+    public function load(string $sourceSchema, string $stagingSchema): int
+    {
+        if (! $this->sourceTableExists($sourceSchema, 'shippers')) {
+            return 0;
+        }
+
+        foreach (DB::table("{$sourceSchema}.shippers")->get() as $row) {
+            $this->insert($stagingSchema, 'shippers', [
+                'id' => $this->registry->getOrMint('northwind.shippers', ['ShipperID' => $row->shipper_id]),
+                'company_name' => $row->company_name ?? '',
+                'phone' => $row->phone,
+            ]);
+        }
+
+        return $this->countSourceRows($sourceSchema, 'shippers');
+    }
+}
+
+class OrderMapper extends NorthwindRawTableMapper
+{
+    public function load(string $sourceSchema, string $stagingSchema): int
+    {
+        if (! $this->sourceTableExists($sourceSchema, 'orders')) {
+            return 0;
+        }
+
+        foreach (DB::table("{$sourceSchema}.orders")->get() as $row) {
+            $this->insert($stagingSchema, 'orders', [
+                'id' => $this->registry->getOrMint('northwind.orders', ['OrderID' => $row->order_id]),
+                'customer_id' => $row->customer_id === null ? null : $this->registry->getOrMint('northwind.customers', ['CustomerID' => $row->customer_id]),
+                'employee_id' => $row->employee_id === null ? null : $this->registry->getOrMint('northwind.employees', ['EmployeeID' => $row->employee_id]),
+                'order_date' => $row->order_date,
+                'required_date' => $row->required_date,
+                'shipped_date' => $row->shipped_date,
+                'ship_via' => $row->ship_via === null ? null : $this->registry->getOrMint('northwind.shippers', ['ShipperID' => $row->ship_via]),
+                'freight' => $this->sourceFloat($row->freight ?? 0),
+                'ship_name' => $row->ship_name,
+                'ship_address' => $row->ship_address,
+                'ship_city' => $row->ship_city,
+                'ship_region' => $row->ship_region,
+                'ship_postal_code' => $row->ship_postal_code,
+                'ship_country' => $row->ship_country,
+            ]);
+        }
+
+        return $this->countSourceRows($sourceSchema, 'orders');
+    }
+}
+
+class OrderDetailMapper extends NorthwindRawTableMapper
+{
+    public function load(string $sourceSchema, string $stagingSchema): int
+    {
+        if (! $this->sourceTableExists($sourceSchema, 'order_details')) {
+            return 0;
+        }
+
+        foreach (DB::table("{$sourceSchema}.order_details")->get() as $row) {
+            $this->insert($stagingSchema, 'order_details', [
+                'id' => (string) \Illuminate\Support\Str::uuid7(),
+                'order_id' => $this->registry->getOrMint('northwind.orders', ['OrderID' => $row->order_id]),
+                'product_id' => $this->registry->getOrMint('northwind.products', ['ProductID' => $row->product_id]),
+                'unit_price' => $this->sourceFloat($row->unit_price ?? 0),
+                'quantity' => $this->sourceInt($row->quantity ?? 0),
+                'discount' => $this->sourceFloat($row->discount ?? 0),
+            ]);
+        }
+
+        return $this->countSourceRows($sourceSchema, 'order_details');
     }
 }
