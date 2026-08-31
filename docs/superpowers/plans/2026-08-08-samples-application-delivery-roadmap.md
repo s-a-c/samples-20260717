@@ -735,8 +735,8 @@ under `.env` APP_KEY (`livewire-e2bba137`) while tests used `.env.testing`
 endpoint. No application code change was required.
 
 **Evidence:** `php artisan route:clear --no-interaction`; Teams/Settings
-focused suite passed; the current hydrated full Pest suite is **591/591**
-with **1,967 assertions**.
+focused suite passed; the current hydrated full Pest suite is **592/592**
+with **1,972 assertions**.
 
 ### 11.2. Task 13: Admin ProductCardActions verification — **verified locally**
 
@@ -747,8 +747,8 @@ The widget already had the required Filament action/schema traits. Its null
 component and 404 symptoms had the same stale Livewire route-cache cause.
 
 **Evidence:** `php artisan route:clear --no-interaction`; ProductCardActions
-focused tests pass; the current hydrated full Pest suite is **591/591** with
-**1,967 assertions**.
+focused tests pass; the current hydrated full Pest suite is **592/592** with
+**1,972 assertions**.
 
 ### 11.3. Task 14: Real source-data imports through the production pipeline
 
@@ -781,7 +781,7 @@ complete. The release record points to the merged implementation SHAs
 `420434c8ae1f811d97c34a2d62f222479f02cb51` (PR #107) and
 `4210e5bfaa865e183559a7c81260b555306b85f6` (PR #110). Current local checks
 also cover the post-merge configuration fix and Northwind mapper completion on
-committed follow-up SHA `f497b51fd93f61dceb05d4c764860a90c314264d` in PR #126.
+committed follow-up SHA `0f3def7c0a5eb9c276bbc325fe64cf2c89b4a51f` in PR #126.
 
 ### 11.4. Task 15: Linux CI with pgvector/pgvector:pg18
 
@@ -800,7 +800,7 @@ including PostgreSQL/pgvector tests, coverage, TIA shards, mutation, PHPStan,
 Pint, CodeQL, and Semgrep, on their respective merge SHAs above.
 
 **Current follow-up:** PR #126 on
-`f497b51fd93f61dceb05d4c764860a90c314264d` is the current committed PR head;
+`0f3def7c0a5eb9c276bbc325fe64cf2c89b4a51f` is the current committed PR head;
 remote required checks passed. The PR remains a follow-up change awaiting
 normal review/merge and is not a reason to close Wayfinder map #85.
 
@@ -814,7 +814,7 @@ normal review/merge and is not a reason to close Wayfinder map #85.
 - [x] Retain only documented framework-idiom exceptions.
 - [x] Verify `composer phpstan:analyze` / the direct PHPStan command exits 0.
 
-**Evidence:** PHPStan 0 errors; hydrated Pest 591/591; Pint pass; Mago guard
+**Evidence:** PHPStan 0 errors; hydrated Pest 592/592; Pint pass; Mago guard
 pass; Architecture 26/26 on the current checkout. The strict error fixed in
 this reconciliation was the optional PostgreSQL direct-connection filter in
 `config/database.php`.
@@ -832,7 +832,7 @@ this reconciliation was the optional PostgreSQL direct-connection filter in
 
 **Evidence:** PR #107 Linux Coverage and type coverage pass at 100%; PR #126
 also passes coverage, both TIA shards, and the mutation pull-request job on
-`f497b51fd93f61dceb05d4c764860a90c314264d`.
+`0f3def7c0a5eb9c276bbc325fe64cf2c89b4a51f`.
 
 ### 11.7. Task 16: Documentation and acceptance-record alignment
 

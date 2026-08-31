@@ -174,7 +174,7 @@ children `samples-20260717-7rg.1`–`.20` under the open map #85.
   SHAs below.
 - **Task 15 / #104 / .16 — Linux CI:** workflow remediation is implemented and
   validated in PR #126 on committed SHA
-  `f497b51fd93f61dceb05d4c764860a90c314264d`; Tests, TIA, Mutation, CodeQL,
+  `0f3def7c0a5eb9c276bbc325fe64cf2c89b4a51f`; Tests, TIA, Mutation, CodeQL,
   Semgrep, and PHPStan-related checks are green. The follow-up PR remains
   open for normal review/merge; the evidence gate itself is current.
 - **Task 17 / #106 / .18 — PHPStan quality gate:** **tracker-closed and locally
