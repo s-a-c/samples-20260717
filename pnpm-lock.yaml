@@ -211,7 +211,7 @@ catalogs:
 
 overrides:
   shell-quote: 1.9.0
-  vite: npm:@voidzero-dev/vite-plus-core@^0.2.8
+  vite: npm:@voidzero-dev/vite-plus-core@^0.2.9
   vitest: 4.1.10
 
 importers:

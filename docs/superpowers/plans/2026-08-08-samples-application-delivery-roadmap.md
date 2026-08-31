@@ -718,7 +718,8 @@ If any gate fails, reopen the owning task and record the exact failure/recovery 
 ## 11. Phase 7 — Closure and Stabilization
 
 The core Tasks 0–11 are implemented. Closure and acceptance are tracked by
-GitHub #86–#97 and #101–#111, mirrored by exactly 20 direct closed Beads
+GitHub #86, #87, #88, #89, #90, #91, #92, #93, #94, #95, #96, #97, #101,
+#102, #103, #104, #105, #106, #108, and #111, mirrored by exactly 20 direct closed Beads
 children under `samples-20260717-7rg`. GitHub issue #85 remains open as the
 living Wayfinder map; Beads records execution state and does not replace the
 map.
@@ -734,8 +735,8 @@ under `.env` APP_KEY (`livewire-e2bba137`) while tests used `.env.testing`
 endpoint. No application code change was required.
 
 **Evidence:** `php artisan route:clear --no-interaction`; Teams/Settings
-focused suite passed; the current hydrated full Pest suite is **589/589**
-with **1,959 assertions**.
+focused suite passed; the current hydrated full Pest suite is **591/591**
+with **1,967 assertions**.
 
 ### 11.2. Task 13: Admin ProductCardActions verification — **verified locally**
 
@@ -746,8 +747,8 @@ The widget already had the required Filament action/schema traits. Its null
 component and 404 symptoms had the same stale Livewire route-cache cause.
 
 **Evidence:** `php artisan route:clear --no-interaction`; ProductCardActions
-focused tests pass; the current hydrated full Pest suite is **589/589** with
-**1,959 assertions**.
+focused tests pass; the current hydrated full Pest suite is **591/591** with
+**1,967 assertions**.
 
 ### 11.3. Task 14: Real source-data imports through the production pipeline
 
@@ -815,7 +816,7 @@ map #85.
 - [x] Retain only documented framework-idiom exceptions.
 - [x] Verify `composer phpstan:analyze` / the direct PHPStan command exits 0.
 
-**Evidence:** PHPStan 0 errors; hydrated Pest 589/589; Pint pass; Mago guard
+**Evidence:** PHPStan 0 errors; hydrated Pest 591/591; Pint pass; Mago guard
 pass; Architecture 26/26 on the current checkout. The strict error fixed in
 this reconciliation was the optional PostgreSQL direct-connection filter in
 `config/database.php`.

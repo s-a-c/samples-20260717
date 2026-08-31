@@ -41,7 +41,7 @@ Scope: reconcile GitHub issue #85, Beads epic samples-20260717-7rg, release evid
 - [x] G9: broad Mago analysis has a current committed baseline with no stale entries
       CHECK: vendor/bin/mago analyze --verify-baseline --baseline .mago/analyze-baseline.json && vendor/bin/mago analyze
       EXPECT: /Baseline is up to date|No issues found/
-      EVIDENCE: exit=0 on committed SHA 7fc5c55803cb19a1c13e377544365f6d0ce01559; baseline verifies up to date and analyzer reports no unbaselined issues (4,235 legacy findings retained in the reviewed baseline).
+      EVIDENCE: exit=0 on committed SHA 7fc5c55803cb19a1c13e377544365f6d0ce01559; baseline verifies up to date and analyzer reports no unbaselined issues (4,241 legacy findings retained in the reviewed baseline).
 
 - [x] G10: full-tree strict documentation validation passes
       CHECK: documentation-structure check --strict docs
