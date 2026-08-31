@@ -23,7 +23,7 @@ permissions:
 
 jobs:
   pull-request:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     services:
@@ -102,7 +102,7 @@ jobs:
           retention-days: 14
 
   nightly:
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
 
     services:
