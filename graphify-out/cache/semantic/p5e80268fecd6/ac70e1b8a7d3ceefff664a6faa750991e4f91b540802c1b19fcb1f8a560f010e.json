@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agents_skills_testing_best_practices_rules_endpoint_tests", "label": "Endpoint Tests", "file_type": "document", "source_file": ".agents/skills/testing-best-practices/rules/endpoint-tests.md", "rationale": "Guidelines for testing HTTP endpoints, covering authentication, authorization, and validation."}], "edges": [], "hyperedges": []}

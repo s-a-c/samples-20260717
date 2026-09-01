@@ -1,1 +1,0 @@
-{"nodes": [{"id": "docs_12_design_1204_api_spec", "label": "API Specification", "file_type": "document", "source_file": "docs/12-design/1204-api-spec.md", "rationale": "Defines internal API and service contracts for search, import, and reset interactions."}], "edges": [], "hyperedges": []}

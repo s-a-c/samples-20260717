@@ -1,0 +1,1 @@
+{"nodes": [{"id": "docs_10_architecture_1003_adr_100344_unlogged_cache_pgbouncer", "label": "ADR 0023: Unlogged Cache Tables + Local PgBouncer", "file_type": "document", "source_file": "docs/10-architecture/1003-adr/100344-unlogged-cache-pgbouncer.md", "rationale": "Postgres performance hardening using UNLOGGED tables and PgBouncer."}], "edges": [], "hyperedges": []}

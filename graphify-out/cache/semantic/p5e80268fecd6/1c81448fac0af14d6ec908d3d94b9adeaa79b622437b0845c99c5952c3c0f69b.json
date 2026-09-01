@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agents_skills_testing_best_practices_rules_performance", "label": "Test Suite Performance", "file_type": "document", "source_file": ".agents/skills/testing-best-practices/rules/performance.md", "rationale": "Optimization settings and practices for improving the speed of the test suite."}], "edges": [], "hyperedges": []}

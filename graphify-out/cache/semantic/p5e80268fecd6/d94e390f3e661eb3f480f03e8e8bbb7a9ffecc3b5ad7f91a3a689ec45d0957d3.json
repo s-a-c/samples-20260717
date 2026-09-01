@@ -1,1 +1,0 @@
-{"nodes": [{"id": "docs_10_architecture_1003_adr_100326_test_pyramid", "label": "ADR 0013: Test Pyramid", "file_type": "document", "source_file": "docs/10-architecture/1003-adr/100326-test-pyramid.md", "rationale": "Adopt layered testing approach: unit \u2192 integration \u2192 E2E."}], "edges": [], "hyperedges": []}

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agents_skills_testing_best_practices_rules_isolation", "label": "Fakes, Mocks, and Determinism", "file_type": "document", "source_file": ".agents/skills/testing-best-practices/rules/isolation.md", "rationale": "Strategies for isolating dependencies using framework fakes and mocks to ensure deterministic tests."}], "edges": [], "hyperedges": []}
