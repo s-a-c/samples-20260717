@@ -90,7 +90,7 @@ test('toTeamPermissions falls back to false when the user has no role on the tea
 });
 
 test('fallbackTeam returns the alphabetically first team without excluding', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create(['name' => 'Zed User']);
 
     $zulu = Team::factory()->create(['name' => 'Zulu Team']);
     $zulu->members()->attach($user, ['role' => TeamRole::Member->value]);
