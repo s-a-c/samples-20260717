@@ -4287,7 +4287,7 @@ count = 1
 [[issues]]
 file = "tests/Feature/Console/OperatorCreateTest.php"
 code = "unhandled-thrown-type"
-message = 'Potentially unhandled exception `Illuminate\Database\Eloquent\ModelNotFoundException` in `{closure:tests/Feature/Console/OperatorCreateTest.php:66:51}`.'
+message = 'Potentially unhandled exception `Illuminate\Database\Eloquent\ModelNotFoundException` in `{closure:tests/Feature/Console/OperatorCreateTest.php:68:51}`.'
 count = 1
 
 [[issues]]
@@ -4299,19 +4299,19 @@ count = 1
 [[issues]]
 file = "tests/Feature/Console/OperatorCreateTest.php"
 code = "unhandled-thrown-type"
-message = 'Potentially unhandled exception `PHPUnit\Framework\ExpectationFailedException` in `{closure:tests/Feature/Console/OperatorCreateTest.php:52:73}`.'
+message = 'Potentially unhandled exception `PHPUnit\Framework\ExpectationFailedException` in `{closure:tests/Feature/Console/OperatorCreateTest.php:53:73}`.'
 count = 1
 
 [[issues]]
 file = "tests/Feature/Console/OperatorCreateTest.php"
 code = "unhandled-thrown-type"
-message = 'Potentially unhandled exception `PHPUnit\Framework\ExpectationFailedException` in `{closure:tests/Feature/Console/OperatorCreateTest.php:66:51}`.'
+message = 'Potentially unhandled exception `PHPUnit\Framework\ExpectationFailedException` in `{closure:tests/Feature/Console/OperatorCreateTest.php:68:51}`.'
 count = 1
 
 [[issues]]
 file = "tests/Feature/Console/OperatorCreateTest.php"
 code = "unhandled-thrown-type"
-message = 'Potentially unhandled exception `PHPUnit\Framework\ExpectationFailedException` in `{closure:tests/Feature/Console/OperatorCreateTest.php:80:58}`.'
+message = 'Potentially unhandled exception `PHPUnit\Framework\ExpectationFailedException` in `{closure:tests/Feature/Console/OperatorCreateTest.php:82:58}`.'
 count = 1
 
 [[issues]]
