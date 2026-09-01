@@ -20,7 +20,7 @@ covers(
     App\Services\ProductImport\Mapping\Chinook\TrackMapper::class,
     App\Services\ProductImport\Mapping\Chinook\PlaylistMapper::class,
     App\Services\ProductImport\Mapping\Chinook\InvoiceMapper::class,
-    SourceSchemaBuilder::class
+    SourceSchemaBuilder::class,
 );
 
 uses(RefreshDatabase::class);
@@ -42,7 +42,10 @@ function loadChinookFixture(): void
     $cleanSql = implode("\n", $codeLines);
 
     // Execute each statement
-    foreach (array_filter(array_map('trim', explode(';', $cleanSql)), fn (string $statement): bool => $statement !== '') as $statement) {
+    foreach (array_filter(
+        array_map('trim', explode(';', $cleanSql)),
+        fn (string $statement): bool => $statement !== '',
+    ) as $statement) {
         if ($statement !== '') {
             DB::statement($statement);
         }
@@ -97,9 +100,12 @@ test('chinook transform resolves employee self-referential FK', function () {
     $andrew = $employees->firstWhere('last_name', 'Adams');
     $nancy = $employees->firstWhere('last_name', 'Edwards');
 
-    expect($andrew->reports_to)->toBeNull();
-    expect($nancy->reports_to)->not->toBeNull()
-        ->and($nancy->reports_to)->toBe($andrew->id);
+    expect($andrew?->reports_to)->toBeNull();
+    expect($nancy?->reports_to)
+        ->not
+        ->toBeNull()
+        ->and($nancy->reports_to)
+        ->toBe($andrew?->id);
 });
 
 test('chinook transform resolves track FKs', function () {
@@ -114,8 +120,7 @@ test('chinook transform resolves track FKs', function () {
     $mediaTypeIds = DB::table('chinook_staging.media_types')->pluck('id')->all();
 
     foreach ($tracks as $track) {
-        expect($albumIds)->toContain($track->album_id)
-            ->and($mediaTypeIds)->toContain($track->media_type_id);
+        expect($albumIds)->toContain($track->album_id)->and($mediaTypeIds)->toContain($track->media_type_id);
     }
 });
 
@@ -131,7 +136,7 @@ test('chinook transform creates search projection rows', function () {
     expect($artistProjections)->toHaveCount(2);
 
     // Check the projection text contains the artist name
-    expect($artistProjections->first()->weight_d_text)->toBe('AC/DC');
+    expect($artistProjections->first()?->weight_d_text)->toBe('AC/DC');
 });
 
 test('chinook transform preserves source identity across re-imports', function () {
@@ -139,12 +144,12 @@ test('chinook transform preserves source identity across re-imports', function (
 
     // First load
     $mapper->load('chinook_source', 'chinook_staging');
-    $firstArtistId = DB::table('chinook_staging.artists')->first()->id;
+    $firstArtistId = DB::table('chinook_staging.artists')->first()?->id;
 
     // Rebuild staging schema from scratch
     app(StagingSchemaBuilder::class)->build('chinook');
     $mapper->load('chinook_source', 'chinook_staging');
-    $secondArtistId = DB::table('chinook_staging.artists')->first()->id;
+    $secondArtistId = DB::table('chinook_staging.artists')->first()?->id;
 
     // Source identity registry should return the same UUID
     expect($secondArtistId)->toBe($firstArtistId);
@@ -186,8 +191,8 @@ test('chinook transform preserves nullable track foreign keys', function () {
         'unit_price' => 0.99,
     ]);
 
-    (new ChinookProductMapper)->load('chinook_source', 'chinook_staging');
+    new ChinookProductMapper()->load('chinook_source', 'chinook_staging');
 
     $track = DB::table('chinook_staging.tracks')->where('name', 'No Album Track')->first();
-    expect($track->album_id)->toBeNull()->and($track->genre_id)->toBeNull();
+    expect($track?->album_id)->toBeNull()->and($track?->genre_id)->toBeNull();
 });

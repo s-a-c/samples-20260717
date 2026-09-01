@@ -42,7 +42,9 @@ yarn-error.log
 .envrc.local
 .env.siyuan
 
-.mago/
+.mago/*
+!.mago/
+!.mago/analyze-baseline.json
 
 # OS noise
 .DS_Store

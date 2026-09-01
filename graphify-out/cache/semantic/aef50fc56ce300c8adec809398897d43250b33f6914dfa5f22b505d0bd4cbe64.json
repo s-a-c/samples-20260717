@@ -1,1 +1,12 @@
-{"nodes": [{"id": "favicon_svg", "label": "Laravel Logo SVG", "file_type": "image", "source_file": "public/favicon.svg"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "favicon_svg",
+            "label": "Laravel Logo SVG",
+            "file_type": "image",
+            "source_file": "public/favicon.svg"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

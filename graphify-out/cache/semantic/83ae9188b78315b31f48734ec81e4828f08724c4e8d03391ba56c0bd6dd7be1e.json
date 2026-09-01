@@ -1,1 +1,12 @@
-{"nodes": [{"id": "pulse_development", "label": "Laravel Pulse Development", "file_type": "document", "source_file": ".factory/skills/pulse-development/SKILL.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "pulse_development",
+            "label": "Laravel Pulse Development",
+            "file_type": "document",
+            "source_file": ".factory/skills/pulse-development/SKILL.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

@@ -1,1 +1,12 @@
-{"nodes": [{"id": "skill_pulse_development", "label": "Pulse Development Skill", "file_type": "code", "source_file": ".junie/skills/pulse-development/SKILL.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "skill_pulse_development",
+            "label": "Pulse Development Skill",
+            "file_type": "code",
+            "source_file": ".junie/skills/pulse-development/SKILL.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

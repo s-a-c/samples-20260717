@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Override;
 
 final class CustomerResource extends Resource
 {
@@ -20,53 +21,53 @@ final class CustomerResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                Forms\Components\TextInput::make('company_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('contact_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('contact_title')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('address')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('city')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('region')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('postal_code')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('country')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('fax')
-                    ->maxLength(255),
-            ]);
+        return $schema->components([
+            Forms\Components\TextInput::make('company_name')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('contact_name')
+                ->maxLength(255),
+            Forms\Components\TextInput::make('contact_title')
+                ->maxLength(255),
+            Forms\Components\TextInput::make('address')
+                ->maxLength(255),
+            Forms\Components\TextInput::make('city')
+                ->maxLength(255),
+            Forms\Components\TextInput::make('region')
+                ->maxLength(255),
+            Forms\Components\TextInput::make('postal_code')
+                ->maxLength(255),
+            Forms\Components\TextInput::make('country')
+                ->maxLength(255),
+            Forms\Components\TextInput::make('phone')
+                ->maxLength(255),
+            Forms\Components\TextInput::make('fax')
+                ->maxLength(255),
+        ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('company_name')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('contact_name')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('city')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('country')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('phone')
-                    ->searchable(),
-            ])
+        return $table->columns([
+            Tables\Columns\TextColumn::make('company_name')
+                ->searchable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('contact_name')
+                ->searchable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('city')
+                ->searchable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('country')
+                ->searchable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('phone')
+                ->searchable(),
+        ])
             ->filters([
                 //
             ])
@@ -80,6 +81,7 @@ final class CustomerResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

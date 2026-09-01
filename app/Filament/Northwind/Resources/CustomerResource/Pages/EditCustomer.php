@@ -7,11 +7,13 @@ namespace App\Filament\Northwind\Resources\CustomerResource\Pages;
 use App\Filament\Northwind\Resources\CustomerResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Override;
 
 final class EditCustomer extends EditRecord
 {
     protected static string $resource = CustomerResource::class;
 
+    #[Override]
     protected function getHeaderActions(): array
     {
         return [

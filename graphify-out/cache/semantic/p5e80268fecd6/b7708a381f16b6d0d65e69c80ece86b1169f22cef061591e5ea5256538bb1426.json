@@ -1,0 +1,1 @@
+{"nodes": [{"id": "skill_infer_conventions", "label": "Infer Conventions", "file_type": "concept", "source_file": ".pi/skills/infer-conventions/references/checklist.md", "rationale": "Checklist for detecting project-specific Laravel and testing patterns."}], "edges": [], "hyperedges": []}

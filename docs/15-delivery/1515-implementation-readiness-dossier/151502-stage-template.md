@@ -2,12 +2,12 @@
 title: Stage N — {Title}
 description: Copyable template for authoring one Implementation-Readiness Dossier Acceptance Stage file.
 tableOfContents:
-    minHeadingLevel: 2
-    maxHeadingLevel: 3
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
 type: reference
 tags: [dossier, template, acceptance]
-created: 2026-08-23
-updated: 2026-08-23
+created: 2026-08-31
+updated: 2026-08-31
 ---
 
 # Stage N — {Title}
@@ -37,8 +37,8 @@ updated: 2026-08-23
 
 ## 1. Acceptance gates
 
-| Gate              | Evidence         | Check        | Status    |
-| ----------------- | ---------------- | ------------ | --------- |
+| Gate | Evidence | Check | Status |
+| --- | --- | --- | --- |
 | _named condition_ | _named evidence_ | `composer …` | _pending_ |
 
 ## 2. Automated checks

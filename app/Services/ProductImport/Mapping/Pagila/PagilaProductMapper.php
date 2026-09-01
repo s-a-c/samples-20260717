@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 
 class PagilaProductMapper extends ProductMapper
 {
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): array
     {
         $registry = app(SourceIdentityRegistry::class);
@@ -44,6 +45,7 @@ class PagilaProductMapper extends ProductMapper
         return ['tables' => count($mappers), 'rows' => $totalRows];
     }
 
+    #[\Override]
     protected function mappers(): array
     {
         $registry = app(SourceIdentityRegistry::class);
@@ -62,8 +64,11 @@ class PagilaProductMapper extends ProductMapper
 
 class CountryCityMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $count = 0;
@@ -72,7 +77,10 @@ class CountryCityMapper extends TableMapper
         foreach ($countries as $row) {
             $uuid = $this->registry->getOrMint('pagila.countries', ['country_id' => $row->country_id]);
             DB::table("{$stagingSchema}.countries")->insert([
-                'id' => $uuid, 'country' => $row->country ?? '', 'created_at' => now(), 'updated_at' => now(),
+                'id' => $uuid,
+                'country' => $row->country ?? '',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
             $count++;
         }
@@ -82,7 +90,11 @@ class CountryCityMapper extends TableMapper
             $uuid = $this->registry->getOrMint('pagila.cities', ['city_id' => $row->city_id]);
             $countryUuid = $this->registry->getOrMint('pagila.countries', ['country_id' => $row->country_id]);
             DB::table("{$stagingSchema}.cities")->insert([
-                'id' => $uuid, 'city' => $row->city ?? '', 'country_id' => $countryUuid, 'created_at' => now(), 'updated_at' => now(),
+                'id' => $uuid,
+                'city' => $row->city ?? '',
+                'country_id' => $countryUuid,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
             $count++;
         }
@@ -93,8 +105,11 @@ class CountryCityMapper extends TableMapper
 
 class CategoryMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.category")->get();
@@ -112,8 +127,11 @@ class CategoryMapper extends TableMapper
 
 class LanguageMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.language")->get();
@@ -122,7 +140,10 @@ class LanguageMapper extends TableMapper
         foreach ($rows as $row) {
             $uuid = $this->registry->getOrMint('pagila.languages', ['language_id' => $row->language_id]);
             DB::table("{$stagingSchema}.languages")->insert([
-                'id' => $uuid, 'name' => $row->name ?? '', 'created_at' => now(), 'updated_at' => now(),
+                'id' => $uuid,
+                'name' => $row->name ?? '',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
             $count++;
         }
@@ -133,8 +154,11 @@ class LanguageMapper extends TableMapper
 
 class ActorMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.actor")->get();
@@ -142,7 +166,11 @@ class ActorMapper extends TableMapper
 
         foreach ($rows as $row) {
             $uuid = $this->registry->getOrMint('pagila.actors', ['actor_id' => $row->actor_id]);
-            StagingActor::create(['id' => $uuid, 'first_name' => $row->first_name ?? '', 'last_name' => $row->last_name ?? '']);
+            StagingActor::create([
+                'id' => $uuid,
+                'first_name' => $row->first_name ?? '',
+                'last_name' => $row->last_name ?? '',
+            ]);
             $count++;
         }
 
@@ -152,8 +180,11 @@ class ActorMapper extends TableMapper
 
 class FilmMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.film")->get();
@@ -184,8 +215,11 @@ class FilmMapper extends TableMapper
 
 class StoreStaffMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $count = 0;
@@ -200,7 +234,9 @@ class StoreStaffMapper extends TableMapper
 
             // First: create stores with null manager
             foreach ($stores as $row) {
-                $storeUuid = $this->registry->getOrMint('pagila.stores', ['store_id' => $this->sourceInt($row->store_id)]);
+                $storeUuid = $this->registry->getOrMint('pagila.stores', [
+                    'store_id' => $this->sourceInt($row->store_id),
+                ]);
                 $storeUuidMap[$this->sourceInt($row->store_id)] = $storeUuid;
                 StagingStore::create(['id' => $storeUuid, 'manager_staff_id' => null, 'address_id' => null]);
                 $count++;
@@ -211,7 +247,8 @@ class StoreStaffMapper extends TableMapper
                 $staffUuid = $this->registry->getOrMint('pagila.staff', ['staff_id' => $row->staff_id]);
                 $staffUuidMap[$this->sourceInt($row->staff_id)] = $staffUuid;
                 $storeUuid = $row->store_id !== null && isset($storeUuidMap[$this->sourceInt($row->store_id)])
-                    ? $storeUuidMap[$this->sourceInt($row->store_id)] : null;
+                    ? $storeUuidMap[$this->sourceInt($row->store_id)]
+                    : null;
                 StagingStaff::create([
                     'id' => $staffUuid,
                     'first_name' => $row->first_name ?? '',
@@ -241,8 +278,11 @@ class StoreStaffMapper extends TableMapper
 
 class CustomerMapper extends TableMapper
 {
-    public function __construct(private SourceIdentityRegistry $registry) {}
+    public function __construct(
+        private SourceIdentityRegistry $registry,
+    ) {}
 
+    #[\Override]
     public function load(string $sourceSchema, string $stagingSchema): int
     {
         $rows = DB::table("{$sourceSchema}.customer")->get();

@@ -1,1 +1,36 @@
-{"nodes": [{"id": "grok_skills_configuring_horizon_references_metrics_metrics_snapshot", "label": "Horizon Metrics Snapshot", "file_type": "concept", "source_file": ".grok/skills/configuring-horizon/references/metrics.md", "rationale": "The metrics graph is built from snapshots, so horizon:snapshot must be scheduled to run every 5 minutes via Laravel's scheduler."}], "edges": [{"source": "grok_skills_configuring_horizon_references_metrics_metrics_snapshot", "target": "grok_skills_configuring_horizon_references_metrics_metrics_snapshot", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": ".grok/skills/configuring-horizon/references/metrics.md"}], "hyperedges": [{"id": "horizon_configuration_flow", "label": "Horizon Configuration & Monitoring", "nodes": ["grok_skills_configuring_horizon_references_metrics_metrics_snapshot", "grok_skills_configuring_horizon_references_notifications_long_wait_detected", "grok_skills_configuring_horizon_references_tags_auto_tagging"], "relation": "participate_in", "confidence": "EXTRACTED", "confidence_score": 0.9, "source_file": ".grok/skills/configuring-horizon/references/metrics.md"}]}
+{
+    "nodes": [
+        {
+            "id": "grok_skills_configuring_horizon_references_metrics_metrics_snapshot",
+            "label": "Horizon Metrics Snapshot",
+            "file_type": "concept",
+            "source_file": ".grok/skills/configuring-horizon/references/metrics.md",
+            "rationale": "The metrics graph is built from snapshots, so horizon:snapshot must be scheduled to run every 5 minutes via Laravel's scheduler."
+        }
+    ],
+    "edges": [
+        {
+            "source": "grok_skills_configuring_horizon_references_metrics_metrics_snapshot",
+            "target": "grok_skills_configuring_horizon_references_metrics_metrics_snapshot",
+            "relation": "calls",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": ".grok/skills/configuring-horizon/references/metrics.md"
+        }
+    ],
+    "hyperedges": [
+        {
+            "id": "horizon_configuration_flow",
+            "label": "Horizon Configuration & Monitoring",
+            "nodes": [
+                "grok_skills_configuring_horizon_references_metrics_metrics_snapshot",
+                "grok_skills_configuring_horizon_references_notifications_long_wait_detected",
+                "grok_skills_configuring_horizon_references_tags_auto_tagging"
+            ],
+            "relation": "participate_in",
+            "confidence": "EXTRACTED",
+            "confidence_score": 0.9,
+            "source_file": ".grok/skills/configuring-horizon/references/metrics.md"
+        }
+    ]
+}

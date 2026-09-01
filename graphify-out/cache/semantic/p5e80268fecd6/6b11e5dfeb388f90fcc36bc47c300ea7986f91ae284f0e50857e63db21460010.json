@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agents_skills_testing_best_practices_rules_test_data", "label": "Factories and Test Data", "file_type": "document", "source_file": ".agents/skills/testing-best-practices/rules/test-data.md", "rationale": "Best practices for creating test data using Laravel factories and Pest datasets."}], "edges": [], "hyperedges": []}

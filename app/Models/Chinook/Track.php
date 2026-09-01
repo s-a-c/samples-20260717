@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Override;
 
 #[Table('chinook.tracks')]
 final class Track extends Model implements HasProductDomain
@@ -21,6 +22,7 @@ final class Track extends Model implements HasProductDomain
 
     protected $guarded = [];
 
+    #[Override]
     public function getProductDomain(): SamplesProduct
     {
         return SamplesProduct::Chinook;

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "docs_10_architecture_1003_adr_100337_single_postgres_test_suite", "label": "ADR 0021: Single Postgres Test Suite", "file_type": "document", "source_file": "docs/10-architecture/1003-adr/100337-single-postgres-test-suite.md", "rationale": "Amends ADR 0013 to use a single Postgres-only test suite instead of dual SQLite/Postgres."}], "edges": [], "hyperedges": []}

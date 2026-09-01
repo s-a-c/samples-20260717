@@ -1,1 +1,13 @@
-{"nodes": [{"id": "fortify_development_skill", "label": "Fortify Development Skill", "file_type": "concept", "source_file": ".junie/skills/fortify-development/SKILL.md", "rationale": "Headless authentication backend patterns for Laravel."}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "fortify_development_skill",
+            "label": "Fortify Development Skill",
+            "file_type": "concept",
+            "source_file": ".junie/skills/fortify-development/SKILL.md",
+            "rationale": "Headless authentication backend patterns for Laravel."
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

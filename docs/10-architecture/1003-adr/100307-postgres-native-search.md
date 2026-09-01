@@ -9,7 +9,6 @@ tags: [adr, "0003", postgres]
 created: 2026-07-25
 updated: 2026-08-17
 ---
-
 # ADR 0003: Postgres-Native Search (Hybrid)
 
 **Status:** Accepted

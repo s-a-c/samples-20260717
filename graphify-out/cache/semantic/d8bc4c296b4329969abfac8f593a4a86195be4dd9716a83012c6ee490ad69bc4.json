@@ -1,1 +1,12 @@
-{"nodes": [{"id": "project_agent_instructions", "label": "Project-Specific Agent Instructions", "file_type": "document", "source_file": ".junie/AGENTS.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "project_agent_instructions",
+            "label": "Project-Specific Agent Instructions",
+            "file_type": "document",
+            "source_file": ".junie/AGENTS.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

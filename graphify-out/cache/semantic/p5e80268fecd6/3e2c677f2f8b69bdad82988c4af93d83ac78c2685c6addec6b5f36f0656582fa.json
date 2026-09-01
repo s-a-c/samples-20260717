@@ -1,0 +1,1 @@
+{"nodes": [{"id": "laravel_ai_sdk", "label": "Laravel AI SDK", "file_type": "concept", "source_file": ".agents/skills/ai-sdk-development/SKILL.md", "rationale": "Official first-party AI SDK for Laravel (laravel/ai)."}], "edges": [], "hyperedges": []}

@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Override;
 
 final class CategoryResource extends Resource
 {
@@ -20,30 +21,30 @@ final class CategoryResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-tag';
 
+    #[Override]
     public static function form(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                Forms\Components\TextInput::make('category_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->maxLength(65535),
-            ]);
+        return $schema->components([
+            Forms\Components\TextInput::make('category_name')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\Textarea::make('description')
+                ->maxLength(65535),
+        ]);
     }
 
+    #[Override]
     public static function table(Table $table): Table
     {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('category_name')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
+        return $table->columns([
+            Tables\Columns\TextColumn::make('category_name')
+                ->searchable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+        ])
             ->filters([
                 //
             ])
@@ -57,6 +58,7 @@ final class CategoryResource extends Resource
             ]);
     }
 
+    #[Override]
     public static function getPages(): array
     {
         return [

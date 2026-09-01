@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Override;
 
 #[Table('chinook.playlist_track')]
 final class PlaylistTrack extends Pivot implements HasProductDomain
@@ -21,6 +22,7 @@ final class PlaylistTrack extends Pivot implements HasProductDomain
 
     protected $guarded = [];
 
+    #[Override]
     public function getProductDomain(): SamplesProduct
     {
         return SamplesProduct::Chinook;

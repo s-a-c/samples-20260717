@@ -1,0 +1,1 @@
+{"nodes": [{"id": "docs_06_requirements_0607_functional_requirements", "label": "Functional Requirements", "file_type": "document", "source_file": "docs/06-requirements/0607-functional-requirements.md", "rationale": "Specifies FR-1 through FR-5 covering isolation, auth, lifecycle, and search."}], "edges": [], "hyperedges": []}

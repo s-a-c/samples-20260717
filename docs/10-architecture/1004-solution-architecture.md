@@ -9,31 +9,30 @@ tags: [architecture, solution]
 created: 2026-07-30
 updated: 2026-08-17
 ---
-
 # Solution Architecture
 
+<!-- generated-toc -->
 <details>
   <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
     Expand for Table of Contents
   </summary>
 
-- [1. Purpose](#1-purpose)
-- [2. Container Architecture](#2-container-architecture)
-- [3. Data Flows](#3-data-flows)
-    - [3.1. Search Request Flow](#31-search-request-flow)
-    - [3.2. Data Ingestion Flow](#32-data-ingestion-flow)
-- [4. Deployment Pattern](#4-deployment-pattern)
-- [5. Diagrams](#5-diagrams)
+- [1. 📄 Purpose](#1--purpose)
+- [2. 📄 Container Architecture](#2--container-architecture)
+- [3. 📄 Data Flows](#3--data-flows)
+  - [3.1. 📄 Search Request Flow](#31--search-request-flow)
+  - [3.2. 📄 Data Ingestion Flow](#32--data-ingestion-flow)
+- [4. 📄 Deployment Pattern](#4--deployment-pattern)
+- [5. 📄 Diagrams](#5--diagrams)
 
 </details>
 
 ---
-
-## 1. Purpose
+## 1. 📄 Purpose
 
 This document describes the internal structure of the Samples application, its core components, data flows, and deployment patterns.
 
-## 2. Container Architecture
+## 2. 📄 Container Architecture
 
 The application is structured into several functional containers:
 
@@ -42,16 +41,16 @@ The application is structured into several functional containers:
 - **Search Infrastructure:** Orchestrates federated search across product schemas using RRF and pgvector.
 - **Product Lifecycle Services:** Handles data ingestion (Import Pipeline) and state management (Reset Workflow).
 
-## 3. Data Flows
+## 3. 📄 Data Flows
 
-### 3.1. Search Request Flow
+### 3.1. 📄 Search Request Flow
 
 1. User enters a query in the Filament Search interface.
 2. `FederatedSearchService` triggers parallel queries against `chinook.search_projections`, `northwind.search_projections`, and `pagila.search_projections`.
 3. Results are combined and re-ranked via `ReciprocalRankFusion`.
 4. The user receives a unified list of deep links.
 
-### 3.2. Data Ingestion Flow
+### 3.2. 📄 Data Ingestion Flow
 
 1. Operator triggers an import via CLI or UI.
 2. `ProductImportPipeline` reads from source shadow schemas or files.
@@ -59,7 +58,7 @@ The application is structured into several functional containers:
 4. `SourceIdentityRegistry` captures the mapping for traceability.
 5. Observers trigger `EmbeddingJob` for vector search projection updates.
 
-## 4. Deployment Pattern
+## 4. 📄 Deployment Pattern
 
 The application targets a containerized or VM-based stack:
 
@@ -67,13 +66,12 @@ The application targets a containerized or VM-based stack:
 - **Worker Layer:** Laravel Queue Workers for embedding and import tasks.
 - **Data Layer:** PostgreSQL 18 with per-product schemas.
 
-## 5. Diagrams
+## 5. 📄 Diagrams
 
 [Solution Architecture Diagram](../assets/solution-architecture.mmd)
 
 ```mermaid
 ---
-title: Solution Architecture
 config:
   theme: redux-dark-color
   themeVariables:
@@ -82,29 +80,9 @@ config:
     primaryTextColor: "#1e1e2e"
     primaryBorderColor: "#74c7ec"
     lineColor: "#74c7ec"
-    secondaryColor: "#cba6f7"
-    secondaryTextColor: "#1e1e2e"
-    secondaryBorderColor: "#b4befe"
-    tertiaryColor: "#94e2d5"
-    tertiaryTextColor: "#1e1e2e"
-    tertiaryBorderColor: "#89dceb"
-    mainBkg: "#89b4fa"
-    secondBkg: "#cba6f7"
-    tertiaryBkg: "#94e2d5"
     textColor: "#cdd6f4"
-    nodeBorder: "#74c7ec"
-    clusterBkg: "#313244"
-    clusterBorder: "#b4befe"
-    edgeLabelBackground: "#1e1e2e"
-    titleColor: "#cdd6f4"
     fontSize: 16px
-  themeCSS: |
-    .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
-    .edgePath .path { stroke-width: 2px !important; }
-    .label { font-weight: bold !important; }
-    .edgeLabel { background-color: #1e1e2e !important; }
 ---
-%%{init: {"themeCSS": "rect[fill=\"none\"] ~ text { fill: #cdd6f4 !important; }"}}%%
 C4Container
     title Solution Architecture diagram for Samples Application
 
@@ -149,7 +127,6 @@ C4Container
 
 ````mermaid
 ---
-title: Deployment Architecture
 config:
   theme: redux-dark-color
   themeVariables:
@@ -158,27 +135,8 @@ config:
     primaryTextColor: "#1e1e2e"
     primaryBorderColor: "#74c7ec"
     lineColor: "#74c7ec"
-    secondaryColor: "#cba6f7"
-    secondaryTextColor: "#1e1e2e"
-    secondaryBorderColor: "#b4befe"
-    tertiaryColor: "#94e2d5"
-    tertiaryTextColor: "#1e1e2e"
-    tertiaryBorderColor: "#89dceb"
-    mainBkg: "#89b4fa"
-    secondBkg: "#cba6f7"
-    tertiaryBkg: "#94e2d5"
     textColor: "#cdd6f4"
-    nodeBorder: "#74c7ec"
-    clusterBkg: "#313244"
-    clusterBorder: "#b4befe"
-    edgeLabelBackground: "#1e1e2e"
-    titleColor: "#cdd6f4"
     fontSize: 16px
-  themeCSS: |
-    .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
-    .edgePath .path { stroke-width: 2px !important; }
-    .label { font-weight: bold !important; }
-    .edgeLabel { background-color: #1e1e2e !important; }
 ---
 flowchart TD
     subgraph Client["Client Tier"]

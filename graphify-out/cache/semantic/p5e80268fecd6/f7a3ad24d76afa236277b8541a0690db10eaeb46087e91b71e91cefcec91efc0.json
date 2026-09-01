@@ -1,1 +1,13 @@
-{"nodes": [{"id": "configuring_horizon_skill", "label": "Horizon Configuration Skill", "file_type": "concept", "source_file": ".pi/skills/configuring-horizon/SKILL.md", "rationale": "Redis queue monitoring and management."}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "configuring_horizon_skill",
+            "label": "Horizon Configuration Skill",
+            "file_type": "concept",
+            "source_file": ".pi/skills/configuring-horizon/SKILL.md",
+            "rationale": "Redis queue monitoring and management."
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

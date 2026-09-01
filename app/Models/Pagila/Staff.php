@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Override;
 
 #[Table('pagila.staff')]
 final class Staff extends Model implements HasProductDomain
@@ -28,6 +29,7 @@ final class Staff extends Model implements HasProductDomain
         ];
     }
 
+    #[Override]
     public function getProductDomain(): SamplesProduct
     {
         return SamplesProduct::Pagila;

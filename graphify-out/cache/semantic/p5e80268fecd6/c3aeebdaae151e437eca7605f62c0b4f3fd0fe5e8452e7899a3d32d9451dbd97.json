@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agents_skills_testing_best_practices_rules_assertions", "label": "Assertions", "file_type": "document", "source_file": ".agents/skills/testing-best-practices/rules/assertions.md", "rationale": "Rules for writing test assertions using Pest and Laravel, emphasizing Arrange-Act-Assert and subject-specific assertions."}], "edges": [], "hyperedges": []}

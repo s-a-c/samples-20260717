@@ -1,1 +1,22 @@
-{"nodes": [{"id": "research_t21_sqlitevec_assets_findings", "label": "sqlite-vec v0.1.9 Assets and Digests", "file_type": "document", "source_file": "research/t21-sqlitevec-assets/findings.md", "rationale": "Research on sqlite-vec binaries, digests, and load mechanisms for macOS and Linux."}], "edges": [{"source": "research_t21_sqlitevec_assets_findings", "target": "docs_superpowers_specs_2026_08_08_samples_application_roadmap_design", "relation": "conceptually_related_to", "confidence": "INFERRED", "confidence_score": 0.7, "source_file": "research/t21-sqlitevec-assets/findings.md"}], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "research_t21_sqlitevec_assets_findings",
+            "label": "sqlite-vec v0.1.9 Assets and Digests",
+            "file_type": "document",
+            "source_file": "research/t21-sqlitevec-assets/findings.md",
+            "rationale": "Research on sqlite-vec binaries, digests, and load mechanisms for macOS and Linux."
+        }
+    ],
+    "edges": [
+        {
+            "source": "research_t21_sqlitevec_assets_findings",
+            "target": "docs_superpowers_specs_2026_08_08_samples_application_roadmap_design",
+            "relation": "conceptually_related_to",
+            "confidence": "INFERRED",
+            "confidence_score": 0.7,
+            "source_file": "research/t21-sqlitevec-assets/findings.md"
+        }
+    ],
+    "hyperedges": []
+}

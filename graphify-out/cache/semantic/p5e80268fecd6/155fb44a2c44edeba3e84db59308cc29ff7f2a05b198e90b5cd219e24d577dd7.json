@@ -1,1 +1,0 @@
-{"nodes": [{"id": "pi_skills_laravel_best_practices_rules_caching_flexible_cache", "label": "Stale-While-Revalidate (Flexible)", "file_type": "concept", "source_file": ".pi/skills/laravel-best-practices/rules/caching.md", "rationale": "Serves slightly stale data while refreshing in the background to avoid slow responses on expiration."}], "edges": [], "hyperedges": []}

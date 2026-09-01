@@ -1,1 +1,22 @@
-{"nodes": [{"id": "junie_agents_md", "label": "Project Agent Instructions", "file_type": "document", "source_file": ".junie/AGENTS.md", "rationale": "Contains project-specific environment paths (Herd), build commands, and testing defaults."}], "edges": [{"source": "junie_agents_md", "target": "grok_skills_pest_testing_skill", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": ".junie/AGENTS.md"}], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "junie_agents_md",
+            "label": "Project Agent Instructions",
+            "file_type": "document",
+            "source_file": ".junie/AGENTS.md",
+            "rationale": "Contains project-specific environment paths (Herd), build commands, and testing defaults."
+        }
+    ],
+    "edges": [
+        {
+            "source": "junie_agents_md",
+            "target": "grok_skills_pest_testing_skill",
+            "relation": "references",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "source_file": ".junie/AGENTS.md"
+        }
+    ],
+    "hyperedges": []
+}

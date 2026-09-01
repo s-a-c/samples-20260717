@@ -1,1 +1,0 @@
-{"nodes": [{"id": "claude_skills_debug_using_debugbar_skill", "label": "Debugbar CLI Skill", "file_type": "document", "source_file": ".claude/skills/debug-using-debugbar/SKILL.md", "rationale": "Workflow for using Artisan commands to inspect Laravel Debugbar data."}], "edges": [], "hyperedges": []}

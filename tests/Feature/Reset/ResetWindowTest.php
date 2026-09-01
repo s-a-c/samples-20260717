@@ -119,6 +119,7 @@ test('belongs to product domain trait prevents model mutation when reset window 
 
         protected $guarded = [];
 
+        #[Override]
         public function getProductDomain(): SamplesProduct
         {
             return SamplesProduct::Northwind;
@@ -168,8 +169,7 @@ test('recovery service refuses to create a recovery run for a non-failed run', f
     $recoveryService = new RecoveryService;
 
     expect($recoveryService->canRecover($runningRun))->toBeFalse();
-    expect(fn () => $recoveryService->createRecoveryRun($runningRun))
-        ->toThrow(InvalidArgumentException::class);
+    expect(fn () => $recoveryService->createRecoveryRun($runningRun))->toThrow(InvalidArgumentException::class);
 });
 
 test('recovery service getRecoveryRunFor returns the child recovery run or null', function () {
@@ -187,8 +187,11 @@ test('recovery service getRecoveryRunFor returns the child recovery run or null'
     $child = $recoveryService->createRecoveryRun($failedRun);
 
     $found = $recoveryService->getRecoveryRunFor($failedRun);
-    expect($found)->not->toBeNull()
-        ->and($found->id)->toBe($child->id);
+    expect($found)
+        ->not
+        ->toBeNull()
+        ->and($found?->id)
+        ->toBe($child->id);
 });
 
 test('recovery service createRecoveryRun merges extra attributes', function () {
@@ -204,6 +207,5 @@ test('recovery service createRecoveryRun merges extra attributes', function () {
         'current_phase' => 'custom_phase',
     ]);
 
-    expect($child->current_phase)->toBe('custom_phase')
-        ->and($child->product)->toBe('chinook');
+    expect($child->current_phase)->toBe('custom_phase')->and($child->product)->toBe('chinook');
 });

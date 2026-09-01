@@ -2,12 +2,12 @@
 title: Stage 1 — Foundation
 description: Acceptance Stage 1 (Foundation) of the Implementation-Readiness Dossier — gates, checks, operator commands, evidence, and recovery.
 tableOfContents:
-    minHeadingLevel: 2
-    maxHeadingLevel: 3
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
 type: plan
 tags: [dossier, delivery, acceptance]
-created: 2026-08-23
-updated: 2026-08-23
+created: 2026-08-31
+updated: 2026-08-31
 ---
 
 # Stage 1 — Foundation
@@ -33,11 +33,11 @@ updated: 2026-08-23
 
 ## 1. Acceptance gates
 
-| Gate                                | Evidence                                                               | Check                                          | Status |
-| ----------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------- | ------ |
-| PostgreSQL extensions DDL migration | `database/migrations/0001_01_01_000000_create_postgres_extensions.php` | `php artisan migrate:fresh`                    | Pass   |
-| Postgres extensions health test     | `tests/Feature/Postgres/PostgresExtensionsTest.php`                    | `php artisan test --filter=PostgresExtensions` | Pass   |
-| pgsql:check artisan command         | `app/Console/Commands/PgsqlCheck.php`                                  | `php artisan pgsql:check`                      | Pass   |
+| Gate | Evidence | Check | Status |
+| --- | --- | --- | --- |
+| PostgreSQL extensions DDL migration | `database/migrations/0001_01_01_000000_create_postgres_extensions.php` | `php artisan migrate:fresh` | Pass |
+| Postgres extensions health test | `tests/Feature/Postgres/PostgresExtensionsTest.php` | `php artisan test --filter=PostgresExtensions` | Pass |
+| pgsql:check artisan command | `app/Console/Commands/PgsqlCheck.php` | `php artisan pgsql:check` | Pass |
 
 ## 2. Automated checks
 

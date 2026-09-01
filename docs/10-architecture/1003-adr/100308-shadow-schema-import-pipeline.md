@@ -9,7 +9,6 @@ tags: [adr, "0004", shadow]
 created: 2026-07-25
 updated: 2026-08-17
 ---
-
 # ADR 0004: Shadow-Schema Import Pipeline
 
 **Status:** Accepted

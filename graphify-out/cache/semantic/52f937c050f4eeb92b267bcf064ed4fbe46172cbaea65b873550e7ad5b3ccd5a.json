@@ -1,1 +1,12 @@
-{"nodes": [{"id": "horizon_supervisors_reference", "label": "Supervisor & Balancing Configuration", "file_type": "code", "source_file": ".cursor/skills/configuring-horizon/references/supervisors.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "horizon_supervisors_reference",
+            "label": "Supervisor & Balancing Configuration",
+            "file_type": "code",
+            "source_file": ".cursor/skills/configuring-horizon/references/supervisors.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

@@ -1,1 +1,12 @@
-{"nodes": [{"id": "fortify_development", "label": "Laravel Fortify Development", "file_type": "document", "source_file": ".factory/skills/fortify-development/SKILL.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "fortify_development",
+            "label": "Laravel Fortify Development",
+            "file_type": "document",
+            "source_file": ".factory/skills/fortify-development/SKILL.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

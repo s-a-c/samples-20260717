@@ -1,1 +1,12 @@
-{"nodes": [{"id": "federated_search_service", "label": "Federated Search Service", "file_type": "code", "source_file": ".superpowers/sdd/progress.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "federated_search_service",
+            "label": "Federated Search Service",
+            "file_type": "code",
+            "source_file": ".superpowers/sdd/progress.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

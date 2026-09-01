@@ -1,0 +1,1 @@
+{"nodes": [{"id": "filament_security_audit", "label": "Filament Security Audit", "file_type": "concept", "source_file": ".agents/skills/filament-security-audit/SKILL.md", "rationale": "Framework for auditing Filament v5 applications for security vulnerabilities."}], "edges": [], "hyperedges": []}

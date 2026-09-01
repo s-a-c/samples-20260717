@@ -1,1 +1,12 @@
-{"nodes": [{"id": "horizon_config_skill", "label": "Horizon Configuration Skill", "file_type": "rationale", "source_file": ".factory/skills/configuring-horizon/references/supervisors.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "horizon_config_skill",
+            "label": "Horizon Configuration Skill",
+            "file_type": "rationale",
+            "source_file": ".factory/skills/configuring-horizon/references/supervisors.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

@@ -14,9 +14,15 @@ covers(
     App\Services\ProductImport\Mapping\Northwind\CategoryMapper::class,
     App\Services\ProductImport\Mapping\Northwind\SupplierMapper::class,
     App\Services\ProductImport\Mapping\Northwind\EmployeeMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\RegionMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\TerritoryMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\EmployeeTerritoryMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\ShipperMapper::class,
     App\Services\ProductImport\Mapping\Northwind\CustomerMapper::class,
     App\Services\ProductImport\Mapping\Northwind\ProductMapper_::class,
-    SourceSchemaBuilder::class
+    App\Services\ProductImport\Mapping\Northwind\OrderMapper::class,
+    App\Services\ProductImport\Mapping\Northwind\OrderDetailMapper::class,
+    SourceSchemaBuilder::class,
 );
 
 uses(RefreshDatabase::class);
@@ -32,7 +38,10 @@ beforeEach(function () {
     $lines = explode("\n", $sql);
     $codeLines = array_filter($lines, fn (string $line): bool => ! str_starts_with(mb_trim($line), '--'));
     $cleanSql = implode("\n", $codeLines);
-    foreach (array_filter(array_map('trim', explode(';', $cleanSql)), fn (string $statement): bool => $statement !== '') as $statement) {
+    foreach (array_filter(
+        array_map('trim', explode(';', $cleanSql)),
+        fn (string $statement): bool => $statement !== '',
+    ) as $statement) {
         if ($statement !== '') {
             DB::statement($statement);
         }
@@ -59,8 +68,7 @@ test('northwind transform resolves product supplier and category FKs', function 
     $categoryIds = DB::table('northwind_staging.categories')->pluck('id')->all();
 
     foreach ($products as $product) {
-        expect($supplierIds)->toContain($product->supplier_id)
-            ->and($categoryIds)->toContain($product->category_id);
+        expect($supplierIds)->toContain($product->supplier_id)->and($categoryIds)->toContain($product->category_id);
     }
 });
 
@@ -86,16 +94,120 @@ test('northwind transform resolves employee self-referential FK', function () {
     $andrew = $employees->firstWhere('last_name', 'Fuller');
     $nancy = $employees->firstWhere('last_name', 'Davolio');
 
-    expect($andrew->reports_to)->toBeNull();
-    expect($nancy->reports_to)->not->toBeNull()
-        ->and($nancy->reports_to)->toBe($andrew->id);
+    expect($andrew?->reports_to)->toBeNull();
+    expect($nancy?->reports_to)
+        ->not
+        ->toBeNull()
+        ->and($nancy->reports_to)
+        ->toBe($andrew?->id);
 });
 
 test('northwind mapper exposes its ordered table mappers', function () {
     $method = new ReflectionMethod(NorthwindProductMapper::class, 'mappers');
     $mappers = $method->invoke(new NorthwindProductMapper);
 
-    expect($mappers)->toHaveCount(5);
+    expect($mappers)->toHaveCount(11);
+});
+
+test('northwind transform loads every application table from the source schema', function () {
+    DB::table('northwind_source.region')->insert(['region_id' => 1, 'region_description' => 'Eastern']);
+    DB::table('northwind_source.territories')->insert([
+        'territory_id' => '06897',
+        'territory_description' => 'Westboro',
+        'region_id' => 1,
+    ]);
+    DB::table('northwind_source.employee_territories')->insert(['employee_id' => 1, 'territory_id' => '06897']);
+    DB::table('northwind_source.shippers')->insert([
+        'shipper_id' => 1,
+        'company_name' => 'Speedy Express',
+        'phone' => null,
+    ]);
+    DB::table('northwind_source.orders')->insert([
+        'order_id' => 10248,
+        'customer_id' => 'ALFKI',
+        'employee_id' => 1,
+        'order_date' => '1996-07-04',
+        'required_date' => '1996-08-01',
+        'shipped_date' => '1996-07-16',
+        'ship_via' => 1,
+        'freight' => 32.38,
+        'ship_name' => 'Alfreds Futterkiste',
+        'ship_address' => 'Obere Str. 57',
+        'ship_city' => 'Berlin',
+        'ship_region' => null,
+        'ship_postal_code' => '12209',
+        'ship_country' => 'Germany',
+    ]);
+    DB::table('northwind_source.orders')->insert([
+        'order_id' => 10249,
+        'customer_id' => null,
+        'employee_id' => null,
+        'order_date' => null,
+        'required_date' => null,
+        'shipped_date' => null,
+        'ship_via' => null,
+        'freight' => null,
+        'ship_name' => null,
+        'ship_address' => null,
+        'ship_city' => null,
+        'ship_region' => null,
+        'ship_postal_code' => null,
+        'ship_country' => null,
+    ]);
+    DB::table('northwind_source.order_details')->insert([
+        'order_id' => 10248,
+        'product_id' => 1,
+        'unit_price' => 18,
+        'quantity' => 10,
+        'discount' => 0,
+    ]);
+
+    new NorthwindProductMapper()->load('northwind_source', 'northwind_staging');
+
+    expect(DB::table('northwind_staging.regions')->count())->toBe(1)
+        ->and(DB::table('northwind_staging.territories')->count())
+        ->toBe(1)
+        ->and(DB::table('northwind_staging.employee_territories')->count())
+        ->toBe(1)
+        ->and(DB::table('northwind_staging.shippers')->count())
+        ->toBe(1)
+        ->and(DB::table('northwind_staging.orders')->count())
+        ->toBe(2)
+        ->and(DB::table('northwind_staging.orders')->whereNull('order_date')->first())
+        ->not
+        ->toBeNull()
+        ->and(DB::table('northwind_staging.orders')->whereNull('order_date')->value('customer_id'))
+        ->toBeNull()
+        ->and(DB::table('northwind_staging.orders')->whereNull('order_date')->value('employee_id'))
+        ->toBeNull()
+        ->and(DB::table('northwind_staging.orders')->whereNull('order_date')->value('ship_via'))
+        ->toBeNull()
+        ->and(DB::table('northwind_staging.order_details')->count())
+        ->toBe(1)
+        ->and(DB::table('northwind_staging.search_projections')->where('entity_type', 'order')->count())
+        ->toBe(2);
+});
+
+test('northwind transform skips optional source tables that are absent', function () {
+    DB::statement(
+        'DROP TABLE northwind_source.region, northwind_source.territories, northwind_source.employee_territories, northwind_source.shippers, northwind_source.orders, northwind_source.order_details CASCADE',
+    );
+
+    $result = new NorthwindProductMapper()->load('northwind_source', 'northwind_staging');
+
+    expect($result['tables'])->toBe(11)
+        ->and(DB::table('northwind_staging.regions')->count())
+        ->toBe(0)
+        ->and(DB::table('northwind_staging.territories')->count())
+        ->toBe(0)
+        ->and(DB::table('northwind_staging.employee_territories')->count())
+        ->toBe(0)
+        ->and(DB::table('northwind_staging.shippers')->count())
+        ->toBe(0)
+        ->and(DB::table('northwind_staging.orders')->count())
+        ->toBe(0)
+        ->and(DB::table('northwind_staging.order_details')->count())
+        ->toBe(0);
 });
 
 test('northwind transform preserves nullable product foreign keys', function () {
@@ -112,8 +224,8 @@ test('northwind transform preserves nullable product foreign keys', function () 
         'discontinued' => 0,
     ]);
 
-    (new NorthwindProductMapper)->load('northwind_source', 'northwind_staging');
+    new NorthwindProductMapper()->load('northwind_source', 'northwind_staging');
 
     $product = DB::table('northwind_staging.products')->where('product_name', 'Unlinked Product')->first();
-    expect($product->supplier_id)->toBeNull()->and($product->category_id)->toBeNull();
+    expect($product?->supplier_id)->toBeNull()->and($product?->category_id)->toBeNull();
 });

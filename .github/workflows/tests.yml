@@ -5,6 +5,7 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
+  workflow_dispatch:
 
 env:
   DB_HOST: 127.0.0.1
@@ -58,7 +59,7 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: 11.20.0
+          version: 11.24.0
 
       - name: Set up Node.js
         uses: actions/setup-node@v7
@@ -90,7 +91,7 @@ jobs:
       - name: Quality gate
         run: |
           vendor/bin/pint --test --parallel
-          composer types:check
+          composer phpstan:analyze
           composer mago:guard
           composer test:arch
           php -d memory_limit=2G vendor/bin/pest --type-coverage --min=100
@@ -138,7 +139,7 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: 11.20.0
+          version: 11.24.0
 
       - name: Set up Node.js
         uses: actions/setup-node@v7

@@ -221,7 +221,6 @@ The Laravel Boost guidelines are specifically curated by Laravel maintainers for
 This application is a Laravel application running on PHP 8.5. You are an expert with the Laravel ecosystem. Always use the APIs that match the installed major version of each package — do not assume a version.
 
 Before relying on a package's API, confirm its installed version:
-
 - PHP packages: run `composer show --direct` to list direct dependencies with versions, or `composer show <vendor/package>` for a single package.
 - JS packages: check `package.json` for the installed versions.
 
@@ -297,7 +296,7 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 - Execute PHP in app context for debugging and testing code. Do not create models without user approval, prefer tests with factories instead. Prefer existing Artisan commands over custom tinker code.
 - Always use single quotes to prevent shell expansion: `php artisan tinker --execute 'Your::code();'`
-    - Double quotes for PHP strings inside: `php artisan tinker --execute 'User::where("active", true)->count();'`
+  - Double quotes for PHP strings inside: `php artisan tinker --execute 'User::where("active", true)->count();'`
 
 === php rules ===
 
@@ -327,8 +326,10 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 # Test Enforcement
 
-- Every change must be programmatically tested. Write a new test or update an existing test, then run the affected tests to make sure they pass.
-- Run the minimum number of tests needed to ensure code quality and speed. Use `php artisan test --compact` with a specific filename or filter.
+- Test every code change by adding or updating a test.
+- Run the affected tests and ensure they pass.
+- Test the changed behavior and its important failure modes, but do not add tests beyond them.
+- Read the `testing-best-practices` skill before writing tests.
 
 === laravel/core rules ===
 
@@ -364,7 +365,7 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 # Livewire
 
-- Livewire allow to build dynamic, reactive interfaces in PHP without writing JavaScript.
+- Livewire allows you to build dynamic, reactive interfaces in PHP without writing JavaScript.
 - You can use Alpine.js for client-side interactions instead of JavaScript frameworks.
 - Keep state server-side so the UI reflects it. Validate and authorize in actions as you would in HTTP requests.
 
@@ -377,12 +378,19 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 === pest/core rules ===
 
-## Pest
+# Pest
 
-- This project uses Pest for testing. Create tests: `php artisan make:test --pest {name}`.
-- The `{name}` argument should not include the test suite directory. Use `php artisan make:test --pest SomeFeatureTest` instead of `php artisan make:test --pest Feature/SomeFeatureTest`.
-- Run tests: `php artisan test --compact` or filter: `php artisan test --compact --filter=testName`.
-- Do NOT delete tests without approval.
+- This project uses Pest. Create tests with `php artisan make:test --pest {name}`.
+- Do not include the test suite directory in `{name}`. Use `SomeFeatureTest`, not `Feature/SomeFeatureTest`.
+- Read the `testing-best-practices` skill for guidance on coverage, naming, structure, dependency isolation, and review.
+- Do not delete tests or test files without approval. They are part of the application.
+
+## Running Tests
+
+- Run the narrowest set of tests that covers the change. Pass a file path or `--filter=testName` to `php artisan test --compact`.
+- Rerun a test after each change to it.
+- Run `vendor/bin/pest` to call the test runner directly. It accepts the same file path and `--filter=testName` arguments.
+- After the feature tests pass, ask the user to run the complete suite with `php artisan test --compact`.
 
 === spatie/laravel-activitylog/core rules ===
 
@@ -445,18 +453,18 @@ activity()
 
 ## LogOptions Methods
 
-| Method                                  | Description                                      |
-| --------------------------------------- | ------------------------------------------------ |
-| `logFillable()`                         | Log all fillable attributes                      |
-| `logAll()`                              | Log all attributes                               |
-| `logOnly(array)`                        | Log specific attributes                          |
-| `logExcept(array)`                      | Exclude attributes                               |
-| `logOnlyDirty()`                        | Only log changed attributes                      |
-| `dontLogEmptyChanges()`                 | Skip logging when no tracked attributes changed  |
+| Method | Description |
+|--------|-------------|
+| `logFillable()` | Log all fillable attributes |
+| `logAll()` | Log all attributes |
+| `logOnly(array)` | Log specific attributes |
+| `logExcept(array)` | Exclude attributes |
+| `logOnlyDirty()` | Only log changed attributes |
+| `dontLogEmptyChanges()` | Skip logging when no tracked attributes changed |
 | `dontLogIfAttributesChangedOnly(array)` | Ignore updates that only change these attributes |
-| `useLogName(string)`                    | Set custom log name                              |
-| `setDescriptionForEvent(Closure)`       | Custom description per event                     |
-| `useAttributeRawValues(array)`          | Store raw (uncast) values                        |
+| `useLogName(string)` | Set custom log name |
+| `setDescriptionForEvent(Closure)` | Custom description per event |
+| `useAttributeRawValues(array)` | Store raw (uncast) values |
 
 ## Querying Activities
 
@@ -527,7 +535,6 @@ Custom action classes must extend the originals. Override protected methods (`sa
 ## Configuration
 
 Key config options in `config/activitylog.php`:
-
 - `enabled`: Master on/off switch (env: `ACTIVITYLOG_ENABLED`)
 - `clean_after_days`: Days to keep records for `activitylog:clean` command
 - `default_log_name`: Default log name (string)

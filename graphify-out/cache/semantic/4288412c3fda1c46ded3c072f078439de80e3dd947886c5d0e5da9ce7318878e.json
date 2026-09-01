@@ -1,1 +1,12 @@
-{"nodes": [{"id": "skill_fortify_development", "label": "Fortify Development Skill", "file_type": "document", "source_file": ".grok/skills/fortify-development/SKILL.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "skill_fortify_development",
+            "label": "Fortify Development Skill",
+            "file_type": "document",
+            "source_file": ".grok/skills/fortify-development/SKILL.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

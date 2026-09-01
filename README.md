@@ -266,7 +266,7 @@ run the bundled sets; the individual tools are available for targeted use.
 | ----------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | Laravel Pint (style)                | `composer lint:check` &nbsp;·&nbsp; `vendor/bin/pint --test`                        | `vendor/bin/pint` &nbsp;·&nbsp; `vendor/bin/pint --dirty`                     |
 | PHPStan (static analysis)           | `composer types:check` &nbsp;·&nbsp; `vendor/bin/phpstan analyse --memory-limit=2G` | (none — fix the code)                                                         |
-| Mago (architecture/layers)          | `composer mago:analyze` &nbsp;·&nbsp; `vendor/bin/mago analyze`                     | `composer mago:analyze:fix` &nbsp;·&nbsp; `composer test:arch` runs the guard |
+| Mago (architecture/layers)          | `composer mago:analyze` &nbsp;·&nbsp; `vendor/bin/mago analyze --verify-baseline --baseline .mago/analyze-baseline.json` | `composer mago:analyze:fix` &nbsp;·&nbsp; `composer test:arch` runs the guard |
 | Rector (refactors)                  | `composer rector` (dry-run) &nbsp;·&nbsp; `vendor/bin/rector process --dry-run`     | `composer rector:fix`                                                         |
 | FilaCheck (Filament best practices) | `composer filacheck` (dry-run)                                                      | `composer filacheck:fix` (writes a `--backup`)                                |
 | Infection (mutation testing)        | `composer test:mutation` &nbsp;·&nbsp; `vendor/bin/infection --threads=max`         | (mutators apply on the next run)                                              |
@@ -276,6 +276,11 @@ Bundled chains:
 - `composer lint` — Pint (format) → PHPStan → mago guard
 - `composer analyze` — lint:check → filacheck → mago:analyze → types:check
 - `composer ci:check` — `@test` (the full verification pipeline used by CI)
+
+The broad Mago analyzer uses the committed `.mago/analyze-baseline.json` for
+the known legacy application/test inventory. Regenerate it only when the
+reported findings have been reviewed, then run the verification form above;
+`composer mago:guard` remains the zero-baseline architecture gate.
 
 Infection is configured via `infection.json.dist` (source `app/`, default mutators,
 min MSI 50 / min covered MSI 60, PHPUnit adapter that runs the Pest suite). It requires

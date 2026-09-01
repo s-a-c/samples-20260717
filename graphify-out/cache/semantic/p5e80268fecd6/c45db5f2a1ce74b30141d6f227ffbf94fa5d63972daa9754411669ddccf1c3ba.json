@@ -1,0 +1,1 @@
+{"nodes": [{"id": "blaze_optimize", "label": "Blaze Optimization", "file_type": "concept", "source_file": ".agents/skills/blaze-optimize/SKILL.md", "rationale": "Toolchain for optimizing Blade component rendering."}], "edges": [], "hyperedges": []}

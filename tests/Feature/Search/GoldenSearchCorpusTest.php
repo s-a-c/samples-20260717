@@ -30,7 +30,10 @@ test('golden search corpus: projections are correct after full chinook lifecycle
     $lines = explode("\n", $sql);
     $codeLines = array_filter($lines, fn (string $line): bool => ! str_starts_with(mb_trim($line), '--'));
     $cleanSql = implode("\n", $codeLines);
-    foreach (array_filter(array_map('trim', explode(';', $cleanSql)), fn (string $statement): bool => $statement !== '') as $statement) {
+    foreach (array_filter(
+        array_map('trim', explode(';', $cleanSql)),
+        fn (string $statement): bool => $statement !== '',
+    ) as $statement) {
         if ($statement !== '') {
             DB::statement($statement);
         }
@@ -44,8 +47,10 @@ test('golden search corpus: projections are correct after full chinook lifecycle
     // Verify projections exist for each entity type
     $entityTypes = DB::table('chinook_staging.search_projections')->distinct()->pluck('entity_type')->all();
     expect($entityTypes)->toContain('artist')
-        ->and($entityTypes)->toContain('album')
-        ->and($entityTypes)->toContain('track');
+        ->and($entityTypes)
+        ->toContain('album')
+        ->and($entityTypes)
+        ->toContain('track');
 
     // Verify artist projection text
     $acdc = DB::table('chinook_staging.search_projections')
@@ -59,11 +64,16 @@ test('golden search corpus: projections are correct after full chinook lifecycle
         ->where('entity_type', 'track')
         ->where('weight_d_text', 'For Those About To Rock (We Salute You)')
         ->first();
-    expect($track)->not->toBeNull()
-        ->and($track->embedding_state)->toBe('pending');
+    expect($track)
+        ->not
+        ->toBeNull()
+        ->and($track?->embedding_state)
+        ->toBe('pending');
 
     // Verify document_tsv is generated
-    $tsvResult = DB::selectOne("SELECT document_tsv IS NOT NULL AS has_tsv FROM chinook_staging.search_projections WHERE entity_type = 'artist' LIMIT 1");
+    $tsvResult = DB::selectOne(
+        "SELECT document_tsv IS NOT NULL AS has_tsv FROM chinook_staging.search_projections WHERE entity_type = 'artist' LIMIT 1",
+    );
     expect($tsvResult->has_tsv)->toBeTrue();
 });
 
@@ -87,7 +97,9 @@ test('golden search corpus: lexical search finds artist by name', function () {
     ]);
 
     // Lexical search via tsvector
-    $results = DB::select("SELECT * FROM chinook.search_projections WHERE document_tsv @@ plainto_tsquery('en_unaccent', 'AC/DC')");
+    $results = DB::select(
+        "SELECT * FROM chinook.search_projections WHERE document_tsv @@ plainto_tsquery('en_unaccent', 'AC/DC')",
+    );
 
     expect($results)->not->toBeEmpty();
     expect(collect($results)->pluck('weight_d_text'))->toContain('AC/DC');
@@ -100,7 +112,10 @@ test('golden search corpus: projections survive schema swap', function () {
     $lines = explode("\n", $sql);
     $codeLines = array_filter($lines, fn (string $line): bool => ! str_starts_with(mb_trim($line), '--'));
     $cleanSql = implode("\n", $codeLines);
-    foreach (array_filter(array_map('trim', explode(';', $cleanSql)), fn (string $statement): bool => $statement !== '') as $statement) {
+    foreach (array_filter(
+        array_map('trim', explode(';', $cleanSql)),
+        fn (string $statement): bool => $statement !== '',
+    ) as $statement) {
         if ($statement !== '') {
             DB::statement($statement);
         }
@@ -125,6 +140,8 @@ test('golden search corpus: projections survive schema swap', function () {
     expect($liveCount)->toBe($stagingCount);
 
     // Verify search still works on the published schema
-    $results = DB::select("SELECT * FROM chinook.search_projections WHERE document_tsv @@ plainto_tsquery('en_unaccent', 'rock')");
+    $results = DB::select(
+        "SELECT * FROM chinook.search_projections WHERE document_tsv @@ plainto_tsquery('en_unaccent', 'rock')",
+    );
     expect($results)->not->toBeEmpty();
 });

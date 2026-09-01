@@ -1,1 +1,12 @@
-{"nodes": [{"id": "cursor_skills_livewire_development_reference_javascript_hooks", "label": "Livewire 4 JS Integration", "file_type": "document", "source_file": ".cursor/skills/livewire-development/reference/javascript-hooks.md"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "cursor_skills_livewire_development_reference_javascript_hooks",
+            "label": "Livewire 4 JS Integration",
+            "file_type": "document",
+            "source_file": ".cursor/skills/livewire-development/reference/javascript-hooks.md"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

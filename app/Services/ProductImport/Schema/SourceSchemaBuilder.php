@@ -67,11 +67,13 @@ class SourceSchemaBuilder
         DB::statement('CREATE TABLE northwind_source.customers (customer_id TEXT PRIMARY KEY, company_name TEXT, contact_name TEXT, contact_title TEXT, address TEXT, city TEXT, region TEXT, postal_code TEXT, country TEXT, phone TEXT, fax TEXT)');
         DB::statement('CREATE TABLE northwind_source.employees (employee_id SERIAL PRIMARY KEY, last_name TEXT, first_name TEXT, title TEXT, title_of_courtesy TEXT, birth_date TEXT, hire_date TEXT, address TEXT, city TEXT, region TEXT, postal_code TEXT, country TEXT, home_phone TEXT, extension TEXT, photo BYTEA, notes TEXT, reports_to INTEGER, photo_path TEXT)');
         DB::statement('CREATE TABLE northwind_source.suppliers (supplier_id SERIAL PRIMARY KEY, company_name TEXT, contact_name TEXT, contact_title TEXT, address TEXT, city TEXT, region TEXT, postal_code TEXT, country TEXT, phone TEXT, fax TEXT, homepage TEXT)');
-        DB::statement('CREATE TABLE northwind_source.shippers (ShipperID SERIAL PRIMARY KEY, CompanyName TEXT, Phone TEXT)');
-        DB::statement('CREATE TABLE northwind_source.regions (RegionID SERIAL PRIMARY KEY, RegionDescription TEXT)');
-        DB::statement('CREATE TABLE northwind_source.territories (TerritoryID TEXT PRIMARY KEY, TerritoryDescription TEXT, RegionID INTEGER)');
+        DB::statement('CREATE TABLE northwind_source.shippers (shipper_id SERIAL PRIMARY KEY, company_name TEXT, phone TEXT)');
+        DB::statement('CREATE TABLE northwind_source.region (region_id SERIAL PRIMARY KEY, region_description TEXT)');
+        DB::statement('CREATE TABLE northwind_source.territories (territory_id TEXT PRIMARY KEY, territory_description TEXT, region_id INTEGER)');
+        DB::statement('CREATE TABLE northwind_source.employee_territories (employee_id INTEGER, territory_id TEXT)');
         DB::statement('CREATE TABLE northwind_source.products (product_id SERIAL PRIMARY KEY, product_name TEXT, supplier_id INTEGER, category_id INTEGER, quantity_per_unit TEXT, unit_price REAL, units_in_stock INTEGER, units_on_order INTEGER, reorder_level INTEGER, discontinued INTEGER)');
-        DB::statement('CREATE TABLE northwind_source.orders (OrderID SERIAL PRIMARY KEY, CustomerID TEXT, EmployeeID INTEGER, OrderDate TEXT, RequiredDate TEXT, ShippedDate TEXT, ShipVia INTEGER, Freight REAL, ShipName TEXT, ShipAddress TEXT, ShipCity TEXT, ShipRegion TEXT, ShipPostalCode TEXT, ShipCountry TEXT)');
+        DB::statement('CREATE TABLE northwind_source.orders (order_id SERIAL PRIMARY KEY, customer_id TEXT, employee_id INTEGER, order_date TEXT, required_date TEXT, shipped_date TEXT, ship_via INTEGER, freight REAL, ship_name TEXT, ship_address TEXT, ship_city TEXT, ship_region TEXT, ship_postal_code TEXT, ship_country TEXT)');
+        DB::statement('CREATE TABLE northwind_source.order_details (order_id INTEGER, product_id INTEGER, unit_price REAL, quantity INTEGER, discount REAL)');
     }
 
     /**

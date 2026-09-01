@@ -9,6 +9,7 @@ use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Icons\Heroicon;
+use Override;
 
 /**
  * The closed registry of Sample Products presented by this application.
@@ -76,16 +77,19 @@ enum SamplesProduct: string implements HasColor, HasIcon, HasLabel
         };
     }
 
+    #[Override]
     public function getLabel(): string
     {
         return $this->profile()->label;
     }
 
+    #[Override]
     public function getColor(): string
     {
         return $this->profile()->color;
     }
 
+    #[Override]
     public function getIcon(): Heroicon
     {
         return $this->profile()->icon;

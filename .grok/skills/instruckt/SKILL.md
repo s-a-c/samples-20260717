@@ -4,7 +4,7 @@ description: "Visual feedback from users via in-browser annotations. Activates w
 
 license: MIT
 metadata:
-    author: joshcirre
+  author: joshcirre
 ---
 
 # Instruckt — Visual Feedback for AI Agents
@@ -56,11 +56,11 @@ Annotations may include a screenshot of the clicked element or a user-selected r
 
 ## MCP Tools
 
-| Tool                        | When to use                                                                |
-| --------------------------- | -------------------------------------------------------------------------- |
-| `instruckt.get_all_pending` | Get all pending annotations                                                |
-| `instruckt.get_screenshot`  | Get the screenshot image for an annotation (when `has_screenshot` is true) |
-| `instruckt.resolve`         | Mark as resolved after fixing — removes the marker from the browser        |
+| Tool | When to use |
+|------|-------------|
+| `instruckt.get_all_pending` | Get all pending annotations |
+| `instruckt.get_screenshot` | Get the screenshot image for an annotation (when `has_screenshot` is true) |
+| `instruckt.resolve` | Mark as resolved after fixing — removes the marker from the browser |
 
 ## Best Practices
 

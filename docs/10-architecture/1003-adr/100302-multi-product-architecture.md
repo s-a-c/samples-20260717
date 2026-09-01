@@ -9,7 +9,6 @@ tags: [adr, architecture, multi-product]
 created: 2026-07-25
 updated: 2026-08-17
 ---
-
 # ADR 0001: Multi-Product Architecture
 
 **Status:** Accepted

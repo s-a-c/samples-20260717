@@ -1,1 +1,12 @@
-{"nodes": [{"id": "github_dependabot", "label": "Dependabot Config", "file_type": "document", "source_file": ".github/dependabot.yml"}], "edges": [], "hyperedges": []}
+{
+    "nodes": [
+        {
+            "id": "github_dependabot",
+            "label": "Dependabot Config",
+            "file_type": "document",
+            "source_file": ".github/dependabot.yml"
+        }
+    ],
+    "edges": [],
+    "hyperedges": []
+}

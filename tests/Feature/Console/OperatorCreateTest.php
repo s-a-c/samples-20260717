@@ -45,8 +45,9 @@ test('operator create provisions user via options', function () {
     $user = User::query()->where('email', 'admin@samples.local')->first();
     $this->assertNotNull($user);
     $this->assertTrue($user->hasRole('super_admin'));
-    $this->assertNotNull($user->personalTeam());
-    $this->assertSame($user->personalTeam()->id, $user->current_team_id);
+    $personalTeam = $user->personalTeam();
+    $this->assertNotNull($personalTeam);
+    $this->assertSame($personalTeam->id, $user->current_team_id);
 });
 
 test('operator create uses environment variables when options omitted', function () {
@@ -57,8 +58,9 @@ test('operator create uses environment variables when options omitted', function
     $user = User::query()->where('email', 'operator@example.com')->first();
     $this->assertNotNull($user);
     $this->assertTrue($user->hasRole('super_admin'));
-    $this->assertNotNull($user->personalTeam());
-    $this->assertSame($user->personalTeam()->id, $user->current_team_id);
+    $personalTeam = $user->personalTeam();
+    $this->assertNotNull($personalTeam);
+    $this->assertSame($personalTeam->id, $user->current_team_id);
 
     withoutOperatorEnvironment();
 });

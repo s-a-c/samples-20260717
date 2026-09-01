@@ -8,7 +8,6 @@ description: Builds Kanban board interfaces for Eloquent models with drag-and-dr
 ## When to Use This Skill
 
 Use when:
-
 - Creating Kanban board interfaces for Eloquent models
 - Configuring board columns, cards, and actions
 - Implementing drag-and-drop with position management
@@ -356,7 +355,6 @@ php artisan flowforge:diagnose-positions "App\Models\Task" status position
 ```
 
 Checks for:
-
 - Missing positions (NULL values)
 - Duplicate positions within columns
 - Position inversions
@@ -376,7 +374,6 @@ php artisan flowforge:repair-positions "App\Models\Task" status position
 ```
 
 Offers multiple repair strategies:
-
 - Fill NULL positions
 - Fix duplicates
 - Rebalance specific columns

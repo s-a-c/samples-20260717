@@ -9,47 +9,46 @@ tags: [guide, documentation, sample, databases]
 created: 2026-07-25
 updated: 2026-08-17
 ---
-
 # Sample Databases
 
+<!-- generated-toc -->
 <details>
   <summary style="font-size: 1.25em; font-weight: bold; margin: 0.83em 0; cursor: pointer;">
     Expand for Table of Contents
   </summary>
 
-- [1. Prompt](#1-prompt)
-- [2. Response](#2-response)
-    - [2.1. General-purpose relational databases](#21-general-purpose-relational-databases)
-    - [2.2. E-commerce and sales](#22-e-commerce-and-sales)
-    - [2.3. Finance and business](#23-finance-and-business)
-    - [2.4. Healthcare](#24-healthcare)
-    - [2.5. Transport and public data](#25-transport-and-public-data)
-    - [2.6. Social and media](#26-social-and-media)
-    - [2.7. Smaller teaching datasets](#27-smaller-teaching-datasets)
-    - [2.8. Good sources and repositories](#28-good-sources-and-repositories)
-    - [2.9. My shortlist](#29-my-shortlist)
-- [3. Prompt](#3-prompt)
-- [4. Response](#4-response)
-    - [4.1. Direct PostgreSQL-focused repositories](#41-direct-postgresql-focused-repositories)
-    - [4.2. Quick import examples](#42-quick-import-examples)
-        - [4.2.1. Northwind](#421-northwind)
-        - [4.2.2. Chinook](#422-chinook)
-        - [4.2.3. Pagila](#423-pagila)
-    - [4.3. Recommended teaching set](#43-recommended-teaching-set)
+- [1. 📄 Prompt](#1--prompt)
+- [2. 📄 Response](#2--response)
+  - [2.1. 📄 General-purpose relational databases](#21--general-purpose-relational-databases)
+  - [2.2. 📄 E-commerce and sales](#22--e-commerce-and-sales)
+  - [2.3. 📄 Finance and business](#23--finance-and-business)
+  - [2.4. 📄 Healthcare](#24--healthcare)
+  - [2.5. 📄 Transport and public data](#25--transport-and-public-data)
+  - [2.6. 📄 Social and media](#26--social-and-media)
+  - [2.7. 📄 Smaller teaching datasets](#27--smaller-teaching-datasets)
+  - [2.8. 📄 Good sources and repositories](#28--good-sources-and-repositories)
+  - [2.9. 📄 My shortlist](#29--my-shortlist)
+- [3. 📄 Prompt](#3--prompt)
+- [4. 📄 Response](#4--response)
+  - [4.1. 📄 Direct PostgreSQL-focused repositories](#41--direct-postgresql-focused-repositories)
+  - [4.2. 📄 Quick import examples](#42--quick-import-examples)
+    - [4.2.1. 📄 Northwind](#421--northwind)
+    - [4.2.2. 📄 Chinook](#422--chinook)
+    - [4.2.3. 📄 Pagila](#423--pagila)
+  - [4.3. 📄 Recommended teaching set](#43--recommended-teaching-set)
 
 </details>
 
 ---
-
-## 1. Prompt
+## 1. 📄 Prompt
 
 > [!NOTE] i'm looking for more sample databases, alternatives to chinook, northwind, pagila
 
-## 2. Response
+## 2. 📄 Response
 
 Here are good alternatives, grouped by what they’re useful for. Because apparently one tiny fictional shop can’t satisfy every SQL exercise.
 
-### 2.1. General-purpose relational databases
+### 2.1. 📄 General-purpose relational databases
 
 - **AdventureWorks / AdventureWorksLT**
   Microsoft’s sales, products, customers, purchasing, and production data.
@@ -72,7 +71,7 @@ Here are good alternatives, grouped by what they’re useful for. Because appare
   Another PostgreSQL sample database, commonly used in PostgreSQL tutorials.
   Similar domain to Pagila, but useful for practising PostgreSQL queries and views.
 
-### 2.2. E-commerce and sales
+### 2.2. 📄 E-commerce and sales
 
 - **Magento / Adobe Commerce sample data**
   Products, customers, orders, carts, addresses, and catalogue structures.
@@ -94,7 +93,7 @@ Here are good alternatives, grouped by what they’re useful for. Because appare
 - **AdventureWorks Sales**
   Worth mentioning separately because it’s one of the better structured datasets for realistic sales reporting.
 
-### 2.3. Finance and business
+### 2.3. 📄 Finance and business
 
 - **Financial Sample**
   Sales, profit, products, segments, countries, and dates.
@@ -112,7 +111,7 @@ Here are good alternatives, grouped by what they’re useful for. Because appare
   Larger, more complex retail decision-support benchmark.
   Excellent for query optimisation, warehouses, and performance testing.
 
-### 2.4. Healthcare
+### 2.4. 📄 Healthcare
 
 - **MIMIC-IV**
   De-identified hospital and intensive-care data.
@@ -126,7 +125,7 @@ Here are good alternatives, grouped by what they’re useful for. Because appare
   Public healthcare provider, procedure, cost, and utilisation data.
   Usually CSV-based rather than a ready-made relational database, but easy to import.
 
-### 2.5. Transport and public data
+### 2.5. 📄 Transport and public data
 
 - **NYC Taxi Trips**
   Trips, timestamps, locations, fares, payments, and passenger counts.
@@ -144,7 +143,7 @@ Here are good alternatives, grouped by what they’re useful for. Because appare
   Flight schedules, delays, airports, carriers, and routes.
   Common examples include the US Bureau of Transportation Statistics datasets.
 
-### 2.6. Social and media
+### 2.6. 📄 Social and media
 
 - **Stack Exchange Data Dump**
   Questions, answers, users, votes, tags, comments, and badges.
@@ -162,7 +161,7 @@ Here are good alternatives, grouped by what they’re useful for. Because appare
   Artists, recordings, releases, labels, areas, and relationships.
   A richer alternative if Chinook’s music catalogue feels a bit too tidy.
 
-### 2.7. Smaller teaching datasets
+### 2.7. 📄 Smaller teaching datasets
 
 - **Employees Database**
   Employees, departments, salaries, titles, and department managers.
@@ -184,7 +183,7 @@ Here are good alternatives, grouped by what they’re useful for. Because appare
   Students, courses, lecturers, enrolments, grades, and departments.
   Easy to find in PostgreSQL, MySQL, and SQLite formats, though quality varies wildly.
 
-### 2.8. Good sources and repositories
+### 2.8. 📄 Good sources and repositories
 
 - **Kaggle Datasets** – broad selection, often CSV-based
 - **GitHub** – search for SQL dumps such as `sample database`, `postgres sample db`, or `mysql sample database`
@@ -194,7 +193,7 @@ Here are good alternatives, grouped by what they’re useful for. Because appare
 - **Google BigQuery public datasets** – large analytical datasets
 - **Snowflake Marketplace / sample data** – useful for warehouse demonstrations
 
-### 2.9. My shortlist
+### 2.9. 📄 My shortlist
 
 If you want a balanced collection:
 
@@ -209,12 +208,12 @@ If you want a balanced collection:
 9. **NYC Taxi** – time-series and aggregation
 10. **MusicBrainz** – rich, messy, interconnected data
 
-## 3. Prompt
+## 3. 📄 Prompt
 
 > [!NOTE] add northwind and chinook to your list
 > include url's to Postgresql formats
 
-## 4. Response
+## 4. 📄 Response
 
 For application support and consultancy work, I’d particularly recommend **AdventureWorksLT**, **WideWorldImporters**, **Olist**, **Synthea**, and **Stack Exchange**. They cover the useful spectrum from “pleasant teaching example” to “this schema was clearly designed by committee.”
 
@@ -239,7 +238,7 @@ Here’s the revised shortlist, including **Northwind** and **Chinook**, with Po
 | **NYC Taxi**                 | Time-series analysis, aggregation, geospatial queries       | [NYC TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)                                    |
 | **MusicBrainz**              | Rich music metadata and many-to-many relationships          | [MusicBrainz Database](https://musicbrainz.org/doc/MusicBrainz_Database)                                                    |
 
-### 4.1. Direct PostgreSQL-focused repositories
+### 4.1. 📄 Direct PostgreSQL-focused repositories
 
 These are the easiest to use when you specifically want `.sql` files or PostgreSQL-compatible scripts:
 
@@ -259,9 +258,9 @@ These are the easiest to use when you specifically want `.sql` files or PostgreS
 - **AdventureWorks for PostgreSQL**
   https://github.com/stephbu/AdventureWorks-for-Postgres
 
-### 4.2. Quick import examples
+### 4.2. 📄 Quick import examples
 
-#### 4.2.1. Northwind
+#### 4.2.1. 📄 Northwind
 
 ```bash
 git clone https://github.com/pthom/northwind_psql.git
@@ -272,7 +271,7 @@ psql -U postgres -d northwind -f northwind.sql
 
 The exact filename may vary slightly by repository revision, because sample databases enjoy small acts of administrative sabotage.
 
-#### 4.2.2. Chinook
+#### 4.2.2. 📄 Chinook
 
 ```bash
 git clone https://github.com/lerocha/chinook-database.git
@@ -281,7 +280,7 @@ psql -U postgres -c "CREATE DATABASE chinook;"
 psql -U postgres -d chinook -f ChinookDatabase/DataSources/Chinook_PostgreSql.sql
 ```
 
-#### 4.2.3. Pagila
+#### 4.2.3. 📄 Pagila
 
 ```bash
 git clone https://github.com/devrimgunduz/pagila.git
@@ -291,7 +290,7 @@ psql -U postgres -d pagila -f pagila-schema.sql
 psql -U postgres -d pagila -f pagila-insert-data.sql
 ```
 
-### 4.3. Recommended teaching set
+### 4.3. 📄 Recommended teaching set
 
 For a useful PostgreSQL sample collection:
 
