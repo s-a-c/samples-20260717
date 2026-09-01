@@ -6532,12 +6532,12 @@ count = 1
 file = "tests/Feature/Import/TransformPagilaTest.php"
 code = "missing-return-type"
 message = "Function `closure` is missing a return type hint."
-count = 8
+count = 9
 
 [[issues]]
 file = "tests/Feature/Import/TransformPagilaTest.php"
 code = "unhandled-thrown-type"
-message = "Potentially unhandled exception `ReflectionException` in `{closure:tests/Feature/Import/TransformPagilaTest.php:112:57}`."
+message = "Potentially unhandled exception `ReflectionException` in `{closure:tests/Feature/Import/TransformPagilaTest.php:130:57}`."
 count = 1
 
 [[issues]]
