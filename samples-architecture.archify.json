@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Samples application architecture",
+    "output": "samples-architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/s-a-c/samples-20260717",
+      "revision": "d067a1210a2f523465d254860547119d96b91fd3"
+    },
+    "views": [
+      {
+        "id": "request-path",
+        "label": "Request path",
+        "focus": ["browser", "product-panels", "laravel-app", "search", "postgres"],
+        "note": "Follow a product request from the browser to PostgreSQL-backed application state."
+      },
+      {
+        "id": "import-path",
+        "label": "Import path",
+        "focus": ["source-dumps", "import-pipeline", "postgres", "embedding-drain"],
+        "note": "Follow complete source dumps through staging, publish, and embedding work."
+      },
+      {
+        "id": "admin-path",
+        "label": "Admin operations",
+        "focus": ["admin", "laravel-app", "import-pipeline", "search"],
+        "note": "See how operators trigger imports and inspect statistics through the application."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "Browser",
+      "pos": [20, 305],
+      "size": [150, 68],
+      "sources": [{ "path": "docs/15-delivery/1515-implementation-readiness-dossier/151501-contents.md", "label": "acceptance dossier" }]
+    },
+    {
+      "id": "product-panels",
+      "type": "frontend",
+      "label": "Sample product panels",
+      "sublabel": "Chinook · Northwind · Pagila",
+      "pos": [240, 300],
+      "size": [190, 78],
+      "sources": [{ "path": "resources/views/dashboard.blade.php", "label": "product views" }]
+    },
+    {
+      "id": "admin",
+      "type": "frontend",
+      "label": "Admin operations",
+      "sublabel": "Imports · statistics · reset",
+      "pos": [240, 560],
+      "size": [190, 78],
+      "sources": [{ "path": "app/Filament/Admin/Pages/Portfolio.php", "label": "admin UI" }]
+    },
+    {
+      "id": "laravel-app",
+      "type": "backend",
+      "label": "Laravel application",
+      "sublabel": "Laravel 13 · PHP 8.5",
+      "pos": [530, 300],
+      "size": [190, 78],
+      "sources": [{ "path": "bootstrap/app.php", "label": "application layer" }]
+    },
+    {
+      "id": "import-pipeline",
+      "type": "backend",
+      "label": "Product import pipeline",
+      "sublabel": "stage → map → publish",
+      "pos": [810, 560],
+      "size": [190, 78],
+      "sources": [{ "path": "app/Services/ProductImport/ProductImportPipeline.php", "label": "import services" }]
+    },
+    {
+      "id": "search",
+      "type": "backend",
+      "label": "Search services",
+      "sublabel": "search projections",
+      "pos": [810, 300],
+      "size": [180, 78],
+      "sources": [{ "path": "app/Services/Search/FederatedSearchService.php", "label": "search services" }]
+    },
+    {
+      "id": "embedding-drain",
+      "type": "messagebus",
+      "label": "Embedding drain",
+      "sublabel": "asynchronous projection work",
+      "pos": [1120, 560],
+      "size": [190, 78],
+      "sources": [{ "path": "app/Services/ProductImport/EmbeddingDrain.php", "label": "embedding drain" }]
+    },
+    {
+      "id": "postgres",
+      "type": "database",
+      "label": "PostgreSQL 18",
+      "sublabel": "pgvector · shadow schemas",
+      "pos": [1120, 300],
+      "size": [190, 78],
+      "sources": [{ "path": "config/database.php", "label": "database config" }]
+    },
+    {
+      "id": "source-dumps",
+      "type": "external",
+      "label": "Source data dumps",
+      "sublabel": "Chinook · Northwind · Pagila",
+      "pos": [530, 560],
+      "size": [190, 78],
+      "sources": [{ "path": "app/Services/ProductImport/PostgresSourceReader.php", "label": "source readers" }]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Laravel application boundary",
+      "wraps": ["product-panels", "admin", "laravel-app", "import-pipeline", "search", "embedding-drain"]
+    }
+  ],
+  "connections": [
+    { "id": "browser-panels", "from": "browser", "to": "product-panels", "label": "HTTPS", "variant": "emphasis", "labelAt": [205, 315] },
+    { "id": "panels-app", "from": "product-panels", "to": "laravel-app", "label": "Livewire requests", "labelAt": [475, 280] },
+    { "id": "admin-app", "from": "admin", "to": "laravel-app", "label": "operator actions", "fromSide": "right", "toSide": "bottom", "via": [[480, 599], [480, 430], [625, 430]], "labelAt": [552, 414] },
+    { "id": "app-search", "from": "laravel-app", "to": "search", "label": "search queries", "labelAt": [765, 280] },
+    { "id": "app-postgres", "from": "laravel-app", "to": "postgres", "label": "SQL", "fromSide": "top", "toSide": "top", "via": [[625, 230], [1215, 230]], "labelAt": [920, 212] },
+    { "id": "dumps-pipeline", "from": "source-dumps", "to": "import-pipeline", "label": "complete dumps", "variant": "dashed", "labelAt": [765, 540] },
+    { "id": "pipeline-postgres", "from": "import-pipeline", "to": "postgres", "label": "stage and publish", "variant": "emphasis", "fromSide": "right", "toSide": "bottom", "via": [[1040, 599], [1040, 450], [1215, 450]], "labelAt": [1127, 465] },
+    { "id": "pipeline-embeddings", "from": "import-pipeline", "to": "embedding-drain", "label": "drain work", "variant": "dashed", "labelAt": [1060, 620] },
+    { "id": "search-postgres", "from": "search", "to": "postgres", "label": "FTS and vector reads", "labelAt": [1055, 280] }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Products",
+      "items": ["Chinook, Northwind, and Pagila remain distinct sample products", "Shared application capabilities connect the panels"]
+    },
+    {
+      "dot": "emerald",
+      "title": "Data path",
+      "items": ["Complete dumps enter PostgreSQL staging before atomic publish", "Shadow schemas support isolation and safe reset or recovery"]
+    },
+    {
+      "dot": "violet",
+      "title": "Search",
+      "items": ["Search reads durable projections from PostgreSQL", "The Golden Search Corpus verifies behavior across products"]
+    }
+  ]
+}
