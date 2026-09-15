@@ -55,22 +55,21 @@ jobs:
           COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
         run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v6
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          version: 11.24.0
+          bun-version-file: package.json
 
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
           node-version: 22
-          cache: pnpm
 
       - name: Install frontend dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: Build frontend assets
-        run: pnpm run build
+        run: bun run build
 
       - name: Configure application and database
         run: |
@@ -136,22 +135,21 @@ jobs:
           COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
         run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v6
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          version: 11.24.0
+          bun-version-file: package.json
 
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
           node-version: 22
-          cache: pnpm
 
       - name: Install frontend dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: Build frontend assets
-        run: pnpm run build
+        run: bun run build
 
       - name: Configure application and database
         run: |

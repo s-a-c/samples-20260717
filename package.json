@@ -4,6 +4,10 @@
         "dev": "vp dev",
         "prepare": "vp config"
     },
+    "overrides": {
+        "shell-quote": "1.9.0"
+    },
+    "packageManager": "bun@1.4.2",
     "dependencies": {
         "@laravel/passkeys": "^0.4.0",
         "@tailwindcss/vite": "^4.3.3",
@@ -11,15 +15,14 @@
         "fontaine": "^0.8.1",
         "laravel-vite-plugin": "^3.2.0",
         "morphicons": "^1.7.1",
-        "rolldown": "^1.2.6",
+        "rolldown": "^1.2.8",
         "tailwindcss": "^4.3.3",
-        "vite": "npm:@voidzero-dev/vite-plus-core@^0.2.9"
+        "vite": "npm:@voidzero-dev/vite-plus-core@0.3.1"
     },
     "devDependencies": {
         "@catppuccin/tailwindcss": "^1.0.0",
-        "laravel-echo": "^2.4.0",
+        "laravel-echo": "^2.5.0",
         "pusher-js": "^8.6.0",
-        "vite-plus": "catalog:"
-    },
-    "packageManager": "pnpm@11.24.0"
+        "vite-plus": "0.3.1"
+    }
 }
